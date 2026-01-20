@@ -1,0 +1,57 @@
+ 1️. Client Information
+    Client Code
+    Client Type (Individual / Company)
+    Name
+    Phone
+    Email
+    Address
+
+    2. Project Identification
+     - Project Code
+     - Project Name
+     - Project Start Date
+     - Expected Completion Date
+     - Project Status (Planned / Ongoing / Completed)
+    
+    3. Site Details
+     - Building Area
+     - Number of Storeys
+     - Site Location (separate from client address)
+     - City / Township
+     - Project Code
+     
+    4. Construction Scope & Type
+        Construction/ Building Type (Residential / Commercial / Industrial/ Renovation)
+        - Residential
+        - Commercial
+        - Industrial
+        - Renovation
+        /// Steel Structure, Electrical, 
+
+        Job Scope (Select) // Job package (Diamond, Bronze, Gold)
+        - Structure
+        - Finishing
+        - Electrical
+        - Plumbing
+        - Full Turnkey
+    
+    5. Contract & Financial Info
+        Contract Type
+        - Lump Sum
+        - Cost Plus
+        - Unit Rate
+        Estimated Budget
+        Payment Terms
+        Advance Payment (%)
+        Retention (%)
+
+    6. Project Responsibility & Management
+        - Project Manager
+        - Site Engineer
+        - Assigned Team
+
+    7. Documents & Legal
+        - Contract Signed Date
+        - Contract Number
+        - Permit Status (Pending / Approved)
+        - Document Upload(Contract, Drawing, BOQ)

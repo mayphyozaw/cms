@@ -43,17 +43,205 @@
                     </ul>
                 </li>
 
-                {{-- <li class="menu-title"><span>UserManage</span></li>
+                
+
+                 <li class="menu-title"><span>Client Manage</span></li>
+                
                 <li>
                     <ul>
-                        <li><a href="{{ route('dashboard') }}"
-                                class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                                <i class="ti ti-dashboard">
-                                </i><span>User Manage</span>
+                        <li class="submenu">
+                            <a href="javascript:void(0);">
+                                <i class="ti ti-user-shield"></i>
+                                <span>Client Management</span>
+                                <span class="menu-arrow"></span>
                             </a>
+
+                            <ul style="{{ request()->routeIs('clientmanage.*') ? 'display:block;' : '' }}">
+                                <li>
+                                    <a href="{{ route('clientmanage.index') }}"
+                                        class="{{ request()->routeIs('clientmanage.*') ? 'active' : '' }}">
+                                        <i class="ti ti-users">
+                                        </i><span>Clients Informations</span>
+                                    </a>
+                                </li>
+                                
+                                <li>
+                                    <a href=""
+                                        class="">
+                                        <i class="ti ti-atom-2">
+                                        </i><span>Projects Progress</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href=""
+                                        class="">
+                                        <i class="ti ti-file-invoice">
+                                        </i><span>Invoices</span>
+                                    </a>
+                                </li>
+                                
+                            </ul>
                         </li>
                     </ul>
-                </li> --}}
+                </li>
+
+                <li class="menu-title"><span>Project Manage</span></li>
+                
+                <li>
+                    <ul>
+                        <li class="submenu">
+                            <a href="javascript:void(0);">
+                                <i class="ti ti-atom-2"></i>
+                                <span>Project Management</span>
+                                <span class="menu-arrow"></span>
+                            </a>
+
+                            <ul style="">
+                                <li>
+                                    <a href=""
+                                        class="">
+                                        <i class="ti ti-atom-2">
+                                        </i><span>All Projects</span>
+                                    </a>
+                                </li>
+                                
+                                <li>
+                                    <a href=""
+                                        class="">
+                                        <i class="ti ti-list-check">
+                                        </i><span>Task & Progress Tracking</span>
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="menu-title"><span>Material Manage</span></li>
+                
+                <li>
+                    <ul>
+                        <li class="submenu">
+                            <a href="javascript:void(0);">
+                                <i class="ti ti-icons"></i>
+                                <span>Material Management</span>
+                                <span class="menu-arrow"></span>
+                            </a>
+
+                            <ul style="">
+                                <li>
+                                    <a href=""
+                                        class="">
+                                        <i class="ti ti-icons">
+                                        </i><span>Fixed Assets</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href=""
+                                        class="">
+                                        <i class="ti ti-icons">
+                                        </i><span>Variable Assets</span>
+                                    </a>
+                                </li>
+                                
+                                <li>
+                                    <a href=""
+                                        class="">
+                                        <i class="ti ti-users">
+                                        </i><span>Work Scope</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href=""
+                                        class="">
+                                        <i class="ti ti-users">
+                                        </i><span>BQ</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="menu-title"><span>Stock Manage</span></li>
+                
+                <li>
+                    <ul>
+                        <li class="submenu">
+                            <a href="javascript:void(0);">
+                                <i class="ti ti-building-factory"></i>
+                                <span>Stock Management</span>
+                                <span class="menu-arrow"></span>
+                            </a>
+
+                            <ul style="">
+                                <li>
+                                    <a href=""
+                                        class="">
+                                        <i class="ti ti-users">
+                                        </i><span>Warehouse</span>
+                                    </a>
+                                </li>
+                                
+                                <li>
+                                    <a href=""
+                                        class="">
+                                        <i class="ti ti-users">
+                                        </i><span>Stock In/ Stock out</span>
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                 <li class="menu-title"><span>Equipment Manage</span></li>
+                
+                <li>
+                    <ul>
+                        <li class="submenu">
+                            <a href="javascript:void(0);">
+                                <i class="ti ti-database"></i>
+                                <span>Equipment Management</span>
+                                <span class="menu-arrow"></span>
+                            </a>
+
+                            <ul style="">
+                                <li>
+                                    <a href=""
+                                        class="">
+                                        <i class="ti ti-database">
+                                        </i><span>Equipment Lists</span>
+                                    </a>
+                                </li>
+                                
+                                <li>
+                                    <a href=""
+                                        class="">
+                                        <i class="ti ti-users">
+                                        </i><span>Equipment Assignment</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href=""
+                                        class="">
+                                        <i class="ti ti-users">
+                                        </i><span>Usage History</span>
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
 
                 <li class="menu-title"><span>User Manage</span></li>
                 
@@ -80,6 +268,14 @@
                                         class="{{ request()->routeIs('resign-employees.index') ? 'active' : '' }}">
                                         <i class="ti ti-users">
                                         </i><span>Resigned Employess</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href=""
+                                        class="">
+                                        <i class="ti ti-users">
+                                        </i><span>Engineer Assigned</span>
                                     </a>
                                 </li>
                                 

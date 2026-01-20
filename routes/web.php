@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\PasswordController;
+use App\Http\Controllers\Backend\ClientManagement\ClientController;
 use App\Http\Controllers\Backend\UserManagement\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
@@ -47,5 +48,10 @@ Route::middleware('auth', 'notBlocked')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::get('/change-password', [PasswordController::class, 'edit'])->name('change-password.edit');
     Route::put('/change-password', [PasswordController::class, 'update'])->name('change-password.update');
+
+
+     Route::resource('clientmanage', ClientController::class);
+     Route::get('client-datatable', [ClientController::class, 'clientDataTable'])->name('client-datatable');
+
 });
 

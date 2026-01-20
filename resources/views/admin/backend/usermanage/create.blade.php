@@ -35,7 +35,6 @@
 
                                 </div>
                             </div>
-
                             <div class="mb-3">
                                 <label class="form-label fs-14">Enter Email</label>
                                 <div class="input-group">
@@ -104,8 +103,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
 
                             <div class="row">
                                 <div class="col-lg-6 col-md-12">

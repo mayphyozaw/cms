@@ -89,32 +89,6 @@ class UserController extends Controller
             $esign_img_file->move(public_path('/upload/user_images'), $esign_img_name);
         }
 
-
-        // $userData = [
-        //         'name' => $request->name,
-        //         'email' => $request->email,
-        //         'password' => Hash::make($request->password),
-        //         'phone' => $request->phone,
-        //         'address' => $request->address,
-        //         'employeetype'   => $request->employeetype,
-        //         'department'   => $request->department,
-        //         'employee_number' => $this->userService->generateCode($request->department),
-        //         'gender'   => $request->gender,
-        //         'nrc'   => $request->nrc,
-        //         'nrcfrontphoto' => $nrc_front_img_name,
-        //         'nrcbackphoto' => $nrc_back_img_name,
-        //         'householdphoto' => $household_img_name,
-        //         'referenceletter' => $reference_letter_img_name,
-        //         'photo' => $user_img_name,
-        //         'esingphoto' => $esign_img_name,
-        //         'date' => $request->date,
-        //         'contact_person' => $request->contact_person,
-        //         'contact_number' => $request->contact_number,
-        //         'status' => 'active',
-
-        //     ];
-
-
         try {
             $userData = [
                 'name' => $request->name,
@@ -139,8 +113,6 @@ class UserController extends Controller
                 'status' => 'active',
 
             ];
-
-
             $this->userService->create($userData);
 
             return redirect()->route('usermanage.index')
