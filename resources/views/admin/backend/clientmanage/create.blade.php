@@ -15,7 +15,7 @@
 
         <div class="row">
             <div class="col-sm-12">
-                <form class="needs-validation" action="{{ route('clientmanage.store') }}" method="POST" id="submit-form"
+                <form class="needs-validation" action="{{ route('client.store') }}" method="POST" id="submit-form"
                     enctype="multipart/form-data">
                     @csrf
                     <div class="card">
@@ -39,10 +39,12 @@
                                         </div>
 
                                         <div class="col-md-4 mb-3">
-                                            <label for="form-label fs-14" class="form-label fs-14">Client
-                                                Code Number</label>
+                                            <label for="form-label fs-14" class="form-label fs-14">
+                                                Client Code Number
+                                            </label>
                                             <div class="input-group">
                                                 <span class="input-group-text" id="clientcodePrefix"></span>
+                                                <input type="hidden" id="clientcodePrefixHidden" name="prefix_code">
                                                 <input type="text" name="client_code" class="form-control"
                                                     placeholder="">
                                             </div>
@@ -195,8 +197,7 @@
                                                 <option value="Electrical">Electrical</option>
                                                 <option value="Plumbing">Plumbing</option>
                                                 <option value="PAE">PAE</option>
-                                                <option value="Steel Structure">Steel Structure</option>
-                                                <option value="Electrical">Electrical</option>
+                                                <option value="Steel">Steel Structure</option>
                                             </select>
                                         </div>
 
@@ -230,13 +231,14 @@
         $(document).ready(function() {
 
             const prefixMap = {
-                Individual: 'SKG-',
-                Company: 'SKG-',
+                Individual: 'SKGI-',
+                Company: 'SKGC-',
             };
 
             $('#client_type').on('change', function() {
                 let clienttype = $(this).val();
                 $('#clientcodePrefix').text(prefixMap[clienttype] || '');
+                $('#clientcodePrefixHidden').val(prefixMap[clienttype] || '');
             });
 
         });

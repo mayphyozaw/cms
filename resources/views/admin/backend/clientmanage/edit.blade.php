@@ -15,9 +15,10 @@
 
         <div class="row">
             <div class="col-sm-12">
-                <form class="needs-validation" action="{{ route('clientmanage.update',$client->id) }}" method="POST" id="submit-form"
-                    enctype="multipart/form-data">
+                <form class="needs-validation" action="{{ route('client.update', $client->id) }}" method="POST"
+                    id="submit-form" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                     <div class="card">
                         <div class="card-header">
                             <h5 class="card-title">Client Information</h5>
@@ -33,18 +34,25 @@
                                                 Client Type</label>
                                             <select class="form-control" name="client_type" id="client_type">
                                                 <option value="">-- Select Client Type--</option>
-                                                <option value="Individual" {{ $client->client_type === 'Individual' ? 'selected' : '' }}>Individual</option>
-                                                <option value="Company" {{ $client->client_type === 'Company' ? 'selected' : '' }}>Company</option>
+                                                <option value="Individual"
+                                                    {{ $client->client_type === 'Individual' ? 'selected' : '' }}>Individual
+                                                </option>
+                                                <option value="Company"
+                                                    {{ $client->client_type === 'Company' ? 'selected' : '' }}>Company
+                                                </option>
                                             </select>
                                         </div>
 
                                         <div class="col-md-4 mb-3">
-                                            <label for="form-label fs-14" class="form-label fs-14">Client
-                                                Code Number</label>
+                                            <label for="form-label fs-14" class="form-label fs-14">
+                                                Client Code Number
+                                            </label>
                                             <div class="input-group">
                                                 <span class="input-group-text" id="clientcodePrefix"></span>
-                                                <input type="text" value={{$client->client_code}} class="form-control"
-                                                    placeholder="">
+                                                <input type="hidden" id="clientcodePrefixHidden" name="prefix_code">
+                                                <input type="text" value="{{ Str::after($client->client_code, '-') }}"
+                                                    class="form-control" name="client_code">
+
                                             </div>
                                         </div>
 
@@ -52,46 +60,40 @@
                                             <label class="form-label" for="validationCustom01">Customer Name
                                             </label>
                                             <input type="text" class="form-control" name="name"
-                                                value={{$client->name}}>
+                                                value="{{ $client->name }}">
                                         </div>
 
                                         <div class="col-md-4 mb-3">
                                             <label class="form-label" for="validationCustom01">Phone Number
                                             </label>
                                             <input type="text" class="form-control" name="phone"
-                                                value={{$client->phone}}>
+                                                value="{{ $client->phone }}">
                                         </div>
 
                                         <div class="col-md-4 mb-3">
                                             <label class="form-label" for="validationCustom01">Email
                                             </label>
-                                            <input type="text" class="form-control" name="email"
-                                                value={{$client->email}}>
+                                            <input type="email" class="form-control" name="email"
+                                                value="{{ $client->email }}">
                                         </div>
 
                                         <div class="col-md-4 mb-3">
                                             <label class="form-label" for="validationCustom01">Contact Person
                                             </label>
                                             <input type="text" class="form-control" name="contact_person"
-                                                @error('contact_person	') is-invalid @enderror
-                                                placeholder="Enter Contact Person	" required>
-                                            @error('contact_person ')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
+                                                value="{{ $client->contact_person }}">
                                         </div>
 
                                         <div class="col-md-4 mb-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Address:</label>
-                                                <textarea name="address" class="form-control"></textarea>
+                                                <textarea name="address" class="form-control">{{ $client->address }}</textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-4 mb-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Remark:</label>
-                                                <textarea name="remark" class="form-control"></textarea>
+                                                <textarea name="remark" class="form-control">{{ $client->remark }}</textarea>
                                             </div>
                                         </div>
 
@@ -117,22 +119,25 @@
                                             <div class="input-group">
                                                 <span class="input-group-text">P-</span>
                                                 <input type="text" class="form-control" name="project_code"
-                                                    placeholder="Enter Project Code Number" required>
+                                                    value="{{ $client->project_code }}">
+
                                             </div>
                                         </div>
 
                                         <div class="col-md-4 mb-3">
                                             <label class="form-label" for="validationDefault04">Site Location</label>
                                             <input type="text" class="form-control" name="site_location"
-                                                placeholder="Enter Site Location" required>
+                                                value="{{ $client->site_location }}">
+
                                         </div>
 
 
 
                                         <div class="col-md-4 mb-3">
                                             <label class="form-label" for="validationDefault03">City</label>
-                                            <input type="text" class="form-control" name="city" placeholder="City"
-                                                required>
+                                            <input type="text" class="form-control" name="city"
+                                                value="{{ $client->city }}">
+
                                         </div>
 
                                     </div>
@@ -142,16 +147,16 @@
                                             <label class="form-label">
                                                 Building Area
                                             </label>
-                                            <input type="text" class="form-control" placeholder="Enter Building Area"
-                                                name="building_area" required>
+                                            <input type="text" class="form-control" name="building_area"
+                                                value="{{ $client->building_area }}">
                                         </div>
 
                                         <div class="col-md-4 mb-3">
                                             <label class="form-label">
                                                 Number of Storeys
                                             </label>
-                                            <input type="text" class="form-control"
-                                                placeholder="Enter Number of Storeys" name="storeys" required>
+                                            <input type="text" class="form-control" name="storeys"
+                                                value="{{ $client->storeys }}">
                                         </div>
 
                                         <div class="col-md-4 mb-3">
@@ -159,12 +164,24 @@
                                                 Construction Type</label>
                                             <select class="form-control" name="construction_type">
                                                 <option value="">-- Select Construction Type--</option>
-                                                <option value="Residential">Residential</option>
-                                                <option value="Commercial">Commercial</option>
-                                                <option value="Renovation">Renovation</option>
-                                                <option value="PAE">PAE</option>
-                                                <option value="Steel Structure">Steel Structure</option>
-                                                <option value="Electrical">Electrical</option>
+                                                <option value="Residential"
+                                                    {{ $client->construction_type === 'Residential' ? 'selected' : '' }}>
+                                                    Residential</option>
+                                                <option value="Commercial"
+                                                    {{ $client->construction_type === 'Commercial' ? 'selected' : '' }}>
+                                                    Commercial</option>
+                                                <option value="Renovation"
+                                                    {{ $client->construction_type === 'Renovation' ? 'selected' : '' }}>
+                                                    Renovation</option>
+                                                <option value="PAE"
+                                                    {{ $client->construction_type === 'PAE' ? 'selected' : '' }}>PAE
+                                                </option>
+                                                <option value="SteelStructure"
+                                                    {{ $client->construction_type === 'SteelStructure' ? 'selected' : '' }}>
+                                                    Steel Structure</option>
+                                                <option value="Electrical"
+                                                    {{ $client->construction_type === 'Electrical' ? 'selected' : '' }}>
+                                                    Electrical</option>
                                             </select>
                                         </div>
                                     </div>
@@ -175,12 +192,20 @@
                                                 Job Scope</label>
                                             <select class="form-control" name="job_scope">
                                                 <option value="">-- Select Job Scope Type--</option>
-                                                <option value="Structure">Structure</option>
-                                                <option value="Electrical">Electrical</option>
-                                                <option value="Plumbing">Plumbing</option>
-                                                <option value="PAE">PAE</option>
-                                                <option value="Steel Structure">Steel Structure</option>
-                                                <option value="Electrical">Electrical</option>
+                                                <option value="Structure"
+                                                    {{ $client->job_scope === 'Structure' ? 'selected' : '' }}>Structure
+                                                </option>
+                                                <option value="Electrical"
+                                                    {{ $client->job_scope === 'Electrical' ? 'selected' : '' }}>Electrical
+                                                </option>
+                                                <option value="Plumbing"
+                                                    {{ $client->job_scope === 'Plumbing' ? 'selected' : '' }}>Plumbing
+                                                </option>
+                                                <option value="PAE"
+                                                    {{ $client->job_scope === 'PAE' ? 'selected' : '' }}>PAE</option>
+                                                <option value="Steel"
+                                                    {{ $client->job_scope === 'Steel' ? 'selected' : '' }}>Steel Structure
+                                                </option>
                                             </select>
                                         </div>
 
@@ -189,9 +214,15 @@
                                                 Job Package</label>
                                             <select class="form-control" name="job_package">
                                                 <option value="">-- Select Job Package--</option>
-                                                <option value="GoldPackage">GoldPackage</option>
-                                                <option value="SilverPackage">SilverPackage</option>
-                                                <option value="DiamondPackage">DiamondPackage</option>
+                                                <option value="GoldPackage"
+                                                    {{ $client->job_package === 'GoldPackage' ? 'selected' : '' }}>
+                                                    GoldPackage</option>
+                                                <option value="SilverPackage"
+                                                    {{ $client->job_package === 'SilverPackage' ? 'selected' : '' }}>
+                                                    SilverPackage</option>
+                                                <option value="DiamondPackage"
+                                                    {{ $client->job_package === 'DiamondPackage' ? 'selected' : '' }}>
+                                                    DiamondPackage</option>
                                             </select>
                                         </div>
                                     </div>
@@ -208,19 +239,28 @@
     </div>
 @endsection
 @push('scripts')
-    {!! JsValidator::formRequest('App\Http\Requests\Client\ClientStoreRequest', '#submit-form') !!}
+    {!! JsValidator::formRequest('App\Http\Requests\Client\ClientUpdateRequest', '#submit-form') !!}
 
-    <script type="text/javascript">
+    <script>
         $(document).ready(function() {
 
             const prefixMap = {
-                Individual: 'SKG-',
-                Company: 'SKG-',
+                Individual: 'SKGI-',
+                Company: 'SKGC-',
             };
 
-            $('#client_type').on('change', function() {
-                let clienttype = $(this).val();
+            function updatePrefix() {
+                let clienttype = $('#client_type').val();
                 $('#clientcodePrefix').text(prefixMap[clienttype] || '');
+                $('#clientcodePrefixHidden').val(prefixMap[clienttype] || '');
+            }
+
+            // Run on page load (EDIT page fix)
+            updatePrefix();
+
+            // Run on change (CREATE & EDIT)
+            $('#client_type').on('change', function() {
+                updatePrefix();
             });
 
         });

@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Backend\ClientManagement;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Client\ClientStoreRequest;
+use App\Http\Requests\Client\ClientUpdateRequest;
+use App\Models\Client;
 use App\Services\ClientService;
+use App\Services\ResponseService;
+use Exception;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -41,7 +45,7 @@ class ClientController extends Controller
             'phone' => $request->phone,
             'address' => $request->address,
             'client_type' => $request->client_type,
-            'client_code' => $request->client_code,
+            'client_code' => $request->prefix_code . $request->client_code, //$this->clientService->generateCode($request->client_code),
             'contact_person' => $request->contact_person,
             'project_code' => $request->project_code,
             'site_location' => $request->site_location,
@@ -53,10 +57,53 @@ class ClientController extends Controller
             'job_package' => $request->job_package,
         ];
         $this->clientService->create($clientData);
-        return redirect()->route('clientmanage.index')
+        return redirect()->route('client.index')
             ->with([
                 'message' => 'Successfully created',
                 'alert-type' => 'success'
             ]);
+    }
+
+    public function edit($id)
+    {
+        $client = Client::findOrFail($id);
+        return view('admin.backend.clientmanage.edit', compact('client'));
+    }
+
+    public function update(ClientUpdateRequest $request, $id)
+    {
+        $clientData = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'client_type' => $request->client_type,
+            'client_code' => $request->prefix_code . $request->client_code,
+            'contact_person' => $request->contact_person,
+            'project_code' => $request->project_code,
+            'site_location' => $request->site_location,
+            'city' => $request->city,
+            'building_area' => $request->building_area,
+            'storeys' => $request->storeys,
+            'construction_type' => $request->construction_type,
+            'job_scope' => $request->job_scope,
+            'job_package' => $request->job_package,
+        ];
+        $this->clientService->update($id, $clientData);
+
+        return redirect()->route('client.index')
+            ->with('message', 'Successfully updated')
+            ->with('alert-type', 'success');
+    }
+
+    public function destroy($id)
+    {
+        try {
+            $this->clientService->delete($id);
+
+            return ResponseService::success([], 'Successfully deleted');
+        } catch (Exception $e) {
+            return ResponseService::fail($e->getMessage());
+        }
     }
 }

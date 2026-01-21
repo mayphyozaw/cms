@@ -41,6 +41,7 @@ class ClientRepository implements ClientRepoInterface
     public function query()
     {
         return $this->model->select([
+            'id',
             'name',
             'email',
             'phone',

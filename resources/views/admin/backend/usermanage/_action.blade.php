@@ -1,6 +1,8 @@
+@if ($user->id !== auth()->id())
 <x-edit-button href="{{ route('usermanage.edit', $user->id) }}" class="btn btn-icon btn-sm btn-info" title="Edit">
     <i class="ti ti-edit"></i>
 </x-edit-button>
+@endif
 
 @if ($user->id !== auth()->id())
 <button type="button" class="btn btn-icon btn-sm btn-success openResignModal" data-id="{{ $user->id }}"

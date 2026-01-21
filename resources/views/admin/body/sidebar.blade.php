@@ -43,10 +43,10 @@
                     </ul>
                 </li>
 
-                
 
-                 <li class="menu-title"><span>Client Manage</span></li>
-                
+
+                <li class="menu-title"><span>Client Manage</span></li>
+
                 <li>
                     <ul>
                         <li class="submenu">
@@ -56,38 +56,36 @@
                                 <span class="menu-arrow"></span>
                             </a>
 
-                            <ul style="{{ request()->routeIs('clientmanage.*') ? 'display:block;' : '' }}">
+                            <ul style="{{ request()->routeIs('client.*') ? 'display:block;' : '' }}">
                                 <li>
-                                    <a href="{{ route('clientmanage.index') }}"
-                                        class="{{ request()->routeIs('clientmanage.*') ? 'active' : '' }}">
+                                    <a href="{{ route('client.index') }}"
+                                        class="{{ request()->routeIs('client.*') ? 'active' : '' }}">
                                         <i class="ti ti-users">
                                         </i><span>Clients Informations</span>
                                     </a>
                                 </li>
-                                
+
                                 <li>
-                                    <a href=""
-                                        class="">
+                                    <a href="" class="">
                                         <i class="ti ti-atom-2">
                                         </i><span>Projects Progress</span>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href=""
-                                        class="">
+                                    <a href="" class="">
                                         <i class="ti ti-file-invoice">
                                         </i><span>Invoices</span>
                                     </a>
                                 </li>
-                                
+
                             </ul>
                         </li>
                     </ul>
                 </li>
 
                 <li class="menu-title"><span>Project Manage</span></li>
-                
+
                 <li>
                     <ul>
                         <li class="submenu">
@@ -99,28 +97,26 @@
 
                             <ul style="">
                                 <li>
-                                    <a href=""
-                                        class="">
+                                    <a href="" class="">
                                         <i class="ti ti-atom-2">
                                         </i><span>All Projects</span>
                                     </a>
                                 </li>
-                                
+
                                 <li>
-                                    <a href=""
-                                        class="">
+                                    <a href="" class="">
                                         <i class="ti ti-list-check">
                                         </i><span>Task & Progress Tracking</span>
                                     </a>
                                 </li>
-                                
+
                             </ul>
                         </li>
                     </ul>
                 </li>
 
                 <li class="menu-title"><span>Material Manage</span></li>
-                
+
                 <li>
                     <ul>
                         <li class="submenu">
@@ -130,34 +126,34 @@
                                 <span class="menu-arrow"></span>
                             </a>
 
-                            <ul style="">
+                            {{-- fixed assets mean assets --}}
+                            <ul style="{{ request()->routeIs('material.fixedassets*') ? 'display:block;' : '' }}">
                                 <li>
-                                    <a href=""
-                                        class="">
-                                        <i class="ti ti-icons">
-                                        </i><span>Fixed Assets</span>
+                                    <a href="{{ route('material.fixedassets.index') }}"
+                                        class="{{ request()->routeIs('material.fixedassets.*') ? 'active' : '' }}">
+                                        <i class="ti ti-icons"></i>
+                                        <span>Fixed Assets</span>
                                     </a>
                                 </li>
 
+                                {{-- variable assets mean materials --}}
                                 <li>
-                                    <a href=""
-                                        class="">
+                                    <a href="{{ route('material.variableassets.index') }}"
+                                        class="{{ request()->routeIs('material.variableassets.*') ? 'active' : '' }}">
                                         <i class="ti ti-icons">
                                         </i><span>Variable Assets</span>
                                     </a>
                                 </li>
-                                
+
                                 <li>
-                                    <a href=""
-                                        class="">
+                                    <a href="" class="">
                                         <i class="ti ti-users">
                                         </i><span>Work Scope</span>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href=""
-                                        class="">
+                                    <a href="" class="">
                                         <i class="ti ti-users">
                                         </i><span>BQ</span>
                                     </a>
@@ -169,7 +165,7 @@
                 </li>
 
                 <li class="menu-title"><span>Stock Manage</span></li>
-                
+
                 <li>
                     <ul>
                         <li class="submenu">
@@ -181,28 +177,26 @@
 
                             <ul style="">
                                 <li>
-                                    <a href=""
-                                        class="">
+                                    <a href="" class="">
                                         <i class="ti ti-users">
                                         </i><span>Warehouse</span>
                                     </a>
                                 </li>
-                                
+
                                 <li>
-                                    <a href=""
-                                        class="">
+                                    <a href="" class="">
                                         <i class="ti ti-users">
                                         </i><span>Stock In/ Stock out</span>
                                     </a>
                                 </li>
-                                
+
                             </ul>
                         </li>
                     </ul>
                 </li>
 
-                 <li class="menu-title"><span>Equipment Manage</span></li>
-                
+                <li class="menu-title"><span>Equipment Manage</span></li>
+
                 <li>
                     <ul>
                         <li class="submenu">
@@ -214,29 +208,26 @@
 
                             <ul style="">
                                 <li>
-                                    <a href=""
-                                        class="">
+                                    <a href="" class="">
                                         <i class="ti ti-database">
                                         </i><span>Equipment Lists</span>
                                     </a>
                                 </li>
-                                
+
                                 <li>
-                                    <a href=""
-                                        class="">
+                                    <a href="" class="">
                                         <i class="ti ti-users">
                                         </i><span>Equipment Assignment</span>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href=""
-                                        class="">
+                                    <a href="" class="">
                                         <i class="ti ti-users">
                                         </i><span>Usage History</span>
                                     </a>
                                 </li>
-                                
+
                             </ul>
                         </li>
                     </ul>
@@ -244,7 +235,7 @@
 
 
                 <li class="menu-title"><span>User Manage</span></li>
-                
+
                 <li>
                     <ul>
                         <li class="submenu">
@@ -262,7 +253,7 @@
                                         </i><span>All Users</span>
                                     </a>
                                 </li>
-                                
+
                                 <li>
                                     <a href="{{ route('resign-employees.index') }}"
                                         class="{{ request()->routeIs('resign-employees.index') ? 'active' : '' }}">
@@ -272,13 +263,12 @@
                                 </li>
 
                                 <li>
-                                    <a href=""
-                                        class="">
+                                    <a href="" class="">
                                         <i class="ti ti-users">
                                         </i><span>Engineer Assigned</span>
                                     </a>
                                 </li>
-                                
+
                             </ul>
                         </li>
                     </ul>
@@ -295,8 +285,7 @@
 
                             <ul style="{{ request()->routeIs('role.*') ? 'display:block;' : 'display:none;' }}">
                                 <li>
-                                    <a href="#"
-                                        class="{{ request()->routeIs('role.*') ? 'active' : '' }}">
+                                    <a href="#" class="{{ request()->routeIs('role.*') ? 'active' : '' }}">
                                         Roles
                                     </a>
                                 </li>

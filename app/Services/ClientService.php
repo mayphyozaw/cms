@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Client;
 use App\Repositories\Contracts\ClientRepoInterface;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -33,9 +34,10 @@ class ClientService
         return $record;
     }
 
+
     public function clientDataTable(Request $request)
     {
-       
+
         $query = $this->clientRepoInterface->query();
 
         return DataTables::eloquent($query)
@@ -56,7 +58,7 @@ class ClientService
                 return $client->client_code;
             })
             ->addColumn('project_code', function ($client) {
-                return $client->project_code;
+                return 'P-' . $client->project_code;
             })
             ->addColumn('site_location', function ($client) {
                 return $client->site_location;
@@ -65,7 +67,7 @@ class ClientService
                 return $client->city;
             })
             ->editColumn('building_area', function ($client) {
-                return $client->building_area; 
+                return $client->building_area;
             })
             ->editColumn('storeys', function ($client) {
                 return $client->storeys;
@@ -79,7 +81,7 @@ class ClientService
             ->editColumn('job_package', function ($client) {
                 return $client->job_package;
             })
-            
+
             ->addColumn('action', function ($client) {
                 return view('admin.backend.clientmanage._action', compact('client'))->render();
             })

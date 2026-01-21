@@ -23,7 +23,7 @@ class ClientStoreRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:clients,email,' . $this->route('clientmanage'),
+            'email' => 'required|email|unique:clients,email,' . $this->route('client'),
             'address' => 'nullable|string|max:255',
             'client_type' => 'nullable|string|max:255',
             'client_code' => 'nullable|string|max:255',

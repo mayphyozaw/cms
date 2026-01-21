@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="d-flex align-items-center gap-2 flex-wrap">
-                <x-create-button href="{{ route('clientmanage.create') }}">
+                <x-create-button href="{{ route('client.create') }}">
                     Create Customer
                 </x-create-button>
             </div>
