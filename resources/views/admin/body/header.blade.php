@@ -15,8 +15,8 @@
 
                 <!-- Logo Dark -->
                 <span class="logo-dark">
-                    <span class="logo-lg"><img src="{{ asset('backend/assets/img/logo-white.svg') }}"
-                            alt="dark logo"></span>
+                    <span class="logo-lg"><img src="{{ asset('data/logo.png') }}"
+                            alt="dark logo" style="width:50px;"></span>
                 </span>
             </a>
 
@@ -29,16 +29,6 @@
                 <i class="ti ti-arrow-bar-to-right"></i>
             </button>
 
-            <!-- Search -->
-            <div class="me-auto d-flex align-items-center header-search d-lg-flex d-none">
-                <!-- Search -->
-                <div class="input-icon position-relative me-2">
-                    <input type="text" class="form-control" placeholder="Search Keyword">
-                    <span class="input-icon-addon d-inline-flex p-0 header-search-icon"><i
-                            class="ti ti-command"></i></span>
-                </div>
-                <!-- /Search -->
-            </div>
 
         </div>
 

@@ -24,4 +24,8 @@ class Client extends Model
         'job_scope',
         'job_package',
     ];
+    public function projects()
+{
+    return $this->hasMany(Project::class);
+}
 }

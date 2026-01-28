@@ -1,0 +1,125 @@
+@extends('layouts.app')
+@section('content')
+    <div class="content pb-0">
+        <div class="mb-4">
+            <h4 class="mb-1">Variable Assets</h4>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0 p-0">
+                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Variable Assets</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Edit Variable Assets</li>
+                </ol>
+            </nav>
+        </div>
+
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-12 md-12">
+                <div class="card border-0 rounded-0">
+
+                    <div class="card-header">
+                        <h5 class="card-title">Variable Assets Information</h5>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ route('material.variableassets.update', $variableAsset->id) }}" method="POST" id="submit-form"
+                            enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+                            <div class="col-lg-6 col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Variable Asset Code</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">V-</span>
+                                        <input type="text" class="form-control" name="material_code"
+                                            value="{{$variableAsset->material_code}}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label fs-14">Enter Asset Name</label>
+                                    <div class="input-group">
+                                        <div class="input-group-text"><i class="ti ti-icons"></i></div>
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                            name="name" value="{{$variableAsset->name}}">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-6 col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label">
+                                        Choose Asset Category</label>
+                                    <select name="variable_category_id" id="variable_category_id" class="form-control form-select">
+                                        <option value="">Select Category</option>
+                                        @foreach ($categories as $item)
+                                             <option value="{{ $item->id }}"
+                                                {{ old('variable_category_id', $variableAsset->variable_category_id) == $item->id ? 'selected' : '' }}>
+                                                {{ $item->variable_category_name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label fs-14">Unit</label>
+                                    <div class="input-group">
+                                        <div class="input-group-text"><i class="ti ti-ruler"></i></div>
+                                        <input type="text" class="form-control @error('unit') is-invalid @enderror"
+                                            name="unit" value="{{$variableAsset->unit}}">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-lg-6 col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label fs-14">Total Quantity</label>
+                                    <div class="input-group">
+                                        <div class="input-group-text"><i class="ti ti-brand-airtable"></i></div>
+                                        <input type="text" name="total_qty" class="form-control" value="{{$variableAsset->total_qty}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formBasic">Status : <span
+                                            class="text-danger">*</span></label>
+                                    <select name="reorder_level" id="reorder_level" class="form-control form-select">
+                                        <option selected="">Select Status</option>
+                                        <option value="Available" {{ $variableAsset->reorder_level === 'Available' ? 'selected' : '' }}>Available</option>
+                                        <option value="InUse" {{ $variableAsset->reorder_level === 'InUse' ? 'selected' : '' }}>In Use</option>
+                                        <option value="UnderMaintenance" {{ $variableAsset->reorder_level === 'UnderMaintenance' ? 'selected' : '' }}>Under Maintenance</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Remark:</label>
+                                    <textarea name="remarks" class="form-control">{{ old('remarks', $variableAsset->remarks) }}</textarea>
+                                </div>
+                            </div>
+
+                            <br>
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+@endsection
+@push('scripts')
+    {!! JsValidator::formRequest('App\Http\Requests\VariableAssets\VariableAssetUpdateRequest', '#submit-form') !!}
+
+@endpush

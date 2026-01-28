@@ -55,3 +55,17 @@
         - Contract Number
         - Permit Status (Pending / Approved)
         - Document Upload(Contract, Drawing, BOQ)
+
+    8. project_files
+
+        id
+        project_id
+        project_category_id
+        file
+
+        1.  1.  1. 1.png
+        1   1   1  2.png
+
+
+        1.  1.  2. 1.png
+        1   1   2  2.png

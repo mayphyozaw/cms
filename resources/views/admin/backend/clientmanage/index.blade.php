@@ -12,7 +12,7 @@
             </nav>
         </div>
 
-        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+        {{-- <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
             <div class="d-flex align-items-center gap-2 flex-wrap">
                 <div class="input-icon input-icon-start position-relative">
                     <span class="input-icon-addon text-dark"><i class="ti ti-search"></i></span>
@@ -24,12 +24,25 @@
                     Create Customer
                 </x-create-button>
             </div>
-        </div>
+        </div> --}}
 
         <div class="card border-0 rounded-0">
 
-            <div class="card-header">
+            {{-- <div class="card-header">
                 <h5 class="card-title">Customer Information</h5>
+            </div> --}}
+            <div class="card-header">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h5 class="card-title mb-0">Customer Information</h5>
+                    </div>
+
+                    <div class="col-auto">
+                        <x-create-button href="{{ route('client.create') }}">
+                            Create Customer
+                        </x-create-button>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <div class="table-search d-flex align-items-center">
@@ -43,23 +56,23 @@
                         class="table clientTable table-bordered dt-responsive table-responsive table-hover text-nowrap">
                         <thead>
                             <tr>
-                                <th class="text-center" style="background-color: #dfa190">#</th>
-                                <th class="text-center" style="background-color: #dfa190">Client Code</th>
-                                <th class="text-center" style="background-color: #dfa190">Client Type</th>
-                                <th class="text-center" style="background-color: #dfa190">Name</th>
-                                <th class="text-center" style="background-color: #dfa190">Email</th>
-                                <th class="text-center" style="background-color: #dfa190">Phone </th>
-                                <th class="text-center" style="background-color: #dfa190">Address</th>
-                                <th class="text-center" style="background-color: #dfa190">Contact Person</th>
-                                <th class="text-center" style="background-color: #dfa190">Project Code</th>
-                                <th class="text-center" style="background-color: #dfa190">Building Area</th>
-                                <th class="text-center" style="background-color: #dfa190">Number of Storeys</th>
-                                <th class="text-center" style="background-color: #dfa190">Site Location</th>
-                                <th class="text-center" style="background-color: #dfa190">City / Township</th>
-                                <th class="text-center" style="background-color: #dfa190">Construction Type</th>
-                                <th class="text-center" style="background-color: #dfa190">Job Scope</th>
-                                <th class="text-center" style="background-color: #dfa190">Job Package</th>
-                                <th class="text-center" style="background-color: #dfa190">Action</th>
+                                <th class="text-center" style="background-color: #9dd2e7">#</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Client Code</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Client Type</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Name</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Email</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Phone </th>
+                                <th class="text-center" style="background-color: #9dd2e7">Address</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Contact Person</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Project Code</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Building Area</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Number of Storeys</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Site Location</th>
+                                <th class="text-center" style="background-color: #9dd2e7">City / Township</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Construction Type</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Job Scope</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Job Package</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Action</th>
                             </tr>
                         </thead>
                     </table>

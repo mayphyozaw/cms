@@ -3,13 +3,19 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Backend\ClientManagement\ClientController;
-use App\Http\Controllers\Backend\MaterialManagement\FixedAssetsController;
-use App\Http\Controllers\Backend\MaterialManagement\VariableAssetsController;
+use App\Http\Controllers\Backend\MaterialManagement\FixedAssets\CategoryController;
+use App\Http\Controllers\Backend\MaterialManagement\FixedAssets\FixedAssetsController;
+use App\Http\Controllers\Backend\MaterialManagement\VariableAssets\VariableAssetsController;
+use App\Http\Controllers\Backend\MaterialManagement\VariableAssets\VariableCategoryController;
+use App\Http\Controllers\Backend\ProjectManagement\ProjectCategoryController;
+use App\Http\Controllers\Backend\ProjectManagement\ProjectController;
+use App\Http\Controllers\Backend\ProjectManagement\ProjectFilesController;
 use App\Http\Controllers\Backend\UserManagement\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\UserManagement\Resign;
 use App\Http\Controllers\Backend\UserManagement\ResignController;
+use App\Models\ProjectCategory;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -46,7 +52,6 @@ Route::middleware('auth', 'notBlocked')->group(function () {
     Route::post('confirm/resign', [ResignController::class, 'confirm_resign'])->name('confirm_resign');
 
 
-
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::get('/change-password', [PasswordController::class, 'edit'])->name('change-password.edit');
     Route::put('/change-password', [PasswordController::class, 'update'])->name('change-password.update');
@@ -58,10 +63,31 @@ Route::middleware('auth', 'notBlocked')->group(function () {
     // Route::resource('material/fixedassets', FixedAssetsController::class);
     // Route::resource('material/variableassets', VariableAssetsController::class);
 
-    Route::prefix('material')
-        ->name('material.')
-        ->group(function () {
-            Route::resource('fixedassets', FixedAssetsController::class);
-            Route::resource('variableassets', VariableAssetsController::class);
-        });
+    Route::prefix('material')->name('material.')->group(function () {
+
+        Route::resource('fixedassets', FixedAssetsController::class);
+        Route::get('fixedassets-datatable', [FixedAssetsController::class, 'fixedassetsDataTable'])->name('fixedassets-datatable');
+        Route::post('fixedassets/purchase', [FixedAssetsController::class], 'purchaseFixedAssets')->name('fixedassets.purchase');
+
+
+        Route::resource('category', CategoryController::class)->names('category');
+        Route::post('confirm/update', [CategoryController::class, 'confirm_update'])->name('confirm_update');
+        Route::get('category-datatable', [CategoryController::class, 'categoryDataTable'])->name('category-datatable');
+
+
+        Route::resource('variableassets', VariableAssetsController::class);
+        Route::get('variableassets-datatable', [VariableAssetsController::class, 'variableassetsDataTable'])->name('variableassets-datatable');
+
+        Route::resource('variable-category', VariableCategoryController::class)->names('variable-category');
+        Route::post('confirm/update', [VariableCategoryController::class, 'confirm_update'])->name('confirm_update');
+        Route::get('variable-category-datatable', [VariableCategoryController::class, 'variablecategoryDataTable'])->name('variable-category-datatable');
+    });
+
+    Route::prefix('projectmanage')->name('projectmanage.')->group(function () {
+        Route::resource('projects', ProjectController::class);
+        Route::get('/clients', [ProjectController::class, 'getClient'])->name('clients_get');
+        Route::resource('projectfiles', ProjectFilesController::class);
+        Route::resource('projectcategory', ProjectCategoryController::class);
+        // Route::get('developer-datatable',[DeveloperProjectControlller::class, 'developerDataTable'])->name('developer-datatable');
+    });
 });

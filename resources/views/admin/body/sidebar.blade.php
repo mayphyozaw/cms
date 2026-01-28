@@ -84,6 +84,30 @@
                     </ul>
                 </li>
 
+
+                <li>
+                    <ul>
+                        <li class="submenu">
+                            <a href="javascript:void(0);">
+                                <i class="ti ti-user-shield"></i>
+                                <span>Supplier Management</span>
+                                <span class="menu-arrow"></span>
+                            </a>
+
+                            <ul>
+                                <li>
+                                    <a href="" class="">
+                                        <i class="ti ti-users">
+                                        </i><span>All Suppliers</span>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class="menu-title"><span>Project Manage</span></li>
 
                 <li>
@@ -95,18 +119,34 @@
                                 <span class="menu-arrow"></span>
                             </a>
 
-                            <ul style="">
+                            <ul style="{{ request()->routeIs('projectmanage.projects.*') ? 'display:block;' : '' }}">
                                 <li>
-                                    <a href="" class="">
+                                    <a href="{{ route('projectmanage.projects.index') }}"
+                                        class="{{ request()->routeIs('projectmanage.projects.*') ? 'active' : '' }}">
                                         <i class="ti ti-atom-2">
-                                        </i><span>All Projects</span>
+                                        </i><span>Projects</span>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="" class="">
+
+                                    <a href="{{ route('projectmanage.projectcategory.index') }}" 
+                                        class="{{ request()->routeIs('projectmanage.projectcategory.*') ? 'active' : '' }}">
                                         <i class="ti ti-list-check">
-                                        </i><span>Task & Progress Tracking</span>
+                                        </i>
+                                        {{-- <span>Task & Progress Tracking</span> --}}
+                                        <span>Project Category</span>
+                                    </a>
+                                </li>
+
+                                <li>
+
+                                    <a href="{{ route('projectmanage.projectfiles.index') }}" 
+                                        class="{{ request()->routeIs('projectmanage.projectfiles.*') ? 'active' : '' }}">
+                                        <i class="ti ti-list-check">
+                                        </i>
+                                        {{-- <span>Task & Progress Tracking</span> --}}
+                                        <span>Project Files</span>
                                     </a>
                                 </li>
 
@@ -115,11 +155,18 @@
                     </ul>
                 </li>
 
+
+                <style>
+                    .menu-selected>a {
+                        color: red;
+                        background: #ffecec;
+                    }
+                </style>
                 <li class="menu-title"><span>Material Manage</span></li>
 
                 <li>
                     <ul>
-                        <li class="submenu">
+                        <li class="submenu {{ request()->routeIs('material.*') ? 'menu-selected' : '' }}">
                             <a href="javascript:void(0);">
                                 <i class="ti ti-icons"></i>
                                 <span>Material Management</span>
@@ -127,7 +174,7 @@
                             </a>
 
                             {{-- fixed assets mean assets --}}
-                            <ul style="{{ request()->routeIs('material.fixedassets*') ? 'display:block;' : '' }}">
+                            <ul style="{{ request()->routeIs('material.fixedassets.*') ? 'display:block;' : '' }}">
                                 <li>
                                     <a href="{{ route('material.fixedassets.index') }}"
                                         class="{{ request()->routeIs('material.fixedassets.*') ? 'active' : '' }}">

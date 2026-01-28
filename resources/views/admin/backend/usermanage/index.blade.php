@@ -43,27 +43,27 @@
                         class="table userTable table-bordered dt-responsive table-responsive table-hover text-nowrap">
                         <thead>
                             <tr>
-                                <th class="text-center" style="background-color: #dfa190">#</th>
-                                <th class="text-center" style="background-color: #dfa190">Status</th>
-                                <th class="text-center" style="background-color: #dfa190">Employee No</th>
-                                <th class="text-center" style="background-color: #dfa190">Username</th>
-                                <th class="text-center" style="background-color: #dfa190">Email</th>
-                                <th class="text-center" style="background-color: #dfa190">Department</th>
-                                <th class="text-center" style="background-color: #dfa190">Profile Photo</th>
-                                <th class="text-center" style="background-color: #dfa190">Phone </th>
-                                <th class="text-center" style="background-color: #dfa190">Address</th>
-                                <th class="text-center" style="background-color: #dfa190">Gender</th>
-                                <th class="text-center" style="background-color: #dfa190">NRC</th>
-                                <th class="text-center" style="background-color: #dfa190">NRC Front Photo</th>
-                                <th class="text-center" style="background-color: #dfa190">NRC Back Photo</th>
-                                <th class="text-center" style="background-color: #dfa190">Household Members</th>
-                                <th class="text-center" style="background-color: #dfa190">Reference Letter</th>
-                                <th class="text-center" style="background-color: #dfa190">E-Signature</th>
-                                <th class="text-center" style="background-color: #dfa190">Employee Type</th>
-                                <th class="text-center" style="background-color: #dfa190">Join Date</th>
-                                <th class="text-center" style="background-color: #dfa190">Emergency Contact Person</th>
-                                <th class="text-center" style="background-color: #dfa190">Emergency Contact Number</th>
-                                <th class="text-center" style="background-color: #dfa190">Action</th>
+                                <th class="text-center" style="background-color: #9dd2e7">#</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Status</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Employee No</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Username</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Email</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Department</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Profile Photo</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Phone </th>
+                                <th class="text-center" style="background-color: #9dd2e7">Address</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Gender</th>
+                                <th class="text-center" style="background-color: #9dd2e7">NRC</th>
+                                <th class="text-center" style="background-color: #9dd2e7">NRC Front Photo</th>
+                                <th class="text-center" style="background-color: #9dd2e7">NRC Back Photo</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Household Members</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Reference Letter</th>
+                                <th class="text-center" style="background-color: #9dd2e7">E-Signature</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Employee Type</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Join Date</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Emergency Contact Person</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Emergency Contact Number</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Action</th>
                             </tr>
                         </thead>
                     </table>
