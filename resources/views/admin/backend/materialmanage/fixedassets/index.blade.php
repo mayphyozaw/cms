@@ -110,13 +110,13 @@
                 </div>
             </div>
             <div class="kanban-list-items p-2 rounded border">
-                <div class="card mb-0 border-0 shadow bg-warning">
+                <div class="card mb-0 border-0 shadow bg-success">
                     <div class="card-body p-2">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
                                 <span class="d-flex align-items-center mb-1"
                                     style="color:white;font-size:14px;!important"><i
-                                        class="ti ti-circle-filled fs-10 text-success me-1"></i>Complete Requests
+                                        class="ti ti-circle-filled fs-10 text-warning me-1"></i>Complete Requests
                                 </span>
                             </div>
                             <div class="d-flex align-items-center">

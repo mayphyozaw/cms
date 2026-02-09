@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('project_id')->nullable();
             $table->unsignedBigInteger('project_category_id')->nullable();
-            $table->string('files')->nullable();
+            $table->text('files')->nullable();
+            $table->text('file_name')->nullable();
             $table->date('uploaded_at');
             $table->string('uploaded_by');
-            $table->string('remark');
+            $table->text('remark')->nullable();
             $table->timestamps();
         });
     }

@@ -19,11 +19,11 @@
             <div class="card-header">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h5 class="card-title mb-0">Developer Projects Information</h5>
+                        <h5 class="card-title mb-0">Projects Information</h5>
                     </div>
 
                     <div class="col-auto">
-                        <x-create-button href="{{ route('projectmanage.developer.create') }}">
+                        <x-create-button href="{{ route('projectmanage.projects.create') }}">
                             Create Project
                         </x-create-button>
                     </div>

@@ -171,7 +171,7 @@
                                         <option value="">-- Select Project Type--</option>
                                         <option value="Planned">Planned</option>
                                         <option value="Ongoing">Ongoing</option>
-                                        <option value="Ongoing">Ongoing</option>
+                                        <option value="Complete">Complete</option>
                                     </select>
                                 </div>
 

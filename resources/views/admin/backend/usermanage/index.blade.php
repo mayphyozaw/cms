@@ -49,6 +49,7 @@
                                 <th class="text-center" style="background-color: #9dd2e7">Username</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Email</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Department</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Roles</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Profile Photo</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Phone </th>
                                 <th class="text-center" style="background-color: #9dd2e7">Address</th>
@@ -162,6 +163,11 @@
                     {
                         data: 'department',
                         name: 'department',
+                        className: 'text-center',
+                    },
+                    {
+                        data: 'role',
+                        name: 'role',
                         className: 'text-center',
                     },
                     {

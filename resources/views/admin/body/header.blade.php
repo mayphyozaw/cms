@@ -1,7 +1,7 @@
 <header class="navbar-header">
     <div class="page-container topbar-menu">
         <div class="d-flex align-items-center gap-2">
-
+            
             <!-- Logo -->
             <a href="{{ route('dashboard') }}" class="logo">
 

@@ -41,7 +41,7 @@ class ClientController extends Controller
 
         $clientData = [
             'name' => $request->name,
-            'email' => $request->email,
+            'email' => $request->email ?? '',
             'phone' => $request->phone,
             'address' => $request->address,
             'client_type' => $request->client_type,

@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -28,15 +29,16 @@ class UserController extends Controller
         $currentUser = Auth::user();
         // $users = User::all();
         $users = $this->userService->all();
-
+        $allUsers = User::where('role', 'admin')->latest()->get();
 
         // return view('backend.usermanage.index', compact('currentUser', 'users'));
-        return view('admin.backend.usermanage.index', compact('currentUser', 'users'));
+        return view('admin.backend.usermanage.index', compact('currentUser', 'users', 'allUsers'));
     }
 
     public function create()
     {
-        return view('admin.backend.usermanage.create');
+        $roles = Role::all();
+        return view('admin.backend.usermanage.create', compact('roles'));
     }
 
 
@@ -112,8 +114,10 @@ class UserController extends Controller
                 'contact_number' => $request->contact_number,
                 'status' => 'active',
 
+
             ];
-            $this->userService->create($userData);
+            $user = $this->userService->create($userData);
+            $user->assignRole($request->role);
 
             return redirect()->route('usermanage.index')
                 ->with([
@@ -128,8 +132,8 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-
-        return view('admin.backend.usermanage.edit', compact('user'));
+        $roles = Role::where('guard_name', 'web')->get();
+        return view('admin.backend.usermanage.edit', compact('user', 'roles'));
     }
 
     public function update(UserUpdateRequest $request, $id)
@@ -150,7 +154,7 @@ class UserController extends Controller
             'contact_person' => $request->contact_person,
             'contact_number' => $request->contact_number,
             'status' => $request->status ?? 'active',
-            'role' => $request->role,
+
         ];
 
 
@@ -231,7 +235,11 @@ class UserController extends Controller
             $user_data['esingphoto'] = $esign_img_name;
         }
 
-        $this->userService->update($id, $user_data);
+        $user = $this->userService->update($id, $user_data);
+        if ($request->filled('role')) {
+            $user->syncRoles([$request->role]);
+        }
+        
 
         return redirect()->route('usermanage.index')
             ->with('message', 'Successfully updated')
@@ -248,7 +256,7 @@ class UserController extends Controller
             return ResponseService::fail($e->getMessage());
         }
     }
-    
+
 
     public function toggleBlock($id)
     {

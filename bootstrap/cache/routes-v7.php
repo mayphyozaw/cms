@@ -13,7 +13,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::8qVM0QuhsoHvwqF8',
+            '_route' => 'generated::7WN05sic1Yt4HrPn',
           ),
           1 => NULL,
           2 => 
@@ -33,7 +33,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::mMgvuB1ed35pqscu',
+            '_route' => 'generated::HRfmdRxg9EJ6KbZM',
           ),
           1 => NULL,
           2 => 
@@ -110,7 +110,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::uiBE0GfDDjjs9Zsq',
+            '_route' => 'generated::8AmSIAZGTuqyAssY',
           ),
           1 => NULL,
           2 => 
@@ -146,7 +146,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::sMZIaJvp6n1GG33c',
+            '_route' => 'generated::IqIAowYqbjzok8EJ',
           ),
           1 => NULL,
           2 => 
@@ -276,7 +276,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::wl5HjSWBTSREWhmZ',
+            '_route' => 'generated::jzGnBXvCbByKBFFy',
           ),
           1 => NULL,
           2 => 
@@ -617,6 +617,158 @@ app('router')->setCompiledRoutes(
           0 => 
           array (
             '_route' => 'client-datatable',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/warehouse' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'warehouse.index',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'warehouse.store',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/warehouse/create' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'warehouse.create',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/warehouse-datatable' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'warehouse-datatable',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/suppliermanage/supplier' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'suppliermanage.supplier.index',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'suppliermanage.supplier.store',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/suppliermanage/supplier/create' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'suppliermanage.supplier.create',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/suppliermanage/supplier-datatable' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'suppliermanage.supplier-datatable',
           ),
           1 => NULL,
           2 => 
@@ -1029,6 +1181,46 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
+      '/projectmanage/load/projects' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.load_projects',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/projectmanage/project-datatable' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.project-datatable',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
       '/projectmanage/projectfiles' => 
       array (
         0 => 
@@ -1065,13 +1257,53 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      '/projectmanage/projectfiles/create' => 
+      '/projectmanage/project/files' => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'projectmanage.projectfiles.create',
+            '_route' => 'projectmanage.get_project_files',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/projectmanage/project/files/view' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.get_project_files_with_view',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/projectmanage/project/file' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.project_file_delete',
           ),
           1 => NULL,
           2 => 
@@ -1141,10 +1373,162 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
+      '/configuration/role' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'configuration.role.index',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'configuration.role.store',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/configuration/role/create' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'configuration.role.create',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/configuration/role-datatable' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'configuration.role-datatable',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/configuration/permission' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'configuration.permission.index',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'configuration.permission.store',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/configuration/permission/create' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'configuration.permission.create',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/configuration/permission-datatable' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'configuration.permission-datatable',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
     ),
     2 => 
     array (
-      0 => '{^(?|/res(?|et\\-password/([^/]++)(*:35)|ign\\-employees/([^/]++)(?|(*:68)|/edit(*:80)|(*:87)))|/verify\\-email/([^/]++)/([^/]++)(*:128)|/usermanage/(?|([^/]++)(?|(*:162)|/edit(*:175)|(*:183))|resign\\-submit(*:206)|block/([^/]++)(*:228)|unblock/([^/]++)(*:252)|toggle\\-block/([^/]++)(*:282))|/client/([^/]++)(?|(*:310)|/edit(*:323)|(*:331))|/material/(?|fixedassets/(?|([^/]++)(?|(*:379)|/edit(*:392)|(*:400))|purchase(*:417))|category/([^/]++)(?|(*:446)|/edit(*:459)|(*:467))|variable(?|assets/([^/]++)(?|(*:505)|/edit(*:518)|(*:526))|\\-category/([^/]++)(?|(*:557)|/edit(*:570)|(*:578))))|/projectmanage/project(?|s/([^/]++)(?|(*:627)|/edit(*:640)|(*:648))|files/([^/]++)(?|(*:674)|/edit(*:687)|(*:695))|category/([^/]++)(?|(*:724)|/edit(*:737)|(*:745)))|/storage/(.*)(*:768))/?$}sDu',
+      0 => '{^(?|/res(?|et\\-password/([^/]++)(*:35)|ign\\-employees/([^/]++)(?|(*:68)|/edit(*:80)|(*:87)))|/verify\\-email/([^/]++)/([^/]++)(*:128)|/usermanage/(?|([^/]++)(?|/edit(*:167)|(*:175))|resign\\-submit(*:198)|block/([^/]++)(*:220)|unblock/([^/]++)(*:244)|toggle\\-block/([^/]++)(*:274))|/c(?|lient/([^/]++)(?|(*:305)|/edit(*:318)|(*:326))|onfiguration/(?|role/([^/]++)(?|(*:367)|/edit(*:380)|(*:388))|permission/([^/]++)(?|(*:419)|/edit(*:432)|(*:440))))|/warehouse/([^/]++)(?|(*:473)|/edit(*:486)|(*:494))|/s(?|uppliermanage/supplier/([^/]++)(?|(*:542)|/edit(*:555)|(*:563))|torage/(.*)(*:583))|/material/(?|fixedassets/(?|([^/]++)(?|(*:631)|/edit(*:644)|(*:652))|purchase(*:669))|category/([^/]++)(?|(*:698)|/edit(*:711)|(*:719))|variable(?|assets/([^/]++)(?|(*:757)|/edit(*:770)|(*:778))|\\-category/([^/]++)(?|(*:809)|/edit(*:822)|(*:830))))|/projectmanage/project(?|s/([^/]++)(?|(*:879)|/edit(*:892)|(*:900))|files/([^/]++)(?|/edit(*:931)|(*:939))|category/([^/]++)(?|(*:968)|/edit(*:981)|(*:989))))/?$}sDu',
     ),
     3 => 
     array (
@@ -1283,30 +1667,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      162 => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'usermanage.show',
-          ),
-          1 => 
-          array (
-            0 => 'usermanage',
-          ),
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-      ),
-      175 => 
+      167 => 
       array (
         0 => 
         array (
@@ -1329,7 +1690,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      183 => 
+      175 => 
       array (
         0 => 
         array (
@@ -1371,7 +1732,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      206 => 
+      198 => 
       array (
         0 => 
         array (
@@ -1392,7 +1753,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      228 => 
+      220 => 
       array (
         0 => 
         array (
@@ -1414,7 +1775,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      252 => 
+      244 => 
       array (
         0 => 
         array (
@@ -1436,7 +1797,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      282 => 
+      274 => 
       array (
         0 => 
         array (
@@ -1458,7 +1819,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      310 => 
+      305 => 
       array (
         0 => 
         array (
@@ -1481,7 +1842,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      323 => 
+      318 => 
       array (
         0 => 
         array (
@@ -1504,7 +1865,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      331 => 
+      326 => 
       array (
         0 => 
         array (
@@ -1546,7 +1907,382 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      379 => 
+      367 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'configuration.role.show',
+          ),
+          1 => 
+          array (
+            0 => 'role',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      380 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'configuration.role.edit',
+          ),
+          1 => 
+          array (
+            0 => 'role',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      388 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'configuration.role.update',
+          ),
+          1 => 
+          array (
+            0 => 'role',
+          ),
+          2 => 
+          array (
+            'PUT' => 0,
+            'PATCH' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'configuration.role.destroy',
+          ),
+          1 => 
+          array (
+            0 => 'role',
+          ),
+          2 => 
+          array (
+            'DELETE' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      419 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'configuration.permission.show',
+          ),
+          1 => 
+          array (
+            0 => 'permission',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      432 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'configuration.permission.edit',
+          ),
+          1 => 
+          array (
+            0 => 'permission',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      440 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'configuration.permission.update',
+          ),
+          1 => 
+          array (
+            0 => 'permission',
+          ),
+          2 => 
+          array (
+            'PUT' => 0,
+            'PATCH' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'configuration.permission.destroy',
+          ),
+          1 => 
+          array (
+            0 => 'permission',
+          ),
+          2 => 
+          array (
+            'DELETE' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      473 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'warehouse.show',
+          ),
+          1 => 
+          array (
+            0 => 'warehouse',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      486 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'warehouse.edit',
+          ),
+          1 => 
+          array (
+            0 => 'warehouse',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      494 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'warehouse.update',
+          ),
+          1 => 
+          array (
+            0 => 'warehouse',
+          ),
+          2 => 
+          array (
+            'PUT' => 0,
+            'PATCH' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'warehouse.destroy',
+          ),
+          1 => 
+          array (
+            0 => 'warehouse',
+          ),
+          2 => 
+          array (
+            'DELETE' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      542 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'suppliermanage.supplier.show',
+          ),
+          1 => 
+          array (
+            0 => 'supplier',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      555 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'suppliermanage.supplier.edit',
+          ),
+          1 => 
+          array (
+            0 => 'supplier',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      563 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'suppliermanage.supplier.update',
+          ),
+          1 => 
+          array (
+            0 => 'supplier',
+          ),
+          2 => 
+          array (
+            'PUT' => 0,
+            'PATCH' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'suppliermanage.supplier.destroy',
+          ),
+          1 => 
+          array (
+            0 => 'supplier',
+          ),
+          2 => 
+          array (
+            'DELETE' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      583 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'storage.local',
+          ),
+          1 => 
+          array (
+            0 => 'path',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      631 => 
       array (
         0 => 
         array (
@@ -1569,7 +2305,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      392 => 
+      644 => 
       array (
         0 => 
         array (
@@ -1592,7 +2328,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      400 => 
+      652 => 
       array (
         0 => 
         array (
@@ -1634,7 +2370,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      417 => 
+      669 => 
       array (
         0 => 
         array (
@@ -1655,7 +2391,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      446 => 
+      698 => 
       array (
         0 => 
         array (
@@ -1678,7 +2414,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      459 => 
+      711 => 
       array (
         0 => 
         array (
@@ -1701,7 +2437,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      467 => 
+      719 => 
       array (
         0 => 
         array (
@@ -1743,7 +2479,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      505 => 
+      757 => 
       array (
         0 => 
         array (
@@ -1766,7 +2502,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      518 => 
+      770 => 
       array (
         0 => 
         array (
@@ -1789,7 +2525,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      526 => 
+      778 => 
       array (
         0 => 
         array (
@@ -1831,7 +2567,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      557 => 
+      809 => 
       array (
         0 => 
         array (
@@ -1854,7 +2590,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      570 => 
+      822 => 
       array (
         0 => 
         array (
@@ -1877,7 +2613,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      578 => 
+      830 => 
       array (
         0 => 
         array (
@@ -1919,7 +2655,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      627 => 
+      879 => 
       array (
         0 => 
         array (
@@ -1942,7 +2678,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      640 => 
+      892 => 
       array (
         0 => 
         array (
@@ -1965,7 +2701,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      648 => 
+      900 => 
       array (
         0 => 
         array (
@@ -2007,30 +2743,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      674 => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'projectmanage.projectfiles.show',
-          ),
-          1 => 
-          array (
-            0 => 'projectfile',
-          ),
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-      ),
-      687 => 
+      931 => 
       array (
         0 => 
         array (
@@ -2053,7 +2766,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      695 => 
+      939 => 
       array (
         0 => 
         array (
@@ -2075,27 +2788,8 @@ app('router')->setCompiledRoutes(
           5 => true,
           6 => NULL,
         ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'projectmanage.projectfiles.destroy',
-          ),
-          1 => 
-          array (
-            0 => 'projectfile',
-          ),
-          2 => 
-          array (
-            'DELETE' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
       ),
-      724 => 
+      968 => 
       array (
         0 => 
         array (
@@ -2118,7 +2812,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      737 => 
+      981 => 
       array (
         0 => 
         array (
@@ -2141,7 +2835,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      745 => 
+      989 => 
       array (
         0 => 
         array (
@@ -2182,30 +2876,7 @@ app('router')->setCompiledRoutes(
           5 => true,
           6 => NULL,
         ),
-      ),
-      768 => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'storage.local',
-          ),
-          1 => 
-          array (
-            0 => 'path',
-          ),
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        1 => 
+        2 => 
         array (
           0 => NULL,
           1 => NULL,
@@ -2221,7 +2892,7 @@ app('router')->setCompiledRoutes(
   ),
   'attributes' => 
   array (
-    'generated::8qVM0QuhsoHvwqF8' => 
+    'generated::7WN05sic1Yt4HrPn' => 
     array (
       'methods' => 
       array (
@@ -2249,8 +2920,8 @@ app('router')->setCompiledRoutes(
                     return response(\\Illuminate\\Support\\Facades\\View::file(\'/Users/may/Desktop/development/cms/vendor/laravel/framework/src/Illuminate/Foundation/Configuration\'.\'/../resources/health-up.blade.php\', [
                         \'exception\' => $exception,
                     ]), status: $exception ? 500 : 200);
-                }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"00000000000005700000000000000000";}}',
-        'as' => 'generated::8qVM0QuhsoHvwqF8',
+                }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"000000000000057f0000000000000000";}}',
+        'as' => 'generated::7WN05sic1Yt4HrPn',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2266,7 +2937,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::mMgvuB1ed35pqscu' => 
+    'generated::HRfmdRxg9EJ6KbZM' => 
     array (
       'methods' => 
       array (
@@ -2282,13 +2953,13 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => 'O:55:"Laravel\\SerializableClosure\\UnsignedSerializableClosure":1:{s:12:"serializable";O:46:"Laravel\\SerializableClosure\\Serializers\\Native":5:{s:3:"use";a:0:{}s:8:"function";s:47:"function () {
     return \\view(\'auth.login\');
-}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000005740000000000000000";}}',
+}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000005830000000000000000";}}',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'generated::mMgvuB1ed35pqscu',
+        'as' => 'generated::HRfmdRxg9EJ6KbZM',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2323,7 +2994,7 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => 'O:55:"Laravel\\SerializableClosure\\UnsignedSerializableClosure":1:{s:12:"serializable";O:46:"Laravel\\SerializableClosure\\Serializers\\Native":5:{s:3:"use";a:0:{}s:8:"function";s:46:"function () {
     return \\view(\'dashboard\');
-}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000005760000000000000000";}}',
+}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000005850000000000000000";}}',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
@@ -2420,7 +3091,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::uiBE0GfDDjjs9Zsq' => 
+    'generated::8AmSIAZGTuqyAssY' => 
     array (
       'methods' => 
       array (
@@ -2441,7 +3112,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::uiBE0GfDDjjs9Zsq',
+        'as' => 'generated::8AmSIAZGTuqyAssY',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2495,7 +3166,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::sMZIaJvp6n1GG33c' => 
+    'generated::IqIAowYqbjzok8EJ' => 
     array (
       'methods' => 
       array (
@@ -2516,7 +3187,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::sMZIaJvp6n1GG33c',
+        'as' => 'generated::IqIAowYqbjzok8EJ',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2836,7 +3507,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::wl5HjSWBTSREWhmZ' => 
+    'generated::jzGnBXvCbByKBFFy' => 
     array (
       'methods' => 
       array (
@@ -2857,7 +3528,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::wl5HjSWBTSREWhmZ',
+        'as' => 'generated::jzGnBXvCbByKBFFy',
       ),
       'fallback' => false,
       'defaults' => 
@@ -3043,45 +3714,6 @@ app('router')->setCompiledRoutes(
         'as' => 'usermanage.store',
         'uses' => 'App\\Http\\Controllers\\Backend\\UserManagement\\UserController@store',
         'controller' => 'App\\Http\\Controllers\\Backend\\UserManagement\\UserController@store',
-        'namespace' => NULL,
-        'prefix' => '',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'usermanage.show' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'usermanage/{usermanage}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-          1 => 'auth',
-          2 => 'notBlocked',
-        ),
-        'as' => 'usermanage.show',
-        'uses' => 'App\\Http\\Controllers\\Backend\\UserManagement\\UserController@show',
-        'controller' => 'App\\Http\\Controllers\\Backend\\UserManagement\\UserController@show',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
@@ -4168,6 +4800,626 @@ app('router')->setCompiledRoutes(
         array (
         ),
         'as' => 'client-datatable',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'warehouse.index' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'warehouse',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'warehouse.index',
+        'uses' => 'App\\Http\\Controllers\\Backend\\StockManagement\\WarehouseController@index',
+        'controller' => 'App\\Http\\Controllers\\Backend\\StockManagement\\WarehouseController@index',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'warehouse.create' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'warehouse/create',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'warehouse.create',
+        'uses' => 'App\\Http\\Controllers\\Backend\\StockManagement\\WarehouseController@create',
+        'controller' => 'App\\Http\\Controllers\\Backend\\StockManagement\\WarehouseController@create',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'warehouse.store' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'warehouse',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'warehouse.store',
+        'uses' => 'App\\Http\\Controllers\\Backend\\StockManagement\\WarehouseController@store',
+        'controller' => 'App\\Http\\Controllers\\Backend\\StockManagement\\WarehouseController@store',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'warehouse.show' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'warehouse/{warehouse}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'warehouse.show',
+        'uses' => 'App\\Http\\Controllers\\Backend\\StockManagement\\WarehouseController@show',
+        'controller' => 'App\\Http\\Controllers\\Backend\\StockManagement\\WarehouseController@show',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'warehouse.edit' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'warehouse/{warehouse}/edit',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'warehouse.edit',
+        'uses' => 'App\\Http\\Controllers\\Backend\\StockManagement\\WarehouseController@edit',
+        'controller' => 'App\\Http\\Controllers\\Backend\\StockManagement\\WarehouseController@edit',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'warehouse.update' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'PUT',
+        1 => 'PATCH',
+      ),
+      'uri' => 'warehouse/{warehouse}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'warehouse.update',
+        'uses' => 'App\\Http\\Controllers\\Backend\\StockManagement\\WarehouseController@update',
+        'controller' => 'App\\Http\\Controllers\\Backend\\StockManagement\\WarehouseController@update',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'warehouse.destroy' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'DELETE',
+      ),
+      'uri' => 'warehouse/{warehouse}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'warehouse.destroy',
+        'uses' => 'App\\Http\\Controllers\\Backend\\StockManagement\\WarehouseController@destroy',
+        'controller' => 'App\\Http\\Controllers\\Backend\\StockManagement\\WarehouseController@destroy',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'warehouse-datatable' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'warehouse-datatable',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Backend\\StockManagement\\WarehouseController@warehouseDataTable',
+        'controller' => 'App\\Http\\Controllers\\Backend\\StockManagement\\WarehouseController@warehouseDataTable',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'warehouse-datatable',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'suppliermanage.supplier.index' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'suppliermanage/supplier',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'suppliermanage.supplier.index',
+        'uses' => 'App\\Http\\Controllers\\Backend\\SupplierManagement\\SupplierController@index',
+        'controller' => 'App\\Http\\Controllers\\Backend\\SupplierManagement\\SupplierController@index',
+        'namespace' => NULL,
+        'prefix' => '/suppliermanage',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'suppliermanage.supplier.create' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'suppliermanage/supplier/create',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'suppliermanage.supplier.create',
+        'uses' => 'App\\Http\\Controllers\\Backend\\SupplierManagement\\SupplierController@create',
+        'controller' => 'App\\Http\\Controllers\\Backend\\SupplierManagement\\SupplierController@create',
+        'namespace' => NULL,
+        'prefix' => '/suppliermanage',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'suppliermanage.supplier.store' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'suppliermanage/supplier',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'suppliermanage.supplier.store',
+        'uses' => 'App\\Http\\Controllers\\Backend\\SupplierManagement\\SupplierController@store',
+        'controller' => 'App\\Http\\Controllers\\Backend\\SupplierManagement\\SupplierController@store',
+        'namespace' => NULL,
+        'prefix' => '/suppliermanage',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'suppliermanage.supplier.show' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'suppliermanage/supplier/{supplier}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'suppliermanage.supplier.show',
+        'uses' => 'App\\Http\\Controllers\\Backend\\SupplierManagement\\SupplierController@show',
+        'controller' => 'App\\Http\\Controllers\\Backend\\SupplierManagement\\SupplierController@show',
+        'namespace' => NULL,
+        'prefix' => '/suppliermanage',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'suppliermanage.supplier.edit' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'suppliermanage/supplier/{supplier}/edit',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'suppliermanage.supplier.edit',
+        'uses' => 'App\\Http\\Controllers\\Backend\\SupplierManagement\\SupplierController@edit',
+        'controller' => 'App\\Http\\Controllers\\Backend\\SupplierManagement\\SupplierController@edit',
+        'namespace' => NULL,
+        'prefix' => '/suppliermanage',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'suppliermanage.supplier.update' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'PUT',
+        1 => 'PATCH',
+      ),
+      'uri' => 'suppliermanage/supplier/{supplier}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'suppliermanage.supplier.update',
+        'uses' => 'App\\Http\\Controllers\\Backend\\SupplierManagement\\SupplierController@update',
+        'controller' => 'App\\Http\\Controllers\\Backend\\SupplierManagement\\SupplierController@update',
+        'namespace' => NULL,
+        'prefix' => '/suppliermanage',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'suppliermanage.supplier.destroy' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'DELETE',
+      ),
+      'uri' => 'suppliermanage/supplier/{supplier}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'suppliermanage.supplier.destroy',
+        'uses' => 'App\\Http\\Controllers\\Backend\\SupplierManagement\\SupplierController@destroy',
+        'controller' => 'App\\Http\\Controllers\\Backend\\SupplierManagement\\SupplierController@destroy',
+        'namespace' => NULL,
+        'prefix' => '/suppliermanage',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'suppliermanage.supplier-datatable' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'suppliermanage/supplier-datatable',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Backend\\SupplierManagement\\SupplierController@supplierDataTable',
+        'controller' => 'App\\Http\\Controllers\\Backend\\SupplierManagement\\SupplierController@supplierDataTable',
+        'as' => 'suppliermanage.supplier-datatable',
+        'namespace' => NULL,
+        'prefix' => '/suppliermanage',
+        'where' => 
+        array (
+        ),
       ),
       'fallback' => false,
       'defaults' => 
@@ -5809,6 +7061,84 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
+    'projectmanage.load_projects' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/load/projects',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\ProjectController@load_projects',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\ProjectController@load_projects',
+        'as' => 'projectmanage.load_projects',
+        'namespace' => NULL,
+        'prefix' => '/projectmanage',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.project-datatable' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/project-datatable',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\ProjectController@projectDataTable',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\ProjectController@projectDataTable',
+        'as' => 'projectmanage.project-datatable',
+        'namespace' => NULL,
+        'prefix' => '/projectmanage',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
     'projectmanage.projectfiles.index' => 
     array (
       'methods' => 
@@ -5848,45 +7178,6 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'projectmanage.projectfiles.create' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'projectmanage/projectfiles/create',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-          1 => 'auth',
-          2 => 'notBlocked',
-        ),
-        'as' => 'projectmanage.projectfiles.create',
-        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\ProjectFilesController@create',
-        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\ProjectFilesController@create',
-        'namespace' => NULL,
-        'prefix' => '/projectmanage',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
     'projectmanage.projectfiles.store' => 
     array (
       'methods' => 
@@ -5905,45 +7196,6 @@ app('router')->setCompiledRoutes(
         'as' => 'projectmanage.projectfiles.store',
         'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\ProjectFilesController@store',
         'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\ProjectFilesController@store',
-        'namespace' => NULL,
-        'prefix' => '/projectmanage',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'projectmanage.projectfiles.show' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'projectmanage/projectfiles/{projectfile}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-          1 => 'auth',
-          2 => 'notBlocked',
-        ),
-        'as' => 'projectmanage.projectfiles.show',
-        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\ProjectFilesController@show',
-        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\ProjectFilesController@show',
         'namespace' => NULL,
         'prefix' => '/projectmanage',
         'where' => 
@@ -6042,13 +7294,14 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'projectmanage.projectfiles.destroy' => 
+    'projectmanage.get_project_files' => 
     array (
       'methods' => 
       array (
-        0 => 'DELETE',
+        0 => 'GET',
+        1 => 'HEAD',
       ),
-      'uri' => 'projectmanage/projectfiles/{projectfile}',
+      'uri' => 'projectmanage/project/files',
       'action' => 
       array (
         'middleware' => 
@@ -6057,9 +7310,87 @@ app('router')->setCompiledRoutes(
           1 => 'auth',
           2 => 'notBlocked',
         ),
-        'as' => 'projectmanage.projectfiles.destroy',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\ProjectFilesController@get_project_files',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\ProjectFilesController@get_project_files',
+        'as' => 'projectmanage.get_project_files',
+        'namespace' => NULL,
+        'prefix' => '/projectmanage',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.get_project_files_with_view' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/project/files/view',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\ProjectFilesController@get_project_files_with_view',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\ProjectFilesController@get_project_files_with_view',
+        'as' => 'projectmanage.get_project_files_with_view',
+        'namespace' => NULL,
+        'prefix' => '/projectmanage',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.project_file_delete' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/project/file',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
         'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\ProjectFilesController@destroy',
         'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\ProjectFilesController@destroy',
+        'as' => 'projectmanage.project_file_delete',
         'namespace' => NULL,
         'prefix' => '/projectmanage',
         'where' => 
@@ -6351,6 +7682,626 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
+    'configuration.role.index' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'configuration/role',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'configuration.role.index',
+        'uses' => 'App\\Http\\Controllers\\Backend\\Configuration\\RoleController@index',
+        'controller' => 'App\\Http\\Controllers\\Backend\\Configuration\\RoleController@index',
+        'namespace' => NULL,
+        'prefix' => '/configuration',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'configuration.role.create' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'configuration/role/create',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'configuration.role.create',
+        'uses' => 'App\\Http\\Controllers\\Backend\\Configuration\\RoleController@create',
+        'controller' => 'App\\Http\\Controllers\\Backend\\Configuration\\RoleController@create',
+        'namespace' => NULL,
+        'prefix' => '/configuration',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'configuration.role.store' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'configuration/role',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'configuration.role.store',
+        'uses' => 'App\\Http\\Controllers\\Backend\\Configuration\\RoleController@store',
+        'controller' => 'App\\Http\\Controllers\\Backend\\Configuration\\RoleController@store',
+        'namespace' => NULL,
+        'prefix' => '/configuration',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'configuration.role.show' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'configuration/role/{role}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'configuration.role.show',
+        'uses' => 'App\\Http\\Controllers\\Backend\\Configuration\\RoleController@show',
+        'controller' => 'App\\Http\\Controllers\\Backend\\Configuration\\RoleController@show',
+        'namespace' => NULL,
+        'prefix' => '/configuration',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'configuration.role.edit' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'configuration/role/{role}/edit',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'configuration.role.edit',
+        'uses' => 'App\\Http\\Controllers\\Backend\\Configuration\\RoleController@edit',
+        'controller' => 'App\\Http\\Controllers\\Backend\\Configuration\\RoleController@edit',
+        'namespace' => NULL,
+        'prefix' => '/configuration',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'configuration.role.update' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'PUT',
+        1 => 'PATCH',
+      ),
+      'uri' => 'configuration/role/{role}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'configuration.role.update',
+        'uses' => 'App\\Http\\Controllers\\Backend\\Configuration\\RoleController@update',
+        'controller' => 'App\\Http\\Controllers\\Backend\\Configuration\\RoleController@update',
+        'namespace' => NULL,
+        'prefix' => '/configuration',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'configuration.role.destroy' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'DELETE',
+      ),
+      'uri' => 'configuration/role/{role}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'configuration.role.destroy',
+        'uses' => 'App\\Http\\Controllers\\Backend\\Configuration\\RoleController@destroy',
+        'controller' => 'App\\Http\\Controllers\\Backend\\Configuration\\RoleController@destroy',
+        'namespace' => NULL,
+        'prefix' => '/configuration',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'configuration.role-datatable' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'configuration/role-datatable',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Backend\\Configuration\\RoleController@roleDataTable',
+        'controller' => 'App\\Http\\Controllers\\Backend\\Configuration\\RoleController@roleDataTable',
+        'as' => 'configuration.role-datatable',
+        'namespace' => NULL,
+        'prefix' => '/configuration',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'configuration.permission.index' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'configuration/permission',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'configuration.permission.index',
+        'uses' => 'App\\Http\\Controllers\\Backend\\Configuration\\PermissionController@index',
+        'controller' => 'App\\Http\\Controllers\\Backend\\Configuration\\PermissionController@index',
+        'namespace' => NULL,
+        'prefix' => '/configuration',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'configuration.permission.create' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'configuration/permission/create',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'configuration.permission.create',
+        'uses' => 'App\\Http\\Controllers\\Backend\\Configuration\\PermissionController@create',
+        'controller' => 'App\\Http\\Controllers\\Backend\\Configuration\\PermissionController@create',
+        'namespace' => NULL,
+        'prefix' => '/configuration',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'configuration.permission.store' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'configuration/permission',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'configuration.permission.store',
+        'uses' => 'App\\Http\\Controllers\\Backend\\Configuration\\PermissionController@store',
+        'controller' => 'App\\Http\\Controllers\\Backend\\Configuration\\PermissionController@store',
+        'namespace' => NULL,
+        'prefix' => '/configuration',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'configuration.permission.show' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'configuration/permission/{permission}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'configuration.permission.show',
+        'uses' => 'App\\Http\\Controllers\\Backend\\Configuration\\PermissionController@show',
+        'controller' => 'App\\Http\\Controllers\\Backend\\Configuration\\PermissionController@show',
+        'namespace' => NULL,
+        'prefix' => '/configuration',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'configuration.permission.edit' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'configuration/permission/{permission}/edit',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'configuration.permission.edit',
+        'uses' => 'App\\Http\\Controllers\\Backend\\Configuration\\PermissionController@edit',
+        'controller' => 'App\\Http\\Controllers\\Backend\\Configuration\\PermissionController@edit',
+        'namespace' => NULL,
+        'prefix' => '/configuration',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'configuration.permission.update' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'PUT',
+        1 => 'PATCH',
+      ),
+      'uri' => 'configuration/permission/{permission}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'configuration.permission.update',
+        'uses' => 'App\\Http\\Controllers\\Backend\\Configuration\\PermissionController@update',
+        'controller' => 'App\\Http\\Controllers\\Backend\\Configuration\\PermissionController@update',
+        'namespace' => NULL,
+        'prefix' => '/configuration',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'configuration.permission.destroy' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'DELETE',
+      ),
+      'uri' => 'configuration/permission/{permission}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'configuration.permission.destroy',
+        'uses' => 'App\\Http\\Controllers\\Backend\\Configuration\\PermissionController@destroy',
+        'controller' => 'App\\Http\\Controllers\\Backend\\Configuration\\PermissionController@destroy',
+        'namespace' => NULL,
+        'prefix' => '/configuration',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'configuration.permission-datatable' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'configuration/permission-datatable',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Backend\\Configuration\\PermissionController@permissionDataTable',
+        'controller' => 'App\\Http\\Controllers\\Backend\\Configuration\\PermissionController@permissionDataTable',
+        'as' => 'configuration.permission-datatable',
+        'namespace' => NULL,
+        'prefix' => '/configuration',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
     'storage.local' => 
     array (
       'methods' => 
@@ -6367,7 +8318,7 @@ app('router')->setCompiledRoutes(
                         $config,
                         $isProduction
                     ))($request, $path);
-                }";s:5:"scope";s:47:"Illuminate\\Filesystem\\FilesystemServiceProvider";s:4:"this";N;s:4:"self";s:32:"00000000000005790000000000000000";}}',
+                }";s:5:"scope";s:47:"Illuminate\\Filesystem\\FilesystemServiceProvider";s:4:"this";N;s:4:"self";s:32:"00000000000005880000000000000000";}}',
         'as' => 'storage.local',
       ),
       'fallback' => false,

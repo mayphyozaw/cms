@@ -26,6 +26,7 @@ class UserUpdateRequest extends FormRequest
             'email' => 'required|email|unique:users,email,' . $this->route('usermanage'),
             'phone' => 'nullable|string|max:20',
             'address' => 'nullable|string|max:255',
+            'role' => 'nullable|string|max:20',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'nrcfrontphoto' => 'nullable|image|max:2048',
             'nrcbackphoto' => 'nullable|image|max:2048',

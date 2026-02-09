@@ -7,7 +7,7 @@
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                     <li class="breadcrumb-item"><a href="#">Customers</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Create Customer</li>
+                    <li class="breadcrumb-item active" aria-current="page">All Customers</li>
                 </ol>
             </nav>
         </div>

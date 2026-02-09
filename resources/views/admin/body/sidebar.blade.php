@@ -1,6 +1,4 @@
 <div class="sidebar" id="sidebar">
-
-    <!-- Start Logo -->
     <div class="sidebar-logo">
         <div>
             <!-- Logo Normal -->
@@ -18,13 +16,42 @@
                 <img src="{{ asset('backend/assets/img/logo-white.svg') }}" alt="Logo">
             </a>
         </div>
-
+        <button class="sidenav-toggle-btn btn border-0 p-0" id="toggle_btn">
+            <i class="ti ti-arrow-bar-to-left"></i>
+        </button>
 
         <!-- Sidebar Menu Close -->
         <button class="sidebar-close">
             <i class="ti ti-x align-middle"></i>
         </button>
     </div>
+    <!-- Start Logo -->
+    {{-- <div class="sidebar-logo">
+        <div>
+            <!-- Logo Normal -->
+            <a href="{{ route('dashboard') }}" class="logo logo-normal">
+                <img src="{{ asset('data/logo.png') }}" alt="Logo" style="width:100px;">
+            </a>
+
+            <!-- Logo Small -->
+            <a href="{{ route('dashboard') }}" class="logo-small">
+                <img src="{{ asset('backend/assets/img/logo-small.svg') }}" alt="Logo">
+            </a>
+
+            <!-- Logo Dark -->
+            <a href="{{ route('dashboard') }}" class="dark-logo">
+                <img src="{{ asset('backend/assets/img/logo-white.svg') }}" alt="Logo">
+            </a>
+        </div>
+        <button class="sidenav-toggle-btn btn border-0 p-0" id="toggle_btn">
+            <i class="ti ti-arrow-bar-to-left"></i>
+        </button>
+
+        <!-- Sidebar Menu Close -->
+        <button class="sidebar-close">
+            <i class="ti ti-x align-middle"></i>
+        </button>
+    </div> --}}
     <!-- End Logo -->
 
     <!-- Sidenav Menu -->
@@ -94,9 +121,9 @@
                                 <span class="menu-arrow"></span>
                             </a>
 
-                            <ul>
+                             <ul style="{{ request()->routeIs('suppliermanage.supplier.*') ? 'display:block;' : '' }}">
                                 <li>
-                                    <a href="" class="">
+                                    <a href="{{ route('suppliermanage.supplier.index') }}" class="{{ request()->routeIs('suppliermanage.supplier.*') ? 'active' : '' }}">
                                         <i class="ti ti-users">
                                         </i><span>All Suppliers</span>
                                     </a>
@@ -128,9 +155,9 @@
                                     </a>
                                 </li>
 
-                                <li>
+                                <li hidden>
 
-                                    <a href="{{ route('projectmanage.projectcategory.index') }}" 
+                                    <a href="{{ route('projectmanage.projectcategory.index') }}"
                                         class="{{ request()->routeIs('projectmanage.projectcategory.*') ? 'active' : '' }}">
                                         <i class="ti ti-list-check">
                                         </i>
@@ -139,9 +166,9 @@
                                     </a>
                                 </li>
 
-                                <li>
+                                <li hidden>
 
-                                    <a href="{{ route('projectmanage.projectfiles.index') }}" 
+                                    <a href="{{ route('projectmanage.projectfiles.index') }}"
                                         class="{{ request()->routeIs('projectmanage.projectfiles.*') ? 'active' : '' }}">
                                         <i class="ti ti-list-check">
                                         </i>
@@ -222,9 +249,9 @@
                                 <span class="menu-arrow"></span>
                             </a>
 
-                            <ul style="">
+                            <ul style="{{ request()->routeIs('warehouse.*') ? 'display:block;' : '' }}">
                                 <li>
-                                    <a href="" class="">
+                                    <a href="{{ route('warehouse.index') }}" class="{{ request()->routeIs('warehouse.*') ? 'active' : '' }}">
                                         <i class="ti ti-users">
                                         </i><span>Warehouse</span>
                                     </a>
@@ -330,10 +357,17 @@
                                 <span class="menu-arrow"></span>
                             </a>
 
-                            <ul style="{{ request()->routeIs('role.*') ? 'display:block;' : 'display:none;' }}">
+                            <ul style="{{ request()->routeIs('configuration.role.*') ? 'display:block;' : 'display:none;' }}">
                                 <li>
-                                    <a href="#" class="{{ request()->routeIs('role.*') ? 'active' : '' }}">
+                                    <a href="{{ route('configuration.role.index') }}" class="{{ request()->routeIs('configuration.role.*') ? 'active' : '' }}">
                                         Roles
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="{{ route('configuration.permission.index') }}"
+                                        class="{{ request()->routeIs('configuration.permission.*') ? 'active' : '' }}">
+                                        </i><span>Permission</span>
                                     </a>
                                 </li>
                             </ul>

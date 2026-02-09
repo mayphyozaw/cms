@@ -10,10 +10,16 @@ class ProjectFile extends Model
         'project_id',
         'project_category_id',
         'files',
+        'file_name',
         'remark',
         'uploaded_at',
         'uploaded_by',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'uploaded_by');
+    }
 
     public function project()
     {

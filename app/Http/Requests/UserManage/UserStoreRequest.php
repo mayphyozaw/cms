@@ -32,6 +32,7 @@ class UserStoreRequest extends FormRequest
             'householdphoto' => 'nullable|image|max:2048',
             'referenceletter' => 'nullable|image|max:2048',
             'esingphoto' => 'nullable|image|max:2048',
+            'role' => 'nullable|string|max:20',
         ];
     }
 }

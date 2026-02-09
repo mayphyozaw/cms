@@ -87,6 +87,12 @@ class UserService
             ->addColumn('employee_number', function ($user) {
                 return $user->employee_number;
             })
+            ->addColumn('role', function ($allUsers) {
+
+                foreach ($allUsers->roles as $role) {
+                    return '<span class="badge badge-pill text-bg-danger" style="margin-right:5px;"> ' . ($role->name ?? '') . ' </span>';
+                }
+            })
             ->addColumn('gender', function ($user) {
                 return $user->gender;
             })
@@ -151,6 +157,7 @@ class UserService
                 'esingphoto',
                 'photo',
                 'status',
+                'role',
                 'action',
                 'department',
             ])

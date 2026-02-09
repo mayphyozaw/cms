@@ -160,9 +160,7 @@
         }).showToast();
     </script> --}}
 
-    <script>
-        $('.select_2').select2();
-    </script>
+    
 
     @stack('scripts')
 </body>

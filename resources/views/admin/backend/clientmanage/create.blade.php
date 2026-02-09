@@ -51,7 +51,7 @@
                                         </div>
 
                                         <div class="col-md-4 mb-3">
-                                            <label class="form-label" for="validationCustom01">Customer Name
+                                            <label class="form-label">Customer Name
                                             </label>
                                             <input type="text" class="form-control" name="name"
                                                 @error('name') is-invalid @enderror placeholder="Enter Name" required>
@@ -76,28 +76,17 @@
                                         </div>
 
                                         <div class="col-md-4 mb-3">
-                                            <label class="form-label" for="validationCustom01">Email
+                                            <label class="form-label">Email
                                             </label>
-                                            <input type="text" class="form-control" name="email"
-                                                @error('email') is-invalid @enderror placeholder="Enter Email" required>
-                                            @error('email')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
+                                            <input type="email" class="form-control" name="email"
+                                                 placeholder="Enter Email">
                                         </div>
 
                                         <div class="col-md-4 mb-3">
                                             <label class="form-label" for="validationCustom01">Contact Person
                                             </label>
                                             <input type="text" class="form-control" name="contact_person"
-                                                @error('contact_person	') is-invalid @enderror
                                                 placeholder="Enter Contact Person	" required>
-                                            @error('contact_person ')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
                                         </div>
 
                                         <div class="col-md-4 mb-3">

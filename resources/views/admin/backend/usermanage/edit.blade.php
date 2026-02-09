@@ -76,7 +76,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-lg-6 col-md-12">
+                        <div class="col-lg-4 col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">
                                     Choose Department</label>
@@ -84,9 +84,8 @@
                                     <option value="">-- Select Department--</option>
 
                                     {{-- <option value="Design_Structure">Design (Structure)</option> --}}
-                                    <option value="Admin"
-                                        {{ $user->department === 'Admin' ? 'selected' : '' }}>
-                                       Admin</option>
+                                    <option value="Admin" {{ $user->department === 'Admin' ? 'selected' : '' }}>
+                                        Admin</option>
                                     <option value="Design_Structure"
                                         {{ $user->department === 'Design_Structure' ? 'selected' : '' }}>
                                         Design_Structure</option>
@@ -113,7 +112,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-12">
+                        <div class="col-lg-4 col-md-12">
                             <div class="mb-3">
                                 <label for="form-label fs-14" class="form-label fs-14">Employee Number</label>
                                 <div class="input-group">
@@ -121,6 +120,20 @@
                                     <input type="text" name="employee_number" class="form-control"
                                         value="{{ $user->employee_number }}">
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-12">
+                            <div class="mb-3">
+                                <label for="validationDefault01" class="form-label"> Roles & Designations </label>
+                                <select class="form-select" name="role" id="example-select">
+                                    <option value="" selected>Select Role</option>
+                                    @foreach ($roles as $role)
+                                        <option value="{{ $role->name }}"
+                                            {{ $user->hasRole($role->name) ? 'selected' : '' }}> {{ $role->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>

@@ -22,10 +22,10 @@ class ProjectFileStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-        'project_id' => 'required|integer|exists:projects,id',
-        'project_category_id' => 'required|integer|exists:project_categories,id',
-        'files' => 'required|file|max:2048',
-        'remark' => 'nullable|string|max:255',
-    ];
+            'project_id' => 'required|integer|exists:projects,id',
+            'project_category_id' => 'required|integer|exists:project_categories,id',
+            'files*' => 'required|file|max:2048',
+            'remark' => 'nullable|string|max:255',
+        ];
     }
 }
