@@ -79,10 +79,6 @@
     <!-- Choices Js -->
     <script src="{{asset('backend/assets/plugins/choices.js/public/assets/scripts/choices.min.js')}}" type="a1dcc44babf6ba6f47b105cc-text/javascript"></script>
 
-    <!-- Select2 Js -->
-    {{-- <script src="{{asset('backend/assets/plugins/select2/js/select2.min.js')}}" type="a1dcc44babf6ba6f47b105cc-text/javascript"></script> --}}
-
-
     <script src="https://cdn.datatables.net/2.3.6/js/dataTables.js"></script>
 
     <script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-2.3.6/datatables.min.js"
@@ -124,9 +120,9 @@
 
     <script src="{{ asset('vendor/jsvalidation/js/jsvalidation.js') }}"></script>
 
-    <script>
+    {{-- <script>
         $('.select_2').select2();
-    </script>
+    </script> --}}
 
     @stack('scripts')
 

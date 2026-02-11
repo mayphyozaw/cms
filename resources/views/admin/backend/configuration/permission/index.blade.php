@@ -94,7 +94,7 @@
                     
                 ],
 
-                responsive: true
+                responsive: true,
             });
 
 

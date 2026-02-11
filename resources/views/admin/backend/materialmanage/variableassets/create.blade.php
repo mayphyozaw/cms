@@ -84,7 +84,7 @@
 
 
 
-                            <div class="col-lg-6 col-md-12">
+                            <div class="col-lg-6 col-md-12" hidden>
                                 <div class="mb-3">
                                     <label class="form-label fs-14">Total Quantity</label>
                                     <div class="input-group">

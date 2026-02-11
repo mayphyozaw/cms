@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Backend\ClientManagement\ClientController;
 use App\Http\Controllers\Backend\Configuration\PermissionController;
 use App\Http\Controllers\Backend\Configuration\RoleController;
+use App\Http\Controllers\Backend\MaterialManagement\AssetController;
 use App\Http\Controllers\Backend\MaterialManagement\FixedAssets\CategoryController;
 use App\Http\Controllers\Backend\MaterialManagement\FixedAssets\FixedAssetsController;
 use App\Http\Controllers\Backend\MaterialManagement\VariableAssets\VariableAssetsController;
@@ -12,7 +13,11 @@ use App\Http\Controllers\Backend\MaterialManagement\VariableAssets\VariableCateg
 use App\Http\Controllers\Backend\ProjectManagement\ProjectCategoryController;
 use App\Http\Controllers\Backend\ProjectManagement\ProjectController;
 use App\Http\Controllers\Backend\ProjectManagement\ProjectFilesController;
+use App\Http\Controllers\Backend\ProjectManagement\WorkscopeController;
+use App\Http\Controllers\Backend\StockManagement\StockController;
+use App\Http\Controllers\Backend\StockManagement\StockMovementController;
 use App\Http\Controllers\Backend\StockManagement\WarehouseController;
+use App\Http\Controllers\Backend\StockManagement\WarehouseStockController;
 use App\Http\Controllers\Backend\SupplierManagement\SupplierController;
 use App\Http\Controllers\Backend\UserManagement\UserController;
 use App\Http\Controllers\DashboardController;
@@ -65,21 +70,34 @@ Route::middleware('auth', 'notBlocked')->group(function () {
     Route::resource('client', ClientController::class);
     Route::get('client-datatable', [ClientController::class, 'clientDataTable'])->name('client-datatable');
 
-    // Route::resource('material/fixedassets', FixedAssetsController::class);
-    // Route::resource('material/variableassets', VariableAssetsController::class);
 
     Route::resource('warehouse', WarehouseController::class);
     Route::get('warehouse-datatable', [WarehouseController::class, 'warehouseDataTable'])->name('warehouse-datatable');
 
-    Route::prefix('suppliermanage')->name('suppliermanage.')->group(function () {
-    Route::resource('supplier', SupplierController::class);
-    Route::get('/supplier-datatable', [SupplierController::class, 'supplierDataTable'])->name('supplier-datatable');
+    Route::resource('warehouse-stocks', WarehouseStockController::class)->only(['index']);
+    Route::resource('stock-movements', StockMovementController::class);
 
-    
+
+
+
+    Route::prefix('suppliermanage')->name('suppliermanage.')->group(function () {
+        Route::resource('supplier', SupplierController::class);
+        Route::get('/supplier-datatable', [SupplierController::class, 'supplierDataTable'])->name('supplier-datatable');
     });
 
 
+
+
+
+
     Route::prefix('material')->name('material.')->group(function () {
+
+        Route::resource('assets', AssetController::class);
+        Route::get('assets-datatable', [AssetController::class, 'assetsDataTable'])->name('assets-datatable');
+        Route::get('get-assets-by-type', [AssetController::class, 'getAssetsByType'])->name('get-assets-by-type');
+        Route::get('get-asset-detail', [AssetController::class, 'getAssetDetail'])->name('get-asset-detail');
+         Route::post('assets/purchase', [AssetController::class], 'purchaseAssets')->name('assets.purchase');
+
 
         Route::resource('fixedassets', FixedAssetsController::class);
         Route::get('fixedassets-datatable', [FixedAssetsController::class, 'fixedassetsDataTable'])->name('fixedassets-datatable');
@@ -112,17 +130,17 @@ Route::middleware('auth', 'notBlocked')->group(function () {
         Route::get('/project/file', [ProjectFilesController::class, 'destroy'])->name('project_file_delete');
 
         Route::resource('projectcategory', ProjectCategoryController::class);
+        Route::get('projectcategory-datatable', [ProjectCategoryController::class, 'projectCategoryDataTable'])->name('projectcategory-datatable');
 
+        Route::resource('workscope', WorkscopeController::class);
+        Route::get('workscope-datatable', [WorkscopeController::class, 'workscopeDataTable'])->name('workscope-datatable');
     });
 
     Route::prefix('configuration')->name('configuration.')->group(function () {
-    Route::resource('role', RoleController::class);
-    Route::get('/role-datatable', [RoleController::class, 'roleDataTable'])->name('role-datatable');
+        Route::resource('role', RoleController::class);
+        Route::get('/role-datatable', [RoleController::class, 'roleDataTable'])->name('role-datatable');
 
-    Route::resource('permission', PermissionController::class);
-    Route::get('/permission-datatable', [PermissionController::class, 'permissionDataTable'])->name('permission-datatable');
-
-
-
+        Route::resource('permission', PermissionController::class);
+        Route::get('/permission-datatable', [PermissionController::class, 'permissionDataTable'])->name('permission-datatable');
     });
 });

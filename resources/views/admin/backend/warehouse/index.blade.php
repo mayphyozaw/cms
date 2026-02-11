@@ -44,7 +44,7 @@
                             <tr>
                                 <th class="text-center" style="background-color: #9dd2e7">#</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Name</th>
-                                <th class="text-center" style="background-color: #9dd2e7">Address</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Location</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Remark</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Action</th>
                             </tr>

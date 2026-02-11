@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\FixedAssets\FixedAssetStoreRequest;
 use App\Http\Requests\FixedAssets\FixedAssetUpdateRequest;
 use App\Models\FixedAssetCategory;
+use App\Models\Warehouse;
 use App\Services\CategoryService;
 use App\Services\FixedAssetsService;
 use App\Services\ResponseService;
@@ -30,7 +31,8 @@ class FixedAssetsController extends Controller
     public function create()
     {
         $categories = FixedAssetCategory::all();
-        return view('admin.backend.materialmanage.fixedassets.create', compact('categories'));
+        $warehouses = Warehouse::all();
+        return view('admin.backend.materialmanage.fixedassets.create', compact('categories','warehouses'));
     }
 
     public function fixedassetsDataTable(Request $request)
@@ -47,9 +49,9 @@ class FixedAssetsController extends Controller
                 'name'  => $request->name,
                 'assets_code'  => $request->assets_code,
                 'category_id' => $request->category_id,
+                'warehouse_id' => $request->warehouse_id,
                 'unit' => $request->unit,
                 'total_qty' => $request->total_qty,
-                'remarks' => $request->remarks ?? null,
                 'status' => $request->status ?? null,
                 'remarks' => $request->remarks ?? null,
 
@@ -70,7 +72,8 @@ class FixedAssetsController extends Controller
     {
         $fixedAsset = $this->fixedAssetsService->find($id);
         $categories = FixedAssetCategory::all();
-        return view('admin.backend.materialmanage.fixedassets.edit', compact('fixedAsset', 'categories'));
+        $warehouses = Warehouse::all();
+        return view('admin.backend.materialmanage.fixedassets.edit', compact('fixedAsset', 'categories','warehouses'));
     }
 
     public function update(FixedAssetUpdateRequest $request, $id)
@@ -80,6 +83,7 @@ class FixedAssetsController extends Controller
         $fixedAssetData = [
             'name'        => $request->name,
             'assets_code' => $request->assets_code,
+            'warehouse_id' => $request->warehouse_id,
             'category_id' => $request->category_id,
             'unit'        => $request->unit,
             'total_qty'   => $request->total_qty,

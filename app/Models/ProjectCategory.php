@@ -6,5 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProjectCategory extends Model
 {
-    //
+    protected $fillable = [
+        'id',
+        'title',
+    ];
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
 }

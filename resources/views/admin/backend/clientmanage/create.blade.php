@@ -195,9 +195,10 @@
                                                 Job Package</label>
                                             <select class="form-control" name="job_package">
                                                 <option value="">-- Select Job Package--</option>
-                                                <option value="GoldPackage">GoldPackage</option>
-                                                <option value="SilverPackage">SilverPackage</option>
-                                                <option value="DiamondPackage">DiamondPackage</option>
+                                                <option value="NormalPackage">Normal Package</option>
+                                                <option value="GoldPackage">Gold Package</option>
+                                                <option value="SilverPackage">Silver Package</option>
+                                                <option value="DiamondPackage">Diamond Package</option>
                                             </select>
                                         </div>
                                     </div>

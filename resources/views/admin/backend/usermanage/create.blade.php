@@ -106,13 +106,13 @@
                                 <div class="col-lg-4 col-md-12">
                                     <div class="mb-3">
                                         <label for="validationDefault01" class="form-label"> Roles & Designations </label>
-                                    <select class="form-select" name="role" id="example-select">
-                                        <option value="" selected>Select Role</option>
-                                        @foreach ($roles as $role)
-                                            <option value="{{ $role->id }}"> {{ $role->name }} </option>
-                                        @endforeach
-                                    </select>
-                                    
+                                        <select class="form-select" name="role" id="example-select">
+                                            <option value="" selected>Select Role</option>
+                                            @foreach ($roles as $role)
+                                                <option value="{{ $role->id }}"> {{ $role->name }} </option>
+                                            @endforeach
+                                        </select>
+
                                     </div>
                                 </div>
                             </div>
@@ -465,6 +465,9 @@
                 $('#codePrefix').text(prefixMap[dept] || '');
             });
 
+            // userTypeSelect.on('change', function() {
+            //     prefixSpan.textContent = prefixMap[this.value] || '';
+            // });
         });
     </script>
 @endpush

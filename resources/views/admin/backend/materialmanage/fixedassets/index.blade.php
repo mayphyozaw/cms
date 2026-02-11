@@ -250,6 +250,7 @@
                         name: 'name',
                         className: 'text-center',
                     },
+                    
                     {
                         data: 'category_name',
                         name: 'category_name',

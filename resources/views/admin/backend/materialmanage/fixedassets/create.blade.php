@@ -25,6 +25,20 @@
                         <form action="{{ route('material.fixedassets.store') }}" method="POST" id="submit-form"
                             enctype="multipart/form-data">
                             @csrf
+
+                            <div class="col-lg-6 col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label">
+                                        Choose Warehouse</label>
+                                    <select name="warehouse_id" id="warehouse_id" class="form-control form-select">
+                                        <option value="">Select Warehouse</option>
+                                        @foreach ($warehouses as $item)
+                                            <option value="{{ $item->id }}">{{ $item->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
                             <div class="col-lg-6 col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label">Fixed Asset Code</label>
@@ -99,9 +113,11 @@
                                             class="text-danger">*</span></label>
                                     <select name="status" id="status" class="form-control form-select">
                                         <option selected="">Select Status</option>
-                                        <option value="Available">Available</option>
-                                        <option value="InUse">In Use</option>
-                                        <option value="UnderMaintenance">Under Maintenance</option>
+                                        <option value="available">Available</option>
+                                        <option value="inUse">In Use</option>
+                                        <option value="damaged">Damaged</option>
+                                        <option value="disposed">Disposed</option>
+                                        <option value="maintenance">Maintenance</option>
                                     </select>
                                 </div>
                             </div>

@@ -215,8 +215,11 @@
                                             <select class="form-control" name="job_package">
                                                 <option value="">-- Select Job Package--</option>
                                                 <option value="GoldPackage"
+                                                    {{ $client->job_package === 'NormalPackage' ? 'selected' : '' }}>
+                                                    Normal Package</option>
+                                                <option value="GoldPackage"
                                                     {{ $client->job_package === 'GoldPackage' ? 'selected' : '' }}>
-                                                    GoldPackage</option>
+                                                    Gold Package</option>
                                                 <option value="SilverPackage"
                                                     {{ $client->job_package === 'SilverPackage' ? 'selected' : '' }}>
                                                     SilverPackage</option>

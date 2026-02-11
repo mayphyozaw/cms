@@ -415,6 +415,31 @@
                     }
                 });
             });
+            $(document).ready(function() {
+
+            const prefixMap = {
+                Admin: 'EMP-',
+                Design_Structure: 'EMP-',
+                Design_Archi: 'EMP-',
+                Digital_Marketing: 'EMP-',
+                Finance_Account: 'EMP-',
+                Management_Director: 'EMP-',
+                Procurement: 'EMP-',
+                QS: 'EMP-',
+                Engineer: 'EMP-',
+                Sales_Marketing: 'EMP-',
+                HR: 'EMP-',
+            };
+
+            $('#department').on('change', function() {
+                let dept = $(this).val();
+                $('#codePrefix').text(prefixMap[dept] || '');
+            });
+
+            // userTypeSelect.on('change', function() {
+            //     prefixSpan.textContent = prefixMap[this.value] || '';
+            // });
+        });
         </script>
     @endpush
 @endsection

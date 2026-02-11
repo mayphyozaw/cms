@@ -47,6 +47,7 @@ class FixedAssetsService
                 return $fixedAssets->name;
             })
 
+            
             ->addColumn('category_name', function ($fixedAssets) {
                 return $fixedAssets->category->category_name ?? '';
             })
@@ -54,8 +55,8 @@ class FixedAssetsService
             ->editColumn('unit', function ($fixedAssets) {
                 return $fixedAssets->unit ?? '';
             })
-            ->editColumn('toal_qty', function ($fixedAssets) {
-                return $fixedAssets->toal_qty ?? '';
+            ->editColumn('total_qty', function ($fixedAssets) {
+                return $fixedAssets->total_qty ?? '';
             })
             ->editColumn('status', function ($fixedAssets) {
                 $color = match ($fixedAssets->status) {
@@ -71,10 +72,6 @@ class FixedAssetsService
                 return view('admin.backend.materialmanage.fixedassets._action', compact('fixedAssets'))->render();
             })
             ->rawColumns([
-                'name',
-                'category_name',
-                'unit',
-                'total_qty',
                 'status',
                 'action',
             ])

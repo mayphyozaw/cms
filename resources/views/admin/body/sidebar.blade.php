@@ -121,9 +121,10 @@
                                 <span class="menu-arrow"></span>
                             </a>
 
-                             <ul style="{{ request()->routeIs('suppliermanage.supplier.*') ? 'display:block;' : '' }}">
+                            <ul style="{{ request()->routeIs('suppliermanage.supplier.*') ? 'display:block;' : '' }}">
                                 <li>
-                                    <a href="{{ route('suppliermanage.supplier.index') }}" class="{{ request()->routeIs('suppliermanage.supplier.*') ? 'active' : '' }}">
+                                    <a href="{{ route('suppliermanage.supplier.index') }}"
+                                        class="{{ request()->routeIs('suppliermanage.supplier.*') ? 'active' : '' }}">
                                         <i class="ti ti-users">
                                         </i><span>All Suppliers</span>
                                     </a>
@@ -155,7 +156,7 @@
                                     </a>
                                 </li>
 
-                                <li hidden>
+                                <li>
 
                                     <a href="{{ route('projectmanage.projectcategory.index') }}"
                                         class="{{ request()->routeIs('projectmanage.projectcategory.*') ? 'active' : '' }}">
@@ -163,6 +164,17 @@
                                         </i>
                                         {{-- <span>Task & Progress Tracking</span> --}}
                                         <span>Project Category</span>
+                                    </a>
+                                </li>
+
+                                <li>
+
+                                    <a href="{{ route('projectmanage.workscope.index') }}"
+                                        class="{{ request()->routeIs('projectmanage.workscope.*') ? 'active' : '' }}">
+                                        <i class="ti ti-list-check">
+                                        </i>
+                                        {{-- <span>Task & Progress Tracking</span> --}}
+                                        <span>Work Scope</span>
                                     </a>
                                 </li>
 
@@ -200,16 +212,24 @@
                                 <span class="menu-arrow"></span>
                             </a>
 
-                            {{-- fixed assets mean assets --}}
-                            <ul style="{{ request()->routeIs('material.fixedassets.*') ? 'display:block;' : '' }}">
+                            {{--  assets --}}
+                            <ul style="{{ request()->routeIs('material.assets.*') ? 'display:block;' : '' }}">
                                 <li>
-                                    <a href="{{ route('material.fixedassets.index') }}"
-                                        class="{{ request()->routeIs('material.fixedassets.*') ? 'active' : '' }}">
+                                    <a href="{{ route('material.assets.index') }}"
+                                        class="{{ request()->routeIs('material.assets.*') ? 'active' : '' }}">
                                         <i class="ti ti-icons"></i>
-                                        <span>Fixed Assets</span>
+                                        <span>Assets</span>
                                     </a>
                                 </li>
 
+                                {{-- Fixed assets mean assets --}}
+                                <li>
+                                    <a href="{{ route('material.fixedassets.index') }}"
+                                        class="{{ request()->routeIs('material.fixedassets.*') ? 'active' : '' }}">
+                                        <i class="ti ti-icons">
+                                        </i><span>Fixed Assets</span>
+                                    </a>
+                                </li>
                                 {{-- variable assets mean materials --}}
                                 <li>
                                     <a href="{{ route('material.variableassets.index') }}"
@@ -219,12 +239,7 @@
                                     </a>
                                 </li>
 
-                                <li>
-                                    <a href="" class="">
-                                        <i class="ti ti-users">
-                                        </i><span>Work Scope</span>
-                                    </a>
-                                </li>
+                                
 
                                 <li>
                                     <a href="" class="">
@@ -249,20 +264,37 @@
                                 <span class="menu-arrow"></span>
                             </a>
 
-                            <ul style="{{ request()->routeIs('warehouse.*') ? 'display:block;' : '' }}">
+                            {{-- <ul style="{{ request()->routeIs('warehouses.*') ? 'display:block;' : '' }}"> --}}
+                            <ul
+                                style="{{ request()->routeIs('warehouse.*') || request()->routeIs('warehouse-stocks') ? 'display:block;' : '' }}">
+
                                 <li>
-                                    <a href="{{ route('warehouse.index') }}" class="{{ request()->routeIs('warehouse.*') ? 'active' : '' }}">
+                                    <a href="{{ route('warehouse.index') }}"
+                                        class="{{ request()->routeIs('warehouse.*') ? 'active' : '' }}">
+
                                         <i class="ti ti-users">
+
                                         </i><span>Warehouse</span>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="" class="">
+                                    <a href="{{ route('stock-movements.index') }}"
+                                        class="{{ request()->routeIs('stock-movements.index') ? 'active' : '' }}">
                                         <i class="ti ti-users">
-                                        </i><span>Stock In/ Stock out</span>
+                                        </i><span>Stock Movements</span>
                                     </a>
                                 </li>
+
+                                <li>
+                                    <a href="{{ route('warehouse-stocks.index') }}"
+                                        class="{{ request()->routeIs('warehouse-stocks.*') ? 'active' : '' }}">
+                                        <i class="ti ti-users"></i>
+                                        <span>Warehouse Stocks</span>
+                                    </a>
+                                </li>
+
+
 
                             </ul>
                         </li>
@@ -336,12 +368,12 @@
                                     </a>
                                 </li>
 
-                                <li>
-                                    <a href="" class="">
+                                {{-- <li>
+                                    <a href="{{ route('engineers.index') }}" class="{{ request()->routeIs('engineers.*') ? 'active' : '' }}">
                                         <i class="ti ti-users">
                                         </i><span>Engineer Assigned</span>
                                     </a>
-                                </li>
+                                </li> --}}
 
                             </ul>
                         </li>
@@ -357,9 +389,11 @@
                                 <span class="menu-arrow"></span>
                             </a>
 
-                            <ul style="{{ request()->routeIs('configuration.role.*') ? 'display:block;' : 'display:none;' }}">
+                            <ul
+                                style="{{ request()->routeIs('configuration.role.*') ? 'display:block;' : 'display:none;' }}">
                                 <li>
-                                    <a href="{{ route('configuration.role.index') }}" class="{{ request()->routeIs('configuration.role.*') ? 'active' : '' }}">
+                                    <a href="{{ route('configuration.role.index') }}"
+                                        class="{{ request()->routeIs('configuration.role.*') ? 'active' : '' }}">
                                         Roles
                                     </a>
                                 </li>

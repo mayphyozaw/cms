@@ -170,7 +170,7 @@
             //     $(document).on('click', '.editCategoryModal', function() {
             //         let id = $(this).data('id');
             //         let name = $(this).data('name');
-            //         $('#fixedasset_category_id').val(id);
+            //         $('#variable_category_id').val(id);
             //         $('#category_name').val(name);
             //     });
             // });

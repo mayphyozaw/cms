@@ -13,7 +13,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::7WN05sic1Yt4HrPn',
+            '_route' => 'generated::bFsnPuXZFGI2IbQT',
           ),
           1 => NULL,
           2 => 
@@ -33,7 +33,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::HRfmdRxg9EJ6KbZM',
+            '_route' => 'generated::su7e4GJ0ytOen1mx',
           ),
           1 => NULL,
           2 => 
@@ -110,7 +110,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::8AmSIAZGTuqyAssY',
+            '_route' => 'generated::x52U7H6ITrSDbT0j',
           ),
           1 => NULL,
           2 => 
@@ -146,7 +146,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::IqIAowYqbjzok8EJ',
+            '_route' => 'generated::AkiAGyo7Iod5NbpV',
           ),
           1 => NULL,
           2 => 
@@ -276,7 +276,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::jzGnBXvCbByKBFFy',
+            '_route' => 'generated::FivRyyl5k2hBHiZ4',
           ),
           1 => NULL,
           2 => 
@@ -706,6 +706,82 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
+      '/warehouse-stocks' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'warehouse-stocks.index',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/stock-movements' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'stock-movements.index',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'stock-movements.store',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/stock-movements/create' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'stock-movements.create',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
       '/suppliermanage/supplier' => 
       array (
         0 => 
@@ -769,6 +845,122 @@ app('router')->setCompiledRoutes(
           0 => 
           array (
             '_route' => 'suppliermanage.supplier-datatable',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/material/assets' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'material.assets.index',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'material.assets.store',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/material/assets/create' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'material.assets.create',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/material/assets-datatable' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'material.assets-datatable',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/material/get-assets-by-type' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'material.get-assets-by-type',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/material/get-asset-detail' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'material.get-asset-detail',
           ),
           1 => NULL,
           2 => 
@@ -1373,6 +1565,102 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
+      '/projectmanage/projectcategory-datatable' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projectcategory-datatable',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/projectmanage/workscope' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.workscope.index',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.workscope.store',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/projectmanage/workscope/create' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.workscope.create',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/projectmanage/workscope-datatable' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.workscope-datatable',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
       '/configuration/role' => 
       array (
         0 => 
@@ -1528,7 +1816,7 @@ app('router')->setCompiledRoutes(
     ),
     2 => 
     array (
-      0 => '{^(?|/res(?|et\\-password/([^/]++)(*:35)|ign\\-employees/([^/]++)(?|(*:68)|/edit(*:80)|(*:87)))|/verify\\-email/([^/]++)/([^/]++)(*:128)|/usermanage/(?|([^/]++)(?|/edit(*:167)|(*:175))|resign\\-submit(*:198)|block/([^/]++)(*:220)|unblock/([^/]++)(*:244)|toggle\\-block/([^/]++)(*:274))|/c(?|lient/([^/]++)(?|(*:305)|/edit(*:318)|(*:326))|onfiguration/(?|role/([^/]++)(?|(*:367)|/edit(*:380)|(*:388))|permission/([^/]++)(?|(*:419)|/edit(*:432)|(*:440))))|/warehouse/([^/]++)(?|(*:473)|/edit(*:486)|(*:494))|/s(?|uppliermanage/supplier/([^/]++)(?|(*:542)|/edit(*:555)|(*:563))|torage/(.*)(*:583))|/material/(?|fixedassets/(?|([^/]++)(?|(*:631)|/edit(*:644)|(*:652))|purchase(*:669))|category/([^/]++)(?|(*:698)|/edit(*:711)|(*:719))|variable(?|assets/([^/]++)(?|(*:757)|/edit(*:770)|(*:778))|\\-category/([^/]++)(?|(*:809)|/edit(*:822)|(*:830))))|/projectmanage/project(?|s/([^/]++)(?|(*:879)|/edit(*:892)|(*:900))|files/([^/]++)(?|/edit(*:931)|(*:939))|category/([^/]++)(?|(*:968)|/edit(*:981)|(*:989))))/?$}sDu',
+      0 => '{^(?|/res(?|et\\-password/([^/]++)(*:35)|ign\\-employees/([^/]++)(?|(*:68)|/edit(*:80)|(*:87)))|/verify\\-email/([^/]++)/([^/]++)(*:128)|/usermanage/(?|([^/]++)(?|/edit(*:167)|(*:175))|resign\\-submit(*:198)|block/([^/]++)(*:220)|unblock/([^/]++)(*:244)|toggle\\-block/([^/]++)(*:274))|/c(?|lient/([^/]++)(?|(*:305)|/edit(*:318)|(*:326))|onfiguration/(?|role/([^/]++)(?|(*:367)|/edit(*:380)|(*:388))|permission/([^/]++)(?|(*:419)|/edit(*:432)|(*:440))))|/warehouse/([^/]++)(?|(*:473)|/edit(*:486)|(*:494))|/s(?|to(?|ck\\-movements/([^/]++)(?|(*:538)|/edit(*:551)|(*:559))|rage/(.*)(*:577))|uppliermanage/supplier/([^/]++)(?|(*:620)|/edit(*:633)|(*:641)))|/material/(?|assets/(?|([^/]++)(?|(*:685)|/edit(*:698)|(*:706))|purchase(*:723))|fixedassets/(?|([^/]++)(?|(*:758)|/edit(*:771)|(*:779))|purchase(*:796))|category/([^/]++)(?|(*:825)|/edit(*:838)|(*:846))|variable(?|assets/([^/]++)(?|(*:884)|/edit(*:897)|(*:905))|\\-category/([^/]++)(?|(*:936)|/edit(*:949)|(*:957))))|/projectmanage/(?|project(?|s/([^/]++)(?|(*:1009)|/edit(*:1023)|(*:1032))|files/([^/]++)(?|/edit(*:1064)|(*:1073))|category/([^/]++)(?|(*:1103)|/edit(*:1117)|(*:1126)))|workscope/([^/]++)(?|(*:1158)|/edit(*:1172)|(*:1181))))/?$}sDu',
     ),
     3 => 
     array (
@@ -2171,7 +2459,118 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      542 => 
+      538 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'stock-movements.show',
+          ),
+          1 => 
+          array (
+            0 => 'stock_movement',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      551 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'stock-movements.edit',
+          ),
+          1 => 
+          array (
+            0 => 'stock_movement',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      559 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'stock-movements.update',
+          ),
+          1 => 
+          array (
+            0 => 'stock_movement',
+          ),
+          2 => 
+          array (
+            'PUT' => 0,
+            'PATCH' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'stock-movements.destroy',
+          ),
+          1 => 
+          array (
+            0 => 'stock_movement',
+          ),
+          2 => 
+          array (
+            'DELETE' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      577 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'storage.local',
+          ),
+          1 => 
+          array (
+            0 => 'path',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      620 => 
       array (
         0 => 
         array (
@@ -2194,7 +2593,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      555 => 
+      633 => 
       array (
         0 => 
         array (
@@ -2217,7 +2616,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      563 => 
+      641 => 
       array (
         0 => 
         array (
@@ -2259,17 +2658,17 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      583 => 
+      685 => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'storage.local',
+            '_route' => 'material.assets.show',
           ),
           1 => 
           array (
-            0 => 'path',
+            0 => 'asset',
           ),
           2 => 
           array (
@@ -2282,7 +2681,93 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      631 => 
+      698 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'material.assets.edit',
+          ),
+          1 => 
+          array (
+            0 => 'asset',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      706 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'material.assets.update',
+          ),
+          1 => 
+          array (
+            0 => 'asset',
+          ),
+          2 => 
+          array (
+            'PUT' => 0,
+            'PATCH' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'material.assets.destroy',
+          ),
+          1 => 
+          array (
+            0 => 'asset',
+          ),
+          2 => 
+          array (
+            'DELETE' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      723 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'material.assets.purchase',
+          ),
+          1 => 
+          array (
+          ),
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      758 => 
       array (
         0 => 
         array (
@@ -2305,7 +2790,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      644 => 
+      771 => 
       array (
         0 => 
         array (
@@ -2328,7 +2813,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      652 => 
+      779 => 
       array (
         0 => 
         array (
@@ -2370,7 +2855,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      669 => 
+      796 => 
       array (
         0 => 
         array (
@@ -2391,7 +2876,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      698 => 
+      825 => 
       array (
         0 => 
         array (
@@ -2414,7 +2899,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      711 => 
+      838 => 
       array (
         0 => 
         array (
@@ -2437,7 +2922,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      719 => 
+      846 => 
       array (
         0 => 
         array (
@@ -2479,7 +2964,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      757 => 
+      884 => 
       array (
         0 => 
         array (
@@ -2502,7 +2987,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      770 => 
+      897 => 
       array (
         0 => 
         array (
@@ -2525,7 +3010,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      778 => 
+      905 => 
       array (
         0 => 
         array (
@@ -2567,7 +3052,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      809 => 
+      936 => 
       array (
         0 => 
         array (
@@ -2590,7 +3075,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      822 => 
+      949 => 
       array (
         0 => 
         array (
@@ -2613,7 +3098,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      830 => 
+      957 => 
       array (
         0 => 
         array (
@@ -2655,7 +3140,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      879 => 
+      1009 => 
       array (
         0 => 
         array (
@@ -2678,7 +3163,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      892 => 
+      1023 => 
       array (
         0 => 
         array (
@@ -2701,7 +3186,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      900 => 
+      1032 => 
       array (
         0 => 
         array (
@@ -2743,7 +3228,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      931 => 
+      1064 => 
       array (
         0 => 
         array (
@@ -2766,7 +3251,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      939 => 
+      1073 => 
       array (
         0 => 
         array (
@@ -2789,7 +3274,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      968 => 
+      1103 => 
       array (
         0 => 
         array (
@@ -2812,7 +3297,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      981 => 
+      1117 => 
       array (
         0 => 
         array (
@@ -2835,7 +3320,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      989 => 
+      1126 => 
       array (
         0 => 
         array (
@@ -2876,6 +3361,94 @@ app('router')->setCompiledRoutes(
           5 => true,
           6 => NULL,
         ),
+      ),
+      1158 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.workscope.show',
+          ),
+          1 => 
+          array (
+            0 => 'workscope',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      1172 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.workscope.edit',
+          ),
+          1 => 
+          array (
+            0 => 'workscope',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      1181 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.workscope.update',
+          ),
+          1 => 
+          array (
+            0 => 'workscope',
+          ),
+          2 => 
+          array (
+            'PUT' => 0,
+            'PATCH' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.workscope.destroy',
+          ),
+          1 => 
+          array (
+            0 => 'workscope',
+          ),
+          2 => 
+          array (
+            'DELETE' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
         2 => 
         array (
           0 => NULL,
@@ -2892,7 +3465,7 @@ app('router')->setCompiledRoutes(
   ),
   'attributes' => 
   array (
-    'generated::7WN05sic1Yt4HrPn' => 
+    'generated::bFsnPuXZFGI2IbQT' => 
     array (
       'methods' => 
       array (
@@ -2920,8 +3493,8 @@ app('router')->setCompiledRoutes(
                     return response(\\Illuminate\\Support\\Facades\\View::file(\'/Users/may/Desktop/development/cms/vendor/laravel/framework/src/Illuminate/Foundation/Configuration\'.\'/../resources/health-up.blade.php\', [
                         \'exception\' => $exception,
                     ]), status: $exception ? 500 : 200);
-                }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"000000000000057f0000000000000000";}}',
-        'as' => 'generated::7WN05sic1Yt4HrPn',
+                }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"00000000000005880000000000000000";}}',
+        'as' => 'generated::bFsnPuXZFGI2IbQT',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2937,7 +3510,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::HRfmdRxg9EJ6KbZM' => 
+    'generated::su7e4GJ0ytOen1mx' => 
     array (
       'methods' => 
       array (
@@ -2953,13 +3526,13 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => 'O:55:"Laravel\\SerializableClosure\\UnsignedSerializableClosure":1:{s:12:"serializable";O:46:"Laravel\\SerializableClosure\\Serializers\\Native":5:{s:3:"use";a:0:{}s:8:"function";s:47:"function () {
     return \\view(\'auth.login\');
-}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000005830000000000000000";}}',
+}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"000000000000058c0000000000000000";}}',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'generated::HRfmdRxg9EJ6KbZM',
+        'as' => 'generated::su7e4GJ0ytOen1mx',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2994,7 +3567,7 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => 'O:55:"Laravel\\SerializableClosure\\UnsignedSerializableClosure":1:{s:12:"serializable";O:46:"Laravel\\SerializableClosure\\Serializers\\Native":5:{s:3:"use";a:0:{}s:8:"function";s:46:"function () {
     return \\view(\'dashboard\');
-}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000005850000000000000000";}}',
+}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"000000000000058e0000000000000000";}}',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
@@ -3091,7 +3664,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::8AmSIAZGTuqyAssY' => 
+    'generated::x52U7H6ITrSDbT0j' => 
     array (
       'methods' => 
       array (
@@ -3112,7 +3685,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::8AmSIAZGTuqyAssY',
+        'as' => 'generated::x52U7H6ITrSDbT0j',
       ),
       'fallback' => false,
       'defaults' => 
@@ -3166,7 +3739,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::IqIAowYqbjzok8EJ' => 
+    'generated::AkiAGyo7Iod5NbpV' => 
     array (
       'methods' => 
       array (
@@ -3187,7 +3760,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::IqIAowYqbjzok8EJ',
+        'as' => 'generated::AkiAGyo7Iod5NbpV',
       ),
       'fallback' => false,
       'defaults' => 
@@ -3507,7 +4080,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::jzGnBXvCbByKBFFy' => 
+    'generated::FivRyyl5k2hBHiZ4' => 
     array (
       'methods' => 
       array (
@@ -3528,7 +4101,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::jzGnBXvCbByKBFFy',
+        'as' => 'generated::FivRyyl5k2hBHiZ4',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5125,6 +5698,316 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
+    'warehouse-stocks.index' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'warehouse-stocks',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'warehouse-stocks.index',
+        'uses' => 'App\\Http\\Controllers\\Backend\\StockManagement\\WarehouseStockController@index',
+        'controller' => 'App\\Http\\Controllers\\Backend\\StockManagement\\WarehouseStockController@index',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'stock-movements.index' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'stock-movements',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'stock-movements.index',
+        'uses' => 'App\\Http\\Controllers\\Backend\\StockManagement\\StockMovementController@index',
+        'controller' => 'App\\Http\\Controllers\\Backend\\StockManagement\\StockMovementController@index',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'stock-movements.create' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'stock-movements/create',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'stock-movements.create',
+        'uses' => 'App\\Http\\Controllers\\Backend\\StockManagement\\StockMovementController@create',
+        'controller' => 'App\\Http\\Controllers\\Backend\\StockManagement\\StockMovementController@create',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'stock-movements.store' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'stock-movements',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'stock-movements.store',
+        'uses' => 'App\\Http\\Controllers\\Backend\\StockManagement\\StockMovementController@store',
+        'controller' => 'App\\Http\\Controllers\\Backend\\StockManagement\\StockMovementController@store',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'stock-movements.show' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'stock-movements/{stock_movement}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'stock-movements.show',
+        'uses' => 'App\\Http\\Controllers\\Backend\\StockManagement\\StockMovementController@show',
+        'controller' => 'App\\Http\\Controllers\\Backend\\StockManagement\\StockMovementController@show',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'stock-movements.edit' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'stock-movements/{stock_movement}/edit',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'stock-movements.edit',
+        'uses' => 'App\\Http\\Controllers\\Backend\\StockManagement\\StockMovementController@edit',
+        'controller' => 'App\\Http\\Controllers\\Backend\\StockManagement\\StockMovementController@edit',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'stock-movements.update' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'PUT',
+        1 => 'PATCH',
+      ),
+      'uri' => 'stock-movements/{stock_movement}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'stock-movements.update',
+        'uses' => 'App\\Http\\Controllers\\Backend\\StockManagement\\StockMovementController@update',
+        'controller' => 'App\\Http\\Controllers\\Backend\\StockManagement\\StockMovementController@update',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'stock-movements.destroy' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'DELETE',
+      ),
+      'uri' => 'stock-movements/{stock_movement}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'stock-movements.destroy',
+        'uses' => 'App\\Http\\Controllers\\Backend\\StockManagement\\StockMovementController@destroy',
+        'controller' => 'App\\Http\\Controllers\\Backend\\StockManagement\\StockMovementController@destroy',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
     'suppliermanage.supplier.index' => 
     array (
       'methods' => 
@@ -5417,6 +6300,432 @@ app('router')->setCompiledRoutes(
         'as' => 'suppliermanage.supplier-datatable',
         'namespace' => NULL,
         'prefix' => '/suppliermanage',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'material.assets.index' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'material/assets',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'material.assets.index',
+        'uses' => 'App\\Http\\Controllers\\Backend\\MaterialManagement\\AssetController@index',
+        'controller' => 'App\\Http\\Controllers\\Backend\\MaterialManagement\\AssetController@index',
+        'namespace' => NULL,
+        'prefix' => '/material',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'material.assets.create' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'material/assets/create',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'material.assets.create',
+        'uses' => 'App\\Http\\Controllers\\Backend\\MaterialManagement\\AssetController@create',
+        'controller' => 'App\\Http\\Controllers\\Backend\\MaterialManagement\\AssetController@create',
+        'namespace' => NULL,
+        'prefix' => '/material',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'material.assets.store' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'material/assets',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'material.assets.store',
+        'uses' => 'App\\Http\\Controllers\\Backend\\MaterialManagement\\AssetController@store',
+        'controller' => 'App\\Http\\Controllers\\Backend\\MaterialManagement\\AssetController@store',
+        'namespace' => NULL,
+        'prefix' => '/material',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'material.assets.show' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'material/assets/{asset}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'material.assets.show',
+        'uses' => 'App\\Http\\Controllers\\Backend\\MaterialManagement\\AssetController@show',
+        'controller' => 'App\\Http\\Controllers\\Backend\\MaterialManagement\\AssetController@show',
+        'namespace' => NULL,
+        'prefix' => '/material',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'material.assets.edit' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'material/assets/{asset}/edit',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'material.assets.edit',
+        'uses' => 'App\\Http\\Controllers\\Backend\\MaterialManagement\\AssetController@edit',
+        'controller' => 'App\\Http\\Controllers\\Backend\\MaterialManagement\\AssetController@edit',
+        'namespace' => NULL,
+        'prefix' => '/material',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'material.assets.update' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'PUT',
+        1 => 'PATCH',
+      ),
+      'uri' => 'material/assets/{asset}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'material.assets.update',
+        'uses' => 'App\\Http\\Controllers\\Backend\\MaterialManagement\\AssetController@update',
+        'controller' => 'App\\Http\\Controllers\\Backend\\MaterialManagement\\AssetController@update',
+        'namespace' => NULL,
+        'prefix' => '/material',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'material.assets.destroy' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'DELETE',
+      ),
+      'uri' => 'material/assets/{asset}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'material.assets.destroy',
+        'uses' => 'App\\Http\\Controllers\\Backend\\MaterialManagement\\AssetController@destroy',
+        'controller' => 'App\\Http\\Controllers\\Backend\\MaterialManagement\\AssetController@destroy',
+        'namespace' => NULL,
+        'prefix' => '/material',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'material.assets-datatable' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'material/assets-datatable',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Backend\\MaterialManagement\\AssetController@assetsDataTable',
+        'controller' => 'App\\Http\\Controllers\\Backend\\MaterialManagement\\AssetController@assetsDataTable',
+        'as' => 'material.assets-datatable',
+        'namespace' => NULL,
+        'prefix' => '/material',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'material.get-assets-by-type' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'material/get-assets-by-type',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Backend\\MaterialManagement\\AssetController@getAssetsByType',
+        'controller' => 'App\\Http\\Controllers\\Backend\\MaterialManagement\\AssetController@getAssetsByType',
+        'as' => 'material.get-assets-by-type',
+        'namespace' => NULL,
+        'prefix' => '/material',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'material.get-asset-detail' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'material/get-asset-detail',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Backend\\MaterialManagement\\AssetController@getAssetDetail',
+        'controller' => 'App\\Http\\Controllers\\Backend\\MaterialManagement\\AssetController@getAssetDetail',
+        'as' => 'material.get-asset-detail',
+        'namespace' => NULL,
+        'prefix' => '/material',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'material.assets.purchase' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'material/assets/purchase',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        0 => 'App\\Http\\Controllers\\Backend\\MaterialManagement\\AssetController',
+        'uses' => NULL,
+        'as' => 'material.assets.purchase',
+        'namespace' => NULL,
+        'prefix' => '/material',
         'where' => 
         array (
         ),
@@ -7682,6 +8991,355 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
+    'projectmanage.projectcategory-datatable' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/projectcategory-datatable',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\ProjectCategoryController@projectCategoryDataTable',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\ProjectCategoryController@projectCategoryDataTable',
+        'as' => 'projectmanage.projectcategory-datatable',
+        'namespace' => NULL,
+        'prefix' => '/projectmanage',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.workscope.index' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/workscope',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.workscope.index',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\WorkscopeController@index',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\WorkscopeController@index',
+        'namespace' => NULL,
+        'prefix' => '/projectmanage',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.workscope.create' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/workscope/create',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.workscope.create',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\WorkscopeController@create',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\WorkscopeController@create',
+        'namespace' => NULL,
+        'prefix' => '/projectmanage',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.workscope.store' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'projectmanage/workscope',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.workscope.store',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\WorkscopeController@store',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\WorkscopeController@store',
+        'namespace' => NULL,
+        'prefix' => '/projectmanage',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.workscope.show' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/workscope/{workscope}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.workscope.show',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\WorkscopeController@show',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\WorkscopeController@show',
+        'namespace' => NULL,
+        'prefix' => '/projectmanage',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.workscope.edit' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/workscope/{workscope}/edit',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.workscope.edit',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\WorkscopeController@edit',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\WorkscopeController@edit',
+        'namespace' => NULL,
+        'prefix' => '/projectmanage',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.workscope.update' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'PUT',
+        1 => 'PATCH',
+      ),
+      'uri' => 'projectmanage/workscope/{workscope}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.workscope.update',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\WorkscopeController@update',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\WorkscopeController@update',
+        'namespace' => NULL,
+        'prefix' => '/projectmanage',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.workscope.destroy' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'DELETE',
+      ),
+      'uri' => 'projectmanage/workscope/{workscope}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.workscope.destroy',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\WorkscopeController@destroy',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\WorkscopeController@destroy',
+        'namespace' => NULL,
+        'prefix' => '/projectmanage',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.workscope-datatable' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/workscope-datatable',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\WorkscopeController@workscopeDataTable',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\WorkscopeController@workscopeDataTable',
+        'as' => 'projectmanage.workscope-datatable',
+        'namespace' => NULL,
+        'prefix' => '/projectmanage',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
     'configuration.role.index' => 
     array (
       'methods' => 
@@ -8318,7 +9976,7 @@ app('router')->setCompiledRoutes(
                         $config,
                         $isProduction
                     ))($request, $path);
-                }";s:5:"scope";s:47:"Illuminate\\Filesystem\\FilesystemServiceProvider";s:4:"this";N;s:4:"self";s:32:"00000000000005880000000000000000";}}',
+                }";s:5:"scope";s:47:"Illuminate\\Filesystem\\FilesystemServiceProvider";s:4:"this";N;s:4:"self";s:32:"00000000000005910000000000000000";}}',
         'as' => 'storage.local',
       ),
       'fallback' => false,

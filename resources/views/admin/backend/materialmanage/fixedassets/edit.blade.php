@@ -28,6 +28,21 @@
                             @method('PUT')
                             <div class="col-lg-6 col-md-12">
                                 <div class="mb-3">
+                                    <label class="form-label">
+                                        Choose Warehouse</label>
+                                    <select name="warehouse_id" id="warehouse_id" class="form-control form-select">
+                                        <option value="">Select Warehosue</option>
+                                        @foreach ($warehouses as $item)
+                                            <option value="{{ $item->id }}"
+                                                {{ old('warehouse_id', $fixedAsset->warehouse_id) == $item->id ? 'selected' : '' }}>
+                                                {{ $item->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="mb-3">
                                     <label class="form-label">Fixed Asset Code</label>
                                     <div class="input-group">
                                         <span class="input-group-text">F-</span>
@@ -78,7 +93,7 @@
 
 
 
-                            <div class="col-lg-6 col-md-12">
+                            <div class="col-lg-6 col-md-12" hidden>
                                 <div class="mb-3">
                                     <label class="form-label fs-14">Total Quantity</label>
                                     <div class="input-group">
@@ -94,13 +109,17 @@
                                             class="text-danger">*</span></label>
                                     <select name="status" id="status" class="form-control form-select">
                                         <option selected="">Select Status</option>
-                                        <option value="Available"
-                                            {{ $fixedAsset->status === 'Available' ? 'selected' : '' }}>Available</option>
-                                        <option value="InUse" {{ $fixedAsset->status === 'InUse' ? 'selected' : '' }}>In
+                                        <option value="available"
+                                            {{ $fixedAsset->status === 'available' ? 'selected' : '' }}>Available</option>
+                                        <option value="inUse" {{ $fixedAsset->status === 'inUse' ? 'selected' : '' }}>In
                                             Use</option>
-                                        <option value="UnderMaintenance"
-                                            {{ $fixedAsset->status === 'UnderMaintenance' ? 'selected' : '' }}>Under
+                                        <option value="maintenance"
+                                            {{ $fixedAsset->status === 'maintenance' ? 'selected' : '' }}>Under
                                             Maintenance</option>
+                                            <option value="damaged" {{ $fixedAsset->status === 'damaged' ? 'selected' : '' }}>
+                                            Damaged</option>
+                                            <option value="disposed" {{ $fixedAsset->status === 'disposed' ? 'selected' : '' }}>
+                                            Disposed</option>
                                     </select>
                                 </div>
                             </div>

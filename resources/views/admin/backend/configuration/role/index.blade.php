@@ -96,6 +96,7 @@
                     },
 
                 ],
+                responsive: true,
             });
 
             $(document).on('click', '.deleteBtn', function(event) {

@@ -168,7 +168,7 @@
                             <tr>
                                 <th class="text-center" style="background-color: #9dd2e7">#</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Variable Asset Code</th>
-                                <th class="text-center" style="background-color: #9dd2e7"> Variable Asset Name</th>
+                                <th class="text-center" style="background-color: #9dd2e7"> Item Name</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Variable Category Name</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Unit</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Total Quantity</th>
