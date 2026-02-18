@@ -5,6 +5,8 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Backend\ClientManagement\ClientController;
 use App\Http\Controllers\Backend\Configuration\PermissionController;
 use App\Http\Controllers\Backend\Configuration\RoleController;
+use App\Http\Controllers\Backend\EngineerAssign\EnigneerAssignController;
+use App\Http\Controllers\Backend\EngineerManage\EngineersController;
 use App\Http\Controllers\Backend\MaterialManagement\AssetController;
 use App\Http\Controllers\Backend\MaterialManagement\FixedAssets\CategoryController;
 use App\Http\Controllers\Backend\MaterialManagement\FixedAssets\FixedAssetsController;
@@ -61,6 +63,10 @@ Route::middleware('auth', 'notBlocked')->group(function () {
     Route::get('resign-employee-datatable', [ResignController::class, 'resignEmployeeDataTable'])->name('resign-employee-datatable');
     Route::post('confirm/resign', [ResignController::class, 'confirm_resign'])->name('confirm_resign');
 
+    Route::resource('engineers', EngineersController::class);
+    Route::post('engineers-assign', [EngineersController::class, 'assignProject'])->name('engineers-assign');
+    // Route::get('engineers/{engineer}/assign',[EngineersController::class, 'assignForm'])->name('engineers.assign');
+    Route::get('engineers/assign/{id}',[EngineersController::class, 'assignForm'])->name('engineers.assign');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::get('/change-password', [PasswordController::class, 'edit'])->name('change-password.edit');
@@ -96,7 +102,7 @@ Route::middleware('auth', 'notBlocked')->group(function () {
         Route::get('assets-datatable', [AssetController::class, 'assetsDataTable'])->name('assets-datatable');
         Route::get('get-assets-by-type', [AssetController::class, 'getAssetsByType'])->name('get-assets-by-type');
         Route::get('get-asset-detail', [AssetController::class, 'getAssetDetail'])->name('get-asset-detail');
-         Route::post('assets/purchase', [AssetController::class], 'purchaseAssets')->name('assets.purchase');
+        Route::post('assets/purchase', [AssetController::class], 'purchaseAssets')->name('assets.purchase');
 
 
         Route::resource('fixedassets', FixedAssetsController::class);

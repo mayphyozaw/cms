@@ -25,7 +25,7 @@ class Client extends Model
         'job_package',
     ];
     public function projects()
-{
-    return $this->hasMany(Project::class);
-}
+    {
+        return $this->hasMany(Project::class);
+    }
 }

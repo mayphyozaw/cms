@@ -179,6 +179,7 @@
                         name: 'asset_type',
                         className: 'text-center',
                     },
+                    
                     {
                         data: 'warehouse_id',
                         name: 'warehouse_id',

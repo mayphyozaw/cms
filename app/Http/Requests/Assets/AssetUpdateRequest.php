@@ -24,6 +24,7 @@ class AssetUpdateRequest extends FormRequest
         return [
             'assets_type' => 'required|string|max:255',
             'name' => 'required|string|max:255',
+            'fixed_asset_id' => 'required|exists:fixed_assets,id',
             'category_id'   => 'required|exists:fixed_asset_categories,id',
             'warehouse_id'  => 'required|exists:warehouses,id',
             'unit' => 'required|string|max:255',

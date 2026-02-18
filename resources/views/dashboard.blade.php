@@ -18,7 +18,7 @@
                                 </div>
                             </div>
                             <div class="py-2">
-                                <p class="mb-1 text-center">Project Manage</p>
+                                <p class="mb-1 text-center">CRM</p>
                             </div>
                         </div>
                     </a>
@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                             <div class="py-2">
-                                <p class="mb-1 text-center">User Manage</p>
+                                <p class="mb-1 text-center">Construction Management</p>
                             </div>
                         </div>
                     </a>
@@ -58,7 +58,7 @@
                                 </div>
                             </div>
                             <div class="py-2">
-                                <p class="mb-1 text-center">Property Manage</p>
+                                <p class="mb-1 text-center">Inventory Management</p>
                             </div>
                         </div>
                     </a>
@@ -81,7 +81,7 @@
 
                             </div>
                             <div class="py-2">
-                                <p class="mb-1 text-center">Engineer Manage</p>
+                                <p class="mb-1 text-center">Accounting</p>
                             </div>
                         </div>
                     </a>

@@ -161,6 +161,9 @@
                                         <option value="PAE"
                                             {{ old('construction_type', $project->client->construction_type) == 'PAE' ? 'selected' : '' }}>
                                             PAE</option>
+                                            <option value="RC"
+                                            {{ old('construction_type', $project->client->construction_type) == 'RC' ? 'selected' : '' }}>
+                                            RC</option>
                                         <option value="SteelStructure"
                                             {{ old('construction_type', $project->client->construction_type) == 'SteelStructure' ? 'selected' : '' }}>
                                             Steel Structure</option>

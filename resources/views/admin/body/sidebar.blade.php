@@ -339,6 +339,30 @@
                     </ul>
                 </li>
 
+                <li class="menu-title"><span>Engineer Manage</span></li>
+                <li>
+                    <ul>
+                        <li class="submenu">
+                            <a href="javascript:void(0);">
+                                <i class="ti ti-user-shield"></i>
+                                <span>Engineer Management</span>
+                                <span class="menu-arrow"></span>
+                            </a>
+
+                            <ul style="{{ request()->routeIs('engineers.*') ? 'display:block;' : '' }}">
+                                <li>
+                                    <a href="{{ route('engineers.index') }}"
+                                        class="{{ request()->routeIs('engineers.*') ? 'active' : '' }}">
+                                        <i class="ti ti-users">
+                                        </i><span>All Engineer</span>
+                                    </a>
+                                </li>
+                                
+
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
 
                 <li class="menu-title"><span>User Manage</span></li>
 
@@ -369,9 +393,9 @@
                                 </li>
 
                                 {{-- <li>
-                                    <a href="{{ route('engineers.index') }}" class="{{ request()->routeIs('engineers.*') ? 'active' : '' }}">
+                                    <a href="{{ route('engineerassign.index') }}" class="{{ request()->routeIs('engineerassign.*') ? 'active' : '' }}">
                                         <i class="ti ti-users">
-                                        </i><span>Engineer Assigned</span>
+                                        </i><span>Engineer Assign</span>
                                     </a>
                                 </li> --}}
 

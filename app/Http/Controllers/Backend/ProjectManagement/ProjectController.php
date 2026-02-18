@@ -26,7 +26,7 @@ class ProjectController extends Controller
     public function index()
     {
         $project_categories = ProjectCategory::all();
-        $projects = Project::with(['client', 'project_files'])->get();
+        $projects = Project::with(['client', 'project_files', 'project_file'])->get();
         return view('admin.backend.projectmanage.projects.index', compact('projects', 'project_categories'));
     }
 
@@ -59,6 +59,7 @@ class ProjectController extends Controller
     {
         Project::create([
             'client_id' => $request->client_id,
+            'project_code' => $request->project_code,
             'project_type' => $request->project_type,
             'status' => $request->status,
             'start_date' => $request->start_date,
@@ -101,6 +102,7 @@ class ProjectController extends Controller
         $project = Project::findOrFail($id);
         $project->update([
             'client_id' => $request->client_id,
+            'project_code' => $request->project_code,
             'project_type' => $request->project_type,
             'status' => $request->status,
             'start_date' => $request->start_date,

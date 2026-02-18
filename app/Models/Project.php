@@ -7,17 +7,30 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     protected $fillable = [
+        'project_code',
         'client_id',
+        'client_type',
+        'address',
+        'site_location',
+        'building_area',
+        'storeys',
+        'job_scope',
+        'construction_type',
         'project_type',
-        'status',
         'start_date',
         'end_date',
-        'remark',
+        'status',
+        'remark'
     ];
 
     public function project_files()
     {
         return $this->hasMany(ProjectFile::class);
+    }
+
+    public function project_file()
+    {
+        return $this->belongsTo(ProjectFile::class, 'id', 'project_id')->latest();
     }
 
     public function project_files_count()
@@ -87,5 +100,9 @@ class Project extends Model
             'completed' => 100,
             default => 0,
         };
+    }
+    public function engineers()
+    {
+        return $this->belongsToMany(User::class);
     }
 }

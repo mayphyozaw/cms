@@ -45,7 +45,7 @@ class User extends Authenticatable
     ];
 
 
-    
+
     protected function acsrNrcFrontImagePath(): Attribute
     {
         return Attribute::make(
@@ -152,5 +152,14 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class);
+    }
+
+    public function engineerAssigns()
+    {
+        return $this->hasMany(EngineerAssign::class);
     }
 }

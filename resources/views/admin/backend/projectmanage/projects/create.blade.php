@@ -133,6 +133,7 @@
                                         <option value="Commercial">Commercial</option>
                                         <option value="Renovation">Renovation</option>
                                         <option value="PAE">PAE</option>
+                                        <option value="RC">RC</option>
                                         <option value="Steel Structure">Steel Structure</option>
                                         <option value="Electrical">Electrical</option>
                                     </select>

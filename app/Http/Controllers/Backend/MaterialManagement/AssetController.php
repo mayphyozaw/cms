@@ -10,6 +10,8 @@ use App\Models\FixedAssetCategory;
 use App\Models\VariableAsset;
 use App\Models\Warehouse;
 use App\Services\AssetService;
+use App\Services\ResponseService;
+use Exception;
 use Illuminate\Http\Request;
 
 use function Illuminate\Log\log;
@@ -30,7 +32,7 @@ class AssetController extends Controller
         $assets = Asset::with(['fixedAsset', 'variableAsset'])->get();
         $fixedAsset = FixedAsset::all();
         $variableAsset = VariableAsset::all();
-        return view('admin.backend.materialmanage.assets.index', compact('assets','fixedAsset','variableAsset'));
+        return view('admin.backend.materialmanage.assets.index', compact('assets', 'fixedAsset', 'variableAsset'));
     }
 
     public function create()
@@ -44,13 +46,12 @@ class AssetController extends Controller
     }
 
 
-    public function store(AssetStoreRequest $request)
+    public function store(Request $request)
     {
 
 
         $assetData = [
             'asset_type'   => $request->asset_type,
-            'name'     => $request->name,
             'category_id'  => $request->category_id,
             'warehouse_id' => $request->warehouse_id,
             'unit'         => $request->unit,
@@ -58,7 +59,14 @@ class AssetController extends Controller
             'status'       => $request->status,
             'remarks'      => $request->remarks,
         ];
-
+        if ($request->asset_type == 'fixedAsset') {
+            $assetData['fixed_asset_id'] = $request->asset_id;
+            $assetData['variable_asset_id'] = null;
+        } else {
+            $assetData['variable_asset_id'] = $request->asset_id;
+            $assetData['fixed_asset_id'] = null;
+        }
+        // return $assetData;
         $this->assetService->create($assetData);
 
         return redirect()->route('material.assets.index')
@@ -102,5 +110,25 @@ class AssetController extends Controller
     public function assetsDataTable()
     {
         return $this->assetService->assetsDataTable();
+    }
+
+    // public function destroy($id)
+    // {
+    //     Asset::findOrFail($id)->delete();
+
+    //     return response()->json([
+    //         'message' => 'Deleted successfully'
+    //     ]);
+    // }
+
+    public function destroy($id)
+    {
+        try {
+            $this->assetService->delete($id);
+
+            return ResponseService::success([], 'Successfully deleted');
+        } catch (Exception $e) {
+            return ResponseService::fail($e->getMessage());
+        }
     }
 }

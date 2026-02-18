@@ -176,6 +176,9 @@
                                                 <option value="PAE"
                                                     {{ $client->construction_type === 'PAE' ? 'selected' : '' }}>PAE
                                                 </option>
+                                                <option value="RC"
+                                                    {{ $client->construction_type === 'RC' ? 'selected' : '' }}>RC
+                                                </option>
                                                 <option value="SteelStructure"
                                                     {{ $client->construction_type === 'SteelStructure' ? 'selected' : '' }}>
                                                     Steel Structure</option>
@@ -214,7 +217,7 @@
                                                 Job Package</label>
                                             <select class="form-control" name="job_package">
                                                 <option value="">-- Select Job Package--</option>
-                                                <option value="GoldPackage"
+                                                <option value="NormalPackage"
                                                     {{ $client->job_package === 'NormalPackage' ? 'selected' : '' }}>
                                                     Normal Package</option>
                                                 <option value="GoldPackage"

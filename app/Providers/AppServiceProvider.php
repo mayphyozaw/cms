@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Repositories\Contracts\AssetRepoInterface;
 use App\Repositories\Contracts\CategoryRepoInterface;
 use App\Repositories\Contracts\ClientRepoInterface;
+use App\Repositories\Contracts\EngineerRepoInterface;
 use App\Repositories\Contracts\FixedAssetRepoInterface;
 use App\Repositories\Contracts\PermissionRepoInterface;
 use App\Repositories\Contracts\ProjectCategoryRepoInterface;
@@ -19,6 +20,7 @@ use App\Repositories\Contracts\WorkScopeRepoInterface;
 use App\Repositories\Eloquent\AssetRepository;
 use App\Repositories\Eloquent\CategoryRepository;
 use App\Repositories\Eloquent\ClientRepository;
+use App\Repositories\Eloquent\EngineerRepository;
 use App\Repositories\Eloquent\FixedAssetRepository;
 use App\Repositories\Eloquent\PermissionRepository;
 use App\Repositories\Eloquent\ProjectCategoryRepository;
@@ -82,6 +84,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             VariableCategoryRepoInterface::class,
             VariableCategoryRepository::class
+        );
+        $this->app->bind(
+            EngineerRepoInterface::class,
+            EngineerRepository::class
         );
         $this->app->bind(
             ProjectRepoInterface::class,

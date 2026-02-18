@@ -46,7 +46,8 @@ class AssetRepository implements AssetRepoInterface
             ->select([
                 'id',
                 'asset_type',
-                'name',
+                'fixed_asset_id',
+                'variable_asset_id',
                 'category_id',
                 'warehouse_id',
                 'unit',

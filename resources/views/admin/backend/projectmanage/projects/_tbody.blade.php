@@ -13,14 +13,6 @@
 
         <td class="text-center">
             <span class="badge badge-soft-{{ $project->projectStatusBadge() }}">
-                {{-- @php
-                                                $project_file_count = $project->project_files_count();
-                                                if ($project_file_count) {
-                                                    echo $project->status;
-                                                } else {
-                                                    echo $project->status;
-                                                }
-                                            @endphp --}}
                 {{ $project->status }}
             </span>
         </td>
@@ -30,26 +22,43 @@
         @foreach ($project_categories as $category)
             @php
                 $hasFile = $project->fileCountByCategory($category->id);
+
             @endphp
             <td class="text-center" style="min-width:120px">
+                @if ($hasFile)
+                    <i class="ti ti-check text-success">
+                        <span> Finished - </span>
+                        {{-- {{ \Carbon\Carbon::parse($project->project_file->uploaded_at)->format('Y-m-d H:i') }} --}}
+                        {{ $project->project_file->uploaded_at }}
+                    </i>
+                @else
+                    <i class="ti ti-x text-danger"></i>
+                @endif
                 <div class="progress" style="height:8px;">
                     <div class="progress-bar {{ $hasFile ? 'bg-success' : 'bg-danger' }}" style="width: 100%;"
                         role="progressbar"></div>
                 </div>
 
-                @if ($hasFile)
-                    <i class="ti ti-check text-success"></i>
+                {{-- @if ($hasFile)
+                    <i class="ti ti-check text-success"> Finished 16-02-2026</i>
                 @else
                     <i class="ti ti-x text-danger"></i>
-                @endif
+                @endif --}}
 
                 <small class="text-muted">
                     <a href="javascript:void(0)"
                         class="upload-file-modal {{ $hasFile ? 'text-success' : 'text-danger' }}"
                         onclick="showModal({{ $project->id }}, {{ $category->id }})">
-                        Manage File
+                        
+                        <span class="d-flex justify-content-end">
+                            Upload <span>&nbsp;&nbsp;</span>
+                            <i class="ti ti-upload"></i>
+                        </span>
+                         
                     </a>
                 </small>
+                
+                   
             </td>
         @endforeach
 

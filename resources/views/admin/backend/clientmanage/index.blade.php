@@ -2,7 +2,7 @@
 @section('content')
     <div class="content pb-0">
         <div class="mb-4">
-            <h4 class="mb-1">Customer Informations</h4>
+            <h4 class="mb-1">Customer Informations <span class="badge badge-soft-danger ms-2">{{ $clients->count() }}</span></h4>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Asset;
 use App\Repositories\Contracts\AssetRepoInterface;
 use App\Repositories\Contracts\FixedAssetRepoInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,8 +27,30 @@ class AssetService
         return $this->assetRepoInterface->find($id);
     }
 
+    // public function create(array $data)
+    // {
+    //     $record = $this->assetRepoInterface->create($data);
+    //     return $record;
+    // }
     public function create(array $data)
     {
+        $asset = Asset::where('warehouse_id', $data['warehouse_id'])
+            ->where(function ($q) use ($data) {
+                if (!empty($data['fixed_asset_id'])) {
+                    $q->where('fixed_asset_id', $data['fixed_asset_id']);
+                }
+                if (!empty($data['variable_asset_id'])) {
+                    $q->where('variable_asset_id', $data['variable_asset_id']);
+                }
+            })
+            ->first();
+
+        if ($asset) {
+            $asset->quantity += $data['quantity'];
+            $asset->save();
+            return $asset;
+        }
+
         $record = $this->assetRepoInterface->create($data);
         return $record;
     }
@@ -47,7 +70,7 @@ class AssetService
 
                 return $assets->variableAsset->name ?? '';
             })
-            
+
             ->editColumn('warehouse_id', function ($assets) {
                 return $assets->warehouse->name ?? '';
             })
@@ -66,8 +89,8 @@ class AssetService
                     'available' => 'bg-success',
                     'inUse' => 'bg-warning',
                     'damaged' => 'bg-danger',
-                    'disposed'=>'bg-info',
-                    'maintenance'=>'bg-info',
+                    'disposed' => 'bg-info',
+                    'maintenance' => 'bg-info',
                     default => 'bg-danger',
                 };
 

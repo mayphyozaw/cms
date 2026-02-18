@@ -9,7 +9,8 @@ class Asset extends Model
     
     protected $fillable = [
     'asset_type',
-    'name',
+    'fixed_asset_id',
+    'variable_asset_id',
     'category_id',
     'warehouse_id',
     'unit',
@@ -32,11 +33,11 @@ class Asset extends Model
 
     public function fixedAsset()
     {
-        return $this->belongsTo(FixedAsset::class, 'id');
+        return $this->belongsTo(FixedAsset::class, 'fixed_asset_id','id');
     }
     public function variableAsset()
     {
-        return $this->belongsTo(VariableAsset::class, 'id');
+        return $this->belongsTo(VariableAsset::class, 'variable_asset_id');
     }
     public function getAssetNameAttribute()
     {

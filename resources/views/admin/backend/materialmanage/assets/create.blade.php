@@ -53,7 +53,7 @@
                             <div class="col-lg-6 col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label">Asset Name</label>
-                                    <select name="name" id="asset_id" class="form-control">
+                                    <select name="asset_id" id="asset_id" class="form-control">
                                         <option value="">Select Asset</option>
                                     </select>
                                 </div>
@@ -146,7 +146,7 @@
     </div>
 @endsection
 @push('scripts')
-    {!! JsValidator::formRequest('App\Http\Requests\Assets\AssetStoreRequest', '#submit-form') !!}
+    {{-- {!! JsValidator::formRequest('App\Http\Requests\Assets\AssetStoreRequest', '#submit-form') !!} --}}
 
     <script>
         $('#asset_type').on('change', function() {
