@@ -79,13 +79,13 @@ class ProjectController extends Controller
 
     public function getClient(Request $request)
     {
-        $client = Client::find($request->client_id);
+        $project = Client::find($request->project_id);
 
-        if (!$client) {
+        if (!$project) {
             return response()->json(['error' => 'Client not found'], 404);
         }
 
-        return response()->json($client);
+        return response()->json($project);
     }
 
 

@@ -24,10 +24,7 @@ class RoleController extends Controller
 
     public function index()
     {
-        // if(!auth()->user()->hasPermissionTo('all_roles')){
-        //     abort(403, 'Unauthorized Action');
-        // }
-
+        
         $roles = Role::all();
         return view('admin.backend.configuration.role.index', compact('roles'));
     }

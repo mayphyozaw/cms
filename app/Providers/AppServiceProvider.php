@@ -6,6 +6,7 @@ use App\Repositories\Contracts\AssetRepoInterface;
 use App\Repositories\Contracts\CategoryRepoInterface;
 use App\Repositories\Contracts\ClientRepoInterface;
 use App\Repositories\Contracts\EngineerRepoInterface;
+use App\Repositories\Contracts\EngineerRequestRepoInterface;
 use App\Repositories\Contracts\FixedAssetRepoInterface;
 use App\Repositories\Contracts\PermissionRepoInterface;
 use App\Repositories\Contracts\ProjectCategoryRepoInterface;
@@ -21,6 +22,7 @@ use App\Repositories\Eloquent\AssetRepository;
 use App\Repositories\Eloquent\CategoryRepository;
 use App\Repositories\Eloquent\ClientRepository;
 use App\Repositories\Eloquent\EngineerRepository;
+use App\Repositories\Eloquent\EngineerRequestRepository;
 use App\Repositories\Eloquent\FixedAssetRepository;
 use App\Repositories\Eloquent\PermissionRepository;
 use App\Repositories\Eloquent\ProjectCategoryRepository;
@@ -100,6 +102,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             WorkScopeRepoInterface::class,
             WorkScopeRepository::class
+        );
+        $this->app->bind(
+            EngineerRequestRepoInterface::class,
+            EngineerRequestRepository::class
         );
         
     }

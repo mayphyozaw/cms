@@ -3,23 +3,15 @@
 namespace App\Http\Controllers\Backend\EngineerManage;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\EngineerAssign\EngineerAssignStoreRequest;
 use App\Models\Client;
 use App\Models\EngineerAssign;
 use App\Models\Project;
 use App\Models\User;
-use App\Services\EngineerService;
 use Illuminate\Http\Request;
 
 class EngineersController extends Controller
 {
-    protected $engineerService;
-
-    public function __construct(EngineerService $engineerService)
-    {
-        $this->engineerService = $engineerService;
-    }
-
+    
     public function index()
     {
         
@@ -40,20 +32,7 @@ class EngineersController extends Controller
 
 
 
-    // public function assignProject(Request $request)
-    // {
-    //     $request->validate([
-    //         'user_id' => 'required|exists:users,id',
-    //         'project_id' => 'required|exists:projects,id',
-    //     ]);
-
-    //     $user = User::find($request->user_id);
-
-    //     $user->projects()->syncWithoutDetaching($request->project_id);
-
-    //     return back()->with('success', 'Project Assigned Successfully');
-    // }
-
+    
     public function assignForm($id)
     {
         $projects = Project::all();
@@ -76,4 +55,6 @@ class EngineersController extends Controller
                 'alert-type' => 'success'
             ]);
     }
+
+
 }

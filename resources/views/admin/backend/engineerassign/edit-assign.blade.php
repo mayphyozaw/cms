@@ -2,7 +2,7 @@
 @section('content')
     <div class="content pb-0">
         <div class="mb-4">
-            <h4 class="mb-1">Add Site</h4>
+            <h4 class="mb-1">Edit Site</h4>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
@@ -18,12 +18,14 @@
             <div class="col-md-6 col-lg-6 col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="card-title">Assign Site</h5>
+                        <h5 class="card-title">Edit Assign Site</h5>
                     </div>
+                    {{-- {{ route('assign-update', $assignProject->id) }} --}}
                     <div class="card-body">
 
-                        <form action="{{ route('engineers.store') }}" method="post" id="submit-form"
+                        <form action="{{ route('assign-update', $assignProject->id) }}" method="post" id="submit-form"
                             enctype="multipart/form-data">
+                            @method('PUT')
                             @csrf
                             <br>
                             <h5 class="card-title">1. Engineer</h5>
@@ -34,9 +36,9 @@
                                 <label class="col-lg-3 form-label">Engineer</label>
                                 <div class="col-lg-9">
 
-
-                                    <input type="hidden" name="user_id" value="{{ $engineer->id }}">
-                                    <input type="text" class="form-control" value="{{ $engineer->name }}" readonly>
+                                    <input type="hidden" name="user_id" value="{{ $assignProject->user->id }}">
+                                    <input type="text" class="form-control" value="{{ $assignProject->user->name }}"
+                                        readonly>
 
                                 </div>
                             </div>
@@ -54,8 +56,12 @@
                                         <select name="project_id" id="project_id" class="form-control form-select">
                                             <option value="">Select Site</option>
                                             @foreach ($projects as $project)
-                                                <option value="{{ $project->id }}">
-                                                    {{ $project->client->project_code }} - {{ $project->client->name }}
+                                                <option value="{{ $project->id }}"
+                                                    {{ $assignProject->project_id == $project->id ? 'selected' : '' }}>
+
+                                                    {{ $project->client->project_code ?? '-' }} -
+                                                    {{ $project->client->name ?? '-' }}
+
                                                 </option>
                                             @endforeach
                                         </select>
@@ -84,7 +90,10 @@
                                     <div class="col-lg-9">
                                         <select class="form-control" name="construction_type" id="construction_type">
                                             <option value="">-- Select Construction Type--</option>
-                                            <option value="Residential">Residential</option>
+                                            <option value="Residential"
+                                                {{ $assignProject->construction_type == 'Residential' ? 'selected' : '' }}>
+                                                Residential
+                                            </option>
                                             <option value="Commercial">Commercial</option>
                                             <option value="Renovation">Renovation</option>
                                             <option value="PAE">PAE</option>
@@ -145,21 +154,20 @@
 
 
 @push('scripts')
-    {{-- {!! JsValidator::formRequest('App\Http\Requests\EngineerAssign\EngineerAssignStoreRequest', '#submit-form') !!} --}}
     <script>
         $(document).ready(function() {
 
-            $('#project_id').on('change', function() {
-                let projectId = $(this).val();
+            function loadProjectData(projectId) {
+                if (!projectId) return;
+
                 $.ajax({
                     url: "{{ route('projectmanage.clients_get') }}",
                     type: 'GET',
                     data: {
-                        project_id: projectId,
+                        project_id: projectId
                     },
 
                     success: function(data) {
-                        $('#project_code').val(data.project_code);
                         $('#site_location').val(data.site_location);
                         $('#building_area').val(data.building_area);
                         $('#construction_type').val(data.construction_type);
@@ -168,10 +176,16 @@
                     },
 
                     error: function() {
-                        alert('Unable to fetch customer data');
+                        console.log('Error loading project data');
                     }
                 });
+            }
+
+            $('#project_id').on('change', function() {
+                loadProjectData($(this).val());
             });
+
+            loadProjectData($('#project_id').val());
 
         });
     </script>

@@ -3,11 +3,11 @@
     <div class="content" style="padding-top: 0 !important;">
         <div class="d-flex align-items-center justify-content-between gap-2 mb-2 mt-0 flex-wrap">
             <div>
-                <h4 class="mb-1">All Engineers<span class="badge badge-soft-primary ms-2"></span></h4>
+                <h4 class="mb-1">All Engineer Assigns<span class="badge badge-soft-primary ms-2"></span></h4>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="#">Enigneers</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">All Enigneers</li>
+                        <li class="breadcrumb-item active" aria-current="page">All Enigneer Assigns</li>
                     </ol>
                 </nav>
             </div>
@@ -19,7 +19,7 @@
             <div class="card-header">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h5 class="card-title mb-0">Engineers Information</h5>
+                        <h5 class="card-title mb-0">Engineer Assigns Information</h5>
                     </div>
 
 
@@ -50,10 +50,14 @@
                                     <td>
                                         @if ($engineer->engineerAssigns->count() > 0)
                                             @foreach ($engineer->engineerAssigns as $assign)
-                                            <span class="badge bg-success">
-                                                {{ $assign->project->client->project_code ?? 'No Project' }}
-                                                <br>
-                                            </span>
+                                            
+                                                <span class="badge bg-success">
+                                                    {{ $assign->project->client->project_code ?? 'No Project' }} -
+                                                    {{ $assign->project->client->name ?? '-' }}
+                                                </span>
+                                                @if ($loop->iteration % 2 == 0)
+                                                    <br><br>
+                                                @endif
                                             @endforeach
                                         @else
                                             <span class="text-danger">No Project Assigned</span>
@@ -68,7 +72,8 @@
                                                 style="background-color: #1da0a3;"> <span style="color:#fafafa">Add
                                                     Project</span></a>
 
-                                            <a href="" class="btn btn-sm btn-info">
+                                            <a href="{{ route('assign-project', $engineer->id) }}"
+                                                class="btn btn-sm btn-info">
                                                 <span style="color:#fafafa">Manage</span>
                                             </a>
                                         </form>

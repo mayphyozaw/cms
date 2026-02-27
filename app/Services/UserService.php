@@ -87,11 +87,10 @@ class UserService
             ->addColumn('employee_number', function ($user) {
                 return $user->employee_number;
             })
-            ->addColumn('role', function ($allUsers) {
-
-                foreach ($allUsers->roles as $role) {
-                    return '<span class="badge badge-pill text-bg-danger" style="margin-right:5px;"> ' . ($role->name ?? '') . ' </span>';
-                }
+            ->addColumn('role', function ($user) {
+                return $user->roles->map(function ($role) {
+                    return '<span class="badge bg-danger me-1">' . $role->name . '</span>';
+                })->implode(' ');
             })
             ->addColumn('gender', function ($user) {
                 return $user->gender;

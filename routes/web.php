@@ -2,11 +2,14 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\PasswordController;
+use App\Http\Controllers\Backend\AssetRequestController;
 use App\Http\Controllers\Backend\ClientManagement\ClientController;
 use App\Http\Controllers\Backend\Configuration\PermissionController;
 use App\Http\Controllers\Backend\Configuration\RoleController;
+use App\Http\Controllers\Backend\EngineerAssetsRequest\FixedAssetRequestsController;
 use App\Http\Controllers\Backend\EngineerAssign\EnigneerAssignController;
 use App\Http\Controllers\Backend\EngineerManage\EngineersController;
+use App\Http\Controllers\Backend\EngineerRequest\EngineerRequestController;
 use App\Http\Controllers\Backend\MaterialManagement\AssetController;
 use App\Http\Controllers\Backend\MaterialManagement\FixedAssets\CategoryController;
 use App\Http\Controllers\Backend\MaterialManagement\FixedAssets\FixedAssetsController;
@@ -50,6 +53,10 @@ require __DIR__ . '/auth.php';
 
 Route::middleware('auth', 'notBlocked')->group(function () {
 
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/change-password', [PasswordController::class, 'edit'])->name('change-password.edit');
+    Route::put('/change-password', [PasswordController::class, 'update'])->name('change-password.update');
+
     Route::resource('usermanage', UserController::class)->except(['show']);
     Route::get('user-datatable', [UserController::class, 'userDataTable'])->name('user-datatable');
 
@@ -63,14 +70,6 @@ Route::middleware('auth', 'notBlocked')->group(function () {
     Route::get('resign-employee-datatable', [ResignController::class, 'resignEmployeeDataTable'])->name('resign-employee-datatable');
     Route::post('confirm/resign', [ResignController::class, 'confirm_resign'])->name('confirm_resign');
 
-    Route::resource('engineers', EngineersController::class);
-    Route::post('engineers-assign', [EngineersController::class, 'assignProject'])->name('engineers-assign');
-    // Route::get('engineers/{engineer}/assign',[EngineersController::class, 'assignForm'])->name('engineers.assign');
-    Route::get('engineers/assign/{id}',[EngineersController::class, 'assignForm'])->name('engineers.assign');
-
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::get('/change-password', [PasswordController::class, 'edit'])->name('change-password.edit');
-    Route::put('/change-password', [PasswordController::class, 'update'])->name('change-password.update');
 
 
     Route::resource('client', ClientController::class);
@@ -84,16 +83,28 @@ Route::middleware('auth', 'notBlocked')->group(function () {
     Route::resource('stock-movements', StockMovementController::class);
 
 
-
-
     Route::prefix('suppliermanage')->name('suppliermanage.')->group(function () {
         Route::resource('supplier', SupplierController::class);
         Route::get('/supplier-datatable', [SupplierController::class, 'supplierDataTable'])->name('supplier-datatable');
     });
 
 
+    Route::resource('engineers', EngineersController::class);
+    // Route::post('engineers-assign', [EngineersController::class, 'assignProject'])->name('engineers-assign');
+    Route::get('engineers/assign/{id}', [EngineersController::class, 'assignForm'])->name('engineers.assign');
+
+    Route::get('engineers/assign-project/{id}', [EnigneerAssignController::class, 'assignProject'])->name('assign-project');
+    Route::get('/assign-edit/{id}', [EnigneerAssignController::class, 'assignProjectEdit'])->name('assign-edit');
+    Route::put('/assign-update/{id}', [EnigneerAssignController::class, 'assignProjectUpdate'])->name('assign-update');
+    Route::delete('/assign-destroy/{id}', [EnigneerAssignController::class, 'destroy'])->name('assign-destroy');
 
 
+    Route::resource('engineer-requests', EngineerRequestController::class);
+    Route::resource('fixed-asset-requests', FixedAssetRequestsController::class);
+
+    Route::prefix('asset-requests')->name('asset-requests.')->group(function () {
+        Route::get('fixedAssets', [AssetRequestController::class, 'fixedAssets'])->name('fixedAssets');
+    });
 
 
     Route::prefix('material')->name('material.')->group(function () {

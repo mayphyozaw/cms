@@ -46,31 +46,33 @@ class UserRepository implements UserRepoInterface
 
     public function query()
     {
-        return $this->model->whereNull('resign_date')->select([
-            'id',
-            'name',
-            'email',
-            'phone',
-            'address',
-            'joindate',
-            'contact_person',
-            'contact_number',
-            'role',
-            'employeetype',
-            'department',
-            'employee_number',
-            'gender',
-            'nrc',
-            'status',
-            'photo',
-            'nrcfrontphoto',
-            'nrcbackphoto',
-            'householdphoto',
-            'referenceletter',
-            'is_block',
-            'esingphoto',
-            'created_at',
-        ]);
+        return $this->model
+            ->with('roles') 
+            ->whereNull('resign_date')
+            ->select([
+                'id',
+                'name',
+                'email',
+                'phone',
+                'address',
+                'joindate',
+                'contact_person',
+                'contact_number',
+                'employeetype',
+                'department',
+                'employee_number',
+                'gender',
+                'nrc',
+                'status',
+                'photo',
+                'nrcfrontphoto',
+                'nrcbackphoto',
+                'householdphoto',
+                'referenceletter',
+                'is_block',
+                'esingphoto',
+                'created_at',
+            ]);
     }
 
     public function findResignedUsers()

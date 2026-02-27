@@ -72,7 +72,7 @@
 
 
 
-                <li class="menu-title"><span>Client Manage</span></li>
+                {{-- <li class="menu-title"><span>Client Manage</span></li> --}}
 
                 <li>
                     <ul>
@@ -136,7 +136,7 @@
                     </ul>
                 </li>
 
-                <li class="menu-title"><span>Project Manage</span></li>
+                {{-- <li class="menu-title"><span>Project Manage</span></li> --}}
 
                 <li>
                     <ul>
@@ -201,7 +201,7 @@
                         background: #ffecec;
                     }
                 </style>
-                <li class="menu-title"><span>Material Manage</span></li>
+                {{-- <li class="menu-title"><span>Material Manage</span></li> --}}
 
                 <li>
                     <ul>
@@ -238,9 +238,7 @@
                                         </i><span>Variable Assets</span>
                                     </a>
                                 </li>
-
-                                
-
+                            
                                 <li>
                                     <a href="" class="">
                                         <i class="ti ti-users">
@@ -253,7 +251,42 @@
                     </ul>
                 </li>
 
-                <li class="menu-title"><span>Stock Manage</span></li>
+                {{-- @can('asset_requests_menu') --}}
+                 <li>
+                    <ul>
+                        <li class="submenu">
+                            <a href="javascript:void(0);">
+                                <i class="ti ti-user-shield"></i>
+                                <span>Assets Requests</span>
+                                <span class="menu-arrow"></span>
+                            </a>
+
+                            <ul style="{{ request()->routeIs('engineer-requests.*') ? 'display:block;' : '' }}">
+                                {{-- @can('engineer_requests') --}}
+                                <li>
+                                    <a href="{{ route('engineer-requests.index') }}"
+                                        class="{{ request()->routeIs('engineer-requests.*') ? 'active' : '' }}">
+                                        <i class="ti ti-users">
+                                        </i><span>Engineer Requests</span>
+                                    </a>
+                                </li>
+                                {{-- @endcan --}}
+                                 {{-- <li>
+                                    <a href="{{ route('fixedAsset-request.index') }}"
+                                        class="{{ request()->routeIs('fixedAsset-request.index') ? 'active' : '' }}">
+                                        <i class="ti ti-users">
+                                        </i><span>Resigned Employess</span>
+                                    </a>
+                                </li> --}}
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                {{-- @endcan --}}
+
+                
+
+                {{-- <li class="menu-title"><span>Stock Manage</span></li> --}}
 
                 <li>
                     <ul>
@@ -301,7 +334,7 @@
                     </ul>
                 </li>
 
-                <li class="menu-title"><span>Equipment Manage</span></li>
+                {{-- <li class="menu-title"><span>Equipment Manage</span></li> --}}
 
                 <li>
                     <ul>
@@ -339,13 +372,15 @@
                     </ul>
                 </li>
 
-                <li class="menu-title"><span>Engineer Manage</span></li>
+               
+
+                {{-- <li class="menu-title"><span>Engineer Manage</span></li> --}}
                 <li>
                     <ul>
                         <li class="submenu">
                             <a href="javascript:void(0);">
                                 <i class="ti ti-user-shield"></i>
-                                <span>Engineer Management</span>
+                                <span>Engineer Assigns</span>
                                 <span class="menu-arrow"></span>
                             </a>
 
@@ -354,9 +389,11 @@
                                     <a href="{{ route('engineers.index') }}"
                                         class="{{ request()->routeIs('engineers.*') ? 'active' : '' }}">
                                         <i class="ti ti-users">
-                                        </i><span>All Engineer</span>
+                                        </i><span>All Engineer Assigns</span>
                                     </a>
                                 </li>
+
+                                
                                 
 
                             </ul>
@@ -364,7 +401,7 @@
                     </ul>
                 </li>
 
-                <li class="menu-title"><span>User Manage</span></li>
+                {{-- <li class="menu-title"><span>User Manage</span></li> --}}
 
                 <li>
                     <ul>
