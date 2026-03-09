@@ -11,16 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('engineer_requests', function (Blueprint $table) {
+        Schema::create('engineer_asset_requests', function (Blueprint $table) {
             $table->id();
-            $table->string('request_code')->nullable();
-            $table->date('request_date');
+            $table->string('request_code');
             $table->unsignedBigInteger('project_id');
             $table->unsignedBigInteger('workscope_id');
-            $table->unsignedBigInteger('warehouse_id');
-            $table->unsignedBigInteger('engineer_assing_id');
+            $table->unsignedBigInteger('user_id');
+            $table->enum('asset_type', ['fixedAssets', 'variableAssets']);
             $table->string('status')->nullable();
-            $table->string('approved_by')->nullable();
             $table->string('remark')->nullable();
             $table->timestamps();
         });
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('engineer_requests');
+        Schema::dropIfExists('engineer_asset_requests');
     }
 };

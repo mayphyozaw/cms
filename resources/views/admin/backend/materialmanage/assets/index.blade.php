@@ -1,8 +1,5 @@
 @extends('layouts.app')
 @section('content')
-
-
-
     <div class="content" style="padding-top: 0 !important;">
         {{-- <div class="d-flex align-items-center justify-content-between gap-2 mb-4 flex-wrap"> --}}
         <div class="d-flex align-items-center justify-content-between gap-2 mb-2 mt-0 flex-wrap">

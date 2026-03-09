@@ -161,7 +161,7 @@
                 if (!projectId) return;
 
                 $.ajax({
-                    url: "{{ route('projectmanage.clients_get') }}",
+                    url: "{{ route('projectmanage.projects_get') }}",
                     type: 'GET',
                     data: {
                         project_id: projectId

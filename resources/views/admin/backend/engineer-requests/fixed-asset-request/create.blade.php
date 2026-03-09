@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="content d-flex flex-column flex-column-fluid">
+    <div class="content d-flex flex-column flex-column-fluid" hidden>
         <div class="d-flex flex-column-fluid">
             <div class="container-fluid my-0">
                 <div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
@@ -99,7 +99,7 @@
 
                                                 <tr>
                                                     <td>
-                                                        <select name="asset_id[]" id="asset_id"
+                                                        <select name="asset_type[]" id="asset_id"
                                                             class="form-control form-select">
                                                             <option value="">Select Asset</option>
 
@@ -171,7 +171,7 @@
     </div>
 @endsection
 
-@push('scripts')
+{{-- @push('scripts')
     <script>
         document.getElementById("addRowBtn").addEventListener("click", function() {
             let tbody = document.getElementById("requestTableBody");
@@ -250,5 +250,36 @@
             }
 
         });
+        $(document).on('change', '.asset-type', function() {
+
+            let type = $(this).val();
+            let row = $(this).closest('tr');
+            let assetSelect = row.find('.asset-id');
+            assetSelect.html('<option>Loading...</option>');
+
+            if (type !== '') {
+
+                $.ajax({
+                    url: "{{ route('material.get-assets-by-type') }}",
+                    type: "GET",
+                    data: {
+                        type: type
+                    },
+                    success: function(data) {
+
+                        let options = '<option value="">Select Asset</option>';
+
+                        data.forEach(function(asset) {
+                            options += `<option value="${asset.id}">${asset.name}</option>`;
+                        });
+                        assetSelect.html(options);
+                    }
+                });
+
+            } else {
+                assetSelect.html('<option value="">Select Asset</option>');
+
+            }
+        });
     </script>
-@endpush
+@endpush --}}

@@ -13,7 +13,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::hRcWo9FYBePUPX67',
+            '_route' => 'generated::sHHje6zE6Nfh3rru',
           ),
           1 => NULL,
           2 => 
@@ -33,7 +33,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::dml4BqL1Rmh5azfe',
+            '_route' => 'generated::7rPO7RxUqnuNgyvM',
           ),
           1 => NULL,
           2 => 
@@ -110,7 +110,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::76KDYWyq23DRLsyQ',
+            '_route' => 'generated::mFgNFaKx94TVAunA',
           ),
           1 => NULL,
           2 => 
@@ -146,7 +146,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::KDjShgY1SHadOqe4',
+            '_route' => 'generated::cek08TegTANGjYLt',
           ),
           1 => NULL,
           2 => 
@@ -276,7 +276,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::GJAJL6rlVFJd7V2m',
+            '_route' => 'generated::RRP6VDqdQzZpdtJB',
           ),
           1 => NULL,
           2 => 
@@ -970,49 +970,13 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      '/fixed-asset-requests' => 
+      '/qs-check-store' => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'fixed-asset-requests.index',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'fixed-asset-requests.store',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'POST' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/fixed-asset-requests/create' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'fixed-asset-requests.create',
+            '_route' => 'qs.check.store',
           ),
           1 => NULL,
           2 => 
@@ -1561,6 +1525,26 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
+      '/projectmanage/project' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects_get',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
       '/projectmanage/load/projects' => 
       array (
         0 => 
@@ -2001,10 +1985,86 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
+      '/purchase' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'purchase.index',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'purchase.store',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/purchase/create' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'purchase.create',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/purchase-datatable' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'purchase-datatable',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
     ),
     2 => 
     array (
-      0 => '{^(?|/res(?|et\\-password/([^/]++)(*:35)|ign\\-employees/([^/]++)(?|(*:68)|/edit(*:80)|(*:87)))|/verify\\-email/([^/]++)/([^/]++)(*:128)|/usermanage/(?|([^/]++)(?|/edit(*:167)|(*:175))|resign\\-submit(*:198)|block/([^/]++)(*:220)|unblock/([^/]++)(*:244)|toggle\\-block/([^/]++)(*:274))|/c(?|lient/([^/]++)(?|(*:305)|/edit(*:318)|(*:326))|onfiguration/(?|role/([^/]++)(?|(*:367)|/edit(*:380)|(*:388))|permission/([^/]++)(?|(*:419)|/edit(*:432)|(*:440))))|/warehouse/([^/]++)(?|(*:473)|/edit(*:486)|(*:494))|/s(?|to(?|ck\\-movements/([^/]++)(?|(*:538)|/edit(*:551)|(*:559))|rage/(.*)(*:577))|uppliermanage/supplier/([^/]++)(?|(*:620)|/edit(*:633)|(*:641)))|/engineer(?|s/(?|([^/]++)(?|(*:679)|/edit(*:692)|(*:700))|assign(?|/([^/]++)(*:727)|\\-project/([^/]++)(*:753)))|\\-requests/([^/]++)(?|(*:785)|/edit(*:798)|(*:806)))|/assign\\-(?|edit/([^/]++)(*:841)|update/([^/]++)(*:864)|destroy/([^/]++)(*:888))|/fixed\\-asset\\-requests/([^/]++)(?|(*:932)|/edit(*:945)|(*:953))|/material/(?|assets/(?|([^/]++)(?|(*:996)|/edit(*:1009)|(*:1018))|purchase(*:1036))|fixedassets/(?|([^/]++)(?|(*:1072)|/edit(*:1086)|(*:1095))|purchase(*:1113))|category/([^/]++)(?|(*:1143)|/edit(*:1157)|(*:1166))|variable(?|assets/([^/]++)(?|(*:1205)|/edit(*:1219)|(*:1228))|\\-category/([^/]++)(?|(*:1260)|/edit(*:1274)|(*:1283))))|/projectmanage/(?|project(?|s/([^/]++)(?|(*:1336)|/edit(*:1350)|(*:1359))|files/([^/]++)(?|/edit(*:1391)|(*:1400))|category/([^/]++)(?|(*:1430)|/edit(*:1444)|(*:1453)))|workscope/([^/]++)(?|(*:1485)|/edit(*:1499)|(*:1508))))/?$}sDu',
+      0 => '{^(?|/res(?|et\\-password/([^/]++)(*:35)|ign\\-employees/([^/]++)(?|(*:68)|/edit(*:80)|(*:87)))|/verify\\-email/([^/]++)/([^/]++)(*:128)|/usermanage/(?|([^/]++)(?|/edit(*:167)|(*:175))|resign\\-submit(*:198)|block/([^/]++)(*:220)|unblock/([^/]++)(*:244)|toggle\\-block/([^/]++)(*:274))|/c(?|lient/([^/]++)(?|(*:305)|/edit(*:318)|(*:326))|onfiguration/(?|role/([^/]++)(?|(*:367)|/edit(*:380)|(*:388))|permission/([^/]++)(?|(*:419)|/edit(*:432)|(*:440))))|/warehouse/([^/]++)(?|(*:473)|/edit(*:486)|(*:494))|/s(?|to(?|ck\\-movements/([^/]++)(?|(*:538)|/edit(*:551)|(*:559))|rage/(.*)(*:577))|uppliermanage/supplier/([^/]++)(?|(*:620)|/edit(*:633)|(*:641)))|/engineer(?|s/(?|([^/]++)(?|(*:679)|/edit(*:692)|(*:700))|assign(?|/([^/]++)(*:727)|\\-project/([^/]++)(*:753)))|\\-requests/(?|([^/]++)(?|(*:788)|/edit(*:801)|(*:809))|approval(*:826)))|/assign\\-(?|edit/([^/]++)(*:861)|update/([^/]++)(*:884)|destroy/([^/]++)(*:908))|/qs\\-check\\-create/([^/]++)(*:944)|/material/(?|assets/([^/]++)(?|(*:983)|/edit(*:996)|(*:1004))|fixedassets/(?|([^/]++)(?|(*:1040)|/edit(*:1054)|(*:1063))|purchase(*:1081))|category/([^/]++)(?|(*:1111)|/edit(*:1125)|(*:1134))|variable(?|assets/([^/]++)(?|(*:1173)|/edit(*:1187)|(*:1196))|\\-category/([^/]++)(?|(*:1228)|/edit(*:1242)|(*:1251))))|/p(?|rojectmanage/(?|project(?|s/([^/]++)(?|(*:1307)|/edit(*:1321)|(*:1330))|files/([^/]++)(?|/edit(*:1362)|(*:1371))|category/([^/]++)(?|(*:1401)|/edit(*:1415)|(*:1424)))|workscope/([^/]++)(?|(*:1456)|/edit(*:1470)|(*:1479)))|urchase/([^/]++)(?|(*:1509)|/edit(*:1523)|(*:1532))))/?$}sDu',
     ),
     3 => 
     array (
@@ -2980,7 +3040,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      785 => 
+      788 => 
       array (
         0 => 
         array (
@@ -3003,7 +3063,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      798 => 
+      801 => 
       array (
         0 => 
         array (
@@ -3026,7 +3086,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      806 => 
+      809 => 
       array (
         0 => 
         array (
@@ -3068,7 +3128,28 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      841 => 
+      826 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'engineer-requests.approval.store',
+          ),
+          1 => 
+          array (
+          ),
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      861 => 
       array (
         0 => 
         array (
@@ -3091,7 +3172,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      864 => 
+      884 => 
       array (
         0 => 
         array (
@@ -3113,7 +3194,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      888 => 
+      908 => 
       array (
         0 => 
         array (
@@ -3135,17 +3216,17 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      932 => 
+      944 => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'fixed-asset-requests.show',
+            '_route' => 'qs.check.create',
           ),
           1 => 
           array (
-            0 => 'fixed_asset_request',
+            0 => 'id',
           ),
           2 => 
           array (
@@ -3158,72 +3239,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      945 => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'fixed-asset-requests.edit',
-          ),
-          1 => 
-          array (
-            0 => 'fixed_asset_request',
-          ),
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      953 => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'fixed-asset-requests.update',
-          ),
-          1 => 
-          array (
-            0 => 'fixed_asset_request',
-          ),
-          2 => 
-          array (
-            'PUT' => 0,
-            'PATCH' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'fixed-asset-requests.destroy',
-          ),
-          1 => 
-          array (
-            0 => 'fixed_asset_request',
-          ),
-          2 => 
-          array (
-            'DELETE' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-      ),
-      996 => 
+      983 => 
       array (
         0 => 
         array (
@@ -3246,7 +3262,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1009 => 
+      996 => 
       array (
         0 => 
         array (
@@ -3269,7 +3285,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1018 => 
+      1004 => 
       array (
         0 => 
         array (
@@ -3311,28 +3327,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1036 => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'material.assets.purchase',
-          ),
-          1 => 
-          array (
-          ),
-          2 => 
-          array (
-            'POST' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      1072 => 
+      1040 => 
       array (
         0 => 
         array (
@@ -3355,7 +3350,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1086 => 
+      1054 => 
       array (
         0 => 
         array (
@@ -3378,7 +3373,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1095 => 
+      1063 => 
       array (
         0 => 
         array (
@@ -3420,7 +3415,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1113 => 
+      1081 => 
       array (
         0 => 
         array (
@@ -3441,7 +3436,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1143 => 
+      1111 => 
       array (
         0 => 
         array (
@@ -3464,7 +3459,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1157 => 
+      1125 => 
       array (
         0 => 
         array (
@@ -3487,7 +3482,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1166 => 
+      1134 => 
       array (
         0 => 
         array (
@@ -3529,7 +3524,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1205 => 
+      1173 => 
       array (
         0 => 
         array (
@@ -3552,7 +3547,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1219 => 
+      1187 => 
       array (
         0 => 
         array (
@@ -3575,7 +3570,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1228 => 
+      1196 => 
       array (
         0 => 
         array (
@@ -3617,7 +3612,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1260 => 
+      1228 => 
       array (
         0 => 
         array (
@@ -3640,7 +3635,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1274 => 
+      1242 => 
       array (
         0 => 
         array (
@@ -3663,7 +3658,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1283 => 
+      1251 => 
       array (
         0 => 
         array (
@@ -3705,7 +3700,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1336 => 
+      1307 => 
       array (
         0 => 
         array (
@@ -3728,7 +3723,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1350 => 
+      1321 => 
       array (
         0 => 
         array (
@@ -3751,7 +3746,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1359 => 
+      1330 => 
       array (
         0 => 
         array (
@@ -3793,7 +3788,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1391 => 
+      1362 => 
       array (
         0 => 
         array (
@@ -3816,7 +3811,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1400 => 
+      1371 => 
       array (
         0 => 
         array (
@@ -3839,7 +3834,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1430 => 
+      1401 => 
       array (
         0 => 
         array (
@@ -3862,7 +3857,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1444 => 
+      1415 => 
       array (
         0 => 
         array (
@@ -3885,7 +3880,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1453 => 
+      1424 => 
       array (
         0 => 
         array (
@@ -3927,7 +3922,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1485 => 
+      1456 => 
       array (
         0 => 
         array (
@@ -3950,7 +3945,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1499 => 
+      1470 => 
       array (
         0 => 
         array (
@@ -3973,7 +3968,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1508 => 
+      1479 => 
       array (
         0 => 
         array (
@@ -4014,6 +4009,94 @@ app('router')->setCompiledRoutes(
           5 => true,
           6 => NULL,
         ),
+      ),
+      1509 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'purchase.show',
+          ),
+          1 => 
+          array (
+            0 => 'purchase',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      1523 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'purchase.edit',
+          ),
+          1 => 
+          array (
+            0 => 'purchase',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      1532 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'purchase.update',
+          ),
+          1 => 
+          array (
+            0 => 'purchase',
+          ),
+          2 => 
+          array (
+            'PUT' => 0,
+            'PATCH' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'purchase.destroy',
+          ),
+          1 => 
+          array (
+            0 => 'purchase',
+          ),
+          2 => 
+          array (
+            'DELETE' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
         2 => 
         array (
           0 => NULL,
@@ -4030,7 +4113,7 @@ app('router')->setCompiledRoutes(
   ),
   'attributes' => 
   array (
-    'generated::hRcWo9FYBePUPX67' => 
+    'generated::sHHje6zE6Nfh3rru' => 
     array (
       'methods' => 
       array (
@@ -4059,7 +4142,7 @@ app('router')->setCompiledRoutes(
                         \'exception\' => $exception,
                     ]), status: $exception ? 500 : 200);
                 }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"000000000000058e0000000000000000";}}',
-        'as' => 'generated::hRcWo9FYBePUPX67',
+        'as' => 'generated::sHHje6zE6Nfh3rru',
       ),
       'fallback' => false,
       'defaults' => 
@@ -4075,7 +4158,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::dml4BqL1Rmh5azfe' => 
+    'generated::7rPO7RxUqnuNgyvM' => 
     array (
       'methods' => 
       array (
@@ -4097,7 +4180,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::dml4BqL1Rmh5azfe',
+        'as' => 'generated::7rPO7RxUqnuNgyvM',
       ),
       'fallback' => false,
       'defaults' => 
@@ -4229,7 +4312,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::76KDYWyq23DRLsyQ' => 
+    'generated::mFgNFaKx94TVAunA' => 
     array (
       'methods' => 
       array (
@@ -4250,7 +4333,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::76KDYWyq23DRLsyQ',
+        'as' => 'generated::mFgNFaKx94TVAunA',
       ),
       'fallback' => false,
       'defaults' => 
@@ -4304,7 +4387,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::KDjShgY1SHadOqe4' => 
+    'generated::cek08TegTANGjYLt' => 
     array (
       'methods' => 
       array (
@@ -4325,7 +4408,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::KDjShgY1SHadOqe4',
+        'as' => 'generated::cek08TegTANGjYLt',
       ),
       'fallback' => false,
       'defaults' => 
@@ -4645,7 +4728,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::GJAJL6rlVFJd7V2m' => 
+    'generated::RRP6VDqdQzZpdtJB' => 
     array (
       'methods' => 
       array (
@@ -4666,7 +4749,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::GJAJL6rlVFJd7V2m',
+        'as' => 'generated::RRP6VDqdQzZpdtJB',
       ),
       'fallback' => false,
       'defaults' => 
@@ -7618,91 +7701,13 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'fixed-asset-requests.index' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'fixed-asset-requests',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-          1 => 'auth',
-          2 => 'notBlocked',
-        ),
-        'as' => 'fixed-asset-requests.index',
-        'uses' => 'App\\Http\\Controllers\\Backend\\EngineerAssetsRequest\\FixedAssetRequestsController@index',
-        'controller' => 'App\\Http\\Controllers\\Backend\\EngineerAssetsRequest\\FixedAssetRequestsController@index',
-        'namespace' => NULL,
-        'prefix' => '',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'fixed-asset-requests.create' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'fixed-asset-requests/create',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-          1 => 'auth',
-          2 => 'notBlocked',
-        ),
-        'as' => 'fixed-asset-requests.create',
-        'uses' => 'App\\Http\\Controllers\\Backend\\EngineerAssetsRequest\\FixedAssetRequestsController@create',
-        'controller' => 'App\\Http\\Controllers\\Backend\\EngineerAssetsRequest\\FixedAssetRequestsController@create',
-        'namespace' => NULL,
-        'prefix' => '',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'fixed-asset-requests.store' => 
+    'engineer-requests.approval.store' => 
     array (
       'methods' => 
       array (
         0 => 'POST',
       ),
-      'uri' => 'fixed-asset-requests',
+      'uri' => 'engineer-requests/approval',
       'action' => 
       array (
         'middleware' => 
@@ -7711,14 +7716,14 @@ app('router')->setCompiledRoutes(
           1 => 'auth',
           2 => 'notBlocked',
         ),
-        'as' => 'fixed-asset-requests.store',
-        'uses' => 'App\\Http\\Controllers\\Backend\\EngineerAssetsRequest\\FixedAssetRequestsController@store',
-        'controller' => 'App\\Http\\Controllers\\Backend\\EngineerAssetsRequest\\FixedAssetRequestsController@store',
+        'uses' => 'App\\Http\\Controllers\\Backend\\AssetRequestApproval\\AssetRequestApprovalController@store',
+        'controller' => 'App\\Http\\Controllers\\Backend\\AssetRequestApproval\\AssetRequestApprovalController@store',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
+        'as' => 'engineer-requests.approval.store',
       ),
       'fallback' => false,
       'defaults' => 
@@ -7734,14 +7739,14 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'fixed-asset-requests.show' => 
+    'qs.check.create' => 
     array (
       'methods' => 
       array (
         0 => 'GET',
         1 => 'HEAD',
       ),
-      'uri' => 'fixed-asset-requests/{fixed_asset_request}',
+      'uri' => 'qs-check-create/{id}',
       'action' => 
       array (
         'middleware' => 
@@ -7750,14 +7755,14 @@ app('router')->setCompiledRoutes(
           1 => 'auth',
           2 => 'notBlocked',
         ),
-        'as' => 'fixed-asset-requests.show',
-        'uses' => 'App\\Http\\Controllers\\Backend\\EngineerAssetsRequest\\FixedAssetRequestsController@show',
-        'controller' => 'App\\Http\\Controllers\\Backend\\EngineerAssetsRequest\\FixedAssetRequestsController@show',
+        'uses' => 'App\\Http\\Controllers\\Backend\\QSTeamCheck\\QSTeamCheckController@create',
+        'controller' => 'App\\Http\\Controllers\\Backend\\QSTeamCheck\\QSTeamCheckController@create',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
+        'as' => 'qs.check.create',
       ),
       'fallback' => false,
       'defaults' => 
@@ -7773,14 +7778,14 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'fixed-asset-requests.edit' => 
+    'qs.check.store' => 
     array (
       'methods' => 
       array (
         0 => 'GET',
         1 => 'HEAD',
       ),
-      'uri' => 'fixed-asset-requests/{fixed_asset_request}/edit',
+      'uri' => 'qs-check-store',
       'action' => 
       array (
         'middleware' => 
@@ -7789,91 +7794,14 @@ app('router')->setCompiledRoutes(
           1 => 'auth',
           2 => 'notBlocked',
         ),
-        'as' => 'fixed-asset-requests.edit',
-        'uses' => 'App\\Http\\Controllers\\Backend\\EngineerAssetsRequest\\FixedAssetRequestsController@edit',
-        'controller' => 'App\\Http\\Controllers\\Backend\\EngineerAssetsRequest\\FixedAssetRequestsController@edit',
+        'uses' => 'App\\Http\\Controllers\\Backend\\QSTeamCheck\\QSTeamCheckController@store',
+        'controller' => 'App\\Http\\Controllers\\Backend\\QSTeamCheck\\QSTeamCheckController@store',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'fixed-asset-requests.update' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'PUT',
-        1 => 'PATCH',
-      ),
-      'uri' => 'fixed-asset-requests/{fixed_asset_request}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-          1 => 'auth',
-          2 => 'notBlocked',
-        ),
-        'as' => 'fixed-asset-requests.update',
-        'uses' => 'App\\Http\\Controllers\\Backend\\EngineerAssetsRequest\\FixedAssetRequestsController@update',
-        'controller' => 'App\\Http\\Controllers\\Backend\\EngineerAssetsRequest\\FixedAssetRequestsController@update',
-        'namespace' => NULL,
-        'prefix' => '',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'fixed-asset-requests.destroy' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'DELETE',
-      ),
-      'uri' => 'fixed-asset-requests/{fixed_asset_request}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-          1 => 'auth',
-          2 => 'notBlocked',
-        ),
-        'as' => 'fixed-asset-requests.destroy',
-        'uses' => 'App\\Http\\Controllers\\Backend\\EngineerAssetsRequest\\FixedAssetRequestsController@destroy',
-        'controller' => 'App\\Http\\Controllers\\Backend\\EngineerAssetsRequest\\FixedAssetRequestsController@destroy',
-        'namespace' => NULL,
-        'prefix' => '',
-        'where' => 
-        array (
-        ),
+        'as' => 'qs.check.store',
       ),
       'fallback' => false,
       'defaults' => 
@@ -8296,44 +8224,6 @@ app('router')->setCompiledRoutes(
         'uses' => 'App\\Http\\Controllers\\Backend\\MaterialManagement\\AssetController@getAssetDetail',
         'controller' => 'App\\Http\\Controllers\\Backend\\MaterialManagement\\AssetController@getAssetDetail',
         'as' => 'material.get-asset-detail',
-        'namespace' => NULL,
-        'prefix' => '/material',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'material.assets.purchase' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'POST',
-      ),
-      'uri' => 'material/assets/purchase',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-          1 => 'auth',
-          2 => 'notBlocked',
-        ),
-        0 => 'App\\Http\\Controllers\\Backend\\MaterialManagement\\AssetController',
-        'uses' => NULL,
-        'as' => 'material.assets.purchase',
         'namespace' => NULL,
         'prefix' => '/material',
         'where' => 
@@ -9980,6 +9870,45 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
+    'projectmanage.projects_get' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/project',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\ProjectController@getProject',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\ProjectController@getProject',
+        'as' => 'projectmanage.projects_get',
+        'namespace' => NULL,
+        'prefix' => '/projectmanage',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
     'projectmanage.load_projects' => 
     array (
       'methods' => 
@@ -11555,6 +11484,316 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'purchase.index' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'purchase',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'purchase.index',
+        'uses' => 'App\\Http\\Controllers\\Backend\\PurchaseController@index',
+        'controller' => 'App\\Http\\Controllers\\Backend\\PurchaseController@index',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'purchase.create' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'purchase/create',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'purchase.create',
+        'uses' => 'App\\Http\\Controllers\\Backend\\PurchaseController@create',
+        'controller' => 'App\\Http\\Controllers\\Backend\\PurchaseController@create',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'purchase.store' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'purchase',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'purchase.store',
+        'uses' => 'App\\Http\\Controllers\\Backend\\PurchaseController@store',
+        'controller' => 'App\\Http\\Controllers\\Backend\\PurchaseController@store',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'purchase.show' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'purchase/{purchase}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'purchase.show',
+        'uses' => 'App\\Http\\Controllers\\Backend\\PurchaseController@show',
+        'controller' => 'App\\Http\\Controllers\\Backend\\PurchaseController@show',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'purchase.edit' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'purchase/{purchase}/edit',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'purchase.edit',
+        'uses' => 'App\\Http\\Controllers\\Backend\\PurchaseController@edit',
+        'controller' => 'App\\Http\\Controllers\\Backend\\PurchaseController@edit',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'purchase.update' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'PUT',
+        1 => 'PATCH',
+      ),
+      'uri' => 'purchase/{purchase}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'purchase.update',
+        'uses' => 'App\\Http\\Controllers\\Backend\\PurchaseController@update',
+        'controller' => 'App\\Http\\Controllers\\Backend\\PurchaseController@update',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'purchase.destroy' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'DELETE',
+      ),
+      'uri' => 'purchase/{purchase}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'purchase.destroy',
+        'uses' => 'App\\Http\\Controllers\\Backend\\PurchaseController@destroy',
+        'controller' => 'App\\Http\\Controllers\\Backend\\PurchaseController@destroy',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'purchase-datatable' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'purchase-datatable',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Backend\\PurchaseController@purchaseDatatable',
+        'controller' => 'App\\Http\\Controllers\\Backend\\PurchaseController@purchaseDatatable',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'purchase-datatable',
       ),
       'fallback' => false,
       'defaults' => 

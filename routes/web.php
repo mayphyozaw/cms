@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\PasswordController;
+use App\Http\Controllers\Backend\AssetRequestApproval\AssetRequestApprovalController;
 use App\Http\Controllers\Backend\AssetRequestController;
+use App\Http\Controllers\Backend\AssetRequestItemApprovalController;
 use App\Http\Controllers\Backend\ClientManagement\ClientController;
 use App\Http\Controllers\Backend\Configuration\PermissionController;
 use App\Http\Controllers\Backend\Configuration\RoleController;
@@ -19,6 +21,8 @@ use App\Http\Controllers\Backend\ProjectManagement\ProjectCategoryController;
 use App\Http\Controllers\Backend\ProjectManagement\ProjectController;
 use App\Http\Controllers\Backend\ProjectManagement\ProjectFilesController;
 use App\Http\Controllers\Backend\ProjectManagement\WorkscopeController;
+use App\Http\Controllers\Backend\PurchaseController;
+use App\Http\Controllers\Backend\QSTeamCheck\QSTeamCheckController;
 use App\Http\Controllers\Backend\StockManagement\StockController;
 use App\Http\Controllers\Backend\StockManagement\StockMovementController;
 use App\Http\Controllers\Backend\StockManagement\WarehouseController;
@@ -100,7 +104,14 @@ Route::middleware('auth', 'notBlocked')->group(function () {
 
 
     Route::resource('engineer-requests', EngineerRequestController::class);
-    Route::resource('fixed-asset-requests', FixedAssetRequestsController::class);
+
+    Route::post('engineer-requests/approval', [AssetRequestApprovalController::class, 'store'])->name('engineer-requests.approval.store');
+
+    Route::get('qs-check-create/{id}',[QSTeamCheckController::class, 'create'])->name('qs.check.create');
+    Route::get('qs-check-store',[QSTeamCheckController::class, 'store'])->name('qs.check.store');
+
+
+
 
     Route::prefix('asset-requests')->name('asset-requests.')->group(function () {
         Route::get('fixedAssets', [AssetRequestController::class, 'fixedAssets'])->name('fixedAssets');
@@ -113,7 +124,10 @@ Route::middleware('auth', 'notBlocked')->group(function () {
         Route::get('assets-datatable', [AssetController::class, 'assetsDataTable'])->name('assets-datatable');
         Route::get('get-assets-by-type', [AssetController::class, 'getAssetsByType'])->name('get-assets-by-type');
         Route::get('get-asset-detail', [AssetController::class, 'getAssetDetail'])->name('get-asset-detail');
-        Route::post('assets/purchase', [AssetController::class], 'purchaseAssets')->name('assets.purchase');
+        // Route::post('assets/purchase', [AssetController::class], 'purchaseAssets')->name('assets.purchase');
+
+        // Route::get('assets-purchase',[PurchaseController::class, 'purchaseAssets'])->name('assets.purchase');
+        
 
 
         Route::resource('fixedassets', FixedAssetsController::class);
@@ -137,6 +151,7 @@ Route::middleware('auth', 'notBlocked')->group(function () {
     Route::prefix('projectmanage')->name('projectmanage.')->group(function () {
         Route::resource('projects', ProjectController::class);
         Route::get('/clients', [ProjectController::class, 'getClient'])->name('clients_get');
+        Route::get('/project', [ProjectController::class, 'getProject'])->name('projects_get');
         Route::get('/load/projects', [ProjectController::class, 'load_projects'])->name('load_projects');
         Route::get('project-datatable', [ProjectController::class, 'projectDataTable'])->name('project-datatable');
 
@@ -160,4 +175,7 @@ Route::middleware('auth', 'notBlocked')->group(function () {
         Route::resource('permission', PermissionController::class);
         Route::get('/permission-datatable', [PermissionController::class, 'permissionDataTable'])->name('permission-datatable');
     });
+
+    Route::resource('purchase', PurchaseController::class);
+    Route::get('purchase-datatable', [PurchaseController::class, 'purchaseDatatable'])->name('purchase-datatable');
 });

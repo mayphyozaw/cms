@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    
     <div class="content" style="padding-top: 0 !important;">
         <div class="d-flex align-items-center justify-content-between gap-2 mb-2 mt-0 flex-wrap">
             <div>
@@ -64,7 +63,7 @@
                                 <span class="d-flex align-items-center mb-1"
                                     style="color: white;font-size:14px; !important;"><i
                                         class="ti ti-circle-filled fs-10 text-warning me-1"></i>Variable Assets Request
-                                    
+
                                 </span>
                             </div>
                             <div class="d-flex align-items-center">
@@ -137,12 +136,21 @@
                                 <th class="text-center" style="background-color: #9dd2e7">Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>1.</td>
-                                <td>FR - 000001</td>
-                            </tr>
-                        </tbody>
+                        {{-- <tbody>
+                            @foreach ($fixedAssets as $item)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->project->client->project_code ?? '-' }} @
+                                        {{ $item->project->client->name ?? '-' }}</td>
+                                        <td>FR - 000001(Auto genereate code)</td>
+                                        <td>{{ $item->request_date }}</td>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->workscope_id }}</td>
+                                    <td>Request Item </td>
+                                </tr>
+                            @endforeach
+
+                        </tbody> --}}
                     </table>
                 </div>
             </div>

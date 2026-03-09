@@ -16,7 +16,7 @@ class EngineerRequestItem extends Model
 
     public function engineerRequest()
     {
-        return $this->belongsTo(EngineerRequest::class, 'request_id');
+        return $this->belongsTo(EngineerAssetRequests::class, 'request_id');
     }
 
     public function asset()

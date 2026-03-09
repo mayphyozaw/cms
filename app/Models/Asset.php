@@ -6,18 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Asset extends Model
 {
-    
+
     protected $fillable = [
-    'asset_type',
-    'fixed_asset_id',
-    'variable_asset_id',
-    'category_id',
-    'warehouse_id',
-    'unit',
-    'quantity',
-    'status',
-    'remarks',
-];
+        'asset_type',
+        'fixed_asset_id',
+        'variable_asset_id',
+        'category_id',
+        'warehouse_id',
+        'unit',
+        'quantity',
+        'status',
+        'remarks',
+    ];
 
 
     public function category()
@@ -33,8 +33,9 @@ class Asset extends Model
 
     public function fixedAsset()
     {
-        return $this->belongsTo(FixedAsset::class, 'fixed_asset_id','id');
+        return $this->belongsTo(FixedAsset::class, 'fixed_asset_id', 'id');
     }
+    
     public function variableAsset()
     {
         return $this->belongsTo(VariableAsset::class, 'variable_asset_id');
@@ -47,4 +48,8 @@ class Asset extends Model
 
         return optional($this->variableAsset)->name;
     }
+    // public function engineerAssetRequestItem()
+    // {
+    //     return $this->belongsTo(EngineerAssetRequestItems::class,)
+    // }
 }

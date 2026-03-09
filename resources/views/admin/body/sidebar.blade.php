@@ -238,7 +238,7 @@
                                         </i><span>Variable Assets</span>
                                     </a>
                                 </li>
-                            
+
                                 <li>
                                     <a href="" class="">
                                         <i class="ti ti-users">
@@ -252,7 +252,7 @@
                 </li>
 
                 {{-- @can('asset_requests_menu') --}}
-                 <li>
+                <li>
                     <ul>
                         <li class="submenu">
                             <a href="javascript:void(0);">
@@ -271,7 +271,7 @@
                                     </a>
                                 </li>
                                 {{-- @endcan --}}
-                                 {{-- <li>
+                                {{-- <li>
                                     <a href="{{ route('fixedAsset-request.index') }}"
                                         class="{{ request()->routeIs('fixedAsset-request.index') ? 'active' : '' }}">
                                         <i class="ti ti-users">
@@ -284,7 +284,7 @@
                 </li>
                 {{-- @endcan --}}
 
-                
+
 
                 {{-- <li class="menu-title"><span>Stock Manage</span></li> --}}
 
@@ -341,15 +341,17 @@
                         <li class="submenu">
                             <a href="javascript:void(0);">
                                 <i class="ti ti-database"></i>
-                                <span>Equipment Management</span>
+                                <span>Purchase</span>
                                 <span class="menu-arrow"></span>
                             </a>
 
-                            <ul style="">
+                            <ul
+                                style="{{ request()->routeIs('purchase.*') || request()->routeIs('purchase') ? 'display:block;' : '' }}">
                                 <li>
-                                    <a href="" class="">
+                                    <a href="{{ route('purchase.index') }}"
+                                        class="{{ request()->routeIs('purchase.*') ? 'active' : '' }}">
                                         <i class="ti ti-database">
-                                        </i><span>Equipment Lists</span>
+                                        </i><span>Purchase Order Lists</span>
                                     </a>
                                 </li>
 
@@ -372,7 +374,7 @@
                     </ul>
                 </li>
 
-               
+
 
                 {{-- <li class="menu-title"><span>Engineer Manage</span></li> --}}
                 <li>
@@ -393,8 +395,8 @@
                                     </a>
                                 </li>
 
-                                
-                                
+
+
 
                             </ul>
                         </li>

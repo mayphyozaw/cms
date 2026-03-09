@@ -152,7 +152,7 @@
             $('#project_id').on('change', function() {
                 let projectId = $(this).val();
                 $.ajax({
-                    url: "{{ route('projectmanage.clients_get') }}",
+                    url: "{{ route('projectmanage.projects_get') }}",
                     type: 'GET',
                     data: {
                         project_id: projectId,

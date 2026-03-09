@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    
     <div class="content" style="padding-top: 0 !important;">
         <div class="d-flex align-items-center justify-content-between gap-2 mb-2 mt-0 flex-wrap">
             <div>
@@ -30,7 +29,8 @@
                                         <i class="ti ti-dots-vertical"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="{{ route('fixed-asset-requests.create') }}"><i class="fa-solid fa-pencil text-blue"></i>
+                                        <a class="dropdown-item" href="{{ route('engineer-requests.create') }}"><i
+                                                class="fa-solid fa-pencil text-blue"></i>
                                             Create
                                         </a>
 
@@ -64,7 +64,7 @@
                                 <span class="d-flex align-items-center mb-1"
                                     style="color: white;font-size:14px; !important;"><i
                                         class="ti ti-circle-filled fs-10 text-warning me-1"></i>Variable Assets Request
-                                    
+
                                 </span>
                             </div>
                             <div class="d-flex align-items-center">
@@ -137,10 +137,136 @@
                                 <th class="text-center" style="background-color: #9dd2e7">Actions</th>
                             </tr>
                         </thead>
-                        
+
+                        <tbody>
+                            @foreach ($engineerAssetRequests as $engineerAssetRequest)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $engineerAssetRequest->user->name }}</td>
+                                    <td>{{ $engineerAssetRequest->request_code ?? '-' }}</td>
+                                    <td>
+                                        {{ $engineerAssetRequest->request_date?->format('Y-m-d h:i A') ?? '-' }}
+                                        {{-- {{ \Carbon\Carbon::parse($engineerAssetRequest->request_date)->format('Y-m-d h:i A') }} --}}
+                                        {{-- {{ $engineerAssetRequest->request_date?->format('d M Y h:i A') }} --}}
+                                    </td>
+                                    <td>
+                                        <table class="table table-bordered table-sm mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th style="background-color:#9dd2e7;width:80%;">Items</th>
+                                                    <th style="background-color:#9dd2e7;width:20%;">Qty</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($engineerAssetRequest->engineerAssetRequestItems as $requestItem)
+                                                    <tr>
+                                                        <td style="width:80%">
+                                                            {{ $requestItem->asset->fixedAsset->name ?? '-' }}
+                                                        </td>
+                                                        <td style="width:20%">
+                                                            {{ $requestItem->quantity ?? 0 }}
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </td>
+
+                                    <td>
+                                        <div class="mt-2">
+                                            <div class="form-check form-check-inline">
+                                                <input type="radio" name="status_{{ $engineerAssetRequest->id }}"
+                                                    value="approved" class="form-check-input eng_status_change"
+                                                    id="status_approved_{{ $engineerAssetRequest->id }}"
+                                                    data-id="{{ $engineerAssetRequest->id }}">
+
+                                                <label class="form-check-label"
+                                                    for="status_approved_{{ $engineerAssetRequest->id }}">
+                                                    Accept
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline">
+                                                <input type="radio" name="status_{{ $engineerAssetRequest->id }}"
+                                                    value="rejected" class="form-check-input eng_status_change"
+                                                    id="status_reject_{{ $engineerAssetRequest->id }}"
+                                                    data-id="{{ $engineerAssetRequest->id }}">
+
+                                                <label class="form-check-label"
+                                                    for="status_reject_{{ $engineerAssetRequest->id }}">
+                                                    Reject
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-2">
+                                            <input name="remark" class="form-control" placeholder="Remark"
+                                                id="remark_{{ $engineerAssetRequest->id }}">
+                                        </div>
+                                    </td>
+
+
+                                    <td class="text-center" style="min-width:120px">
+                                        {{-- @if ($hasFile)
+                                            <i class="ti ti-check text-success">
+                                                <span> Finished - </span>
+                                                {{ \Carbon\Carbon::parse($project->project_file->uploaded_at)->format('Y-m-d H:i') }}
+                                                {{ $project->project_file->uploaded_at }}
+                                            </i>
+                                        @else
+                                            <i class="ti ti-x text-danger"></i>
+                                        @endif --}}
+
+                                        <small class="text-muted">
+                                            <a href="{{route('qs.check.create', $engineerAssetRequest->id)}}" class="">
+                                                <span class="d-flex justify-content-start">
+                                                    No <span>&nbsp;&nbsp;</span>
+                                                </span>
+                                            </a>
+                                        </small>
+
+                                        <div class="progress" style="height:8px;">
+                                            <div class="progress-bar" style="width: 100%;" role="progressbar"></div>
+                                        </div>
+
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        $(document).on('change', '.eng_status_change', function() {
+
+            let request_id = $(this).data('id');
+            let status_value = $(this).val();
+
+            $.ajax({
+                url: "{{ route('engineer-requests.approval.store') }}",
+                method: "POST",
+                data: {
+                    asset_request_id: request_id,
+                    status_value: status_value,
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                    toastr.success(response.message);
+                },
+                error: function(xhr) {
+                    console.log(xhr.responseText); // better debug
+                    toastr.error("Something went wrong");
+                }
+            });
+
+        });
+    </script>
+@endpush

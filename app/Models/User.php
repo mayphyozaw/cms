@@ -162,4 +162,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(EngineerAssign::class);
     }
+
+    public function engineerAssetRequests()
+    {
+        return $this->hasMany(EngineerAssetRequests::class);
+    }
 }

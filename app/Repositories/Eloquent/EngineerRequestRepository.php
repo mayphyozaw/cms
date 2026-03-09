@@ -3,6 +3,7 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\Client;
+use App\Models\EngineerAssetRequests;
 use App\Models\EngineerRequest;
 use App\Repositories\Contracts\ClientRepoInterface;
 use App\Repositories\Contracts\EngineerRequestRepoInterface;
@@ -11,9 +12,9 @@ class EngineerRequestRepository implements EngineerRequestRepoInterface
 {
     protected $model;
 
-    public function __construct(EngineerRequest $engineerRequest)
+    public function __construct(EngineerAssetRequests $engineerAssetRequests)
     {
-        $this->model = $engineerRequest;
+        $this->model = $engineerAssetRequests;
     }
     public function findAll()
     {
@@ -49,10 +50,10 @@ class EngineerRequestRepository implements EngineerRequestRepoInterface
             'project_id',
             'workscope_id',
             'warehouse_id',
-            'engineer_assign_id',
+            'user_id',
             'asset_type',
             'status',
-            'approved_by',
+            'require_date',
             'remark',
         ]);
     }

@@ -4,22 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class StockMovement extends Model
+class PurchaseItem extends Model
 {
     protected $fillable = [
-        'warehouse_id',
+        'purchase_id',
         'asset_id',
-        'type',
+        'net_unit_cost',
         'quantity',
-        'movement_type',
-        'reference_type',
-        'reference_id',
+        'discount',
+        'subtotal'
     ];
 
-    public function warehouse()
+    public function purchase()
     {
-        return $this->belongsTo(Warehouse::class, 'warehouse_id');
+        return $this->belongsTo(Purchase::class,'purchase_id');
     }
+
     public function asset()
     {
         return $this->belongsTo(Asset::class, 'asset_id');

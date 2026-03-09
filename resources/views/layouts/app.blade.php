@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>CMS</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="shortcut icon" href="{{ asset('backend/assets/img/favicon.png') }}">
     <link rel="apple-touch-icon" href="{{ asset('backend/assets/img/apple-icon.png') }}">
@@ -31,7 +32,8 @@
     <link rel="stylesheet" href="{{ asset('backend/assets/plugins/choices.js/public/assets/styles/choices.min.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css') }}" id="app-style">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    
+
+
 
 </head>
 

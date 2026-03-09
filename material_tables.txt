@@ -1,0 +1,197 @@
+assets_table 
+==========
+id
+warehouse_id
+fixed_asset_id
+variable_asset_id
+asset_type
+category_id
+unit
+quantity
+status
+
+
+fixed_assets_table
+===================
+id
+asset_code
+name
+warehouse_id
+category_id
+
+fixed_asset_categories_table
+=============================
+id
+category_name
+
+
+
+
+variable_assets_table
+=======================
+id
+material_code
+variable_category_id
+name
+unit
+total_qty
+reorder_level
+
+variable_categories_table
+==========================
+id
+variable_category_name
+
+
+
+clients_table
+=========
+id
+client_type
+client_code
+name
+contact_person
+email
+phone
+address
+building_area
+project_code
+storeys
+site_location
+city
+construction_type
+job_scope
+job_package
+
+work_scopes_table
+==============
+id
+title
+
+
+projects_table
+=========
+id
+project_files_id
+project_category_id
+client_id
+project_code
+project_type
+status
+start_date
+end_date
+overall_progress
+remark
+
+users_table
+===========
+id
+employee_number
+name
+email
+password
+phone
+address
+gender
+nrc
+nrcfrontphoto
+nrcbackphoto
+householdphoto
+referenceletter
+esingphoto
+photo
+department
+joindate
+employeetype
+contact_person
+contact_number
+status
+resign_date
+is_block
+
+warehouses_table
+=================
+id
+name
+address
+
+
+engineer_assigns_table
+======================
+id
+user_id
+project_id
+
+
+
+engineer_request
+================
+id
+request_code (generatecode)
+request_date (currentdateandtime)
+project_id => project_code
+workscope_id => title
+warehouse_id => name
+engineer_assign_id => engineer => name // user_id
+asset_id
+status 
+
+asset_request_item_approvals
+=======================
+id
+asset_request_id
+enum('status', ['pending', 'approved', 'rejected'])
+remark
+approved_by
+approved_date
+======================
+Engineer Request
+       ↓
+Admin Accept
+       ↓
+QS Check Page
+       ↓
+Show Requested Items
+       ↓
+Check Warehouse Stock
+       ↓
+Available → Allow Entry
+No Stock → Show Alert
+       ↓
+Save
+       ↓
+Progress Bar → Green
+===========================================================================================
+Item	            Request Qty	    Warehouse Stock	    Available	    Passed Qty	Status
+Scaffolding Ladder	1	            1	                1	            [ 1 ]	    ✅ Available
+Vibrator	        1	            0	                0	            [ 0 ]	    ⚠ Out of Stock
+====================================================================
+Engineer Request
+       ↓
+Admin Approve
+       ↓
+QS Check
+       ↓
+Stock Check
+       ↓
+Stock Reserved
+       ↓
+Warehouse Issue
+==============================
+warehouse_assets_table
+
+id	asset_id	stock_qty
+1	ladder	    1
+=============================
+engineer_asset_request_items
+
+id	request_id	asset_id	request_qty
+======================================
+asset_reservations
+id	asset_id	request_item_id	qty
+
+Available Stock = Warehouse Stock - Reserved Stock
+
+Engineer	    Site	    Item	                Qty
+Engineer A	    Site A	    Scaffolding Ladder	    1
+Engineer B	    Site B	    Scaffolding Ladder	    1

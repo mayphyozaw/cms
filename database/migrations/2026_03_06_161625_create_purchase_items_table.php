@@ -11,18 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('stock_movements', function (Blueprint $table) {
+        Schema::create('purchase_items', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('warehouse_id');
+            $table->unsignedBigInteger('purchase_id');
             $table->unsignedBigInteger('asset_id');
-            $table->string('type');
-            $table->string('quantity');
-            $table->string('reference_type');
-            $table->unsignedBigInteger('reference_id');
+            $table->decimal('net_unit_cost',10,2);
+            $table->integer('quantity');
+            $table->decimal('discount',10,2)->default(0.00);
+            $table->decimal('subtotal',10,2);
             $table->timestamps();
         });
-
-        
     }
 
     /**
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('stock_movements');
+        Schema::dropIfExists('purchase_items');
     }
 };

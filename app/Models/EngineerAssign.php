@@ -28,6 +28,7 @@ class EngineerAssign extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+    
     public function engineer()
     {
         return $this->belongsTo(User::class, 'engineer_id');

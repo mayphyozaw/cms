@@ -69,8 +69,8 @@
 
 
                                             <a href="{{ route('engineers.assign', $engineer->id) }}" class="btn  btn-sm"
-                                                style="background-color: #1da0a3;"> <span style="color:#fafafa">Add
-                                                    Project</span></a>
+                                                style="background-color: #1da0a3;"> <span style="color:#fafafa">
+                                                    Add Project</span></a>
 
                                             <a href="{{ route('assign-project', $engineer->id) }}"
                                                 class="btn btn-sm btn-info">
