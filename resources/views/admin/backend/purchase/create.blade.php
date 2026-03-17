@@ -62,7 +62,7 @@
                                                     <span class="text-danger">*</span>
                                                 </label>
                                                 <select name="supplier_id" id="supplier_id"
-                                                    class="form-control form-select">Suppliers</option>
+                                                    class="form-control form-select">
 
                                                     @foreach ($suppliers as $supplier)
                                                         <option value="{{ $supplier->id }}">
@@ -152,9 +152,6 @@
                                                 Add Row
                                             </button>
 
-                                            <button class="btn btn-success btn-sm" type="submit">
-                                                Save
-                                            </button>
                                         </div>
 
                                     </div>
@@ -182,27 +179,27 @@
                                                                 <input type="hidden" name="total_amount">
                                                             </tr>
 
-
-                                                            <tr class="d-none">
-                                                                <td class="py-3">Paid Amount</td>
-                                                                <td class="py-3" id="paidAmount">
-                                                                    <input type="text" name="paid_amount"
-                                                                        placeholder="Enter amount paid"
-                                                                        class="form-control">
+                                                            <tr hidden>
+                                                                <td class="py-3 text-primary">Paid Amount</td>
+                                                                <td class="py-3 text-primary" id="paidAmountInput"> 0.00
+                                                                    MMK
                                                                 </td>
+                                                                <input type="hidden" name="paid_amount">
+                                                            </tr>
+                                                            <tr hidden>
+                                                                <td class="py-3 text-primary">Full Paid</td>
+                                                                <td class="py-3 text-primary" id="fullPaidInput"> 0.00 MMK
+                                                                </td>
+                                                                <input type="hidden" name="full_paid">
                                                             </tr>
 
-                                                            <tr class="d-none">
-                                                                <td class="py-3">Full Paid</td>
-                                                                <td class="py-3" id="fullPaid">
-                                                                    <input type="text" name="full_paid"
-                                                                        id="fullPaidInput">
-                                                                </td>
-                                                            </tr>
 
-                                                            <tr class="d-none">
-                                                                <td class="py-3">Due Amount</td>
-                                                                <td class="py-3" id="dueAmount"> 0.00 MMK</td>
+
+
+                                                            <tr>
+                                                                <td class="py-3 text-primary">Due Amount</td>
+                                                                <td class="py-3 text-primary" id="dueAmount"> 0.00 MMK
+                                                                </td>
                                                                 <input type="hidden" name="due_amount">
                                                             </tr>
 
@@ -269,6 +266,7 @@
             </div>
         </div>
     @endsection
+
 
     @push('scripts')
         <script>
@@ -338,6 +336,7 @@
                     let subtotal = (net_unit_cost * qty) - discount;
 
                     row.querySelector(".subtotal").textContent = subtotal.toFixed(2);
+
                     updateGrandTotal();
                 }
             });
@@ -389,6 +388,7 @@
                 row.querySelector(".subtotal").innerText = subtotal.toFixed(2);
 
                 updateGrandTotal();
+                updateDueAmount();
             }
 
             // updateGrandTotal
@@ -398,7 +398,8 @@
 
                 document.querySelectorAll(".subtotal").forEach(function(el) {
 
-                    total += parseFloat(el.textContent) || 0;
+                    // total += parseFloat(el.textContent) || 0;
+                    total += parseFloat(el.textContent.replace("MMK", "")) || 0;
 
                 });
 
@@ -414,18 +415,54 @@
 
                 document.querySelector("input[name='total_amount']").value =
                     total.toFixed(2);
+
+                updateDueAmount();
+
             }
 
-            document.getElementById("inputDiscount").addEventListener("input", updateGrandTotal);
-            document.getElementById("inputShipping").addEventListener("input", updateGrandTotal);
-            document.getElementById("inputDiscount").addEventListener("input", function() {
-                document.getElementById("displayDiscount").textContent =
-                    this.value || 0;
-            });
 
-            document.getElementById("inputShipping").addEventListener("input", function() {
-                document.getElementById("shippingDisplay").textContent =
-                    this.value || 0;
-            });
+            function updateDueAmount() {
+
+
+                let grandTotal = parseFloat(
+                    document.getElementById("grandTotal").textContent
+                ) || 0;
+
+                let dueAmount = grandTotal;
+
+
+                document.getElementById("dueAmount").textContent =
+                    dueAmount.toFixed(2) + " MMK";
+
+                document.querySelector("input[name='due_amount']").value =
+                    dueAmount.toFixed(2);
+            }
+
+            let inputDiscount = document.getElementById("inputDiscount");
+            let inputShipping = document.getElementById("inputShipping");
+
+
+            updateGrandTotal();
+
+
+            if (inputDiscount) {
+                inputDiscount.addEventListener("input", function() {
+                    updateGrandTotal();
+
+                    let val = parseFloat(this.value) || 0;
+                    document.getElementById("displayDiscount").textContent =
+                        val.toFixed(2) + " MMK";
+                });
+            }
+
+            if (inputShipping) {
+                inputShipping.addEventListener("input", function() {
+                    updateGrandTotal();
+
+                    let val = parseFloat(this.value) || 0;
+                    document.getElementById("shippingDisplay").textContent =
+                        val.toFixed(2) + " MMK";
+                });
+            }
         </script>
     @endpush

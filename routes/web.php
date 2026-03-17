@@ -17,6 +17,7 @@ use App\Http\Controllers\Backend\MaterialManagement\FixedAssets\CategoryControll
 use App\Http\Controllers\Backend\MaterialManagement\FixedAssets\FixedAssetsController;
 use App\Http\Controllers\Backend\MaterialManagement\VariableAssets\VariableAssetsController;
 use App\Http\Controllers\Backend\MaterialManagement\VariableAssets\VariableCategoryController;
+use App\Http\Controllers\Backend\Payment\PaymentController;
 use App\Http\Controllers\Backend\ProjectManagement\ProjectCategoryController;
 use App\Http\Controllers\Backend\ProjectManagement\ProjectController;
 use App\Http\Controllers\Backend\ProjectManagement\ProjectFilesController;
@@ -177,5 +178,8 @@ Route::middleware('auth', 'notBlocked')->group(function () {
     });
 
     Route::resource('purchase', PurchaseController::class);
-    Route::get('purchase-datatable', [PurchaseController::class, 'purchaseDatatable'])->name('purchase-datatable');
+    // Route::get('purchase-datatable', [PurchaseController::class, 'purchaseDatatable'])->name('purchase-datatable');
+    Route::get('/purchase_due', [PurchaseController::class, 'duePurchase'])->name('due.purchase_due');
+
+    Route::get('payment/purchase_payment',[PaymentController::class, 'payPurchase'])->name('payment.purchase_payment');
 });

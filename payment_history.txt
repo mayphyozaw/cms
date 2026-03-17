@@ -1,0 +1,9 @@
+Purchase Payment History
+========================
+purchase_id
+user_id
+pay_date
+total_amount
+paid_amount
+due_amout
+payment_method

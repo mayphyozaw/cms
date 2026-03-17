@@ -50,8 +50,9 @@
                                 {{-- <th class="text-center" style="background-color: #9dd2e7">Asset Name</th> --}}
                                 <th class="text-center" style="background-color: #9dd2e7">Grand Total (MMK)</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Payment</th>
-                                {{-- <th class="text-center" style="background-color: #9dd2e7">Payment Method</th> --}}
+                                <th class="text-center" style="background-color: #9dd2e7">Payment Method</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Status</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Pay By User</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Action</th>
                             </tr>
                         </thead>
@@ -74,10 +75,15 @@
                                             Waiting Payment
                                         </span>
                                     </td>
-                                    {{-- <td class="text-center"><span class="badge bg-success me-1">Cash</span></td> --}}
+                                    <td class="text-center"><span class="badge bg-success me-1">Cash</span></td>
                                     <td class="text-center">
                                         <span class="badge bg-danger me-1">
                                             {{ $purchaseData->status }}
+                                        </span>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="badge bg-danger me-1">
+                                           {{ $purchaseData->payments->first()->user->name ?? 'N/A' }}
                                         </span>
                                     </td>
                                     <td>

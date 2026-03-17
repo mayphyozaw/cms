@@ -13,7 +13,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::sHHje6zE6Nfh3rru',
+            '_route' => 'generated::GYXhyGBlLLctJxB6',
           ),
           1 => NULL,
           2 => 
@@ -33,7 +33,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::7rPO7RxUqnuNgyvM',
+            '_route' => 'generated::pfQLosDRhljhbrW6',
           ),
           1 => NULL,
           2 => 
@@ -110,7 +110,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::mFgNFaKx94TVAunA',
+            '_route' => 'generated::t1EBKCskh7hEMkY4',
           ),
           1 => NULL,
           2 => 
@@ -146,7 +146,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::cek08TegTANGjYLt',
+            '_route' => 'generated::HqeogXJuYQNeJs7H',
           ),
           1 => NULL,
           2 => 
@@ -276,7 +276,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::RRP6VDqdQzZpdtJB',
+            '_route' => 'generated::7t5JDFSJeVX4EgCk',
           ),
           1 => NULL,
           2 => 
@@ -2041,13 +2041,33 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      '/purchase-datatable' => 
+      '/purchase_due' => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'purchase-datatable',
+            '_route' => 'due.purchase_due',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/payment/purchase_payment' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'payment.purchase_payment',
           ),
           1 => NULL,
           2 => 
@@ -4113,7 +4133,7 @@ app('router')->setCompiledRoutes(
   ),
   'attributes' => 
   array (
-    'generated::sHHje6zE6Nfh3rru' => 
+    'generated::GYXhyGBlLLctJxB6' => 
     array (
       'methods' => 
       array (
@@ -4142,7 +4162,7 @@ app('router')->setCompiledRoutes(
                         \'exception\' => $exception,
                     ]), status: $exception ? 500 : 200);
                 }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"000000000000058e0000000000000000";}}',
-        'as' => 'generated::sHHje6zE6Nfh3rru',
+        'as' => 'generated::GYXhyGBlLLctJxB6',
       ),
       'fallback' => false,
       'defaults' => 
@@ -4158,7 +4178,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::7rPO7RxUqnuNgyvM' => 
+    'generated::pfQLosDRhljhbrW6' => 
     array (
       'methods' => 
       array (
@@ -4180,7 +4200,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::7rPO7RxUqnuNgyvM',
+        'as' => 'generated::pfQLosDRhljhbrW6',
       ),
       'fallback' => false,
       'defaults' => 
@@ -4312,7 +4332,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::mFgNFaKx94TVAunA' => 
+    'generated::t1EBKCskh7hEMkY4' => 
     array (
       'methods' => 
       array (
@@ -4333,7 +4353,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::mFgNFaKx94TVAunA',
+        'as' => 'generated::t1EBKCskh7hEMkY4',
       ),
       'fallback' => false,
       'defaults' => 
@@ -4387,7 +4407,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::cek08TegTANGjYLt' => 
+    'generated::HqeogXJuYQNeJs7H' => 
     array (
       'methods' => 
       array (
@@ -4408,7 +4428,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::cek08TegTANGjYLt',
+        'as' => 'generated::HqeogXJuYQNeJs7H',
       ),
       'fallback' => false,
       'defaults' => 
@@ -4728,7 +4748,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::RRP6VDqdQzZpdtJB' => 
+    'generated::7t5JDFSJeVX4EgCk' => 
     array (
       'methods' => 
       array (
@@ -4749,7 +4769,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::RRP6VDqdQzZpdtJB',
+        'as' => 'generated::7t5JDFSJeVX4EgCk',
       ),
       'fallback' => false,
       'defaults' => 
@@ -11770,14 +11790,14 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'purchase-datatable' => 
+    'due.purchase_due' => 
     array (
       'methods' => 
       array (
         0 => 'GET',
         1 => 'HEAD',
       ),
-      'uri' => 'purchase-datatable',
+      'uri' => 'purchase_due',
       'action' => 
       array (
         'middleware' => 
@@ -11786,14 +11806,53 @@ app('router')->setCompiledRoutes(
           1 => 'auth',
           2 => 'notBlocked',
         ),
-        'uses' => 'App\\Http\\Controllers\\Backend\\PurchaseController@purchaseDatatable',
-        'controller' => 'App\\Http\\Controllers\\Backend\\PurchaseController@purchaseDatatable',
+        'uses' => 'App\\Http\\Controllers\\Backend\\PurchaseController@duePurchase',
+        'controller' => 'App\\Http\\Controllers\\Backend\\PurchaseController@duePurchase',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'purchase-datatable',
+        'as' => 'due.purchase_due',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'payment.purchase_payment' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'payment/purchase_payment',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Backend\\Payment\\PaymentController@payPurchase',
+        'controller' => 'App\\Http\\Controllers\\Backend\\Payment\\PaymentController@payPurchase',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'payment.purchase_payment',
       ),
       'fallback' => false,
       'defaults' => 

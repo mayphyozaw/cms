@@ -356,9 +356,9 @@
                                 </li>
 
                                 <li>
-                                    <a href="" class="">
-                                        <i class="ti ti-users">
-                                        </i><span>Equipment Assignment</span>
+                                    <a href="{{ route('payment.purchase_payment') }}"  class="{{ request()->routeIs('payment.purchase_payment') ? 'active' : '' }}">
+                                        <i class="ti ti-report-money">
+                                        </i><span>Payment Process</span>
                                     </a>
                                 </li>
 

@@ -15,7 +15,13 @@ class Purchase extends Model
         'shipping',
         'status',
         'remark',
-        'total_amount'
+        'total_amount',
+        'paid_amount',
+        'due_amount',
+    ];
+
+    protected $casts = [
+        'purchase_date' => 'datetime:Y-m-d H:i:s',
     ];
 
     public function warehouse()
@@ -37,4 +43,13 @@ class Purchase extends Model
     {
         return $this->hasMany(PurchaseItem::class, 'purchase_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    public function payments()
+{
+    return $this->hasMany(PurchasePayments::class);
+}
 }
