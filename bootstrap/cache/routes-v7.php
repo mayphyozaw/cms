@@ -13,7 +13,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::GYXhyGBlLLctJxB6',
+            '_route' => 'generated::MlaDMxuhXwYGqnY7',
           ),
           1 => NULL,
           2 => 
@@ -33,7 +33,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::pfQLosDRhljhbrW6',
+            '_route' => 'generated::0KMUp2ZpzNRt0olQ',
           ),
           1 => NULL,
           2 => 
@@ -110,7 +110,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::t1EBKCskh7hEMkY4',
+            '_route' => 'generated::agDt8snTuBGyH1s4',
           ),
           1 => NULL,
           2 => 
@@ -146,7 +146,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::HqeogXJuYQNeJs7H',
+            '_route' => 'generated::gJuCnn9j60qjiYp6',
           ),
           1 => NULL,
           2 => 
@@ -276,7 +276,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::7t5JDFSJeVX4EgCk',
+            '_route' => 'generated::zEcwtbsHnX618h6W',
           ),
           1 => NULL,
           2 => 
@@ -2041,13 +2041,13 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      '/purchase_due' => 
+      '/purchase/payment/due' => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'due.purchase_due',
+            '_route' => 'purchase.payment.purchase_due',
           ),
           1 => NULL,
           2 => 
@@ -2084,7 +2084,7 @@ app('router')->setCompiledRoutes(
     ),
     2 => 
     array (
-      0 => '{^(?|/res(?|et\\-password/([^/]++)(*:35)|ign\\-employees/([^/]++)(?|(*:68)|/edit(*:80)|(*:87)))|/verify\\-email/([^/]++)/([^/]++)(*:128)|/usermanage/(?|([^/]++)(?|/edit(*:167)|(*:175))|resign\\-submit(*:198)|block/([^/]++)(*:220)|unblock/([^/]++)(*:244)|toggle\\-block/([^/]++)(*:274))|/c(?|lient/([^/]++)(?|(*:305)|/edit(*:318)|(*:326))|onfiguration/(?|role/([^/]++)(?|(*:367)|/edit(*:380)|(*:388))|permission/([^/]++)(?|(*:419)|/edit(*:432)|(*:440))))|/warehouse/([^/]++)(?|(*:473)|/edit(*:486)|(*:494))|/s(?|to(?|ck\\-movements/([^/]++)(?|(*:538)|/edit(*:551)|(*:559))|rage/(.*)(*:577))|uppliermanage/supplier/([^/]++)(?|(*:620)|/edit(*:633)|(*:641)))|/engineer(?|s/(?|([^/]++)(?|(*:679)|/edit(*:692)|(*:700))|assign(?|/([^/]++)(*:727)|\\-project/([^/]++)(*:753)))|\\-requests/(?|([^/]++)(?|(*:788)|/edit(*:801)|(*:809))|approval(*:826)))|/assign\\-(?|edit/([^/]++)(*:861)|update/([^/]++)(*:884)|destroy/([^/]++)(*:908))|/qs\\-check\\-create/([^/]++)(*:944)|/material/(?|assets/([^/]++)(?|(*:983)|/edit(*:996)|(*:1004))|fixedassets/(?|([^/]++)(?|(*:1040)|/edit(*:1054)|(*:1063))|purchase(*:1081))|category/([^/]++)(?|(*:1111)|/edit(*:1125)|(*:1134))|variable(?|assets/([^/]++)(?|(*:1173)|/edit(*:1187)|(*:1196))|\\-category/([^/]++)(?|(*:1228)|/edit(*:1242)|(*:1251))))|/p(?|rojectmanage/(?|project(?|s/([^/]++)(?|(*:1307)|/edit(*:1321)|(*:1330))|files/([^/]++)(?|/edit(*:1362)|(*:1371))|category/([^/]++)(?|(*:1401)|/edit(*:1415)|(*:1424)))|workscope/([^/]++)(?|(*:1456)|/edit(*:1470)|(*:1479)))|urchase/([^/]++)(?|(*:1509)|/edit(*:1523)|(*:1532))))/?$}sDu',
+      0 => '{^(?|/res(?|et\\-password/([^/]++)(*:35)|ign\\-employees/([^/]++)(?|(*:68)|/edit(*:80)|(*:87)))|/verify\\-email/([^/]++)/([^/]++)(*:128)|/usermanage/(?|([^/]++)(?|/edit(*:167)|(*:175))|resign\\-submit(*:198)|block/([^/]++)(*:220)|unblock/([^/]++)(*:244)|toggle\\-block/([^/]++)(*:274))|/c(?|lient/([^/]++)(?|(*:305)|/edit(*:318)|(*:326))|onfiguration/(?|role/([^/]++)(?|(*:367)|/edit(*:380)|(*:388))|permission/([^/]++)(?|(*:419)|/edit(*:432)|(*:440))))|/warehouse/([^/]++)(?|(*:473)|/edit(*:486)|(*:494))|/s(?|to(?|ck\\-movements/([^/]++)(?|(*:538)|/edit(*:551)|(*:559))|rage/(.*)(*:577))|uppliermanage/supplier/([^/]++)(?|(*:620)|/edit(*:633)|(*:641)))|/engineer(?|s/(?|([^/]++)(?|(*:679)|/edit(*:692)|(*:700))|assign(?|/([^/]++)(*:727)|\\-project/([^/]++)(*:753)))|\\-requests/(?|([^/]++)(?|(*:788)|/edit(*:801)|(*:809))|approval(*:826)))|/assign\\-(?|edit/([^/]++)(*:861)|update/([^/]++)(*:884)|destroy/([^/]++)(*:908))|/qs\\-check\\-create/([^/]++)(*:944)|/material/(?|assets/([^/]++)(?|(*:983)|/edit(*:996)|(*:1004))|fixedassets/(?|([^/]++)(?|(*:1040)|/edit(*:1054)|(*:1063))|purchase(*:1081))|category/([^/]++)(?|(*:1111)|/edit(*:1125)|(*:1134))|variable(?|assets/([^/]++)(?|(*:1173)|/edit(*:1187)|(*:1196))|\\-category/([^/]++)(?|(*:1228)|/edit(*:1242)|(*:1251))))|/p(?|rojectmanage/(?|project(?|s/([^/]++)(?|(*:1307)|/edit(*:1321)|(*:1330))|files/([^/]++)(?|/edit(*:1362)|(*:1371))|category/([^/]++)(?|(*:1401)|/edit(*:1415)|(*:1424)))|workscope/([^/]++)(?|(*:1456)|/edit(*:1470)|(*:1479)))|urchase/(?|([^/]++)(?|(*:1512)|/edit(*:1526)|(*:1535))|payment/([^/]++)/history(*:1569))|ayment/purchase_payment/([^/]++)(?|(*:1614))))/?$}sDu',
     ),
     3 => 
     array (
@@ -4030,7 +4030,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1509 => 
+      1512 => 
       array (
         0 => 
         array (
@@ -4053,7 +4053,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1523 => 
+      1526 => 
       array (
         0 => 
         array (
@@ -4076,7 +4076,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1532 => 
+      1535 => 
       array (
         0 => 
         array (
@@ -4117,6 +4117,71 @@ app('router')->setCompiledRoutes(
           5 => true,
           6 => NULL,
         ),
+      ),
+      1569 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'payment.pay.detail',
+          ),
+          1 => 
+          array (
+            0 => 'id',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      1614 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'payment.pay',
+          ),
+          1 => 
+          array (
+            0 => 'id',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'payment.pay.store',
+          ),
+          1 => 
+          array (
+            0 => 'id',
+          ),
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
         2 => 
         array (
           0 => NULL,
@@ -4133,7 +4198,7 @@ app('router')->setCompiledRoutes(
   ),
   'attributes' => 
   array (
-    'generated::GYXhyGBlLLctJxB6' => 
+    'generated::MlaDMxuhXwYGqnY7' => 
     array (
       'methods' => 
       array (
@@ -4162,7 +4227,7 @@ app('router')->setCompiledRoutes(
                         \'exception\' => $exception,
                     ]), status: $exception ? 500 : 200);
                 }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"000000000000058e0000000000000000";}}',
-        'as' => 'generated::GYXhyGBlLLctJxB6',
+        'as' => 'generated::MlaDMxuhXwYGqnY7',
       ),
       'fallback' => false,
       'defaults' => 
@@ -4178,7 +4243,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::pfQLosDRhljhbrW6' => 
+    'generated::0KMUp2ZpzNRt0olQ' => 
     array (
       'methods' => 
       array (
@@ -4200,7 +4265,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::pfQLosDRhljhbrW6',
+        'as' => 'generated::0KMUp2ZpzNRt0olQ',
       ),
       'fallback' => false,
       'defaults' => 
@@ -4332,7 +4397,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::t1EBKCskh7hEMkY4' => 
+    'generated::agDt8snTuBGyH1s4' => 
     array (
       'methods' => 
       array (
@@ -4353,7 +4418,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::t1EBKCskh7hEMkY4',
+        'as' => 'generated::agDt8snTuBGyH1s4',
       ),
       'fallback' => false,
       'defaults' => 
@@ -4407,7 +4472,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::HqeogXJuYQNeJs7H' => 
+    'generated::gJuCnn9j60qjiYp6' => 
     array (
       'methods' => 
       array (
@@ -4428,7 +4493,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::HqeogXJuYQNeJs7H',
+        'as' => 'generated::gJuCnn9j60qjiYp6',
       ),
       'fallback' => false,
       'defaults' => 
@@ -4748,7 +4813,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::7t5JDFSJeVX4EgCk' => 
+    'generated::zEcwtbsHnX618h6W' => 
     array (
       'methods' => 
       array (
@@ -4769,7 +4834,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::7t5JDFSJeVX4EgCk',
+        'as' => 'generated::zEcwtbsHnX618h6W',
       ),
       'fallback' => false,
       'defaults' => 
@@ -11790,14 +11855,14 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'due.purchase_due' => 
+    'purchase.payment.purchase_due' => 
     array (
       'methods' => 
       array (
         0 => 'GET',
         1 => 'HEAD',
       ),
-      'uri' => 'purchase_due',
+      'uri' => 'purchase/payment/due',
       'action' => 
       array (
         'middleware' => 
@@ -11806,14 +11871,14 @@ app('router')->setCompiledRoutes(
           1 => 'auth',
           2 => 'notBlocked',
         ),
-        'uses' => 'App\\Http\\Controllers\\Backend\\PurchaseController@duePurchase',
-        'controller' => 'App\\Http\\Controllers\\Backend\\PurchaseController@duePurchase',
+        'uses' => 'App\\Http\\Controllers\\Backend\\PurchaseController@purchaseDue',
+        'controller' => 'App\\Http\\Controllers\\Backend\\PurchaseController@purchaseDue',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'due.purchase_due',
+        'as' => 'purchase.payment.purchase_due',
       ),
       'fallback' => false,
       'defaults' => 
@@ -11853,6 +11918,122 @@ app('router')->setCompiledRoutes(
         array (
         ),
         'as' => 'payment.purchase_payment',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'payment.pay' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'payment/purchase_payment/{id}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Backend\\Payment\\PaymentController@pay',
+        'controller' => 'App\\Http\\Controllers\\Backend\\Payment\\PaymentController@pay',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'payment.pay',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'payment.pay.store' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'payment/purchase_payment/{id}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Backend\\Payment\\PaymentController@payStore',
+        'controller' => 'App\\Http\\Controllers\\Backend\\Payment\\PaymentController@payStore',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'payment.pay.store',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'payment.pay.detail' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'purchase/payment/{id}/history',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Backend\\Payment\\PaymentController@payDetail',
+        'controller' => 'App\\Http\\Controllers\\Backend\\Payment\\PaymentController@payDetail',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'payment.pay.detail',
       ),
       'fallback' => false,
       'defaults' => 

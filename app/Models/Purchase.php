@@ -18,6 +18,7 @@ class Purchase extends Model
         'total_amount',
         'paid_amount',
         'due_amount',
+        'payment_status',
     ];
 
     protected $casts = [
@@ -48,7 +49,7 @@ class Purchase extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-    public function payments()
+    public function purchasePayments()
 {
     return $this->hasMany(PurchasePayments::class);
 }

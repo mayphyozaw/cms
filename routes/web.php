@@ -108,8 +108,8 @@ Route::middleware('auth', 'notBlocked')->group(function () {
 
     Route::post('engineer-requests/approval', [AssetRequestApprovalController::class, 'store'])->name('engineer-requests.approval.store');
 
-    Route::get('qs-check-create/{id}',[QSTeamCheckController::class, 'create'])->name('qs.check.create');
-    Route::get('qs-check-store',[QSTeamCheckController::class, 'store'])->name('qs.check.store');
+    Route::get('qs-check-create/{id}', [QSTeamCheckController::class, 'create'])->name('qs.check.create');
+    Route::get('qs-check-store', [QSTeamCheckController::class, 'store'])->name('qs.check.store');
 
 
 
@@ -128,7 +128,7 @@ Route::middleware('auth', 'notBlocked')->group(function () {
         // Route::post('assets/purchase', [AssetController::class], 'purchaseAssets')->name('assets.purchase');
 
         // Route::get('assets-purchase',[PurchaseController::class, 'purchaseAssets'])->name('assets.purchase');
-        
+
 
 
         Route::resource('fixedassets', FixedAssetsController::class);
@@ -178,8 +178,16 @@ Route::middleware('auth', 'notBlocked')->group(function () {
     });
 
     Route::resource('purchase', PurchaseController::class);
-    // Route::get('purchase-datatable', [PurchaseController::class, 'purchaseDatatable'])->name('purchase-datatable');
-    Route::get('/purchase_due', [PurchaseController::class, 'duePurchase'])->name('due.purchase_due');
+    // Route::get('/purchase_due', [PurchaseController::class, 'duePurchase'])->name('due.purchase_due');
 
-    Route::get('payment/purchase_payment',[PaymentController::class, 'payPurchase'])->name('payment.purchase_payment');
+    Route::get('purchase/payment/due', [PurchaseController::class, 'purchaseDue'])->name('purchase.payment.purchase_due');
+
+    Route::get('payment/purchase_payment', [PaymentController::class, 'payPurchase'])->name('payment.purchase_payment');
+    
+    Route::get('payment/purchase_payment/{id}', [PaymentController::class, 'pay'])->name('payment.pay');
+    Route::post('payment/purchase_payment/{id}', [PaymentController::class, 'payStore'])->name('payment.pay.store');
+    Route::get('purchase/payment/{id}/history', [PaymentController::class, 'payDetail'])->name('payment.pay.detail');
+
+
+    
 });

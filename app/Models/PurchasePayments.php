@@ -17,6 +17,10 @@ class PurchasePayments extends Model
         'status',
     ];
 
+    protected $casts = [
+        'payment_date' => 'datetime',
+    ];
+
     public function purchase()
     {
         return $this->belongsTo(Purchase::class, 'purchase_id');
@@ -26,6 +30,4 @@ class PurchasePayments extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-    
-
 }

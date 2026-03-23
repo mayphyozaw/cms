@@ -17,7 +17,6 @@ class PurchaseController extends Controller
 {
     public function index()
     {
-        // $purchaseAllData = Purchase::orderBy('id', 'desc')->get();
         $purchaseAllData = Purchase::with([
             'purchaseItems.asset.fixedAsset'
         ])->get();
@@ -56,6 +55,7 @@ class PurchaseController extends Controller
         $nextNumber = $lastPurchase ? $lastPurchase->id + 1 : 1;
         $purchaseNo = 'PO-' . date('Ymd') . '-' . str_pad($nextNumber, 4, '0', STR_PAD_LEFT);
         $total_amount = 0;
+        $due_amount = 0;
 
         $purchase = Purchase::create([
             'purchase_date' => now(),
@@ -67,10 +67,11 @@ class PurchaseController extends Controller
             'status' => $request->status,
             'remark' => $request->remark ?? '',
             'total_amount' => 0,
+            'due_amount' => 0,
+            'payment_status' => $request->payment_status ?? '',
 
         ]);
-        return $purchase->all();
-        
+
         foreach ($request->asset_id as $index => $assetId) {
             $asset = Asset::findOrFail($assetId);
             $net_unit_cost = $request->net_unit_cost[$index];
@@ -99,26 +100,51 @@ class PurchaseController extends Controller
 
         $total = $total_amount + ($request->shipping ?? 0) - ($request->purchase_discount ?? 0);
 
+        $due_amount = $total_amount + ($request->shipping ?? 0) - ($request->purchase_discount ?? 0);
 
-        $paidAmount = $request->paid_amount ?? 0;
-        $dueAmount = max(0, $total - $paidAmount);
+
+        if ($due_amount == 0) {
+            $payment_status = 'Paid';
+        } else {
+            $payment_status = 'Unpaid';
+        }
 
         $purchase->update([
-            'total_amount' => $total
-        ]);
-        
-        // Insert Payment
-        PurchasePayments::create([
-            'purchase_id' => $purchase->id,
-            'user_id' => auth()->id(), 
-            'paid_amount' => $paidAmount,
-            'payment_date' => $request->payment_date ?? now(),
-            'status' => $request->status,
-            'payment_method' => 'Cash',
             'total_amount' => $total,
-            'due_amount' => $dueAmount,
+            'due_amount' => $due_amount,
+            'payment_status' => $payment_status,
         ]);
+
+        $paidAmount = $request->paid_amount ?? 0;
+
+        $dueAmount = $total - $paidAmount;
+
         
+            PurchasePayments::create([
+                'purchase_id' => $purchase->id,
+                'user_id' => auth()->id(),
+                'paid_amount' => $paidAmount,
+                'payment_date' => $request->payment_date ?? now(),
+                'payment_method' => 'Cash',
+                'total_amount' => $total,
+                'due_amount' => $dueAmount,
+                'status' => $payment_status,
+            ]);
+       
+
+        // // Insert Payment
+        // PurchasePayments::create([
+        //     'purchase_id' => $purchase->id,
+        //     'user_id' => auth()->id(),
+        //     'paid_amount' => $paidAmount,
+        //     'payment_date' => $request->payment_date ?? now(),
+        //     'status' => $request->status,
+        //     'payment_method' => 'Cash',
+        //     'total_amount' => $total,
+        //     'due_amount' => $dueAmount,
+        //     'status' => $payment_status,
+        // ]);
+
 
         return redirect()->route('purchase.index')->with([
             'message' => 'Purchase Stored successfully!',
@@ -141,6 +167,7 @@ class PurchaseController extends Controller
     {
 
         $purchase = Purchase::findOrFail($id);
+
         $purchase->update([
             'purchase_date' => $request->purchase_date,
             'warehouse_id' => $request->warehouse_id,
@@ -192,10 +219,18 @@ class PurchaseController extends Controller
     }
 
 
-    public function show($id)
+    public function purchaseDue()
     {
-        $purchase = Purchase::with('purchaseItems.asset.fixedAsset')->find($id);
+        $purchaseAllData = Purchase::with(['supplier', 'purchaseItems.asset.fixedAsset'])->get();
 
-        return view('admin.backend.purchase.show', compact('purchase'));
+        return view('admin.backend.purchase.payment.purchase_due', compact('purchaseAllData'));
     }
+
+    //     public function pay($id)
+    // {
+    //     $purchaseData = Purchase::with(['supplier', 'purchaseItems.asset.fixedAsset'])->findOrFail($id);
+
+    //     return view('admin.backend.purchase.pay', compact('purchaseData'));
+    // }
+
 }

@@ -45,78 +45,122 @@
                                 <th class="text-center" style="background-color: #9dd2e7">#</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Purchase Date</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Purchase No</th>
-                                <th class="text-center" style="background-color: #9dd2e7">Supplier</th>
-                                <th class="text-center" style="background-color: #9dd2e7">Total Quantity</th>
-                                {{-- <th class="text-center" style="background-color: #9dd2e7">Asset Name</th> --}}
-                                <th class="text-center" style="background-color: #9dd2e7">Grand Total (MMK)</th>
-                                <th class="text-center" style="background-color: #9dd2e7">Payment</th>
-                                <th class="text-center" style="background-color: #9dd2e7">Payment Method</th>
-                                <th class="text-center" style="background-color: #9dd2e7">Status</th>
-                                <th class="text-center" style="background-color: #9dd2e7">Pay By User</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Supplier Name</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Asset Name</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Total Amount</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Total Due Amount</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Payment Status</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($purchaseAllData as $purchaseData)
-                                @foreach ($purchaseData->purchaseItems as $purchaseItem)
                                 <tr>
                                     <td class="text-center">{{ $loop->iteration }}.</td>
                                     <td class="text-center">{{ $purchaseData->purchase_date }}</td>
-                                    <td class="text-center">{{ $purchaseData->purchase_no }}</td>
+                                    <td class="text-center">{{ $purchaseData->purchase_no }} </td>
                                     <td class="text-center">{{ $purchaseData->supplier->name }}</td>
+
+
+
                                     <td class="text-center">
-                                        {{ $purchaseItem->quantity ?? 0 }}
+                                        <table
+                                            class="table purchaseTable table-bordered dt-responsive table-responsive table-hover text-nowrap">
+                                            <thead>
+                                                <tr>
+                                                    <th style="background-color: #9dd2e7">#.</th>
+                                                    <th style="background-color: #9dd2e7">Item Name</th>
+                                                    <th style="background-color: #9dd2e7">Quantity</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($purchaseData->purchaseItems as $purchaseItem)
+                                                    <tr>
+                                                        <td>{{ $loop->iteration }}.</td>
+                                                        <td>
+                                                            {{ $purchaseItem->asset->fixedAsset->name }}
+                                                        </td>
+                                                        <td class="text-center">
+                                                            {{ $purchaseItem->quantity ?? 0 }}
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
                                     </td>
-                                    <td class="text-center">
-                                        {{ number_format($purchaseData->total_amount, 2) }}
+
+                                    <td class="text-end">
+
+                                        {{ number_format($purchaseData->total_amount ?? 0, 2) }}
                                     </td>
+
+                                    <td class="text-end">
+
+                                        {{ number_format($purchaseData->due_amount ?? 0, 2) }}
+                                    </td>
+
+                                    {{-- <td class="text-center">
+                                        @if ($purchaseData->status == 'Paid')
+                                            <span class="badge bg-success">Paid</span>
+                                        @elseif ($purchaseData->status == 'Partial')
+                                            <span class="badge bg-warning text-dark">Partial</span>
+                                        @else
+                                            <span class="badge bg-danger">Unpaid</span>
+                                        @endif
+                                    </td> --}}
+
+
+                                    @php
+                                        if ($purchaseData->due_amount == 0) {
+                                            $status = 'Paid';
+                                        } elseif ($purchaseData->paid_amount > 0) {
+                                            $status = 'Partial';
+                                        } else {
+                                            $status = 'Unpaid';
+                                        }
+                                    @endphp
+
+                                    
                                     <td class="text-center">
-                                        <span class="badge badge-soft-primary ms-2">
-                                            Waiting Payment
+                                        <span
+                                            class="badge {{ $status == 'Paid' ? 'bg-success' : ($status == 'Partial' ? 'bg-warning text-dark' : 'bg-danger') }}">
+                                            {{ $status }}
                                         </span>
                                     </td>
-                                    <td class="text-center"><span class="badge bg-success me-1">Cash</span></td>
-                                    <td class="text-center">
-                                        <span class="badge bg-danger me-1">
-                                            {{ $purchaseData->status }}
-                                        </span>
-                                    </td>
-                                    <td class="text-center">
-                                        <span class="badge bg-danger me-1">
-                                           {{ $purchaseData->payments->first()->user->name ?? 'N/A' }}
-                                        </span>
-                                    </td>
+
+
                                     <td>
-                                        <form action="" method="post">
-                                            @method('DELETE')
+
+                                        <a class="btn btn-warning btn-sm btn-icon"
+                                            href="{{ route('payment.pay.detail', $purchaseData->id) }}" title="Details">
+                                            <i class="ti ti-eye"></i>
+                                        </a>
+
+                                        <a class="btn btn-sm btn-icon" href=""
+                                            style="background-color: #4aa1a3; color:white">
+                                            <i class="ti ti-download"></i>
+                                        </a>
+
+                                        <a href="{{ route('payment.pay', $purchaseData->id) }}"
+                                            class="btn btn-info btn-sm" title="Pay">
+                                            Pay
+                                        </a>
+
+
+                                        <!-- DELETE FORM ONLY -->
+                                        <form action="" method="POST" style="display:inline;">
                                             @csrf
-                                            
-                                            <a class="btn btn-warning btn-sm btn-icon" href="">
-                                                <i class="ti ti-eye"></i>
-                                            </a>
+                                            @method('DELETE')
 
-                                            <a class="btn btn-sm btn-icon" href=""
-                                                style="background-color: #4aa1a3; color:white">
-                                                <i class="ti ti-download"></i>
-                                            </a>
-
-                                            <a class="btn btn-info btn-sm" href="{{ route('purchase.edit', $purchaseData->id) }}">
-                                                <span>Pay Now</span>
-                                            </a>
-
-                                            <a class="btn btn-success btn-sm btn-icon" href="{{ route('purchase.edit', $purchaseData->id) }}">
-                                                <i class="ti ti-edit"></i>
-                                            </a>
-                                            
-
-                                            <a class="btn btn-danger btn-sm btn-icon" href="">
+                                            <button class="btn btn-danger btn-sm btn-icon">
                                                 <i class="ti ti-trash"></i>
-                                            </a>
-
+                                            </button>
                                         </form>
+
+
                                     </td>
+
                                 </tr>
-                                @endforeach
                             @endforeach
 
                         </tbody>
@@ -128,102 +172,4 @@
 @endsection
 
 @push('scripts')
-    {{-- <script>
-        $(document).ready(function() {
-            var table = $('.purchaseTable').DataTable({
-                processing: true,
-                serverSide: true,
-                searchable: true,
-                ajax: {
-                    url: "{{ route('purchase-datatable') }}",
-                    type: 'GET'
-                },
-                columns: [{
-                        data: 'DT_RowIndex',
-                        name: 'DT_RowIndex',
-                        className: 'text-start',
-                        orderable: false,
-                        searchable: false
-                    },
-
-                    {
-                        data: 'warehouse',
-                        name: 'warehouse',
-                        className: 'text-start'
-                    },
-
-                    {
-                        data: 'status',
-                        name: 'status',
-                        className: 'text-start'
-                    },
-
-                    {
-                        data: 'grand_total',
-                        name: 'grand_total',
-                        className: 'text-start',
-                        orderable: false,
-                        searchable: true
-                    },
-
-                    {
-                        data: 'payment',
-                        name: 'payment',
-                        className: 'text-start'
-                    },
-
-                    {
-                        data: 'created_at',
-                        name: 'created_at',
-                        className: 'text-start',
-                        orderable: false,
-                        searchable: false
-                    },
-
-                    {
-                        data: 'action',
-                        name: 'action',
-                        className: 'text-start',
-                        orderable: false,
-                        searchable: false
-                    }
-                ],
-                responsive: true
-            });
-
-
-            $(document).on('click', '.deleteBtn', function(event) {
-                event.preventDefault();
-                var url = $(this).data('url');
-
-                Swal.fire({
-                    title: "Are you sure?",
-                    text: "Delete thie Data!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes, delete it!"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            url: url,
-                            type: 'DELETE',
-                            data: {
-                                _token: '{{ csrf_token() }}'
-                            },
-                            success: function(response) {
-                                table.ajax.reload();
-                                toastr.success(response.message);
-                            },
-                            error: function(response) {
-                                toastr.error('Delete failed!');
-                            }
-
-                        });
-                    }
-                });
-            })
-        });
-    </script> --}}
 @endpush

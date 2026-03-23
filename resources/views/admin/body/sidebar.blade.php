@@ -346,7 +346,7 @@
                             </a>
 
                             <ul
-                                style="{{ request()->routeIs('purchase.*') || request()->routeIs('purchase') ? 'display:block;' : '' }}">
+                                style="{{ request()->routeIs('purchase.*') || request()->routeIs('payment.*') ? 'display:block;' : '' }}">
                                 <li>
                                     <a href="{{ route('purchase.index') }}"
                                         class="{{ request()->routeIs('purchase.*') ? 'active' : '' }}">
@@ -356,18 +356,14 @@
                                 </li>
 
                                 <li>
-                                    <a href="{{ route('payment.purchase_payment') }}"  class="{{ request()->routeIs('payment.purchase_payment') ? 'active' : '' }}">
+                                    <a href="{{ route('payment.purchase_payment') }}"  
+                                        class="{{ request()->routeIs('payment.*') ? 'active' : '' }}">
                                         <i class="ti ti-report-money">
                                         </i><span>Payment Process</span>
                                     </a>
                                 </li>
 
-                                <li>
-                                    <a href="" class="">
-                                        <i class="ti ti-users">
-                                        </i><span>Usage History</span>
-                                    </a>
-                                </li>
+                                
 
                             </ul>
                         </li>

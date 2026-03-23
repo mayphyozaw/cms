@@ -17,7 +17,7 @@
                 <div class="card">
                     <div class="card-body">
                         <form action="{{ route('purchase.store') }}" method="post" enctype="multipart/form-data"
-                            id="submit-form" class="assetsAdd">
+                            id="purchaseForm">
                             @csrf
 
                             <div class="row">
@@ -90,7 +90,7 @@
                                                     <th style="width: 30%;background-color: #9dd2e7;">Action</th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="requestTableBody">
+                                            <tbody id="itemTable">
                                                 <tr>
                                                     <td>
                                                         <select name="asset_id[]" class="form-control form-select">
@@ -163,7 +163,7 @@
                                             <div class="card-body pt-7 pb-2">
                                                 <div class="table-responsive">
                                                     <table class="table border">
-                                                        <tbody>
+                                                        <tbody >
                                                             <tr>
                                                                 <td class="py-3">Discount</td>
                                                                 <td class="py-3" id="displayDiscount"> 0.00 MMK</td>
@@ -174,7 +174,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td class="py-3 text-primary">Grand Total</td>
-                                                                <td class="py-3 text-primary" id="grandTotal"> 0.00 MMK
+                                                                <td class="py-3 text-primary" id="grandTotal" name="total_amount"> 0.00 MMK
                                                                 </td>
                                                                 <input type="hidden" name="total_amount">
                                                             </tr>
@@ -270,8 +270,10 @@
 
     @push('scripts')
         <script>
+
             document.getElementById("addRowBtn").addEventListener("click", function() {
-                let tbody = document.getElementById("requestTableBody");
+                const itemTable = document.getElementById("itemTable");
+                // let tbody = document.getElementById("itemTable");
 
                 let row = `
                     <tr>
@@ -304,7 +306,7 @@
                         </td>
 
                         <td>
-                            <span class="subtotal">0.00 MMK</span>
+                            <span class="subtotal" name="total_amount">0.00 MMK</span>
                         </td>
 
                         <td>
@@ -315,7 +317,7 @@
                     </tr>
                 `;
 
-                tbody.insertAdjacentHTML("beforeend", row);
+                itemTable.insertAdjacentHTML("beforeend", row);
                 updateEvents();
                 updateGrandTotal();
             });
@@ -344,7 +346,7 @@
             document.addEventListener("click", function(e) {
                 if (e.target.closest(".removeRow")) {
                     let row = e.target.closest("tr");
-                    if (document.querySelectorAll("#requestTableBody tr").length > 1) {
+                    if (document.querySelectorAll("#itemTable tr").length > 1) {
                         row.remove();
                         updateGrandTotal();
                     }
@@ -464,5 +466,6 @@
                         val.toFixed(2) + " MMK";
                 });
             }
+            
         </script>
     @endpush
