@@ -17,6 +17,7 @@ use App\Repositories\Contracts\UserRepoInterface;
 use App\Repositories\Contracts\VariableAssetRepoInterface;
 use App\Repositories\Contracts\VariableCategoryRepoInterface;
 use App\Repositories\Contracts\WarehouseRepoInterface;
+use App\Repositories\Contracts\WarehouseStockRepoInterface;
 use App\Repositories\Contracts\WorkScopeRepoInterface;
 use App\Repositories\Eloquent\AssetRepository;
 use App\Repositories\Eloquent\CategoryRepository;
@@ -33,6 +34,7 @@ use App\Repositories\Eloquent\UserRepository;
 use App\Repositories\Eloquent\VariableAssetRepository;
 use App\Repositories\Eloquent\VariableCategoryRepository;
 use App\Repositories\Eloquent\WarehouseRepository;
+use App\Repositories\Eloquent\WarehouseStockRepository;
 use App\Repositories\Eloquent\WorkScopeRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -66,6 +68,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             WarehouseRepoInterface::class,
             WarehouseRepository::class
+        );
+        $this->app->bind(
+            WarehouseStockRepoInterface::class,
+            WarehouseStockRepository::class
         );
         $this->app->bind(
             CategoryRepoInterface::class,

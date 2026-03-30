@@ -27,14 +27,12 @@ class AssetService
         return $this->assetRepoInterface->find($id);
     }
 
-    // public function create(array $data)
-    // {
-    //     $record = $this->assetRepoInterface->create($data);
-    //     return $record;
-    // }
+
     public function create(array $data)
     {
-        $asset = Asset::where('warehouse_id', $data['warehouse_id'])
+        $warehouseId = $data['warehouse_id'] ?? null;
+
+        $asset = Asset::where('warehouse_id', $warehouseId)
             ->where(function ($q) use ($data) {
                 if (!empty($data['fixed_asset_id'])) {
                     $q->where('fixed_asset_id', $data['fixed_asset_id']);
@@ -55,6 +53,7 @@ class AssetService
         return $record;
     }
 
+
     public function assetsDataTable()
     {
 
@@ -63,19 +62,18 @@ class AssetService
         return DataTables::eloquent($query)
             ->addIndexColumn()
 
+
             ->addColumn('name', function ($assets) {
-                if ($assets->asset_type === 'fixedAsset') {
-                    return $assets->fixedAsset->name ?? '';
-                }
-
-                return $assets->variableAsset->name ?? '';
+                return $assets->fixedAsset->name
+                    ?? $assets->variableAsset->name
+                    ?? '-';
             })
-
             ->editColumn('warehouse_id', function ($assets) {
                 return $assets->warehouse->name ?? '';
             })
+
             ->addColumn('category_name', function ($assets) {
-                return $assets->category->category_name ?? '';
+                return $assets->category_name;
             })
 
             ->editColumn('unit', function ($assets) {
@@ -83,6 +81,13 @@ class AssetService
             })
             ->editColumn('quantity', function ($assets) {
                 return $assets->quantity ?? '';
+            })
+            ->editColumn('stock_balance', function ($asset) {
+                // $totalPassed = $asset->engineer_request_items_sum_passed_qty ?? 0;
+                $stock_balance = $asset->stock_balance;
+                
+                $url = route('qs.check.detail', ['asset_id' => $asset->id]);
+                return '<a href="' . $url . '" class="text-primary">' . $stock_balance . '</a>';
             })
             ->editColumn('status', function ($assets) {
                 $color = match ($assets->status) {
@@ -102,6 +107,7 @@ class AssetService
             ->rawColumns([
                 'status',
                 'action',
+                'stock_balance',
             ])
             ->make(true);
     }

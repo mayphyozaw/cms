@@ -48,7 +48,7 @@
                                 <th class="text-center" style="background-color: #9dd2e7">Supplier Name</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Asset Name</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Grand Total (MMK)</th>
-                                <th class="text-center" style="background-color: #9dd2e7">Status</th>
+                                {{-- <th class="text-center" style="background-color: #9dd2e7">Status</th> --}}
                                 <th class="text-center" style="background-color: #9dd2e7">Payment</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Action</th>
                             </tr>
@@ -77,9 +77,11 @@
                                                 @foreach ($purchaseData->purchaseItems as $purchaseItem)
                                                     <tr>
                                                         <td>{{ $loop->iteration }}.</td>
-                                                        <td>
-                                                            {{ $purchaseItem->asset->fixedAsset->name }}
+                                                        <td> 
+                                                            
+                                                            {{ $purchaseItem->asset->fixedAsset->name}}
                                                         </td>
+
                                                         <td class="text-center">
                                                             {{ $purchaseItem->quantity ?? 0 }}
                                                         </td>
@@ -93,11 +95,11 @@
 
                                         {{ number_format($purchaseData->total_amount ?? 0, 2) }}
                                     </td>
-                                    <td class="text-center">
+                                    {{-- <td class="text-center">
                                         <span class="badge bg-danger ms-2">
                                             {{ $purchaseData->status }}
                                         </span>
-                                    </td>
+                                    </td> --}}
 
                                     <td class="text-center" hidden>
                                         <span class="badge bg-danger me-1">

@@ -24,10 +24,9 @@ class VariableAssetUpdateRequest extends FormRequest
         return [
             'material_code' => 'required|string|max:255',
             'name' => 'required|string|max:255',
-            'variable_category_id' => 'required|string|max:255',
+            'variable_category_id'   => 'required|exists:variable_categories,id',
             'unit' => 'required|string|max:255',
             'reorder_level' => 'required',
-            'total_qty' => 'required|numeric|min:0',
             
         ];
     }

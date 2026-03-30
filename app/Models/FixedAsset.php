@@ -12,12 +12,12 @@ class FixedAsset extends Model
         'category_id',
         'warehouse_id',
         'unit',
-        'total_qty',
+        'quantity',
         'status',
         'remarks',
     ];
 
-    public function category()
+    public function fixedCategory()
     {
         return $this->belongsTo(FixedAssetCategory::class, 'category_id');
     }
@@ -25,4 +25,5 @@ class FixedAsset extends Model
     {
         return $this->belongsTo(Warehouse::class, 'warehouse_id');
     }
+    
 }

@@ -40,6 +40,16 @@ class Purchase extends Model
         return $this->belongsTo(Asset::class, 'asset_id');
     }
 
+    public function fixedAsset()
+    {
+        return $this->belongsTo(FixedAsset::class, 'fixed_asset_id', 'id');
+    }
+
+    public function variableAsset()
+    {
+        return $this->belongsTo(VariableAsset::class, 'variable_asset_id', 'id');
+    }
+
     public function purchaseItems()
     {
         return $this->hasMany(PurchaseItem::class, 'purchase_id');

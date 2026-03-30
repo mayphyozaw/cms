@@ -19,25 +19,17 @@ use Illuminate\Http\Request;
 
 class EngineerRequestController extends Controller
 {
-    // protected $engineerRequestService;
-
-    // public function __construct(EngineerRequestService $engineerRequestService)
-    // {
-    //     $this->engineerRequestService = $engineerRequestService;
-    // }
 
     public function index()
+
     {
+        $assetRequestItems = EngineerAssetRequestItems::all();
         $engineerAssetRequests = EngineerAssetRequests::with([
             'engineerAssetRequestItems.asset.fixedAsset'
         ])->get();
 
         $user = User::with('engineerAssetRequests.project.client')->get();
-        // $assignProject = EngineerAssetRequests::with('user', 'project.client','asset')->get();
-        // $projects = Project::with('client')->get();
-        // $assets = Asset::all();
-        // $fixedAssets = FixedAsset::all();
-        return view('admin.backend.engineer-requests.index', compact('user', 'engineerAssetRequests'));
+        return view('admin.backend.engineer-requests.index', compact('user', 'engineerAssetRequests', 'assetRequestItems'));
     }
 
     public function create(Request $request)
@@ -49,6 +41,7 @@ class EngineerRequestController extends Controller
         $workscopes = WorkScope::all();
         return view('admin.backend.engineer-requests.create', compact('assignProject', 'projects', 'fixedAssets', 'workscopes'));
     }
+
 
 
     public function store(Request $request)
@@ -80,6 +73,86 @@ class EngineerRequestController extends Controller
             }
         }
 
-        return redirect()->back()->with('success', 'Request Created Successfully');
+
+        return redirect()->route('engineer-requests.index')
+            ->with([
+                'message' => 'Successfully created',
+                'alert-type' => 'success'
+            ]);
+    }
+
+    public function approvalStore(Request $request)
+    {
+        $data = EngineerAssetRequests::find($request->asset_request_id);
+
+        if (!$data) {
+            return response()->json(['message' => 'Record not found'], 404);
+        }
+
+        $data->status = $request->status_value;
+        $data->remark = $request->remark;
+        $data->save();
+
+        return response()->json([
+            'message' => 'Status updated successfully',
+            'status' => $data->status,
+            'id' => $data->id
+        ]);
+    }
+
+
+    public function passQty(Request $request)
+    {
+        $engineerAssetRequestItems = EngineerAssetRequestItems::all();
+        $passQty = EngineerAssetRequests::with([
+            'engineerAssetRequestItems.asset.fixedAsset'
+        ])->get();
+        $html = view('admin.backend.engineer-requests.index', [
+            'passQty' => $passQty,
+            'engineerAssetRequestItems' => $engineerAssetRequestItems,
+        ])->render();
+
+        return response()->json([
+            'status' => true,
+            'html' => $html
+        ]);
+    }
+
+
+    public function fixedAssestsRequestIndex()
+    {
+        $engineerAssetRequests = EngineerAssetRequests::with([
+            'engineerAssetRequestItems.asset.fixedAsset'
+        ])->get();
+
+        $user = User::with('engineerAssetRequests.project.client')->get();
+        // $assignProject = EngineerAssetRequests::with('user', 'project.client','asset')->get();
+        // $projects = Project::with('client')->get();
+        // $assets = Asset::all();
+        // $fixedAssets = FixedAsset::all();
+        return view('admin.backend.engineer-requests.fixed-asset-request.index', compact('user', 'engineerAssetRequests'));
+    }
+
+    public function fixedAssestsRequestCreate()
+    {
+        $assignProject = EngineerAssign::with('user', 'project.client');
+        $projects = Project::with('client')->get();
+        $fixedAssets = FixedAsset::all();
+        $workscopes = WorkScope::all();
+        return view('admin.backend.engineer-requests.fixed-asset-request.create', compact('assignProject', 'projects', 'fixedAssets', 'workscopes'));
+    }
+
+    public function variableAssestsRequestIndex()
+    {
+        $engineerAssetRequests = EngineerAssetRequests::with([
+            'engineerAssetRequestItems.asset.variableAsset'
+        ])->get();
+        $user = User::with('engineerAssetRequests.project.client')->get();
+        return view('admin.backend.engineer-requests.variable-asset-request.index', compact('engineerAssetRequests', 'user'));
+    }
+
+    public function variableAssestsRequestCreate()
+    {
+        return view('admin.backend.engineer-requests.variable-asset-request.create');
     }
 }

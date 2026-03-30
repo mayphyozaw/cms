@@ -91,16 +91,16 @@
                 </div>
                 <form action="{{ route('material.confirm_update') }}" method="POST" id="edit-form">
                     @csrf
-                    <input type="hidden" name="category_id" id="fixedasset_category_id">
+                    <input type="hidden" name="category_id" id="edit_category_id">
                     <div class="modal-body">
                         <div class="mb-3">
                             <label class="form-label">Category Name</label>
-                            <input type="text" class="form-control" id="category_name" name="category_name">
+                            <input type="text" class="form-control" id="edit_category_name" name="category_name">
                         </div>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success">Save</button>
+                        <button type="submit" class="btn btn-success">Update</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </form>
@@ -149,31 +149,17 @@
                 ],
             });
 
-            $(document).on('click', '.editCategoryModal', function() {
-                let id = $(this).data('id');
-                let name = $(this).data('name');
-
-                let modal = $('#editModal');
-                modal.find('input[name="category_id"]').val(id);
-                modal.find('input[name="category_name"]').val(name);
-            });
-
-
             $(document).on('click', '.addCategoryModal', function() {
                 let modal = $('#addModal');
                 modal.find('input[name="category_id"]').val('');
                 modal.find('input[name="category_name"]').val('');
             });
 
-            
-            // $(document).ready(function() {
-            //     $(document).on('click', '.editCategoryModal', function() {
-            //         let id = $(this).data('id');
-            //         let name = $(this).data('name');
-            //         $('#fixedasset_category_id').val(id);
-            //         $('#category_name').val(name);
-            //     });
-            // });
+            $(document).on('click', '.editCategoryModal', function() {
+                $('#edit_category_id').val($(this).data('id'));
+                $('#edit_category_name').val($(this).data('name'));
+            });
+
 
             $(document).on('click', '.deleteBtn', function(event) {
                 event.preventDefault();

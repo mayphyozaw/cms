@@ -49,10 +49,10 @@ class FixedAssetRepository implements FixedAssetRepoInterface
                 'warehouse_id',
                 'category_id',
                 'unit',
-                'total_qty',
+                'quantity',
                 'status',
                 'remarks',
             ])
-            ->with(['category', 'warehouse']);
+            ->with(['fixedCategory', 'warehouse']);
     }
 }

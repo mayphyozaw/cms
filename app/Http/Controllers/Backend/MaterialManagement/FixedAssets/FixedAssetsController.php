@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\MaterialManagement\FixedAssets;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FixedAssets\FixedAssetStoreRequest;
 use App\Http\Requests\FixedAssets\FixedAssetUpdateRequest;
+use App\Models\FixedAsset;
 use App\Models\FixedAssetCategory;
 use App\Models\Warehouse;
 use App\Services\CategoryService;
@@ -25,7 +26,8 @@ class FixedAssetsController extends Controller
 
     public function index()
     {
-        return view('admin.backend.materialmanage.fixedassets.index');
+        $fixedAssets= FixedAsset::all();
+        return view('admin.backend.materialmanage.fixedassets.index',compact('fixedAssets'));
     }
 
     public function create()
@@ -43,15 +45,14 @@ class FixedAssetsController extends Controller
 
     public function store(FixedAssetStoreRequest $request)
     {
-
-        try {
+        
             $fixedAssetData = [
                 'name'  => $request->name,
                 'assets_code'  => $request->assets_code,
                 'category_id' => $request->category_id,
                 'warehouse_id' => $request->warehouse_id,
                 'unit' => $request->unit,
-                'total_qty' => $request->total_qty,
+                'quantity' => $request->quantity,
                 'status' => $request->status ?? null,
                 'remarks' => $request->remarks ?? null,
 
@@ -63,9 +64,7 @@ class FixedAssetsController extends Controller
                     'message' => 'Successfully created',
                     'alert-type' => 'success'
                 ]);
-        } catch (\Exception $e) {
-            return back()->with('error', $e->getMessage())->withInput();
-        }
+        
     }
 
     public function edit($id)
@@ -86,7 +85,7 @@ class FixedAssetsController extends Controller
             'warehouse_id' => $request->warehouse_id,
             'category_id' => $request->category_id,
             'unit'        => $request->unit,
-            'total_qty'   => $request->total_qty,
+            'quantity'   => $request->quantity,
             'status'      => $request->status,
             'remarks'     => $request->remarks,
         ];
@@ -109,8 +108,5 @@ class FixedAssetsController extends Controller
         }
     }
 
-    public function purchaseFixedAssets()
-    {
-        return view('admin.backend.materialmanage.fixedassets.index');
-    }
+    
 }

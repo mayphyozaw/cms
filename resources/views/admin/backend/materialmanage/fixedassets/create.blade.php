@@ -103,7 +103,7 @@
                                     <label class="form-label fs-14">Total Quantity</label>
                                     <div class="input-group">
                                         <div class="input-group-text"><i class="ti ti-brand-airtable"></i></div>
-                                        <input type="text" name="total_qty" class="form-control" placeholder="">
+                                        <input type="text" name="quantity" class="form-control" placeholder="">
                                     </div>
                                 </div>
                             </div>

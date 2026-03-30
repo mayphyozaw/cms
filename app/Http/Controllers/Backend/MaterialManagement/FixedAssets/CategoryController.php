@@ -46,18 +46,20 @@ class CategoryController extends Controller
 
         return view('admin.backend.materialmanage.fixedassets.category.index', compact('category'));
     }
-    public function confirm_update(CategoryUpdateRequest $request)
+    public function update(CategoryUpdateRequest $request)
     {
-        $category = FixedAssetCategory::findOrFail($request->category_id);
+        $this->categoryService->update(
+            $request->category_id,
+            $request->validated()
+        );
 
-        $category->update([
-            'category_name' => $request->category_name,
+        return response()->json([
+            'status' => true,
+            'message' => 'Updated successfully'
         ]);
-
-        return redirect()
-            ->route('material.category.index')
-            ->with('success', 'Category updated successfully!');
     }
+
+
     public function show()
     {
         $categories = FixedAssetCategory::all();

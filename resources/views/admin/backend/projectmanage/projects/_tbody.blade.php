@@ -28,7 +28,6 @@
                 @if ($hasFile)
                     <i class="ti ti-check text-success">
                         <span> Finished - </span>
-                        {{-- {{ \Carbon\Carbon::parse($project->project_file->uploaded_at)->format('Y-m-d H:i') }} --}}
                         {{ $project->project_file->uploaded_at }}
                     </i>
                 @else
@@ -39,17 +38,10 @@
                         role="progressbar"></div>
                 </div>
 
-                {{-- @if ($hasFile)
-                    <i class="ti ti-check text-success"> Finished 16-02-2026</i>
-                @else
-                    <i class="ti ti-x text-danger"></i>
-                @endif --}}
-
                 <small class="text-muted">
                     <a href="javascript:void(0)"
                         class="upload-file-modal {{ $hasFile ? 'text-success' : 'text-danger' }}"
                         onclick="showModal({{ $project->id }}, {{ $category->id }})">
-                        
                         <span class="d-flex justify-content-end">
                             Upload <span>&nbsp;&nbsp;</span>
                             <i class="ti ti-upload"></i>

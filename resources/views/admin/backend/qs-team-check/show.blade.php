@@ -19,9 +19,7 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ route('qs.check.store') }}" method="post" id="submit-form">
-                            @csrf
-                            <input type="hidden" name="request_id" value="{{ $requestItemsCheck->id }}">
+                            
                             <div class="mb-3">
                                 <h5>Request Code - #{{ $requestItemsCheck->request_code }}</h5>
 
@@ -69,7 +67,7 @@
                                         <th class="text-center">Available</th>
                                         <th class="text-center">Warehouse Stock</th>
                                         <th class="text-center">Pass(Qty)</th>
-                                        <th class="text-center">Pass(Qty) - Entry</th>
+                                        
                                         <th class="text-center">Warehouse Stock Balance</th>
                                     </tr>
                                 </thead>
@@ -98,40 +96,16 @@
                                             <td>{{ $item->passed_qty ?? 0 }}</td>
 
                                             <td>
-                                                <input type="number" name="items[{{ $item->id }}][passed_qty]"
-                                                    class="form-control text-end" value="0"
-                                                    max="{{ $item->asset->quantity }}">
-                                            </td>
-                                            <td>
-                                                {{$item->asset->quantity  - $item->passed_qty}}
+                                                <span class="badge bg-info">{{$item->asset->quantity  - $item->passed_qty}}</span>
+                                                
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
 
-                                
-                                <tfoot>
-                                    <tr class="text-center fw-bold">
-                                        <td colspan="2">Total</td>
-
-                                        <td>{{ $totalRequestQty }}</td>
-
-                                        <td></td> 
-
-                                        <td></td> 
-
-                                        <td>{{ $totalPassedQty }}</td>
-
-                                        <td>
-                                            <button type="submit" class="btn btn-success">
-                                                Save
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tfoot>
                             </table>
-
-                        </form>
+                           
+                       
                     </div>
                 </div>
 

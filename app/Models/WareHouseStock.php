@@ -8,8 +8,6 @@ class WareHouseStock extends Model
 {
     protected $fillable = [
         'warehouse_id',
-        'asset_type',
-        'asset_id',
         'quantity',
     ];
 
@@ -27,4 +25,10 @@ class WareHouseStock extends Model
     {
         return $this->belongsTo(VariableAsset::class, 'variable_asset_id');
     }
+
+    public function engineerRequestItems()
+    {
+        return $this->hasMany(EngineerAssetRequestItems::class, 'asset_id');
+    }
+
 }

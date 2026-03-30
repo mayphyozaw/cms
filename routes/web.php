@@ -85,6 +85,8 @@ Route::middleware('auth', 'notBlocked')->group(function () {
     Route::get('warehouse-datatable', [WarehouseController::class, 'warehouseDataTable'])->name('warehouse-datatable');
 
     Route::resource('warehouse-stocks', WarehouseStockController::class)->only(['index']);
+    Route::get('warehouse-stock-datatable', [WarehouseStockController::class, 'warehouseStockDataTable'])->name('warehouse-stock-datatable');
+
     Route::resource('stock-movements', StockMovementController::class);
 
 
@@ -104,12 +106,23 @@ Route::middleware('auth', 'notBlocked')->group(function () {
     Route::delete('/assign-destroy/{id}', [EnigneerAssignController::class, 'destroy'])->name('assign-destroy');
 
 
-    Route::resource('engineer-requests', EngineerRequestController::class);
+    Route::resource('engineer-requests', EngineerRequestController::class)->only('index', 'create', 'store');
+    Route::post('/engineer-requests/approval', [EngineerRequestController::class, 'approvalStore'])->name('engineer-requests.approval.store');
+
+    Route::get('/engineer-requests/pass_qty/{id}', [EngineerRequestController::class, 'passQty'])->name('pass_qty');
+
+
+    Route::get('engineer-requests/fixed-assset-request/all', [EngineerRequestController::class, 'fixedAssestsRequestIndex'])->name('fixed-asset-request.index');
+    Route::get('engineer-requests/fixed-assset-request/create', [EngineerRequestController::class, 'fixedAssestsRequestCreate'])->name('fixed-asset-request.create');
+
+    Route::get('engineer-requests/variable-assset-request', [EngineerRequestController::class, 'variableAssestsRequestIndex'])->name('variable-asset-request.index');
+    Route::get('engineer-variable-asssets-request/create', [EngineerRequestController::class, 'variableAssestsRequestCreate'])->name('engineer-variable-asset-request.create');
 
     Route::post('engineer-requests/approval', [AssetRequestApprovalController::class, 'store'])->name('engineer-requests.approval.store');
 
     Route::get('qs-check-create/{id}', [QSTeamCheckController::class, 'create'])->name('qs.check.create');
-    Route::get('qs-check-store', [QSTeamCheckController::class, 'store'])->name('qs.check.store');
+    Route::post('qs-check-store', [QSTeamCheckController::class, 'store'])->name('qs.check.store');
+    Route::get('qs-check-detail/{asset_id}', [QSTeamCheckController::class, 'show'])->name('qs.check.detail');
 
 
 
@@ -124,6 +137,7 @@ Route::middleware('auth', 'notBlocked')->group(function () {
         Route::resource('assets', AssetController::class);
         Route::get('assets-datatable', [AssetController::class, 'assetsDataTable'])->name('assets-datatable');
         Route::get('get-assets-by-type', [AssetController::class, 'getAssetsByType'])->name('get-assets-by-type');
+        Route::get('get-categories-by-type', [AssetController::class, 'getCategoriesByType'])->name('get-categories-by-type');
         Route::get('get-asset-detail', [AssetController::class, 'getAssetDetail'])->name('get-asset-detail');
         // Route::post('assets/purchase', [AssetController::class], 'purchaseAssets')->name('assets.purchase');
 
@@ -137,9 +151,8 @@ Route::middleware('auth', 'notBlocked')->group(function () {
 
 
         Route::resource('category', CategoryController::class)->names('category');
-        Route::post('confirm/update', [CategoryController::class, 'confirm_update'])->name('confirm_update');
+        Route::post('confirm/update', [CategoryController::class, 'update'])->name('category.update');
         Route::get('category-datatable', [CategoryController::class, 'categoryDataTable'])->name('category-datatable');
-
 
         Route::resource('variableassets', VariableAssetsController::class);
         Route::get('variableassets-datatable', [VariableAssetsController::class, 'variableassetsDataTable'])->name('variableassets-datatable');
@@ -178,16 +191,12 @@ Route::middleware('auth', 'notBlocked')->group(function () {
     });
 
     Route::resource('purchase', PurchaseController::class);
-    // Route::get('/purchase_due', [PurchaseController::class, 'duePurchase'])->name('due.purchase_due');
 
     Route::get('purchase/payment/due', [PurchaseController::class, 'purchaseDue'])->name('purchase.payment.purchase_due');
 
     Route::get('payment/purchase_payment', [PaymentController::class, 'payPurchase'])->name('payment.purchase_payment');
-    
+
     Route::get('payment/purchase_payment/{id}', [PaymentController::class, 'pay'])->name('payment.pay');
     Route::post('payment/purchase_payment/{id}', [PaymentController::class, 'payStore'])->name('payment.pay.store');
     Route::get('purchase/payment/{id}/history', [PaymentController::class, 'payDetail'])->name('payment.pay.detail');
-
-
-    
 });

@@ -19,24 +19,19 @@
         <div class="d-flex overflow-x-auto align-items-start gap-3 pt-0 mt-0">
 
             <div class="kanban-list-items p-2 rounded border">
-                <div class="card mb-0 border-0 shadow bg-info">
+                <div class="card mb-0 border-0 shadow" style="background-color: #123b61">
                     <div class="card-body p-2">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
                                 <span class="d-flex align-items-center mb-1"
                                     style="color: white;font-size:14px; !important;"><i
-                                        class="ti ti-circle-filled fs-10 text-info me-1"></i>
+                                        class="ti ti-circle-filled fs-10 text-warning me-1"></i>
                                     Fixed Assets
                                 </span>
                             </div>
                             <div class="d-flex align-items-center">
                                 <div class="dropdown table-action ms-2">
 
-
-                                    <a href="#" class="action-icon btn btn-xs shadow btn-icon btn-outline-light"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="ti ti-dots-vertical"></i>
-                                    </a>
                                     <a href="#"
                                         class="topbar-link btn topbar-link dropdown-toggle drop-arrow-none btn btn-xs shadow btn-icon btn-outline-light"
                                         data-bs-toggle="dropdown" data-bs-offset="0,24" type="button" aria-haspopup="false"
@@ -44,7 +39,7 @@
                                         <i class="ti ti-bell-check fs-16 animate-ring"></i>
                                         <span
                                             class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">
-                                            {{$fixedAsset->count()}}
+                                            {{$fixedCount}}
                                         </span>
                                     </a>
                                     
@@ -59,24 +54,18 @@
             </div>
            
              <div class="kanban-list-items p-2 rounded border">
-                <div class="card mb-0 border-0 shadow bg-danger">
+                <div class="card mb-0 border-0 shadow" style="background-color: #185285">
                     <div class="card-body p-2">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
                                 <span class="d-flex align-items-center mb-1"
                                     style="color: white;font-size:14px; !important;"><i
-                                        class="ti ti-circle-filled fs-10 text-info me-1"></i>
+                                        class="ti ti-circle-filled fs-10 text-warning me-1"></i>
                                     Variable Assets
                                 </span>
                             </div>
                             <div class="d-flex align-items-center">
-                                <div class="dropdown table-action ms-2">
-
-
-                                    <a href="#" class="action-icon btn btn-xs shadow btn-icon btn-outline-light"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="ti ti-dots-vertical"></i>
-                                    </a>
+                                <div class="dropdown table-action ms-2" >
                                     <a href="#"
                                         class="topbar-link btn topbar-link dropdown-toggle drop-arrow-none btn btn-xs shadow btn-icon btn-outline-light"
                                         data-bs-toggle="dropdown" data-bs-offset="0,24" type="button" aria-haspopup="false"
@@ -84,7 +73,7 @@
                                         <i class="ti ti-bell-check fs-16 animate-ring"></i>
                                         <span
                                             class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">
-                                            {{$variableAsset->count()}}
+                                            {{$variableCount}}
                                         </span>
                                     </a>
                                     
@@ -133,6 +122,7 @@
                                 <th class="text-center" style="background-color: #9dd2e7">Category Name</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Unit</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Total Quantity</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Stock Balance</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Status</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Action</th>
                             </tr>
@@ -200,6 +190,11 @@
                     {
                         data: 'quantity',
                         name: 'quantity',
+                        className: 'text-center',
+                    },
+                    {
+                        data: 'stock_balance',
+                        name: 'stock_balance',
                         className: 'text-center',
                     },
                     {

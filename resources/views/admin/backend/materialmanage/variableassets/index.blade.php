@@ -172,7 +172,7 @@
                                 <th class="text-center" style="background-color: #9dd2e7">Variable Category Name</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Unit</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Total Quantity</th>
-                                <th class="text-center" style="background-color: #9dd2e7">Reorder Level</th>
+                                {{-- <th class="text-center" style="background-color: #9dd2e7">Reorder Level</th> --}}
                                 <th class="text-center" style="background-color: #9dd2e7">Action</th>
                             </tr>
                         </thead>
@@ -195,7 +195,7 @@
                 </div>
                 <form action="{{ route('material.variable-category.store') }}" method="POST" id="submit-form">
                     @csrf
-                    <input type="hidden" name="category_id" id="variableasset_category_id">
+                    <input type="hidden" name="variable_category_id" id="variable_category_id">
                     <div class="modal-body">
                         <div class="mb-3">
                             <label class="form-label">Category Name</label>
@@ -215,7 +215,7 @@
 @endsection
 
 @push('scripts')
-    {!! JsValidator::formRequest('App\Http\Requests\VariableAssets\VariableCategoryStoreRequest', '#submit-form') !!}
+    {{-- {!! JsValidator::formRequest('App\Http\Requests\VariableAssets\VariableCategoryStoreRequest', '#submit-form') !!} --}}
     <script>
         $(document).ready(function() {
             var table = $('.variableassetsTable').DataTable({
@@ -260,11 +260,7 @@
                         name: 'total_qty',
                         className: 'text-center',
                     },
-                    {
-                        data: 'reorder_level',
-                        name: 'reorder_level',
-                        className: 'text-center',
-                    },
+                    
                     {
                         data: 'action',
                         name: 'action',
@@ -314,7 +310,7 @@
             $(document).on('click', '.addCategoryModal', function() {
                 let id = $(this).data('id');
                 let name = $(this).data('name');
-                $('#variableasset_category_id').val(id);
+                $('#variable_category_id').val(id);
                 $('#variable_category_name').val(name);
             });
         });

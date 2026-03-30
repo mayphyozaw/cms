@@ -47,4 +47,5 @@ class WarehouseRepository implements WarehouseRepoInterface
             'remark',
         ]);
     }
+    
 }

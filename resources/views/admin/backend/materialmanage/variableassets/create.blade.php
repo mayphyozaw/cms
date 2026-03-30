@@ -66,6 +66,8 @@
                                     </select>
                                 </div>
                             </div>
+
+                            
                             <div class="col-lg-6 col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label fs-14">Unit</label>
@@ -84,7 +86,7 @@
 
 
 
-                            <div class="col-lg-6 col-md-12" hidden>
+                            <div class="col-lg-6 col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label fs-14">Total Quantity</label>
                                     <div class="input-group">
@@ -126,5 +128,4 @@
 @endsection
 @push('scripts')
     {!! JsValidator::formRequest('App\Http\Requests\VariableAssets\VariableAssetStoreRequest', '#submit-form') !!}
-
 @endpush

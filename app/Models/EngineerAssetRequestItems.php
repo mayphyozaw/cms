@@ -13,6 +13,9 @@ class EngineerAssetRequestItems extends Model
         'quantity',
         'require_date',
         'remark',
+        'passed_qty',
+        'checked_by',
+        'checked_at'
     ];
 
     public function engineerAssetRequest()

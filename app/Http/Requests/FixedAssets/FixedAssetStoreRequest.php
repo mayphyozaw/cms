@@ -28,7 +28,7 @@ class FixedAssetStoreRequest extends FormRequest
             'warehouse_id'  => 'required|exists:warehouses,id',
             'unit' => 'required|string|max:255',
             'status' => 'required',
-            'total_qty' => 'required|numeric|min:0',
+            'quantity' => 'required|numeric|min:0',
         ];
     }
 }

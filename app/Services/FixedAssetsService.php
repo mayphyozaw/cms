@@ -47,17 +47,16 @@ class FixedAssetsService
                 return $fixedAssets->name;
             })
 
-            
             ->addColumn('category_name', function ($fixedAssets) {
-                return $fixedAssets->category->category_name ?? '';
+                return $fixedAssets->fixedCategory->category_name ?? '';
             })
 
             ->editColumn('unit', function ($fixedAssets) {
                 return $fixedAssets->unit ?? '';
             })
-            ->editColumn('total_qty', function ($fixedAssets) {
-                return $fixedAssets->total_qty ?? '';
-            })
+            // ->editColumn('quantity', function ($fixedAssets) {
+            //     return $fixedAssets->quantity ?? '';
+            // })
             ->editColumn('status', function ($fixedAssets) {
                 $color = match ($fixedAssets->status) {
                     'Available' => 'bg-success',

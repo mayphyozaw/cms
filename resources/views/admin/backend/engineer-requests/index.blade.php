@@ -40,7 +40,7 @@
                                             Edit
                                         </a> --}}
 
-                                        <a class="dropdown-item" href="">
+                                        <a class="dropdown-item" href="{{ route('fixed-asset-request.index') }}">
 
                                             Show
                                         </a>
@@ -74,7 +74,8 @@
                                         <i class="ti ti-dots-vertical"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="{{ route('projectmanage.projects.create') }}">
+                                        <a class="dropdown-item"
+                                            href="{{ route('engineer-variable-asset-request.create') }}">
                                             <i class="fa-solid fa-pencil text-blue">
                                             </i>
                                             Create
@@ -105,11 +106,18 @@
                         <h5 class="card-title mb-0">Assets Information</h5>
                     </div>
 
-                    <div class="col-auto">
+                    <div class="col-auto" hidden>
                         <x-create-button href="{{ route('engineer-requests.create') }}">
                             Create Fixed Assets
                         </x-create-button>
                     </div>
+                    <div class="col-auto" hidden>
+                        <x-create-button href="{{ route('engineer-requests.create') }}">
+                            Create Variable Assets
+                        </x-create-button>
+                    </div>
+
+
                 </div>
             </div>
             <div class="card-body">
@@ -140,100 +148,167 @@
 
                         <tbody>
                             @foreach ($engineerAssetRequests as $engineerAssetRequest)
+                                @php
+                                    $items = $engineerAssetRequest->engineerAssetRequestItems;
+
+                                    $total = $items->count();
+                                    $checked = $items->whereNotNull('checked_at')->count();
+
+                                    $firstChecked = $items->firstWhere('checked_at', '!=', null);
+                                @endphp
+
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $engineerAssetRequest->user->name }}</td>
-                                    <td>{{ $engineerAssetRequest->request_code ?? '-' }}</td>
+                                    <td>
+                                        {{ $loop->iteration }}
+                                    </td>
+
+                                    <td>
+                                        {{ $engineerAssetRequest->user->name }}
+                                    </td>
+
+                                    <td>
+                                        {{ $engineerAssetRequest->request_code ?? '-' }}
+                                    </td>
+
                                     <td>
                                         {{ $engineerAssetRequest->request_date?->format('Y-m-d h:i A') ?? '-' }}
-                                        {{-- {{ \Carbon\Carbon::parse($engineerAssetRequest->request_date)->format('Y-m-d h:i A') }} --}}
-                                        {{-- {{ $engineerAssetRequest->request_date?->format('d M Y h:i A') }} --}}
                                     </td>
+
                                     <td>
-                                        <table class="table table-bordered table-sm mb-0">
+                                        <table class="table table-sm mb-0">
                                             <thead>
                                                 <tr>
-                                                    <th style="background-color:#9dd2e7;width:80%;">Items</th>
-                                                    <th style="background-color:#9dd2e7;width:20%;">Qty</th>
+                                                    <th>Item</th>
+                                                    <th>Qty</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($engineerAssetRequest->engineerAssetRequestItems as $requestItem)
+                                                @foreach ($items as $item)
                                                     <tr>
-                                                        <td style="width:80%">
-                                                            {{ $requestItem->asset->fixedAsset->name ?? '-' }}
-                                                        </td>
-                                                        <td style="width:20%">
-                                                            {{ $requestItem->quantity ?? 0 }}
-                                                        </td>
+                                                        <td>{{ $item->asset->fixedAsset->name ?? '-' }}</td>
+                                                        <td>{{ $item->quantity }}</td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>
                                         </table>
                                     </td>
 
-                                    <td>
-                                        <div class="mt-2">
+
+
+                                    <td id="progress_{{ $engineerAssetRequest->id }}" hidden>
+                                        @php
+                                            $status = $engineerAssetRequest->status;
+                                        @endphp
+
+                                        @if ($status === 'approved')
+                                            <div class="text-center">
+                                                <span class="badge bg-success mb-1">Accepted</span>
+                                                <div class="progress" style="height:8px;">
+                                                    <div class="progress-bar bg-success" style="width:100%"></div>
+                                                </div>
+                                                <small
+                                                    class="text-muted d-block">{{ $engineerAssetRequest->remark }}</small>
+                                            </div>
+                                        @elseif($status === 'rejected')
+                                            <div class="text-center">
+                                                <span class="badge bg-danger mb-1">Rejected</span>
+                                                <div class="progress" style="height:8px;">
+                                                    <div class="progress-bar bg-danger" style="width:100%"></div>
+                                                </div>
+                                            </div>
+                                        @else
                                             <div class="form-check form-check-inline">
                                                 <input type="radio" name="status_{{ $engineerAssetRequest->id }}"
                                                     value="approved" class="form-check-input eng_status_change"
-                                                    id="status_approved_{{ $engineerAssetRequest->id }}"
                                                     data-id="{{ $engineerAssetRequest->id }}">
-
-                                                <label class="form-check-label"
-                                                    for="status_approved_{{ $engineerAssetRequest->id }}">
-                                                    Accept
-                                                </label>
+                                                <label>Accept</label>
                                             </div>
 
                                             <div class="form-check form-check-inline">
                                                 <input type="radio" name="status_{{ $engineerAssetRequest->id }}"
                                                     value="rejected" class="form-check-input eng_status_change"
-                                                    id="status_reject_{{ $engineerAssetRequest->id }}"
                                                     data-id="{{ $engineerAssetRequest->id }}">
-
-                                                <label class="form-check-label"
-                                                    for="status_reject_{{ $engineerAssetRequest->id }}">
-                                                    Reject
-                                                </label>
+                                                <label>Reject</label>
                                             </div>
-                                        </div>
 
-                                        <div class="mt-2">
-                                            <input name="remark" class="form-control" placeholder="Remark"
+                                            <input type="text" class="form-control mt-1" placeholder="Remark"
                                                 id="remark_{{ $engineerAssetRequest->id }}">
-                                        </div>
+                                        @endif
                                     </td>
 
-
-                                    <td class="text-center" style="min-width:120px">
-                                        {{-- @if ($hasFile)
-                                            <i class="ti ti-check text-success">
-                                                <span> Finished - </span>
-                                                {{ \Carbon\Carbon::parse($project->project_file->uploaded_at)->format('Y-m-d H:i') }}
-                                                {{ $project->project_file->uploaded_at }}
-                                            </i>
+                                    <td id="progress_{{ $engineerAssetRequest->id }}">
+                                        @if ($engineerAssetRequest->status)
+                                            <div class="text-center">
+                                                @if ($engineerAssetRequest->status === 'approved')
+                                                    <span class="badge bg-success mb-1"
+                                                        style="padding: 6px 12px; font-size: 13px;">Accepted</span>
+                                                    <div class="progress mt-1" style="height:8px;">
+                                                        <div class="progress-bar bg-success" style="width:100%"></div>
+                                                    </div>
+                                                @else
+                                                    <span class="badge bg-danger mb-1"
+                                                        style="padding: 6px 12px; font-size: 13px;">Rejected</span>
+                                                    <div class="progress mt-1" style="height:8px;">
+                                                        <div class="progress-bar bg-danger" style="width:100%"></div>
+                                                    </div>
+                                                @endif
+                                                @if ($engineerAssetRequest->remark)
+                                                    <small
+                                                        class="text-muted d-block mt-1">{{ $engineerAssetRequest->remark }}</small>
+                                                @endif
+                                            </div>
                                         @else
-                                            <i class="ti ti-x text-danger"></i>
-                                        @endif --}}
+                                            <div class="form-check form-check-inline">
+                                                <input type="radio" name="status_{{ $engineerAssetRequest->id }}"
+                                                    value="approved" class="form-check-input eng_status_change"
+                                                    data-id="{{ $engineerAssetRequest->id }}">
+                                                <label>Accept</label>
+                                            </div>
 
-                                        <small class="text-muted">
-                                            <a href="{{route('qs.check.create', $engineerAssetRequest->id)}}" class="">
-                                                <span class="d-flex justify-content-start">
-                                                    No <span>&nbsp;&nbsp;</span>
-                                                </span>
-                                            </a>
-                                        </small>
+                                            <div class="form-check form-check-inline">
+                                                <input type="radio" name="status_{{ $engineerAssetRequest->id }}"
+                                                    value="rejected" class="form-check-input eng_status_change"
+                                                    data-id="{{ $engineerAssetRequest->id }}">
+                                                <label>Reject</label>
+                                            </div>
 
-                                        <div class="progress" style="height:8px;">
-                                            <div class="progress-bar" style="width: 100%;" role="progressbar"></div>
-                                        </div>
-
+                                            <input type="text" class="form-control mt-1" placeholder="Remark"
+                                                id="remark_{{ $engineerAssetRequest->id }}">
+                                        @endif
                                     </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+
+
+                                    <td class="text-center qs-bar-container-{{ $engineerAssetRequest->id }}"
+                                        style="min-width:150px">
+                                        @php
+
+                                            $isFinished =
+                                                ($checked === $total && $total > 0) ||
+                                                $engineerAssetRequest->status === 'approved';
+                                        @endphp
+
+                                        @if ($isFinished)
+                                            <div class="text-success">
+                                                <i class="ti ti-check text-success"></i>
+                                                <a
+                                                    href="{{ route('qs.check.detail', ['asset_id' => $engineerAssetRequest->id]) }}">Finished</a>
+                                            </div>
+                                            <div class="progress mt-1" style="height:8px;">
+                                                <div class="progress-bar bg-success" style="width:100%"></div>
+                                            </div>
+                                        @else
+                                            <div class="progress" style="height:8px;">
+                                                <div class="progress-bar bg-danger" style="width:100%"></div>
+                                            </div>
+                                            <small>
+                                                <a href="{{ route('qs.check.create', $engineerAssetRequest->id) }}">
+                                                    No ({{ $checked }}/{{ $total }})
+                                                </a>
+                                            </small>
+                                        @endif
+                                    </td>
+
+
                                 </tr>
                             @endforeach
                         </tbody>
@@ -246,27 +321,42 @@
 @push('scripts')
     <script>
         $(document).on('change', '.eng_status_change', function() {
-
-            let request_id = $(this).data('id');
-            let status_value = $(this).val();
+            let id = $(this).data('id');
+            let status = $(this).val();
+            let remark = $('#remark_' + id).val();
 
             $.ajax({
                 url: "{{ route('engineer-requests.approval.store') }}",
                 method: "POST",
                 data: {
-                    asset_request_id: request_id,
-                    status_value: status_value,
+                    asset_request_id: id,
+                    status_value: status,
+                    remark: remark,
                     _token: "{{ csrf_token() }}"
                 },
-                success: function(response) {
-                    toastr.success(response.message);
+                success: function(res) {
+                    toastr.success(res.message);
+
+                    // Create the Badge HTML
+                    let color = (status === 'approved') ? 'success' : 'danger';
+                    let text = (status === 'approved') ? 'Accepted' : 'Rejected';
+
+                    let badgeHtml = `
+                <div class="text-center">
+                    <span class="badge bg-${color} mb-1" style="padding: 6px 12px; font-size: 13px;">${text}</span>
+                    <div class="progress mt-1" style="height:8px;">
+                        <div class="progress-bar bg-${color}" style="width:100%"></div>
+                    </div>
+                </div>`;
+
+                    // Replace ONLY the Accept/Reject cell
+                    // We do NOT touch the .qs-bar-container here anymore
+                    $('#progress_' + id).html(badgeHtml);
                 },
-                error: function(xhr) {
-                    console.log(xhr.responseText); // better debug
-                    toastr.error("Something went wrong");
+                error: function() {
+                    toastr.error("Error updating status");
                 }
             });
-
         });
     </script>
 @endpush

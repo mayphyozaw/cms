@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\StockManagement;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StockManagement\WarehouseStoreRequest;
 use App\Http\Requests\StockManagement\WarehouseUpdateRequest;
+use App\Models\Asset;
 use App\Models\Warehouse;
 use App\Services\ResponseService;
 use App\Services\WarehouseService;

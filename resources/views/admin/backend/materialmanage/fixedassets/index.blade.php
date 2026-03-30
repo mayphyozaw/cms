@@ -5,7 +5,7 @@
         <div class="d-flex align-items-center justify-content-between gap-2 mb-2 mt-0 flex-wrap">
 
             <div>
-                <h4 class="mb-1">Fixed Assets<span class="badge badge-soft-primary ms-2">123</span></h4>
+                <h4 class="mb-1">Fixed Assets<span class="badge badge-soft-primary ms-2">{{$fixedAssets->count()}}</span></h4>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="#">Assets</a></li>
@@ -177,7 +177,7 @@
                                 <th class="text-center" style="background-color: #9dd2e7">Asset Name</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Category Name</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Unit</th>
-                                <th class="text-center" style="background-color: #9dd2e7">Total Quantity</th>
+                                {{-- <th class="text-center" style="background-color: #9dd2e7">Quantity</th> --}}
                                 <th class="text-center" style="background-color: #9dd2e7">Status</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Action</th>
                             </tr>
@@ -261,11 +261,11 @@
                         name: 'unit',
                         className: 'text-center',
                     },
-                    {
-                        data: 'total_qty',
-                        name: 'total_qty',
-                        className: 'text-center',
-                    },
+                    // {
+                    //     data: 'quantity',
+                    //     name: 'quantity',
+                    //     className: 'text-center',
+                    // },
                     {
                         data: 'status',
                         name: 'status',

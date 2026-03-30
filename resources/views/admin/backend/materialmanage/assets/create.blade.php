@@ -65,9 +65,10 @@
 
                                         if (isset($asset)) {
                                             if ($asset->asset_type == 'fixedAsset') {
-                                                $selectedCategory = optional($asset->fixedAsset)->category_id;
+                                                $selectedCategory = optional($asset->fixedAsset)->fixed_category_id;
                                             } else {
-                                                $selectedCategory = optional($asset->variableAsset)->category_id;
+                                                $selectedCategory = optional($asset->variableCategory)
+                                                    ->variable_category_id;
                                             }
                                         }
                                     @endphp
@@ -131,7 +132,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Remark:</label>
                                     <textarea name="remarks" class="form-control"></textarea>
-                            </div>
+                                </div>
                             </div>
 
                             <br>
@@ -147,11 +148,12 @@
 @endsection
 @push('scripts')
     {{-- {!! JsValidator::formRequest('App\Http\Requests\Assets\AssetStoreRequest', '#submit-form') !!} --}}
-
     <script>
         $('#asset_type').on('change', function() {
             let type = $(this).val();
+
             $('#asset_id').html('<option>Loading...</option>');
+            $('#category_id').html('<option value="">Select Category</option>');
 
             if (type !== '') {
 
@@ -165,7 +167,7 @@
 
                         let options = '<option value="">Select Asset</option>';
 
-                        data.forEach(function (asset) {
+                        data.forEach(function(asset) {
                             options += `<option value="${asset.id}">${asset.name}</option>`;
 
                         });
@@ -173,6 +175,8 @@
                         $('#asset_id').html(options);
 
                     }
+
+
                 });
 
             } else {
@@ -180,7 +184,8 @@
 
             }
         });
-        
+
+
 
         $('#asset_id').on('change', function() {
 
@@ -198,14 +203,35 @@
                     },
                     success: function(response) {
 
-                        // Auto select category
-                        $('#category_id').val(response.category_id).trigger('change');
+                        // Load categories first, THEN select
+                        $.ajax({
+                            url: "{{ route('material.get-categories-by-type') }}",
+                            type: "GET",
+                            data: {
+                                type: type
+                            },
+                            success: function(data) {
+
+                                let options = '<option value="">Select Category</option>';
+
+                                data.forEach(item => {
+                                    let selected = item.id == response.category_id ?
+                                        'selected' : '';
+                                    options +=
+                                        `<option value="${item.id}">${item.name}</option>`;
+
+                                });
+
+                                $('#category_id').html(options);
+                            }
+
+                        });
 
                     }
                 });
 
             } else {
-                $('#category_id').val('');
+                $('#category_id').html('<option value="">Select Category</option>');
             }
         });
     </script>

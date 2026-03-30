@@ -11,13 +11,17 @@ class VariableAsset extends Model
     'material_code',
     'variable_category_id',
     'unit',
-    'total_qty',
+    'quantity',
     'reorder_level',
     'remarks',
 ];
 
-    public function category()
+    public function variableCategory()
     {
         return $this->belongsTo(VariableCategory::class, 'variable_category_id');
+    }
+    public function fixedAsset()
+    {
+        return $this->belongsTo(FixedAsset::class, 'fixed_asset_id');
     }
 }

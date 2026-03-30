@@ -9,6 +9,7 @@ use App\Models\Purchase;
 use App\Models\PurchaseItem;
 use App\Models\PurchasePayments;
 use App\Models\Supplier;
+use App\Models\VariableAsset;
 use App\Models\Warehouse;
 use Exception;
 use Illuminate\Http\Request;
@@ -18,8 +19,10 @@ class PurchaseController extends Controller
     public function index()
     {
         $purchaseAllData = Purchase::with([
-            'purchaseItems.asset.fixedAsset'
+            'purchaseItems.fixedAsset',
+            'purchaseItems.variableAsset'
         ])->get();
+        
         $suppliers = Supplier::all();
         $assets = Asset::all();
         return view('admin.backend.purchase.index', compact('purchaseAllData', 'suppliers', 'assets'));
@@ -29,7 +32,6 @@ class PurchaseController extends Controller
     {
         $suppliers = Supplier::all();
         $warehouses = Warehouse::all();
-        // $assets = Asset::all();
         $fixedAssets = FixedAsset::all();
         $purchaseData = Purchase::with([
             'purchaseItems.asset.fixedAsset'
@@ -44,6 +46,7 @@ class PurchaseController extends Controller
             'warehouse_id' => 'required',
             'supplier_id' => 'required',
             'asset_id' => 'required|array',
+            'asset_type' => 'required|array',
             'quantity.*' => 'required|numeric|min:1',
             'net_unit_cost.*' => 'required|numeric|min:0',
             'purchase_discount' => 'nullable|numeric|min:0',
@@ -72,32 +75,77 @@ class PurchaseController extends Controller
 
         ]);
 
-        foreach ($request->asset_id as $index => $assetId) {
-            $asset = Asset::findOrFail($assetId);
+        foreach ($request->asset_id as $index => $id) {
+            // $asset = Asset::findOrFail($id);
+
+            $type = $request->asset_type[$index];
+
             $net_unit_cost = $request->net_unit_cost[$index];
             $quantity = $request->quantity[$index];
             $discount = $request->discount[$index] ?? 0;
 
             if ($net_unit_cost == 0) {
-                throw new \Exception("Net Unit Cost missing for product id " . $assetId);
+                throw new \Exception("Net Unit Cost missing for product id " . $id);
             }
 
             $subtotal = ($net_unit_cost * $quantity) - $discount;
 
             $total_amount += $subtotal;
 
+            
+
             PurchaseItem::create([
                 'purchase_id' => $purchase->id,
-                'asset_id' => $assetId,
+                'asset_id' => $id,
+                'asset_type' => $type,
                 'net_unit_cost' => $net_unit_cost,
                 'quantity' => $quantity,
                 'discount' => $discount,
                 'subtotal' => $subtotal,
             ]);
 
-            $asset->increment('quantity', $quantity);
+            if ($type === 'fixedAsset') {
+
+                $stock = Asset::where('fixed_asset_id', $id)
+                    ->where('warehouse_id', $request->warehouse_id)
+                    ->first();
+
+                if ($stock) {
+                    $stock->increment('quantity', $quantity);
+                    $stock->increment('stock_balance', $quantity);
+                } else {
+                    Asset::create([
+                        'warehouse_id' => $request->warehouse_id,
+                        'fixed_asset_id' => $id,
+                        'variable_asset_id' => null,
+                        'quantity' => $quantity,
+                        'stock_balance' => $quantity,
+                    ]);
+                }
+            } else {
+
+                $stock = Asset::where('variable_asset_id', $id)
+                    ->where('warehouse_id', $request->warehouse_id)
+                    ->first();
+
+                if ($stock) {
+                    $stock->increment('quantity', $quantity);
+                    $stock->increment('stock_balance', $quantity);
+                } else {
+                    Asset::create([
+                        'warehouse_id' => $request->warehouse_id,
+                        'fixed_asset_id' => null,
+                        'variable_asset_id' => $id,
+                        'asset_type' => 'variable',
+                        'quantity' => $quantity,
+                        'stock_balance' => $quantity,
+                        'status' => 'available',
+                    ]);
+                }
+            }
         }
 
+        // Calculate Total
         $total = $total_amount + ($request->shipping ?? 0) - ($request->purchase_discount ?? 0);
 
         $due_amount = $total_amount + ($request->shipping ?? 0) - ($request->purchase_discount ?? 0);
@@ -119,32 +167,17 @@ class PurchaseController extends Controller
 
         $dueAmount = $total - $paidAmount;
 
-        
-            PurchasePayments::create([
-                'purchase_id' => $purchase->id,
-                'user_id' => auth()->id(),
-                'paid_amount' => $paidAmount,
-                'payment_date' => $request->payment_date ?? now(),
-                'payment_method' => 'Cash',
-                'total_amount' => $total,
-                'due_amount' => $dueAmount,
-                'status' => $payment_status,
-            ]);
-       
-
-        // // Insert Payment
-        // PurchasePayments::create([
-        //     'purchase_id' => $purchase->id,
-        //     'user_id' => auth()->id(),
-        //     'paid_amount' => $paidAmount,
-        //     'payment_date' => $request->payment_date ?? now(),
-        //     'status' => $request->status,
-        //     'payment_method' => 'Cash',
-        //     'total_amount' => $total,
-        //     'due_amount' => $dueAmount,
-        //     'status' => $payment_status,
-        // ]);
-
+        //Payment Record
+        PurchasePayments::create([
+            'purchase_id' => $purchase->id,
+            'user_id' => auth()->id(),
+            'paid_amount' => $paidAmount,
+            'payment_date' => $request->payment_date ?? now(),
+            'payment_method' => 'Cash',
+            'total_amount' => $total,
+            'due_amount' => $dueAmount,
+            'status' => $payment_status,
+        ]);
 
         return redirect()->route('purchase.index')->with([
             'message' => 'Purchase Stored successfully!',
@@ -225,12 +258,4 @@ class PurchaseController extends Controller
 
         return view('admin.backend.purchase.payment.purchase_due', compact('purchaseAllData'));
     }
-
-    //     public function pay($id)
-    // {
-    //     $purchaseData = Purchase::with(['supplier', 'purchaseItems.asset.fixedAsset'])->findOrFail($id);
-
-    //     return view('admin.backend.purchase.pay', compact('purchaseData'));
-    // }
-
 }

@@ -47,7 +47,6 @@ class PaymentController extends Controller
 
         $purchase = Purchase::findOrFail($id);
 
-
         $paidAmount = $request->pay_now ?? 0;
 
 

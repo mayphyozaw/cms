@@ -44,7 +44,6 @@ class CategoryService
                 return view('admin.backend.materialmanage.fixedassets.category._action', compact('category'))->render();
             })
             ->rawColumns([
-                'category_name',
                 'action',
             ])
             ->make(true);

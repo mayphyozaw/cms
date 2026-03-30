@@ -35,12 +35,6 @@
                                             Create
                                         </a>
 
-                                        {{-- <a class="dropdown-item" href="{{ route('material.category.store') }}"
-                                            data-bs-toggle="modal" data-bs-target="#editModal"><i
-                                                class="fa-solid fa-pencil text-blue"></i>
-                                            Edit
-                                        </a> --}}
-
                                         <a class="dropdown-item" href="">
 
                                             Show
@@ -83,12 +77,6 @@
                                             </i>
                                             Create
                                         </a>
-
-                                        {{-- <a class="dropdown-item" href="{{ route('material.category.store') }}"
-                                            data-bs-toggle="modal" data-bs-target="#editModal"><i
-                                                class="fa-solid fa-pencil text-blue"></i>
-                                            Edit
-                                        </a> --}}
 
                                         <a class="dropdown-item" href="{{ route('material.category.index') }}">
                                             Show

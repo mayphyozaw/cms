@@ -48,15 +48,18 @@ class AssetRepository implements AssetRepoInterface
                 'asset_type',
                 'fixed_asset_id',
                 'variable_asset_id',
-                'category_id',
+                'fixed_category_id',
+                'variable_category_id',
                 'warehouse_id',
                 'unit',
                 'quantity',
                 'status',
+                'stock_balance',
                 'remarks',
             ])
             ->with([
-                'category',
+                'fixedCategory',
+                'variableCategory',
                 'warehouse',
                 'fixedAsset',
                 'variableAsset'

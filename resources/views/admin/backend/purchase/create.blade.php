@@ -82,28 +82,32 @@
                                         <table class="table table-striped table-bordered dataTable" style="width: 100%;">
                                             <thead>
                                                 <tr role="row">
-                                                    <th style="width: 25%;background-color: #9dd2e7;">Fixed Assets</th>
+                                                    <th style="width: 15%;background-color: #9dd2e7;">Asset Type</th>
+                                                    <th style="width: 25%;background-color: #9dd2e7;">Asset Name</th>
                                                     <th style="width: 15%;background-color: #9dd2e7;">Unit Cost</th>
                                                     <th style="width: 20%;background-color: #9dd2e7;">Qty</th>
                                                     <th style="width: 10%;background-color: #9dd2e7;">Discount</th>
-                                                    <th style="width: 20%;background-color: #9dd2e7;">Subtotal</th>
+                                                    <th style="width: 25%;background-color: #9dd2e7;">Subtotal</th>
                                                     <th style="width: 30%;background-color: #9dd2e7;">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="itemTable">
                                                 <tr>
                                                     <td>
-                                                        <select name="asset_id[]" class="form-control form-select">
+                                                        <select name="asset_type[]" class="form-control asset_type">
+                                                            <option value="">Select Type</option>
+                                                            <option value="fixedAsset">Fixed Asset</option>
+                                                            <option value="variableAsset">Variable Asset
+                                                            </option>
+                                                        </select>
+
+                                                    </td>
+                                                    <td>
+
+                                                        <select name="asset_id[]" class="form-control asset_id">
                                                             <option value="">Select Asset</option>
-                                                            @foreach ($fixedAssets as $fixedAsset)
-                                                                <option value="{{ $fixedAsset->id }}">
-                                                                    {{ $fixedAsset->name }}
-                                                                </option>
-                                                            @endforeach
                                                         </select>
                                                     </td>
-
-
                                                     <td>
                                                         <input type="number" name="net_unit_cost[]"
                                                             class="form-control net_unit_cost">
@@ -163,7 +167,7 @@
                                             <div class="card-body pt-7 pb-2">
                                                 <div class="table-responsive">
                                                     <table class="table border">
-                                                        <tbody >
+                                                        <tbody>
                                                             <tr>
                                                                 <td class="py-3">Discount</td>
                                                                 <td class="py-3" id="displayDiscount"> 0.00 MMK</td>
@@ -174,7 +178,8 @@
                                                             </tr>
                                                             <tr>
                                                                 <td class="py-3 text-primary">Grand Total</td>
-                                                                <td class="py-3 text-primary" id="grandTotal" name="total_amount"> 0.00 MMK
+                                                                <td class="py-3 text-primary" id="grandTotal"
+                                                                    name="total_amount"> 0.00 MMK
                                                                 </td>
                                                                 <input type="hidden" name="total_amount">
                                                             </tr>
@@ -270,7 +275,36 @@
 
     @push('scripts')
         <script>
+            $(document).on('change', '.asset_type', function() {
+                let type = $(this).val();
+                let row = $(this).closest('tr');
+                let assetDropdown = row.find('.asset_id');
 
+                assetDropdown.html('<option>Loading...</option>');
+
+                if (type !== '') {
+                    $.ajax({
+                        url: "{{ route('material.get-assets-by-type') }}",
+                        type: "GET",
+                        data: {
+                            type: type
+                        },
+
+                        success: function(data) {
+
+                            let options = '<option value="">Select Asset</option>';
+
+                            data.forEach(function(asset) {
+                                options += `<option value="${asset.id}">${asset.name}</option>`;
+                            });
+
+                            assetDropdown.html(options);
+                        }
+                    });
+                } else {
+                    assetDropdown.html('<option value="">Select Asset</option>');
+                }
+            });
             document.getElementById("addRowBtn").addEventListener("click", function() {
                 const itemTable = document.getElementById("itemTable");
                 // let tbody = document.getElementById("itemTable");
@@ -278,13 +312,16 @@
                 let row = `
                     <tr>
                         <td>
-                            <select name="asset_id[]" class="form-control form-select">
+                            <select name="asset_type[]" class="form-control asset_type">
+                                <option value="">Select Type</option>
+                                <option value="fixedAsset">Fixed Asset</option>
+                                <option value="variableAsset">Variable Asset</option>
+                            </select>
+                        </td>
+
+                        <td>
+                            <select name="asset_id[]" class="form-control asset_id">
                                 <option value="">Select Asset</option>
-                                @foreach ($fixedAssets as $fixedAsset)
-                                <option value="{{ $fixedAsset->id }}">
-                                    {{ $fixedAsset->name }}
-                                </option>
-                                @endforeach
                             </select>
                         </td>
 
@@ -466,6 +503,5 @@
                         val.toFixed(2) + " MMK";
                 });
             }
-            
         </script>
     @endpush

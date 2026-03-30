@@ -2,18 +2,18 @@
 
 namespace App\Repositories\Eloquent;
 
-use App\Models\Client;
-use App\Models\FixedAsset;
-use App\Models\VariableAsset;
-use App\Repositories\Contracts\VariableAssetRepoInterface;
+use App\Models\Warehouse;
+use App\Models\WareHouseStock;
+use App\Repositories\Contracts\WarehouseRepoInterface;
+use App\Repositories\Contracts\WarehouseStockRepoInterface;
 
-class VariableAssetRepository implements VariableAssetRepoInterface
+class WarehouseStockRepository implements WarehouseStockRepoInterface
 {
     protected $model;
 
-    public function __construct(VariableAsset $variableAsset)
+    public function __construct(WareHouseStock $wareHouseStock)
     {
-        $this->model = $variableAsset;
+        $this->model = $wareHouseStock;
     }
     public function findAll()
     {
@@ -42,17 +42,11 @@ class VariableAssetRepository implements VariableAssetRepoInterface
 
     public function query()
     {
-        return $this->model
-            ->select([
-                'id',
-                'material_code',
-                'name',
-                'variable_category_id',
-                'unit',
-                'quantity',
-                'reorder_level',
-            ])
-            ->with('variableCategory');
+        return $this->model->select([
+            'id',
+            'warehouse_id',
+            'asset_id',
+            'quantity',
+        ]);
     }
-
 }
