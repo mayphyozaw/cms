@@ -77,9 +77,9 @@
                                                 @foreach ($purchaseData->purchaseItems as $purchaseItem)
                                                     <tr>
                                                         <td>{{ $loop->iteration }}.</td>
-                                                        <td> 
-                                                            
-                                                            {{ $purchaseItem->asset->fixedAsset->name}}
+                                                        <td>
+
+                                                            {{ $purchaseItem->asset->fixedAsset->name }}
                                                         </td>
 
                                                         <td class="text-center">
@@ -129,14 +129,20 @@
 
                                     <td>
 
-                                        <a class="btn btn-warning btn-sm btn-icon" href="">
-                                            <i class="ti ti-eye"></i>
+                                        <a class="btn btn-sm btn-icon" href="{{ route('detail.purchase', $purchaseData->id) }}"
+                                            style="background-color: #964aa3; color:white" title="detail">
+                                            <i class="ti ti-eye" ></i>
                                         </a>
 
-                                        <a class="btn btn-sm btn-icon" href=""
-                                            style="background-color: #4aa1a3; color:white">
+                                        <a class="btn btn-sm btn-icon" href="{{ route('invoice.purchase', $purchaseData->id) }}"
+                                            style="background-color: #4aa1a3; color:white" title="PDF Invocie">
                                             <i class="ti ti-download"></i>
                                         </a>
+
+                                        {{-- <a class="btn btn-sm btn-icon" href="{{ route('detail.purchase', $purchaseData->id) }}"
+                                            style="background-color: #4aa1a3; color:white" title="detail">
+                                            <i class="ti ti-eye"></i>
+                                        </a> --}}
 
 
                                         {{-- <a class="btn btn-sm btn-primary"
@@ -148,6 +154,11 @@
                                             href="{{ route('purchase.edit', $purchaseData->id) }}">
                                             <i class="ti ti-edit"></i>
                                         </a>
+
+                                        {{-- <a href="{{ route('invoice.purchase', $purchaseData->id) }}"
+                                            class="btn btn-sm btn-icon" title="PDF Invocie" style="background-color: #4aa1a3; color:white">
+                                            <i class="fa-solid fa-download"></i>
+                                        </a> --}}
 
                                         <!-- DELETE FORM ONLY -->
                                         <form action="" method="POST" style="display:inline;">

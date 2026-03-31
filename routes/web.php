@@ -193,9 +193,10 @@ Route::middleware('auth', 'notBlocked')->group(function () {
     Route::resource('purchase', PurchaseController::class);
 
     Route::get('purchase/payment/due', [PurchaseController::class, 'purchaseDue'])->name('purchase.payment.purchase_due');
+    Route::get('/invoice/purchase/{id}', [PurchaseController::class, 'invoicePurchase'])->name('invoice.purchase');
+    Route::get('/detail/purchase/{id}', [PurchaseController::class, 'detailPurchase'])->name('detail.purchase');
 
     Route::get('payment/purchase_payment', [PaymentController::class, 'payPurchase'])->name('payment.purchase_payment');
-
     Route::get('payment/purchase_payment/{id}', [PaymentController::class, 'pay'])->name('payment.pay');
     Route::post('payment/purchase_payment/{id}', [PaymentController::class, 'payStore'])->name('payment.pay.store');
     Route::get('purchase/payment/{id}/history', [PaymentController::class, 'payDetail'])->name('payment.pay.detail');

@@ -38,96 +38,41 @@
                             <tr>
                                 <th class="text-center" style="background-color: #9dd2e7">#</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Name</th>
-                                <th class="text-center" style="background-color: #9dd2e7">Location</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Asset Type</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Asset Name</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Total Quantity</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Stock Balance</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Action</th>
                             </tr>
                         </thead>
-                    
+                        <tbody>
+                            @foreach ($warehouseStocks as $warehouseStock)
+                                <tr>
+                                    <td class="text-center">
+                                        {{ $loop->iteration }}
+                                    </td>
+                                    <td class="text-center">
+                                        {{ $warehouseStock->warehouse->name ?? '' }}
+                                    </td>
+                                    <td class="text-center">
+                                        {{ $warehouseStock->asset->asset_type ?? '' }}
+                                    </td>
+                                    <td class="text-center">
+                                        {{ $warehouseStock->asset->fixedAsset->name ?? ($warehouseStock->asset->variableAsset->name ?? '') }}
+                                    </td>
+
+                                    <td class="text-center">{{ $warehouseStock->quantity ?? 0 }}</td>
+
+                                    <td class="text-center">{{ $warehouseStock->stock_balance ?? 0 }}</td>
+                                    <td class="text-center">
+                                        <a href="" class="btn btn-sm btn-info">View</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
 @endsection
-@push('scripts')
-    <script>
-        $(document).ready(function() {
-            var table = $('.warehouseStockTable').DataTable({
-                processing: true,
-                serverSide: true,
-                responsive: true,
-                paging: true,
-                ajax: {
-                    url: "{{ route('warehouse-datatable') }}",
-                    type: "GET"
-                },
-                columns: [{
-                        data: 'DT_RowIndex',
-                        name: 'DT_RowIndex',
-                        className: 'text-center',
-                        orderable: false,
-                        searchable: false,
-                    },
-                    {
-                        data: 'warehouse_id',
-                        name: 'warehouse_id',
-                        className: 'text-center',
-                    },
-                    
-                    {
-                        data: 'quantity',
-                        name: 'quantity',
-                        className: 'text-center',
-                    },
-                    
-                    {
-                        data: 'action',
-                        name: 'action',
-                        className: 'text-center',
-                        orderable: false,
-                        searchable: false
-                    },
-
-                ],
-            });
-
-            $(document).on('click', '.deleteBtn', function(event) {
-                event.preventDefault();
-                var url = $(this).data('url');
-
-                Swal.fire({
-                    title: "Are you sure?",
-                    text: "Delete thie Data!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes, delete it!"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            url: url,
-                            type: 'DELETE',
-                            data: {
-                                _token: '{{ csrf_token() }}'
-                            },
-                            success: function(response) {
-                                table.ajax.reload();
-                                toastr.success(response.message);
-                            },
-                            error: function(response) {
-                                toastr.error('Delete failed!');
-                            }
-
-                        });
-                    }
-                });
-
-
-            });
-
-
-        });
-    </script>
-@endpush

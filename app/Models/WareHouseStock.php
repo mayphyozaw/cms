@@ -4,11 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class WareHouseStock extends Model
+class WarehouseStock extends Model
 {
     protected $fillable = [
         'warehouse_id',
+        'asset_id',
         'quantity',
+        'stock_balance',
+        'status',
     ];
 
     public function warehouse()
@@ -16,19 +19,14 @@ class WareHouseStock extends Model
         return $this->belongsTo(Warehouse::class, 'warehouse_id');
     }
 
-    public function fixedAsset()
+    public function asset()
     {
-        return $this->belongsTo(FixedAsset::class, 'fixed_asset_id');
+        return $this->belongsTo(Asset::class, 'asset_id');
     }
 
-    public function variableAsset()
+    public function purchaseItems()
     {
-        return $this->belongsTo(VariableAsset::class, 'variable_asset_id');
-    }
-
-    public function engineerRequestItems()
-    {
-        return $this->hasMany(EngineerAssetRequestItems::class, 'asset_id');
+        return $this->hasMany(PurchaseItem::class, 'purchase_id');
     }
 
 }

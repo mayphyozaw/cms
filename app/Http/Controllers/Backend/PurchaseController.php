@@ -11,8 +11,10 @@ use App\Models\PurchasePayments;
 use App\Models\Supplier;
 use App\Models\VariableAsset;
 use App\Models\Warehouse;
+use App\Models\WarehouseStock;
 use Exception;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PurchaseController extends Controller
 {
@@ -22,7 +24,7 @@ class PurchaseController extends Controller
             'purchaseItems.fixedAsset',
             'purchaseItems.variableAsset'
         ])->get();
-        
+
         $suppliers = Supplier::all();
         $assets = Asset::all();
         return view('admin.backend.purchase.index', compact('purchaseAllData', 'suppliers', 'assets'));
@@ -92,7 +94,7 @@ class PurchaseController extends Controller
 
             $total_amount += $subtotal;
 
-            
+
 
             PurchaseItem::create([
                 'purchase_id' => $purchase->id,
@@ -114,12 +116,14 @@ class PurchaseController extends Controller
                     $stock->increment('quantity', $quantity);
                     $stock->increment('stock_balance', $quantity);
                 } else {
-                    Asset::create([
+                    $stock = Asset::create([
                         'warehouse_id' => $request->warehouse_id,
                         'fixed_asset_id' => $id,
                         'variable_asset_id' => null,
+                        'asset_type' => 'fixed',
                         'quantity' => $quantity,
                         'stock_balance' => $quantity,
+                        'status' => 'available',
                     ]);
                 }
             } else {
@@ -132,7 +136,7 @@ class PurchaseController extends Controller
                     $stock->increment('quantity', $quantity);
                     $stock->increment('stock_balance', $quantity);
                 } else {
-                    Asset::create([
+                    $stock = Asset::create([
                         'warehouse_id' => $request->warehouse_id,
                         'fixed_asset_id' => null,
                         'variable_asset_id' => $id,
@@ -142,6 +146,23 @@ class PurchaseController extends Controller
                         'status' => 'available',
                     ]);
                 }
+            }
+            
+            $warehouseStock = WarehouseStock::where('asset_id', $stock->id)
+                ->where('warehouse_id', $request->warehouse_id)
+                ->first();
+
+            if ($warehouseStock) {
+                $warehouseStock->increment('quantity', $quantity);
+                $warehouseStock->increment('stock_balance', $quantity);
+            } else {
+                WarehouseStock::create([
+                    'warehouse_id' => $request->warehouse_id,
+                    'asset_id' => $stock->id,
+                    'quantity' => $quantity,
+                    'stock_balance' => $quantity,
+                    'status' => 'available',
+                ]);
             }
         }
 
@@ -258,4 +279,18 @@ class PurchaseController extends Controller
 
         return view('admin.backend.purchase.payment.purchase_due', compact('purchaseAllData'));
     }
+
+    public function invoicePurchase($id)
+    {
+        $purchaseData = Purchase::with(['supplier', 'warehouse', 'purchaseItems.asset.fixedAsset'])->find($id);
+        $pdf = Pdf::loadView('admin.backend.purchase.invoice_pdf',compact('purchaseData'));
+        return $pdf->download('purchase_' . $id. '.pdf');
+    }
+
+    public function detailPurchase($id)
+    {
+        $purchaseData = Purchase::with(['supplier', 'warehouse', 'purchaseItems.asset.fixedAsset'])->find($id);
+        return view('admin.backend.purchase.detail',compact('purchaseData'));
+    }
+
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Asset;
 use App\Models\EngineerAssetRequestItems;
 use App\Models\EngineerAssetRequests;
+use App\Models\WarehouseStock;
 use App\Models\WorkScope;
 use Illuminate\Http\Request;
 
@@ -68,7 +69,7 @@ class QSTeamCheckController extends Controller
                     'checked_at' => now(),
                 ]);
 
-                
+
                 $asset = $item->asset;
 
                 if ($asset) {
@@ -81,11 +82,20 @@ class QSTeamCheckController extends Controller
                     }
                     $asset->stock_balance = $asset->quantity - $passedQty;
                     $asset->save();
+
+                    $warehouseStock = WarehouseStock::where('asset_id', $asset->id)
+                        ->where('warehouse_id', $asset->warehouse_id)
+                        ->first();
+
+                    if ($warehouseStock) {
+                        $warehouseStock->stock_balance -= $passedQty;
+                        $warehouseStock->save();
+                    }
                 }
             }
         }
 
-        
+
         EngineerAssetRequests::where('id', $request->request_id)
             ->update(['status' => 'approved']);
 

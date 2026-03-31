@@ -7,12 +7,13 @@ use App\Models\Asset;
 use App\Models\FixedAsset;
 use App\Models\VariableAsset;
 use App\Models\Warehouse;
+use App\Models\WareHouseStock;
 use App\Services\WarehouseStockService;
 use Illuminate\Http\Request;
 
 class WarehouseStockController extends Controller
 {
-    
+
     protected $model;
     public function __construct(WarehouseStockService $warehouseStockService)
     {
@@ -22,9 +23,15 @@ class WarehouseStockController extends Controller
 
     public function index()
     {
+        
+        $warehouseStocks = WareHouseStock::with([
+            'warehouse',
+            'asset.fixedAsset',
+            'asset.variableAsset'
+        ])->get();
+        
         $warehouses = Warehouse::all();
-        $assets = Asset::with(['fixedAsset', 'variableAsset'])->withSum('engineerRequestItems', 'passed_qty')->get();
-        return view('admin.backend.warehouse-stocks.index',compact('warehouses','assets'));
+        return view('admin.backend.warehouse-stocks.index', compact('warehouseStocks', 'warehouses'));
     }
 
     public function warehouseStockDataTable()

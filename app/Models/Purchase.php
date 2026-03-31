@@ -59,8 +59,14 @@ class Purchase extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
     public function purchasePayments()
-{
-    return $this->hasMany(PurchasePayments::class);
-}
+    {
+        return $this->hasMany(PurchasePayments::class);
+    }
+
+    public function warehouseStock()
+    {
+        return $this->belongsTo(WareHouseStock::class, 'warehouse_stock_id');
+    }
 }

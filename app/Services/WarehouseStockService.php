@@ -28,40 +28,56 @@ class WarehouseStockService
         return $this->warehouseRepoInterface->find($id);
     }
 
-
-
     public function warehouseStockDataTable()
     {
 
-
-        $query = $this->warehouseRepoInterface->query()
-            ->with(['warehouse', 'asset.engineerRequestItems']);
+        $query = $this->warehouseRepoInterface->query();
 
         return DataTables::eloquent($query)
             ->addIndexColumn()
 
 
+            ->addColumn('name', function ($wareHouseStock) {
+                return $wareHouseStock->fixedAsset->name
+                    ?? $wareHouseStock->variableAsset->name
+                    ?? '-';
+            })
             ->editColumn('warehouse_id', function ($wareHouseStock) {
                 return $wareHouseStock->warehouse->name ?? '';
             })
 
-            ->editColumn('address', function ($wareHouseStock) {
-                return $wareHouseStock->warehouse->address ?? '';
+            
+            ->editColumn('quantity', function ($wareHouseStock) {
+                return $wareHouseStock->quantity ?? '';
             })
+            ->editColumn('stock_balance', function ($wareHouseStock) {
+                // $totalPassed = $asset->engineer_request_items_sum_passed_qty ?? 0;
+                $stock_balance = $wareHouseStock->asset->stock_balance;
+                
+                $url = route('qs.check.detail', ['asset_id' => $wareHouseStock->asset->id]);
+                return '<a href="' . $url . '" class="text-primary">' . $stock_balance . '</a>';
+            })
+            ->editColumn('status', function ($wareHouseStock) {
+                $color = match ($wareHouseStock->status) {
+                    'available' => 'bg-success',
+                    'inUse' => 'bg-warning',
+                    'damaged' => 'bg-danger',
+                    'disposed' => 'bg-info',
+                    'maintenance' => 'bg-info',
+                    default => 'bg-danger',
+                };
 
-            ->addColumn('quantity', function ($wareHouseStock) {
-                if (!$wareHouseStock->asset) return 0;
-
-                $totalPassed = $wareHouseStock->asset->engineerRequestItems->sum('passed_qty');
-
-                return ($row->asset->quantity ?? 0) - $totalPassed;
+                return '<span class="badge badge-status ' . $color . '">' . $wareHouseStock->status . '</span>';
             })
             ->addColumn('action', function ($wareHouseStock) {
-                return view('admin.backend.warehouse-stocks._action', compact('wareHouseStock'))->render();
+                return view('admin.backend.materialmanage.warehouse-stocks._action', compact('wareHouseStock'))->render();
             })
             ->rawColumns([
+                'status',
                 'action',
+                'stock_balance',
             ])
             ->make(true);
     }
+
 }
