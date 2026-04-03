@@ -71,10 +71,24 @@ class Asset extends Model
     {
         return $this->belongsTo(WareHouseStock::class, 'warehouse_stock_id');
     }
-    
-     public function purchaseItems()
+
+    public function purchaseItems()
     {
         return $this->hasMany(PurchaseItem::class, 'purchase_id');
     }
 
+
+    public function updateStockStatus()
+    {
+        if ($this->stock_balance <= 0) {
+            $this->status = 'Out of Stock';
+        } elseif ($this->stock_balance <= 10) {
+            $this->status = 'Low Stock';
+        } else {
+            $this->status = 'Available';
+        }
+
+        $this->save();
+
+    }
 }

@@ -195,6 +195,8 @@ Route::middleware('auth', 'notBlocked')->group(function () {
     Route::get('purchase/payment/due', [PurchaseController::class, 'purchaseDue'])->name('purchase.payment.purchase_due');
     Route::get('/invoice/purchase/{id}', [PurchaseController::class, 'invoicePurchase'])->name('invoice.purchase');
     Route::get('/detail/purchase/{id}', [PurchaseController::class, 'detailPurchase'])->name('detail.purchase');
+    Route::get('/purchase_order/purchase/{id}', [PurchaseController::class, 'purchaseOrder'])->name('order.purchase');
+
 
     Route::get('payment/purchase_payment', [PaymentController::class, 'payPurchase'])->name('payment.purchase_payment');
     Route::get('payment/purchase_payment/{id}', [PaymentController::class, 'pay'])->name('payment.pay');

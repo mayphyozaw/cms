@@ -29,4 +29,17 @@ class WarehouseStock extends Model
         return $this->hasMany(PurchaseItem::class, 'purchase_id');
     }
 
+    public function updateWarehouseStockStatus()
+    {
+        if ($this->stock_balance <= 0) {
+            $this->status = 'Out of Stock';
+        } elseif ($this->stock_balance <= 10) {
+            $this->status = 'Low Stock';
+        } else {
+            $this->status = 'Available';
+        }
+
+        $this->save();
+
+    }
 }

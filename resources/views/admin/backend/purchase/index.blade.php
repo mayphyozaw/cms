@@ -79,7 +79,7 @@
                                                         <td>{{ $loop->iteration }}.</td>
                                                         <td>
 
-                                                            {{ $purchaseItem->asset->fixedAsset->name }}
+                                                            {{ $purchaseItem->asset->fixedAsset->name ?? '' }}
                                                         </td>
 
                                                         <td class="text-center">
@@ -136,6 +136,11 @@
 
                                         <a class="btn btn-sm btn-icon" href="{{ route('invoice.purchase', $purchaseData->id) }}"
                                             style="background-color: #4aa1a3; color:white" title="PDF Invocie">
+                                            <i class="ti ti-download"></i>
+                                        </a>
+
+                                        <a class="btn btn-sm btn-icon" href="{{ route('order.purchase', $purchaseData->id) }}"
+                                            style="background-color: orange; color:white" title="PDF PURCHASEORDER">
                                             <i class="ti ti-download"></i>
                                         </a>
 

@@ -119,11 +119,14 @@
                                             class="text-danger">*</span></label>
                                     <select name="status" id="status" class="form-control form-select">
                                         <option selected="">Select Status</option>
-                                        <option value="available">Available</option>
-                                        <option value="inUse">In Use</option>
+                                        <option value="active">Active</option>
+                                        <option value="available">Available(In Stock)</option>
+                                        <option value="deployed">Deployed (On Site)</option>
+                                        <option value="returned">Returned</option>
+                                        <option value="inspection">In-Inspection</option>
+                                        <option value="maintenance">Maintenance</option>
                                         <option value="damaged">Damaged</option>
                                         <option value="disposed">Disposed</option>
-                                        <option value="maintenance">Maintenance</option>
                                     </select>
                                 </div>
                             </div>

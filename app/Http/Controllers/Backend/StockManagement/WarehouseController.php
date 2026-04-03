@@ -75,7 +75,7 @@ class WarehouseController extends Controller
 
     public function destroy($id)
     {
-         try {
+        try {
             $this->warehouseService->delete($id);
 
             return ResponseService::success([], 'Successfully deleted');

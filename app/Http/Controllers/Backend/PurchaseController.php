@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Asset;
+use App\Models\EngineerAssetRequests;
 use App\Models\FixedAsset;
 use App\Models\Purchase;
 use App\Models\PurchaseItem;
@@ -21,8 +22,8 @@ class PurchaseController extends Controller
     public function index()
     {
         $purchaseAllData = Purchase::with([
-            'purchaseItems.fixedAsset',
-            'purchaseItems.variableAsset'
+            'purchaseItems.asset.fixedAsset',
+            'purchaseItems.asset.variableAsset'
         ])->get();
 
         $suppliers = Supplier::all();
@@ -36,7 +37,7 @@ class PurchaseController extends Controller
         $warehouses = Warehouse::all();
         $fixedAssets = FixedAsset::all();
         $purchaseData = Purchase::with([
-            'purchaseItems.asset.fixedAsset'
+            'purchaseItems.engineerAssetRequests.asset.fixedAsset'
         ])->get();
         return view('admin.backend.purchase.create', compact('suppliers', 'warehouses', 'fixedAssets', 'purchaseData'));
     }
@@ -77,6 +78,8 @@ class PurchaseController extends Controller
 
         ]);
 
+
+
         foreach ($request->asset_id as $index => $id) {
             // $asset = Asset::findOrFail($id);
 
@@ -86,25 +89,25 @@ class PurchaseController extends Controller
             $quantity = $request->quantity[$index];
             $discount = $request->discount[$index] ?? 0;
 
-            if ($net_unit_cost == 0) {
-                throw new \Exception("Net Unit Cost missing for product id " . $id);
-            }
 
             $subtotal = ($net_unit_cost * $quantity) - $discount;
 
             $total_amount += $subtotal;
 
-
-
-            PurchaseItem::create([
+            $purchaseItems = PurchaseItem::create([
                 'purchase_id' => $purchase->id,
+                'asset_request_id' => $request->asset_request_id[$index] ?? null,
                 'asset_id' => $id,
                 'asset_type' => $type,
+                'fixed_asset_id' => $type === 'fixedAsset' ? $id : null,
+                'variable_asset_id' => $type === 'variableAsset' ? $id : null,
                 'net_unit_cost' => $net_unit_cost,
                 'quantity' => $quantity,
                 'discount' => $discount,
                 'subtotal' => $subtotal,
             ]);
+
+
 
             if ($type === 'fixedAsset') {
 
@@ -113,18 +116,20 @@ class PurchaseController extends Controller
                     ->first();
 
                 if ($stock) {
-                    $stock->increment('quantity', $quantity);
-                    $stock->increment('stock_balance', $quantity);
+                    $stock->quantity += $quantity;
+                    $stock->stock_balance += $quantity;
+                    $stock->save();
                 } else {
                     $stock = Asset::create([
                         'warehouse_id' => $request->warehouse_id,
                         'fixed_asset_id' => $id,
                         'variable_asset_id' => null,
-                        'asset_type' => 'fixed',
+                        'asset_type' => 'fixedAsset',
                         'quantity' => $quantity,
                         'stock_balance' => $quantity,
-                        'status' => 'available',
+
                     ]);
+                    // $stock->updateStockStatus();
                 }
             } else {
 
@@ -133,56 +138,63 @@ class PurchaseController extends Controller
                     ->first();
 
                 if ($stock) {
-                    $stock->increment('quantity', $quantity);
-                    $stock->increment('stock_balance', $quantity);
+                    $stock->quantity += $quantity;
+                    $stock->stock_balance += $quantity;
+                    $stock->save();
                 } else {
                     $stock = Asset::create([
                         'warehouse_id' => $request->warehouse_id,
                         'fixed_asset_id' => null,
                         'variable_asset_id' => $id,
-                        'asset_type' => 'variable',
+                        'asset_type' => 'variableAsset',
                         'quantity' => $quantity,
                         'stock_balance' => $quantity,
-                        'status' => 'available',
                     ]);
+                    // $stock->updateStockStatus();
                 }
             }
-            
+
             $warehouseStock = WarehouseStock::where('asset_id', $stock->id)
                 ->where('warehouse_id', $request->warehouse_id)
                 ->first();
 
             if ($warehouseStock) {
-                $warehouseStock->increment('quantity', $quantity);
-                $warehouseStock->increment('stock_balance', $quantity);
+                $warehouseStock->quantity += $quantity;
+                $warehouseStock->stock_balance += $quantity;
+                $warehouseStock->save();
             } else {
                 WarehouseStock::create([
                     'warehouse_id' => $request->warehouse_id,
                     'asset_id' => $stock->id,
                     'quantity' => $quantity,
                     'stock_balance' => $quantity,
-                    'status' => 'available',
+
                 ]);
+                // $warehouseStock->updateWarehouseStockStatus();
             }
         }
 
-        // Calculate Total
         $total = $total_amount + ($request->shipping ?? 0) - ($request->purchase_discount ?? 0);
 
-        $due_amount = $total_amount + ($request->shipping ?? 0) - ($request->purchase_discount ?? 0);
+        $paidAmount = $request->paid_amount ?? 0;
+        $dueAmount = $total - $paidAmount;
 
+        // $payment_status = $dueAmount <= 0 ? 'Paid' : 'Unpaid';
 
-        if ($due_amount == 0) {
-            $payment_status = 'Paid';
-        } else {
+        if ($dueAmount == $total) {
             $payment_status = 'Unpaid';
+        } elseif ($dueAmount > 0) {
+            $payment_status = 'Partial';
+        } else {
+            $payment_status = 'Paid';
         }
 
         $purchase->update([
             'total_amount' => $total,
-            'due_amount' => $due_amount,
+            'due_amount' => $dueAmount,
             'payment_status' => $payment_status,
         ]);
+
 
         $paidAmount = $request->paid_amount ?? 0;
 
@@ -206,9 +218,10 @@ class PurchaseController extends Controller
         ]);
     }
 
+
     public function edit($id)
     {
-        $purchaseData = Purchase::with('purchaseItems.asset.fixedAsset')->findOrFail($id);
+        $purchaseData = Purchase::with('engineerAssetRequests', 'purchaseItems.asset.fixedAsset')->findOrFail($id);
         $warehouses = Warehouse::all();
         $suppliers = Supplier::all();
         $fixedAssets = FixedAsset::all();
@@ -224,6 +237,7 @@ class PurchaseController extends Controller
 
         $purchase->update([
             'purchase_date' => $request->purchase_date,
+            'asset_request_id' => $request->asset_request_id,
             'warehouse_id' => $request->warehouse_id,
             'supplier_id' => $request->supplier_id,
             'discount' => $request->purchase_discount ?? 0,
@@ -282,15 +296,24 @@ class PurchaseController extends Controller
 
     public function invoicePurchase($id)
     {
-        $purchaseData = Purchase::with(['supplier', 'warehouse', 'purchaseItems.asset.fixedAsset'])->find($id);
-        $pdf = Pdf::loadView('admin.backend.purchase.invoice_pdf',compact('purchaseData'));
-        return $pdf->download('purchase_' . $id. '.pdf');
+        $purchaseData = Purchase::with(['supplier', 'engineerAssetRequests', 'warehouse', 'purchaseItems.asset.fixedAsset'])->find($id);
+        $pdf = Pdf::loadView('admin.backend.purchase.invoice_pdf', compact('purchaseData'));
+        return $pdf->download('purchase_' . $id . '.pdf');
     }
 
     public function detailPurchase($id)
     {
-        $purchaseData = Purchase::with(['supplier', 'warehouse', 'purchaseItems.asset.fixedAsset'])->find($id);
-        return view('admin.backend.purchase.detail',compact('purchaseData'));
+        $purchaseData = Purchase::with(['supplier', 'warehouse', 'purchaseItems.engineerAssetRequests.asset.fixedAsset'])->find($id);
+        // $purchaseData = Purchase::with(['supplier', 'engineerAssetRequests'])->get();
+        // return $purchaseData;
+        return view('admin.backend.purchase.detail', compact('purchaseData'));
     }
 
+
+    public function purchaseOrder($id)
+    {
+        $purchaseData = Purchase::with(['supplier', 'warehouse', 'purchaseItems.engineerAssetRequests.asset.fixedAsset'])->find($id);
+        $pdf = Pdf::loadView('admin.backend.purchase.purchase_order_pdf', compact('purchaseData'));
+        return $pdf->download('purchase_order_' . $id . '.pdf');
+    }
 }

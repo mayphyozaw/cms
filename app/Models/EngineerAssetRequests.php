@@ -51,4 +51,5 @@ class EngineerAssetRequests extends Model
         return $this->belongsTo(WorkScope::class, 'workscope_id');
     }
     
+    
 }

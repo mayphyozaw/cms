@@ -173,12 +173,11 @@
     <div class="invoice-container">
         {{-- letterhead --}}
         <div style="display: flex; align-items: flex-start;">
-            <img src="{{'data/logo1.png'}}" alt="Company Logo"
-                style="width: 60px; height: auto; margin-right: 15px;" >
-            
-                <strong>ABC Software Solutions Co., Ltd.</strong><br>
-                <span style="margin-left:80px;">123 Main Street, Yangon, Myanma</span><br>
-                <span style="margin-left:80px;">Email: info@abcsoftware.com | Phone: +95 9 123 456 789<span>
+            <img src="{{ 'data/logo1.png' }}" alt="Company Logo" style="width: 60px; height: auto; margin-right: 15px;">
+
+            <strong>ABC Software Solutions Co., Ltd.</strong><br>
+            <span style="margin-left:80px;">123 Main Street, Yangon, Myanma</span><br>
+            <span style="margin-left:80px;">Email: info@abcsoftware.com | Phone: +95 9 123 456 789<span>
         </div>
         {{-- letterhead --}}
         <div class="invoice-header">
@@ -217,24 +216,25 @@
                     <th>Discount</th>
                     <th>Subtotal</th>
                 </tr>
-                
+
             </thead>
+
             <tbody>
                 @foreach ($purchaseData->purchaseItems as $key => $item)
                     <tr>
                         <td>{{ $key + 1 }}</td>
-                        <td>{{ $item->asset->fixedAsset->name ?? ''}}</td>
+                        <td>{{ $item->asset->fixedAsset->name ?? '' }}</td>
                         <td>{{ $item->quantity }}</td>
                         <td>${{ number_format($item->net_unit_cost, 2) }}</td>
                         <td>${{ number_format($item->discount, 2) }}</td>
-                        
+
                         <td>${{ number_format($item->subtotal, 2) }}</td>
                     </tr>
                     <tr>
-                        <td colspan="5" class="text-end">
+                        <td colspan="5" class="text-center">
                             Discount
                         </td>
-                        <td class="text-center">
+                        <td>
                             ${{ number_format($purchaseData->discount, 2) }}
                         </td>
                     </tr>
@@ -242,19 +242,18 @@
                         <td colspan="5" class="text-center">
                             Shipping
                         </td>
-                        <td >
+                        <td>
                             ${{ number_format($purchaseData->shipping, 2) }}
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="5" class="text-end">
+                        <td colspan="5" class="text-center" style="background-color: #f8f9fa">
                             Grand Total
                         </td>
-                        <td>
+                        <td style="background-color: #f8f9fa">
                             ${{ number_format($purchaseData->total_amount, 2) }}
                         </td>
                     </tr>
-                    
                 @endforeach
             </tbody>
         </table>

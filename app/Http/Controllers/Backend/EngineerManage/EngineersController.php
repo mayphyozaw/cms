@@ -11,10 +11,9 @@ use Illuminate\Http\Request;
 
 class EngineersController extends Controller
 {
-    
+
     public function index()
     {
-        
         $engineers = User::where('department', 'Engineer')
             ->with(['engineerAssigns.project.client'])
             ->get();
@@ -31,8 +30,6 @@ class EngineersController extends Controller
     }
 
 
-
-    
     public function assignForm($id)
     {
         $projects = Project::all();
@@ -43,18 +40,14 @@ class EngineersController extends Controller
     public function store(Request $request)
     {
         $engineerAssignData = new EngineerAssign();
-
         $engineerAssignData->user_id = $request->user_id;
         $engineerAssignData->project_id = $request->project_id;
-
-
         $engineerAssignData->save();
+
         return redirect()->route('engineers.index')
             ->with([
                 'message' => 'Successfully created',
                 'alert-type' => 'success'
             ]);
     }
-
-
 }

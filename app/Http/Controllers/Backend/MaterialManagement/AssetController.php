@@ -96,7 +96,7 @@ class AssetController extends Controller
             'warehouse_id' => $request->warehouse_id,
             'unit'         => $request->unit,
             'quantity'     => $request->quantity,
-            'stock_balance' => $request->quantity, // ✅ set initial value
+            'stock_balance' => $request->quantity, 
             'status'       => $request->status,
             'remarks'      => $request->remarks,
         ];

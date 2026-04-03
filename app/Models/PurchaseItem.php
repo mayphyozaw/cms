@@ -8,6 +8,7 @@ class PurchaseItem extends Model
 {
     protected $fillable = [
         'purchase_id',
+        'asset_request_id',
         'asset_id',
         'asset_type',
         'fixed_asset_id',
@@ -35,5 +36,10 @@ class PurchaseItem extends Model
     public function variableAsset()
     {
         return $this->belongsTo(VariableAsset::class, 'variable_asset_id', 'id');
+    }
+
+    public function engineerAssetRequests()
+    {
+        return $this->belongsTo(EngineerAssetRequests::class, 'asset_request_id');
     }
 }

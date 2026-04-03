@@ -85,21 +85,37 @@ class AssetService
             ->editColumn('stock_balance', function ($asset) {
                 // $totalPassed = $asset->engineer_request_items_sum_passed_qty ?? 0;
                 $stock_balance = $asset->stock_balance;
-                
-                $url = route('qs.check.detail', ['asset_id' => $asset->id]);
-                return '<a href="' . $url . '" class="text-primary">' . $stock_balance . '</a>';
+                return $stock_balance;
+                // $url = route('qs.check.detail', ['asset_id' => $asset->id]);
+                // return '<a href="' . $url . '" class="text-primary">' . $stock_balance . '</a>';
             })
             ->editColumn('status', function ($assets) {
-                $color = match ($assets->status) {
-                    'available' => 'bg-success',
-                    'inUse' => 'bg-warning',
-                    'damaged' => 'bg-danger',
-                    'disposed' => 'bg-info',
-                    'maintenance' => 'bg-info',
-                    default => 'bg-danger',
-                };
 
-                return '<span class="badge badge-status ' . $color . '">' . $assets->status . '</span>';
+                $color = match (strtolower($assets->status)) {
+                    'available', 'active', 'readytouse' => 'bg-success',
+                    'deployed' => 'bg-orange',
+                    'returned' => 'bg-primary',
+                    'inspection', 'maintenance', 'low stock' => 'bg-warning',
+                    'damaged', 'out of stock' => 'bg-danger',
+                    'disposed' => 'bg-secondary',
+                    default => 'bg-dark',
+                };
+                $displayStatus = $assets->status;
+                if (in_array(strtolower($assets->status), ['available', 'active', 'readytouse', 'out of stock'])) {
+                    if ($assets->stock_balance == 0) {
+                        $color = 'bg-danger';
+                        $displayStatus = 'Active';
+                    } elseif ($assets->stock_balance < 0) {
+                        $color = 'bg-danger';
+                        $displayStatus = 'Out of Stock';
+                    } elseif ($assets->stock_balance <= 10) {
+                        $color = 'bg-warning';
+                        $displayStatus = 'Low Stock';
+                    } else {
+                        $displayStatus = 'Available';
+                    }
+                }
+                return '<span class="badge ' . $color . ' text-white">' . $displayStatus . '</span>';
             })
             ->addColumn('action', function ($assets) {
                 return view('admin.backend.materialmanage.assets._action', compact('assets'))->render();

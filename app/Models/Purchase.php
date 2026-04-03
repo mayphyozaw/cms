@@ -69,4 +69,6 @@ class Purchase extends Model
     {
         return $this->belongsTo(WareHouseStock::class, 'warehouse_stock_id');
     }
+
+    
 }
