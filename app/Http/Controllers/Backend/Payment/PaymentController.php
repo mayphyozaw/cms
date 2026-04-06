@@ -11,6 +11,7 @@ use App\Models\PurchasePayments;
 use App\Models\Supplier;
 use App\Models\User;
 use App\Models\Warehouse;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -31,9 +32,10 @@ class PaymentController extends Controller
 
     public function pay($id)
     {
-        $purchaseData = Purchase::with(['purchasePayments','purchaseItems.asset.fixedAsset'])->findOrFail($id);
+        $purchaseData = Purchase::with(['purchasePayments', 'purchaseItems.asset.fixedAsset'])->findOrFail($id);
         $warehouses = Warehouse::all();
         $suppliers = Supplier::all();
+
         return view('admin.backend.purchase.payment.pay', compact('purchaseData', 'warehouses', 'suppliers'));
     }
 
@@ -44,6 +46,9 @@ class PaymentController extends Controller
             'pay_now' => 'required|numeric|min:0',
             'payment_date' => 'nullable|date',
         ]);
+
+
+        $invocieNo = 'INV / ' . date('Ymd') . '-' . str_pad(3, '0', STR_PAD_LEFT);
 
         $purchase = Purchase::findOrFail($id);
 
@@ -66,10 +71,11 @@ class PaymentController extends Controller
         } else {
             $status = 'Unpaid';
         }
-        
+
 
         PurchasePayments::create([
             'purchase_id' => $purchase->id,
+            'invoice_no' => $invocieNo,
             'user_id' => auth()->id(),
             'paid_amount' => $paidAmount,
             'payment_date' => $request->payment_date ?? now(),
@@ -86,7 +92,7 @@ class PaymentController extends Controller
             'status' => $status,
         ]);
 
-        
+
 
         return redirect()
             ->route('payment.purchase_payment', $purchase->id) // make sure route name is correct
@@ -96,7 +102,15 @@ class PaymentController extends Controller
     public function payDetail($id)
     {
         $purchaseData = Purchase::with(['supplier', 'purchasePayments', 'purchaseItems.asset.fixedAsset'])->findOrFail($id);
-        
+
         return view('admin.backend.purchase.payment.detail', compact('purchaseData'));
+    }
+
+    public function invoicePayment($id)
+    {
+        $purchaseData = Purchase::with(['supplier',  'warehouse', 'purchaseItems.engineerAssetRequests.asset.fixedAsset'])->find($id);
+        
+        $pdf = Pdf::loadView('admin.backend.purchase.payment.invoice_pdf', compact('purchaseData'));
+        return $pdf->download('invoice_' . $id . '.pdf');
     }
 }

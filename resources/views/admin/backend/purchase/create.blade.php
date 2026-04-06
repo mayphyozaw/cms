@@ -166,23 +166,41 @@
                                         <div class="card">
                                             <div class="card-body pt-7 pb-2">
                                                 <div class="table-responsive">
-                                                    <table class="table border">
+                                                    <table class="table table-bordered">
                                                         <tbody>
+                                                            
+                                                            <tr>
+                                                                <td class="py-3">Subtotal</td>
+                                                                <td class="py-3" id="subTotal"
+                                                                    name="subtotal_amount" style="text-align:end"> 0.00 MMK
+                                                                </td>
+                                                                <input type="hidden" name="subtotal_amount">
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td class="py-3">Tax (%)</td>
+                                                                <td class="py-3" id="taxDisplay" style="text-align:end"> 0.00 MMK</td>
+                                                                <input type="hidden" name="tax_amount">
+                                                            </tr>
+
                                                             <tr>
                                                                 <td class="py-3">Discount</td>
-                                                                <td class="py-3" id="displayDiscount"> 0.00 MMK</td>
+                                                                <td class="py-3" id="displayDiscount" style="text-align:end"> 0.00 MMK</td>
                                                             </tr>
+
                                                             <tr>
                                                                 <td class="py-3">Shipping</td>
-                                                                <td class="py-3" id="shippingDisplay"> 0.00 MMK</td>
+                                                                <td class="py-3" id="shippingDisplay" style="text-align:end"> 0.00 MMK</td>
                                                             </tr>
+
                                                             <tr>
                                                                 <td class="py-3 text-primary">Grand Total</td>
                                                                 <td class="py-3 text-primary" id="grandTotal"
-                                                                    name="total_amount"> 0.00 MMK
+                                                                    name="total_amount" style="text-align:end"> 0.00 MMK
                                                                 </td>
                                                                 <input type="hidden" name="total_amount">
                                                             </tr>
+                                                            
 
                                                             <tr hidden>
                                                                 <td class="py-3 text-primary">Paid Amount</td>
@@ -198,12 +216,9 @@
                                                                 <input type="hidden" name="full_paid">
                                                             </tr>
 
-
-
-
                                                             <tr>
                                                                 <td class="py-3 text-primary">Due Amount</td>
-                                                                <td class="py-3 text-primary" id="dueAmount"> 0.00 MMK
+                                                                <td class="py-3 text-primary" id="dueAmount" style="text-align:end"> 0.00 MMK
                                                                 </td>
                                                                 <input type="hidden" name="due_amount">
                                                             </tr>
@@ -217,19 +232,27 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    
+                                    <div class="col-md-3">
+                                        <label class="form-label">Tax (%): </label>
+                                        <input type="number" id="inputTax" name="tax_amount" class="form-control"
+                                            value="0">
+                                    </div>
+
+                                    <div class="col-md-3">
                                         <label class="form-label">Discount: </label>
                                         <input type="number" id="inputDiscount" name="purchase_discount"
                                             class="form-control" value="0.00">
                                     </div>
 
-                                    <div class="col-md-4">
+                                     <div class="col-md-3">
                                         <label class="form-label">Shipping: </label>
                                         <input type="number" id="inputShipping" name="shipping" class="form-control"
                                             value="0.00">
                                     </div>
 
-                                    <div class="col-md-4">
+
+                                    <div class="col-md-3">
                                         <div class="form-group w-100">
                                             <label class="form-label" for="formBasic">Status : <span
                                                     class="text-danger">*</span></label>
@@ -305,6 +328,7 @@
                     assetDropdown.html('<option value="">Select Asset</option>');
                 }
             });
+
             document.getElementById("addRowBtn").addEventListener("click", function() {
                 const itemTable = document.getElementById("itemTable");
                 // let tbody = document.getElementById("itemTable");
@@ -380,6 +404,8 @@
                 }
             });
 
+
+
             document.addEventListener("click", function(e) {
                 if (e.target.closest(".removeRow")) {
                     let row = e.target.closest("tr");
@@ -444,16 +470,31 @@
 
                 let discount = parseFloat(document.getElementById("inputDiscount").value) || 0;
                 let shipping = parseFloat(document.getElementById("inputShipping").value) || 0;
+                let taxPercent = parseFloat(document.getElementById("inputTax").value) || 0;
 
-                total = total - discount + shipping;
+                // total = (total - discount) + shipping;
 
                 if (total < 0) total = 0;
 
-                document.getElementById("grandTotal").textContent =
+                let taxAmount = (total * taxPercent) / 100;
+                
+                let grandTotal = total + taxAmount;
+                grandTotal = (grandTotal - discount) + shipping
+
+                document.getElementById("subTotal").textContent =
                     total.toFixed(2) + " MMK";
 
+                document.getElementById("taxDisplay").textContent =
+                    taxAmount.toFixed(2) + " MMK";
+
+                document.getElementById("grandTotal").textContent =
+                    grandTotal.toFixed(2) + " MMK";
+
                 document.querySelector("input[name='total_amount']").value =
-                    total.toFixed(2);
+                    grandTotal.toFixed(2);
+
+                document.querySelector("input[name='tax_amount']").value =
+                    taxAmount.toFixed(2);
 
                 updateDueAmount();
 
@@ -479,6 +520,7 @@
 
             let inputDiscount = document.getElementById("inputDiscount");
             let inputShipping = document.getElementById("inputShipping");
+            let inputTax = document.getElementById("inputTax");
 
 
             updateGrandTotal();
@@ -503,8 +545,14 @@
                         val.toFixed(2) + " MMK";
                 });
             }
-        </script>
 
-       
-            
+
+            if (inputTax) {
+                inputTax.addEventListener("input", function() {
+                    updateGrandTotal();
+
+
+                });
+            }
+        </script>
     @endpush

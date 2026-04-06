@@ -25,7 +25,7 @@
         .invoice-container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 10px;
             border: 1px solid #ddd;
             border-radius: 8px;
             page-break-inside: avoid;
@@ -33,14 +33,14 @@
         }
 
         .invoice-header {
-            background-color: #0d6efd;
+            background-color: #0f4881;
             /* Fallback for gradient */
-            background: linear-gradient(135deg, #0d6efd, #17a2b8);
+            /* background: linear-gradient(135deg, #0d6efd, #17a2b8); */
             color: #fff;
             padding: 15px;
-            text-align: center;
+            /* text-align: center; */
             border-radius: 8px 8px 0 0;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         .invoice-header h2 {
@@ -105,7 +105,7 @@
             background: #f8f9fa;
         }
 
-        .summary-table {
+        /* .summary-table {
             width: 50%;
             margin-left: auto;
             margin-top: 20px;
@@ -114,11 +114,11 @@
 
         .summary-table td {
             padding: 5px;
-            text-align: right;
+            text-align: left;
             font-weight: bold;
             border: none;
             font-size: 12px;
-        }
+        } */
 
         @page {
             margin: 20mm;
@@ -171,79 +171,202 @@
 
 <body>
     <div class="invoice-container">
-        {{-- letterhead --}}
-        <div style="display: flex; align-items: flex-start;">
-            <img src="{{ 'data/logo1.png') }}" alt="Company Logo"
-                style="width: 60px; height: auto; margin-right: 15px;" >
-            
-                <strong>ABC Software Solutions Co., Ltd.</strong><br>
-                <span style="margin-left:80px;">123 Main Street, Yangon, Myanma</span><br>
-                <span style="margin-left:80px;">Email: info@abcsoftware.com | Phone: +95 9 123 456 789<span>
-        </div>
-        {{-- letterhead --}}
         <div class="invoice-header">
-            <h5>Purchase Invoice</h5>
+            {{-- <div style="display: flex; align-items: flex-start;">
+                <img src="{{ 'data/logo1.png' }}" alt="Company Logo"
+                    style="width: 70px; height: auto; margin-right: 15px;">
+
+                <strong style="margin-right: 25px;">ABC Software Solutions Co., Ltd.</strong>
+                <br>
+
+                <span>123 Main Street, Yangon, Myanmar</span> <br>
+                <span>Email: info@abcsoftware.com | Phone: +95 9 123 456 789<span>
+
+                        <h4 style="color:white; text-align:right;">PURCHASE ORDER</h4>
+                        <h5 style="color:white;text-align:right;">{{ $purchaseData->purchase_no }}</h5>
+
+            </div> --}}
+
+            <table width="100%">
+                <tr>
+                    <td style="width: 70%;">
+                        <img src="{{ 'data/logo1.png' }}" style="width: 70px;">
+                        <br>
+                        <strong>ABC Software Solutions Co., Ltd.</strong><br>
+                        <span>123 Main Street, Yangon, Myanmar</span><br>
+                        <span>Email: info@abcsoftware.com | Phone: +95 9 123 456 789</span>
+                    </td>
+
+                    <td style="text-align: right; vertical-align: top;color:white">
+                        <strong style="font-size:16px;">INVOICE</strong><br>
+                        <span>{{ $purchaseData->invoice_no }}</span>
+                    </td>
+                </tr>
+            </table>
         </div>
+        {{-- <h4 style="color:white">PURCHASE INVOICE</h4> --}}
 
         <table class="info-section">
             <tr>
+                {{-- <td class="info-box">
+                    <h5>ABC Solution Company</h5>
+                    <p><strong>Address:</strong> 123 Main Street, Yangon, Myanmar</p>
+                    <p><strong>Phone:</strong> (95) 9 123 456 789</p>
+                    <p><strong>Email:</strong> info@abcsoftware.com </p>
+                    <p><strong>website:</strong> www.abcsoftware.com </p>
+                </td> --}}
+
                 <td class="info-box">
-                    <h5>Supplier Info</h5>
+                    <h5 style="color: #0f4881;">Bill To</h5>
                     <p><strong>Name:</strong> {{ $purchaseData->supplier->name }} </p>
                     <p><strong>Email:</strong> {{ $purchaseData->supplier->email }}</p>
                     <p><strong>Phone:</strong> {{ $purchaseData->supplier->phone }} </p>
                 </td>
-                <td class="info-box">
-                    <h5>Warehouse</h5>
-                    <p>{{ $purchase->warehouse->name }} </p>
-                </td>
-                <td class="info-box">
-                    <h5>Purchase Info</h5>
-                    <p><strong>Date:</strong> {{ $purchaseData->date }} </p>
-                    <p><strong>Status:</strong> {{ $purchaseData->status }} </p>
-                    <p><strong>Grand Total:</strong> ${{ number_format($purchaseData->total_amount, 2) }} </p>
+
+                <td>
+                    <p style="color:#0f4881"><strong>Purchase Order No:</strong> {{ $purchaseData->purchase_no }}
+                    </p>
+                    <p style="color:#0f4881"><strong>Invoice No: &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                            &nbsp;</strong>
+                        <span style="color:red">{{ $purchaseData->invoice_no }}</span>
+                    </p>
+                    <p><strong>Order Date: &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;</strong>
+                        {{ $purchaseData->purchase_date }} </p>
+                    <p><strong>Delivery Date: &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;</strong>
+                        {{ $purchaseData->purchase_date }} </p>
                 </td>
             </tr>
+            {{-- <tr>
+
+                <td class="info-box">
+                    <h5 style="color: #0f4881;">Bill To</h5>
+                    <p><strong>Name:</strong> {{ $purchaseData->supplier->name }} </p>
+                    <p><strong>Email:</strong> {{ $purchaseData->supplier->email }}</p>
+                    <p><strong>Phone:</strong> {{ $purchaseData->supplier->phone }} </p>
+                </td>
+
+            </tr> --}}
         </table>
 
         <h5 style="font-weight: bold; margin: 20px 0 10px;">Order Summary</h5>
         <table class="table">
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Product Name</th>
-                    <th>Quantity</th>
-                    <th>Net Unit Cost</th>
-                    <th>Discount</th>
-                    <th>Subtotal</th>
+                    <th  style="background-color: #0f4881;color:white;text-align:center;">#</th>
+                    <th  style="background-color: #0f4881;color:white;text-align:center;">Product Name</th>
+                    <th  style="background-color: #0f4881;color:white;text-align:center;">Quantity</th>
+                    <th  style="background-color: #0f4881;color:white;text-align:center;">Net Unit Cost</th>
+                    <th  style="background-color: #0f4881;color:white;text-align:center;">Subtotal</th>
                 </tr>
+
             </thead>
             <tbody>
+                @php $totalQuantity = 0; @endphp
                 @foreach ($purchaseData->purchaseItems as $key => $item)
                     <tr>
-                        <td>{{ $key + 1 }}</td>
-                        <td>{{ $item->asset->fixedAsset->name ?? ''}}</td>
-                        <td>{{ $item->quantity }}</td>
-                        <td>${{ number_format($item->net_unit_cost, 2) }}</td>
-                        <td>${{ number_format($item->discount, 2) }}</td>
-                        <td>${{ number_format($item->subtotal, 2) }}</td>
+                        <td style="text-align: center">{{ $key + 1 }}</td>
+                        <td>{{ $item->asset->fixedAsset->name ?? '' }}</td>
+                        <td style="text-align: center">{{ $item->quantity }}</td>
+                        <td style="text-align: center">${{ number_format($item->net_unit_cost, 2) }}</td>
+
+                        <td style="text-align: center">${{ number_format($item->subtotal, 2) }}</td>
                     </tr>
+                    @php $totalQuantity += $item->quantity; @endphp
                 @endforeach
+
+                <tr>
+                    <td></td>
+                    <td colspan="1" class="text-start">
+                        Total Qty
+                    </td>
+                    <td style="text-align: center">
+
+                        {{ $totalQuantity }}
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+
+                    </td>
+
+                    <td colspan="1" >
+                        Discount
+                    </td>
+                    <td style="text-align: center">
+                        ${{ number_format($purchaseData->discount, 2) }}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+
+                    </td>
+                    <td colspan="1" >
+                        Transportation
+                    </td>
+                    <td style="text-align: center">
+                        ${{ number_format($purchaseData->shipping, 2) }}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+
+                    </td>
+                    <td colspan="1" >
+                        Tax (%)
+                    </td>
+                    <td style="text-align: center">
+                        ${{ number_format($purchaseData->shipping, 2) }}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+
+                    </td>
+
+                    <td colspan="1"  style="background-color: #0f4881;color:white;text-align:center;">
+                        SubTotal
+                    </td>
+                    <td  style="background-color: #0f4881;color:white;text-align:center">
+                        ${{ number_format($purchaseData->total_amount, 2) }}
+                    </td>
+                </tr>
+
+                
             </tbody>
         </table>
-
+        <hr>
         <table class="summary-table">
             <tr>
-                <td><strong>Total Discount:</strong> ${{ number_format($purchaseData->discount, 2) }} </td>
+                <td style="color:#0f4881;">Payment Information</td>
+
             </tr>
             <tr>
-                <td><strong>Shipping Cost:</strong> ${{ number_format($purchaseData->shipping, 2) }} </td>
+                <td class="text-start">
+                    <strong>Bank:</strong>
+                    KBZ Bank, AYA Bank, CB Bank
+                </td>
             </tr>
             <tr>
-                <td><strong>Grand Total:</strong> ${{ number_format($purchaseData->grand_total, 2) }} </td>
+                <td>
+                    <strong>Account Name:</strong>
+                    ABC Software Solutions Co., Ltd
+                </td>
             </tr>
+            <tr>
+                <td class="text-start">
+                    <strong>Accoount number:</strong>
+                    123456789
+                </td>
+            </tr>
+
+
         </table>
+       
+        
     </div>
+
 </body>
 
 </html>

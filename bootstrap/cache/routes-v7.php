@@ -13,7 +13,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::fIwTFYnoFDfo5WYp',
+            '_route' => 'generated::CJaxBE71oz4RAfgb',
           ),
           1 => NULL,
           2 => 
@@ -33,7 +33,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::GgjlevZvGjSXhYl1',
+            '_route' => 'generated::O6ikvBTXratUMvIl',
           ),
           1 => NULL,
           2 => 
@@ -110,7 +110,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::zxARjRPk0Nv1DkOF',
+            '_route' => 'generated::4sktUoECqCbexiLq',
           ),
           1 => NULL,
           2 => 
@@ -146,7 +146,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::ybrlCuauKCUpP3m2',
+            '_route' => 'generated::xuvU42rZCmdweDfx',
           ),
           1 => NULL,
           2 => 
@@ -276,7 +276,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::8oznRBZRhtEzDcc0',
+            '_route' => 'generated::4MysE4MGevSameqb',
           ),
           1 => NULL,
           2 => 
@@ -2222,7 +2222,7 @@ app('router')->setCompiledRoutes(
     ),
     2 => 
     array (
-      0 => '{^(?|/res(?|et\\-password/([^/]++)(*:35)|ign\\-employees/([^/]++)(?|(*:68)|/edit(*:80)|(*:87)))|/verify\\-email/([^/]++)/([^/]++)(*:128)|/usermanage/(?|([^/]++)(?|/edit(*:167)|(*:175))|resign\\-submit(*:198)|block/([^/]++)(*:220)|unblock/([^/]++)(*:244)|toggle\\-block/([^/]++)(*:274))|/c(?|lient/([^/]++)(?|(*:305)|/edit(*:318)|(*:326))|onfiguration/(?|role/([^/]++)(?|(*:367)|/edit(*:380)|(*:388))|permission/([^/]++)(?|(*:419)|/edit(*:432)|(*:440))))|/warehouse/([^/]++)(?|(*:473)|/edit(*:486)|(*:494))|/s(?|to(?|ck\\-movements/([^/]++)(?|(*:538)|/edit(*:551)|(*:559))|rage/(.*)(*:577))|uppliermanage/supplier/([^/]++)(?|(*:620)|/edit(*:633)|(*:641)))|/engineer(?|s/(?|([^/]++)(?|(*:679)|/edit(*:692)|(*:700))|assign(?|/([^/]++)(*:727)|\\-project/([^/]++)(*:753)))|\\-requests/pass_qty/([^/]++)(*:791))|/assign\\-(?|edit/([^/]++)(*:825)|update/([^/]++)(*:848)|destroy/([^/]++)(*:872))|/qs\\-check\\-(?|create/([^/]++)(*:911)|detail/([^/]++)(*:934))|/material/(?|assets/([^/]++)(?|(*:974)|/edit(*:987)|(*:995))|fixedassets/(?|([^/]++)(?|(*:1030)|/edit(*:1044)|(*:1053))|purchase(*:1071))|category/([^/]++)(?|(*:1101)|/edit(*:1115)|(*:1124))|variable(?|assets/([^/]++)(?|(*:1163)|/edit(*:1177)|(*:1186))|\\-category/([^/]++)(?|(*:1218)|/edit(*:1232)|(*:1241))))|/p(?|rojectmanage/(?|project(?|s/([^/]++)(?|(*:1297)|/edit(*:1311)|(*:1320))|files/([^/]++)(?|/edit(*:1352)|(*:1361))|category/([^/]++)(?|(*:1391)|/edit(*:1405)|(*:1414)))|workscope/([^/]++)(?|(*:1446)|/edit(*:1460)|(*:1469)))|urchase(?|/(?|([^/]++)(?|(*:1505)|/edit(*:1519)|(*:1528))|payment/([^/]++)/history(*:1562))|_order/purchase/([^/]++)(*:1596))|ayment/purchase_payment/([^/]++)(?|(*:1641)))|/invoice/purchase/([^/]++)(*:1678)|/detail/purchase/([^/]++)(*:1712))/?$}sDu',
+      0 => '{^(?|/res(?|et\\-password/([^/]++)(*:35)|ign\\-employees/([^/]++)(?|(*:68)|/edit(*:80)|(*:87)))|/verify\\-email/([^/]++)/([^/]++)(*:128)|/usermanage/(?|([^/]++)(?|/edit(*:167)|(*:175))|resign\\-submit(*:198)|block/([^/]++)(*:220)|unblock/([^/]++)(*:244)|toggle\\-block/([^/]++)(*:274))|/c(?|lient/([^/]++)(?|(*:305)|/edit(*:318)|(*:326))|onfiguration/(?|role/([^/]++)(?|(*:367)|/edit(*:380)|(*:388))|permission/([^/]++)(?|(*:419)|/edit(*:432)|(*:440))))|/warehouse/([^/]++)(?|(*:473)|/edit(*:486)|(*:494))|/s(?|to(?|ck\\-movements/([^/]++)(?|(*:538)|/edit(*:551)|(*:559))|rage/(.*)(*:577))|uppliermanage/supplier/([^/]++)(?|(*:620)|/edit(*:633)|(*:641)))|/engineer(?|s/(?|([^/]++)(?|(*:679)|/edit(*:692)|(*:700))|assign(?|/([^/]++)(*:727)|\\-project/([^/]++)(*:753)))|\\-requests/pass_qty/([^/]++)(*:791))|/assign\\-(?|edit/([^/]++)(*:825)|update/([^/]++)(*:848)|destroy/([^/]++)(*:872))|/qs\\-check\\-(?|create/([^/]++)(*:911)|detail/([^/]++)(*:934))|/material/(?|assets/([^/]++)(?|(*:974)|/edit(*:987)|(*:995))|fixedassets/(?|([^/]++)(?|(*:1030)|/edit(*:1044)|(*:1053))|purchase(*:1071))|category/([^/]++)(?|(*:1101)|/edit(*:1115)|(*:1124))|variable(?|assets/([^/]++)(?|(*:1163)|/edit(*:1177)|(*:1186))|\\-category/([^/]++)(?|(*:1218)|/edit(*:1232)|(*:1241))))|/p(?|rojectmanage/(?|project(?|s/([^/]++)(?|(*:1297)|/edit(*:1311)|(*:1320))|files/([^/]++)(?|/edit(*:1352)|(*:1361))|category/([^/]++)(?|(*:1391)|/edit(*:1405)|(*:1414)))|workscope/([^/]++)(?|(*:1446)|/edit(*:1460)|(*:1469)))|urchase(?|/(?|([^/]++)(?|(*:1505)|/edit(*:1519)|(*:1528))|payment/([^/]++)/history(*:1562))|_order/purchase/([^/]++)(*:1596))|ayment/purchase_payment/([^/]++)(?|(*:1641)))|/invoice/p(?|urchase/([^/]++)(*:1681)|ayment/([^/]++)(*:1705))|/detail/purchase/([^/]++)(*:1740))/?$}sDu',
     ),
     3 => 
     array (
@@ -4281,7 +4281,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1678 => 
+      1681 => 
       array (
         0 => 
         array (
@@ -4304,7 +4304,30 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1712 => 
+      1705 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'payment.invoice.payment',
+          ),
+          1 => 
+          array (
+            0 => 'id',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      1740 => 
       array (
         0 => 
         array (
@@ -4342,7 +4365,7 @@ app('router')->setCompiledRoutes(
   ),
   'attributes' => 
   array (
-    'generated::fIwTFYnoFDfo5WYp' => 
+    'generated::CJaxBE71oz4RAfgb' => 
     array (
       'methods' => 
       array (
@@ -4371,7 +4394,7 @@ app('router')->setCompiledRoutes(
                         \'exception\' => $exception,
                     ]), status: $exception ? 500 : 200);
                 }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"000000000000059d0000000000000000";}}',
-        'as' => 'generated::fIwTFYnoFDfo5WYp',
+        'as' => 'generated::CJaxBE71oz4RAfgb',
       ),
       'fallback' => false,
       'defaults' => 
@@ -4387,7 +4410,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::GgjlevZvGjSXhYl1' => 
+    'generated::O6ikvBTXratUMvIl' => 
     array (
       'methods' => 
       array (
@@ -4409,7 +4432,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::GgjlevZvGjSXhYl1',
+        'as' => 'generated::O6ikvBTXratUMvIl',
       ),
       'fallback' => false,
       'defaults' => 
@@ -4541,7 +4564,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::zxARjRPk0Nv1DkOF' => 
+    'generated::4sktUoECqCbexiLq' => 
     array (
       'methods' => 
       array (
@@ -4562,7 +4585,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::zxARjRPk0Nv1DkOF',
+        'as' => 'generated::4sktUoECqCbexiLq',
       ),
       'fallback' => false,
       'defaults' => 
@@ -4616,7 +4639,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::ybrlCuauKCUpP3m2' => 
+    'generated::xuvU42rZCmdweDfx' => 
     array (
       'methods' => 
       array (
@@ -4637,7 +4660,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::ybrlCuauKCUpP3m2',
+        'as' => 'generated::xuvU42rZCmdweDfx',
       ),
       'fallback' => false,
       'defaults' => 
@@ -4957,7 +4980,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::8oznRBZRhtEzDcc0' => 
+    'generated::4MysE4MGevSameqb' => 
     array (
       'methods' => 
       array (
@@ -4978,7 +5001,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::8oznRBZRhtEzDcc0',
+        'as' => 'generated::4MysE4MGevSameqb',
       ),
       'fallback' => false,
       'defaults' => 
@@ -12451,6 +12474,45 @@ app('router')->setCompiledRoutes(
         array (
         ),
         'as' => 'payment.pay.detail',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'payment.invoice.payment' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'invoice/payment/{id}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Backend\\Payment\\PaymentController@invoicePayment',
+        'controller' => 'App\\Http\\Controllers\\Backend\\Payment\\PaymentController@invoicePayment',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'payment.invoice.payment',
       ),
       'fallback' => false,
       'defaults' => 

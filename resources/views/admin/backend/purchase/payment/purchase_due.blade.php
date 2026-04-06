@@ -45,6 +45,7 @@
                                 <th class="text-center" style="background-color: #9dd2e7">#</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Purchase Date</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Purchase No</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Invoice No</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Supplier Name</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Asset Name</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Total Amount</th>
@@ -59,6 +60,7 @@
                                     <td class="text-center">{{ $loop->iteration }}.</td>
                                     <td class="text-center">{{ $purchaseData->purchase_date }}</td>
                                     <td class="text-center">{{ $purchaseData->purchase_no }} </td>
+                                    <td class="text-center">{{ $purchaseData->invoice_no }} </td>
                                     <td class="text-center">{{ $purchaseData->supplier->name }}</td>
 
 
@@ -136,8 +138,8 @@
                                             <i class="ti ti-eye"></i>
                                         </a>
 
-                                        <a class="btn btn-sm btn-icon" href=""
-                                            style="background-color: #4aa1a3; color:white">
+                                        <a class="btn btn-sm btn-icon" href="{{ route('payment.invoice.payment', $purchaseData->id) }}"
+                                            style="background-color: #4aa1a3; color:white" title="PDF Invocie">
                                             <i class="ti ti-download"></i>
                                         </a>
 

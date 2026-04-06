@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Purchase Invoice</title>
-
+    <title>Purchase Order</title>
     <style>
         * {
             margin: 0;
@@ -26,7 +25,7 @@
         .invoice-container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 10px;
             border: 1px solid #ddd;
             border-radius: 8px;
             page-break-inside: avoid;
@@ -34,9 +33,8 @@
         }
 
         .invoice-header {
-            background-color: #0d6efd;
-            /* Fallback for gradient */
             background-color: #0f4881;
+            /* Fallback for gradient */
             /* background: linear-gradient(135deg, #0d6efd, #17a2b8); */
             color: #fff;
             padding: 15px;
@@ -99,7 +97,6 @@
 
         .table th {
             background: #e9ecef;
-            /* background-color: #0f4881; */
             font-weight: bold;
             color: #333;
         }
@@ -108,9 +105,20 @@
             background: #f8f9fa;
         }
 
+        /* .summary-table {
+            width: 50%;
+            margin-left: auto;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
 
-
-
+        .summary-table td {
+            padding: 5px;
+            text-align: left;
+            font-weight: bold;
+            border: none;
+            font-size: 12px;
+        } */
 
         @page {
             margin: 20mm;
@@ -159,119 +167,137 @@
 
         }
     </style>
+</head>
 
 <body>
     <div class="invoice-container">
-        {{-- letterhead --}}
-        <div class="row">
-            <div class="invoice-header">
-                {{-- <div class="col-md-6">
-                    <div style="display: flex; align-items: flex-start;">
-                        <img src="{{ 'data/logo1.png' }}" alt="Company Logo" style="width: 70px; height: auto;">
+        <div class="invoice-header">
+            {{-- <div style="display: flex; align-items: flex-start;">
+                <img src="{{ 'data/logo1.png' }}" alt="Company Logo"
+                    style="width: 70px; height: auto; margin-right: 15px;">
 
-                        <strong style="algin-items: start;">ABC Software Solutions Co., Ltd.</strong>
+                <strong style="margin-right: 25px;">ABC Software Solutions Co., Ltd.</strong>
+                <br>
 
-                    </div>
-                    <span>123 Main Street, Yangon, Myanmar</span> <br>
-                    <span>Email: info@abcsoftware.com | Phone: +95 9 123 456 789<span>
-                </div>
-                <div class="col-md-6 py-3">
-                    <h4 style="color:white">PURCHASE ORDER</h4>
-                </div> --}}
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <img src="{{ 'data/logo1.png' }}" alt="Company Logo" style="width: 60px; height: auto;">
+                <span>123 Main Street, Yangon, Myanmar</span> <br>
+                <span>Email: info@abcsoftware.com | Phone: +95 9 123 456 789<span>
 
+                        <h4 style="color:white; text-align:right;">PURCHASE ORDER</h4>
+                        <h5 style="color:white;text-align:right;">{{ $purchaseData->purchase_no }}</h5>
 
-                    <strong>ABC Software Solutions Co., Ltd.</strong><br>
-                    <span>123 Main Street, Yangon, Myanmar</span><br>
-                    <span>Email: info@abcsoftware.com | Phone: +95 9 123 456 789</span>
+            </div> --}}
 
-                </div>
-
-                <!-- RIGHT: Title -->
-                <div style="text-align: right;">
-                    <h2 style="color: white; margin: 0;">PURCHASE ORDER</h2>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <table class="info-section">
-        <tr>
-            <td class="info-box">
-                <h5>ABC Solution Company</h5>
-                <p><strong>Address:</strong> 123 Main Street, Yangon, Myanmar</p>
-                <p><strong>Phone:</strong> (95) 9 123 456 789</p>
-                <p><strong>Email:</strong> info@abcsoftware.com </p>
-                <p><strong>website:</strong> www.abcsoftware.com </p>
-            </td>
-
-            <td>
-                <p style="color:#0f4881"><strong>Purchase Order No:</strong> {{ $purchaseData->purchase_no }}
-                </p>
-                <p><strong>Invoice No: &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;</strong> INV
-                    - 2026 </p>
-                <p><strong>Order Date: &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;</strong>
-                    {{ $purchaseData->purchase_date }} </p>
-                <p><strong>Delivery Date: &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;</strong>
-                    {{ $purchaseData->purchase_date }} </p>
-            </td>
-        </tr>
-        <tr>
-
-            <td class="info-box">
-                <h5 style="background-color: #0f4881;color:white;padding:7px; width:250px;">Vendor Info</h5>
-                <p><strong>Name:</strong> {{ $purchaseData->supplier->name }} </p>
-                <p><strong>Email:</strong> {{ $purchaseData->supplier->email }}</p>
-                <p><strong>Phone:</strong> {{ $purchaseData->supplier->phone }} </p>
-            </td>
-
-            <td class="info-box">
-                <h5 style="background-color: #0f4881;color:white;padding:7px; width:250px;">Shipping To</h5>
-                <p><strong>Delivery Address:</strong> {{ $purchaseData->warehouse->name }} </p>
-                <p><strong>Contact Person:</strong> {{ $purchaseData->engineerAssetRequests->user->name ?? '' }}
-                </p>
-                <p><strong>Phone:</strong> {{ $purchaseData->supplier->phone }} </p>
-            </td>
-        </tr>
-    </table>
-
-    <h5 style="font-weight: bold; margin: 20px 0 10px;">Order Summary</h5>
-    <table class="table">
-        <thead>
-            <tr>
-                <th style="background-color: #0f4881;color:white">#</th>
-                <th style="background-color: #0f4881;color:white">Product Name</th>
-                <th style="background-color: #0f4881;color:white">Quantity</th>
-                <th style="background-color: #0f4881;color:white">Net Unit Cost</th>
-                <th style="background-color: #0f4881;color:white">Discount</th>
-                <th style="background-color: #0f4881;color:white">Subtotal</th>
-            </tr>
-
-        </thead>
-        <tbody>
-            @foreach ($purchaseData->purchaseItems as $key => $item)
+            <table width="100%">
                 <tr>
-                    <td>{{ $key + 1 }}</td>
-                    <td>{{ $item->asset->fixedAsset->name ?? '' }}</td>
-                    <td>{{ $item->quantity }}</td>
-                    <td>${{ number_format($item->net_unit_cost, 2) }}</td>
-                    <td>${{ number_format($item->discount, 2) }}</td>
+                    <td style="width: 70%;">
+                        <img src="{{ 'data/logo1.png' }}" style="width: 70px;">
+                        <br>
+                        <strong>ABC Software Solutions Co., Ltd.</strong><br>
+                        <span>123 Main Street, Yangon, Myanmar</span><br>
+                        <span>Email: info@abcsoftware.com | Phone: +95 9 123 456 789</span>
+                    </td>
 
-                    <td>${{ number_format($item->subtotal, 2) }}</td>
+                    <td style="text-align: right; vertical-align: top;color:white">
+                        <strong style="font-size:16px;">PURCHASE ORDER</strong><br>
+                        <span>{{ $purchaseData->purchase_no }}</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h4 style="color:white">PURCHASE ORDER</h4>
+
+        <table class="info-section">
+            <tr>
+                <td class="info-box">
+                    <h5>ABC Solution Company</h5>
+                    <p><strong>Address:</strong> 123 Main Street, Yangon, Myanmar</p>
+                    <p><strong>Phone:</strong> (95) 9 123 456 789</p>
+                    <p><strong>Email:</strong> info@abcsoftware.com </p>
+                    <p><strong>website:</strong> www.abcsoftware.com </p>
+                </td>
+
+                <td>
+                    <p style="color:#0f4881"><strong>Purchase Order No:</strong> {{ $purchaseData->purchase_no }}
+                    </p>
+                    <p style="color:#0f4881"><strong>Invoice No: &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                            &nbsp;</strong>
+                        <span style="color:red">{{ $purchaseData->invoice_no }}</span>
+                    </p>
+                    <p><strong>Order Date: &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;</strong>
+                        {{ $purchaseData->purchase_date }} </p>
+                    <p><strong>Delivery Date: &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;</strong>
+                        {{ $purchaseData->purchase_date }} </p>
+                </td>
+            </tr>
+            <tr>
+
+                <td class="info-box">
+                    <h5 style="background-color: #0f4881;color:white;padding:7px; width:250px;">Vendor Info</h5>
+                    <p><strong>Name:</strong> {{ $purchaseData->supplier->name }} </p>
+                    <p><strong>Email:</strong> {{ $purchaseData->supplier->email }}</p>
+                    <p><strong>Phone:</strong> {{ $purchaseData->supplier->phone }} </p>
+                </td>
+
+                <td class="info-box">
+                    <h5 style="background-color: #0f4881;color:white;padding:7px; width:250px;">Shipping To</h5>
+                    <p><strong>Delivery Address:</strong> {{ $purchaseData->warehouse->name }} </p>
+                    <p><strong>Contact Person:</strong> {{ $purchaseData->engineerAssetRequests->user->name ?? '' }}
+                    </p>
+                    <p><strong>Phone:</strong> {{ $purchaseData->supplier->phone }} </p>
+                </td>
+            </tr>
+        </table>
+
+        <h5 style="font-weight: bold; margin: 20px 0 10px;">Order Summary</h5>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th  style="background-color: #0f4881;color:white;text-align:center;">#</th>
+                    <th  style="background-color: #0f4881;color:white;text-align:center;">Product Name</th>
+                    <th  style="background-color: #0f4881;color:white;text-align:center;">Quantity</th>
+                    <th  style="background-color: #0f4881;color:white;text-align:center;">Net Unit Cost</th>
+                    <th  style="background-color: #0f4881;color:white;text-align:center;">Discount</th>
+                    <th  style="background-color: #0f4881;color:white;text-align:center;">Subtotal</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                @php $totalQuantity = 0; @endphp
+                @foreach ($purchaseData->purchaseItems as $key => $item)
+                    <tr>
+                        <td style="text-align:center">{{ $key + 1 }}</td>
+                        <td>{{ $item->asset->fixedAsset->name ?? '' }}</td>
+                        <td style="text-align:center">{{ $item->quantity }}</td>
+                        <td style="text-align:center">${{ number_format($item->net_unit_cost, 2) }}</td>
+                        <td style="text-align:center">${{ number_format($item->discount, 2) }}</td>
+
+                        <td style="text-align:center">${{ number_format($item->subtotal, 2) }}</td>
+                    </tr>
+                    @php $totalQuantity += $item->quantity; @endphp
+                @endforeach
+
+                <tr>
+                    <td></td>
+                    <td colspan="1" class="text-start">
+                        Total Qty
+                    </td>
+                    <td style="text-align:center">
+
+                        {{ $totalQuantity }}
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td colspan="4">
 
                     </td>
 
-                    <td colspan="1" class="text-start">
+                    <td colspan="1" style="text-align:center">
                         Discount
                     </td>
-                    <td>
+                    <td style="text-align:center">
                         ${{ number_format($purchaseData->discount, 2) }}
                     </td>
                 </tr>
@@ -279,10 +305,10 @@
                     <td colspan="4">
 
                     </td>
-                    <td colspan="1" class="text-start">
+                    <td colspan="1" style="text-align:center">
                         Shipping
                     </td>
-                    <td>
+                    <td style="text-align:center">
                         ${{ number_format($purchaseData->shipping, 2) }}
                     </td>
                 </tr>
@@ -291,55 +317,60 @@
 
                     </td>
 
-                    <td colspan="1" class="text-start" style="background-color: #0f4881;color:white">
+                    <td colspan="1" style="text-align:center;background-color: #0f4881;color:white">
                         Total Amount
                     </td>
-                    <td style="background-color: #0f4881;color:white">
+                    <td style="text-align:center; background-color: #0f4881;color:white">
                         ${{ number_format($purchaseData->total_amount, 2) }}
                     </td>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-    <table class="summary-table">
-        <tr>
-            <td class="text-start" style="color:#0f4881">Payment Information</td>
+        <table class="summary-table">
+            <tr>
+                <td style="color:#0f4881;">Payment Information</td>
 
-        </tr>
-        <tr>
-            <td class="text-start">
-                <strong>Bank:</strong>
-                KBZ Bank, AYA Bank, CB Bank
-            </td>
-        </tr>
-        <tr>
-            <td class="text-start">
-                <strong>Account Name:</strong>
-                ABC Software Solutions Co., Ltd
-            </td>
-        </tr>
-        <tr>
-            <td class="text-start">
-                <strong>Accoount number:</strong>
-                123456789
-            </td>
-        </tr>
-    </table>
+            </tr>
+            <tr>
+                <td class="text-start">
+                    <strong>Bank:</strong>
+                    KBZ Bank, AYA Bank, CB Bank
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Account Name:</strong>
+                    ABC Software Solutions Co., Ltd
+                </td>
+            </tr>
+            <tr>
+                <td class="text-start">
+                    <strong>Accoount number:</strong>
+                    123456789
+                </td>
+            </tr>
 
-    <table width="100%" style="margin-top: 40px;">
-        <tr>
-            <td style="width: 50%;">
-                <p>Prepared by: _____________________</p><br>
-                <p>Signature: ________________________</p>
-            </td>
 
-            <td style="width: 50%; text-align: right;">
-                <p>Approved by: _____________________</p><br>
-                <p>Date: ____________________________</p>
-            </td>
-        </tr>
-    </table>
+        </table>
+        <br>
+        <table width="100%">
+            <tr>
+               
+                <td style="width: 50%; text-align: left;">
+                    <span>Prepared by: ----------------------------</span><br><br>
+                    <span>Signature: --------------------------------</span>
+                </td>
+
+                
+                <td style="width: 50%; text-align: right;">
+                    <span>Approved by: ---------------------------</span><br><br>
+                    <span>Date: -------------------------------------</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+
 </body>
 
 </html>

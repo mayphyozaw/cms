@@ -202,4 +202,6 @@ Route::middleware('auth', 'notBlocked')->group(function () {
     Route::get('payment/purchase_payment/{id}', [PaymentController::class, 'pay'])->name('payment.pay');
     Route::post('payment/purchase_payment/{id}', [PaymentController::class, 'payStore'])->name('payment.pay.store');
     Route::get('purchase/payment/{id}/history', [PaymentController::class, 'payDetail'])->name('payment.pay.detail');
+    Route::get('/invoice/payment/{id}', [PaymentController::class, 'invoicePayment'])->name('payment.invoice.payment');
+
 });

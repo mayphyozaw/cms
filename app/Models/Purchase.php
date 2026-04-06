@@ -9,8 +9,11 @@ class Purchase extends Model
     protected $fillable = [
         'purchase_date',
         'purchase_no',
+        'invoice_no',
         'warehouse_id',
         'supplier_id',
+        'subtotal_amount',
+        'tax_amount',
         'discount',
         'shipping',
         'status',
@@ -70,5 +73,6 @@ class Purchase extends Model
         return $this->belongsTo(WareHouseStock::class, 'warehouse_stock_id');
     }
 
+    
     
 }

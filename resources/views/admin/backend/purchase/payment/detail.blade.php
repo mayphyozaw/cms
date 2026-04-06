@@ -5,7 +5,7 @@
             <div class="container-fluid my-0">
                 <div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
                     <div class="flex-grow-1">
-                        <h4 class="fs-18 fw-semibold m-0"> Purchase Payment Details</h4>
+                        <h4 class="fs-18 fw-semibold m-0"> Purchase Payment Details - <span style="color:red">{{$purchaseData->invoice_no}}</span></h4>
                     </div>
                     <div class="text-end">
                         <ol class="breadcrumb m-0 py-0">
@@ -20,6 +20,7 @@
                             <div class="col-md-6">
                                 <h5 class="mb-0">
                                     {{ $purchaseData->purchase_no }}
+                                    {{-- <span style="color:red">{{$purchaseData->invoice_no}}</span> --}}
                                 </h5>
                             </div>
 
@@ -227,7 +228,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @foreach ($purchaseData->purchaseItems as $purchaseItem)
+                                                        {{-- @foreach ($purchaseData->purchaseItems as $purchaseItem) --}}
                                                             @foreach ($purchaseData->purchasePayments as $payment)
                                                                 <tr>
 
@@ -239,7 +240,7 @@
                                                                         {{ number_format($payment->paid_amount, 2) }}</td>
                                                                 </tr>
                                                             @endforeach
-                                                        @endforeach
+                                                        {{-- @endforeach --}}
                                                         @php
                                                             $totalPaid = $purchaseData->purchasePayments->sum(
                                                                 'paid_amount',

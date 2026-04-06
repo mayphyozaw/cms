@@ -54,24 +54,30 @@ class PurchaseController extends Controller
             'net_unit_cost.*' => 'required|numeric|min:0',
             'purchase_discount' => 'nullable|numeric|min:0',
             'shipping' => 'nullable|numeric|min:0',
+            'tax_amount' => 'nullable|numeric|min:0',
         ]);
 
 
         $lastPurchase = Purchase::latest()->first();
         $nextNumber = $lastPurchase ? $lastPurchase->id + 1 : 1;
         $purchaseNo = 'PO-' . date('Ymd') . '-' . str_pad($nextNumber, 4, '0', STR_PAD_LEFT);
+        $invoiceNo = 'INV-' . date('Y') . '-' . str_pad($nextNumber, 4, '0', STR_PAD_LEFT);
         $total_amount = 0;
+        $subtotal_amount = 0;
         $due_amount = 0;
 
         $purchase = Purchase::create([
             'purchase_date' => now(),
             'purchase_no' => $purchaseNo,
+            'invoice_no' => $invoiceNo,
             'warehouse_id' => $request->warehouse_id,
             'supplier_id' => $request->supplier_id,
+            'tax_amount' => $request->tax_amount ?? 0,
             'discount' => $request->purchase_discount ?? 0,
             'shipping' => $request->shipping ?? 0,
             'status' => $request->status,
             'remark' => $request->remark ?? '',
+            'subtotal_amount' => 0,
             'total_amount' => 0,
             'due_amount' => 0,
             'payment_status' => $request->payment_status ?? '',
@@ -88,11 +94,13 @@ class PurchaseController extends Controller
             $net_unit_cost = $request->net_unit_cost[$index];
             $quantity = $request->quantity[$index];
             $discount = $request->discount[$index] ?? 0;
-
+            $taxPercent = $request->tax_amount[$index] ?? 0;
 
             $subtotal = ($net_unit_cost * $quantity) - $discount;
 
-            $total_amount += $subtotal;
+            $subtotal_amount += $subtotal;
+            $taxAmount = ($subtotal_amount * $taxPercent) / 100;
+            $total_amount = $subtotal_amount + $taxAmount;
 
             $purchaseItems = PurchaseItem::create([
                 'purchase_id' => $purchase->id,
@@ -129,7 +137,7 @@ class PurchaseController extends Controller
                         'stock_balance' => $quantity,
 
                     ]);
-                    // $stock->updateStockStatus();
+                    
                 }
             } else {
 
@@ -150,7 +158,7 @@ class PurchaseController extends Controller
                         'quantity' => $quantity,
                         'stock_balance' => $quantity,
                     ]);
-                    // $stock->updateStockStatus();
+                    
                 }
             }
 
@@ -173,8 +181,8 @@ class PurchaseController extends Controller
                 // $warehouseStock->updateWarehouseStockStatus();
             }
         }
-
-        $total = $total_amount + ($request->shipping ?? 0) - ($request->purchase_discount ?? 0);
+        
+        $total = $total_amount - ($request->purchase_discount ?? 0) + ($request->shipping ?? 0);
 
         $paidAmount = $request->paid_amount ?? 0;
         $dueAmount = $total - $paidAmount;
@@ -190,6 +198,8 @@ class PurchaseController extends Controller
         }
 
         $purchase->update([
+            'subtotal_amount' => $subtotal_amount,
+            'tax_amount' => $taxAmount,
             'total_amount' => $total,
             'due_amount' => $dueAmount,
             'payment_status' => $payment_status,
@@ -296,7 +306,7 @@ class PurchaseController extends Controller
 
     public function invoicePurchase($id)
     {
-        $purchaseData = Purchase::with(['supplier', 'engineerAssetRequests', 'warehouse', 'purchaseItems.asset.fixedAsset'])->find($id);
+        $purchaseData = Purchase::with(['supplier',  'warehouse', 'purchaseItems.engineerAssetRequests.asset.fixedAsset'])->find($id);
         $pdf = Pdf::loadView('admin.backend.purchase.invoice_pdf', compact('purchaseData'));
         return $pdf->download('purchase_' . $id . '.pdf');
     }

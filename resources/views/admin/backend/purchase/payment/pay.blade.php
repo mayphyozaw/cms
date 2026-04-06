@@ -5,7 +5,7 @@
             <div class="container-fluid my-0">
                 <div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
                     <div class="flex-grow-1">
-                        <h4 class="fs-18 fw-semibold m-0"> Purchase Ordrers</h4>
+                        <h4 class="fs-18 fw-semibold m-0"> Purchase Ordrers - <span style="color:red">{{$purchaseData->invoice_no}}</span></h4>
                     </div>
                     <div class="text-end">
                         <ol class="breadcrumb m-0 py-0">
