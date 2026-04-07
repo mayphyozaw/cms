@@ -30,9 +30,10 @@ class AssetController extends Controller
 
     public function index()
     {
-        $assets = Asset::with(['fixedAsset', 'variableAsset'])
-            ->withSum('engineerRequestItems as total_passed', 'passed_qty')
-            ->get();
+        // $assets = Asset::with(['fixedAsset', 'variableAsset'])
+        //     ->withSum('engineerRequestItems as total_passed', 'passed_qty')
+        //     ->get();
+        $assets = Asset::withSum('warehouseStock as total_stock', 'stock_balance')->get();
         $fixedAsset = FixedAsset::all();
         $variableAsset = VariableAsset::all();
         $fixedCount = Asset::where('asset_type', 'fixedAsset')->count();

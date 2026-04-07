@@ -268,10 +268,10 @@
                         <td class="text-center">{{ $key + 1 }}</td>
                         <td>{{ $item->asset->fixedAsset->name ?? '' }}</td>
                         <td class="text-center">{{ $item->quantity }}</td>
-                        <td class="text-center">${{ number_format($item->net_unit_cost, 2) }}</td>
-                        <td class="text-center">${{ number_format($item->discount, 2) }}</td>
+                        <td class="text-center">{{ number_format($item->net_unit_cost, 2) }}</td>
+                        <td class="text-center">{{ number_format($item->discount, 2) }}</td>
 
-                        <td class="text-center">${{ number_format($item->subtotal, 2) }}</td>
+                        <td class="text-center">{{ number_format($item->subtotal, 2) }} MMK</td>
                     </tr>
                     @php $totalQuantity += $item->quantity; @endphp
                 @endforeach
@@ -297,7 +297,7 @@
                         Discount
                     </td>
                     <td class="text-center">
-                        ${{ number_format($purchaseData->discount, 2) }}
+                        {{ number_format($purchaseData->discount, 2) }} MMK
                     </td>
                 </tr>
                 <tr>
@@ -308,7 +308,7 @@
                         Shipping
                     </td>
                     <td class="text-center">
-                        ${{ number_format($purchaseData->shipping, 2) }}
+                        {{ number_format($purchaseData->shipping, 2) }} MMK
                     </td>
                 </tr>
                 <tr>
@@ -320,7 +320,7 @@
                         Total Amount
                     </td>
                     <td class="text-center" style="background-color: #0f4881;color:white">
-                        ${{ number_format($purchaseData->total_amount, 2) }}
+                        {{ number_format($purchaseData->total_amount, 2) }} MMK
                     </td>
                 </tr>
             </tbody>

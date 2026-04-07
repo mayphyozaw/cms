@@ -267,9 +267,9 @@
                         <td style="text-align: center">{{ $key + 1 }}</td>
                         <td>{{ $item->asset->fixedAsset->name ?? '' }}</td>
                         <td style="text-align: center">{{ $item->quantity }}</td>
-                        <td style="text-align: center">${{ number_format($item->net_unit_cost, 2) }}</td>
+                        <td style="text-align: center">{{ number_format($item->net_unit_cost, 2) }}</td>
 
-                        <td style="text-align: center">${{ number_format($item->subtotal, 2) }}</td>
+                        <td style="text-align: center">{{ number_format($item->subtotal, 2) }} MMK</td>
                     </tr>
                     @php $totalQuantity += $item->quantity; @endphp
                 @endforeach
@@ -286,27 +286,16 @@
                     <td></td>
                     <td></td>
                 </tr>
-                <tr>
-                    <td colspan="3">
 
-                    </td>
-
-                    <td colspan="1" >
-                        Discount
-                    </td>
-                    <td style="text-align: center">
-                        ${{ number_format($purchaseData->discount, 2) }}
-                    </td>
-                </tr>
                 <tr>
                     <td colspan="3">
 
                     </td>
                     <td colspan="1" >
-                        Transportation
+                        Subtotal
                     </td>
                     <td style="text-align: center">
-                        ${{ number_format($purchaseData->shipping, 2) }}
+                        {{ number_format($purchaseData->subtotal_amount, 2) }} MMK
                     </td>
                 </tr>
                 <tr>
@@ -317,9 +306,33 @@
                         Tax (%)
                     </td>
                     <td style="text-align: center">
-                        ${{ number_format($purchaseData->shipping, 2) }}
+                        {{ number_format($purchaseData->tax_amount, 2) }} MMK
                     </td>
                 </tr>
+                <tr>
+                    <td colspan="3">
+
+                    </td>
+
+                    <td colspan="1" >
+                        Discount
+                    </td>
+                    <td style="text-align: center">
+                        {{ number_format($purchaseData->discount, 2) }} MMK
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+
+                    </td>
+                    <td colspan="1" >
+                        Transportation
+                    </td>
+                    <td style="text-align: center">
+                        {{ number_format($purchaseData->shipping, 2) }} MMK
+                    </td>
+                </tr>
+                
                 <tr>
                     <td colspan="3">
 
@@ -329,7 +342,7 @@
                         SubTotal
                     </td>
                     <td  style="background-color: #0f4881;color:white;text-align:center">
-                        ${{ number_format($purchaseData->total_amount, 2) }}
+                        {{ number_format($purchaseData->total_amount, 2) }} MMK
                     </td>
                 </tr>
 

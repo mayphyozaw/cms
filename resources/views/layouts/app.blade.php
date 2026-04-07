@@ -28,11 +28,13 @@
     <link rel="stylesheet" href="{{ asset('backend/assets/plugins/daterangepicker/daterangepicker.css') }}">
     <!-- Select2 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('backend/assets/plugins/select2/css/select2.min.css') }}">
     <!-- Choices CSS -->
     <link rel="stylesheet" href="{{ asset('backend/assets/plugins/choices.js/public/assets/styles/choices.min.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css') }}" id="app-style">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
 
 </head>
@@ -81,6 +83,7 @@
     <!-- Choices Js -->
     <script src="{{asset('backend/assets/plugins/choices.js/public/assets/scripts/choices.min.js')}}" type="a1dcc44babf6ba6f47b105cc-text/javascript"></script>
 
+
     <script src="https://cdn.datatables.net/2.3.6/js/dataTables.js"></script>
 
     <script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-2.3.6/datatables.min.js"
@@ -122,9 +125,29 @@
 
     <script src="{{ asset('vendor/jsvalidation/js/jsvalidation.js') }}"></script>
 
-    {{-- <script>
-        $('.select_2').select2();
-    </script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('[data-choices]');
+
+            elements.forEach(function(el) {
+                new Choices(el, {
+                    searchEnabled: true,
+                    itemSelectText: '',
+                });
+            });
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        flatpickr("#datetime", {
+            enableTime: true, 
+            enableSeconds: true, 
+            dateFormat: "Y-m-d H:i:S", 
+            time_24hr: true 
+        });
+    </script>
 
     @stack('scripts')
 

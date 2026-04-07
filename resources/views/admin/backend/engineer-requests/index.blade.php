@@ -139,8 +139,8 @@
                                 <th class="text-center" style="background-color: #9dd2e7">Accept / Reject</th>
                                 <th class="text-center" style="background-color: #9dd2e7">QS Team Check & Pass</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Logistics Team Check & Sent</th>
-                                <th class="text-center" style="background-color: #9dd2e7">Transferred From Warehouse</th>
-                                <th class="text-center" style="background-color: #9dd2e7">Transferred To Warehouse </th>
+                                <th class="text-center" style="background-color: #9dd2e7">Transferred From</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Transferred To </th>
                                 <th class="text-center" style="background-color: #9dd2e7">Received Engineer</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Actions</th>
                             </tr>
@@ -151,10 +151,21 @@
                                 @php
                                     $items = $engineerAssetRequest->engineerAssetRequestItems;
 
+                                    $item = $engineerAssetRequest->engineerAssetRequestItems->first();
+
                                     $total = $items->count();
+
+                                    $totalPassedQty = $items->sum('passed_qty');
+
                                     $checked = $items->whereNotNull('checked_at')->count();
 
                                     $firstChecked = $items->firstWhere('checked_at', '!=', null);
+
+                                    $checkedCount = $items->whereNotNull('checked_at')->count();
+
+                                    // $isFinihed = $engineerAssetRequest->qs_checked_status === 'finished';
+                                    $isLogisticsFinihed = $engineerAssetRequest->qs_checked_status === 'finished';
+
                                 @endphp
 
                                 <tr>
@@ -308,7 +319,46 @@
                                         @endif
                                     </td>
 
+                                    <td class="text-center logistics-bar-container-{{ $engineerAssetRequest->id }}"
+                                        style="min-width:150px">
 
+                                        {{-- @php
+                                            $logisticsFinished = ($totalPassedQty != 0 && $total > 0 );
+                                        @endphp --}}
+
+                                        @if ($isLogisticsFinihed = $engineerAssetRequest->logistics_checked_status === 'finished')
+                                            <div class="text-success">
+                                                <i class="ti ti-check text-success"></i>
+                                                <a href="#">Finished</a>
+                                            </div>
+                                            <div class="progress mt-1" style="height:8px;">
+                                                <div class="progress-bar bg-success" style="width:100%"></div>
+                                            </div>
+                                        @else
+                                            <div class="progress" style="height:8px;">
+                                                <div class="progress-bar bg-danger" style="width:100%"></div>
+                                            </div>
+                                            <small>
+                                                <a
+                                                    href="{{ route('logistics.check.create', $engineerAssetRequest->id) }}">
+                                                    Pending / No Check
+                                                </a>
+                                            </small>
+                                        @endif
+                                    </td>
+
+                                    <td>
+                                        @if ($item->transfer_from_warehouse_id)
+                                            {{ $item->warehouse->name ?? '' }}
+                                        @else
+                                            {{ $item->project->project_code ?? ''}}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ $engineerAssetRequest->project->client->project_code ?? '' }}
+                                    </td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                             @endforeach
                         </tbody>

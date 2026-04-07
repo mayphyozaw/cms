@@ -83,9 +83,8 @@ class AssetService
                 return $assets->quantity ?? '';
             })
             ->editColumn('stock_balance', function ($asset) {
-                // $totalPassed = $asset->engineer_request_items_sum_passed_qty ?? 0;
-                $stock_balance = $asset->stock_balance;
-                return $stock_balance;
+                $totalStock = $asset->warehouseStock->sum('stock_balance');
+                return $totalStock;
                 // $url = route('qs.check.detail', ['asset_id' => $asset->id]);
                 // return '<a href="' . $url . '" class="text-primary">' . $stock_balance . '</a>';
             })

@@ -83,8 +83,6 @@
 
                                             <td>{{ $item->quantity }}</td>
 
-                                            
-
                                             <td>
                                                 @if ($item->asset->quantity <= 0)
                                                     <span class="badge bg-danger">Out of Stock</span>

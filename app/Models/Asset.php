@@ -69,7 +69,7 @@ class Asset extends Model
 
     public function warehouseStock()
     {
-        return $this->belongsTo(WareHouseStock::class, 'warehouse_stock_id');
+        return $this->hasMany(WareHouseStock::class, 'asset_id','id');
     }
 
     public function purchaseItems()

@@ -12,6 +12,7 @@ use App\Models\EngineerRequestItem;
 use App\Models\FixedAsset;
 use App\Models\Project;
 use App\Models\User;
+use App\Models\Warehouse;
 use App\Models\WorkScope;
 use App\Services\EngineerRequestService;
 use App\Services\EngineerService;
@@ -20,16 +21,19 @@ use Illuminate\Http\Request;
 class EngineerRequestController extends Controller
 {
 
+
+
     public function index()
-
     {
-        $assetRequestItems = EngineerAssetRequestItems::all();
+        
         $engineerAssetRequests = EngineerAssetRequests::with([
-            'engineerAssetRequestItems.asset.fixedAsset'
+            'engineerAssetRequestItems.asset.fixedAsset',
+            'engineerAssetRequestItems.warehouse',
+            'engineerAssetRequestItems.project',
         ])->get();
-
+        
         $user = User::with('engineerAssetRequests.project.client')->get();
-        return view('admin.backend.engineer-requests.index', compact('user', 'engineerAssetRequests', 'assetRequestItems'));
+        return view('admin.backend.engineer-requests.index', compact('user', 'engineerAssetRequests'));
     }
 
     public function create(Request $request)
@@ -58,6 +62,7 @@ class EngineerRequestController extends Controller
             'project_id' => $request->project_id,
             'workscope_id' => $request->workscope_id,
             'user_id' => auth()->id(),
+            
         ]);
 
         if ($request->asset_id) {

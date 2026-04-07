@@ -256,7 +256,7 @@
                     <th  style="background-color: #0f4881;color:white;text-align:center;">Product Name</th>
                     <th  style="background-color: #0f4881;color:white;text-align:center;">Quantity</th>
                     <th  style="background-color: #0f4881;color:white;text-align:center;">Net Unit Cost</th>
-                    <th  style="background-color: #0f4881;color:white;text-align:center;">Discount</th>
+                    {{-- <th  style="background-color: #0f4881;color:white;text-align:center;">Discount</th> --}}
                     <th  style="background-color: #0f4881;color:white;text-align:center;">Subtotal</th>
                 </tr>
 
@@ -268,10 +268,10 @@
                         <td style="text-align:center">{{ $key + 1 }}</td>
                         <td>{{ $item->asset->fixedAsset->name ?? '' }}</td>
                         <td style="text-align:center">{{ $item->quantity }}</td>
-                        <td style="text-align:center">${{ number_format($item->net_unit_cost, 2) }}</td>
-                        <td style="text-align:center">${{ number_format($item->discount, 2) }}</td>
+                        <td style="text-align:center">{{ number_format($item->net_unit_cost, 2) }}</td>
+                        {{-- <td style="text-align:center">{{ number_format($item->discount, 2) }}</td> --}}
 
-                        <td style="text-align:center">${{ number_format($item->subtotal, 2) }}</td>
+                        <td style="text-align:center">{{ number_format($item->subtotal, 2) }}</td>
                     </tr>
                     @php $totalQuantity += $item->quantity; @endphp
                 @endforeach
@@ -287,10 +287,36 @@
                     </td>
                     <td></td>
                     <td></td>
-                    <td></td>
                 </tr>
+
                 <tr>
-                    <td colspan="4">
+                    <td colspan="3">
+
+                    </td>
+
+                    <td colspan="1" style="text-align:center">
+                        Subtotal
+                    </td>
+                    <td style="text-align:center">
+                        {{ number_format($purchaseData->subtotal_amount, 2) }} MMK
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="3">
+
+                    </td>
+
+                    <td colspan="1" style="text-align:center">
+                        Tax (%)
+                    </td>
+                    <td style="text-align:center">
+                        {{ number_format($purchaseData->tax_amount, 2) }} MMK
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="3">
 
                     </td>
 
@@ -298,22 +324,22 @@
                         Discount
                     </td>
                     <td style="text-align:center">
-                        ${{ number_format($purchaseData->discount, 2) }}
+                        {{ number_format($purchaseData->discount, 2) }} MMK
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="4">
+                    <td colspan="3">
 
                     </td>
                     <td colspan="1" style="text-align:center">
                         Shipping
                     </td>
                     <td style="text-align:center">
-                        ${{ number_format($purchaseData->shipping, 2) }}
+                        {{ number_format($purchaseData->shipping, 2) }} MMK
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="4">
+                    <td colspan="3">
 
                     </td>
 
@@ -321,7 +347,7 @@
                         Total Amount
                     </td>
                     <td style="text-align:center; background-color: #0f4881;color:white">
-                        ${{ number_format($purchaseData->total_amount, 2) }}
+                        {{ number_format($purchaseData->total_amount, 2) }} MMK
                     </td>
                 </tr>
             </tbody>

@@ -15,6 +15,8 @@ class EngineerAssetRequests extends Model
         'workscope_id',
         'user_id',
         'status',
+        'qs_checked_status',
+        'logistics_checked_status',
         'remark',
     ];
 
@@ -50,6 +52,4 @@ class EngineerAssetRequests extends Model
     {
         return $this->belongsTo(WorkScope::class, 'workscope_id');
     }
-    
-    
 }

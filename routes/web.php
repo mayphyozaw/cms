@@ -12,6 +12,8 @@ use App\Http\Controllers\Backend\EngineerAssetsRequest\FixedAssetRequestsControl
 use App\Http\Controllers\Backend\EngineerAssign\EnigneerAssignController;
 use App\Http\Controllers\Backend\EngineerManage\EngineersController;
 use App\Http\Controllers\Backend\EngineerRequest\EngineerRequestController;
+use App\Http\Controllers\Backend\EngineerRequest\QSTeamCheckController as EngineerRequestQSTeamCheckController;
+use App\Http\Controllers\Backend\LogisticsTeamCheck\LogisticsTeamCheckController;
 use App\Http\Controllers\Backend\MaterialManagement\AssetController;
 use App\Http\Controllers\Backend\MaterialManagement\FixedAssets\CategoryController;
 use App\Http\Controllers\Backend\MaterialManagement\FixedAssets\FixedAssetsController;
@@ -111,7 +113,6 @@ Route::middleware('auth', 'notBlocked')->group(function () {
 
     Route::get('/engineer-requests/pass_qty/{id}', [EngineerRequestController::class, 'passQty'])->name('pass_qty');
 
-
     Route::get('engineer-requests/fixed-assset-request/all', [EngineerRequestController::class, 'fixedAssestsRequestIndex'])->name('fixed-asset-request.index');
     Route::get('engineer-requests/fixed-assset-request/create', [EngineerRequestController::class, 'fixedAssestsRequestCreate'])->name('fixed-asset-request.create');
 
@@ -124,7 +125,8 @@ Route::middleware('auth', 'notBlocked')->group(function () {
     Route::post('qs-check-store', [QSTeamCheckController::class, 'store'])->name('qs.check.store');
     Route::get('qs-check-detail/{asset_id}', [QSTeamCheckController::class, 'show'])->name('qs.check.detail');
 
-
+    Route::get('logistics-check-create/{id}',[LogisticsTeamCheckController::class,'create'])->name('logistics.check.create');
+    Route::post('logistics-check-store', [LogisticsTeamCheckController::class, 'store'])->name('logistics.check.store');
 
 
     Route::prefix('asset-requests')->name('asset-requests.')->group(function () {

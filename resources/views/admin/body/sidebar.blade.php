@@ -251,7 +251,9 @@
                     </ul>
                 </li>
 
-                {{-- @can('asset_requests_menu') --}}
+                {{-- @php
+                    $isActive = request()->routeIs('engineer-requests.*') || $hasProcessingRequests;
+                @endphp --}}
                 <li>
                     <ul>
                         <li class="submenu">
@@ -270,14 +272,6 @@
                                         </i><span>Engineer Requests</span>
                                     </a>
                                 </li>
-                                {{-- @endcan --}}
-                                {{-- <li>
-                                    <a href="{{ route('fixedAsset-request.index') }}"
-                                        class="{{ request()->routeIs('fixedAsset-request.index') ? 'active' : '' }}">
-                                        <i class="ti ti-users">
-                                        </i><span>Resigned Employess</span>
-                                    </a>
-                                </li> --}}
                             </ul>
                         </li>
                     </ul>
@@ -356,14 +350,14 @@
                                 </li>
 
                                 <li>
-                                    <a href="{{ route('payment.purchase_payment') }}"  
+                                    <a href="{{ route('payment.purchase_payment') }}"
                                         class="{{ request()->routeIs('payment.*') ? 'active' : '' }}">
                                         <i class="ti ti-report-money">
                                         </i><span>Payment Process</span>
                                     </a>
                                 </li>
 
-                                
+
 
                             </ul>
                         </li>
