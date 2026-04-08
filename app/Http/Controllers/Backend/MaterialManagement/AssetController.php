@@ -53,43 +53,6 @@ class AssetController extends Controller
     }
 
 
-    public function store1(Request $request)
-    {
-
-
-        $assetData = [
-            'asset_type'   => $request->asset_type,
-            'warehouse_id'   => $request->warehouse_id,
-            'unit'         => $request->unit,
-            'quantity'     => $request->quantity,
-            'status'       => $request->status,
-            'remarks'      => $request->remarks,
-        ];
-
-
-        if ($request->asset_type == 'fixedAsset') {
-            $assetData['fixed_asset_id'] = $request->asset_id;
-            $assetData['fixed_category_id'] = $request->category_id;
-
-            $assetData['variable_asset_id'] = null;
-            $assetData['variable_category_id'] = null;
-        } else {
-            $assetData['variable_asset_id'] = $request->asset_id;
-            $assetData['variable_category_id'] = $request->category_id;
-
-            $assetData['fixed_asset_id'] = null;
-            $assetData['fixed_category_id'] = null;
-        }
-
-        $this->assetService->create($assetData);
-
-        return redirect()->route('material.assets.index')
-            ->with([
-                'message' => 'Successfully created',
-                'alert-type' => 'success'
-            ]);
-    }
-
     public function store(Request $request)
     {
         $assetData = [
@@ -159,9 +122,9 @@ class AssetController extends Controller
     public function getCategoriesByType(Request $request)
     {
         if ($request->type == 'fixedAsset') {
-            $categories = FixedAssetCategory::select('id', 'category_name as name')->get();
+            $categories = FixedAssetCategory::all();
         } else {
-            $categories = VariableCategory::select('id', 'variable_category_name as name')->get();
+            $categories = VariableCategory::all();
         }
 
         return response()->json($categories);
@@ -173,8 +136,50 @@ class AssetController extends Controller
         return $this->assetService->assetsDataTable();
     }
 
+    public function edit($id)
+    {
+        $warehouses = Warehouse::all();
+        $fixedAsset = FixedAsset::with('fixedCategory')->get();
+        $variableAsset = VariableAsset::with('variableCategory')->get();
+        $asset = Asset::with(['fixedAsset', 'variableAsset'])->findOrFail($id);
+        $categories = FixedAssetCategory::all();
+        return view('admin.backend.materialmanage.assets.edit', compact('warehouses', 'fixedAsset', 'variableAsset', 'asset','categories'));
+    }
 
+    public function update(Request $request, $id)
+    {
+        $assetData = [
+            'asset_type'   => $request->asset_type,
+            'warehouse_id' => $request->warehouse_id,
+            'unit'        => $request->unit,
+            'quantity'   => $request->quantity,
+            'stock_balance' => $request->quantity, 
+            'status'      => $request->status,
+            'remarks'     => $request->remarks,
+        ];
 
+        if ($request->asset_type == 'fixedAsset') {
+            $assetData['fixed_asset_id'] = $request->asset_id;
+            $assetData['fixed_category_id'] = $request->category_id;
+
+            $assetData['variable_asset_id'] = null;
+            $assetData['variable_category_id'] = null;
+        } else {
+            $assetData['variable_asset_id'] = $request->asset_id;
+            $assetData['variable_category_id'] = $request->category_id;
+
+            $assetData['fixed_asset_id'] = null;
+            $assetData['fixed_category_id'] = null;
+        }
+
+        $this->assetService->update($id, $assetData);
+
+        return redirect()->route('material.assets.index')->with([
+            'message' => 'Successfully created',
+            'alert-type' => 'success'
+        ]);
+    }
+    
     public function destroy($id)
     {
         try {
@@ -185,4 +190,6 @@ class AssetController extends Controller
             return ResponseService::fail($e->getMessage());
         }
     }
+
+
 }

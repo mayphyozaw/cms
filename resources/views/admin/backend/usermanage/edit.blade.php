@@ -30,11 +30,6 @@
                             <div class="input-group-text"><i class="ti ti-user"></i></div>
                             <input type="text" class="form-control" name="name"
                                 value="{{ old('name', $user->name) }}">
-                            @error('name')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
                         </div>
                     </div>
 
@@ -44,11 +39,6 @@
                             <div class="input-group-text"><i class="ti ti-mail"></i></div>
                             <input type="text" class="form-control @error('email') is-invalid @enderror" name="email"
                                 value="{{ old('email', $user->email) }}">
-                            @error('email')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
                         </div>
                     </div>
 

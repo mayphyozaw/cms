@@ -167,28 +167,19 @@
                         type: type
                     },
                     success: function(data) {
-
                         let options = '<option value="">Select Asset</option>';
-
                         data.forEach(function(asset) {
-                            options += `<option value="${asset.id}">${asset.name}</option>`;
-
+                            options += 
+                                `<option value="${asset.id}">${asset.name}</option>`;
                         });
-
                         $('#asset_id').html(options);
-
                     }
-
-
                 });
-
             } else {
                 $('#asset_id').html('<option value="">Select Asset</option>');
 
             }
         });
-
-
 
         $('#asset_id').on('change', function() {
 
@@ -216,13 +207,11 @@
                             success: function(data) {
 
                                 let options = '<option value="">Select Category</option>';
-
                                 data.forEach(item => {
                                     let selected = item.id == response.category_id ?
                                         'selected' : '';
                                     options +=
-                                        `<option value="${item.id}">${item.name}</option>`;
-
+                                        `<option value="${item.id}">${item.category_name}</option>`;
                                 });
 
                                 $('#category_id').html(options);

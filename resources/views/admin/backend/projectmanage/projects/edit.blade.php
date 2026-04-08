@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css"> --}}
     <div class="content pb-0">
         <div class="mb-4">
             <h4 class="mb-1">Projects</h4>
