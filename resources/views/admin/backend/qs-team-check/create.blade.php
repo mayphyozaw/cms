@@ -65,12 +65,12 @@
                                     <tr>
                                         <th class="text-center">#</th>
                                         <th class="text-center">Request Items</th>
+                                        <th class="text-center">Warehouse Stock</th>
                                         <th class="text-center">Request Qty</th>
                                         <th class="text-center">Available</th>
-                                        <th class="text-center">Warehouse Stock</th>
                                         <th class="text-center">Pass(Qty)</th>
                                         <th class="text-center">Pass(Qty) - Entry</th>
-                                        <th class="text-center">Warehouse Stock Balance</th>
+                                        {{-- <th class="text-center">Warehouse Stock Balance</th> --}}
                                     </tr>
                                 </thead>
 
@@ -80,18 +80,19 @@
                                             <td>{{ $loop->iteration }}</td>
 
                                             <td>{{ $item->asset->fixedAsset->name }}</td>
+                                             <td>{{ $item->asset->stock_balance }}</td>
 
                                             <td>{{ $item->quantity }}</td>
 
                                             <td>
-                                                @if ($item->asset->quantity <= 0)
+                                                @if ($item->asset->stock_balance <= 0)
                                                     <span class="badge bg-danger">Out of Stock</span>
                                                 @else
                                                     <span class="badge bg-success">Available</span>
                                                 @endif
                                             </td>
 
-                                            <td>{{ $item->asset->quantity }}</td>
+                                           
 
                                             <td>{{ $item->passed_qty ?? 0 }}</td>
 
@@ -100,9 +101,9 @@
                                                     class="form-control text-end" value="0"
                                                     max="{{ $item->asset->quantity }}">
                                             </td>
-                                            <td>
-                                                {{$item->asset->quantity  - $item->passed_qty}}
-                                            </td>
+                                            {{-- <td>
+                                                {{$item->asset->stock_balance  - $item->passed_qty}}
+                                            </td> --}}
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -111,15 +112,10 @@
                                 <tfoot>
                                     <tr class="text-center fw-bold">
                                         <td colspan="2">Total</td>
-
+                                        <td></td> 
                                         <td>{{ $totalRequestQty }}</td>
-
                                         <td></td> 
-
-                                        <td></td> 
-
                                         <td>{{ $totalPassedQty }}</td>
-
                                         <td>
                                             <button type="submit" class="btn btn-success">
                                                 Save

@@ -23,13 +23,15 @@ class WarehouseStockController extends Controller
 
     public function index()
     {
-        
+
         $warehouseStocks = WareHouseStock::with([
             'warehouse',
             'asset.fixedAsset',
             'asset.variableAsset'
         ])->get();
-        
+        // $warehouseStocks = WareHouseStock::with(['asset.fixedAsset', 'asset.variableAsset'])
+        //     ->withSum('engineerRequestItems as total_passed', 'passed_qty')
+        //     ->get();
         $warehouses = Warehouse::all();
         return view('admin.backend.warehouse-stocks.index', compact('warehouseStocks', 'warehouses'));
     }

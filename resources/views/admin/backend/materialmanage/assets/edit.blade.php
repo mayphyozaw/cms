@@ -73,7 +73,7 @@
                                     <label class="form-label">
                                         Choose Asset Category</label>
                                     @if ($asset->asset_type == 'fixedAsset')
-                                        <select name="category_id" id="existing_category_id" class="form-control form-select">
+                                        <select name="category_id" id="asset_category_id" class="form-control form-select">
                                             <option value="">Select Category</option>
                                             @foreach ($categories as $category)
                                                 <option value="{{$category->id}}" {{ $category->id === $category->id ? 'selected' : '' }}>
@@ -82,7 +82,7 @@
                                             @endforeach
                                         </select>
                                     @else
-                                        <select name="category_id" id="existing_category_id" class="form-control form-select">
+                                        <select name="category_id" id="asset_category_id" class="form-control form-select">
                                             <option value="">Select Category</option>
                                             @foreach ($categories as $category)
                                                 <option value="{{$category->id}}" {{ $category->id === $category->id ? 'selected' : '' }}>
@@ -182,7 +182,7 @@
 
             let initialType = $('#asset_type').val();
             let existingAssetId = $('#existing_asset_id').val();
-            let existingCategoryId = $('#existing_category_id').val();
+            let existingCategoryId = $('#asset_category_id').val();
 
             if (initialType) {
                 loadAssets(initialType, existingAssetId);
@@ -225,7 +225,7 @@
                             options +=
                                 `<option value="${item.id}" ${isSelected}>${item.category_name}</option>`;
                         });
-                        $('#category_id').html(options);
+                        $('#asset_category_id').html(options);
                     }
                 });
             }

@@ -35,6 +35,8 @@ class LogisticsTeamCheckController extends Controller
             return back()->with('error', 'No items selected for transfer.');
         }
 
+        
+
         foreach ($items as $itemId => $data) {
             $item = EngineerAssetRequestItems::find($itemId);
             if (!$item) continue;
@@ -45,30 +47,14 @@ class LogisticsTeamCheckController extends Controller
             $projectId = $data['transfer_from_project_id'] ?? null;
 
             $asset = $item->asset;
-
             if ($asset) {
 
-                if ($asset->quantity < $passedQty) {
-                    return back()->with([
-                        'message' => 'Not enough stock!',
-                        'alert-type' => 'error'
-                    ]);
+                if (($asset->stock_balance ?? 0) < $passedQty) {
+                    throw new \Exception("Not enough stock for {$asset->asset_name}");
                 }
-                $asset->stock_balance = $asset->quantity - $passedQty;
+                $asset->total_passed_qty = ($asset->total_passed_qty ?? 0) + $passedQty;
+                $asset->stock_balance = ($asset->stock_balance ?? 0) - $passedQty;
                 $asset->save();
-
-                // if ($warehouseId) {
-                //     $warehouseStock = WarehouseStock::where('asset_id', $item->asset_id)
-                //         ->where('warehouse_id', $warehouseId)
-                //         ->first();
-
-                //     if (!$warehouseStock || $warehouseStock->stock_balance < $passedQty) {
-                //         return back()->with('error', "Not enough stock in selected warehouse for asset {$item->asset->name}.");
-                //     }
-
-                //     $warehouseStock->stock_balance -= $passedQty;
-                //     $warehouseStock->save();
-                // }
             }
 
             if ($warehouseId) {
@@ -76,18 +62,19 @@ class LogisticsTeamCheckController extends Controller
                     ->where('warehouse_id', $warehouseId)
                     ->first();
 
-                if (!$warehouseStock || $warehouseStock->stock_balance < $passedQty) {
-                    return back()->with('error', "Not enough stock in selected warehouse for asset {$item->asset->name}.");
+                if (!$warehouseStock) {
+                    throw new \Exception("Warehouse stock not found");
                 }
 
-                $warehouseStock->stock_balance -= $passedQty;
+                if (($warehouseStock->stock_balance ?? 0) < $passedQty) {
+                    throw new \Exception("Not enough stock in warehouse");
+                }
+
+                $warehouseStock->total_passed_qty = ($warehouseStock->asset->total_passed_qty ?? 0) + $passedQty;
+                $warehouseStock->stock_balance = ($warehouseStock->asset->stock_balance ?? 0) - $passedQty;
                 $warehouseStock->save();
             }
-            EngineerAssetRequests::where('id', $request->request_id)
-                ->update([
-                    'status' => 'approved',
-                    'logistics_checked_status' => 'finished'
-                ]);
+
             $item->update([
                 'transfer_from_warehouse_id' => $warehouseId,
                 'transfer_from_project_id' => $projectId,
@@ -95,10 +82,11 @@ class LogisticsTeamCheckController extends Controller
                 'remark' => $data['remark'] ?? null,
             ]);
         }
-
-
         EngineerAssetRequests::where('id', $request->request_id)
-            ->update(['status' => 'approved']);
+            ->update([
+                'status' => 'approved',
+                'logistics_checked_status' => 'finished'
+            ]);
 
         return redirect()->route('engineer-requests.index')
             ->with([

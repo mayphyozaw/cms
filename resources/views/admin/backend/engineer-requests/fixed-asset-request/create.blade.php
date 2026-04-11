@@ -15,8 +15,9 @@
                 </div>
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{route('fixed-asset-requests.store')}}" method="post" enctype="multipart/form-data" id="submit-form"
+                        <form action="{{ route('engineer-requests.store') }}" method="post" enctype="multipart/form-data" id="submit-form"
                             class="assetsAdd">
+                             <input type="hidden" name="asset_type" value="fixedAsset">
                             @csrf
                             <div class="row">
                                 <div class="col-xl-12">

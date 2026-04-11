@@ -10,6 +10,7 @@ class WarehouseStock extends Model
         'warehouse_id',
         'asset_id',
         'quantity',
+        'total_passed_qty',
         'stock_balance',
         'status',
     ];
@@ -41,5 +42,10 @@ class WarehouseStock extends Model
 
         $this->save();
 
+    }
+
+    public function engineerRequestItems()
+    {
+        return $this->hasMany(EngineerAssetRequestItems::class, 'asset_id');
     }
 }

@@ -171,7 +171,7 @@
                                 <th class="text-center" style="background-color: #9dd2e7"> Item Name</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Variable Category Name</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Unit</th>
-                                <th class="text-center" style="background-color: #9dd2e7">Total Quantity</th>
+                                {{-- <th class="text-center" style="background-color: #9dd2e7">Total Quantity</th> --}}
                                 {{-- <th class="text-center" style="background-color: #9dd2e7">Reorder Level</th> --}}
                                 <th class="text-center" style="background-color: #9dd2e7">Action</th>
                             </tr>
@@ -255,11 +255,11 @@
                         name: 'unit',
                         className: 'text-center',
                     },
-                    {
-                        data: 'total_qty',
-                        name: 'total_qty',
-                        className: 'text-center',
-                    },
+                    // {
+                    //     data: 'quantity',
+                    //     name: 'quantity',
+                    //     className: 'text-center',
+                    // },
                     
                     {
                         data: 'action',

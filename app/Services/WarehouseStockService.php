@@ -50,6 +50,9 @@ class WarehouseStockService
             ->editColumn('quantity', function ($wareHouseStock) {
                 return $wareHouseStock->quantity ?? '';
             })
+            ->editColumn('total_passed_qty', function ($wareHouseStock) {
+                return $wareHouseStock->asset->total_passed_qty ?? '';
+            })
             ->editColumn('stock_balance', function ($wareHouseStock) {
                 // $totalPassed = $asset->engineer_request_items_sum_passed_qty ?? 0;
                 $stock_balance = $wareHouseStock->asset->stock_balance;

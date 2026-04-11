@@ -5,7 +5,8 @@
         <div class="d-flex align-items-center justify-content-between gap-2 mb-2 mt-0 flex-wrap">
 
             <div>
-                <h4 class="mb-1">Fixed Assets<span class="badge badge-soft-primary ms-2">{{$fixedAssets->count()}}</span></h4>
+                <h4 class="mb-1">Fixed Assets<span class="badge badge-soft-primary ms-2">{{ $fixedAssets->count() }}</span>
+                </h4>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="#">Assets</a></li>
@@ -25,7 +26,7 @@
                             <div>
                                 <span class="d-flex align-items-center mb-1"
                                     style="color: white;font-size:14px; !important;"><i
-                                        class="ti ti-circle-filled fs-10 text-warning me-1"></i>Fixed Assets Category
+                                        class="ti ti-circle-filled fs-10 text-warning me-1"></i>Category
                                 </span>
                             </div>
                             <div class="d-flex align-items-center">
@@ -62,21 +63,19 @@
                 </div>
 
             </div>
-            <div class="kanban-list-items p-2 rounded border">
+
+            <div class="kanban-list-items p-2">
                 <div class="card mb-0 border-0 shadow bg-danger">
                     <div class="card-body p-2">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
                                 <span class="d-flex align-items-center mb-1"
                                     style="color: white;font-size:14px; !important;"><i
-                                        class="ti ti-circle-filled fs-10 text-info me-1"></i>
-                                    Fixed Assets Requests
+                                        class="ti ti-circle-filled fs-10 text-warning me-1"></i>Fixed Assets Requests
                                 </span>
                             </div>
                             <div class="d-flex align-items-center">
                                 <div class="dropdown table-action ms-2">
-
-
                                     <a href="#" class="action-icon btn btn-xs shadow btn-icon btn-outline-light"
                                         data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="ti ti-dots-vertical"></i>
@@ -88,27 +87,27 @@
                                         <i class="ti ti-bell-check fs-16 animate-ring"></i>
                                         <span
                                             class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">
-                                            10
+                                            {{ $fixedCount }}
                                         </span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="#" data-bs-toggle="offcanvas"
-                                            data-bs-target="#offcanvas_edit"><i class="fa-solid fa-pencil text-blue"></i>
-                                            Show</a>
-                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                            data-bs-target="#delete_lead"><i
-                                                class="fa-regular fa-trash-can text-danger"></i>
-                                            Detail</a>
+                                        <a class="dropdown-item" href="{{ route('engineer-requests.index') }}">
+
+                                            Show
+                                        </a>
                                     </div>
                                 </div>
                             </div>
-
-
-
                         </div>
                     </div>
                 </div>
+                <br>
+                <div class="kanban-drag-wrap">
+                </div>
+
             </div>
+
+
             <div class="kanban-list-items p-2 rounded border">
                 <div class="card mb-0 border-0 shadow bg-success">
                     <div class="card-body p-2">
@@ -250,7 +249,7 @@
                         name: 'name',
                         className: 'text-center',
                     },
-                    
+
                     {
                         data: 'category_name',
                         name: 'category_name',

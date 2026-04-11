@@ -5,7 +5,7 @@
         <div class="d-flex align-items-center justify-content-between gap-2 mb-2 mt-0 flex-wrap">
 
             <div>
-                <h4 class="mb-1">All Assets<span class="badge badge-soft-primary ms-2">{{$assets->count()}}</span></h4>
+                <h4 class="mb-1">All Assets<span class="badge badge-soft-primary ms-2">{{ $assets->count() }}</span></h4>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="#">Materials</a></li>
@@ -39,10 +39,10 @@
                                         <i class="ti ti-bell-check fs-16 animate-ring"></i>
                                         <span
                                             class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">
-                                            {{$fixedCount}}
+                                            {{ $fixedCount }}
                                         </span>
                                     </a>
-                                    
+
                                 </div>
                             </div>
 
@@ -52,8 +52,8 @@
                     </div>
                 </div>
             </div>
-           
-             <div class="kanban-list-items p-2 rounded border">
+
+            <div class="kanban-list-items p-2 rounded border">
                 <div class="card mb-0 border-0 shadow" style="background-color: #185285">
                     <div class="card-body p-2">
                         <div class="d-flex justify-content-between align-items-center">
@@ -65,7 +65,7 @@
                                 </span>
                             </div>
                             <div class="d-flex align-items-center">
-                                <div class="dropdown table-action ms-2" >
+                                <div class="dropdown table-action ms-2">
                                     <a href="#"
                                         class="topbar-link btn topbar-link dropdown-toggle drop-arrow-none btn btn-xs shadow btn-icon btn-outline-light"
                                         data-bs-toggle="dropdown" data-bs-offset="0,24" type="button" aria-haspopup="false"
@@ -73,10 +73,10 @@
                                         <i class="ti ti-bell-check fs-16 animate-ring"></i>
                                         <span
                                             class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">
-                                            {{$variableCount}}
+                                            {{ $variableCount }}
                                         </span>
                                     </a>
-                                    
+
                                 </div>
                             </div>
 
@@ -121,12 +121,86 @@
                                 <th class="text-center" style="background-color: #9dd2e7">Name</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Category Name</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Unit</th>
-                                <th class="text-center" style="background-color: #9dd2e7">Total Quantity</th>
-                                <th class="text-center" style="background-color: #9dd2e7">Stock Balance</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Total Qty</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Passed Qty</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Current Stock Balance</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Status</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Action</th>
                             </tr>
                         </thead>
+                        <tbody>
+                            @foreach ($assets as $asset)
+                                <tr>
+                                    <td class="text-center">{{ $loop->iteration }}</td>
+                                    <td class="text-center">{{ $asset->asset_type }}</td>
+                                    <td class="text-center">{{ $asset->warehouse->name }}</td>
+                                    <td class="text-center">{{ $asset->fixedAsset->name ?? ($asset->variableAsset->name ?? '') }}</td>
+                                    <td class="text-center">{{ $asset->category_name }}</td>
+                                    <td class="text-center">{{ $asset->unit }}</td>
+                                    <td class="text-center">{{ $asset->quantity }}</td>
+                                    <td class="text-center">
+                                        <a href="{{route('qs.passed.qty.detail')}}">
+                                            <span style="color:red">{{ $asset->total_passed_qty }}</span>
+                                        </a>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="{{route('warehouse-stocks.index')}}">
+                                            {{ $asset->stock_balance }}
+                                        </a>
+                                        
+                                    </td>
+                                    @php
+                                        
+                                        $displayStatus = $asset->status;
+                                        if (
+                                            in_array(strtolower($asset->status), [
+                                                'available',
+                                                'active',
+                                                'readytouse',
+                                                'out of stock',
+                                            ])
+                                        ) {
+                                            if ($asset->stock_balance == 0) {
+                                                
+                                                $displayStatus = 'Active';
+                                            } elseif ($asset->stock_balance < 0) {
+                                                
+                                                $displayStatus = 'Out of Stock';
+
+                                            } elseif ($asset->stock_balance <= 10) {
+                                                
+                                                $displayStatus = 'Low Stock';
+                                            } else {
+                                                $displayStatus = 'Available';
+                                            }
+                                        }
+                                    @endphp
+                                    
+                                    <td>
+                                        @if ($asset->stock_balance == 0)
+                                            <span class="badge badge-soft-danger">{{ $displayStatus }}</span>
+                                        @elseif($asset->stock_balance < 0)
+                                            <span class="badge badge-soft-danger">{{ $displayStatus }}</span>
+                                        @elseif($asset->stock_balance <= 10)
+                                            <span class="badge badge-soft-warning">{{ $displayStatus }}</span>
+                                        @else
+                                            <span class="badge badge-soft-success">{{ $displayStatus }}</span>
+                                        @endif
+                                    </td>
+                                    <td class="text-center">
+                                        <form action="{{ route('material.assets.destroy', $asset->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <a href="{{route('purchase.index', $asset->id)}}" class="btn btn-sm btn-warning">Purchase</a>
+                                            <a href="{{route('material.assets.edit', $asset->id)}}" class="btn btn-sm btn-icon btn-info"><i class="ti ti-edit"></i></a>
+                                            <button type="buttom" class="btn btn-sm btn-icon btn-danger del_confirm">
+                                                <i class="ti ti-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -135,119 +209,5 @@
 
 
     </div>
-    
-
-    
 @endsection
 
-@push('scripts')
-    <script>
-        $(document).ready(function() {
-            var table = $('.assetsTable').DataTable({
-                processing: true,
-                serverSide: true,
-                responsive: true,
-                paging: true,
-                ajax: {
-                    url: "{{ route('material.assets-datatable') }}",
-                    type: "GET"
-                },
-
-                columns: [{
-                        data: 'DT_RowIndex',
-                        name: 'DT_RowIndex',
-                        className: 'text-center',
-                        orderable: false,
-                        searchable: false,
-                    },
-                    
-                    {
-                        data: 'asset_type',
-                        name: 'asset_type',
-                        className: 'text-center',
-                    },
-                    
-                    {
-                        data: 'warehouse_id',
-                        name: 'warehouse_id',
-                        className: 'text-center',
-                    },
-                    {
-                        data: 'name',
-                        name: 'name',
-                        className: 'text-center',
-                    },
-                    {
-                        data: 'category_name',
-                        name: 'category_name',
-                        className: 'text-center',
-                    },
-                    {
-                        data: 'unit',
-                        name: 'unit',
-                        className: 'text-center',
-                    },
-                    {
-                        data: 'quantity',
-                        name: 'quantity',
-                        className: 'text-center',
-                    },
-                    {
-                        data: 'stock_balance',
-                        name: 'stock_balance',
-                        className: 'text-center',
-                    },
-                    {
-                        data: 'status',
-                        name: 'status',
-                        className: 'text-center',
-                    },
-                    {
-                        data: 'action',
-                        name: 'action',
-                        className: 'text-center',
-                        orderable: false,
-                        searchable: false
-                    },
-
-                ],
-            });
-
-            $(document).on('click', '.deleteBtn', function(event) {
-                event.preventDefault();
-                var url = $(this).data('url');
-
-                Swal.fire({
-                    title: "Are you sure?",
-                    text: "Delete thie Data!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes, delete it!"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            url: url,
-                            type: 'DELETE',
-                            data: {
-                                _token: '{{ csrf_token() }}'
-                            },
-                            success: function(response) {
-                                table.ajax.reload();
-                                toastr.success(response.message);
-                            },
-                            error: function(response) {
-                                toastr.error('Delete failed!');
-                            }
-
-                        });
-                    }
-                });
-
-
-            });
-
-        });
-    </script>
-@endpush

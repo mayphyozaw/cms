@@ -5,7 +5,10 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Backend\AssetRequestApproval\AssetRequestApprovalController;
 use App\Http\Controllers\Backend\AssetRequestController;
 use App\Http\Controllers\Backend\AssetRequestItemApprovalController;
+use App\Http\Controllers\Backend\BQ\BoqCategoriesController;
+use App\Http\Controllers\Backend\BQ\BOQController;
 use App\Http\Controllers\Backend\ClientManagement\ClientController;
+use App\Http\Controllers\Backend\ClientManagement\QuotationProposalController;
 use App\Http\Controllers\Backend\Configuration\PermissionController;
 use App\Http\Controllers\Backend\Configuration\RoleController;
 use App\Http\Controllers\Backend\EngineerAssetsRequest\FixedAssetRequestsController;
@@ -82,6 +85,9 @@ Route::middleware('auth', 'notBlocked')->group(function () {
     Route::resource('client', ClientController::class);
     Route::get('client-datatable', [ClientController::class, 'clientDataTable'])->name('client-datatable');
 
+    Route::resource('client-quototation-proposal', QuotationProposalController::class);
+
+
 
     Route::resource('warehouse', WarehouseController::class);
     Route::get('warehouse-datatable', [WarehouseController::class, 'warehouseDataTable'])->name('warehouse-datatable');
@@ -97,6 +103,10 @@ Route::middleware('auth', 'notBlocked')->group(function () {
         Route::get('/supplier-datatable', [SupplierController::class, 'supplierDataTable'])->name('supplier-datatable');
     });
 
+    Route::prefix('bq')->name('bq.')->group(function(){
+        Route::resource('bqcategory', BoqCategoriesController::class);
+        Route::resource('bqworkscope', WorkscopeController::class);
+    });
 
     Route::resource('engineers', EngineersController::class);
     // Route::post('engineers-assign', [EngineersController::class, 'assignProject'])->name('engineers-assign');
@@ -124,6 +134,7 @@ Route::middleware('auth', 'notBlocked')->group(function () {
     Route::get('qs-check-create/{id}', [QSTeamCheckController::class, 'create'])->name('qs.check.create');
     Route::post('qs-check-store', [QSTeamCheckController::class, 'store'])->name('qs.check.store');
     Route::get('qs-check-detail/{asset_id}', [QSTeamCheckController::class, 'show'])->name('qs.check.detail');
+    Route::get('detail-passed-qty/', [QSTeamCheckController::class, 'detailPassedQty'])->name('qs.passed.qty.detail');
 
     Route::get('logistics-check-create/{id}',[LogisticsTeamCheckController::class,'create'])->name('logistics.check.create');
     Route::post('logistics-check-store', [LogisticsTeamCheckController::class, 'store'])->name('logistics.check.store');
@@ -141,6 +152,7 @@ Route::middleware('auth', 'notBlocked')->group(function () {
         Route::get('get-assets-by-type', [AssetController::class, 'getAssetsByType'])->name('get-assets-by-type');
         Route::get('get-categories-by-type', [AssetController::class, 'getCategoriesByType'])->name('get-categories-by-type');
         Route::get('get-asset-detail', [AssetController::class, 'getAssetDetail'])->name('get-asset-detail');
+        Route::get('/detail/asset/{id}', [AssetController::class, 'detailAsset'])->name('detail.asset');
         // Route::post('assets/purchase', [AssetController::class], 'purchaseAssets')->name('assets.purchase');
 
         // Route::get('assets-purchase',[PurchaseController::class, 'purchaseAssets'])->name('assets.purchase');

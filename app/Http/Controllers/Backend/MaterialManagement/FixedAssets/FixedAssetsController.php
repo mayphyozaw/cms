@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend\MaterialManagement\FixedAssets;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FixedAssets\FixedAssetStoreRequest;
 use App\Http\Requests\FixedAssets\FixedAssetUpdateRequest;
+use App\Models\Asset;
+use App\Models\EngineerAssetRequests;
 use App\Models\FixedAsset;
 use App\Models\FixedAssetCategory;
 use App\Models\Warehouse;
@@ -27,7 +29,10 @@ class FixedAssetsController extends Controller
     public function index()
     {
         $fixedAssets= FixedAsset::all();
-        return view('admin.backend.materialmanage.fixedassets.index',compact('fixedAssets'));
+        // $fixedCount = Asset::with('engineerAssetRequests.engineerAssetRequestItems')->where('asset_type', 'fixedAsset')->count();
+        $fixedCount = EngineerAssetRequests::with('engineerAssetRequestItems.asset.fixedAsset')->count();
+        $fixedCount = EngineerAssetRequests::with('engineerAssetRequestItems.asset.variableAsset')->count();
+        return view('admin.backend.materialmanage.fixedassets.index',compact('fixedAssets','fixedCount'));
     }
 
     public function create()

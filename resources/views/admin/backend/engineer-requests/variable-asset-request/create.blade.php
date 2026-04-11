@@ -5,7 +5,7 @@
             <div class="container-fluid my-0">
                 <div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
                     <div class="flex-grow-1">
-                        <h4 class="fs-18 fw-semibold m-0">Create Fixed Asset Requests</h4>
+                        <h4 class="fs-18 fw-semibold m-0">Create Variable Asset Requests</h4>
                     </div>
                     <div class="text-end">
                         <ol class="breadcrumb m-0 py-0">
@@ -18,6 +18,7 @@
                         <form action="{{ route('engineer-requests.store') }}" method="post" enctype="multipart/form-data"
                             id="submit-form" class="assetsAdd">
                             @csrf
+                            <input type="hidden" name="request_type" value="variableAsset">
                             <div class="row">
                                 <div class="col-xl-12">
                                     <div class="row">
@@ -103,9 +104,9 @@
                                                             class="form-control form-select">
                                                             <option value="">Select Asset</option>
 
-                                                            @foreach ($fixedAssets as $fixedAsset)
-                                                                <option value="{{ $fixedAsset->id }}">
-                                                                    {{ $fixedAsset->name }}
+                                                            @foreach ($variableAssets as $variableAsset)
+                                                                <option value="{{ $variableAsset->id }}">
+                                                                    {{ $variableAsset->name }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -188,9 +189,9 @@
             <td>
                 <select name="asset_id[]" class="form-control form-select">
                     <option value="">Select Asset</option>
-                    @foreach ($fixedAssets as $fixedAsset)
-                        <option value="{{ $fixedAsset->id }}">
-                            {{ $fixedAsset->name }}
+                    @foreach ($variableAssets as $variableAsset)
+                        <option value="{{ $variableAsset->id }}">
+                            {{ $variableAsset->name }}
                         </option>
                     @endforeach
                 </select>

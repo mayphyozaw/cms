@@ -11,6 +11,7 @@ class EngineerAssetRequests extends Model
     protected $fillable = [
         'request_code',
         'request_date',
+        'request_type',
         'project_id',
         'workscope_id',
         'user_id',

@@ -18,6 +18,7 @@
                         <form action="{{ route('engineer-requests.store') }}" method="post" enctype="multipart/form-data"
                             id="submit-form" class="assetsAdd">
                             @csrf
+                            <input type="hidden" name="request_type" value="fixedAsset">
                             <div class="row">
                                 <div class="col-xl-12">
                                     <div class="row">
@@ -110,23 +111,6 @@
                                                             @endforeach
                                                         </select>
                                                     </td>
-                                                    <td hidden>
-
-                                                        <select name="asset_type[]"
-                                                            class="form-control form-select asset-type">
-                                                            <option value="">Select Type</option>
-                                                            <option value="fixedAsset">Fixed Asset</option>
-                                                            <option value="variableAsset">Variable Asset</option>
-                                                        </select>
-
-                                                    </td>
-                                                    <td hidden>
-
-                                                        <select name="asset_id[]" class="form-control form-select asset-id">
-                                                            <option value="">Select Asset</option>
-                                                        </select>
-                                                    </td>
-
                                                     <td>
                                                         <div class="input-group">
                                                             <button class="btn btn-outline-info decrement-qty"

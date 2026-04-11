@@ -80,10 +80,14 @@ class AssetService
                 return $assets->unit ?? '';
             })
             ->editColumn('quantity', function ($assets) {
-                return $assets->quantity ?? '';
+                $totalAssetQty = $assets->quantity;
+                return $totalAssetQty;
             })
-            ->editColumn('stock_balance', function ($asset) {
-                $totalStock = $asset->warehouseStock->sum('stock_balance');
+            ->editColumn('total_passed_qty', function ($asset) {
+                return $asset->total_passed_qty;
+            })
+            ->editColumn('stock_balance', function ($assets) {
+                $totalStock = $assets->warehouseStock->sum('stock_balance');
                 return $totalStock;
                 // $url = route('qs.check.detail', ['asset_id' => $asset->id]);
                 // return '<a href="' . $url . '" class="text-primary">' . $stock_balance . '</a>';
@@ -108,7 +112,7 @@ class AssetService
                         $color = 'bg-danger';
                         $displayStatus = 'Out of Stock';
                     } elseif ($assets->stock_balance <= 10) {
-                        $color = 'bg-warning';
+                        $color = 'bg-danger';
                         $displayStatus = 'Low Stock';
                     } else {
                         $displayStatus = 'Available';

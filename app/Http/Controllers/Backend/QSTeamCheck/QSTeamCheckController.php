@@ -92,4 +92,15 @@ class QSTeamCheckController extends Controller
         $workscope = WorkScope::all();
         return view('admin.backend.qs-team-check.show', compact('requestItemsCheck', 'workscope'));
     }
+
+    public function detailPassedQty()
+    {
+       
+        $requestItemsCheck = EngineerAssetRequests::with([
+            'engineerAssetRequestItems.asset.fixedAsset',
+            'workscope',
+            'project.client'
+        ])->get();
+        return view('admin.backend.qs-team-check.detail-passed-qty', compact('requestItemsCheck'));
+    }
 }

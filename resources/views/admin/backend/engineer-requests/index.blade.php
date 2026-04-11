@@ -28,6 +28,16 @@
                                         data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="ti ti-dots-vertical"></i>
                                     </a>
+                                    <a href="#"
+                                        class="topbar-link btn topbar-link dropdown-toggle drop-arrow-none btn btn-xs shadow btn-icon btn-outline-light"
+                                        data-bs-toggle="dropdown" data-bs-offset="0,24" type="button" aria-haspopup="false"
+                                        aria-expanded="false">
+                                        <i class="ti ti-bell-check fs-16 animate-ring"></i>
+                                        <span
+                                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">
+                                            {{$fixedCount}}
+                                        </span>
+                                    </a>
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <a class="dropdown-item" href="{{ route('engineer-requests.create') }}"><i
                                                 class="fa-solid fa-pencil text-blue"></i>
@@ -186,14 +196,16 @@
                                     </td>
 
                                     <td>
-                                        <table class="table table-sm mb-0">
-                                            <thead>
-                                                <tr>
-                                                    <th>Item</th>
-                                                    <th>Qty</th>
-                                                </tr>
-                                            </thead>
+                                        <table class="table table-bordered table-responsive text-nowrap" style="width:100%;">
                                             <tbody>
+                                                <tr>
+                                                    <td style="background-color: #459ba6; color:white;">
+                                                        Item
+                                                    </td>
+                                                    <td style="background-color: #459ba6; color:white;">
+                                                        Qty
+                                                    </td>
+                                                </tr>
                                                 @foreach ($items as $item)
                                                     <tr>
                                                         <td>{{ $item->asset->fixedAsset->name ?? '-' }}</td>
@@ -351,14 +363,16 @@
                                         @if ($item->transfer_from_warehouse_id)
                                             {{ $item->warehouse->name ?? '' }}
                                         @else
-                                            {{ $item->project->project_code ?? ''}}
+                                            {{ $item->project->project_code ?? '' }}
                                         @endif
                                     </td>
                                     <td>
                                         {{ $engineerAssetRequest->project->client->project_code ?? '' }}
                                     </td>
                                     <td></td>
-                                    <td></td>
+                                    <td>
+
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

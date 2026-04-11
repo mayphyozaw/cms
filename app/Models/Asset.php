@@ -16,6 +16,7 @@ class Asset extends Model
         'warehouse_id',
         'unit',
         'quantity',
+        'total_passed_qty',
         'stock_balance',
         'status',
         'remarks',
@@ -49,7 +50,7 @@ class Asset extends Model
 
     public function engineerRequestItems()
     {
-        return $this->hasMany(EngineerAssetRequestItems::class, 'asset_request_id');
+        return $this->hasMany(EngineerAssetRequestItems::class, 'asset_id');
     }
 
     public function getAssetNameAttribute()

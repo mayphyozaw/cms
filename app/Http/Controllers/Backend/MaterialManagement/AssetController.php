@@ -30,10 +30,11 @@ class AssetController extends Controller
 
     public function index()
     {
-        // $assets = Asset::with(['fixedAsset', 'variableAsset'])
-        //     ->withSum('engineerRequestItems as total_passed', 'passed_qty')
-        //     ->get();
-        $assets = Asset::withSum('warehouseStock as total_stock', 'stock_balance')->get();
+        
+        $assets = Asset::with(['fixedAsset', 'variableAsset'])
+        ->withSum('engineerRequestItems as total_passed_qty', 'passed_qty')
+        ->withSum('warehouseStock as total_stock_balance', 'stock_balance')
+        ->get();
         $fixedAsset = FixedAsset::all();
         $variableAsset = VariableAsset::all();
         $fixedCount = Asset::where('asset_type', 'fixedAsset')->count();
@@ -60,6 +61,7 @@ class AssetController extends Controller
             'warehouse_id' => $request->warehouse_id,
             'unit'         => $request->unit,
             'quantity'     => $request->quantity,
+            'total_passed_qty' => $request->total_passed_qty,
             'stock_balance' => $request->quantity, 
             'status'       => $request->status,
             'remarks'      => $request->remarks,
@@ -153,6 +155,7 @@ class AssetController extends Controller
             'warehouse_id' => $request->warehouse_id,
             'unit'        => $request->unit,
             'quantity'   => $request->quantity,
+            'total_passed_qty' => $request->total_passed_qty,
             'stock_balance' => $request->quantity, 
             'status'      => $request->status,
             'remarks'     => $request->remarks,
@@ -190,6 +193,11 @@ class AssetController extends Controller
             return ResponseService::fail($e->getMessage());
         }
     }
+
+    // public function detailAsset($id)
+    // {
+        
+    // }
 
 
 }

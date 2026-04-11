@@ -25,36 +25,7 @@
             <i class="ti ti-x align-middle"></i>
         </button>
     </div>
-    <!-- Start Logo -->
-    {{-- <div class="sidebar-logo">
-        <div>
-            <!-- Logo Normal -->
-            <a href="{{ route('dashboard') }}" class="logo logo-normal">
-                <img src="{{ asset('data/logo.png') }}" alt="Logo" style="width:100px;">
-            </a>
-
-            <!-- Logo Small -->
-            <a href="{{ route('dashboard') }}" class="logo-small">
-                <img src="{{ asset('backend/assets/img/logo-small.svg') }}" alt="Logo">
-            </a>
-
-            <!-- Logo Dark -->
-            <a href="{{ route('dashboard') }}" class="dark-logo">
-                <img src="{{ asset('backend/assets/img/logo-white.svg') }}" alt="Logo">
-            </a>
-        </div>
-        <button class="sidenav-toggle-btn btn border-0 p-0" id="toggle_btn">
-            <i class="ti ti-arrow-bar-to-left"></i>
-        </button>
-
-        <!-- Sidebar Menu Close -->
-        <button class="sidebar-close">
-            <i class="ti ti-x align-middle"></i>
-        </button>
-    </div> --}}
-    <!-- End Logo -->
-
-    <!-- Sidenav Menu -->
+   
     <div class="sidebar-inner" data-simplebar>
         <div id="sidebar-menu" class="sidebar-menu">
             <ul>
@@ -70,7 +41,29 @@
                     </ul>
                 </li>
 
+                {{-- <li >
+                    <ul>
+                        <li class="submenu">
+                            <a href="javascript:void(0);">
+                                <i class="ti ti-user-shield"></i>
+                                <span>Packages Management</span>
+                                <span class="menu-arrow"></span>
+                            </a>
 
+                            <ul style="{{ request()->routeIs('packagemange.package.*') ? 'display:block;' : '' }}">
+                                <li>
+                                    <a href="{{ route('packagemange.package.index') }}"
+                                        class="{{ request()->routeIs('packagemange.package.*') ? 'active' : '' }}">
+                                        <i class="ti ti-users">
+                                        </i><span>All Packages</span>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+                        </li>
+                    </ul>
+                </li> --}}
 
                 {{-- <li class="menu-title"><span>Client Manage</span></li> --}}
 
@@ -78,7 +71,7 @@
                     <ul>
                         <li class="submenu">
                             <a href="javascript:void(0);">
-                                <i class="ti ti-user-shield"></i>
+                                <i class="ti ti-users"></i>
                                 <span>Client Management</span>
                                 <span class="menu-arrow"></span>
                             </a>
@@ -93,9 +86,16 @@
                                 </li>
 
                                 <li>
+                                    <a href="{{ route('client-quototation-proposal.index') }}" class="{{ request()->routeIs('client.quototation-proposal*') ? 'active' : '' }}">
+                                        <i class="ti ti-file-invoice">
+                                        </i><span>Quotation Proposal</span>
+                                    </a>
+                                </li>
+
+                                <li>
                                     <a href="" class="">
                                         <i class="ti ti-atom-2">
-                                        </i><span>Projects Progress</span>
+                                        </i><span>Contract</span>
                                     </a>
                                 </li>
 
@@ -106,11 +106,66 @@
                                     </a>
                                 </li>
 
+                                <li>
+                                    <a href="" class="">
+                                        <i class="ti ti-atom-2">
+                                        </i><span>Projects Progress</span>
+                                    </a>
+                                </li>
+
                             </ul>
                         </li>
                     </ul>
                 </li>
 
+                <li >
+                    <ul>
+                        <li class="submenu">
+                            <a href="javascript:void(0);">
+                                <i class="ti ti-building"></i>
+                                <span>Project BQ</span>
+                                <span class="menu-arrow"></span>
+                            </a>
+
+                            <ul style="">
+                                <li>
+
+                                    <a href="{{ route('bq.bqworkscope.index') }}"
+                                        class="{{ request()->routeIs('bq.bqworkscope.*') ? 'active' : '' }}">
+                                        <i class="ti ti-list-check">
+                                        </i>
+                                        {{-- <span>Task & Progress Tracking</span> --}}
+                                        <span>Work Scope</span>
+                                    </a>
+                                </li>
+                                 <li>
+                                    <a href=""
+                                        class="">
+                                        <i class="ti ti-users">
+                                        </i><span>Work Location </span>
+                                    </a>
+                                </li>
+                                {{-- <li>
+                                    <a href=""
+                                        class="">
+                                        <i class="ti ti-users">
+                                        </i><span>BQ Asset Type</span>
+                                    </a>
+                                </li> --}}
+
+                                <li>
+
+                                    <a href="{{ route('bq.bqcategory.index') }}"
+                                        class="{{ request()->routeIs('bq.bqcategory.*') ? 'active' : '' }}">
+                                        <i class="ti ti-list-check">
+                                        </i>
+                                        <span>BQ Category</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
 
                 <li>
                     <ul>
@@ -142,7 +197,7 @@
                     <ul>
                         <li class="submenu">
                             <a href="javascript:void(0);">
-                                <i class="ti ti-atom-2"></i>
+                                <i class="ti ti-building"></i>
                                 <span>Project Management</span>
                                 <span class="menu-arrow"></span>
                             </a>
@@ -207,7 +262,7 @@
                     <ul>
                         <li class="submenu {{ request()->routeIs('material.*') ? 'menu-selected' : '' }}">
                             <a href="javascript:void(0);">
-                                <i class="ti ti-icons"></i>
+                                <i class="ti ti-database"></i>
                                 <span>Material Management</span>
                                 <span class="menu-arrow"></span>
                             </a>
@@ -239,12 +294,6 @@
                                     </a>
                                 </li>
 
-                                <li>
-                                    <a href="" class="">
-                                        <i class="ti ti-users">
-                                        </i><span>BQ</span>
-                                    </a>
-                                </li>
 
                             </ul>
                         </li>
@@ -334,7 +383,7 @@
                     <ul>
                         <li class="submenu">
                             <a href="javascript:void(0);">
-                                <i class="ti ti-database"></i>
+                                <i class="ti ti-shopping-cart"></i>
                                 <span>Purchase</span>
                                 <span class="menu-arrow"></span>
                             </a>
@@ -399,7 +448,7 @@
                     <ul>
                         <li class="submenu">
                             <a href="javascript:void(0);">
-                                <i class="ti ti-user-shield"></i>
+                                <i class="ti ti-users"></i>
                                 <span>User Management</span>
                                 <span class="menu-arrow"></span>
                             </a>

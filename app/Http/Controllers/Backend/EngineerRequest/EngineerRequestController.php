@@ -12,6 +12,7 @@ use App\Models\EngineerRequestItem;
 use App\Models\FixedAsset;
 use App\Models\Project;
 use App\Models\User;
+use App\Models\VariableAsset;
 use App\Models\Warehouse;
 use App\Models\WorkScope;
 use App\Services\EngineerRequestService;
@@ -25,15 +26,19 @@ class EngineerRequestController extends Controller
 
     public function index()
     {
-        
+
         $engineerAssetRequests = EngineerAssetRequests::with([
             'engineerAssetRequestItems.asset.fixedAsset',
+            'engineerAssetRequestItems.asset.variableAsset',
             'engineerAssetRequestItems.warehouse',
             'engineerAssetRequestItems.project',
         ])->get();
-        
+
         $user = User::with('engineerAssetRequests.project.client')->get();
-        return view('admin.backend.engineer-requests.index', compact('user', 'engineerAssetRequests'));
+        // $fixedCount = Asset::with('engineerAssetRequests.engineerAssetRequestItems')->where('asset_type', 'fixedAsset')->count();
+        $fixedCount = EngineerAssetRequests::where('request_type', 'fixedAsset')->count();
+        // $variableCount = Asset::where('asset_type', 'variableAsset')->count();
+        return view('admin.backend.engineer-requests.index', compact('user', 'engineerAssetRequests', 'fixedCount'));
     }
 
     public function create(Request $request)
@@ -50,19 +55,19 @@ class EngineerRequestController extends Controller
 
     public function store(Request $request)
     {
-
+        
         $lastRequest = EngineerAssetRequests::latest()->first();
         $nextNumber = $lastRequest ? $lastRequest->id + 1 : 1;
 
         $requestCode = 'FR-' . date('Ymd') . '-' . str_pad($nextNumber, 4, '0', STR_PAD_LEFT);
         $engineerAssetRequest = EngineerAssetRequests::create([
-
             'request_code' => $requestCode,
             'request_date' => now(),
             'project_id' => $request->project_id,
             'workscope_id' => $request->workscope_id,
             'user_id' => auth()->id(),
-            
+            'request_type' => $request->request_type,
+
         ]);
 
         if ($request->asset_id) {
@@ -158,6 +163,10 @@ class EngineerRequestController extends Controller
 
     public function variableAssestsRequestCreate()
     {
-        return view('admin.backend.engineer-requests.variable-asset-request.create');
+        $assignProject = EngineerAssign::with('user', 'project.client');
+        $projects = Project::with('client')->get();
+        $variableAssets = VariableAsset::all();
+        $workscopes = WorkScope::all();
+        return view('admin.backend.engineer-requests.variable-asset-request.create', compact('assignProject', 'projects', 'variableAssets', 'workscopes'));
     }
 }

@@ -24,8 +24,7 @@ class WorkscopeController extends Controller
     {
 
         $work_scopes = WorkScope::all();
-
-        return view('admin.backend.projectmanage.workscope.index', compact('work_scopes'));
+        return view('admin.backend.bq.bqworkscope.index', compact('work_scopes'));
     }
 
     public function create()
