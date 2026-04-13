@@ -15,7 +15,7 @@
 
         <div class="row">
             <div class="col-sm-12">
-                <form class="needs-validation" action="{{ route('client.store') }}" method="POST" id="submit-form"
+                <form class="needs-validation" action="{{ route('clientmanage.client.store') }}" method="POST" id="submit-form"
                     enctype="multipart/form-data">
                     @csrf
                     <div class="card">

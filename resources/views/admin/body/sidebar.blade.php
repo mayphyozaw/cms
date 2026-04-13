@@ -69,24 +69,24 @@
 
                 <li>
                     <ul>
-                        <li class="submenu">
+                        <li class="submenu {{ request()->routeIs('clientmanage.*') ? 'menu-selected' : '' }}">
                             <a href="javascript:void(0);">
                                 <i class="ti ti-users"></i>
                                 <span>Client Management</span>
                                 <span class="menu-arrow"></span>
                             </a>
 
-                            <ul style="{{ request()->routeIs('client.*') ? 'display:block;' : '' }}">
+                            <ul style="{{ request()->routeIs('clientmanage.client.*') ? 'display:block;' : '' }}">
                                 <li>
-                                    <a href="{{ route('client.index') }}"
-                                        class="{{ request()->routeIs('client.*') ? 'active' : '' }}">
+                                    <a href="{{ route('clientmanage.client.index') }}"
+                                        class="{{ request()->routeIs('clientmanage.client.*') ? 'active' : '' }}">
                                         <i class="ti ti-users">
                                         </i><span>Clients Informations</span>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="{{ route('client-quototation-proposal.index') }}" class="{{ request()->routeIs('client.quototation-proposal*') ? 'active' : '' }}">
+                                    <a href="{{ route('clientmanage.quototation-proposal.index') }}" class="{{ request()->routeIs('clientmanage.quototation-proposal*') ? 'active' : '' }}">
                                         <i class="ti ti-file-invoice">
                                         </i><span>Quotation Proposal</span>
                                     </a>

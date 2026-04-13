@@ -56,7 +56,8 @@
                     </div>
                     <h5 class="d-flex align-items-center mb-0">Quotation Proposals<span
                             class="badge bg-soft-dark ms-2 text-dark fs-12">2000 Proposals</span></h5>
-                    <a href="{{route('client-quototation-proposal.create')}}" class="btn btn-md btn-primary d-flex align-items-center">
+                    <a href="{{ route('clientmanage.quototation-proposal.create') }}"
+                        class="btn btn-md btn-primary d-flex align-items-center">
                         <i class="ti ti-circle-plus me-2"></i>
                         Add New Proposal
                     </a>
@@ -243,50 +244,29 @@
                             <table id="estimations-table" class="table">
                                 <thead class="table-light">
                                     <tr>
-                                        <th class="no-sort">
                                         <th class="no-sort"></th>
-                                        <th>Estimations ID</th>
-                                        <th>Name</th>
+                                        <th class="no-sort"></th>
+                                        <th>Proposal ID</th>
+                                        <th>Proposal Date</th>
+                                        <th>Main WorkScope</th>
+                                        <th>Client Name</th>
                                         <th>Amount</th>
-                                        <th>Project</th>
-                                        <th>Estimation By</th>
                                         <th>Status</th>
                                         <th class="text-end no-sort">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check form-check-md"><input class="form-check-input"
-                                                    type="checkbox"></div>
-                                        </td>
-                                        <td>
-                                            <div class="set-star rating-select"><i class="ti ti-star-filled"></i></div>
-                                        </td>
-                                        <td><a href="#">#274738</a></td>
-                                        <td>
-                                            <h2 class="d-flex align-items-center">
-                                                <a href="company-details.html" class="fs-14 fw-medium">NovaWave LLC</a>
-                                            </h2>
-                                        </td>
-                                        <td>$2,15,000</td>
-                                        <td>
-                                            <h2 class="d-flex align-items-center">
-                                                <a href="#" class="fs-14 fw-medium">Truelysell</a>
-                                            </h2>
-                                        </td>
-                                        <td>
-                                            <h2 class="d-flex align-items-center">
-                                                <a href="javascript:void(0);"
-                                                    class="d-flex flex-column fs-14 fw-medium d-flex">Darlee
-                                                    Robertson<span class="text-body d-flex mt-1 fs-13 fw-normal">Facility
-                                                        Manager </span>
-                                                </a>
-                                            </h2>
-                                        </td>
-                                        <td><span class="badge badge-status bg-teal">Sent</span>
-                                        </td>
-                                        <td class="text-center">
+                                    @foreach ($proposalAllData as $proposal)
+                                        <tr>
+                                            <td></td>
+                                            <td>{{$loop->iteration}}</td>
+                                            <td>{{$proposal->proposalInvoice_no}}</td>
+                                            <td>{{$proposal->proposal_date}}</td>
+                                            <td>{{$proposal->main_subject}}</td>
+                                            <td>{{$proposal->client->name}}</td>
+                                            <td>{{$proposal->total_amount}}</td>
+                                            <td><span class="badge badge-status bg-teal">{{$proposal->status}}</span>
+                                            <td class="text-center">
                                             <div class="dropdown table-action">
                                                 <a href="#"
                                                     class="action-icon btn btn-xs shadow btn-icon btn-outline-light"
@@ -317,7 +297,9 @@
                                                 </div>
                                             </div>
                                         </td>
-                                    </tr>
+                                        </tr>
+                                    @endforeach
+
 
                                 </tbody>
                             </table>

@@ -15,7 +15,7 @@
 
         <div class="row">
             <div class="col-sm-12">
-                <form class="needs-validation" action="{{ route('client.update', $client->id) }}" method="POST"
+                <form class="needs-validation" action="{{ route('clientmanage.client.update', $client->id) }}" method="POST"
                     id="submit-form" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')

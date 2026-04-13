@@ -81,12 +81,12 @@ Route::middleware('auth', 'notBlocked')->group(function () {
     Route::post('confirm/resign', [ResignController::class, 'confirm_resign'])->name('confirm_resign');
 
 
-
+Route::prefix('clientmanage')->name('clientmanage.')->group(function () {
     Route::resource('client', ClientController::class);
     Route::get('client-datatable', [ClientController::class, 'clientDataTable'])->name('client-datatable');
 
-    Route::resource('client-quototation-proposal', QuotationProposalController::class);
-
+    Route::resource('quototation-proposal', QuotationProposalController::class);
+});
 
 
     Route::resource('warehouse', WarehouseController::class);

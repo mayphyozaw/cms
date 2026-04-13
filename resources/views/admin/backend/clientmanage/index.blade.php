@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="col-auto">
-                        <x-create-button href="{{ route('client.create') }}">
+                        <x-create-button href="{{ route('clientmanage.client.create') }}">
                             Create Customer
                         </x-create-button>
                     </div>
@@ -95,7 +95,7 @@
                 responsive: true,
                 paging: true,
                 ajax: {
-                    url: "{{ route('client-datatable') }}",
+                    url: "{{ route('clientmanage.client-datatable') }}",
                     type: "GET"
                 },
                 columns: [{
