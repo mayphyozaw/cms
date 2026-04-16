@@ -17,7 +17,7 @@ class QuotationProposal extends Model
         'project_code',
         'subtotal_amount',
         'tax_amount',
-        'discount_amount',
+        'discount',
         'total_amount',
         'due_amount',
         'notes',

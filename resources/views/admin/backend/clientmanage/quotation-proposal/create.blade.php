@@ -198,7 +198,7 @@
 
                                             <table class="table table-bordered">
                                                 <thead>
-                                                    
+
                                                     <tr>
                                                         <th class="text-center" style="background-color: #9dd2e7">No</th>
                                                         <th class="text-center" style="background-color: #9dd2e7">
@@ -254,8 +254,7 @@
                                                                         <div class="col-sm-4">
                                                                             <div class="input-group">
                                                                                 <input type="number" class="form-control"
-                                                                                    id="inputTax"
-                                                                                    name="proposal_tax_amount">
+                                                                                    id="inputTax" name="tax_amount">
                                                                                 <div class="input-group-text">
                                                                                     <i class="ti ti-percentage"></i>
                                                                                 </div>
@@ -271,22 +270,24 @@
 
                                                             <tr>
                                                                 <td class="py-3">
-
                                                                     <div class="row">
                                                                         <label class="col-sm-4 form-label">Discount
                                                                             :</label>
                                                                         <div class="col-sm-7">
                                                                             <div class="input-group">
                                                                                 <input type="number" class="form-control"
-                                                                                    id="inputDiscount"
-                                                                                    name="proposal_discount">
+                                                                                    id="inputDiscount" name="discount">
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </td>
                                                                 <td class="py-3" id="displayDiscount"
-                                                                    style="text-align:end"> 0.00 MMK</td>
+                                                                    style="text-align:end"> 0.00 MMK
+                                                                </td>
+
                                                             </tr>
+
+
 
                                                             <tr>
                                                                 <td class="py-3 text-primary">Grand Total</td>
@@ -312,9 +313,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-
 
                                 <div class="col-md-12 mt-2">
                                     <label class="form-label">Remark: </label>
@@ -363,46 +361,56 @@
                 });
             });
 
+            $('#inputDiscount, #inputTax').on('input', function() {
+                calculateGrandTotal();
+            });
+
         });
         let sectionCount = 0;
         let rowIndex = 0;
         let currentSection = 0;
 
-        // ADD SECTION
+        let sectionItemCount = {};
+
         $('#add-section').click(function() {
 
             sectionCount++;
             currentSection = sectionCount;
+            sectionItemCount[currentSection] = 0;
+
             rowIndex++;
 
             let html = `
-                <tr class="section-row">
-                    <td>${sectionCount}</td>
-                    <td colspan="6">
-                        <input type="text" name="rows[${rowIndex}][title]" placeholder="Section Title" class="form-control">
-                        <input type="hidden" name="rows[${rowIndex}][type]" value="section">
-                        <input type="hidden" name="rows[${rowIndex}][item_no]" value="${sectionCount}">
-                    </td>
-                    <td>
-                        <button type="button" class="remove btn btn-sm btn-danger btn btn-sm border shadow-sm p-2 d-flex align-items-center justify-content-center rounded fs-14">
-                            <i class="ti ti-trash"></i>
-                        </button>
-                    </td>
-                </tr>`;
+        <tr class="section-row">
+            <td>${sectionCount}</td>
+            <td colspan="6">
+                <input type="text" name="rows[${rowIndex}][title]" placeholder="Section Title" class="form-control">
+                <input type="hidden" name="rows[${rowIndex}][type]" value="section">
+                <input type="hidden" name="rows[${rowIndex}][item_no]" value="${sectionCount}">
+            </td>
+            <td>
+                <button type="button" class="remove btn btn-sm btn-danger">
+                    <i class="ti ti-trash"></i>
+                </button>
+            </td>
+        </tr>`;
 
             $('#table-body').append(html);
         });
 
-        // ADD ITEM
+
+
         $('#add-item').click(function() {
 
-            if (currentSection == 0) {
+            if (currentSection === 0) {
                 alert('Add section first!');
                 return;
             }
 
-            let itemCount = $('.item-row').length + 1;
-            let itemNo = currentSection + '.' + itemCount;
+            // increment only current section item count
+            sectionItemCount[currentSection]++;
+
+            let itemNo = currentSection + '.' + sectionItemCount[currentSection];
 
             rowIndex++;
 
@@ -425,7 +433,7 @@
                     <td><input type="text" name="rows[${rowIndex}][remark]" class="form-control"></td>
 
                     <td>
-                        <button type="button" class="remove btn btn-sm btn-danger btn btn-sm border shadow-sm p-2 d-flex align-items-center justify-content-center rounded fs-14">
+                        <button type="button" class="remove btn btn-sm btn-danger">
                             <i class="ti ti-trash"></i>
                         </button>
                     </td>
@@ -434,13 +442,13 @@
             $('#table-body').append(html);
         });
 
-        // REMOVE ROW
+
         $(document).on('click', '.remove', function() {
             $(this).closest('tr').remove();
-            calculateTotal();
+            calculateGrandTotal();
         });
 
-        // CALCULATE
+
         $(document).on('input', '.qty, .price', function() {
 
             let row = $(this).closest('tr');
@@ -458,48 +466,30 @@
 
         function calculateGrandTotal() {
 
-            let total = 0;
+            let subtotal = 0;
 
             $('.total').each(function() {
-                total += parseFloat($(this).text()) || 0;
+                subtotal += parseFloat($(this).text()) || 0;
             });
 
-            document.querySelectorAll(".subtotal").forEach(function(el) {
+            let discount = parseFloat($('#inputDiscount').val()) || 0;
+            let taxPercent = parseFloat($('#inputTax').val()) || 0;
 
-                // total += parseFloat(el.textContent) || 0;
-                total += parseFloat(el.textContent.replace("MMK", "")) || 0;
+            let taxAmount = (subtotal * taxPercent) / 100;
+            let grandTotal = subtotal + taxAmount - discount;
 
-            });
+            
+            $('#subtotalDisplay').text(subtotal.toFixed(2) + " MMK");
+            $('#taxDisplay').text(taxAmount.toFixed(2) + " MMK");
+            $('#displayDiscount').text(discount.toFixed(2) + " MMK");
+            $('#grandTotal').text(grandTotal.toFixed(2) + " MMK");
+            $('#dueAmount').text(grandTotal.toFixed(2) + " MMK");
 
-            let discount = parseFloat(document.getElementById("inputDiscount").value) || 0;
-            let taxPercent = parseFloat(document.getElementById("inputTax").value) || 0;
-
-            // total = (total - discount) + shipping;
-
-            if (total < 0) total = 0;
-
-            let taxAmount = (total * taxPercent) / 100;
-
-            let grandTotal = total + taxAmount;
-            grandTotal = (grandTotal - discount);
-
-            document.getElementById("subtotalDisplay").textContent =
-                total.toFixed(2) + " MMK";
-
-            document.getElementById("taxDisplay").textContent =
-                taxAmount.toFixed(2) + " MMK";
-
-            document.getElementById("grandTotal").textContent =
-                grandTotal.toFixed(2) + " MMK";
-
-            document.querySelector("input[name='total_amount']").value =
-                grandTotal.toFixed(2);
-
-            document.querySelector("input[name='tax_amount']").value =
-                taxAmount.toFixed(2);
+            $("input[name='total_amount']").val(grandTotal.toFixed(2));
+            $("input[name='tax_amount']").val(taxAmount.toFixed(2));
+            $("input[name='due_amount']").val(grandTotal.toFixed(2));
 
             updateDueAmount();
-
         }
 
         function updateSubtotal(row) {
@@ -515,6 +505,8 @@
             calculateGrandTotal();
             updateDueAmount();
         }
+
+
 
         function updateDueAmount() {
 

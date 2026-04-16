@@ -55,7 +55,7 @@
                         <input type="text" class="form-control" placeholder="Search">
                     </div>
                     <h5 class="d-flex align-items-center mb-0">Quotation Proposals<span
-                            class="badge bg-soft-dark ms-2 text-dark fs-12">2000 Proposals</span></h5>
+                            class="badge bg-soft-danger ms-2 text-dark fs-12">{{$proposalAllData->count()}}</span></h5>
                     <a href="{{ route('clientmanage.quototation-proposal.create') }}"
                         class="btn btn-md btn-primary d-flex align-items-center">
                         <i class="ti ti-circle-plus me-2"></i>
@@ -71,12 +71,7 @@
 
             <div class="col-sm-12">
                 <div>
-                    {{-- <div class="d-flex align-items-center justify-content-between flex-wrap row-gap-3 mb-3">
-                        <h5 class="d-flex align-items-center mb-0">Invoices<span
-                                class="badge bg-soft-dark ms-2 text-dark fs-12">2000 Invoices</span></h5>
-                        <a href="add-invoices.html" class="btn btn-md btn-primary d-flex align-items-center"><i
-                                class="ti ti-circle-plus me-2"></i>Add Invoices</a>
-                    </div> --}}
+                    
                     <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
                         <div class="d-flex align-items-center gap-2 flex-wrap">
                             <div class="dropdown">
@@ -86,6 +81,9 @@
                                     <ul>
                                         <li>
                                             <a href="javascript:void(0);" class="dropdown-item">All Proposals</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);" class="dropdown-item">Requested</a>
                                         </li>
                                         <li>
                                             <a href="javascript:void(0);" class="dropdown-item">Accepted</a>
@@ -275,25 +273,36 @@
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     <a class="dropdown-item" href="#" data-bs-toggle="offcanvas"
-                                                        data-bs-target="#offcanvas_edit"><i
-                                                            class="ti ti-edit text-blue"></i> Edit</a>
+                                                        data-bs-target="#offcanvas_edit">
+                                                        <i class="ti ti-edit text-blue"></i> 
+                                                        Edit
+                                                    </a>
                                                     <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                        data-bs-target="#delete_estimations"><i class="ti ti-trash"></i>
-                                                        Delete</a>
-                                                    <a class="dropdown-item" href="javascript:void(0);"
-                                                        data-bs-toggle="offcanvas" data-bs-target="#offcanvas_view"><i
-                                                            class="ti ti-clipboard-copy text-violet"></i> View
-                                                        Estimation</a>
-                                                    <a class="dropdown-item" href="javascript:void(0);"><i
-                                                            class="ti ti-checks text-green"></i> Mark as
-                                                        Accepted</a>
-                                                    <a class="dropdown-item" href="javascript:void(0);"><i
-                                                            class="ti ti-file"></i> Mark as Draft</a>
-                                                    <a class="dropdown-item" href="javascript:void(0);"><i
-                                                            class="ti ti-sticker text-blue"></i> Mark as
-                                                        Declined</a>
-                                                    <a class="dropdown-item" href="javascript:void(0);"><i
-                                                            class="ti ti-printer"></i> Print</a>
+                                                        data-bs-target="#delete_estimations">
+                                                        <i class="ti ti-trash"></i>
+                                                        Delete
+                                                    </a>
+                                                    <a class="dropdown-item" href="{{route('clientmanage.detail.quotation-proposal', $proposal->id)}}">
+                                                         
+                                                        <i class="ti ti-clipboard-copy text-violet"></i> 
+                                                            View Quotation
+                                                    </a>
+                                                    <a class="dropdown-item" href="javascript:void(0);">
+                                                        <i class="ti ti-checks text-green"></i> 
+                                                        Mark as Accepted
+                                                    </a>
+                                                    <a class="dropdown-item" href="javascript:void(0);">
+                                                        <i class="ti ti-file"></i> 
+                                                        Mark as Draft
+                                                    </a>
+                                                    <a class="dropdown-item" href="javascript:void(0);">
+                                                        <i class="ti ti-sticker text-blue"></i> 
+                                                        Mark as Declined
+                                                    </a>
+                                                    <a class="dropdown-item" href="javascript:void(0);">
+                                                        <i class="ti ti-printer"></i> 
+                                                        Print
+                                                    </a>
                                                 </div>
                                             </div>
                                         </td>
@@ -315,10 +324,10 @@
                     </div>
 
                 </div>
-            </div><!-- end col -->
+            </div>
 
         </div>
-        <!-- end row -->
+       
 
     </div>
 @endsection
@@ -326,14 +335,14 @@
     <script>
         $(document).ready(function() {
             $('#estimations-table').DataTable({
-                lengthChange: false, // hide "Show entries"
-                searching: true, // enable search
-                ordering: true, // enable arrows
-                dom: 'lfrtip', // IMPORTANT: show search box
+                lengthChange: false, 
+                searching: true, 
+                ordering: true, 
+                dom: 'lfrtip', 
                 columnDefs: [{
                         orderable: true,
                         targets: [0, 1, 7]
-                    } // disable only needed columns
+                    } 
                 ],
                 dom: 'rtip'
             });

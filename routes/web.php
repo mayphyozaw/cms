@@ -86,6 +86,8 @@ Route::prefix('clientmanage')->name('clientmanage.')->group(function () {
     Route::get('client-datatable', [ClientController::class, 'clientDataTable'])->name('client-datatable');
 
     Route::resource('quototation-proposal', QuotationProposalController::class);
+    Route::get('/detail/quotation-proposal/{id}', [QuotationProposalController::class, 'detailQuotation'])->name('detail.quotation-proposal');
+
 });
 
 

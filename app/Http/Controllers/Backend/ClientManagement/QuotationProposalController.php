@@ -16,9 +16,9 @@ class QuotationProposalController extends Controller
     public function index()
     {
 
-        $proposalAllData = QuotationProposal::with(['sections.items','client','workscope'])->get();
-        
-        return view('admin.backend.clientmanage.quotation-proposal.index',compact('proposalAllData'));
+        $proposalAllData = QuotationProposal::with(['sections.items', 'client', 'workscope'])->get();
+
+        return view('admin.backend.clientmanage.quotation-proposal.index', compact('proposalAllData'));
     }
 
     public function create()
@@ -35,9 +35,10 @@ class QuotationProposalController extends Controller
         $lastProposal = QuotationProposal::latest()->first();
         $nextNumber = $lastProposal ? $lastProposal->id + 1 : 1;
         $proposalInvoiceNo = '#QP' . str_pad($nextNumber, 6, '0', STR_PAD_LEFT);
-        $total_amount = 0;
-        $subtotal_amount = 0;
-        $due_amount = 0;
+        // $total_amount = 0;
+        // $subtotal_amount = 0;
+        // $due_amount = 0;
+
 
         $quotationProposal = QuotationProposal::create([
             'main_subject' => $request->main_subject,
@@ -46,14 +47,12 @@ class QuotationProposalController extends Controller
             'workscope_id' => $request->workscope_id,
             'client_id' => $request->client_id,
             'project_id' => $request->project_id ?? 0,
-            'tax_amount' => $request->tax_amount ?? 0,
-            'discount' => $request->purchase_discount ?? 0,
-            'shipping' => $request->shipping ?? 0,
             'status' => $request->status,
             'remark' => $request->remark ?? '',
         ]);
 
         $subtotal_amount = 0;
+        // $subtotal = 0;
         $sectionId = null;
 
         foreach ($request->rows as $row) {
@@ -65,14 +64,21 @@ class QuotationProposalController extends Controller
                     'type' => 'section',
                     'item_no' => $row['item_no'],
                     'title' => $row['title'],
-
                 ]);
-
-                $sectionId = $section->id;
             } else {
 
-                $itemTotal = ($row['qty'] ?? 0) * ($row['price'] ?? 0);
+                $qty = $row['quantity'] ?? 0;
+                $price = $row['price'] ?? 0;
+                $discount = $row['discount'] ?? 0;
+                // $discount = isset($row['discount']) ? $row['discount'] : 0;
+
+                $itemTotal = ($qty * $price) - $discount;
+
                 $subtotal_amount += $itemTotal;
+
+                // $subtotal_amount = $subtotal;
+
+                // return $subtotal_amount;
 
                 QuotationProposalItems::create([
                     'quotation_proposal_id' => $quotationProposal->id,
@@ -80,11 +86,12 @@ class QuotationProposalController extends Controller
                     'section_id' => $sectionId,
                     'item_no' => $row['item_no'],
                     'title' => $row['title'],
-                    'unit' => $row['unit'],
-                    'quantity' => $row['quantity'],
-                    'price' => $row['price'],
-                    'total_amount' => $row['quantity'] * $row['price'],
-                    'remark' => $row['remark'],
+                    'unit' => $row['unit'] ?? '',
+                    'quantity' => $qty,
+                    'price' => $price,
+                    'discount' => $discount,
+                    'total_amount' => $itemTotal,
+                    'remark' => $row['remark'] ?? '',
                 ]);
             }
         }
@@ -92,20 +99,29 @@ class QuotationProposalController extends Controller
         $taxPercent = $request->tax_amount ?? 0;
         $taxAmount = ($subtotal_amount * $taxPercent) / 100;
 
-        $globalDiscount = $request->purchase_discount ?? 0;
+        $globalDiscount = $request->discount ?? 0;
 
-        $total_amount = $subtotal_amount + $taxAmount - $globalDiscount;
+        $grandTotal = ($subtotal_amount + $taxAmount) - $globalDiscount;
 
         $quotationProposal->update([
             'subtotal_amount' => $subtotal_amount,
             'tax_amount' => $taxAmount,
-            'total_amount' => $total_amount,
+            'discount' => $globalDiscount,
+            'total_amount' => $grandTotal,
+            'due_amount' => $grandTotal,
         ]);
+
 
 
         return redirect()->route('clientmanage.quototation-proposal.index')->with([
             'message' => 'Proposal Stored successfully!',
             'alert-type' => 'success'
         ]);
+    }
+
+    public function detailQuotation($id)
+    {
+        $proposalData = QuotationProposal::with(['sections.items', 'client', 'workscope'])->findOrFail($id);
+        return view('admin.backend.clientmanage.quotation-proposal.detail',compact('proposalData'));
     }
 }
