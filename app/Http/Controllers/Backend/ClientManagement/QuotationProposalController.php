@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\ClientManagement;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\QuotationProposals\QuotationProposalStoreRequest;
 use App\Models\Client;
+use App\Models\PaymentTerms;
 use App\Models\ProjectCategory;
 use App\Models\QuotationProposal;
 use App\Models\QuotationProposalItems;
@@ -24,8 +25,8 @@ class QuotationProposalController extends Controller
     public function create()
     {
         $clients = Client::all();
-        // $project_categories = ProjectCategory::all();
         $workscopes = WorkScope::all();
+        // $terms = QuotationProposal::with('paymentTerms')->orderBy('order_no')->get();
         return view('admin.backend.clientmanage.quotation-proposal.create', compact('clients', 'workscopes'));
     }
 
@@ -47,7 +48,7 @@ class QuotationProposalController extends Controller
             'project_id' => $request->project_id ?? 0,
             'status' => $request->status,
             'notes' => $request->notes ?? '',
-            
+
         ]);
 
         $subtotal_amount = 0;
@@ -68,7 +69,7 @@ class QuotationProposalController extends Controller
             } else {
 
                 if ($row['type'] == 'item' && !$sectionId) {
-                    continue; 
+                    continue;
                 }
 
                 $qty = $row['quantity'] ?? 0;
@@ -111,7 +112,18 @@ class QuotationProposalController extends Controller
             'due_amount' => $grandTotal,
         ]);
 
-
+        foreach ($request->payment_terms as $index => $term) {
+            PaymentTerms::create([
+                'quotation_proposal_id' => $quotationProposal->id,
+                'percentage' => $term['percentage'],
+                'description' => $term['description'],
+                'order_no' => $index + 1,
+                'amount' => $term['amount'],
+                'payer' => $term['payer'],
+                'receiver' => $term['receiver'],
+                'date' => $term['date'],
+            ]);
+        }
 
         return redirect()->route('clientmanage.quototation-proposal.index')->with([
             'message' => 'Proposal Stored successfully!',
@@ -122,6 +134,10 @@ class QuotationProposalController extends Controller
     public function detailQuotation($id)
     {
         $proposalData = QuotationProposal::with('sections.items', 'client', 'workscope')->find($id);
-        return  view('admin.backend.clientmanage.quotation-proposal.detail', compact('proposalData'));
+        // $terms = QuotationProposal::with('paymentTerms')->orderBy('order_no')->get();
+        $proposal = QuotationProposal::with(['paymentTerms' => function ($q) {
+            $q->orderBy('order_no');
+        }])->findOrFail($id);
+        return  view('admin.backend.clientmanage.quotation-proposal.detail', compact('proposalData', 'proposal'));
     }
 }

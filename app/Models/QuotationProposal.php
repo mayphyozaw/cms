@@ -55,4 +55,9 @@ class QuotationProposal extends Model
         return $this->hasMany(QuotationProposalItems::class, 'quotation_proposal_id')
             ->where('type', 'section');
     }
+
+    public function paymentTerms()
+{
+    return $this->hasMany(PaymentTerms::class, 'quotation_proposal_id');
+}
 }

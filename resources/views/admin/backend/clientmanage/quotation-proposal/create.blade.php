@@ -314,7 +314,6 @@
                                 </div>
 
                                 <style>
-                                    
                                     .proposal-content {
                                         word-wrap: break-word;
                                         line-height: 1.6;
@@ -342,19 +341,6 @@
                                     }
                                 </style>
 
-                                {{-- <style>
-                                    .proposal-content ul {
-                                        list-style-type: disc !important;
-                                        padding-left: 25px !important;
-                                        margin: 0 !important;
-                                    }
-
-                                    .proposal-content li {
-                                        display: list-item !important;
-                                        list-style-type: disc !important;
-                                        margin-bottom: 5px;
-                                    }
-                                </style> --}}
                                 <div class="col-md-12 mt-2">
                                     <label class="form-label">Remark: </label>
                                     {{-- <textarea class="form-control" name="remark" rows="3" placeholder="Enter Remark"></textarea> --}}
@@ -364,6 +350,61 @@
 
                             </div>
                         </div>
+
+                        <div>
+                            <h5>Payment Terms</h5>
+                            <table class="table table-bordered" id="paymentTermsTable">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="background-color: #9dd2e7;width:25%">Name</th>
+                                        <th class="text-center" style="background-color: #9dd2e7;width:20%">Percentage
+                                            (%)</th>
+                                        <th class="text-center" style="background-color: #9dd2e7;">Description</th>
+                                        {{-- <th class="text-center" style="background-color: #9dd2e7;width:10%">Amount</th>
+                                        <th class="text-center" style="background-color: #9dd2e7;">Payer</th>
+                                        <th class="text-center" style="background-color: #9dd2e7;">Receiver</th>
+                                        <th class="text-center" style="background-color: #9dd2e7;width:10%">Date</th> --}}
+                                        <th class="text-center" style="background-color: #9dd2e7; width: 10%">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <input type="text" name="payment_terms[0][name]" class="form-control"
+                                                placeholder="Enter Name">
+                                        </td>
+                                        <td>
+                                            <input type="number" name="payment_terms[0][percentage]"
+                                                class="form-control" placeholder="%">
+                                        </td>
+                                        <td>
+                                            <input type="text" name="payment_terms[0][description]"
+                                                class="form-control" placeholder="Upon contract signing">
+                                        </td>
+                                        {{-- <td>
+                                            <input type="text" class="form-control amount" readonly>
+                                        </td>
+                                        <td>
+                                            <input type="text" name="payment_terms[0][payer]" class="form-control"
+                                                placeholder="Enter Payer">
+                                        </td>
+                                        <td>
+                                            <input type="text" name="payment_terms[0][receiver]" class="form-control"
+                                                placeholder="Enter Receiver">
+                                        </td>
+                                        <td>
+                                            <input type="date" name="payment_terms[0][date]" class="form-control"
+                                                placeholder="Enter Date">
+                                        </td> --}}
+                                        <td>
+                                            <button type="button" class="btn btn-danger btn-sm removeRow">X</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button type="button" class="btn btn-primary btn-sm" id="addRow">+ Add Row</button>
+                        </div>
+                        <br>
 
                         <button class="btn btn-primary" type="submit">Submit</button>
                     </form>
@@ -391,6 +432,45 @@
                     ['insert', ['link', 'picture', 'video']],
                     ['view', ['fullscreen', 'codeview', 'help']]
                 ]
+            });
+
+
+            let rowIndex = 1;
+
+            $('#addRow').click(function() {
+                let row = `
+                        <tr>
+                            <td>
+                                <input type="text" name="payment_terms[${rowIndex}][name]" class="form-control" placeholder="Enter name">
+                            </td>
+                            <td>
+                                <input type="number" name="payment_terms[${rowIndex}][percentage]" class="form-control" placeholder="%">
+                            </td>
+                            <td>
+                                <input type="text" name="payment_terms[${rowIndex}][description]" class="form-control" placeholder="Description">
+                            </td>
+                            
+                            <td>
+                                <button type="button" class="btn btn-danger btn-sm removeRow">X</button>
+                            </td>
+                        </tr>
+                    `;
+
+                $('#paymentTermsTable tbody').append(row);
+                rowIndex++;
+            });
+
+            $(document).on('click', '.removeRow', function() {
+                $(this).closest('tr').remove();
+            });
+
+            $(document).on('input', '.percentage', function() {
+                let row = $(this).closest('tr');
+                let percentage = parseFloat($(this).val()) || 0;
+
+                let amount = (totalAmount / 100) * percentage;
+
+                row.find('.amount').val(amount.toFixed(2));
             });
 
 
@@ -609,5 +689,7 @@
 
             });
         }
+
+        
     </script>
 @endpush
