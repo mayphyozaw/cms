@@ -38,6 +38,26 @@
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
+    {{-- Summernote --}}
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css" rel="stylesheet">
+
+    <style>
+        .note-editor .note-editable ul {
+            list-style-type: disc !important;
+            list-style-position: outside !important;
+            padding-left: 25px !important;
+        }
+
+        .note-editor .note-editable ol {
+            list-style-type: decimal !important;
+            padding-left: 25px !important;
+        }
+
+        .note-editor .note-editable li {
+            display: list-item !important;
+        }
+    </style>
+
 
 </head>
 
@@ -49,6 +69,11 @@
         @if (!request()->routeIs('dashboard'))
             @include('admin.body.sidebar')
         @endif
+
+        @if (request()->routeIs('accounting*'))
+            @include('admin.body.accounting.sidebar')
+        @endif
+
 
         <div class="page-wrapper">
             <div class="content pb-0">
@@ -65,9 +90,12 @@
     {{-- <script src="{{ asset('backend/assets/js/jquery-3.7.1.min.js') }}"></script> --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    {{-- Summernote --}}
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js"></script>
+
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js') }}"></script>
 
-    <script src="{{asset('backend/assets/js/bootstrap.bundle.min.js')}}" type="2feec2ecac7da57f288991d1-text/javascript"></script>
+    <script src="{{ asset('backend/assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{asset('backend/assets/plugins/simplebar/simplebar.min.js')}}" type="2feec2ecac7da57f288991d1-text/javascript"></script>
 
     <script src="{{ asset('backend/assets/plugins/datatables/js/jquery.dataTables.min.js') }}"></script>
@@ -78,9 +106,8 @@
     <script src="{{asset('backend/assets/plugins/apexchart/apexcharts.min.js')}}" type="2feec2ecac7da57f288991d1-text/javascript"></script>
     <script src="{{asset('backend/assets/plugins/apexchart/chart-data.js')}}" type="2feec2ecac7da57f288991d1-text/javascript"></script>
     <script src="{{asset('backend/assets/js/jsonscript.js')}}" type="2feec2ecac7da57f288991d1-text/javascript"></script>
-    <script src="{{asset('backend/assets/js/script.js')}}" type="2feec2ecac7da57f288991d1-text/javascript"></script>
-    <script src="{{ asset('backend/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}"
-        data-cf-settings="2feec2ecac7da57f288991d1-|49" defer></script>
+    {{-- <script src="{{ asset('backend/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}"
+        data-cf-settings="2feec2ecac7da57f288991d1-|49" defer></script> --}}
 
     <!-- Choices Js -->
     <script src="{{asset('backend/assets/plugins/choices.js/public/assets/scripts/choices.min.js')}}" type="a1dcc44babf6ba6f47b105cc-text/javascript"></script>
@@ -88,16 +115,15 @@
 
     <script src="https://cdn.datatables.net/2.3.6/js/dataTables.js"></script>
 
-    <script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-2.3.6/datatables.min.js"
+    {{-- <script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-2.3.6/datatables.min.js"
         integrity="sha384-kbj0kfdGeXuGxFs602DcfnL0cwxrpYR1MK4bZpH5ORM44q7KnoAa83jyxZs3QF1d" crossorigin="anonymous">
-    </script>
+    </script> --}}
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-
 
 
 
@@ -146,10 +172,10 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
         flatpickr("#datetime", {
-            enableTime: true, 
-            enableSeconds: true, 
-            dateFormat: "Y-m-d H:i:S", 
-            time_24hr: true 
+            enableTime: true,
+            enableSeconds: true,
+            dateFormat: "Y-m-d H:i:S",
+            time_24hr: true
         });
     </script>
 

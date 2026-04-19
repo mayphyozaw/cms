@@ -25,14 +25,14 @@ class QuotationProposalItems extends Model
     {
         return $this->belongsTo(QuotationProposal::class, 'quotation_proposal_id');
     }
-    public function section()
-    {
-        return $this->belongsTo(QuotationProposalItems::class, 'section_id');
-    }
-
     public function items()
     {
         return $this->hasMany(QuotationProposalItems::class, 'section_id')
             ->where('type', 'item');
+    }
+
+    public function section()
+    {
+        return $this->belongsTo(QuotationProposalItems::class, 'section_id');
     }
 }

@@ -2,9 +2,12 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\PasswordController;
+use App\Http\Controllers\Backend\Accounting\DashboardController;
+use App\Http\Controllers\Backend\AccountingController;
 use App\Http\Controllers\Backend\AssetRequestApproval\AssetRequestApprovalController;
 use App\Http\Controllers\Backend\AssetRequestController;
 use App\Http\Controllers\Backend\AssetRequestItemApprovalController;
+use App\Http\Controllers\Backend\BankManagement\BankController;
 use App\Http\Controllers\Backend\BQ\BoqCategoriesController;
 use App\Http\Controllers\Backend\BQ\BOQController;
 use App\Http\Controllers\Backend\ClientManagement\ClientController;
@@ -35,7 +38,6 @@ use App\Http\Controllers\Backend\StockManagement\WarehouseController;
 use App\Http\Controllers\Backend\StockManagement\WarehouseStockController;
 use App\Http\Controllers\Backend\SupplierManagement\SupplierController;
 use App\Http\Controllers\Backend\UserManagement\UserController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\UserManagement\Resign;
 use App\Http\Controllers\Backend\UserManagement\ResignController;
@@ -52,10 +54,11 @@ Route::get('/dashboard', function () {
 
 
 
-// Route::middleware(['auth', 'notBlocked'])->group(function () {
 
-//     Route::resource('usermanage', UserManageController::class);
-// });
+
+// Route::get('/modules', function () {
+//     return view('admin.modules_landing');
+// })->name('modules.landing');
 
 Route::get('admin/logout', [AdminController::class, 'adminLogout'])->name('admin-logout');
 
@@ -81,14 +84,25 @@ Route::middleware('auth', 'notBlocked')->group(function () {
     Route::post('confirm/resign', [ResignController::class, 'confirm_resign'])->name('confirm_resign');
 
 
-Route::prefix('clientmanage')->name('clientmanage.')->group(function () {
-    Route::resource('client', ClientController::class);
-    Route::get('client-datatable', [ClientController::class, 'clientDataTable'])->name('client-datatable');
 
-    Route::resource('quototation-proposal', QuotationProposalController::class);
-    Route::get('/detail/quotation-proposal/{id}', [QuotationProposalController::class, 'detailQuotation'])->name('detail.quotation-proposal');
 
-});
+    Route::prefix('accounting')->name('accounting.')->group(function () {
+        Route::get('/dashboard', [AccountingController::class, 'index'])->name('accounting.dashboard');
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::resource('bankmanage', BankController::class);
+    });
+
+   
+
+
+
+    Route::prefix('clientmanage')->name('clientmanage.')->group(function () {
+        Route::resource('client', ClientController::class);
+        Route::get('client-datatable', [ClientController::class, 'clientDataTable'])->name('client-datatable');
+
+        Route::resource('quototation-proposal', QuotationProposalController::class);
+        Route::get('/detail/quotation-proposal/{id}', [QuotationProposalController::class, 'detailQuotation'])->name('detail.quotation-proposal');
+    });
 
 
     Route::resource('warehouse', WarehouseController::class);
@@ -105,7 +119,7 @@ Route::prefix('clientmanage')->name('clientmanage.')->group(function () {
         Route::get('/supplier-datatable', [SupplierController::class, 'supplierDataTable'])->name('supplier-datatable');
     });
 
-    Route::prefix('bq')->name('bq.')->group(function(){
+    Route::prefix('bq')->name('bq.')->group(function () {
         Route::resource('bqcategory', BoqCategoriesController::class);
         Route::resource('bqworkscope', WorkscopeController::class);
     });
@@ -138,7 +152,7 @@ Route::prefix('clientmanage')->name('clientmanage.')->group(function () {
     Route::get('qs-check-detail/{asset_id}', [QSTeamCheckController::class, 'show'])->name('qs.check.detail');
     Route::get('detail-passed-qty/', [QSTeamCheckController::class, 'detailPassedQty'])->name('qs.passed.qty.detail');
 
-    Route::get('logistics-check-create/{id}',[LogisticsTeamCheckController::class,'create'])->name('logistics.check.create');
+    Route::get('logistics-check-create/{id}', [LogisticsTeamCheckController::class, 'create'])->name('logistics.check.create');
     Route::post('logistics-check-store', [LogisticsTeamCheckController::class, 'store'])->name('logistics.check.store');
 
 
@@ -219,5 +233,4 @@ Route::prefix('clientmanage')->name('clientmanage.')->group(function () {
     Route::post('payment/purchase_payment/{id}', [PaymentController::class, 'payStore'])->name('payment.pay.store');
     Route::get('purchase/payment/{id}/history', [PaymentController::class, 'payDetail'])->name('payment.pay.detail');
     Route::get('/invoice/payment/{id}', [PaymentController::class, 'invoicePayment'])->name('payment.invoice.payment');
-
 });

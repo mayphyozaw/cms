@@ -25,7 +25,7 @@ class QuotationProposal extends Model
 
     public function quotationProposalItems()
     {
-        return $this->hasMany(QuotationProposalItems::class, 'quotaion_proposal_id');
+        return $this->hasMany(QuotationProposalItems::class, 'quotation_proposal_id');
     }
 
     public function workScope()
@@ -42,9 +42,17 @@ class QuotationProposal extends Model
     {
         return $this->belongsTo(Project::class, 'project_id');
     }
+
+    // public function sections()
+    // {
+    //     return $this->hasMany(QuotationProposalItems::class, 'quotation_proposal_id')
+    //         ->where('type', 'section')
+    //         ->whereNull('section_id');
+    // }
+
     public function sections()
     {
-        return $this->hasMany(QuotationProposalItems::class)
+        return $this->hasMany(QuotationProposalItems::class, 'quotation_proposal_id')
             ->where('type', 'section');
     }
 }

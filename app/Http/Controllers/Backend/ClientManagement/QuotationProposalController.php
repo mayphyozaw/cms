@@ -35,9 +35,7 @@ class QuotationProposalController extends Controller
         $lastProposal = QuotationProposal::latest()->first();
         $nextNumber = $lastProposal ? $lastProposal->id + 1 : 1;
         $proposalInvoiceNo = '#QP' . str_pad($nextNumber, 6, '0', STR_PAD_LEFT);
-        // $total_amount = 0;
-        // $subtotal_amount = 0;
-        // $due_amount = 0;
+
 
 
         $quotationProposal = QuotationProposal::create([
@@ -48,11 +46,12 @@ class QuotationProposalController extends Controller
             'client_id' => $request->client_id,
             'project_id' => $request->project_id ?? 0,
             'status' => $request->status,
-            'remark' => $request->remark ?? '',
+            'notes' => $request->notes ?? '',
+            
         ]);
 
         $subtotal_amount = 0;
-        // $subtotal = 0;
+
         $sectionId = null;
 
         foreach ($request->rows as $row) {
@@ -65,20 +64,21 @@ class QuotationProposalController extends Controller
                     'item_no' => $row['item_no'],
                     'title' => $row['title'],
                 ]);
+                $sectionId = $section->id;
             } else {
+
+                if ($row['type'] == 'item' && !$sectionId) {
+                    continue; 
+                }
 
                 $qty = $row['quantity'] ?? 0;
                 $price = $row['price'] ?? 0;
                 $discount = $row['discount'] ?? 0;
-                // $discount = isset($row['discount']) ? $row['discount'] : 0;
 
                 $itemTotal = ($qty * $price) - $discount;
 
                 $subtotal_amount += $itemTotal;
 
-                // $subtotal_amount = $subtotal;
-
-                // return $subtotal_amount;
 
                 QuotationProposalItems::create([
                     'quotation_proposal_id' => $quotationProposal->id,
@@ -121,7 +121,7 @@ class QuotationProposalController extends Controller
 
     public function detailQuotation($id)
     {
-        $proposalData = QuotationProposal::with(['sections.items', 'client', 'workscope'])->findOrFail($id);
-        return view('admin.backend.clientmanage.quotation-proposal.detail',compact('proposalData'));
+        $proposalData = QuotationProposal::with('sections.items', 'client', 'workscope')->find($id);
+        return  view('admin.backend.clientmanage.quotation-proposal.detail', compact('proposalData'));
     }
 }

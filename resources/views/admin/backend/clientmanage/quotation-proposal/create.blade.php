@@ -180,11 +180,10 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-12 mb-3" hidden>
+                                    {{-- <div class="col-md-12 mb-3" hidden>
                                         <label class="form-label">Remark:</label>
-
-                                        <textarea name="remark" class="form-control"></textarea>
-                                    </div>
+                                        <textarea name="notes" class="form-control"></textarea>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -314,10 +313,55 @@
                                     </div>
                                 </div>
 
+                                <style>
+                                    
+                                    .proposal-content {
+                                        word-wrap: break-word;
+                                        line-height: 1.6;
+                                    }
+
+                                    .proposal-content ul {
+                                        display: block !important;
+                                        list-style-type: disc !important;
+                                        list-style-position: outside !important;
+                                        padding-left: 2.0rem !important;
+                                        margin-top: 10px !important;
+                                        margin-bottom: 10px !important;
+                                    }
+
+                                    .proposal-content li {
+                                        display: list-item !important;
+                                        list-style-type: disc !important;
+                                        margin-bottom: 5px;
+                                    }
+
+                                    .proposal-content ol {
+                                        display: block !important;
+                                        list-style-type: decimal !important;
+                                        padding-left: 2.0rem !important;
+                                    }
+                                </style>
+
+                                {{-- <style>
+                                    .proposal-content ul {
+                                        list-style-type: disc !important;
+                                        padding-left: 25px !important;
+                                        margin: 0 !important;
+                                    }
+
+                                    .proposal-content li {
+                                        display: list-item !important;
+                                        list-style-type: disc !important;
+                                        margin-bottom: 5px;
+                                    }
+                                </style> --}}
                                 <div class="col-md-12 mt-2">
                                     <label class="form-label">Remark: </label>
-                                    <textarea class="form-control" name="remark" rows="3" placeholder="Enter Remark"></textarea>
+                                    {{-- <textarea class="form-control" name="remark" rows="3" placeholder="Enter Remark"></textarea> --}}
+                                    <textarea id="summernote" name="notes"></textarea>
+
                                 </div>
+
                             </div>
                         </div>
 
@@ -333,6 +377,22 @@
     {{-- {!! JsValidator::formRequest('App\Http\Requests\Project\ProjectStoreRequest', '#submit-form') !!} --}}
     <script>
         $(document).ready(function() {
+
+            $('#summernote').summernote({
+                placeholder: 'Write Remark or Specifications:',
+                tabsize: 2,
+                height: 120,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'li', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture', 'video']],
+                    ['view', ['fullscreen', 'codeview', 'help']]
+                ]
+            });
+
 
             $('#client_id').on('change', function() {
                 let clientId = $(this).val();
@@ -365,7 +425,9 @@
                 calculateGrandTotal();
             });
 
+
         });
+
         let sectionCount = 0;
         let rowIndex = 0;
         let currentSection = 0;
@@ -478,7 +540,7 @@
             let taxAmount = (subtotal * taxPercent) / 100;
             let grandTotal = subtotal + taxAmount - discount;
 
-            
+
             $('#subtotalDisplay').text(subtotal.toFixed(2) + " MMK");
             $('#taxDisplay').text(taxAmount.toFixed(2) + " MMK");
             $('#displayDiscount').text(discount.toFixed(2) + " MMK");

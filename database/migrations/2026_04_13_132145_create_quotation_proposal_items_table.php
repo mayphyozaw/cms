@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('scope_main_title');
             $table->string('scope_item');
             $table->string('unit')->nullable();
-            $table->decimal('quantity', 10, 2)->default(0);
             $table->decimal('price', 15, 2)->default(0);
             $table->decimal('discount', 15, 2)->default(0);
             $table->decimal('total_amount', 15, 2)->default(0);
