@@ -343,74 +343,107 @@
 
                                 <div class="col-md-12 mt-2">
                                     <label class="form-label">Remark: </label>
-                                    {{-- <textarea class="form-control" name="remark" rows="3" placeholder="Enter Remark"></textarea> --}}
-                                    <textarea id="summernote" name="notes"></textarea>
-
+                                    <textarea class="summernote" name="notes"></textarea>
                                 </div>
 
                             </div>
                         </div>
 
-                        <div>
-                            <h5>Payment Terms</h5>
-                            <table class="table table-bordered" id="paymentTermsTable">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center" style="background-color: #9dd2e7;width:25%">Name</th>
-                                        <th class="text-center" style="background-color: #9dd2e7;width:20%">Percentage
-                                            (%)</th>
-                                        <th class="text-center" style="background-color: #9dd2e7;">Description</th>
-                                        {{-- <th class="text-center" style="background-color: #9dd2e7;width:10%">Amount</th>
-                                        <th class="text-center" style="background-color: #9dd2e7;">Payer</th>
-                                        <th class="text-center" style="background-color: #9dd2e7;">Receiver</th>
-                                        <th class="text-center" style="background-color: #9dd2e7;width:10%">Date</th> --}}
-                                        <th class="text-center" style="background-color: #9dd2e7; width: 10%">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <input type="text" name="payment_terms[0][name]" class="form-control"
-                                                placeholder="Enter Name">
-                                        </td>
-                                        <td>
-                                            <input type="number" name="payment_terms[0][percentage]"
-                                                class="form-control" placeholder="%">
-                                        </td>
-                                        <td>
-                                            <input type="text" name="payment_terms[0][description]"
-                                                class="form-control" placeholder="Upon contract signing">
-                                        </td>
-                                        {{-- <td>
-                                            <input type="text" class="form-control amount" readonly>
-                                        </td>
-                                        <td>
-                                            <input type="text" name="payment_terms[0][payer]" class="form-control"
-                                                placeholder="Enter Payer">
-                                        </td>
-                                        <td>
-                                            <input type="text" name="payment_terms[0][receiver]" class="form-control"
-                                                placeholder="Enter Receiver">
-                                        </td>
-                                        <td>
-                                            <input type="date" name="payment_terms[0][date]" class="form-control"
-                                                placeholder="Enter Date">
-                                        </td> --}}
-                                        <td>
-                                            <button type="button" class="btn btn-danger btn-sm removeRow">X</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <button type="button" class="btn btn-primary btn-sm" id="addRow">+ Add Row</button>
-                        </div>
-                        <br>
+                        <div class="row">
+                            <div class="col-md-12 ms-auto">
+                                <div class="card">
+                                    <div class="card-body pt-7 pb-2">
 
+                                        <div>
+                                            <div class="col-md-12 mt-2">
+                                                <label class="form-label">Payment Terms: </label>
+                                                <textarea class="summernote" name="term_notes"></textarea>
+
+                                            </div>
+                                            <table class="table table-bordered" id="paymentTermsTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center"
+                                                            style="background-color: #9dd2e7;width:20%">Name</th>
+                                                        <th class="text-center"
+                                                            style="background-color: #9dd2e7;width:7%">Percentage
+                                                            (%)</th>
+                                                        <th class="text-center"
+                                                            style="background-color: #9dd2e7;width:20%">
+                                                            Description</th>
+                                                        <th class="text-center"
+                                                            style="background-color: #9dd2e7;width:15%">Amount</th>
+                                                        <th class="text-center"
+                                                            style="background-color: #9dd2e7;width:12%">
+                                                            Payer
+                                                        </th>
+                                                        <th class="text-center"
+                                                            style="background-color: #9dd2e7;width:13%">
+                                                            Receiver</th>
+                                                        <th class="text-center"
+                                                            style="background-color: #9dd2e7;width:8%">Date</th>
+                                                        <th class="text-center"
+                                                            style="background-color: #9dd2e7; width: 5%">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="text" name="payment_terms[0][name]"
+                                                                class="form-control" placeholder="Enter Name">
+                                                        </td>
+                                                        <td>
+                                                            <input type="number" name="payment_terms[0][percentage]"
+                                                                class="form-control" placeholder="%">
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="payment_terms[0][description]"
+                                                                class="form-control" placeholder="Upon contract signing">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="form-control amount" readonly>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="payment_terms[0][payer]"
+                                                                class="form-control" placeholder="Enter Payer">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="payment_terms[0][receiver]"
+                                                                class="form-control" placeholder="Enter Receiver">
+                                                        </td>
+                                                        <td>
+                                                            <input type="date" name="payment_terms[0][date]"
+                                                                class="form-control" placeholder="Enter Date">
+                                                        </td>
+                                                        <td>
+                                                            <button type="button"
+                                                                class="btn btn-danger btn-sm removeRow">X</button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <button type="button" class="btn btn-primary btn-sm" id="addRow">+ Add
+                                                Row</button>
+                                        </div>
+
+                                        <div class="col-md-12 mt-2">
+                                            <label class="form-label">Remark: </label>
+                                            <textarea class="summernote" name="remark"></textarea>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                         <button class="btn btn-primary" type="submit">Submit</button>
-                    </form>
                 </div>
+                <br>
+                </form>
             </div>
         </div>
+    </div>
     </div>
 @endsection
 
@@ -418,8 +451,7 @@
     {{-- {!! JsValidator::formRequest('App\Http\Requests\Project\ProjectStoreRequest', '#submit-form') !!} --}}
     <script>
         $(document).ready(function() {
-
-            $('#summernote').summernote({
+            $('.summernote').summernote({
                 placeholder: 'Write Remark or Specifications:',
                 tabsize: 2,
                 height: 120,
@@ -427,7 +459,7 @@
                     ['style', ['style']],
                     ['font', ['bold', 'underline', 'clear']],
                     ['color', ['color']],
-                    ['para', ['ul', 'ol', 'li', 'paragraph']],
+                    ['para', ['ul', 'ol', 'paragraph']],
                     ['table', ['table']],
                     ['insert', ['link', 'picture', 'video']],
                     ['view', ['fullscreen', 'codeview', 'help']]
@@ -449,6 +481,21 @@
                             <td>
                                 <input type="text" name="payment_terms[${rowIndex}][description]" class="form-control" placeholder="Description">
                             </td>
+                            <td>
+                                <input type="text" class="form-control amount" readonly>
+                            </td>
+                            <td>
+                                <input type="text" name="payment_terms[${rowIndex}][payer]" class="form-control"
+                                    placeholder="Enter Payer">
+                            </td>
+                            <td>
+                                <input type="text" name="payment_terms[${rowIndex}][receiver]" class="form-control"
+                                    placeholder="Enter Receiver">
+                            </td>
+                            <td>
+                                <input type="date" name="payment_terms[${rowIndex}][date]" class="form-control"
+                                    placeholder="Enter Date">
+                            </td>
                             
                             <td>
                                 <button type="button" class="btn btn-danger btn-sm removeRow">X</button>
@@ -461,6 +508,10 @@
             });
 
             $(document).on('click', '.removeRow', function() {
+                if ($('#paymentTermsTable tbody tr').length == 1) {
+                    alert('At least one payment term is required');
+                    return;
+                }
                 $(this).closest('tr').remove();
             });
 
@@ -509,8 +560,8 @@
         });
 
         let sectionCount = 0;
-        let rowIndex = 0;
         let currentSection = 0;
+        let boqRowIndex = 0;
 
         let sectionItemCount = {};
 
@@ -520,15 +571,15 @@
             currentSection = sectionCount;
             sectionItemCount[currentSection] = 0;
 
-            rowIndex++;
+            boqRowIndex++;
 
             let html = `
         <tr class="section-row">
             <td>${sectionCount}</td>
             <td colspan="6">
-                <input type="text" name="rows[${rowIndex}][title]" placeholder="Section Title" class="form-control">
-                <input type="hidden" name="rows[${rowIndex}][type]" value="section">
-                <input type="hidden" name="rows[${rowIndex}][item_no]" value="${sectionCount}">
+                <input type="text" name="rows[${boqRowIndex}][title]" placeholder="Section Title" class="form-control">
+                <input type="hidden" name="rows[${boqRowIndex}][type]" value="section">
+                <input type="hidden" name="rows[${boqRowIndex}][item_no]" value="${sectionCount}">
             </td>
             <td>
                 <button type="button" class="remove btn btn-sm btn-danger">
@@ -554,25 +605,25 @@
 
             let itemNo = currentSection + '.' + sectionItemCount[currentSection];
 
-            rowIndex++;
+            boqRowIndex++;
 
             let html = `
                 <tr class="item-row">
                     <td>${itemNo}</td>
 
                     <td>
-                        <input type="text" name="rows[${rowIndex}][title]" class="form-control">
-                        <input type="hidden" name="rows[${rowIndex}][type]" value="item">
-                        <input type="hidden" name="rows[${rowIndex}][item_no]" value="${itemNo}">
+                        <input type="text" name="rows[${boqRowIndex}][title]" class="form-control">
+                        <input type="hidden" name="rows[${boqRowIndex}][type]" value="item">
+                        <input type="hidden" name="rows[${boqRowIndex}][item_no]" value="${itemNo}">
                     </td>
 
-                    <td><input type="text" name="rows[${rowIndex}][unit]" class="form-control"></td>
-                    <td><input type="number" name="rows[${rowIndex}][quantity]" class="form-control qty"></td>
-                    <td><input type="number" name="rows[${rowIndex}][price]" class="form-control price"></td>
+                    <td><input type="text" name="rows[${boqRowIndex}][unit]" class="form-control"></td>
+                    <td><input type="number" name="rows[${boqRowIndex}][quantity]" class="form-control qty"></td>
+                    <td><input type="number" name="rows[${boqRowIndex}][price]" class="form-control price"></td>
 
                     <td class="total">0</td>
 
-                    <td><input type="text" name="rows[${rowIndex}][remark]" class="form-control"></td>
+                    <td><input type="text" name="rows[${boqRowIndex}][remark]" class="form-control"></td>
 
                     <td>
                         <button type="button" class="remove btn btn-sm btn-danger">
@@ -689,7 +740,5 @@
 
             });
         }
-
-        
     </script>
 @endpush

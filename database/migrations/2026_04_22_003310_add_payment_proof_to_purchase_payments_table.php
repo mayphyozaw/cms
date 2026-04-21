@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('payment_terms', function (Blueprint $table) {
-            $table->date('date')->nullable()->after('receiver');
+        Schema::table('purchase_payments', function (Blueprint $table) {
+            $table->text('payment_proof')->nullable()->after('payment_method');
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('payment_terms', function (Blueprint $table) {
-            $table->dropColumn('date');
+        Schema::table('purchase_payments', function (Blueprint $table) {
+            $table->dropColumn('payment_proof');
         });
     }
 };

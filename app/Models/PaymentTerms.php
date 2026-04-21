@@ -16,6 +16,7 @@ class PaymentTerms extends Model
         'payer',
         'receiver',
         'date',
+        'remark',
     ];
 
     public function quotationProposal()

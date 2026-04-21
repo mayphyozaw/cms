@@ -135,43 +135,6 @@
                                 <div>
 
                                     <div class="table-responsive">
-                                        <table class="table table-bordered text-nowrap" hidden>
-                                            <thead class="table-light table-bordered">
-                                                <tr>
-                                                    <th style="background-color: #9dd2e7">No.</th>
-                                                    <th style="background-color: #9dd2e7">Particular</th>
-                                                    <th style="background-color: #9dd2e7">Unit</th>
-                                                    <th style="background-color: #9dd2e7">Qty</th>
-                                                    <th style="background-color: #9dd2e7">Price (MMK)</th>
-                                                    <th style="background-color: #9dd2e7; width:80%">Total (MMK)</th>
-                                                    <th style="background-color: #9dd2e7;">Remark</th>
-                                                </tr>
-                                            </thead>
-
-
-                                            <tbody>
-                                                @foreach ($proposalData->sections as $section)
-                                                    <tr>
-                                                        <td style="width:5%">{{ $section->item_no }}</td>
-                                                        <td colspan="6"><strong
-                                                                class="fw-semibold">{{ $section->title }}</strong></td>
-                                                    </tr>
-                                                    @foreach ($section->items as $item)
-                                                        <tr>
-                                                            <td>{{ $item->item_no }}</td>
-                                                            <td>{{ $item->title }}</td>
-                                                            <td class="text-center">{{ $item->unit }}</td>
-                                                            <td class="text-center">{{ $item->quantity }}</td>
-                                                            <td class="text-end">{{ number_format($item->price, 2) }}</td>
-                                                            <td class="text-end">
-                                                                {{ number_format($item->total_amount, 2) }}
-                                                            </td>
-                                                            <td>{{ $item->remark }}</td>
-                                                        </tr>
-                                                    @endforeach
-                                                @endforeach
-                                            </tbody>
-                                        </table>
 
                                         <table class="proposal-table table-bordered">
                                             <thead>
@@ -276,115 +239,67 @@
 
                             <div class="pb-3 mb-3 border-1 border-bottom">
                                 <h5>Payment Terms</h5>
-
-                                <div>
-
-                                    @foreach ($proposal->paymentTerms as $term)
-                                        <li>
-                                            {{ $term->name }} - {{ $term->percentage }}% - {{ $term->description }}
-                                        </li>
-                                    @endforeach
-
-                                    
-                                    <table style="width:60%; font-size: 14px; border-collapse: collapse;" hidden>
-                                        @foreach ($proposal->paymentTerms as $term)
-                                            <tr>
-                                                <td style="width:3%;">•</td>
-                                                {{-- <td>စာချုပ်ချုပ်ဆိုသည့် နေ့တွင်</td> --}}
-                                                <td>{{ $term->name }}</td>
-                                                <td style="text-align:right;"> {{ $term->percentage }}% -
-                                                    {{ $term->description }} <span class="fw-semibold">
-                                                        {{ $term->percentage }}</span> ရာခိုင်နှုန်း </td>
-                                            </tr>
-                                            <tr hidden>
-                                                <td>•</td>
-                                                <td>လုပ်ငန်း ၅၀% ပြီးစီးသောအခါ</td>
-                                                <td style="text-align:right;"> - စာချုပ်ငွေ ပမာဏ ၏ <span
-                                                        class="fw-semibold">
-                                                        ၃၅% </span> ရာခိုင်နှုန်း </td>
-                                            </tr>
-                                            <tr hidden>
-                                                <td>•</td>
-                                                <td>လုပ်ငန်းပြီးစီးပြီးနောက်</td>
-                                                <td style="text-align:right;"> - စာချုပ်ငွေ ပမာဏ ၏ <span
-                                                        class="fw-semibold">
-                                                        ၁၅% </span> ရာခိုင်နှုန်း </td>
-                                            </tr>
-                                            @endforeach
-                                    </table>
-                                    
-                                    
+                                <div class="proposal-content" style="margin: 10px;">
+                                    {!! $proposalData->term_notes !!}
                                 </div>
 
                                 <div class="py-3">
-                                    <table class="table table-bordered" style="border-collapse: collapse; width: 100%;">
+                                    <table class="proposal-table table-bordered"
+                                        style="border-collapse: collapse; width: 100%;">
                                         <thead class="table-light table-bordered">
                                             <tr>
-                                                <th class="text-center" style="background-color:#9dd2e7"> No. (စဉ်) </th>
-                                                <th class="text-center" style="background-color:#9dd2e7; width:20%">
+                                                <th class="text-center" style="background-color:#9dd2e7;width:5%"> No.
+                                                    (စဉ်) </th>
+                                                <th class="text-center" style="background-color:#9dd2e7; width:15%"
+                                                    name="payment_terms[0][name]"> Name </th>
+                                                <th class="text-center" style="background-color:#9dd2e7; width:20%"
+                                                    name="payment_terms[0][description]">
                                                     Description (အကြောင်းအရာ)
                                                 </th>
-                                                <th class="text-center" style="background-color:#9dd2e7;width:15%">
+                                                <th class="text-center" style="background-color:#9dd2e7;width:15%"
+                                                    name="payment_terms[0][percentage]">
                                                     Percentage % (လုပ်ငန်း ပြီးစီးမှုအလိုက် ပေးချေရမည့် ရာခိုင်နှုန်း)
                                                 </th>
-                                                <th class="text-center" style="background-color:#9dd2e7;width:20%">
+                                                <th class="text-center" style="background-color:#9dd2e7;width:20%"
+                                                    name="payment_terms[0][amount]">
                                                     Amount (ငွေပမာဏ)
                                                 </th>
-                                                <th class="text-center" style="background-color:#9dd2e7">
+                                                <th class="text-center" style="background-color:#9dd2e7;width:10%"
+                                                    name="payment_terms[0][payer]">
                                                     Payer - ငွေပေးချေသူ (လုပ်ငန်းအပ်နှံသူ)</th>
-                                                <th class="text-center" style="background-color:#9dd2e7">
+                                                <th class="text-center" style="background-color:#9dd2e7"
+                                                    name="payment_terms[0][receiver]">
                                                     Receiver - (လုပ်ငန်းလက်ခံသူ)</th>
-                                                <th class="text-center" style="background-color:#9dd2e7;width:15%">
+                                                <th class="text-center" style="background-color:#9dd2e7;width:15%"
+                                                    name="payment_terms[0][date]">
                                                     Date (နေ့စွဲ)
                                                 </th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {{-- @foreach ($proposal->paymentTerms as $term)
-                                                <li>
-                                                    {{ $term->percentage }}% - {{ $term->description }}
-                                                </li>
-                                            @endforeach --}}
-                                            <tr>
-                                                {{-- <td class="text-center">{{ $loop->iteration }}</td> --}}
-                                                <td class="text-center">{{ $proposal->description }}</td>
-                                                <td class="text-center">{{ $proposal->percentage }}%</td>
-                                                <td class="text-center">
-                                                    {{ number_format(($proposalData->total_amount / 100) * 50, 2) }}</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">2.</td>
-                                                <td class="text-center">Ground Beam နေ့</td>
-                                                <td class="text-center">35%</td>
-                                                <td class="text-center">
-                                                    {{ number_format(($proposalData->total_amount / 100) * 35, 2) }}</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-
-                                            <tr>
-                                                <td class="text-center">3.</td>
-                                                <td class="text-center">လုပ်ငန်းအပ်နှံသည့် နေ့</td>
-                                                <td class="text-center">15%</td>
-                                                <td class="text-center">
-                                                    {{ number_format(($proposalData->total_amount / 100) * 15, 2) }}</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
+                                            @foreach ($proposalData->paymentTerms as $term)
+                                                <tr>
+                                                    <td class="text-center">{{ $loop->iteration }}</td>
+                                                    <td class="text-center">{{ $term->name }}</td>
+                                                    <td class="text-center">{{ $term->description }}</td>
+                                                    <td class="text-center">{{ $term->percentage }}%</td>
+                                                    <td class="text-center">
+                                                        {{ number_format(($proposalData->total_amount / 100) * $term->percentage, 2) }}
+                                                    </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                     <div class="py-3">
-                                        <h5>Remark</h5>
-                                        <p>
-                                            <li>Remark Testing 1</li>
-                                            <li>Remark Testing 2</li>
-                                            <li>Remark Testing 3</li>
-                                        </p>
+                                        <h5>Remark:</h5>
+                                        <div class="proposal-content" style="margin: 10px;">
+                                            @foreach ($proposalData->paymentTerms as $term)
+                                                <p>{!! $term->remark !!}</p>
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
 

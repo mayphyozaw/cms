@@ -45,6 +45,7 @@ class PaymentController extends Controller
         $request->validate([
             'pay_now' => 'required|numeric|min:0',
             'payment_date' => 'nullable|date',
+            'payment_proof' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         ]);
 
 
@@ -71,18 +72,24 @@ class PaymentController extends Controller
         } else {
             $status = 'Unpaid';
         }
-
-
+        $payment_proof = null;
+        if ($request->hasFile('payment_proof')) {
+            $payment_proof_img_file = $request->file('payment_proof');
+            $payment_proof_img_name = uniqid() . '_' . time() . '.' . $payment_proof_img_file->getClientOriginalExtension();
+            $payment_proof_img_file->move(public_path('/upload/user_images'), $payment_proof_img_name);
+        }
+        
         PurchasePayments::create([
             'purchase_id' => $purchase->id,
             'invoice_no' => $invocieNo,
             'user_id' => auth()->id(),
             'paid_amount' => $paidAmount,
             'payment_date' => $request->payment_date ?? now(),
-            'payment_method' => 'Cash',
+            'payment_method' => $request->payment_method ?? '',
             'total_amount' => $purchase->total_amount,
             'due_amount' => $dueAmount,
             'status' => $status,
+            'payment_proof' => $payment_proof_img_name,
         ]);
 
 

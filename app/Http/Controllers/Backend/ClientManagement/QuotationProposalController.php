@@ -110,19 +110,31 @@ class QuotationProposalController extends Controller
             'discount' => $globalDiscount,
             'total_amount' => $grandTotal,
             'due_amount' => $grandTotal,
+            'term_notes' => $request->term_notes ?? null,
         ]);
 
-        foreach ($request->payment_terms as $index => $term) {
-            PaymentTerms::create([
-                'quotation_proposal_id' => $quotationProposal->id,
-                'percentage' => $term['percentage'],
-                'description' => $term['description'],
-                'order_no' => $index + 1,
-                'amount' => $term['amount'],
-                'payer' => $term['payer'],
-                'receiver' => $term['receiver'],
-                'date' => $term['date'],
-            ]);
+        if ($request->has('payment_terms')) {
+            foreach ($request->payment_terms as $index => $term) {
+
+
+                if (empty($term['percentage']) && empty($term['description'])) {
+                    continue;
+                }
+                $amount = $grandTotal / 100 * $term['percentage'];
+
+                $paymentTerms = PaymentTerms::create([
+                    'quotation_proposal_id' => $quotationProposal->id,
+                    'name' => $term['name'] ?? null,
+                    'percentage' => $term['percentage'] ?? 0,
+                    'description' => $term['description'] ?? '',
+                    'order_no' => $index + 1,
+                    'payer' => $term['payer'] ?? null,
+                    'receiver' => $term['receiver'] ?? null,
+                    'date' => $term['date'] ?? null,
+                    'amount' => $amount,
+                    'remark' => $request->remark ?? '',
+                ]);
+            }
         }
 
         return redirect()->route('clientmanage.quototation-proposal.index')->with([
@@ -133,11 +145,18 @@ class QuotationProposalController extends Controller
 
     public function detailQuotation($id)
     {
-        $proposalData = QuotationProposal::with('sections.items', 'client', 'workscope')->find($id);
-        // $terms = QuotationProposal::with('paymentTerms')->orderBy('order_no')->get();
-        $proposal = QuotationProposal::with(['paymentTerms' => function ($q) {
-            $q->orderBy('order_no');
-        }])->findOrFail($id);
-        return  view('admin.backend.clientmanage.quotation-proposal.detail', compact('proposalData', 'proposal'));
+        $proposalData = QuotationProposal::with([
+            'sections.items',
+            'client',
+            'workscope',
+            'paymentTerms' => function ($q) {
+                $q->orderBy('order_no');
+            }
+        ])->findOrFail($id);
+        
+        return view(
+            'admin.backend.clientmanage.quotation-proposal.detail',
+            compact('proposalData')
+        );
     }
 }

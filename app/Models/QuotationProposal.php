@@ -21,6 +21,7 @@ class QuotationProposal extends Model
         'total_amount',
         'due_amount',
         'notes',
+        'term_notes',
     ];
 
     public function quotationProposalItems()

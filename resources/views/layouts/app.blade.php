@@ -55,9 +55,9 @@
         .note-editor .note-editable li {
             display: list-item !important;
         }
+
+        
     </style>
-
-
 </head>
 
 <body>
@@ -160,7 +160,7 @@
             time_24hr: true
         });
     </script>
-
+    
     @stack('scripts')
 
 </body>

@@ -15,6 +15,7 @@ class PurchasePayments extends Model
         'paid_amount',
         'due_amount',
         'status',
+        'payment_proof',
     ];
 
     protected $casts = [

@@ -5,7 +5,8 @@
             <div class="container-fluid my-0">
                 <div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
                     <div class="flex-grow-1">
-                        <h4 class="fs-18 fw-semibold m-0"> Purchase Ordrers - <span style="color:red">{{$purchaseData->invoice_no}}</span></h4>
+                        <h4 class="fs-18 fw-semibold m-0"> Purchase Ordrers - <span
+                                style="color:red">{{ $purchaseData->invoice_no }}</span></h4>
                     </div>
                     <div class="text-end">
                         <ol class="breadcrumb m-0 py-0">
@@ -160,7 +161,7 @@
                                             <div>
                                                 <span>
                                                     Pay Date:
-                                                
+
                                                     {{ number_format($payment->paid_amount, 2) }} MMK
                                                     -
                                                     {{ $payment->payment_date?->format('d-M-Y') ?? '-' }}
@@ -219,6 +220,100 @@
                                                                         placeholder="Enter payment amount" value="">
                                                                 </td>
                                                             </tr>
+                                                            <tr>
+                                                                <td class="py-3">Payment Method</td>
+                                                                <td class="py-3 text-end">
+                                                                    <select name="payment_method[]"
+                                                                        class="form-control payment_method form-select">
+                                                                        <option value="">Select</option>
+                                                                        <option value="cash">
+                                                                            Cash
+                                                                        </option>
+                                                                        <option value="kbzpay">
+                                                                            KBZ Pay
+                                                                        </option>
+                                                                        <option value="wavepay">
+                                                                            Wave Pay
+                                                                        </option>
+                                                                        <option value="ayapay">
+                                                                            AYA Pay
+                                                                        </option>
+                                                                        <option value="cbpay">
+                                                                            CB Pay
+                                                                        </option>
+                                                                        <option value="kbzbanktransfer">
+                                                                            KBZ Bank Transfer
+                                                                        </option>
+                                                                        <option value="ayabanktransfer">
+                                                                            AYA Bank Transfer
+                                                                        </option>
+                                                                        <option value="uabbanktransfer">
+                                                                            UAB Bank Transfer
+                                                                        </option>
+                                                                        <option value="other">
+                                                                            Other
+                                                                        </option>
+                                                                    </select>
+                                                                </td>
+                                                            </tr>
+
+
+                                                            <tr>
+                                                                <td class="py-3" colspan="2">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label fw-semibold">
+                                                                            Attachment <span class="text-danger">*</span>
+                                                                        </label>
+
+                                                                        <div class="upload-box position-relative border rounded shadow-sm bg-light text-center"
+                                                                            style="height:180px; cursor:pointer; overflow:hidden; transition:0.3s;">
+
+                                                                            <!-- Image Preview -->
+                                                                            <img id="showPaymentProof"
+                                                                                src="{{ $purchaseData->payment_proof ? asset('upload/payment_proof_images/' . $purchaseData->payment_proof) : '' }}"
+                                                                                class="w-100 h-100"
+                                                                                style="object-fit:cover; position:absolute; top:0; left:0;
+                                                                                    {{ $purchaseData->payment_proof ? '' : 'display:none;' }}">
+
+                                                                            <!-- Upload Content -->
+                                                                            <div id="uploadContent"
+                                                                                class="d-flex flex-column justify-content-center align-items-center h-100"
+                                                                                style="{{ $purchaseData->payment_proof ? 'display:none;' : '' }}">
+
+                                                                                
+
+                                                                                <div
+                                                                                    class="file-upload drag-file w-100 d-flex bg-light border shadow align-items-center justify-content-center flex-column">
+
+                                                                                    <span class="upload-img d-block mb-1">
+                                                                                        <i
+                                                                                            class="ti ti-folder-open text-primary fs-16"></i>
+                                                                                    </span>
+                                                                                    <p class="mb-0 fs-14 text-dark">Drop
+                                                                                        your
+                                                                                        Payment Screenshoot here or
+                                                                                        <a href="javascript:void(0);"
+                                                                                            class="text-decoration-underline text-primary">browse</a>
+                                                                                    </p>
+                                                                                    <input type="file"
+                                                                                        name="payment_proof"
+                                                                                        accept="image/*"
+                                                                                        class="position-absolute w-100 h-100 opacity-0"
+                                                                                        style="cursor:pointer;"
+                                                                                        id="payment_proof_image">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <!-- Hidden Input -->
+                                                                            <input type="file" name="payment_proof"
+                                                                                accept="image/*" id="payment_proof_image"
+                                                                                class="position-absolute w-100 h-100 opacity-0"
+                                                                                style="cursor:pointer;">
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+
 
                                                             <tr>
                                                                 <td class="py-3">Due Amount</td>
@@ -429,8 +524,18 @@
                 if (paidAmountInput) {
                     paidAmountInput.addEventListener("input", calculateDueAmount);
                 }
+            });
 
+            document.getElementById('paymentProofInput').addEventListener('change', function(event) {
+                const [file] = event.target.files;
+                if (file) {
+                    const img = document.getElementById('showPaymentProof');
+                    const content = document.getElementById('uploadText');
 
+                    img.src = URL.createObjectURL(file);
+                    img.style.display = 'block';
+                    content.style.display = 'none';
+                }
             });
         </script>
     @endpush

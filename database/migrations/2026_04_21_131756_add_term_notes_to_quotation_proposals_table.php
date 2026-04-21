@@ -8,11 +8,10 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     */
-    public function up(): void
+     */ public function up(): void
     {
-        Schema::table('payment_terms', function (Blueprint $table) {
-            $table->date('date')->nullable()->after('receiver');
+        Schema::table('quotation_proposals', function (Blueprint $table) {
+            $table->string('term_notes')->nullable()->after('notes');
         });
     }
 
@@ -21,8 +20,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('payment_terms', function (Blueprint $table) {
-            $table->dropColumn('date');
+        Schema::table('quotation_proposals', function (Blueprint $table) {
+            $table->dropColumn('term_notes');
+
         });
     }
 };
