@@ -191,7 +191,8 @@
                                         <form action="{{ route('material.assets.destroy', $asset->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <a href="{{route('purchase.index', $asset->id)}}" class="btn btn-sm btn-warning">Purchase</a>
+                                            <a href="{{route('material.asset.damage', $asset->id)}}" class="btn btn-sm btn-danger"><small>Damage</small></a>
+                                            <a href="{{route('purchase.index', $asset->id)}}" class="btn btn-sm btn-warning"><small>Purchase</small></a>
                                             <a href="{{route('material.assets.edit', $asset->id)}}" class="btn btn-sm btn-icon btn-info"><i class="ti ti-edit"></i></a>
                                             <button type="buttom" class="btn btn-sm btn-icon btn-danger del_confirm">
                                                 <i class="ti ti-trash"></i>

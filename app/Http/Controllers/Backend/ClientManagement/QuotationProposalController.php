@@ -143,6 +143,121 @@ class QuotationProposalController extends Controller
         ]);
     }
 
+    public function edit($id)
+    {
+        $clients = Client::all();
+        $workscopes = WorkScope::all();
+        $proposalData = QuotationProposal::with(['sections.items', 'client', 'workscope'])->get();
+        // $terms = QuotationProposal::with('paymentTerms')->orderBy('order_no')->get();
+        return view('admin.backend.clientmanage.quotation-proposal.edit', compact('clients', 'workscopes', 'proposalData'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $quotationProposal = QuotationProposal::findOrFail($id);
+        // $lastProposal = QuotationProposal::latest()->first();
+        // $nextNumber = $lastProposal ? $lastProposal->id + 1 : 1;
+        // $proposalInvoiceNo = '#QP' . str_pad($nextNumber, 6, '0', STR_PAD_LEFT);
+
+        $quotationProposal->update([
+            'main_subject' => $request->main_subject,
+            'proposal_date' => $request->proposal_date,
+            'workscope_id' => $request->workscope_id,
+            'client_id' => $request->client_id,
+            'project_id' => $request->project_id ?? 0,
+            'status' => $request->status,
+            'notes' => $request->notes ?? '',
+        ]);
+        $subtotal_amount = 0;
+
+        $sectionId = null;
+
+        foreach ($request->rows as $row) {
+            if ($row['type'] == 'section') {
+                $section = QuotationProposalItems::create([
+                    'quotation_proposal_id' => $quotationProposal->id,
+                    'type' => 'section',
+                    'item_no' => $row['item_no'],
+                    'title' => $row['title'],
+                ]);
+                $sectionId = $section->id;
+            } else {
+
+                if ($row['type'] == 'item' && !$sectionId) {
+                    continue;
+                }
+
+                $qty = $row['quantity'] ?? 0;
+                $price = $row['price'] ?? 0;
+                $discount = $row['discount'] ?? 0;
+
+                $itemTotal = ($qty * $price) - $discount;
+
+                $subtotal_amount += $itemTotal;
+
+
+                QuotationProposalItems::create([
+                    'quotation_proposal_id' => $quotationProposal->id,
+                    'type' => 'item',
+                    'section_id' => $sectionId,
+                    'item_no' => $row['item_no'],
+                    'title' => $row['title'],
+                    'unit' => $row['unit'] ?? '',
+                    'quantity' => $qty,
+                    'price' => $price,
+                    'discount' => $discount,
+                    'total_amount' => $itemTotal,
+                    'remark' => $row['remark'] ?? '',
+                ]);
+            }
+        }
+
+        $taxPercent = $request->tax_amount ?? 0;
+        $taxAmount = ($subtotal_amount * $taxPercent) / 100;
+
+        $globalDiscount = $request->discount ?? 0;
+
+        $grandTotal = ($subtotal_amount + $taxAmount) - $globalDiscount;
+
+        $quotationProposal->update([
+            'subtotal_amount' => $subtotal_amount,
+            'tax_amount' => $taxAmount,
+            'discount' => $globalDiscount,
+            'total_amount' => $grandTotal,
+            'due_amount' => $grandTotal,
+            'term_notes' => $request->term_notes ?? null,
+        ]);
+
+        if ($request->has('payment_terms')) {
+            foreach ($request->payment_terms as $index => $term) {
+
+
+                if (empty($term['percentage']) && empty($term['description'])) {
+                    continue;
+                }
+                $amount = $grandTotal / 100 * $term['percentage'];
+
+                $paymentTerms = PaymentTerms::create([
+                    'quotation_proposal_id' => $quotationProposal->id,
+                    'name' => $term['name'] ?? null,
+                    'percentage' => $term['percentage'] ?? 0,
+                    'description' => $term['description'] ?? '',
+                    'order_no' => $index + 1,
+                    'payer' => $term['payer'] ?? null,
+                    'receiver' => $term['receiver'] ?? null,
+                    'date' => $term['date'] ?? null,
+                    'amount' => $amount,
+                    'remark' => $request->remark ?? '',
+                ]);
+            }
+        }
+
+        return redirect()->route('clientmanage.quototation-proposal.index')->with([
+            'message' => 'Proposal Stored successfully!',
+            'alert-type' => 'success'
+        ]);
+    }
+
     public function detailQuotation($id)
     {
         $proposalData = QuotationProposal::with([
@@ -153,10 +268,42 @@ class QuotationProposalController extends Controller
                 $q->orderBy('order_no');
             }
         ])->findOrFail($id);
-        
+
         return view(
             'admin.backend.clientmanage.quotation-proposal.detail',
             compact('proposalData')
         );
+    }
+
+    public function acceptanceQuotation($id)
+    {
+        $proposal = QuotationProposal::findOrFail($id);
+
+        $proposal->update([
+            'status' => 'Accepted',
+        ]);
+
+        return redirect()->back()->with('success', 'Proposal marked as accepted.');
+    }
+    public function draftQuotation($id)
+    {
+        $proposal = QuotationProposal::findOrFail($id);
+
+        $proposal->update([
+            'status' => 'Draft',
+        ]);
+
+        return redirect()->back()->with('success', 'Proposal marked as drafted.');
+    }
+
+    public function declineQuotation($id)
+    {
+        $proposal = QuotationProposal::findOrFail($id);
+
+        $proposal->update([
+            'status' => 'Declined',
+        ]);
+
+        return redirect()->back()->with('success', 'Proposal marked as declined.');
     }
 }

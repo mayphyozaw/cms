@@ -6,7 +6,7 @@
         <td class="text-center">
             <span
                 class="badge rounded-pill
-                                            {{ $project->project_type === 'Developer' ? 'bg-purple-gradient' : 'bg-secondary-gradient' }}">
+                 {{ $project->project_type === 'Developer' ? 'bg-purple-gradient' : 'bg-secondary-gradient' }}">
                 {{ $project->project_type }}
             </span>
         </td>
@@ -46,11 +46,11 @@
                             Upload <span>&nbsp;&nbsp;</span>
                             <i class="ti ti-upload"></i>
                         </span>
-                         
+
                     </a>
                 </small>
-                
-                   
+
+
             </td>
         @endforeach
 

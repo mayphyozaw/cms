@@ -15,6 +15,7 @@ class AssetRequestApprovalController extends Controller
             [
                 'asset_request_id' => $request->asset_request_id
             ],
+            
             [
                 'status' => $request->status_value,
                 'remark' => $request->remark,

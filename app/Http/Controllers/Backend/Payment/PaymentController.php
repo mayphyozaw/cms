@@ -72,11 +72,12 @@ class PaymentController extends Controller
         } else {
             $status = 'Unpaid';
         }
-        $payment_proof = null;
+        
+        $payment_proof_img_name = null;
         if ($request->hasFile('payment_proof')) {
             $payment_proof_img_file = $request->file('payment_proof');
             $payment_proof_img_name = uniqid() . '_' . time() . '.' . $payment_proof_img_file->getClientOriginalExtension();
-            $payment_proof_img_file->move(public_path('/upload/user_images'), $payment_proof_img_name);
+            $payment_proof_img_file->move(public_path('/upload/payment_proof_images'), $payment_proof_img_name);
         }
         
         PurchasePayments::create([

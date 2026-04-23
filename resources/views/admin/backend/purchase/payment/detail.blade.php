@@ -5,7 +5,8 @@
             <div class="container-fluid my-0">
                 <div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
                     <div class="flex-grow-1">
-                        <h4 class="fs-18 fw-semibold m-0"> Purchase Payment Details - <span style="color:red">{{$purchaseData->invoice_no}}</span></h4>
+                        <h4 class="fs-18 fw-semibold m-0"> Purchase Payment Details - <span
+                                style="color:red">{{ $purchaseData->invoice_no }}</span></h4>
                     </div>
                     <div class="text-end">
                         <ol class="breadcrumb m-0 py-0">
@@ -222,24 +223,48 @@
                                                         <tr>
                                                             <th class="text-center" style="background-color: #9dd2e7">#</th>
                                                             <th class="text-center" style="background-color: #9dd2e7">
-                                                                Payment Date</th>
-                                                            <th class="text-center" style="background-color: #9dd2e7">Pay
-                                                                Amount</th>
+                                                                Payment Date
+                                                            </th>
+                                                            <th class="text-center" style="background-color: #9dd2e7">
+                                                                Pay Amount
+                                                            </th>
+                                                            <th class="text-center" style="background-color: #9dd2e7">
+                                                                Payment Method
+                                                            </th>
+                                                            <th class="text-center" style="background-color: #9dd2e7">
+                                                                Payment Proof Images
+                                                            </th>
+
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         {{-- @foreach ($purchaseData->purchaseItems as $purchaseItem) --}}
-                                                            @foreach ($purchaseData->purchasePayments as $payment)
-                                                                <tr>
+                                                        @foreach ($purchaseData->purchasePayments as $payment)
+                                                            <tr>
 
-                                                                    <td class="text-center">{{ $loop->iteration }}</td>
-                                                                    <td class="text-center">
-                                                                        {{ $payment->payment_date?->format('d-M-Y') }}
-                                                                    </td>
-                                                                    <td class="text-center">
-                                                                        {{ number_format($payment->paid_amount, 2) }}</td>
-                                                                </tr>
-                                                            @endforeach
+                                                                <td class="text-center">
+                                                                    {{ $loop->iteration }}
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    {{ $payment->payment_date?->format('d-M-Y') }}
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    {{ number_format($payment->paid_amount, 2) }}
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    {{ $payment->payment_method }}
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    @if ($payment->payment_proof)
+                                                                        <img src="{{ asset('upload/payment_proof_images/' . $payment->payment_proof) }}"
+                                                                            class="img-fluid rounded"
+                                                                            style="max-width: 50px; height: auto; object-fit: contain;">
+                                                                    @else
+                                                                        <span class="text-muted">No Image</span>
+                                                                    @endif
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
                                                         {{-- @endforeach --}}
                                                         @php
                                                             $totalPaid = $purchaseData->purchasePayments->sum(
@@ -257,6 +282,7 @@
                                                                 {{ number_format($totalPaid, 2) }}
                                                             </td>
                                                         </tr>
+
                                                     </tbody>
                                                 </table>
 

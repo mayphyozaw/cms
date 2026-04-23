@@ -223,7 +223,7 @@
                                                             <tr>
                                                                 <td class="py-3">Payment Method</td>
                                                                 <td class="py-3 text-end">
-                                                                    <select name="payment_method[]"
+                                                                    <select name="payment_method"
                                                                         class="form-control payment_method form-select">
                                                                         <option value="">Select</option>
                                                                         <option value="cash">
@@ -257,64 +257,43 @@
                                                                 </td>
                                                             </tr>
 
-
                                                             <tr>
                                                                 <td class="py-3" colspan="2">
-                                                                    <div class="mb-3">
-                                                                        <label class="form-label fw-semibold">
-                                                                            Attachment <span class="text-danger">*</span>
-                                                                        </label>
+                                                                    <div class="col-md-12">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label">Attachment <span
+                                                                                    class="text-danger">*</span></label>
+                                                                            <div class="file-upload drag-file w-100 d-flex bg-light border shadow align-items-center justify-content-center flex-column position-relative"
+                                                                                style="min-height: 200px;">
 
-                                                                        <div class="upload-box position-relative border rounded shadow-sm bg-light text-center"
-                                                                            style="height:180px; cursor:pointer; overflow:hidden; transition:0.3s;">
-
-                                                                            <!-- Image Preview -->
-                                                                            <img id="showPaymentProof"
-                                                                                src="{{ $purchaseData->payment_proof ? asset('upload/payment_proof_images/' . $purchaseData->payment_proof) : '' }}"
-                                                                                class="w-100 h-100"
-                                                                                style="object-fit:cover; position:absolute; top:0; left:0;
-                                                                                    {{ $purchaseData->payment_proof ? '' : 'display:none;' }}">
-
-                                                                            <!-- Upload Content -->
-                                                                            <div id="uploadContent"
-                                                                                class="d-flex flex-column justify-content-center align-items-center h-100"
-                                                                                style="{{ $purchaseData->payment_proof ? 'display:none;' : '' }}">
-
-                                                                                
-
-                                                                                <div
-                                                                                    class="file-upload drag-file w-100 d-flex bg-light border shadow align-items-center justify-content-center flex-column">
-
-                                                                                    <span class="upload-img d-block mb-1">
-                                                                                        <i
-                                                                                            class="ti ti-folder-open text-primary fs-16"></i>
-                                                                                    </span>
-                                                                                    <p class="mb-0 fs-14 text-dark">Drop
-                                                                                        your
-                                                                                        Payment Screenshoot here or
-                                                                                        <a href="javascript:void(0);"
-                                                                                            class="text-decoration-underline text-primary">browse</a>
-                                                                                    </p>
-                                                                                    <input type="file"
-                                                                                        name="payment_proof"
-                                                                                        accept="image/*"
-                                                                                        class="position-absolute w-100 h-100 opacity-0"
-                                                                                        style="cursor:pointer;"
-                                                                                        id="payment_proof_image">
+                                                                                <div id="uploadContent"
+                                                                                    class="d-flex flex-column justify-content-center align-items-center"
+                                                                                    style="{{ $purchaseData->payment_proof ? 'display:none !important;' : '' }}">
+                                                                                    <i class="ti ti-cloud-upload text-primary mb-2"
+                                                                                        style="font-size:28px;"></i>
+                                                                                    <p class="mb-1 text-dark fw-medium">
+                                                                                        Upload Payment Screenshot</p>
+                                                                                    <small class="text-muted">Drag & drop
+                                                                                        or <span  class="text-primary text-decoration-underline">browse</span></small>
                                                                                 </div>
-                                                                            </div>
 
-                                                                            <!-- Hidden Input -->
-                                                                            <input type="file" name="payment_proof"
-                                                                                accept="image/*" id="payment_proof_image"
-                                                                                class="position-absolute w-100 h-100 opacity-0"
-                                                                                style="cursor:pointer;">
+                                                                                <img id="showPaymentProof"
+                                                                                    src="{{ $purchaseData->payment_proof ? asset('upload/payment_proof_images/' . $purchaseData->payment_proof) : '' }}"
+                                                                                    class="img-fluid rounded"
+                                                                                    style="max-height: 100%; max-width: 100%; object-fit: contain; {{ $purchaseData->payment_proof ? 'display:block;' : 'display:none;' }}">
+
+                                                                                <input type="file" name="payment_proof"
+                                                                                    accept="image/*"
+                                                                                    id="payment_proof_image"
+                                                                                    class="position-absolute w-100 h-100 opacity-0"
+                                                                                    style="cursor:pointer; z-index: 10;">
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </td>
                                                             </tr>
 
-
+                                                            
                                                             <tr>
                                                                 <td class="py-3">Due Amount</td>
                                                                 <td class="py-3 text-end" id="dueAmount">
@@ -526,16 +505,23 @@
                 }
             });
 
-            document.getElementById('paymentProofInput').addEventListener('change', function(event) {
-                const [file] = event.target.files;
-                if (file) {
-                    const img = document.getElementById('showPaymentProof');
-                    const content = document.getElementById('uploadText');
+            document.addEventListener('DOMContentLoaded', function() {
+                const input = document.getElementById('payment_proof_image');
+                const img = document.getElementById('showPaymentProof');
+                const content = document.getElementById('uploadContent');
 
-                    img.src = URL.createObjectURL(file);
-                    img.style.display = 'block';
-                    content.style.display = 'none';
-                }
+                input.addEventListener('change', function(event) {
+                    const file = event.target.files[0];
+
+                    if (file) {
+                        
+                        img.src = URL.createObjectURL(file);
+
+                        
+                        img.style.display = 'block';
+                        content.setAttribute('style', 'display:none !important');
+                    }
+                });
             });
         </script>
     @endpush

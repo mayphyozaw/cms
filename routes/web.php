@@ -102,6 +102,9 @@ Route::middleware('auth', 'notBlocked')->group(function () {
 
         Route::resource('quototation-proposal', QuotationProposalController::class);
         Route::get('/detail/quotation-proposal/{id}', [QuotationProposalController::class, 'detailQuotation'])->name('detail.quotation-proposal');
+        Route::get('/accept/quotation-proposal/{id}', [QuotationProposalController::class, 'acceptanceQuotation'])->name('accept.quotation-proposal');
+        Route::get('/draft/quotation-proposal/{id}', [QuotationProposalController::class, 'draftQuotation'])->name('draft.quotation-proposal');
+        Route::get('/decline/quotation-proposal/{id}', [QuotationProposalController::class, 'declineQuotation'])->name('decline.quotation-proposal');
     });
 
 
@@ -169,7 +172,7 @@ Route::middleware('auth', 'notBlocked')->group(function () {
         Route::get('get-categories-by-type', [AssetController::class, 'getCategoriesByType'])->name('get-categories-by-type');
         Route::get('get-asset-detail', [AssetController::class, 'getAssetDetail'])->name('get-asset-detail');
         Route::get('/detail/asset/{id}', [AssetController::class, 'detailAsset'])->name('detail.asset');
-        // Route::post('assets/purchase', [AssetController::class], 'purchaseAssets')->name('assets.purchase');
+        Route::get('/asset/damage/{id}', [AssetController::class, 'damageAsset'])->name('asset.damage');
 
         // Route::get('assets-purchase',[PurchaseController::class, 'purchaseAssets'])->name('assets.purchase');
 

@@ -3,25 +3,33 @@
     <div class="content" style="padding-top: 0 !important;">
         <div class="d-flex align-items-center justify-content-between gap-2 mb-2 mt-0 flex-wrap">
             <div>
-                <h4 class="mb-1">All WorkScope<span class="badge badge-soft-primary ms-2">{{ $work_scopes->count() }}</span></h4>
+                <h4 class="mb-1">All WorkScope
+                    <span class="badge badge-soft-primary ms-2">
+                        {{ $work_scopes->count() }}
+                    </span>
+                </h4>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
-                        <li class="breadcrumb-item"><a href="#">Projects</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">WorkScope Titles</li>
+                        <li class="breadcrumb-item">
+                            <a href="#">
+                                Projects
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            WorkScope Titles
+                        </li>
                     </ol>
                 </nav>
             </div>
         </div>
-
-
-
         <div class="card border-0 rounded-0">
             <div class="card-header">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h5 class="card-title mb-0">Work Scope Information</h5>
+                        <h5 class="card-title mb-0">
+                            Work Scope Information
+                        </h5>
                     </div>
-
                     <div class="col-auto">
                         <x-create-button href="{{ route('bq.bqworkscope.create') }}">
                             Create Work Scope
@@ -32,30 +40,35 @@
             <div class="card-body">
                 <div class="table-search d-flex align-items-center">
                     <div class="search-input">
-                        <a href="javascript:void(0);" class="btn-searchset"><i
-                                class="isax isax-search-normal fs-12"></i></a>
+                        <a href="javascript:void(0);" class="btn-searchset">
+                            <i class="isax isax-search-normal fs-12">
+                            </i>
+                        </a>
                     </div>
                 </div>
                 <div class="table-responsive">
                     <table id="datatable"
-                    class="table workscopeTable table-bordered table-responsive table-hover text-nowrap">
+                        class="table workscopeTable table-bordered table-responsive table-hover text-nowrap">
                         <thead>
                             <tr>
-                                <th class="text-center" style="background-color: #9dd2e7">#</th>
-                                <th class="text-center" style="background-color: #9dd2e7">Work Scope Title</th>
-                                <th class="text-center" style="background-color: #9dd2e7">Actions</th>
+                                <th class="text-center" style="background-color: #9dd2e7">
+                                    #
+                                </th>
+                                <th class="text-center" style="background-color: #9dd2e7">
+                                    Work Scope Title
+                                </th>
+                                <th class="text-center" style="background-color: #9dd2e7">
+                                    Actions
+                                </th>
                             </tr>
                         </thead>
-                        
                     </table>
                 </div>
             </div>
-
         </div>
-
-
     </div>
 @endsection
+
 @push('scripts')
     <script>
         $(document).ready(function() {
@@ -86,10 +99,8 @@
                         searchable: false
                     }
                 ],
-
                 responsive: true
             });
-
 
             $(document).on('click', '.deleteBtn', function(event) {
                 event.preventDefault();
@@ -118,7 +129,6 @@
                             error: function(response) {
                                 toastr.error('Delete failed!');
                             }
-
                         });
                     }
                 });

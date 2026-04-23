@@ -18,7 +18,7 @@
                         </a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
-                        Create Quotation Proposal
+                        Edit Quotation Proposal
                     </li>
                 </ol>
             </nav>
@@ -33,9 +33,10 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('clientmanage.quototation-proposal.store') }}" method="POST" id="submit-form"
-                        enctype="multipart/form-data">
+                    <form action="{{ route('clientmanage.quototation-proposal.update', $proposalData->id) }}" method="POST"
+                        id="submit-form" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
@@ -51,7 +52,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="col-md-6">
                                         <div class="col-md-12 mb-3">
                                             <label class="form-label">
@@ -64,7 +64,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="col-md-6">
                                         <div class="col-md-12 mb-3">
                                             <label class="form-label" for="formBasic">
@@ -76,7 +75,11 @@
                                                     Select Work Scope
                                                 </option>
                                                 @foreach ($workscopes as $workscope)
-                                                    <option value="{{ $workscope->id }}">
+                                                    {{-- <option value="{{ $workscope->id }}">
+                                                        {{ $workscope->title }}
+                                                    </option> --}}
+                                                    <option value="{{ $workscope->id }}"
+                                                        {{ old('workscope_id', $workscope_id) == $workscope->id ? 'selected' : '' }}>
                                                         {{ $workscope->title }}
                                                     </option>
                                                 @endforeach
@@ -105,12 +108,9 @@
                                     <div class="col-md-6">
                                         <div class="col-md-12 mb-3">
                                             <label class="form-label">
-                                                Customer:
-                                            </label>
+                                                Customer: </label>
                                             <select name="client_id" id="client_id" class="form-control form-select">
-                                                <option value="">
-                                                    Select Customer
-                                                </option>
+                                                <option value="">Select Customer</option>
                                                 @foreach ($clients as $client)
                                                     <option value="{{ $client->id }}">
                                                         {{ $client->client_code }} - {{ $client->name }}
@@ -119,6 +119,7 @@
                                             </select>
                                         </div>
                                     </div>
+
                                     <div class="col-md-6">
                                         <div class="col-md-12 mb-3">
                                             <label class="form-label">
@@ -133,7 +134,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="col-md-4">
                                         <div class="col-md-12 mb-3">
                                             <label class="form-label">
@@ -142,7 +142,6 @@
                                             <input type="text" class="form-control" name="phone" id="phone">
                                         </div>
                                     </div>
-
                                     <div class="col-md-4">
                                         <div class="col-md-12 mb-3">
                                             <label class="form-label">
@@ -175,26 +174,14 @@
                                     <div class="col-md-4">
                                         <div class="col-md-12 mb-3">
                                             <label class="form-label">
-                                                Job Scope:
-                                            </label>
+                                                Job Scope:</label>
                                             <select class="form-control" name="job_scope" id="job_scope">
-                                                <option value="">
-                                                    -- Select Job Scope Type--
-                                                </option>
-                                                <option value="Structure">
-                                                    Structure
-                                                </option>
-                                                <option value="Electrical">
-                                                    Electrical
-                                                </option>
-                                                <option value="Plumbing">
-                                                    Plumbing
-                                                </option>
-                                                <option value="PAE">
-                                                    PAE
-                                                </option>
-                                                <option value="Steel">
-                                                    Steel Structure< /option>
+                                                <option value="">-- Select Job Scope Type--</option>
+                                                <option value="Structure">Structure</option>
+                                                <option value="Electrical">Electrical</option>
+                                                <option value="Plumbing">Plumbing</option>
+                                                <option value="PAE">PAE</option>
+                                                <option value="Steel">Steel Structure</option>
                                             </select>
                                         </div>
                                     </div>
@@ -202,33 +189,16 @@
                                     <div class="col-md-4">
                                         <div class="col-md-12 mb-3">
                                             <label class="form-label">
-                                                Construction Type:
-                                            </label>
+                                                Construction Type:</label>
                                             <select class="form-control" name="construction_type" id="construction_type">
-                                                <option value="">
-                                                    -- Select Construction Type--
-                                                </option>
-                                                <option value="Residential">
-                                                    Residential
-                                                </option>
-                                                <option value="Commercial">
-                                                    Commercial
-                                                </option>
-                                                <option value="Renovation">
-                                                    Renovation
-                                                </option>
-                                                <option value="PAE">
-                                                    PAE
-                                                </option>
-                                                <option value="RC">
-                                                    RC
-                                                </option>
-                                                <option value="Steel Structure">
-                                                    Steel Structure
-                                                </option>
-                                                <option value="Electrical">
-                                                    Electrical
-                                                </option>
+                                                <option value="">-- Select Construction Type--</option>
+                                                <option value="Residential">Residential</option>
+                                                <option value="Commercial">Commercial</option>
+                                                <option value="Renovation">Renovation</option>
+                                                <option value="PAE">PAE</option>
+                                                <option value="RC">RC</option>
+                                                <option value="Steel Structure">Steel Structure</option>
+                                                <option value="Electrical">Electrical</option>
                                             </select>
                                         </div>
                                     </div>
@@ -273,16 +243,17 @@
                                                 <tbody id="table-body"></tbody>
                                             </table>
                                             <div class="py-3">
-                                                <button type="button" id="add-section" class="btn btn-primary btn-sm">+
-                                                    Scope Title
+                                                <button type="button" id="add-section" class="btn btn-primary btn-sm">
+                                                    + Scope Title
                                                 </button>
-                                                <button type="button" id="add-item" class="btn btn-success btn-sm">+
-                                                    Scope Item
+                                                <button type="button" id="add-item" class="btn btn-success btn-sm">
+                                                    + Scope Item
                                                 </button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-md-6 ms-auto">
                                         <div class="card">
@@ -300,6 +271,7 @@
                                                                 </td>
                                                                 <input type="hidden" name="subtotal_amount">
                                                             </tr>
+
                                                             <tr>
                                                                 <td class="py-3">
                                                                     <div class="row">
@@ -317,17 +289,19 @@
                                                                         </div>
                                                                     </div>
                                                                 </td>
+
                                                                 <td class="py-3" id="taxDisplay"
-                                                                    style="text-align:end"> 0.00 MMK
+                                                                    style="text-align:end">
+                                                                    0.00 MMK
                                                                 </td>
                                                                 <input type="hidden" name="tax_amount">
                                                             </tr>
+
                                                             <tr>
                                                                 <td class="py-3">
                                                                     <div class="row">
-                                                                        <label class="col-sm-4 form-label">
-                                                                            Discount :
-                                                                        </label>
+                                                                        <label class="col-sm-4 form-label">Discount
+                                                                            :</label>
                                                                         <div class="col-sm-7">
                                                                             <div class="input-group">
                                                                                 <input type="number" class="form-control"
@@ -340,11 +314,13 @@
                                                                     style="text-align:end">
                                                                     0.00 MMK
                                                                 </td>
+
                                                             </tr>
+
+
+
                                                             <tr>
-                                                                <td class="py-3 text-primary">
-                                                                    Grand Total
-                                                                </td>
+                                                                <td class="py-3 text-primary">Grand Total</td>
                                                                 <td class="py-3 text-primary" id="grandTotal"
                                                                     name="total_amount" style="text-align:end">
                                                                     0.00 MMK
@@ -363,6 +339,7 @@
                                                                 </td>
                                                                 <input type="hidden" name="due_amount">
                                                             </tr>
+
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -400,9 +377,7 @@
                                 </style>
 
                                 <div class="col-md-12 mt-2">
-                                    <label class="form-label">
-                                        Remark:
-                                    </label>
+                                    <label class="form-label">Remark: </label>
                                     <textarea class="summernote" name="notes"></textarea>
                                 </div>
 
@@ -413,12 +388,12 @@
                             <div class="col-md-12 ms-auto">
                                 <div class="card">
                                     <div class="card-body pt-7 pb-2">
+
                                         <div>
                                             <div class="col-md-12 mt-2">
-                                                <label class="form-label">
-                                                    Payment Terms:
-                                                </label>
+                                                <label class="form-label">Payment Terms: </label>
                                                 <textarea class="summernote" name="term_notes"></textarea>
+
                                             </div>
                                             <table class="table table-bordered" id="paymentTermsTable">
                                                 <thead>
@@ -500,24 +475,26 @@
                                                 + Add Row
                                             </button>
                                         </div>
+
                                         <div class="col-md-12 mt-2">
                                             <label class="form-label">
                                                 Remark:
                                             </label>
                                             <textarea class="summernote" name="remark"></textarea>
                                         </div>
+
                                     </div>
+
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-primary" type="submit">
-                            Submit
-                        </button>
+                        <button class="btn btn-primary" type="submit">Submit</button>
                 </div>
                 <br>
                 </form>
             </div>
         </div>
+    </div>
     </div>
 @endsection
 
@@ -539,6 +516,8 @@
                     ['view', ['fullscreen', 'codeview', 'help']]
                 ]
             });
+
+
             let rowIndex = 1;
             $('#addRow').click(function() {
                 let row = `
@@ -573,6 +552,7 @@
                             </td>
                         </tr>
                     `;
+
                 $('#paymentTermsTable tbody').append(row);
                 rowIndex++;
             });
@@ -588,11 +568,10 @@
             $(document).on('input', '.percentage', function() {
                 let row = $(this).closest('tr');
                 let percentage = parseFloat($(this).val()) || 0;
-
                 let amount = (totalAmount / 100) * percentage;
-
                 row.find('.amount').val(amount.toFixed(2));
             });
+
 
             $('#client_id').on('change', function() {
                 let clientId = $(this).val();
@@ -602,6 +581,7 @@
                     data: {
                         client_id: clientId,
                     },
+
                     success: function(data) {
                         $('#address').val(data.address);
                         $('#phone').val(data.phone);
@@ -613,6 +593,7 @@
                         $('#storeys').val(data.storeys);
                         $('#client_type').val(data.client_type);
                     },
+
                     error: function() {
                         alert('Unable to fetch customer data');
                     }
@@ -622,38 +603,38 @@
             $('#inputDiscount, #inputTax').on('input', function() {
                 calculateGrandTotal();
             });
-
-
         });
 
         let sectionCount = 0;
         let currentSection = 0;
         let boqRowIndex = 0;
         let sectionItemCount = {};
+
         $('#add-section').click(function() {
             sectionCount++;
             currentSection = sectionCount;
             sectionItemCount[currentSection] = 0;
             boqRowIndex++;
             let html = `
-                <tr class="section-row">
-                    <td>${sectionCount}</td>
-                    <td colspan="6">
-                        <input type="text" name="rows[${boqRowIndex}][title]" placeholder="Section Title" class="form-control">
-                        <input type="hidden" name="rows[${boqRowIndex}][type]" value="section">
-                        <input type="hidden" name="rows[${boqRowIndex}][item_no]" value="${sectionCount}">
-                    </td>
-                    <td>
-                        <button type="button" class="remove btn btn-sm btn-danger">
-                            <i class="ti ti-trash"></i>
-                        </button>
-                    </td>
-                </tr>`;
+                    <tr class="section-row">
+                        <td>${sectionCount}</td>
+                        <td colspan="6">
+                            <input type="text" name="rows[${boqRowIndex}][title]" placeholder="Section Title" class="form-control">
+                            <input type="hidden" name="rows[${boqRowIndex}][type]" value="section">
+                            <input type="hidden" name="rows[${boqRowIndex}][item_no]" value="${sectionCount}">
+                        </td>
+                        <td>
+                            <button type="button" class="remove btn btn-sm btn-danger">
+                                <i class="ti ti-trash"></i>
+                            </button>
+                        </td>
+                    </tr>`;
             $('#table-body').append(html);
         });
 
-        $('#add-item').click(function() {
 
+
+        $('#add-item').click(function() {
             if (currentSection === 0) {
                 alert('Add section first!');
                 return;
@@ -662,29 +643,29 @@
             let itemNo = currentSection + '.' + sectionItemCount[currentSection];
             boqRowIndex++;
             let html = `
-                <tr class="item-row">
-                    <td>${itemNo}</td>
+                        <tr class="item-row">
+                            <td>${itemNo}</td>
 
-                    <td>
-                        <input type="text" name="rows[${boqRowIndex}][title]" class="form-control">
-                        <input type="hidden" name="rows[${boqRowIndex}][type]" value="item">
-                        <input type="hidden" name="rows[${boqRowIndex}][item_no]" value="${itemNo}">
-                    </td>
+                            <td>
+                                <input type="text" name="rows[${boqRowIndex}][title]" class="form-control">
+                                <input type="hidden" name="rows[${boqRowIndex}][type]" value="item">
+                                <input type="hidden" name="rows[${boqRowIndex}][item_no]" value="${itemNo}">
+                            </td>
 
-                    <td><input type="text" name="rows[${boqRowIndex}][unit]" class="form-control"></td>
-                    <td><input type="number" name="rows[${boqRowIndex}][quantity]" class="form-control qty"></td>
-                    <td><input type="number" name="rows[${boqRowIndex}][price]" class="form-control price"></td>
+                            <td><input type="text" name="rows[${boqRowIndex}][unit]" class="form-control"></td>
+                            <td><input type="number" name="rows[${boqRowIndex}][quantity]" class="form-control qty"></td>
+                            <td><input type="number" name="rows[${boqRowIndex}][price]" class="form-control price"></td>
 
-                    <td class="total">0</td>
+                            <td class="total">0</td>
 
-                    <td><input type="text" name="rows[${boqRowIndex}][remark]" class="form-control"></td>
+                            <td><input type="text" name="rows[${boqRowIndex}][remark]" class="form-control"></td>
 
-                    <td>
-                        <button type="button" class="remove btn btn-sm btn-danger">
-                            <i class="ti ti-trash"></i>
-                        </button>
-                    </td>
-                </tr>`;
+                            <td>
+                                <button type="button" class="remove btn btn-sm btn-danger">
+                                    <i class="ti ti-trash"></i>
+                                </button>
+                            </td>
+                        </tr>`;
             $('#table-body').append(html);
         });
 
@@ -707,21 +688,28 @@
         function calculateGrandTotal() {
 
             let subtotal = 0;
+
             $('.total').each(function() {
                 subtotal += parseFloat($(this).text()) || 0;
             });
+
             let discount = parseFloat($('#inputDiscount').val()) || 0;
             let taxPercent = parseFloat($('#inputTax').val()) || 0;
+
             let taxAmount = (subtotal * taxPercent) / 100;
             let grandTotal = subtotal + taxAmount - discount;
+
+
             $('#subtotalDisplay').text(subtotal.toFixed(2) + " MMK");
             $('#taxDisplay').text(taxAmount.toFixed(2) + " MMK");
             $('#displayDiscount').text(discount.toFixed(2) + " MMK");
             $('#grandTotal').text(grandTotal.toFixed(2) + " MMK");
             $('#dueAmount').text(grandTotal.toFixed(2) + " MMK");
+
             $("input[name='total_amount']").val(grandTotal.toFixed(2));
             $("input[name='tax_amount']").val(taxAmount.toFixed(2));
             $("input[name='due_amount']").val(grandTotal.toFixed(2));
+
             updateDueAmount();
         }
 
@@ -738,11 +726,12 @@
 
 
         function updateDueAmount() {
-
             let grandTotal = parseFloat(
                 document.getElementById("grandTotal").textContent.replace("MMK", "")
             ) || 0;
+
             let dueAmount = grandTotal;
+
             document.getElementById("dueAmount").textContent =
                 dueAmount.toFixed(2) + " MMK";
 
@@ -752,7 +741,11 @@
 
         let inputDiscount = document.getElementById("inputDiscount");
         let inputTax = document.getElementById("inputTax");
+
+
         calculateGrandTotal();
+
+
         if (inputDiscount) {
             inputDiscount.addEventListener("input", function() {
                 calculateGrandTotal();
@@ -762,9 +755,12 @@
                     val.toFixed(2) + " MMK";
             });
         }
+
         if (inputTax) {
             inputTax.addEventListener("input", function() {
                 calculateGrandTotal();
+
+
             });
         }
     </script>

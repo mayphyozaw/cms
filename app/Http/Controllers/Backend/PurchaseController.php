@@ -210,16 +210,23 @@ class PurchaseController extends Controller
 
         $dueAmount = $total - $paidAmount;
 
+        $payment_proof_img_name = null;
+        if ($request->hasFile('payment_proof')) {
+            $payment_proof_img_file = $request->file('payment_proof');
+            $payment_proof_img_name = uniqid() . '_' . time() . '.' . $payment_proof_img_file->getClientOriginalExtension();
+            $payment_proof_img_file->move(public_path('/upload/user_images'), $payment_proof_img_name);
+        }
         //Payment Record
         PurchasePayments::create([
             'purchase_id' => $purchase->id,
             'user_id' => auth()->id(),
             'paid_amount' => $paidAmount,
             'payment_date' => $request->payment_date ?? now(),
-            'payment_method' => 'Cash',
+            'payment_method' => $request->payment_method,
             'total_amount' => $total,
             'due_amount' => $dueAmount,
             'status' => $payment_status,
+            'payment_proof' => $payment_proof_img_name,
         ]);
 
         return redirect()->route('purchase.index')->with([

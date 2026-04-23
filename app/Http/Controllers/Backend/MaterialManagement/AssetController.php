@@ -194,10 +194,16 @@ class AssetController extends Controller
         }
     }
 
-    // public function detailAsset($id)
-    // {
-        
-    // }
+    public function damageAsset($id)
+    {
+        $warehouses = Warehouse::all();
+        $fixedAsset = FixedAsset::with('fixedCategory')->get();
+        $variableAsset = VariableAsset::with('variableCategory')->get();
+        $asset = Asset::with(['fixedAsset', 'variableAsset'])->findOrFail($id);
+        $categories = FixedAssetCategory::all();
+        return view('admin.backend.materialmanage.assets.damage',compact('warehouses','fixedAsset','variableAsset','asset','categories'));
+    }
+    
 
 
 }
