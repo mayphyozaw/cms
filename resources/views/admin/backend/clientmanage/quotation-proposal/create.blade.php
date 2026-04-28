@@ -501,6 +501,7 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
+            calculateTotal();
             $('.summernote').summernote({
                 placeholder: 'Write Remark or Specifications:',
                 tabsize: 2,
@@ -540,10 +541,12 @@
                     }
                 });
             });
+
         });
 
+
         // ADD ITEM
-        let itemRowIndex = 0;
+        let itemRowIndex = $('#table-body tr').length;
         let sectionCount = 0;
         let currentSection = 0;
         let sectionItemCount = {};
@@ -553,64 +556,113 @@
             sectionItemCount[currentSection] = 0;
             itemRowIndex++;
             let html = `
-                <tr class="section-row">
-                    <td>${sectionCount}</td>
-                    <td colspan="6">
-                        <input type="text" name="rows[${itemRowIndex}][title]" placeholder="Section Title" class="form-control">
-                        <input type="hidden" name="rows[${itemRowIndex}][type]" value="section">
-                        <input type="hidden" name="rows[${itemRowIndex}][item_no]" value="${sectionCount}">
-                    </td>
-                    <td>
-                        <button type="button" class="remove btn btn-sm btn-danger">
-                            <i class="ti ti-trash"></i>
-                        </button>
-                    </td>
-                </tr>`;
+                    <tr class="section-row">
+                        <td>${sectionCount}</td>
+                        <td colspan="6">
+                            <input type="text" name="rows[${itemRowIndex}][title]" placeholder="Section Title" class="form-control">
+                            <input type="hidden" name="rows[${itemRowIndex}][type]" value="section">
+                            <input type="hidden" name="rows[${itemRowIndex}][item_no]" value="${sectionCount}">
+                        </td>
+                        <td>
+                            <button type="button" class="remove btn btn-sm btn-danger">
+                                <i class="ti ti-trash"></i>
+                            </button>
+                        </td>
+                    </tr>`;
+
             $('#table-body').append(html);
+            refreshNumbering();
         });
 
         $('#add-item').click(function() {
-
-            if (currentSection === 0) {
-                alert('Add section first!');
-                return;
-            }
+            // if (currentSection === 0) {
+            //     alert('Add section first!');
+            //     return;
+            // }
             sectionItemCount[currentSection]++;
             let itemNo = currentSection + '.' + sectionItemCount[currentSection];
             itemRowIndex++;
+
             let html = `
-                <tr class="item-row">
-                    <td>${itemNo}</td>
+                        <tr class="item-row">
+                            <td>${itemNo}</td>
 
-                    <td>
-                        <input type="text" name="rows[${itemRowIndex}][title]" class="form-control">
-                        <input type="hidden" name="rows[${itemRowIndex}][type]" value="item">
-                        <input type="hidden" name="rows[${itemRowIndex}][item_no]" value="${itemNo}">
-                    </td>
+                            <td>
+                                <input type="text" name="rows[${itemRowIndex}][title]" class="form-control">
+                                <input type="hidden" name="rows[${itemRowIndex}][type]" value="item">
+                                <input type="hidden" name="rows[${itemRowIndex}][item_no]" value="${itemNo}">
+                            </td>
 
-                    <td><input type="text" name="rows[${itemRowIndex}][unit]" class="form-control"></td>
-                    <td><input type="number" name="rows[${itemRowIndex}][quantity]" class="form-control qty"></td>
-                    <td><input type="number" name="rows[${itemRowIndex}][price]" class="form-control price"></td>
+                            <td><input type="text" name="rows[${itemRowIndex}][unit]" class="form-control"></td>
+                            <td><input type="number" name="rows[${itemRowIndex}][quantity]" class="form-control qty"></td>
+                            <td><input type="number" name="rows[${itemRowIndex}][price]" class="form-control price"></td>
 
-                    <td class="total">0</td>
+                            <td class="total">0</td>
 
-                    <td><input type="text" name="rows[${itemRowIndex}][remark]" class="form-control"></td>
+                            <td><input type="text" name="rows[${itemRowIndex}][remark]" class="form-control"></td>
 
-                    <td>
-                        <button type="button" class="remove btn btn-sm btn-danger">
-                            <i class="ti ti-trash"></i>
-                        </button>
-                    </td>
-                </tr>`;
+                            <td>
+                                <button type="button" class="remove btn btn-sm btn-danger">
+                                    <i class="ti ti-trash"></i>
+                                </button>
+                            </td>
+                        </tr>`;
+
             $('#table-body').append(html);
+            refreshNumbering();
         });
 
+        function refreshNumbering() {
+            let sectionIndex = 0;
+            let itemIndex = 0;
+            $('#table-body tr').each(function() {
+                let row = $(this);
+                // SECTION
+                if (row.hasClass('section-row')) {
+                    sectionIndex++;
+                    itemIndex = 0;
+
+                    row.find('td:first').text(sectionIndex);
+                    row.find('input[name*="[item_no]"]').val(sectionIndex);
+                }
+                // ITEM
+                if (row.hasClass('item-row')) {
+                    itemIndex++;
+
+                    let itemNo = sectionIndex + '.' + itemIndex;
+
+                    row.find('td:first').text(itemNo);
+                    row.find('input[name*="[item_no]"]').val(itemNo);
+                }
+            });
+            sectionCount = sectionIndex;
+            currentSection = sectionIndex;
+        }
         // REMOVE ITEM
         $(document).on('click', '.remove', function() {
-            $(this).closest('tr').remove();
+            let row = $(this).closest('tr');
+            if (row.hasClass('section-row')) {
+                let hasItems = false;
+                row.nextAll().each(function() {
+                    if ($(this).hasClass('section-row')) {
+                        return false;
+                    }
+                    if ($(this).hasClass('item-row')) {
+                        hasItems = true;
+                        return false;
+                    }
+                });
+
+                // if (hasItems) {
+                //     alert('Delete items under this section first!');
+                //     return;
+                // }
+            }
+            row.remove();
+            refreshNumbering();
             calculateTotal();
         });
-        
+
         //CALCULATE ITEM
         $(document).on('input', '.qty,.price', function() {
             let row = $(this).closest('tr');
@@ -668,7 +720,7 @@
             calculateTotal();
         });
 
-        let rowIndex = 1;
+        let rowIndex = $('#paymentTermsTable tbody tr').length;
         $('#addRow').click(function() {
             let row = `
                         <tr>
@@ -676,7 +728,7 @@
                                 <input type="text" name="payment_terms[${rowIndex}][name]" class="form-control" placeholder="Enter name">
                             </td>
                             <td>
-                                <input type="number" name="payment_terms[${rowIndex}][percentage]" class="form-control" placeholder="%">
+                                <input type="number" name="payment_terms[${rowIndex}][percentage]" class="form-control percentage" placeholder="%">
                             </td>
                             <td>
                                 <input type="text" name="payment_terms[${rowIndex}][description]" class="form-control" placeholder="Description">
