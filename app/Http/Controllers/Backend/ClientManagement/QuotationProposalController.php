@@ -26,6 +26,7 @@ class QuotationProposalController extends Controller
     {
         $clients = Client::all();
         $workscopes = WorkScope::all();
+        $proposalData = QuotationProposal::with(['sections.items', 'client', 'workscope', 'paymentTerms'])->get();
         // $terms = QuotationProposal::with('paymentTerms')->orderBy('order_no')->get();
         return view('admin.backend.clientmanage.quotation-proposal.create', compact('clients', 'workscopes'));
     }
@@ -147,7 +148,7 @@ class QuotationProposalController extends Controller
     {
         $clients = Client::all();
         $workscopes = WorkScope::all();
-        $proposalData = QuotationProposal::with(['sections.items', 'client', 'workscope'])->get();
+        $proposalData = QuotationProposal::with(['sections.items', 'client', 'workscope', 'paymentTerms'])->findOrFail($id);
         // $terms = QuotationProposal::with('paymentTerms')->orderBy('order_no')->get();
         return view('admin.backend.clientmanage.quotation-proposal.edit', compact('clients', 'workscopes', 'proposalData'));
     }
@@ -155,9 +156,6 @@ class QuotationProposalController extends Controller
     public function update(Request $request, $id)
     {
         $quotationProposal = QuotationProposal::findOrFail($id);
-        // $lastProposal = QuotationProposal::latest()->first();
-        // $nextNumber = $lastProposal ? $lastProposal->id + 1 : 1;
-        // $proposalInvoiceNo = '#QP' . str_pad($nextNumber, 6, '0', STR_PAD_LEFT);
 
         $quotationProposal->update([
             'main_subject' => $request->main_subject,
@@ -168,6 +166,10 @@ class QuotationProposalController extends Controller
             'status' => $request->status,
             'notes' => $request->notes ?? '',
         ]);
+
+        QuotationProposalItems::where('quotation_proposal_id', $id)->delete();
+        PaymentTerms::where('quotation_proposal_id', $id)->delete();
+
         $subtotal_amount = 0;
 
         $sectionId = null;
@@ -228,16 +230,16 @@ class QuotationProposalController extends Controller
             'term_notes' => $request->term_notes ?? null,
         ]);
 
+
         if ($request->has('payment_terms')) {
             foreach ($request->payment_terms as $index => $term) {
-
 
                 if (empty($term['percentage']) && empty($term['description'])) {
                     continue;
                 }
                 $amount = $grandTotal / 100 * $term['percentage'];
 
-                $paymentTerms = PaymentTerms::create([
+                PaymentTerms::create([
                     'quotation_proposal_id' => $quotationProposal->id,
                     'name' => $term['name'] ?? null,
                     'percentage' => $term['percentage'] ?? 0,

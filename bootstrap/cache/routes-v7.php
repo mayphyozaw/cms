@@ -13,7 +13,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::pXCJBqlDvByjrQGe',
+            '_route' => 'generated::FTRr03BH4su7zXO1',
           ),
           1 => NULL,
           2 => 
@@ -33,7 +33,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::D1XHPnt7Gk4rLBJu',
+            '_route' => 'generated::5IU4Tt32FsGCgymZ',
           ),
           1 => NULL,
           2 => 
@@ -110,7 +110,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::rJwZiG1K0xNUvXvY',
+            '_route' => 'generated::ocURULI8S2gpskm6',
           ),
           1 => NULL,
           2 => 
@@ -146,7 +146,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::lqrQsyKuQG1gScyN',
+            '_route' => 'generated::KGSHnTOcO5nBYEWX',
           ),
           1 => NULL,
           2 => 
@@ -276,7 +276,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::zx0VPvrpbQ6Sd3ek',
+            '_route' => 'generated::c88r37vwKOHE3ItR',
           ),
           1 => NULL,
           2 => 
@@ -5161,7 +5161,7 @@ app('router')->setCompiledRoutes(
   ),
   'attributes' => 
   array (
-    'generated::pXCJBqlDvByjrQGe' => 
+    'generated::FTRr03BH4su7zXO1' => 
     array (
       'methods' => 
       array (
@@ -5190,7 +5190,7 @@ app('router')->setCompiledRoutes(
                         \'exception\' => $exception,
                     ]), status: $exception ? 500 : 200);
                 }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"000000000000059d0000000000000000";}}',
-        'as' => 'generated::pXCJBqlDvByjrQGe',
+        'as' => 'generated::FTRr03BH4su7zXO1',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5206,7 +5206,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::D1XHPnt7Gk4rLBJu' => 
+    'generated::5IU4Tt32FsGCgymZ' => 
     array (
       'methods' => 
       array (
@@ -5228,7 +5228,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::D1XHPnt7Gk4rLBJu',
+        'as' => 'generated::5IU4Tt32FsGCgymZ',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5360,7 +5360,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::rJwZiG1K0xNUvXvY' => 
+    'generated::ocURULI8S2gpskm6' => 
     array (
       'methods' => 
       array (
@@ -5381,7 +5381,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::rJwZiG1K0xNUvXvY',
+        'as' => 'generated::ocURULI8S2gpskm6',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5435,7 +5435,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::lqrQsyKuQG1gScyN' => 
+    'generated::KGSHnTOcO5nBYEWX' => 
     array (
       'methods' => 
       array (
@@ -5456,7 +5456,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::lqrQsyKuQG1gScyN',
+        'as' => 'generated::KGSHnTOcO5nBYEWX',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5776,7 +5776,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::zx0VPvrpbQ6Sd3ek' => 
+    'generated::c88r37vwKOHE3ItR' => 
     array (
       'methods' => 
       array (
@@ -5797,7 +5797,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::zx0VPvrpbQ6Sd3ek',
+        'as' => 'generated::c88r37vwKOHE3ItR',
       ),
       'fallback' => false,
       'defaults' => 

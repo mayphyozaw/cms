@@ -315,17 +315,12 @@
                                                         <i class="ti ti-dots-vertical"></i>
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right">
-                                                        @foreach ($proposals as $proposal)
-                                                            <a
-                                                                href="{{ route('clientmanage.quototation-proposal.edit', $proposal->id) }}">
-                                                                Edit
-                                                            </a>
-                                                        @endforeach
-                                                        {{-- <a class="dropdown-item"
+                                                        
+                                                        <a class="dropdown-item"
                                                             href="{{ route('clientmanage.quototation-proposal.edit', $proposal->id) }}">
                                                             <i class="ti ti-edit text-blue"></i>
                                                             Edit
-                                                        </a> --}}
+                                                        </a>
                                                         <a class="dropdown-item" href="#" data-bs-toggle="modal"
                                                             data-bs-target="#delete_estimations">
                                                             <i class="ti ti-trash"></i>

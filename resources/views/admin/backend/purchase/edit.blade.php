@@ -231,7 +231,6 @@
                                                                     <input type="hidden" name="full_paid"
                                                                         value="{{ $purchaseData->full_paid }}"
                                                                         class="form-control">
-
                                                                 </td>
                                                             </tr>
 

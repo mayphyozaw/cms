@@ -74,5 +74,10 @@ class Purchase extends Model
     }
 
     
+    public function engineerAssetRequests()
+    {
+        return $this->belongsTo(EngineerAssetRequests::class, 'asset_request_id');
+    }
+    
     
 }
