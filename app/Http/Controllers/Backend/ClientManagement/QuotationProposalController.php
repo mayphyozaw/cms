@@ -11,6 +11,9 @@ use App\Models\QuotationProposal;
 use App\Models\QuotationProposalItems;
 use App\Models\WorkScope;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Mpdf\Mpdf;
+
 
 class QuotationProposalController extends Controller
 {
@@ -307,5 +310,29 @@ class QuotationProposalController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Proposal marked as declined.');
+    }
+
+    public function quotationProposal($id)
+    {
+
+        $proposalData = QuotationProposal::with(['sections.items', 'client', 'workscope', 'paymentTerms'])->findOrFail($id);
+        $html = view('admin.backend.clientmanage.quotation-proposal.proposal_download_pdf', compact('proposalData'))->render();
+        $mpdf = new \Mpdf\Mpdf([
+            'fontDir' => [
+                storage_path('app/fonts'),
+            ],
+            'fontdata' => [
+                'pyidaungsu' => [
+                    'R' => 'Pyidaungsu-2.5.3_Regular.ttf',
+                    'useOTL' => 0xFF,
+                ],
+            ],
+            'default_font' => 'pyidaungsu',
+        ]);
+
+       
+        $mpdf->WriteHTML($html);
+
+        return $mpdf->Output('report.pdf', 'D');
     }
 }

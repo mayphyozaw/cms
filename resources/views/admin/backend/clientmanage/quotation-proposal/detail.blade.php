@@ -6,10 +6,11 @@
                 <h4 class="mb-0">
                     Proposal Details
                 </h4>
-                <button class="btn btn-primary" type="button">
-                    <i class="ti ti-download me-1"></i>
+                <a class="btn btn-sm btn-primary" href="{{ route('clientmanage.quototation-proposal.download', $proposalData->id) }}"
+                     title="PDF QuotationProposal">
+                    <i class="ti ti-download"></i>
                     Download
-                </button>
+                </a>
             </div>
             <div class="row">
                 <div class="col-lg-10 mx-auto">
@@ -37,19 +38,19 @@
                                 </div>
                                 <div>
                                     <p class="mb-1 fw-semibold">
-                                        Proposal No : 
+                                        Proposal No :
                                         <span class="text-primary">
                                             {{ $proposalData->proposalInvoice_no }}
                                         </span>
                                     </p>
                                     <p class="mb-1">
-                                        Invoice Date : 
+                                        Invoice Date :
                                         <span class="text-dark">
                                             {{ $proposalData->proposal_date }}
                                         </span>
                                     </p>
                                     <p class="mb-0">
-                                        Date : 
+                                        Date :
                                         <span class="text-dark">
                                             {{ $proposalData->proposal_date }}
                                         </span>
@@ -105,10 +106,10 @@
                                 <div class="col-lg-4">
 
                                     <h5 class="mb-2 fs-14 fw-medium">
-                                        Date : {{ $proposalData->proposal_date }} 
+                                        Date : {{ $proposalData->proposal_date }}
                                     </h5>
                                     <h5 class="mb-2 fs-14 fw-medium">
-                                        Payment Status 
+                                        Payment Status
                                         <span class="badge bg-danger">
                                             {{ $proposalData->status }}
                                         </span>
@@ -158,11 +159,11 @@
                             </style>
                             <div class="mb-4">
                                 <p>
-                                    Quotation Proposal For : 
+                                    Quotation Proposal For :
                                     <span class="text-dark">
                                         {{ $proposalData->main_subject }}
                                     </span>
-                                 </p>
+                                </p>
                                 <div>
 
                                     <div class="table-responsive">
@@ -238,8 +239,8 @@
                                     <div class="col-lg-6">
                                         <div>
                                             <div class=" mb-3">
-                                                <h6 class="mb-1 fs-14 fw-semibold"> 
-                                                    Specifications Inclusive: 
+                                                <h6 class="mb-1 fs-14 fw-semibold">
+                                                    Specifications Inclusive:
                                                 </h6>
                                                 <div class="proposal-content" style="margin: 10px;">
                                                     {!! $proposalData->notes !!}
@@ -295,8 +296,8 @@
                                 <div>
                                     <img src="{{ asset('backend/assets/img/icons/signature-img.svg') }}" alt="Img"
                                         class="img-fluid ">
-                                    <h6 class="fs-14 fw-semibold"> 
-                                        May Phyo 
+                                    <h6 class="fs-14 fw-semibold">
+                                        May Phyo
                                     </h6>
                                     <p class="fs-13 fw-normal mb-0">
                                         Assistant Manager
@@ -314,12 +315,12 @@
                                         style="border-collapse: collapse; width: 100%;">
                                         <thead class="table-light table-bordered">
                                             <tr>
-                                                <th class="text-center" style="background-color:#9dd2e7;width:5%"> 
-                                                    No. (စဉ်) 
+                                                <th class="text-center" style="background-color:#9dd2e7;width:5%">
+                                                    No. (စဉ်)
                                                 </th>
                                                 <th class="text-center" style="background-color:#9dd2e7; width:15%"
-                                                    name="payment_terms[0][name]"> 
-                                                    Name 
+                                                    name="payment_terms[0][name]">
+                                                    Name
                                                 </th>
                                                 <th class="text-center" style="background-color:#9dd2e7; width:20%"
                                                     name="payment_terms[0][description]">
@@ -335,10 +336,12 @@
                                                 </th>
                                                 <th class="text-center" style="background-color:#9dd2e7;width:10%"
                                                     name="payment_terms[0][payer]">
-                                                    Payer - ငွေပေးချေသူ (လုပ်ငန်းအပ်နှံသူ)</th>
+                                                    Payer - ငွေပေးချေသူ (လုပ်ငန်းအပ်နှံသူ)
+                                                </th>
                                                 <th class="text-center" style="background-color:#9dd2e7"
                                                     name="payment_terms[0][receiver]">
-                                                    Receiver - (လုပ်ငန်းလက်ခံသူ)</th>
+                                                    Receiver - (လုပ်ငန်းလက်ခံသူ)
+                                                </th>
                                                 <th class="text-center" style="background-color:#9dd2e7;width:15%"
                                                     name="payment_terms[0][date]">
                                                     Date (နေ့စွဲ)
@@ -394,13 +397,13 @@
                                     </p>
                                     <div class="d-flex align-items-center justify-content-center gap-3 flex-wrap">
                                         <p class="mb-0">
-                                            Bank Name : 
+                                            Bank Name :
                                             <span class="text-dark">
                                                 ABC Bank
                                             </span>
                                         </p>
                                         <p class="mb-0">
-                                            Account Number : 
+                                            Account Number :
                                             <span class="text-dark">
                                                 45366287987
                                             </span>
@@ -481,7 +484,7 @@
                                     <i class="ti ti-copy me-1"></i>
                                     Invoice
                                 </a>
-                                <a href="#" class="btn btn-md btn-primary d-flex align-items-center"> 
+                                <a href="#" class="btn btn-md btn-primary d-flex align-items-center">
                                     <i class="ti ti-printer me-1"></i>
                                     Print Invoice
                                 </a>

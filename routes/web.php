@@ -92,7 +92,7 @@ Route::middleware('auth', 'notBlocked')->group(function () {
         Route::resource('bankmanage', BankController::class);
     });
 
-   
+
 
 
 
@@ -105,6 +105,7 @@ Route::middleware('auth', 'notBlocked')->group(function () {
         Route::get('/accept/quotation-proposal/{id}', [QuotationProposalController::class, 'acceptanceQuotation'])->name('accept.quotation-proposal');
         Route::get('/draft/quotation-proposal/{id}', [QuotationProposalController::class, 'draftQuotation'])->name('draft.quotation-proposal');
         Route::get('/decline/quotation-proposal/{id}', [QuotationProposalController::class, 'declineQuotation'])->name('decline.quotation-proposal');
+        Route::get('/quotation-proposal/{id}', [QuotationProposalController::class, 'quotationProposal'])->name('quototation-proposal.download');
     });
 
 
