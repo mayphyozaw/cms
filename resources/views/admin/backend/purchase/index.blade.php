@@ -143,9 +143,7 @@
                                             style="background-color: orange; color:white" title="PDF PURCHASEORDER">
                                             <i class="ti ti-download"></i>
                                         </a>
-
                                         
-
                                         {{-- <a class="btn btn-sm btn-primary"
                                             href="{{ route('purchase.pay', $purchaseData->id) }}">
                                             Pay
@@ -155,11 +153,6 @@
                                             href="{{ route('purchase.edit', $purchaseData->id) }}">
                                             <i class="ti ti-edit"></i>
                                         </a>
-
-                                        {{-- <a href="{{ route('invoice.purchase', $purchaseData->id) }}"
-                                            class="btn btn-sm btn-icon" title="PDF Invocie" style="background-color: #4aa1a3; color:white">
-                                            <i class="fa-solid fa-download"></i>
-                                        </a> --}}
 
                                         <!-- DELETE FORM ONLY -->
                                         <form action="" method="POST" style="display:inline;">

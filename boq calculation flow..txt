@@ -1,0 +1,95 @@
+BOQ Calculation Flow 
+Step 1: Measurement Entry (your "detail measurement UI")
+
+User inputs:
+
+Length, Width, Height
+Formula type (area, volume, etc.)
+
+ System calculates:
+
+Quantity
+Step 2: BOQ Item
+work_scope_id
+description
+quantity (from measurement)
+unit (m2, m3, kg, etc.)
+unit_price
+
+System calculates:
+
+amount = quantity × unit_price
+
+Step 3: BOQ Total
+
+Group by:
+Category (optional)
+Location (floor, zone)
+
+System calculates:
+
+total_amount = SUM(all item amounts)
+
+5. Database Design (Laravel Friendly)
+    1. BOQ Table
+        boqs
+        - id
+        - project_id
+        - client_id
+        - total_amount
+
+    2.BOQ Items
+
+        boq_items
+        - id
+        - boq_id
+        - work_scope_id
+        - description
+        - quantity
+        - unit
+        - unit_price
+        - amount
+    3.Measurement Table 
+        measurements
+        - id
+        - boq_item_id
+        - type (area, volume, length)
+        - length
+        - width
+        - height
+        - formula
+        - result (quantity)
+
+
+    Measurement → BOQ Item → Proposal
+ 
+    BOQ Example
+Work	    Qty	    Unit    Price	Amount
+Concrete	10       m³	      100	 1000
+Plaster	    50       m²	        5	  250
+
+Total BOQ:
+1000 + 250 = 1250
+
+
+7. Advanced (Real Industry Practice)
+
+You can extend BOQ with:
+
+Wastage
+Adjusted Qty = Qty × (1 + wastage%)
+
+Tax
+Final = Total + VAT
+
+Discount
+Final = Total - Discount
+
+
+
+BOQ is NOT just calculation
+It is data structure + workflow
+
+
+
+Measurement → Auto Quantity → BOQ Item → Auto Amount → Proposal → PDF

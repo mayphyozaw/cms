@@ -1,0 +1,29 @@
+1. drawing_table
+    id
+    project_id
+    drawing_type_id
+    drawing_name
+    drawing_code
+    revision_no
+    scale_ratio
+    remarks
+
+2. drawing_types_table
+    id
+    name
+
+    Example:
+                Name
+            1. Floor Plan
+            2. Structural Drawing
+            3. Electrical Drawing
+            4. Plumbing Drawing
+            5. Elevation
+            6. Section
+
+3. Drawing Upload Form
+Drawing Name    => Ground Floor Plan
+Drawing Type    => Floor Plan
+Revision No	    => R1
+Scale Ratio	    => 1:100
+Upload File	    => PDF

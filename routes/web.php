@@ -26,6 +26,8 @@ use App\Http\Controllers\Backend\MaterialManagement\FixedAssets\FixedAssetsContr
 use App\Http\Controllers\Backend\MaterialManagement\VariableAssets\VariableAssetsController;
 use App\Http\Controllers\Backend\MaterialManagement\VariableAssets\VariableCategoryController;
 use App\Http\Controllers\Backend\Payment\PaymentController;
+use App\Http\Controllers\Backend\ProjectManagement\DrawingController;
+use App\Http\Controllers\Backend\ProjectManagement\DrawingTypeController;
 use App\Http\Controllers\Backend\ProjectManagement\ProjectCategoryController;
 use App\Http\Controllers\Backend\ProjectManagement\ProjectController;
 use App\Http\Controllers\Backend\ProjectManagement\ProjectFilesController;
@@ -202,6 +204,14 @@ Route::middleware('auth', 'notBlocked')->group(function () {
         Route::get('/project', [ProjectController::class, 'getProject'])->name('projects_get');
         Route::get('/load/projects', [ProjectController::class, 'load_projects'])->name('load_projects');
         Route::get('project-datatable', [ProjectController::class, 'projectDataTable'])->name('project-datatable');
+            Route::prefix('/projects/{project}')
+             ->name('projects.')->group(function () {
+                Route::resource('drawings', DrawingController::class);
+                Route::resource('drawing-type', DrawingTypeController::class);
+        });
+
+        // Route::resource('drawings', DrawingController::class);
+        // Route::resource('drawing-type', DrawingTypeController::class);
 
 
         Route::resource('projectfiles', ProjectFilesController::class)->only('index', 'store', 'edit', 'update');

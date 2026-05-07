@@ -1,0 +1,125 @@
+Drawing Measurement vs Site Measurement
+    Drawing Measurement => for estimation & BOQ     => Before construction
+                                                       Used for estimation
+    
+    Site Measurement    => for actual work & claims =>  Actual work done
+                                                        Used for payment
+    
+    
+    Drawing Measurement
+    ↓
+    BOQ Estimate
+        ↓
+    Construction Starts
+        ↓
+    Site Measurement
+        ↓
+    Actual Progress Claim
+        ↓
+    Final Account
+
+drawings_table
+
+drawing_measurement_table
+
+
+
+
+1. BOQ categories
+    1. Concrete
+    2. Steel
+    3. Brickwork
+    4. Plaster
+    5. Flooring
+    6. Painting
+    7. Electrical
+    8. Plumbing
+
+2. Work Types
+    1. Concrete
+    2. Plaster
+    3. Flooring
+    4. Steel
+    5. Paint
+    6. Pipe
+    7. Footing
+
+3. Unit
+    1. Concrete => m³
+    2. Plaster  => m²
+    3. Flooring => m³
+    4. Steel    => kg
+    5. Paint    => m²
+    6. Pipe
+    7. Footing
+
+4. Measurement Types
+        Work Types    =>     Measurement Type
+    1. Concrete       =>        Volume
+    2. Brick          =>        Volume
+    3. Plaster        =>        Area
+    4. Paint          =>        Area
+    5. Steel          =>        Weight
+    6. Pipe           =>        Length
+    7. Footing        =>        Volume
+
+5. Formulas
+    1. Volume   => V = L * W * H
+    2. Area     => A = L * H
+    3. Paint => Area = Area × Coats
+
+6. Design Measurement Input
+    Item        L   W   H   Qty
+    Footing     5   5   1
+    Column      1   1   10
+
+7. Build Assumption Settings
+
+    Steel factor = 6 kg/sq.ft
+    Slab thickness = 0.125 m
+    Wastage = 5%
+
+8. Connect Measurement → BOQ
+    Measurement Result → Quantity → BOQ Item → Amount
+
+
+Measurement → BOQ → Proposal
+
+Database Structure
+1. measurements
+id
+project_id
+item_name
+unit
+total_qty
+
+2. measurement_details
+id
+measurement_id
+description
+length
+width
+height
+qty
+
+3. boq_items
+id
+measurement_id
+description
+qty
+unit
+rate
+amount
+
+4. proposals
+id
+client_id
+total_amount
+
+5. proposal_items
+id
+proposal_id
+boq_item_id
+qty
+rate
+amount

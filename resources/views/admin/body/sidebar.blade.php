@@ -118,7 +118,7 @@
                     </ul>
                 </li>
 
-                <li >
+                <li>
                     <ul>
                         <li class="submenu">
                             <a href="javascript:void(0);">
@@ -239,11 +239,78 @@
                                         class="{{ request()->routeIs('projectmanage.projectfiles.*') ? 'active' : '' }}">
                                         <i class="ti ti-list-check">
                                         </i>
-                                        {{-- <span>Task & Progress Tracking</span> --}}
                                         <span>Project Files</span>
                                     </a>
                                 </li>
 
+
+
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <li hidden>
+                    <ul>
+                        <li class="submenu">
+                            <a href="javascript:void(0);">
+                                <i class="ti ti-building"></i>
+                                <span>Project Detail</span>
+                                <span class="menu-arrow"></span>
+                            </a>
+
+                            <ul style="">
+                                <li>
+                                    <a href=""
+                                        class="">
+                                        <i class="ti ti-atom-2">
+                                        </i><span>Project Information</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href=""
+                                        class="">
+                                        <i class="ti ti-list-check">
+                                        </i>
+                                        <span>Drawings</span>
+                                    </a>
+                                </li>
+
+                                 <li>
+                                    <a href=""
+                                        class="">
+                                        <i class="ti ti-list-check">
+                                        </i>
+                                        
+                                        <span>Drawing Measurements</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href=""
+                                        class="">
+                                        <i class="ti ti-list-check">
+                                        </i>
+                                        <span>Site Measurements</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href=""
+                                        class="">
+                                        <i class="ti ti-list-check">
+                                        </i>
+                                        <span>BOQ</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href=""
+                                        class="">
+                                        <i class="ti ti-list-check">
+                                        </i>
+                                        <span>Proposal</span>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>

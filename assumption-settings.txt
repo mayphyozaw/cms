@@ -1,0 +1,74 @@
+What is Assumption Settings?
+Assumption Setting is a set of default engineering values used when 
+    1. drawing are incomplete
+    2. early estimation is needed
+    3. design is not finalized
+
+Assumption = Estimated value used in calculation
+
+Without assumptions:
+You cannot estimate early-stage projects
+Your system becomes only a manual calculator
+
+With assumptions:
+You can generate instant BOQ automatically
+Same as real construction companies during tender stage
+
+Types of Assumptions
+    1. Project-Level Assumptions
+        1) Building type (residential, warehouse)
+        2) Floor height
+        3) Quality level (basic / standard / luxury)
+
+    2. Work-Type Assumptions
+        1) Steel factor
+        2) Concrete ratio
+        3) Wall thickness
+    
+    3. Cost Assumptions
+        1) Unit rates
+        2) Labor cost
+        3) Material cost
+
+    4.Wastage / Safety
+        1) Material wastage %
+        2) Contingency %  
+    
+     
+Steel Structure
+    Steel Factor (kg/sq.ft)
+    - Warehouse → 5
+    - Office → 6
+    - Heavy → 8
+
+Concrete Work
+    Slab thickness = 125 mm
+    Beam size = 230 × 450 mm
+    Column size = 300 × 300 mm
+
+Wall Work
+    Wall thickness = 100 mm / 200 mm
+    Wall height = 3 m
+
+Finishing
+    Tile wastage = 5%
+    Paint coats = 2
+
+MEP
+    Electrical cost = $8 / sq.ft
+    Plumbing cost = $5 / sq.ft
+
+Assumption Calculation
+   => Without drawing:  => Steel Weight = Area × Steel Factor
+   => With drawing:     => Steel Weight = Actual beam + column calculation
+
+
+Input (Area, Floors)
+   ↓
+Assumption Settings (default values)
+   ↓
+Formula Engine
+   ↓
+Auto Quantity
+   ↓
+BOQ

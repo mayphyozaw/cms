@@ -28,7 +28,10 @@
                                         alt="Img">
                                     <img src="{{ asset('data/logo.png') }}" class="dark-logo" width="140" alt="Img">
                                     <p class="mb-0 mt-2">
-                                        3099 Kennedy Court Framingham, MA 01702
+                                        ABC Software Solutions Co., Ltd.<br>
+                                        <span>123 Main Street, Yangon, Myanmar</span><br>
+                                         <span>Email: info@abcsoftware.com </span> <br>
+                                         <span>Phone: +95 9 123 456 789</span>
                                     </p>
                                 </div>
                                 <div class="mt-5">

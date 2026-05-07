@@ -122,6 +122,7 @@
                         <thead>
                             <tr>
                                 <th class="text-center" style="background-color: #9dd2e7">#</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Detail</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Customer Name</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Project Code</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Project Type</th>

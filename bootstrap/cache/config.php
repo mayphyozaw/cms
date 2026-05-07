@@ -520,8 +520,8 @@
     'convert_entities' => true,
     'options' => 
     array (
-      'font_dir' => '/Users/may/Desktop/development/cms/storage/fonts',
-      'font_cache' => '/Users/may/Desktop/development/cms/storage/fonts',
+      'font_dir' => '/Users/may/Desktop/development/cms/storage/fonts/',
+      'font_cache' => '/Users/may/Desktop/development/cms/storage/fonts/',
       'temp_dir' => '/var/folders/tj/g3bq0qcj1_9_yb4kfl0kkpwc0000gn/T',
       'chroot' => '/Users/may/Desktop/development/cms',
       'allowed_protocols' => 

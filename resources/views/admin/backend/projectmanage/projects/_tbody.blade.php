@@ -1,8 +1,21 @@
 @foreach ($projects as $project)
     <tr>
-        <td class="text-center">{{ $loop->iteration }}</td>
-        <td class="text-center">{{ $project->client?->name }}</td>
-        <td class="text-center">P- {{ $project->client->project_code }}</td>
+        <td class="text-center">
+            {{ $loop->iteration }}
+        </td>
+        <td class="text-center">
+            <a href="{{ route('projectmanage.projects.show', $project->id) }}"
+                class="btn btn-sm bg-secondary-gradient" title="View">
+               <span style="color:white;">View Project</span>
+            </a>
+        </td>
+
+        <td class="text-center">
+            {{ $project->client?->name }}
+        </td>
+        <td class="text-center">
+            P- {{ $project->client->project_code }}
+        </td>
         <td class="text-center">
             <span
                 class="badge rounded-pill

@@ -12,6 +12,8 @@ use App\Models\QuotationProposalItems;
 use App\Models\WorkScope;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Mpdf\Config\ConfigVariables;
+use Mpdf\Config\FontVariables;
 use Mpdf\Mpdf;
 
 
@@ -318,6 +320,12 @@ class QuotationProposalController extends Controller
         $proposalData = QuotationProposal::with(['sections.items', 'client', 'workscope', 'paymentTerms'])->findOrFail($id);
         $html = view('admin.backend.clientmanage.quotation-proposal.proposal_download_pdf', compact('proposalData'))->render();
         $mpdf = new \Mpdf\Mpdf([
+            'mode'          => 'utf-8',
+            'format'        => 'A4',
+            'margin_top'    => 15,
+            'margin_bottom' => 15,
+            'margin_left'   => 15,
+            'margin_right'  => 15,
             'fontDir' => [
                 storage_path('app/fonts'),
             ],
@@ -328,11 +336,71 @@ class QuotationProposalController extends Controller
                 ],
             ],
             'default_font' => 'pyidaungsu',
+            'default_font_size'  => 14,
         ]);
 
-       
+
         $mpdf->WriteHTML($html);
 
         return $mpdf->Output('report.pdf', 'D');
     }
+
+    // public function quotationProposal($id)
+    // {
+    //     $proposalData = QuotationProposal::with([
+    //         'client',
+    //         'sections.items',
+    //         'paymentTerms'
+    //     ])->findOrFail($id);
+
+    //     $pdf = Pdf::loadView('admin.backend.clientmanage.quotation-proposal.proposal_download_pdf', compact('proposalData'))
+    //         ->setPaper('a4', 'portrait')
+    //         ->setOptions([
+    //             'defaultFont' => 'sans-serif',
+    //             'isHtml5ParserEnabled' => true,
+    //             'isRemoteEnabled' => true,
+    //         ]);
+
+    //     $filename = 'Proposal_' . $proposalData->proposalInvoice_no . '_' . now()->format('Ymd') . '.pdf';
+
+    //     return $pdf->download($filename);
+    // }
+
+    // public function quotationProposal($id)
+    // {
+    //     $proposalData = QuotationProposal::with([
+    //         'client',
+    //         'sections.items',
+    //         'paymentTerms'
+    //     ])->findOrFail($id);
+
+    //     $defaultConfig = new ConfigVariables()->getDefaults();
+    //     $fontDirs = $defaultConfig['fontDir'];
+    //     $defaultFontConfig = new FontVariables()->getDefaults();
+    //     $fontData = $defaultFontConfig['fontdata'];
+
+    //     $fontData['pyidaungsu'] = [
+    //         'R' => 'Pyidaungsu-2.5.3_Regular.ttf',
+    //     ];
+    //     $customPaper = 'A4';
+    //     $mpdf = new Mpdf([
+    //         'mode' => 'UTF-8',
+    //         'autoScriptToLang' => true,
+    //         'autoLangFont' => true,
+    //         'tempDir' => storage_path('app/mpdf'),
+    //         'fontDir' => array_merge($fontDirs, [public_path('fonts')]),
+    //         'fontdata' => $fontData,
+    //         'format' => $customPaper,
+
+    //     ]);
+
+    //     $html = view('admin.backend.clientmanage.quotation-proposal.proposal_download_pdf', compact('proposalData'))->render();
+    //     $mpdf->WriteHTML($html);
+
+    //     return $mpdf->Output('report.pdf', 'D');
+    // }
+
+
+
+   
 }

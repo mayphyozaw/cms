@@ -13,7 +13,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::RiXEMOyV6pNChGBL',
+            '_route' => 'generated::idOivHN62ThTrDnc',
           ),
           1 => NULL,
           2 => 
@@ -33,7 +33,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::m5RW5zJyq8jiPWMc',
+            '_route' => 'generated::iAjKElZ3CZgeNiGi',
           ),
           1 => NULL,
           2 => 
@@ -110,7 +110,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::gYOeqm7lEM7AP2AV',
+            '_route' => 'generated::d05Ce23E5gXGCc7e',
           ),
           1 => NULL,
           2 => 
@@ -146,7 +146,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::oghbjC9rKlLD7sGv',
+            '_route' => 'generated::RHTRf8XMwNqEOou2',
           ),
           1 => NULL,
           2 => 
@@ -276,7 +276,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::wjV6vKDPVStb5MGY',
+            '_route' => 'generated::WbZLZMm3DlKLhYNF',
           ),
           1 => NULL,
           2 => 
@@ -2505,7 +2505,7 @@ app('router')->setCompiledRoutes(
     ),
     2 => 
     array (
-      0 => '{^(?|/res(?|et\\-password/([^/]++)(*:35)|ign\\-employees/([^/]++)(?|(*:68)|/edit(*:80)|(*:87)))|/verify\\-email/([^/]++)/([^/]++)(*:128)|/usermanage/(?|([^/]++)(?|/edit(*:167)|(*:175))|resign\\-submit(*:198)|block/([^/]++)(*:220)|unblock/([^/]++)(*:244)|toggle\\-block/([^/]++)(*:274))|/a(?|ccounting/bankmanage/([^/]++)(?|(*:320)|/edit(*:333)|(*:341))|ssign\\-(?|edit/([^/]++)(*:373)|update/([^/]++)(*:396)|destroy/([^/]++)(*:420)))|/c(?|lientmanage/(?|client/([^/]++)(?|(*:468)|/edit(*:481)|(*:489))|quot(?|otation\\-proposal/([^/]++)(?|(*:534)|/edit(*:547)|(*:555))|ation\\-proposal/([^/]++)(*:588))|d(?|e(?|tail/quotation\\-proposal/([^/]++)(*:638)|cline/quotation\\-proposal/([^/]++)(*:680))|raft/quotation\\-proposal/([^/]++)(*:722))|accept/quotation\\-proposal/([^/]++)(*:766))|onfiguration/(?|role/([^/]++)(?|(*:807)|/edit(*:820)|(*:828))|permission/([^/]++)(?|(*:859)|/edit(*:872)|(*:880))))|/warehouse/([^/]++)(?|(*:913)|/edit(*:926)|(*:934))|/s(?|to(?|ck\\-movements/([^/]++)(?|(*:978)|/edit(*:991)|(*:999))|rage/(.*)(*:1017))|uppliermanage/supplier/([^/]++)(?|(*:1061)|/edit(*:1075)|(*:1084)))|/bq/bq(?|category/([^/]++)(?|(*:1124)|/edit(*:1138)|(*:1147))|workscope/([^/]++)(?|(*:1178)|/edit(*:1192)|(*:1201)))|/engineer(?|s/(?|([^/]++)(?|(*:1240)|/edit(*:1254)|(*:1263))|assign(?|/([^/]++)(*:1291)|\\-project/([^/]++)(*:1318)))|\\-requests/pass_qty/([^/]++)(*:1357))|/qs\\-check\\-(?|create/([^/]++)(*:1397)|detail/([^/]++)(*:1421))|/logistics\\-check\\-create/([^/]++)(*:1465)|/material/(?|asset(?|s/([^/]++)(?|(*:1508)|/edit(*:1522)|(*:1531))|/damage/([^/]++)(*:1557))|detail/asset/([^/]++)(*:1588)|fixedassets/(?|([^/]++)(?|(*:1623)|/edit(*:1637)|(*:1646))|purchase(*:1664))|category/([^/]++)(?|(*:1694)|/edit(*:1708)|(*:1717))|variable(?|assets/([^/]++)(?|(*:1756)|/edit(*:1770)|(*:1779))|\\-category/([^/]++)(?|(*:1811)|/edit(*:1825)|(*:1834))))|/p(?|rojectmanage/(?|project(?|s/([^/]++)(?|(*:1890)|/edit(*:1904)|(*:1913))|files/([^/]++)(?|/edit(*:1945)|(*:1954))|category/([^/]++)(?|(*:1984)|/edit(*:1998)|(*:2007)))|workscope/([^/]++)(?|(*:2039)|/edit(*:2053)|(*:2062)))|urchase(?|/(?|([^/]++)(?|(*:2098)|/edit(*:2112)|(*:2121))|payment/([^/]++)/history(*:2155))|_order/purchase/([^/]++)(*:2189))|ayment/purchase_payment/([^/]++)(?|(*:2234)))|/invoice/p(?|urchase/([^/]++)(*:2274)|ayment/([^/]++)(*:2298))|/detail/purchase/([^/]++)(*:2333))/?$}sDu',
+      0 => '{^(?|/res(?|et\\-password/([^/]++)(*:35)|ign\\-employees/([^/]++)(?|(*:68)|/edit(*:80)|(*:87)))|/verify\\-email/([^/]++)/([^/]++)(*:128)|/usermanage/(?|([^/]++)(?|/edit(*:167)|(*:175))|resign\\-submit(*:198)|block/([^/]++)(*:220)|unblock/([^/]++)(*:244)|toggle\\-block/([^/]++)(*:274))|/a(?|ccounting/bankmanage/([^/]++)(?|(*:320)|/edit(*:333)|(*:341))|ssign\\-(?|edit/([^/]++)(*:373)|update/([^/]++)(*:396)|destroy/([^/]++)(*:420)))|/c(?|lientmanage/(?|client/([^/]++)(?|(*:468)|/edit(*:481)|(*:489))|quot(?|otation\\-proposal/([^/]++)(?|(*:534)|/edit(*:547)|(*:555))|ation\\-proposal/([^/]++)(*:588))|d(?|e(?|tail/quotation\\-proposal/([^/]++)(*:638)|cline/quotation\\-proposal/([^/]++)(*:680))|raft/quotation\\-proposal/([^/]++)(*:722))|accept/quotation\\-proposal/([^/]++)(*:766))|onfiguration/(?|role/([^/]++)(?|(*:807)|/edit(*:820)|(*:828))|permission/([^/]++)(?|(*:859)|/edit(*:872)|(*:880))))|/warehouse/([^/]++)(?|(*:913)|/edit(*:926)|(*:934))|/s(?|to(?|ck\\-movements/([^/]++)(?|(*:978)|/edit(*:991)|(*:999))|rage/(.*)(*:1017))|uppliermanage/supplier/([^/]++)(?|(*:1061)|/edit(*:1075)|(*:1084)))|/bq/bq(?|category/([^/]++)(?|(*:1124)|/edit(*:1138)|(*:1147))|workscope/([^/]++)(?|(*:1178)|/edit(*:1192)|(*:1201)))|/engineer(?|s/(?|([^/]++)(?|(*:1240)|/edit(*:1254)|(*:1263))|assign(?|/([^/]++)(*:1291)|\\-project/([^/]++)(*:1318)))|\\-requests/pass_qty/([^/]++)(*:1357))|/qs\\-check\\-(?|create/([^/]++)(*:1397)|detail/([^/]++)(*:1421))|/logistics\\-check\\-create/([^/]++)(*:1465)|/material/(?|asset(?|s/([^/]++)(?|(*:1508)|/edit(*:1522)|(*:1531))|/damage/([^/]++)(*:1557))|detail/asset/([^/]++)(*:1588)|fixedassets/(?|([^/]++)(?|(*:1623)|/edit(*:1637)|(*:1646))|purchase(*:1664))|category/([^/]++)(?|(*:1694)|/edit(*:1708)|(*:1717))|variable(?|assets/([^/]++)(?|(*:1756)|/edit(*:1770)|(*:1779))|\\-category/([^/]++)(?|(*:1811)|/edit(*:1825)|(*:1834))))|/p(?|rojectmanage/(?|project(?|s/([^/]++)(?|(*:1890)|/(?|edit(*:1907)|drawing(?|s(?|(*:1930)|/(?|create(*:1949)|([^/]++)(?|(*:1969)|/edit(*:1983)|(*:1992)))|(*:2003))|\\-type(?|(*:2022)|/(?|create(*:2041)|([^/]++)(?|(*:2061)|/edit(*:2075)|(*:2084)))|(*:2095))))|(*:2107))|files/([^/]++)(?|/edit(*:2139)|(*:2148))|category/([^/]++)(?|(*:2178)|/edit(*:2192)|(*:2201)))|workscope/([^/]++)(?|(*:2233)|/edit(*:2247)|(*:2256)))|urchase(?|/(?|([^/]++)(?|(*:2292)|/edit(*:2306)|(*:2315))|payment/([^/]++)/history(*:2349))|_order/purchase/([^/]++)(*:2383))|ayment/purchase_payment/([^/]++)(?|(*:2428)))|/invoice/p(?|urchase/([^/]++)(*:2468)|ayment/([^/]++)(*:2492))|/detail/purchase/([^/]++)(*:2527))/?$}sDu',
     ),
     3 => 
     array (
@@ -4637,7 +4637,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1904 => 
+      1907 => 
       array (
         0 => 
         array (
@@ -4660,7 +4660,327 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1913 => 
+      1930 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.drawings.index',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      1949 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.drawings.create',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      1969 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.drawings.show',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+            1 => 'drawing',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      1983 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.drawings.edit',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+            1 => 'drawing',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      1992 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.drawings.update',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+            1 => 'drawing',
+          ),
+          2 => 
+          array (
+            'PUT' => 0,
+            'PATCH' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.drawings.destroy',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+            1 => 'drawing',
+          ),
+          2 => 
+          array (
+            'DELETE' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      2003 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.drawings.store',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+          ),
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      2022 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.drawing-type.index',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      2041 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.drawing-type.create',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      2061 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.drawing-type.show',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+            1 => 'drawing_type',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      2075 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.drawing-type.edit',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+            1 => 'drawing_type',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      2084 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.drawing-type.update',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+            1 => 'drawing_type',
+          ),
+          2 => 
+          array (
+            'PUT' => 0,
+            'PATCH' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.drawing-type.destroy',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+            1 => 'drawing_type',
+          ),
+          2 => 
+          array (
+            'DELETE' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      2095 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.drawing-type.store',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+          ),
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      2107 => 
       array (
         0 => 
         array (
@@ -4702,7 +5022,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1945 => 
+      2139 => 
       array (
         0 => 
         array (
@@ -4725,7 +5045,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1954 => 
+      2148 => 
       array (
         0 => 
         array (
@@ -4748,7 +5068,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1984 => 
+      2178 => 
       array (
         0 => 
         array (
@@ -4771,7 +5091,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1998 => 
+      2192 => 
       array (
         0 => 
         array (
@@ -4794,7 +5114,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2007 => 
+      2201 => 
       array (
         0 => 
         array (
@@ -4836,7 +5156,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2039 => 
+      2233 => 
       array (
         0 => 
         array (
@@ -4859,7 +5179,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2053 => 
+      2247 => 
       array (
         0 => 
         array (
@@ -4882,7 +5202,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2062 => 
+      2256 => 
       array (
         0 => 
         array (
@@ -4924,7 +5244,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2098 => 
+      2292 => 
       array (
         0 => 
         array (
@@ -4947,7 +5267,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2112 => 
+      2306 => 
       array (
         0 => 
         array (
@@ -4970,7 +5290,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2121 => 
+      2315 => 
       array (
         0 => 
         array (
@@ -5012,7 +5332,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2155 => 
+      2349 => 
       array (
         0 => 
         array (
@@ -5035,7 +5355,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2189 => 
+      2383 => 
       array (
         0 => 
         array (
@@ -5058,7 +5378,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2234 => 
+      2428 => 
       array (
         0 => 
         array (
@@ -5100,7 +5420,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2274 => 
+      2468 => 
       array (
         0 => 
         array (
@@ -5123,7 +5443,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2298 => 
+      2492 => 
       array (
         0 => 
         array (
@@ -5146,7 +5466,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2333 => 
+      2527 => 
       array (
         0 => 
         array (
@@ -5184,7 +5504,7 @@ app('router')->setCompiledRoutes(
   ),
   'attributes' => 
   array (
-    'generated::RiXEMOyV6pNChGBL' => 
+    'generated::idOivHN62ThTrDnc' => 
     array (
       'methods' => 
       array (
@@ -5213,7 +5533,7 @@ app('router')->setCompiledRoutes(
                         \'exception\' => $exception,
                     ]), status: $exception ? 500 : 200);
                 }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"000000000000059d0000000000000000";}}',
-        'as' => 'generated::RiXEMOyV6pNChGBL',
+        'as' => 'generated::idOivHN62ThTrDnc',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5229,7 +5549,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::m5RW5zJyq8jiPWMc' => 
+    'generated::iAjKElZ3CZgeNiGi' => 
     array (
       'methods' => 
       array (
@@ -5251,7 +5571,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::m5RW5zJyq8jiPWMc',
+        'as' => 'generated::iAjKElZ3CZgeNiGi',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5383,7 +5703,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::gYOeqm7lEM7AP2AV' => 
+    'generated::d05Ce23E5gXGCc7e' => 
     array (
       'methods' => 
       array (
@@ -5404,7 +5724,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::gYOeqm7lEM7AP2AV',
+        'as' => 'generated::d05Ce23E5gXGCc7e',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5458,7 +5778,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::oghbjC9rKlLD7sGv' => 
+    'generated::RHTRf8XMwNqEOou2' => 
     array (
       'methods' => 
       array (
@@ -5479,7 +5799,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::oghbjC9rKlLD7sGv',
+        'as' => 'generated::RHTRf8XMwNqEOou2',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5799,7 +6119,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::wjV6vKDPVStb5MGY' => 
+    'generated::WbZLZMm3DlKLhYNF' => 
     array (
       'methods' => 
       array (
@@ -5820,7 +6140,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::wjV6vKDPVStb5MGY',
+        'as' => 'generated::WbZLZMm3DlKLhYNF',
       ),
       'fallback' => false,
       'defaults' => 
@@ -12708,6 +13028,548 @@ app('router')->setCompiledRoutes(
         'as' => 'projectmanage.project-datatable',
         'namespace' => NULL,
         'prefix' => '/projectmanage',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.drawings.index' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/projects/{project}/drawings',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.drawings.index',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingController@index',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingController@index',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.drawings.create' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/projects/{project}/drawings/create',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.drawings.create',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingController@create',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingController@create',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.drawings.store' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'projectmanage/projects/{project}/drawings',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.drawings.store',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingController@store',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingController@store',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.drawings.show' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/projects/{project}/drawings/{drawing}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.drawings.show',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingController@show',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingController@show',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.drawings.edit' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/projects/{project}/drawings/{drawing}/edit',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.drawings.edit',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingController@edit',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingController@edit',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.drawings.update' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'PUT',
+        1 => 'PATCH',
+      ),
+      'uri' => 'projectmanage/projects/{project}/drawings/{drawing}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.drawings.update',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingController@update',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingController@update',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.drawings.destroy' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'DELETE',
+      ),
+      'uri' => 'projectmanage/projects/{project}/drawings/{drawing}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.drawings.destroy',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingController@destroy',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingController@destroy',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.drawing-type.index' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/projects/{project}/drawing-type',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.drawing-type.index',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingTypeController@index',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingTypeController@index',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.drawing-type.create' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/projects/{project}/drawing-type/create',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.drawing-type.create',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingTypeController@create',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingTypeController@create',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.drawing-type.store' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'projectmanage/projects/{project}/drawing-type',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.drawing-type.store',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingTypeController@store',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingTypeController@store',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.drawing-type.show' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/projects/{project}/drawing-type/{drawing_type}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.drawing-type.show',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingTypeController@show',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingTypeController@show',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.drawing-type.edit' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/projects/{project}/drawing-type/{drawing_type}/edit',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.drawing-type.edit',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingTypeController@edit',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingTypeController@edit',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.drawing-type.update' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'PUT',
+        1 => 'PATCH',
+      ),
+      'uri' => 'projectmanage/projects/{project}/drawing-type/{drawing_type}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.drawing-type.update',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingTypeController@update',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingTypeController@update',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.drawing-type.destroy' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'DELETE',
+      ),
+      'uri' => 'projectmanage/projects/{project}/drawing-type/{drawing_type}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.drawing-type.destroy',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingTypeController@destroy',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingTypeController@destroy',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
         'where' => 
         array (
         ),

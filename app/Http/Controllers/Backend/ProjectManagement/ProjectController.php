@@ -146,5 +146,12 @@ class ProjectController extends Controller
         ], 200);
     }
 
+    public function show($id)
+    {
+        $project = Project::with(['client', 'project_files', 'project_file'])->findOrFail($id);
+        $clients = Client::select('id', 'client_code', 'name')->get();
+        return view('admin.backend.projectmanage.projects.detail',compact('project','clients'));
+    }
+
     
 }
