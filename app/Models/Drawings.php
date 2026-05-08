@@ -14,9 +14,14 @@ class Drawings extends Model
         'revision_no',
         'scale_ratio',
         'remark',
+        'drawing_file'
     ];
     public function projects()
     {
         return $this->belongsTo(Project::class);
+    }
+    public function drawingType()
+    {
+        return $this->belongsTo(DrawingTypes::class, 'drawing_type_id');
     }
 }

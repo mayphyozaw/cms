@@ -18,13 +18,15 @@
             <div class="card-body pb-0 pt-0 px-2">
                 <ul class="nav nav-tabs nav-bordered nav-bordered-primary">
                     <li class="nav-item me-3">
-                        <a href="{{route('projectmanage.projects.drawings.index', $project->id)}}" class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.drawings.index') ? 'active' : '' }}">
+                        <a href="{{ route('projectmanage.projects.drawings.index', $project->id) }}"
+                            class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.drawings.index') ? 'active' : '' }}">
                             <i class="ti ti-settings-cog me-2"></i>
                             Drawing Lists
                         </a>
                     </li>
                     <li class="nav-item me-3">
-                        <a href="{{route('projectmanage.projects.drawing-type.index',$project->id)}}" class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.drawing-type.index') ? 'active' : '' }}">
+                        <a href="{{ route('projectmanage.projects.drawing-type.index', $project->id) }}"
+                            class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.drawing-type.index') ? 'active' : '' }}">
                             <i class="ti ti-device-laptop me-2"></i>
                             Drawing Types
                         </a>
@@ -46,7 +48,7 @@
                             </div>
 
                             <div class="col-auto">
-                                <x-create-button href="#">
+                                <x-create-button href="{{ route('projectmanage.projects.drawings.create', $project->id) }}">
                                     Create Drawings
                                 </x-create-button>
                             </div>
@@ -59,16 +61,61 @@
                                 <table class="table table-bordered table-responsive table-hover text-nowrap">
                                     <thead>
                                         <tr>
-                                            <th class="text-center" style="background-color: #9dd2e7">#</th>
+                                            <th class="text-center" style="background-color: #9dd2e7">Date</th>
                                             <th class="text-center" style="background-color: #9dd2e7">Project Code</th>
                                             <th class="text-center" style="background-color: #9dd2e7">Client Name</th>
+                                            <th class="text-center" style="background-color: #9dd2e7">Drawing Name</th>
                                             <th class="text-center" style="background-color: #9dd2e7">Drawing Type</th>
                                             <th class="text-center" style="background-color: #9dd2e7">Revision No</th>
                                             <th class="text-center" style="background-color: #9dd2e7">Scale Ratio</th>
+                                            <th class="text-center" style="background-color: #9dd2e7">Drawing Upload File
+                                            </th>
                                             <th class="text-center" style="background-color: #9dd2e7">Remark</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($drawings as $drawing)
+                                            <tr>
+                                                <td class="text-center">
+                                                    {{ $drawing->created_at }}
+                                                </td>
+                                                <td class="text-center">
+                                                    P- {{ $project->client->project_code }}
+                                                </td>
+                                                <td class="text-center">
+                                                    {{ $project->client->name }}
+                                                </td>
+
+                                                <td>
+                                                    {{ $drawing->drawing_name }}
+                                                </td>
+
+                                                <td class="text-center">
+                                                    {{ $drawing->drawingType->name }}
+                                                </td>
+
+                                                <td class="text-center">
+                                                    {{ $drawing->revision_no }}
+                                                </td>
+
+                                                <td class="text-center">
+                                                    {{ $drawing->scale_ratio }}
+                                                </td>
+
+                                                <td class="text-center">
+                                                    <a href="#">
+                                                        <span style="color:red">
+                                                            {{ $drawing->drawing_file }}
+                                                        </span>
+                                                    </a>
+                                                </td>
+                                                <td class="text-center">
+                                                    {{ $drawing->remarks }}
+                                                </td>
+
+
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

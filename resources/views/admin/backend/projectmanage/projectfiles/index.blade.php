@@ -12,9 +12,6 @@
                 </nav>
             </div>
         </div>
-
-
-
         <div class="card border-0 rounded-0">
             <div class="card-header">
                 <div class="row align-items-center">
@@ -26,9 +23,6 @@
                         {{-- <x-create-button href="{{ route('projectmanage.projectfiles.create') }}">
                             Create Project File
                         </x-create-button> --}}
-
-
-
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                             data-bs-target="#upload-file-modal">Upload Files</button>
                     </div>
@@ -65,27 +59,20 @@
                             </div>
 
                             <div class="col-lg-6 col-md-12">
-
                                 <div class="mb-3">
                                     <input type="text" class="form-control" name="remark" placeholder="Remark">
 
                                 </div>
                             </div>
-
                         </div>
-
                     </div>
-
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-success">Save</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </form>
-
                 <div class="content" style="padding-top: 0 !important;">
-
                     <div class="card border-0 rounded-0">
-
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-responsive table-hover text-nowrap">

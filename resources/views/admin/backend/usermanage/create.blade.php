@@ -146,7 +146,7 @@
                                 <div class="col-lg-6 col-md-12">
                                     <div class="mb-2">
                                         <label for="validationDefault02" class="form-label">NRC Front Photo:</label>
-                                        <input type="file" class="form-control" name="nrcfrontphoto"
+                                        <input type="file" class="form-control" name="drawing_file"
                                             id="nrc_front_image">
                                     </div>
                                     <div class="mb-2">

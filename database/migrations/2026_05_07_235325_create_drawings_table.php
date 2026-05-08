@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedBigInteger('project_id');
             $table->unsignedBigInteger('drawing_type_id');
             $table->string('drawing_name')->nullable();
-            $table->string('drawing_code')->nullable();
             $table->string('revision_no')->nullable();
             $table->string('scale_ratio')->nullable();
             $table->string('remarks')->nullable();

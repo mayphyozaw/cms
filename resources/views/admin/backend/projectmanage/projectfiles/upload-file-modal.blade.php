@@ -1,7 +1,5 @@
   @extends('layouts')
   @section('name')
-      
-  
   <div id="upload-file-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="fullWidthModalLabel"
       aria-hidden="true">
       <div class="modal-dialog modal-full-width">
@@ -49,7 +47,6 @@
                       <div class="card-body">
                           <div class="table-responsive">
                               <table class="table table-bordered table-responsive table-hover text-nowrap">
-
                                   <thead>
                                       <tr>
                                           <th class="text-center" style="background-color: #9dd2e7">#</th>

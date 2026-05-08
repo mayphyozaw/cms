@@ -80,20 +80,20 @@
                                 <table class="table table-bordered table-responsive table-hover text-nowrap">
                                     <thead>
                                         <tr>
-                                            <th class="text-center" style="background-color: #9dd2e7">#</th>
-                                            <th class="text-center" style="background-color: #9dd2e7">Customer Name</th>
                                             <th class="text-center" style="background-color: #9dd2e7">Project Code</th>
+                                            <th class="text-center" style="background-color: #9dd2e7">Customer Name</th>
                                             <th class="text-center" style="background-color: #9dd2e7">Project Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 
                                         <tr>
-                                            <td class="text-center">
-                                                {{ $project->client->name }}
-                                            </td>
+                                            
                                             <td class="text-center">
                                                 P- {{ $project->client->project_code }}
+                                            </td>
+                                            <td class="text-center">
+                                                {{ $project->client->name }}
                                             </td>
                                             <td class="text-center">
                                                 <span class="badge badge-soft-{{ $project->projectStatusBadge() }}">

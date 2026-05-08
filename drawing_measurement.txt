@@ -3,10 +3,11 @@
     project_id
     drawing_type_id
     drawing_name
-    drawing_code
     revision_no
     scale_ratio
     remarks
+    drawing_file
+
 
 2. drawing_types_table
     id
