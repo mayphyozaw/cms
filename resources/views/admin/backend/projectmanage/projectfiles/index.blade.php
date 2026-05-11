@@ -71,6 +71,7 @@
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </form>
+            
                 <div class="content" style="padding-top: 0 !important;">
                     <div class="card border-0 rounded-0">
                         <div class="card-body">

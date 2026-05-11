@@ -13,8 +13,9 @@ class Drawings extends Model
         'drawing_code',
         'revision_no',
         'scale_ratio',
-        'remark',
-        'drawing_file'
+        'remarks',
+        'drawing_file',
+        'drawing_file_name'
     ];
     public function projects()
     {

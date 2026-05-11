@@ -24,8 +24,10 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{route('projectmanage.projects.drawings.store', $project->id)}}" method="POST" id="submit-form" enctype="multipart/form-data">
+                    <form action="{{ route('projectmanage.projects.drawings.update', [$project->id, $drawing->id]) }}"
+                        method="POST" id="submit-form" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="form-label fs-14" class="form-label fs-14">
@@ -51,7 +53,7 @@
                                 </label>
                                 <div class="input-group">
                                     <input type="text" name="drawing_name" class="form-control"
-                                        @error('drawing_name') is-invalid @enderror placeholder="Enter Name" required>
+                                        value=" {{ $drawing->drawing_name }}">
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
@@ -60,9 +62,9 @@
                                 </label>
                                 <select name="drawing_type_id" id="drawing_type_id" class="form-control form-select">
                                     <option value="">Select Drawing Type</option>
-
                                     @foreach ($drawing_types as $drawing_type)
-                                        <option value="{{ $drawing_type->id }}">
+                                        <option value="{{ $drawing_type->id }}"
+                                            {{ $drawing->drawing_type_id == $drawing_type->id ? 'selected' : '' }}>
                                             {{ $drawing_type->name }}
                                         </option>
                                     @endforeach
@@ -70,15 +72,6 @@
                                 </select>
                             </div>
 
-                            {{-- <div class="col-md-6 mb-3">
-                                <label for="form-label fs-14" class="form-label fs-14">
-                                    Drawing Code:
-                                </label>
-                                <div class="input-group">
-                                    <input type="text" name="drawing_code" class="form-control"
-                                        @error('drawing_code') is-invalid @enderror placeholder="Enter Name" required>
-                                </div>
-                            </div> --}}
 
                             <div class="col-md-6 mb-3">
                                 <label for="form-label fs-14" class="form-label fs-14">
@@ -86,7 +79,7 @@
                                 </label>
                                 <div class="input-group">
                                     <input type="text" name="revision_no" class="form-control"
-                                        @error('revision_no') is-invalid @enderror placeholder="Enter Name" required>
+                                        value="{{ $drawing->revision_no }}">
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
@@ -95,30 +88,41 @@
                                 </label>
                                 <div class="input-group">
                                     <input type="text" name="scale_ratio" class="form-control"
-                                        @error('scale_ratio') is-invalid @enderror placeholder="Enter Name" required>
+                                        value="{{ $drawing->scale_ratio }}">
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
+
                                 <label for="drawing_file" class="form-label">
                                     Upload File:
                                 </label>
+
                                 <input type="file" class="form-control" name="drawing_file" id="drawing_file"
                                     accept=".pdf,.jpg,.jpeg,.png,.dwg">
-                                {{-- <input type="file" class="form-control" name="drawing_file" id="drawing_file"> --}}
+
+                                @if ($drawing->drawing_file)
+                                    <small class="text-primary">
+                                        Current File:
+                                        {{ $drawing->drawing_file }}
+                                    </small>
+                                @endif
+
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">
                                     Remark:
                                 </label>
-                                <textarea name="remarks" class="form-control"></textarea>
+                                <textarea name="remarks" class="form-control">
+                                    {{ $drawing->remarks }}
+                                </textarea>
                             </div>
 
                         </div>
 
                         <button class="btn btn-primary" type="submit">Submit</button>
                     </form>
-                    </div>
-                
+                </div>
+
             </div>
         </div>
     </div>
@@ -141,15 +145,8 @@
                     },
 
                     success: function(data) {
-                        $('#address').val(data.address);
                         $('#client_code').val(data.client_code);
                         $('#project_code').val(data.project_code);
-                        $('#site_location').val(data.site_location);
-                        $('#building_area').val(data.building_area);
-                        $('#construction_type').val(data.construction_type);
-                        $('#job_scope').val(data.job_scope);
-                        $('#storeys').val(data.storeys);
-                        $('#client_type').val(data.client_type);
                     },
 
                     error: function() {

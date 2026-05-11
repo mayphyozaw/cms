@@ -27,7 +27,9 @@ use App\Http\Controllers\Backend\MaterialManagement\VariableAssets\VariableAsset
 use App\Http\Controllers\Backend\MaterialManagement\VariableAssets\VariableCategoryController;
 use App\Http\Controllers\Backend\Payment\PaymentController;
 use App\Http\Controllers\Backend\ProjectManagement\DrawingController;
+use App\Http\Controllers\Backend\ProjectManagement\DrawingMeasurementsController;
 use App\Http\Controllers\Backend\ProjectManagement\DrawingTypeController;
+use App\Http\Controllers\Backend\ProjectManagement\MeasurementTypeController;
 use App\Http\Controllers\Backend\ProjectManagement\ProjectCategoryController;
 use App\Http\Controllers\Backend\ProjectManagement\ProjectController;
 use App\Http\Controllers\Backend\ProjectManagement\ProjectFilesController;
@@ -208,6 +210,8 @@ Route::middleware('auth', 'notBlocked')->group(function () {
              ->name('projects.')->group(function () {
                 Route::resource('drawings', DrawingController::class);
                 Route::resource('drawing-type', DrawingTypeController::class);
+                Route::resource('drawing-measurements', DrawingMeasurementsController::class);
+                Route::resource('measurement-types', MeasurementTypeController::class);
         });
 
         // Route::resource('drawings', DrawingController::class);

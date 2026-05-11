@@ -33,10 +33,12 @@
                                     <i class="ti ti-device-laptop me-2"></i>
                                     Drawings
                                 </a>
-                                <a href="notifications-settings.html" class="d-block p-2 fw-medium">
-                                    <i class="ti ti-list-check me-2"></i>
+
+                                <a href="{{route('projectmanage.projects.drawing-measurements.index', $project->id)}}" class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.drawing-measurements.*') ? 'active' : '' }}">
+                                    <i class="ti ti-device-laptop me-2"></i>
                                     Drawing Measurements
                                 </a>
+                                
                                 <a href="connected-apps.html" class="d-block p-2 fw-medium">
                                     <i class="ti ti-list-check me-2"></i>
                                     Site Measurements

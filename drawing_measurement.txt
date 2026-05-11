@@ -23,8 +23,77 @@
             6. Section
 
 3. Drawing Upload Form
-Drawing Name    => Ground Floor Plan
-Drawing Type    => Floor Plan
-Revision No	    => R1
-Scale Ratio	    => 1:100
-Upload File	    => PDF
+            Drawing Name    => Ground Floor Plan
+            Drawing Type    => Floor Plan
+            Revision No	    => R1
+            Scale Ratio	    => 1:100
+            Upload File	    => PDF
+
+3. Drawing Measurements 
+
+    Drawing Measurement contains:
+        1. measurement rows
+        2. formulas
+        3. quantity calculations
+        4. dimension input
+        5. BOQ generation
+
+        volume (V)
+        area (A)
+        weight (W)
+        length (L)
+        height (H)
+
+        forumla
+        1. Volume   => V = L * W * H
+        2. Area     => A = L * H
+        3. Paint => Area = Area × Coats
+
+    measurement_types_table
+        id
+        name
+        symbol
+        formula
+
+        id	name	symbol	formula
+        1	Volume	   V	L × W × H
+        2	Area	   A	L × H
+        3	Length	   L	L
+        4	Weight	   W	Qty × Unit Weight
+
+        
+
+    work_type_table
+        id
+        name
+        unit
+        measurement_type_id
+
+        id   name      unit     measurement_id
+        1. Concrete => m³           Volume
+        2. Plaster  => m²           Area
+        3. Flooring => m³           Volume
+        4. Steel    => kg           Weight
+        5. Paint    => m²           Area
+        6. Pipe     => m            Length
+        7. Footing                  Volume
+
+    
+
+
+    
+    drawing_measurement_table 
+        id
+        project_id
+        drawing_id
+        work_type_id
+
+        length
+        width
+        height
+        coats
+
+        quantity
+        remarks
+
+

@@ -13,7 +13,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::69mOqJzkSC32AwRA',
+            '_route' => 'generated::4TAzTuFrSdBq4TkR',
           ),
           1 => NULL,
           2 => 
@@ -33,7 +33,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::i6e0iRKxZ1SOxXHC',
+            '_route' => 'generated::iipOzXsjK8DLq892',
           ),
           1 => NULL,
           2 => 
@@ -110,7 +110,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::XGAARgfzK32MqR8B',
+            '_route' => 'generated::XmZHlQPIQfcA3nnW',
           ),
           1 => NULL,
           2 => 
@@ -146,7 +146,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::2TeXLOID3vkuyYIX',
+            '_route' => 'generated::0J5xBh1r5fbXnoxr',
           ),
           1 => NULL,
           2 => 
@@ -276,7 +276,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::7HMe4wN2sGtGacfN',
+            '_route' => 'generated::AzAiYIuYQUhJEwqB',
           ),
           1 => NULL,
           2 => 
@@ -2505,7 +2505,7 @@ app('router')->setCompiledRoutes(
     ),
     2 => 
     array (
-      0 => '{^(?|/res(?|et\\-password/([^/]++)(*:35)|ign\\-employees/([^/]++)(?|(*:68)|/edit(*:80)|(*:87)))|/verify\\-email/([^/]++)/([^/]++)(*:128)|/usermanage/(?|([^/]++)(?|/edit(*:167)|(*:175))|resign\\-submit(*:198)|block/([^/]++)(*:220)|unblock/([^/]++)(*:244)|toggle\\-block/([^/]++)(*:274))|/a(?|ccounting/bankmanage/([^/]++)(?|(*:320)|/edit(*:333)|(*:341))|ssign\\-(?|edit/([^/]++)(*:373)|update/([^/]++)(*:396)|destroy/([^/]++)(*:420)))|/c(?|lientmanage/(?|client/([^/]++)(?|(*:468)|/edit(*:481)|(*:489))|quot(?|otation\\-proposal/([^/]++)(?|(*:534)|/edit(*:547)|(*:555))|ation\\-proposal/([^/]++)(*:588))|d(?|e(?|tail/quotation\\-proposal/([^/]++)(*:638)|cline/quotation\\-proposal/([^/]++)(*:680))|raft/quotation\\-proposal/([^/]++)(*:722))|accept/quotation\\-proposal/([^/]++)(*:766))|onfiguration/(?|role/([^/]++)(?|(*:807)|/edit(*:820)|(*:828))|permission/([^/]++)(?|(*:859)|/edit(*:872)|(*:880))))|/warehouse/([^/]++)(?|(*:913)|/edit(*:926)|(*:934))|/s(?|to(?|ck\\-movements/([^/]++)(?|(*:978)|/edit(*:991)|(*:999))|rage/(.*)(*:1017))|uppliermanage/supplier/([^/]++)(?|(*:1061)|/edit(*:1075)|(*:1084)))|/bq/bq(?|category/([^/]++)(?|(*:1124)|/edit(*:1138)|(*:1147))|workscope/([^/]++)(?|(*:1178)|/edit(*:1192)|(*:1201)))|/engineer(?|s/(?|([^/]++)(?|(*:1240)|/edit(*:1254)|(*:1263))|assign(?|/([^/]++)(*:1291)|\\-project/([^/]++)(*:1318)))|\\-requests/pass_qty/([^/]++)(*:1357))|/qs\\-check\\-(?|create/([^/]++)(*:1397)|detail/([^/]++)(*:1421))|/logistics\\-check\\-create/([^/]++)(*:1465)|/material/(?|asset(?|s/([^/]++)(?|(*:1508)|/edit(*:1522)|(*:1531))|/damage/([^/]++)(*:1557))|detail/asset/([^/]++)(*:1588)|fixedassets/(?|([^/]++)(?|(*:1623)|/edit(*:1637)|(*:1646))|purchase(*:1664))|category/([^/]++)(?|(*:1694)|/edit(*:1708)|(*:1717))|variable(?|assets/([^/]++)(?|(*:1756)|/edit(*:1770)|(*:1779))|\\-category/([^/]++)(?|(*:1811)|/edit(*:1825)|(*:1834))))|/p(?|rojectmanage/(?|project(?|s/([^/]++)(?|(*:1890)|/(?|edit(*:1907)|drawing(?|s(?|(*:1930)|/(?|create(*:1949)|([^/]++)(?|(*:1969)|/edit(*:1983)|(*:1992)))|(*:2003))|\\-type(?|(*:2022)|/(?|create(*:2041)|([^/]++)(?|(*:2061)|/edit(*:2075)|(*:2084)))|(*:2095))))|(*:2107))|files/([^/]++)(?|/edit(*:2139)|(*:2148))|category/([^/]++)(?|(*:2178)|/edit(*:2192)|(*:2201)))|workscope/([^/]++)(?|(*:2233)|/edit(*:2247)|(*:2256)))|urchase(?|/(?|([^/]++)(?|(*:2292)|/edit(*:2306)|(*:2315))|payment/([^/]++)/history(*:2349))|_order/purchase/([^/]++)(*:2383))|ayment/purchase_payment/([^/]++)(?|(*:2428)))|/invoice/p(?|urchase/([^/]++)(*:2468)|ayment/([^/]++)(*:2492))|/detail/purchase/([^/]++)(*:2527))/?$}sDu',
+      0 => '{^(?|/res(?|et\\-password/([^/]++)(*:35)|ign\\-employees/([^/]++)(?|(*:68)|/edit(*:80)|(*:87)))|/verify\\-email/([^/]++)/([^/]++)(*:128)|/usermanage/(?|([^/]++)(?|/edit(*:167)|(*:175))|resign\\-submit(*:198)|block/([^/]++)(*:220)|unblock/([^/]++)(*:244)|toggle\\-block/([^/]++)(*:274))|/a(?|ccounting/bankmanage/([^/]++)(?|(*:320)|/edit(*:333)|(*:341))|ssign\\-(?|edit/([^/]++)(*:373)|update/([^/]++)(*:396)|destroy/([^/]++)(*:420)))|/c(?|lientmanage/(?|client/([^/]++)(?|(*:468)|/edit(*:481)|(*:489))|quot(?|otation\\-proposal/([^/]++)(?|(*:534)|/edit(*:547)|(*:555))|ation\\-proposal/([^/]++)(*:588))|d(?|e(?|tail/quotation\\-proposal/([^/]++)(*:638)|cline/quotation\\-proposal/([^/]++)(*:680))|raft/quotation\\-proposal/([^/]++)(*:722))|accept/quotation\\-proposal/([^/]++)(*:766))|onfiguration/(?|role/([^/]++)(?|(*:807)|/edit(*:820)|(*:828))|permission/([^/]++)(?|(*:859)|/edit(*:872)|(*:880))))|/warehouse/([^/]++)(?|(*:913)|/edit(*:926)|(*:934))|/s(?|to(?|ck\\-movements/([^/]++)(?|(*:978)|/edit(*:991)|(*:999))|rage/(.*)(*:1017))|uppliermanage/supplier/([^/]++)(?|(*:1061)|/edit(*:1075)|(*:1084)))|/bq/bq(?|category/([^/]++)(?|(*:1124)|/edit(*:1138)|(*:1147))|workscope/([^/]++)(?|(*:1178)|/edit(*:1192)|(*:1201)))|/engineer(?|s/(?|([^/]++)(?|(*:1240)|/edit(*:1254)|(*:1263))|assign(?|/([^/]++)(*:1291)|\\-project/([^/]++)(*:1318)))|\\-requests/pass_qty/([^/]++)(*:1357))|/qs\\-check\\-(?|create/([^/]++)(*:1397)|detail/([^/]++)(*:1421))|/logistics\\-check\\-create/([^/]++)(*:1465)|/material/(?|asset(?|s/([^/]++)(?|(*:1508)|/edit(*:1522)|(*:1531))|/damage/([^/]++)(*:1557))|detail/asset/([^/]++)(*:1588)|fixedassets/(?|([^/]++)(?|(*:1623)|/edit(*:1637)|(*:1646))|purchase(*:1664))|category/([^/]++)(?|(*:1694)|/edit(*:1708)|(*:1717))|variable(?|assets/([^/]++)(?|(*:1756)|/edit(*:1770)|(*:1779))|\\-category/([^/]++)(?|(*:1811)|/edit(*:1825)|(*:1834))))|/p(?|rojectmanage/(?|project(?|s/([^/]++)(?|(*:1890)|/(?|edit(*:1907)|drawing(?|s(?|(*:1930)|/(?|create(*:1949)|([^/]++)(?|(*:1969)|/edit(*:1983)|(*:1992)))|(*:2003))|\\-(?|type(?|(*:2025)|/(?|create(*:2044)|([^/]++)(?|(*:2064)|/edit(*:2078)|(*:2087)))|(*:2098))|measurements(?|(*:2123)|/(?|create(*:2142)|([^/]++)(?|(*:2162)|/edit(*:2176)|(*:2185)))|(*:2196))))|measurement\\-types(?|(*:2229)|/(?|create(*:2248)|([^/]++)(?|(*:2268)|/edit(*:2282)|(*:2291)))|(*:2302)))|(*:2313))|files/([^/]++)(?|/edit(*:2345)|(*:2354))|category/([^/]++)(?|(*:2384)|/edit(*:2398)|(*:2407)))|workscope/([^/]++)(?|(*:2439)|/edit(*:2453)|(*:2462)))|urchase(?|/(?|([^/]++)(?|(*:2498)|/edit(*:2512)|(*:2521))|payment/([^/]++)/history(*:2555))|_order/purchase/([^/]++)(*:2589))|ayment/purchase_payment/([^/]++)(?|(*:2634)))|/invoice/p(?|urchase/([^/]++)(*:2674)|ayment/([^/]++)(*:2698))|/detail/purchase/([^/]++)(*:2733))/?$}sDu',
     ),
     3 => 
     array (
@@ -4820,7 +4820,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2022 => 
+      2025 => 
       array (
         0 => 
         array (
@@ -4843,7 +4843,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2041 => 
+      2044 => 
       array (
         0 => 
         array (
@@ -4866,7 +4866,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2061 => 
+      2064 => 
       array (
         0 => 
         array (
@@ -4890,7 +4890,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2075 => 
+      2078 => 
       array (
         0 => 
         array (
@@ -4914,7 +4914,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2084 => 
+      2087 => 
       array (
         0 => 
         array (
@@ -4958,7 +4958,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2095 => 
+      2098 => 
       array (
         0 => 
         array (
@@ -4980,7 +4980,327 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2107 => 
+      2123 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.drawing-measurements.index',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      2142 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.drawing-measurements.create',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      2162 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.drawing-measurements.show',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+            1 => 'drawing_measurement',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      2176 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.drawing-measurements.edit',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+            1 => 'drawing_measurement',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      2185 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.drawing-measurements.update',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+            1 => 'drawing_measurement',
+          ),
+          2 => 
+          array (
+            'PUT' => 0,
+            'PATCH' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.drawing-measurements.destroy',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+            1 => 'drawing_measurement',
+          ),
+          2 => 
+          array (
+            'DELETE' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      2196 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.drawing-measurements.store',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+          ),
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      2229 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.measurement-types.index',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      2248 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.measurement-types.create',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      2268 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.measurement-types.show',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+            1 => 'measurement_type',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      2282 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.measurement-types.edit',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+            1 => 'measurement_type',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      2291 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.measurement-types.update',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+            1 => 'measurement_type',
+          ),
+          2 => 
+          array (
+            'PUT' => 0,
+            'PATCH' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.measurement-types.destroy',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+            1 => 'measurement_type',
+          ),
+          2 => 
+          array (
+            'DELETE' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      2302 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.measurement-types.store',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+          ),
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      2313 => 
       array (
         0 => 
         array (
@@ -5022,7 +5342,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2139 => 
+      2345 => 
       array (
         0 => 
         array (
@@ -5045,7 +5365,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2148 => 
+      2354 => 
       array (
         0 => 
         array (
@@ -5068,7 +5388,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2178 => 
+      2384 => 
       array (
         0 => 
         array (
@@ -5091,7 +5411,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2192 => 
+      2398 => 
       array (
         0 => 
         array (
@@ -5114,7 +5434,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2201 => 
+      2407 => 
       array (
         0 => 
         array (
@@ -5156,7 +5476,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2233 => 
+      2439 => 
       array (
         0 => 
         array (
@@ -5179,7 +5499,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2247 => 
+      2453 => 
       array (
         0 => 
         array (
@@ -5202,7 +5522,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2256 => 
+      2462 => 
       array (
         0 => 
         array (
@@ -5244,7 +5564,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2292 => 
+      2498 => 
       array (
         0 => 
         array (
@@ -5267,7 +5587,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2306 => 
+      2512 => 
       array (
         0 => 
         array (
@@ -5290,7 +5610,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2315 => 
+      2521 => 
       array (
         0 => 
         array (
@@ -5332,7 +5652,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2349 => 
+      2555 => 
       array (
         0 => 
         array (
@@ -5355,7 +5675,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2383 => 
+      2589 => 
       array (
         0 => 
         array (
@@ -5378,7 +5698,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2428 => 
+      2634 => 
       array (
         0 => 
         array (
@@ -5420,7 +5740,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2468 => 
+      2674 => 
       array (
         0 => 
         array (
@@ -5443,7 +5763,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2492 => 
+      2698 => 
       array (
         0 => 
         array (
@@ -5466,7 +5786,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2527 => 
+      2733 => 
       array (
         0 => 
         array (
@@ -5504,7 +5824,7 @@ app('router')->setCompiledRoutes(
   ),
   'attributes' => 
   array (
-    'generated::69mOqJzkSC32AwRA' => 
+    'generated::4TAzTuFrSdBq4TkR' => 
     array (
       'methods' => 
       array (
@@ -5533,7 +5853,7 @@ app('router')->setCompiledRoutes(
                         \'exception\' => $exception,
                     ]), status: $exception ? 500 : 200);
                 }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"000000000000059d0000000000000000";}}',
-        'as' => 'generated::69mOqJzkSC32AwRA',
+        'as' => 'generated::4TAzTuFrSdBq4TkR',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5549,7 +5869,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::i6e0iRKxZ1SOxXHC' => 
+    'generated::iipOzXsjK8DLq892' => 
     array (
       'methods' => 
       array (
@@ -5571,7 +5891,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::i6e0iRKxZ1SOxXHC',
+        'as' => 'generated::iipOzXsjK8DLq892',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5703,7 +6023,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::XGAARgfzK32MqR8B' => 
+    'generated::XmZHlQPIQfcA3nnW' => 
     array (
       'methods' => 
       array (
@@ -5724,7 +6044,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::XGAARgfzK32MqR8B',
+        'as' => 'generated::XmZHlQPIQfcA3nnW',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5778,7 +6098,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::2TeXLOID3vkuyYIX' => 
+    'generated::0J5xBh1r5fbXnoxr' => 
     array (
       'methods' => 
       array (
@@ -5799,7 +6119,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::2TeXLOID3vkuyYIX',
+        'as' => 'generated::0J5xBh1r5fbXnoxr',
       ),
       'fallback' => false,
       'defaults' => 
@@ -6119,7 +6439,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::7HMe4wN2sGtGacfN' => 
+    'generated::AzAiYIuYQUhJEwqB' => 
     array (
       'methods' => 
       array (
@@ -6140,7 +6460,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::7HMe4wN2sGtGacfN',
+        'as' => 'generated::AzAiYIuYQUhJEwqB',
       ),
       'fallback' => false,
       'defaults' => 
@@ -13568,6 +13888,548 @@ app('router')->setCompiledRoutes(
         'as' => 'projectmanage.projects.drawing-type.destroy',
         'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingTypeController@destroy',
         'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingTypeController@destroy',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.drawing-measurements.index' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/projects/{project}/drawing-measurements',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.drawing-measurements.index',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementsController@index',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementsController@index',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.drawing-measurements.create' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/projects/{project}/drawing-measurements/create',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.drawing-measurements.create',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementsController@create',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementsController@create',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.drawing-measurements.store' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'projectmanage/projects/{project}/drawing-measurements',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.drawing-measurements.store',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementsController@store',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementsController@store',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.drawing-measurements.show' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/projects/{project}/drawing-measurements/{drawing_measurement}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.drawing-measurements.show',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementsController@show',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementsController@show',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.drawing-measurements.edit' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/projects/{project}/drawing-measurements/{drawing_measurement}/edit',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.drawing-measurements.edit',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementsController@edit',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementsController@edit',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.drawing-measurements.update' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'PUT',
+        1 => 'PATCH',
+      ),
+      'uri' => 'projectmanage/projects/{project}/drawing-measurements/{drawing_measurement}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.drawing-measurements.update',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementsController@update',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementsController@update',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.drawing-measurements.destroy' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'DELETE',
+      ),
+      'uri' => 'projectmanage/projects/{project}/drawing-measurements/{drawing_measurement}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.drawing-measurements.destroy',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementsController@destroy',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementsController@destroy',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.measurement-types.index' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/projects/{project}/measurement-types',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.measurement-types.index',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\MeasurementTypeController@index',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\MeasurementTypeController@index',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.measurement-types.create' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/projects/{project}/measurement-types/create',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.measurement-types.create',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\MeasurementTypeController@create',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\MeasurementTypeController@create',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.measurement-types.store' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'projectmanage/projects/{project}/measurement-types',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.measurement-types.store',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\MeasurementTypeController@store',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\MeasurementTypeController@store',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.measurement-types.show' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/projects/{project}/measurement-types/{measurement_type}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.measurement-types.show',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\MeasurementTypeController@show',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\MeasurementTypeController@show',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.measurement-types.edit' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/projects/{project}/measurement-types/{measurement_type}/edit',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.measurement-types.edit',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\MeasurementTypeController@edit',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\MeasurementTypeController@edit',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.measurement-types.update' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'PUT',
+        1 => 'PATCH',
+      ),
+      'uri' => 'projectmanage/projects/{project}/measurement-types/{measurement_type}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.measurement-types.update',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\MeasurementTypeController@update',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\MeasurementTypeController@update',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.measurement-types.destroy' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'DELETE',
+      ),
+      'uri' => 'projectmanage/projects/{project}/measurement-types/{measurement_type}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.measurement-types.destroy',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\MeasurementTypeController@destroy',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\MeasurementTypeController@destroy',
         'namespace' => NULL,
         'prefix' => 'projectmanage/projects/{project}',
         'where' => 

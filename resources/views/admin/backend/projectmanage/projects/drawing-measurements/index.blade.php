@@ -5,7 +5,7 @@
 
         <div class="d-flex align-items-center justify-content-between gap-2 mb-4 flex-wrap">
             <div>
-                <h4 class="mb-1">Drawings Lists</h4>
+                <h4 class="mb-1">Drawings Measurements</h4>
 
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
@@ -14,7 +14,7 @@
                         </li>
 
                         <li class="breadcrumb-item active" aria-current="page">
-                            Drawing Lists
+                            Drawing Measurements
                         </li>
                     </ol>
                 </nav>
@@ -47,7 +47,7 @@
                                     Drawings
                                 </a>
 
-                                <a href="#" class="d-block p-2 fw-medium">
+                                <a href="{{ route('projectmanage.projects.drawing-measurements.index', $project->id) }}" class="d-block p-2 fw-medium">
                                     <i class="ti ti-list-check me-2"></i>
                                     Drawing Measurements
                                 </a>
@@ -101,18 +101,25 @@
                         <ul class="nav nav-tabs nav-bordered nav-bordered-primary">
 
                             <li class="nav-item me-3">
-                                <a href="{{ route('projectmanage.projects.drawings.index', $project->id) }}"
-                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.drawings.index') ? 'active' : '' }}">
+                                <a href="{{ route('projectmanage.projects.drawing-measurements.index', $project->id) }}"
+                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.drawing-measurements.index') ? 'active' : '' }}">
                                     <i class="ti ti-settings-cog me-2"></i>
-                                    Drawing Lists
+                                    Drawing Measurements Lists
                                 </a>
                             </li>
 
                             <li class="nav-item me-3">
-                                <a href="{{ route('projectmanage.projects.drawing-type.index', $project->id) }}"
-                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.drawing-type.index') ? 'active' : '' }}">
+                                <a href="{{ route('projectmanage.projects.measurement-types.index', $project->id) }}"
+                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.measurement-types.index') ? 'active' : '' }}">
                                     <i class="ti ti-device-laptop me-2"></i>
-                                    Drawing Types
+                                    Measurement Types
+                                </a>
+                            </li>
+                            <li class="nav-item me-3">
+                                <a href=""
+                                    class="nav-link p-2">
+                                    <i class="ti ti-device-laptop me-2"></i>
+                                    Work Types
                                 </a>
                             </li>
 
@@ -146,7 +153,7 @@
 
                         <div class="table-responsive">
 
-                            <table class="table table-bordered table-hover text-nowrap">
+                            {{-- <table class="table table-bordered table-hover text-nowrap">
 
                                 <thead>
                                     <tr>
@@ -227,7 +234,8 @@
                                                     method="POST" style="display:inline;">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button class="btn btn-danger btn-sm btn-icon deleteBtn">
+                                                    <button class="btn btn-danger btn-sm btn-icon deleteBtn"
+                                                        id="delBtn">
                                                         <i class="ti ti-trash"></i>
                                                     </button>
                                                 </form>
@@ -237,7 +245,7 @@
 
                                 </tbody>
 
-                            </table>
+                            </table> --}}
 
                         </div>
 
@@ -251,31 +259,4 @@
 
     </div>
 @endsection
-@push('scripts')
-    <script>
-        $(document).on('click', '.deleteBtn', function(event) {
-            event.preventDefault();
-            let form = $(this).closest('form');
-            Swal.fire({
-                title: "Are you sure?",
-                text: "Delete this data!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!"
 
-            }).then((result) => {
-
-                if (result.isConfirmed) {
-
-                    form.submit();
-
-                }
-
-            });
-
-
-        });
-    </script>
-@endpush
