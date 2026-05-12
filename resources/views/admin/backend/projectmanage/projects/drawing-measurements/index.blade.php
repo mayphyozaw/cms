@@ -116,9 +116,11 @@
                                     Measurement Types
                                 </a>
                             </li>
+
+
                             <li class="nav-item me-3">
-                                <a href=""
-                                    class="nav-link p-2">
+                                <a href="{{ route('projectmanage.projects.work-types.index', $project->id) }}"
+                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.work-types.index') ? 'active' : '' }}">
                                     <i class="ti ti-device-laptop me-2"></i>
                                     Work Types
                                 </a>
@@ -154,17 +156,18 @@
 
                         <div class="table-responsive">
 
-                            {{-- <table class="table table-bordered table-hover text-nowrap">
+                            <table class="table table-bordered table-hover text-nowrap" style="width:100%;">
 
                                 <thead>
                                     <tr>
                                         <th class="text-center" style="background-color: #9dd2e7">Date</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Project Code</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Client Name</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Drawing Name</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Drawing Type</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Revision No</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Scale Ratio</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Project</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Work Type</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Length</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Width</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Height</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Coats</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Quantity</th>
                                         <th class="text-center" style="background-color: #9dd2e7">
                                             Drawing Upload File
                                         </th>
@@ -177,76 +180,8 @@
                                     </tr>
                                 </thead>
 
-                                <tbody>
-
-                                    @foreach ($drawings as $drawing)
-                                        <tr>
-
-                                            <td class="text-center">
-                                                {{ $drawing->created_at }}
-                                            </td>
-
-                                            <td class="text-center">
-                                                P-{{ $project->client->project_code }}
-                                            </td>
-
-                                            <td class="text-center">
-                                                {{ $project->client->name }}
-                                            </td>
-
-                                            <td>
-                                                {{ $drawing->drawing_name }}
-                                            </td>
-
-                                            <td class="text-center">
-                                                {{ $drawing->drawingType->name }}
-                                            </td>
-
-                                            <td class="text-center">
-                                                {{ $drawing->revision_no }}
-                                            </td>
-
-                                            <td class="text-center">
-                                                {{ $drawing->scale_ratio }}
-                                            </td>
-
-                                            <td class="text-center">
-
-                                                <a href="{{ asset('upload/drawings/' . $drawing->drawing_file) }}"
-                                                    target="_blank">
-
-                                                    <span style="color:red">
-                                                        {{ $drawing->drawing_file_name }}
-                                                    </span>
-
-                                                </a>
-                                            </td>
-
-                                            <td class="text-center">
-                                                {{ $drawing->remarks }}
-                                            </td>
-                                            <td class="text-center">
-                                                <a class="btn btn-icon btn-sm btn-info"
-                                                    href="{{ route('projectmanage.projects.drawings.edit', [$project->id, $drawing->id]) }}">
-                                                    <i class="ti ti-edit"></i>
-                                                </a>
-                                                <form
-                                                    action="{{ route('projectmanage.projects.drawings.destroy', [$project->id, $drawing->id]) }}"
-                                                    method="POST" style="display:inline;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="btn btn-danger btn-sm btn-icon deleteBtn"
-                                                        id="delBtn">
-                                                        <i class="ti ti-trash"></i>
-                                                    </button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-
-                                </tbody>
-
-                            </table> --}}
+                                <tbody></tbody>
+                            </table>
 
                         </div>
 

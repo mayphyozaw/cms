@@ -94,6 +94,6 @@
         coats
 
         quantity
-        remarks
+        remark
 
 
