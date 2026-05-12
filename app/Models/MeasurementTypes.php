@@ -11,4 +11,9 @@ class MeasurementTypes extends Model
         'symbol',
         'formula',
     ];
+
+    public function workType()
+    {
+        return $this->belongsTo(WorkType::class);
+    }
 }

@@ -30,6 +30,13 @@
                             Measurement Types
                         </a>
                     </li>
+                    <li class="nav-item me-3">
+                        <a href="{{ route('projectmanage.projects.work-types.index', $project->id) }}"
+                            class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.work-types.index') ? 'active' : '' }}">
+                            <i class="ti ti-device-laptop me-2"></i>
+                            Work Types
+                        </a>
+                    </li>
 
                 </ul>
             </div> <!-- end card body -->

@@ -13,7 +13,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::4TAzTuFrSdBq4TkR',
+            '_route' => 'generated::jVZt79ZguJmQVi0x',
           ),
           1 => NULL,
           2 => 
@@ -33,7 +33,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::iipOzXsjK8DLq892',
+            '_route' => 'generated::iAnD4R78SmSLMZrq',
           ),
           1 => NULL,
           2 => 
@@ -110,7 +110,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::XmZHlQPIQfcA3nnW',
+            '_route' => 'generated::LnYfje0phCjpCDrA',
           ),
           1 => NULL,
           2 => 
@@ -146,7 +146,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::0J5xBh1r5fbXnoxr',
+            '_route' => 'generated::ePUajSTjaTh6rLyL',
           ),
           1 => NULL,
           2 => 
@@ -276,7 +276,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::AzAiYIuYQUhJEwqB',
+            '_route' => 'generated::sn9TzvbdvCl1TETW',
           ),
           1 => NULL,
           2 => 
@@ -2505,7 +2505,7 @@ app('router')->setCompiledRoutes(
     ),
     2 => 
     array (
-      0 => '{^(?|/res(?|et\\-password/([^/]++)(*:35)|ign\\-employees/([^/]++)(?|(*:68)|/edit(*:80)|(*:87)))|/verify\\-email/([^/]++)/([^/]++)(*:128)|/usermanage/(?|([^/]++)(?|/edit(*:167)|(*:175))|resign\\-submit(*:198)|block/([^/]++)(*:220)|unblock/([^/]++)(*:244)|toggle\\-block/([^/]++)(*:274))|/a(?|ccounting/bankmanage/([^/]++)(?|(*:320)|/edit(*:333)|(*:341))|ssign\\-(?|edit/([^/]++)(*:373)|update/([^/]++)(*:396)|destroy/([^/]++)(*:420)))|/c(?|lientmanage/(?|client/([^/]++)(?|(*:468)|/edit(*:481)|(*:489))|quot(?|otation\\-proposal/([^/]++)(?|(*:534)|/edit(*:547)|(*:555))|ation\\-proposal/([^/]++)(*:588))|d(?|e(?|tail/quotation\\-proposal/([^/]++)(*:638)|cline/quotation\\-proposal/([^/]++)(*:680))|raft/quotation\\-proposal/([^/]++)(*:722))|accept/quotation\\-proposal/([^/]++)(*:766))|onfiguration/(?|role/([^/]++)(?|(*:807)|/edit(*:820)|(*:828))|permission/([^/]++)(?|(*:859)|/edit(*:872)|(*:880))))|/warehouse/([^/]++)(?|(*:913)|/edit(*:926)|(*:934))|/s(?|to(?|ck\\-movements/([^/]++)(?|(*:978)|/edit(*:991)|(*:999))|rage/(.*)(*:1017))|uppliermanage/supplier/([^/]++)(?|(*:1061)|/edit(*:1075)|(*:1084)))|/bq/bq(?|category/([^/]++)(?|(*:1124)|/edit(*:1138)|(*:1147))|workscope/([^/]++)(?|(*:1178)|/edit(*:1192)|(*:1201)))|/engineer(?|s/(?|([^/]++)(?|(*:1240)|/edit(*:1254)|(*:1263))|assign(?|/([^/]++)(*:1291)|\\-project/([^/]++)(*:1318)))|\\-requests/pass_qty/([^/]++)(*:1357))|/qs\\-check\\-(?|create/([^/]++)(*:1397)|detail/([^/]++)(*:1421))|/logistics\\-check\\-create/([^/]++)(*:1465)|/material/(?|asset(?|s/([^/]++)(?|(*:1508)|/edit(*:1522)|(*:1531))|/damage/([^/]++)(*:1557))|detail/asset/([^/]++)(*:1588)|fixedassets/(?|([^/]++)(?|(*:1623)|/edit(*:1637)|(*:1646))|purchase(*:1664))|category/([^/]++)(?|(*:1694)|/edit(*:1708)|(*:1717))|variable(?|assets/([^/]++)(?|(*:1756)|/edit(*:1770)|(*:1779))|\\-category/([^/]++)(?|(*:1811)|/edit(*:1825)|(*:1834))))|/p(?|rojectmanage/(?|project(?|s/([^/]++)(?|(*:1890)|/(?|edit(*:1907)|drawing(?|s(?|(*:1930)|/(?|create(*:1949)|([^/]++)(?|(*:1969)|/edit(*:1983)|(*:1992)))|(*:2003))|\\-(?|type(?|(*:2025)|/(?|create(*:2044)|([^/]++)(?|(*:2064)|/edit(*:2078)|(*:2087)))|(*:2098))|measurements(?|(*:2123)|/(?|create(*:2142)|([^/]++)(?|(*:2162)|/edit(*:2176)|(*:2185)))|(*:2196))))|measurement\\-types(?|(*:2229)|/(?|create(*:2248)|([^/]++)(?|(*:2268)|/edit(*:2282)|(*:2291)))|(*:2302)))|(*:2313))|files/([^/]++)(?|/edit(*:2345)|(*:2354))|category/([^/]++)(?|(*:2384)|/edit(*:2398)|(*:2407)))|workscope/([^/]++)(?|(*:2439)|/edit(*:2453)|(*:2462)))|urchase(?|/(?|([^/]++)(?|(*:2498)|/edit(*:2512)|(*:2521))|payment/([^/]++)/history(*:2555))|_order/purchase/([^/]++)(*:2589))|ayment/purchase_payment/([^/]++)(?|(*:2634)))|/invoice/p(?|urchase/([^/]++)(*:2674)|ayment/([^/]++)(*:2698))|/detail/purchase/([^/]++)(*:2733))/?$}sDu',
+      0 => '{^(?|/res(?|et\\-password/([^/]++)(*:35)|ign\\-employees/([^/]++)(?|(*:68)|/edit(*:80)|(*:87)))|/verify\\-email/([^/]++)/([^/]++)(*:128)|/usermanage/(?|([^/]++)(?|/edit(*:167)|(*:175))|resign\\-submit(*:198)|block/([^/]++)(*:220)|unblock/([^/]++)(*:244)|toggle\\-block/([^/]++)(*:274))|/a(?|ccounting/bankmanage/([^/]++)(?|(*:320)|/edit(*:333)|(*:341))|ssign\\-(?|edit/([^/]++)(*:373)|update/([^/]++)(*:396)|destroy/([^/]++)(*:420)))|/c(?|lientmanage/(?|client/([^/]++)(?|(*:468)|/edit(*:481)|(*:489))|quot(?|otation\\-proposal/([^/]++)(?|(*:534)|/edit(*:547)|(*:555))|ation\\-proposal/([^/]++)(*:588))|d(?|e(?|tail/quotation\\-proposal/([^/]++)(*:638)|cline/quotation\\-proposal/([^/]++)(*:680))|raft/quotation\\-proposal/([^/]++)(*:722))|accept/quotation\\-proposal/([^/]++)(*:766))|onfiguration/(?|role/([^/]++)(?|(*:807)|/edit(*:820)|(*:828))|permission/([^/]++)(?|(*:859)|/edit(*:872)|(*:880))))|/warehouse/([^/]++)(?|(*:913)|/edit(*:926)|(*:934))|/s(?|to(?|ck\\-movements/([^/]++)(?|(*:978)|/edit(*:991)|(*:999))|rage/(.*)(*:1017))|uppliermanage/supplier/([^/]++)(?|(*:1061)|/edit(*:1075)|(*:1084)))|/bq/bq(?|category/([^/]++)(?|(*:1124)|/edit(*:1138)|(*:1147))|workscope/([^/]++)(?|(*:1178)|/edit(*:1192)|(*:1201)))|/engineer(?|s/(?|([^/]++)(?|(*:1240)|/edit(*:1254)|(*:1263))|assign(?|/([^/]++)(*:1291)|\\-project/([^/]++)(*:1318)))|\\-requests/pass_qty/([^/]++)(*:1357))|/qs\\-check\\-(?|create/([^/]++)(*:1397)|detail/([^/]++)(*:1421))|/logistics\\-check\\-create/([^/]++)(*:1465)|/material/(?|asset(?|s/([^/]++)(?|(*:1508)|/edit(*:1522)|(*:1531))|/damage/([^/]++)(*:1557))|detail/asset/([^/]++)(*:1588)|fixedassets/(?|([^/]++)(?|(*:1623)|/edit(*:1637)|(*:1646))|purchase(*:1664))|category/([^/]++)(?|(*:1694)|/edit(*:1708)|(*:1717))|variable(?|assets/([^/]++)(?|(*:1756)|/edit(*:1770)|(*:1779))|\\-category/([^/]++)(?|(*:1811)|/edit(*:1825)|(*:1834))))|/p(?|rojectmanage/(?|project(?|s/([^/]++)(?|(*:1890)|/(?|edit(*:1907)|drawing(?|s(?|(*:1930)|/(?|create(*:1949)|([^/]++)(?|(*:1969)|/edit(*:1983)|(*:1992)))|(*:2003))|\\-(?|type(?|(*:2025)|/(?|create(*:2044)|([^/]++)(?|(*:2064)|/edit(*:2078)|(*:2087)))|(*:2098))|measurements(?|(*:2123)|/(?|create(*:2142)|([^/]++)(?|(*:2162)|/edit(*:2176)|(*:2185)))|(*:2196))))|measurement\\-types(?|(*:2229)|/(?|create(*:2248)|([^/]++)(?|(*:2268)|/edit(*:2282)|(*:2291)))|(*:2302))|work\\-types(?|(*:2326)|/(?|create(*:2345)|([^/]++)(?|(*:2365)|/edit(*:2379)|(*:2388)))|(*:2399)))|(*:2410))|files/([^/]++)(?|/edit(*:2442)|(*:2451))|category/([^/]++)(?|(*:2481)|/edit(*:2495)|(*:2504)))|workscope/([^/]++)(?|(*:2536)|/edit(*:2550)|(*:2559)))|urchase(?|/(?|([^/]++)(?|(*:2595)|/edit(*:2609)|(*:2618))|payment/([^/]++)/history(*:2652))|_order/purchase/([^/]++)(*:2686))|ayment/purchase_payment/([^/]++)(?|(*:2731)))|/invoice/p(?|urchase/([^/]++)(*:2771)|ayment/([^/]++)(*:2795))|/detail/purchase/([^/]++)(*:2830))/?$}sDu',
     ),
     3 => 
     array (
@@ -5300,7 +5300,167 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2313 => 
+      2326 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.work-types.index',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      2345 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.work-types.create',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      2365 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.work-types.show',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+            1 => 'work_type',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      2379 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.work-types.edit',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+            1 => 'work_type',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      2388 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.work-types.update',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+            1 => 'work_type',
+          ),
+          2 => 
+          array (
+            'PUT' => 0,
+            'PATCH' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.work-types.destroy',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+            1 => 'work_type',
+          ),
+          2 => 
+          array (
+            'DELETE' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      2399 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.work-types.store',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+          ),
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      2410 => 
       array (
         0 => 
         array (
@@ -5342,7 +5502,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2345 => 
+      2442 => 
       array (
         0 => 
         array (
@@ -5365,7 +5525,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2354 => 
+      2451 => 
       array (
         0 => 
         array (
@@ -5388,7 +5548,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2384 => 
+      2481 => 
       array (
         0 => 
         array (
@@ -5411,7 +5571,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2398 => 
+      2495 => 
       array (
         0 => 
         array (
@@ -5434,7 +5594,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2407 => 
+      2504 => 
       array (
         0 => 
         array (
@@ -5476,7 +5636,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2439 => 
+      2536 => 
       array (
         0 => 
         array (
@@ -5499,7 +5659,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2453 => 
+      2550 => 
       array (
         0 => 
         array (
@@ -5522,7 +5682,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2462 => 
+      2559 => 
       array (
         0 => 
         array (
@@ -5564,7 +5724,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2498 => 
+      2595 => 
       array (
         0 => 
         array (
@@ -5587,7 +5747,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2512 => 
+      2609 => 
       array (
         0 => 
         array (
@@ -5610,7 +5770,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2521 => 
+      2618 => 
       array (
         0 => 
         array (
@@ -5652,7 +5812,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2555 => 
+      2652 => 
       array (
         0 => 
         array (
@@ -5675,7 +5835,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2589 => 
+      2686 => 
       array (
         0 => 
         array (
@@ -5698,7 +5858,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2634 => 
+      2731 => 
       array (
         0 => 
         array (
@@ -5740,7 +5900,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2674 => 
+      2771 => 
       array (
         0 => 
         array (
@@ -5763,7 +5923,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2698 => 
+      2795 => 
       array (
         0 => 
         array (
@@ -5786,7 +5946,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2733 => 
+      2830 => 
       array (
         0 => 
         array (
@@ -5824,7 +5984,7 @@ app('router')->setCompiledRoutes(
   ),
   'attributes' => 
   array (
-    'generated::4TAzTuFrSdBq4TkR' => 
+    'generated::jVZt79ZguJmQVi0x' => 
     array (
       'methods' => 
       array (
@@ -5853,7 +6013,7 @@ app('router')->setCompiledRoutes(
                         \'exception\' => $exception,
                     ]), status: $exception ? 500 : 200);
                 }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"000000000000059d0000000000000000";}}',
-        'as' => 'generated::4TAzTuFrSdBq4TkR',
+        'as' => 'generated::jVZt79ZguJmQVi0x',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5869,7 +6029,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::iipOzXsjK8DLq892' => 
+    'generated::iAnD4R78SmSLMZrq' => 
     array (
       'methods' => 
       array (
@@ -5891,7 +6051,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::iipOzXsjK8DLq892',
+        'as' => 'generated::iAnD4R78SmSLMZrq',
       ),
       'fallback' => false,
       'defaults' => 
@@ -6023,7 +6183,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::XmZHlQPIQfcA3nnW' => 
+    'generated::LnYfje0phCjpCDrA' => 
     array (
       'methods' => 
       array (
@@ -6044,7 +6204,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::XmZHlQPIQfcA3nnW',
+        'as' => 'generated::LnYfje0phCjpCDrA',
       ),
       'fallback' => false,
       'defaults' => 
@@ -6098,7 +6258,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::0J5xBh1r5fbXnoxr' => 
+    'generated::ePUajSTjaTh6rLyL' => 
     array (
       'methods' => 
       array (
@@ -6119,7 +6279,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::0J5xBh1r5fbXnoxr',
+        'as' => 'generated::ePUajSTjaTh6rLyL',
       ),
       'fallback' => false,
       'defaults' => 
@@ -6439,7 +6599,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::AzAiYIuYQUhJEwqB' => 
+    'generated::sn9TzvbdvCl1TETW' => 
     array (
       'methods' => 
       array (
@@ -6460,7 +6620,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::AzAiYIuYQUhJEwqB',
+        'as' => 'generated::sn9TzvbdvCl1TETW',
       ),
       'fallback' => false,
       'defaults' => 
@@ -14430,6 +14590,277 @@ app('router')->setCompiledRoutes(
         'as' => 'projectmanage.projects.measurement-types.destroy',
         'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\MeasurementTypeController@destroy',
         'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\MeasurementTypeController@destroy',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.work-types.index' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/projects/{project}/work-types',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.work-types.index',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\WorkTypeController@index',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\WorkTypeController@index',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.work-types.create' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/projects/{project}/work-types/create',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.work-types.create',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\WorkTypeController@create',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\WorkTypeController@create',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.work-types.store' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'projectmanage/projects/{project}/work-types',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.work-types.store',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\WorkTypeController@store',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\WorkTypeController@store',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.work-types.show' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/projects/{project}/work-types/{work_type}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.work-types.show',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\WorkTypeController@show',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\WorkTypeController@show',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.work-types.edit' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/projects/{project}/work-types/{work_type}/edit',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.work-types.edit',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\WorkTypeController@edit',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\WorkTypeController@edit',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.work-types.update' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'PUT',
+        1 => 'PATCH',
+      ),
+      'uri' => 'projectmanage/projects/{project}/work-types/{work_type}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.work-types.update',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\WorkTypeController@update',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\WorkTypeController@update',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.work-types.destroy' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'DELETE',
+      ),
+      'uri' => 'projectmanage/projects/{project}/work-types/{work_type}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.work-types.destroy',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\WorkTypeController@destroy',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\WorkTypeController@destroy',
         'namespace' => NULL,
         'prefix' => 'projectmanage/projects/{project}',
         'where' => 

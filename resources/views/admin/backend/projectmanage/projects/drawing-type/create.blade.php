@@ -20,7 +20,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('projectmanage.projects.drawing-type.store') }}" method="POST" id="submit-form"
+                    <form action="{{ route('projectmanage.projects.drawing-type.store', $project->id) }}" method="POST" id="submit-form"
                         enctype="multipart/form-data">
                         @csrf
                         <div class="row">

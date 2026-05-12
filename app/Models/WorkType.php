@@ -11,4 +11,10 @@ class WorkType extends Model
         'measurement_type_id',
         'unit',
     ];
+    public function measurementType()
+    {
+        return $this->belongsTo(MeasurementTypes::class, 'measurement_type_id');
+    }
+
+    
 }

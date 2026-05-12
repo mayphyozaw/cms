@@ -30,6 +30,13 @@
                             Measurement Types
                         </a>
                     </li>
+                    <li class="nav-item me-3">
+                        <a href="{{ route('projectmanage.projects.work-types.index', $project->id) }}"
+                            class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.work-types.index') ? 'active' : '' }}">
+                            <i class="ti ti-device-laptop me-2"></i>
+                            Work Types
+                        </a>
+                    </li>
 
                 </ul>
             </div> <!-- end card body -->
@@ -43,13 +50,13 @@
                     <div class="card-header">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h5 class="card-title mb-0">Measurement Type</h5>
+                                <h5 class="card-title mb-0">Work Type</h5>
                             </div>
 
                             <div class="col-auto">
                                 <x-create-button
-                                    href="{{ route('projectmanage.projects.measurement-types.create', $project->id) }}">
-                                    Create Measurement Type
+                                    href="{{ route('projectmanage.projects.work-types.create', $project->id) }}">
+                                    Create Work Type
                                 </x-create-button>
                             </div>
                         </div>
@@ -63,33 +70,40 @@
                                         <tr>
                                             <th class="text-center" style="background-color: #9dd2e7">#</th>
                                             <th class="text-center" style="background-color: #9dd2e7">Name</th>
-                                            <th class="text-center" style="background-color: #9dd2e7">Symbol</th>
-                                            <th class="text-center" style="background-color: #9dd2e7">Formula</th>
+                                            <th class="text-center" style="background-color: #9dd2e7">Unit</th>
+                                            <th class="text-center" style="background-color: #9dd2e7">Measurement Type</th>
                                             <th class="text-center" style="background-color: #9dd2e7">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($measurementTypes as $measurementType)
+                                        @foreach ($workTypes as $workType)
                                             <tr>
                                                 <td class="text-center">
                                                     {{ $loop->iteration }}
                                                 </td>
                                                 <td class="text-center">
-                                                    {{ $measurementType->name }}
+                                                    {{ $workType->name ?? '' }}
                                                 </td>
                                                 <td class="text-center">
-                                                    {{ $measurementType->symbol }}
+                                                    @if ($workType->unit == 'm3')
+                                                        m&sup3;
+                                                    @elseif($workType->unit == 'm2')
+                                                        m&sup2;
+                                                    @else
+                                                        {{ $workType->unit }}
+                                                    @endif
                                                 </td>
                                                 <td class="text-center">
-                                                    {{ $measurementType->formula }}
+
+                                                    {{ $workType->measurementType->name ?? '' }}
                                                 </td>
                                                 <td class="text-center">
                                                     <a class="btn btn-icon btn-sm btn-info"
-                                                        href="{{ route('projectmanage.projects.measurement-types.edit', [$project->id, $measurementType->id]) }}">
+                                                        href="{{ route('projectmanage.projects.work-types.edit', [$project->id, $workType->id]) }}">
                                                         <i class="ti ti-edit"></i>
                                                     </a>
                                                     <form
-                                                        action="{{ route('projectmanage.projects.measurement-types.destroy', [$project->id, $measurementType->id]) }}"
+                                                        action="{{ route('projectmanage.projects.work-types.destroy', [$project->id, $workType->id]) }}"
                                                         method="POST" style="display:inline;">
                                                         @csrf
                                                         @method('DELETE')
@@ -98,6 +112,7 @@
                                                         </button>
                                                     </form>
                                                 </td>
+                                                
                                             </tr>
                                         @endforeach
                                     </tbody>

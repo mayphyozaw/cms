@@ -47,7 +47,8 @@
                                     Drawings
                                 </a>
 
-                                <a href="{{ route('projectmanage.projects.drawing-measurements.index', $project->id) }}" class="d-block p-2 fw-medium">
+                                <a href="{{ route('projectmanage.projects.drawing-measurements.index', $project->id) }}" 
+                                    class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.drawing-measurements.*') ? 'active' : '' }}">
                                     <i class="ti ti-list-check me-2"></i>
                                     Drawing Measurements
                                 </a>

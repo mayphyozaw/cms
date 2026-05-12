@@ -17,7 +17,7 @@
             <div class="card-body pb-0 pt-0 px-2">
                 <ul class="nav nav-tabs nav-bordered nav-bordered-primary">
                     <li class="nav-item me-3">
-                        <a href="{{ route('projectmanage.projects.drawings.index', $project->id) }}"
+                        <a href="{{ route('projectmanage.projects.drawings.index',$project->id) }}"
                             class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.drawings.index') ? 'active' : '' }}">
                             <i class="ti ti-settings-cog me-2"></i>
                             Drawing Lists

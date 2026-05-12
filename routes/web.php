@@ -34,6 +34,7 @@ use App\Http\Controllers\Backend\ProjectManagement\ProjectCategoryController;
 use App\Http\Controllers\Backend\ProjectManagement\ProjectController;
 use App\Http\Controllers\Backend\ProjectManagement\ProjectFilesController;
 use App\Http\Controllers\Backend\ProjectManagement\WorkscopeController;
+use App\Http\Controllers\Backend\ProjectManagement\WorkTypeController;
 use App\Http\Controllers\Backend\PurchaseController;
 use App\Http\Controllers\Backend\QSTeamCheck\QSTeamCheckController;
 use App\Http\Controllers\Backend\StockManagement\StockController;
@@ -212,6 +213,7 @@ Route::middleware('auth', 'notBlocked')->group(function () {
                 Route::resource('drawing-type', DrawingTypeController::class);
                 Route::resource('drawing-measurements', DrawingMeasurementsController::class);
                 Route::resource('measurement-types', MeasurementTypeController::class);
+                Route::resource('work-types', WorkTypeController::class);
         });
 
         // Route::resource('drawings', DrawingController::class);
