@@ -25,17 +25,20 @@
                             <h5 class="mb-3 fs-17">Project Details</h5>
                             <div class="list-group list-group-flush settings-sidebar">
 
-                                <a href="{{ route('projectmanage.projects.show',$project->id) }}" class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.show') ? 'active' : '' }}">
+                                <a href="{{ route('projectmanage.projects.show',$project->id) }}" 
+                                    class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.show') ? 'active' : '' }}">
                                     <i class="ti ti-settings-cog me-2"></i>
                                     Project Information
                                 </a>
-                                <a href="{{route('projectmanage.projects.drawings.index', $project->id)}}" class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.drawings.*') ? 'active' : '' }}">
+                                <a href="{{route('projectmanage.projects.drawings.index', $project->id)}}" 
+                                    class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.drawings.*') ? 'active' : '' }}">
                                     <i class="ti ti-device-laptop me-2"></i>
                                     Drawings
                                 </a>
 
-                                <a href="{{route('projectmanage.projects.drawing-measurements.index', $project->id)}}" class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.drawing-measurements.*') ? 'active' : '' }}">
-                                    <i class="ti ti-device-laptop me-2"></i>
+                                <a href="{{route('projectmanage.projects.drawing-measurements.index', $project->id)}}" 
+                                    class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.drawing-measurements.*') ? 'active' : '' }}">
+                                    <i class="ti ti-list-check me-2"></i>
                                     Drawing Measurements
                                 </a>
                                 

@@ -109,4 +109,9 @@ class Project extends Model
     {
         return $this->hasMany(Drawings::class);
     }
+
+    public function workTypes()
+    {
+        return $this->hasMany(WorkType::class);
+    }
 }

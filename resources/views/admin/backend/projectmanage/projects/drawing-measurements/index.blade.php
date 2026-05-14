@@ -10,7 +10,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item">
-                            <a href="#">Project</a>
+                            <a href="{{ route('projectmanage.projects.index') }}">Project</a>
                         </li>
 
                         <li class="breadcrumb-item active" aria-current="page">
@@ -47,7 +47,7 @@
                                     Drawings
                                 </a>
 
-                                <a href="{{ route('projectmanage.projects.drawing-measurements.index', $project->id) }}" 
+                                <a href="{{ route('projectmanage.projects.drawing-measurements.index', $project->id) }}"
                                     class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.drawing-measurements.*') ? 'active' : '' }}">
                                     <i class="ti ti-list-check me-2"></i>
                                     Drawing Measurements
@@ -139,12 +139,13 @@
                         <div class="row align-items-center">
 
                             <div class="col">
-                                <h5 class="card-title mb-0">Drawing Lists</h5>
+                                <h5 class="card-title mb-0">Drawing Measurement Lists</h5>
                             </div>
 
                             <div class="col-auto">
-                                <x-create-button href="{{ route('projectmanage.projects.drawings.create', $project->id) }}">
-                                    Create Drawings
+                                <x-create-button
+                                    href="{{ route('projectmanage.projects.drawing-measurements.create', $project->id) }}">
+                                    Create Drawing Measurements
                                 </x-create-button>
                             </div>
 
@@ -166,11 +167,10 @@
                                         <th class="text-center" style="background-color: #9dd2e7">Length</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Width</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Height</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Item Qty</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Unit Weight</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Coats</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Quantity</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">
-                                            Drawing Upload File
-                                        </th>
                                         <th class="text-center" style="background-color: #9dd2e7">
                                             Remark
                                         </th>
@@ -180,7 +180,61 @@
                                     </tr>
                                 </thead>
 
-                                <tbody></tbody>
+                                <tbody>
+                                    @foreach ($drawingMeasurementAllData as $drawingMeasurementData)
+                                        <tr>
+                                            <td class="text-center"> 
+                                                {{$drawingMeasurementData->created_at}}
+                                            </td>
+                                            <td class="text-center"> 
+                                                P- {{ $project->client->project_code }}
+                                            </td>
+                                            <td class="text-center"> 
+                                                {{$drawingMeasurementData->workType->name}}
+                                            </td>
+                                            <td class="text-center"> 
+                                                {{$drawingMeasurementData->length}}
+                                            </td>
+                                            <td class="text-center"> 
+                                                {{$drawingMeasurementData->width}}
+                                            </td>
+                                            <td class="text-center"> 
+                                                {{$drawingMeasurementData->height}}
+                                            </td>
+                                            <td class="text-center"> 
+                                                {{$drawingMeasurementData->qty}}
+                                            </td>
+                                            <td class="text-center"> 
+                                                {{$drawingMeasurementData->unit_weight}}
+                                            </td>
+                                            <td class="text-center"> 
+                                                {{$drawingMeasurementData->coats}}
+                                            </td>
+                                            <td class="text-center"> 
+                                                {{$drawingMeasurementData->quantity}}
+                                            </td>
+                                            <td class="text-center"> 
+                                                {{$drawingMeasurementData->remark}}
+                                            </td>
+                                            <td class="text-center">
+                                                <a class="btn btn-icon btn-sm btn-info"
+                                                    href="{{ route('projectmanage.projects.drawing-measurements.edit', [$project->id, $drawingMeasurementData->id]) }}">
+                                                    <i class="ti ti-edit"></i>
+                                                </a>
+                                                <form
+                                                    action="{{ route('projectmanage.projects.drawing-measurements.destroy', [$project->id, $drawingMeasurementData->id]) }}"
+                                                    method="POST" style="display:inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-danger btn-sm btn-icon deleteBtn">
+                                                        <i class="ti ti-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+
+                                </tbody>
                             </table>
 
                         </div>
@@ -195,4 +249,3 @@
 
     </div>
 @endsection
-

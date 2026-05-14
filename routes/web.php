@@ -207,14 +207,20 @@ Route::middleware('auth', 'notBlocked')->group(function () {
         Route::get('/project', [ProjectController::class, 'getProject'])->name('projects_get');
         Route::get('/load/projects', [ProjectController::class, 'load_projects'])->name('load_projects');
         Route::get('project-datatable', [ProjectController::class, 'projectDataTable'])->name('project-datatable');
-            Route::prefix('/projects/{project}')
-             ->name('projects.')->group(function () {
+        
+        Route::prefix('/projects/{project}')
+            ->name('projects.')->group(function () {
                 Route::resource('drawings', DrawingController::class);
                 Route::resource('drawing-type', DrawingTypeController::class);
                 Route::resource('drawing-measurements', DrawingMeasurementsController::class);
                 Route::resource('measurement-types', MeasurementTypeController::class);
                 Route::resource('work-types', WorkTypeController::class);
-        });
+            });
+            
+            Route::get('drawings_get', [DrawingMeasurementsController::class, 'getDrawing'])->name('drawings_get');
+            Route::get('worktype_get', [DrawingMeasurementsController::class, 'getWorkType'])->name('worktype_get');
+
+            
 
         // Route::resource('drawings', DrawingController::class);
         // Route::resource('drawing-type', DrawingTypeController::class);

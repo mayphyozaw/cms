@@ -16,4 +16,10 @@ class MeasurementTypes extends Model
     {
         return $this->belongsTo(WorkType::class);
     }
+
+    public function drawingMeasurement()
+    {
+        return $this->belongsTo(DrawingMeasurement::class);
+    }
+
 }

@@ -21,8 +21,14 @@ class Drawings extends Model
     {
         return $this->belongsTo(Project::class);
     }
+
     public function drawingType()
     {
         return $this->belongsTo(DrawingTypes::class, 'drawing_type_id');
+    }
+
+    public function drawingMeasurement()
+    {
+        return $this->hasMany(DrawingMeasurement::class);
     }
 }

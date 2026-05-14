@@ -87,13 +87,16 @@
         project_id
         drawing_id
         work_type_id
+        measurement_type_id
 
         length
         width
         height
-        coats
+
+        qty
+        unit_weight
 
         quantity
-        remark
+        unit
 
-
+        remarks
