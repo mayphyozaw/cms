@@ -66,7 +66,7 @@ class DrawingMeasurementsController extends Controller
             $quantity = $length * $height;
         }
 
-        // Length
+        // Running Foot
         elseif ($measurementType->symbol == 'L') {
             $quantity = $length;
         }
@@ -74,14 +74,14 @@ class DrawingMeasurementsController extends Controller
         // Weight
         elseif ($measurementType->symbol == 'W') {
 
-            $quantity = $request->unit_weight * $request->qty;
+            $quantity = $unit_weight * $qty;
         }
         //Coats
-        elseif ($measurementType->symbol == 'Coats') {
+        elseif ($measurementType->symbol == 'C') {
 
-            $quantity = $request->length * $request->width * $request->coats;
+            $quantity = $length * $height * $coats;
         }
-        $drawing_measurements = DrawingMeasurement::create([
+        DrawingMeasurement::create([
             'project_id' => $project->id,
             'drawing_id' => $request->drawing_id,
             'work_type_id' => $request->work_type_id,
@@ -91,7 +91,7 @@ class DrawingMeasurementsController extends Controller
             'height' => $height,
             'qty' => $qty,
             'unit_weight' => $unit_weight,
-            'coats' => $unit_weight,
+            'coats' => $coats,
             'quantity' => $quantity,
             'unit' => $request->unit,
             'remarks' => $request->remarks,
@@ -159,9 +159,9 @@ class DrawingMeasurementsController extends Controller
         }
 
         // Paint / Coats
-        elseif ($measurementType->symbol == 'Coats') {
+        elseif ($measurementType->symbol == 'C') {
 
-            $quantity = $request->length * $request->width * $request->coats;
+            $quantity = $request->length * $request->height * $request->coats;
         }
         $drawing_measurement->update([
             'project_id' => $project->id,
@@ -185,6 +185,19 @@ class DrawingMeasurementsController extends Controller
             ]);
     }
 
+    public function destroy(Project $project, $id)
+    {
+        $drawing_measurement = DrawingMeasurement::findOrFail($id);
+
+        $drawing_measurement->delete();
+
+        return redirect()
+            ->route('projectmanage.projects.drawing-measurements.index', $project->id)
+            ->with([
+                'message' => 'Successfully deleted',
+                'alert-type' => 'success'
+            ]);
+    }
 
     public function getDrawing(Request $request)
     {

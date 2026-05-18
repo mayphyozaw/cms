@@ -53,7 +53,8 @@
                                     Drawing Measurements
                                 </a>
 
-                                <a href="#" class="d-block p-2 fw-medium">
+                                 <a href="{{ route('projectmanage.projects.site-measurements.index', $project->id) }}"
+                                    class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.site-measurements.*') ? 'active' : '' }}">
                                     <i class="ti ti-list-check me-2"></i>
                                     Site Measurements
                                 </a>
@@ -249,3 +250,31 @@
 
     </div>
 @endsection
+@push('scripts')
+    <script>
+        $(document).on('click', '.deleteBtn', function(event) {
+            event.preventDefault();
+            let form = $(this).closest('form');
+            Swal.fire({
+                title: "Are you sure?",
+                text: "Delete this data!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+
+            }).then((result) => {
+
+                if (result.isConfirmed) {
+
+                    form.submit();
+
+                }
+
+            });
+
+
+        });
+    </script>
+@endpush

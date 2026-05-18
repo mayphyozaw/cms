@@ -49,18 +49,29 @@
                                         m&sup3;
                                     </option>
 
+                                    <option value="ft3" {{ $workType->unit == 'ft3' ? 'selected' : '' }}>
+                                        ft&sup3;
+                                    </option>
+
                                     <option value="m2" {{ $workType->unit == 'm2' ? 'selected' : '' }}>
                                         m&sup2;
                                     </option>
 
-                                    <option value="kg" {{ $workType->unit == 'kg' ? 'selected' : '' }}>
-                                        kg
+                                    <option value="ft2" {{ $workType->unit == 'ft2' ? 'selected' : '' }}>
+                                        ft&sup2;
                                     </option>
 
                                     <option value="m" {{ $workType->unit == 'm' ? 'selected' : '' }}>
                                         m
                                     </option>
 
+                                    <option value="rft" {{ $workType->unit == 'rft' ? 'selected' : '' }}>
+                                        Rft
+                                    </option>
+
+                                    <option value="kg" {{ $workType->unit == 'kg' ? 'selected' : '' }}>
+                                        kg
+                                    </option>
                                 </select>
                             </div>
 

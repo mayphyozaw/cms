@@ -50,7 +50,6 @@ class DrawingTypeController extends Controller
 
     public function update(Request $request, Project $project, $id)
     {
-        
         $drawing_type = DrawingTypes::findOrFail($id);
         $drawing_type->update([
             'name' => $request->name,

@@ -342,7 +342,7 @@ class QuotationProposalController extends Controller
 
         $mpdf->WriteHTML($html);
 
-        return $mpdf->Output('report.pdf', 'D');
+        return $mpdf->Output('QuotationProposal.pdf', 'D');
     }
 
     // public function quotationProposal($id)

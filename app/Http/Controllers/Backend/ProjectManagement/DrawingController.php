@@ -36,7 +36,6 @@ class DrawingController extends Controller
         $request->validate([
             'drawing_name' => 'required',
             'drawing_type_id' => 'required',
-            'revision_no' => 'required',
             'scale_ratio' => 'required',
             'drawing_file' => 'nullable|mimes:pdf,dwg,jpg,jpeg,png|max:20480',
         ]);
@@ -50,12 +49,15 @@ class DrawingController extends Controller
             $drawing_upload_file_name = uniqid() . '_' . time() . '.' . $drawing_upload_file->getClientOriginalExtension();
             $drawing_upload_file->move(public_path('/upload/drawings'), $drawing_upload_file_name);
 
+            $drawingNo = 'P-00' . date('ymd');
+            $revisionNo = $drawingNo . 'R1';
 
             Drawings::create([
                 'project_id' => $project->id,
                 'drawing_type_id' => $request->drawing_type_id,
                 'drawing_name' => $request->drawing_name,
-                'revision_no' => $request->revision_no,
+                'drawing_no' => $drawingNo,
+                'revision_no' => $revisionNo,
                 'scale_ratio' => $request->scale_ratio,
                 'drawing_file' => $drawing_upload_file_name,
                 'drawing_file_name' => $original_file_name,
@@ -100,11 +102,21 @@ class DrawingController extends Controller
             $drawing_upload_file->move(public_path('/upload/drawings'), $drawing_upload_file_name);
         }
 
+        $drawingNo = $drawing->drawing_no;
+        $lastRevNo = (int) str_replace(
+            $drawingNo . 'R',
+            '',
+            $drawing->revision_no
+        );
+        $nextRev = $lastRevNo + 1;
+        $revisionNo = $drawingNo . 'R' . $nextRev;
+        
         $drawing->update([
             'project_id' => $project->id,
             'drawing_type_id' => $request->drawing_type_id,
             'drawing_name' => $request->drawing_name,
-            'revision_no' => $request->revision_no,
+            'drawing_no' => $drawingNo,
+            'revision_no' => $revisionNo,
             'scale_ratio' => $request->scale_ratio,
             'drawing_file' => $drawing_upload_file_name,
             'drawing_file_name' => $original_file_name,
@@ -128,7 +140,7 @@ class DrawingController extends Controller
         }
 
         $drawing->delete();
-        
+
         return redirect()
             ->route('projectmanage.projects.drawings.index', $project->id)
             ->with([
@@ -140,6 +152,4 @@ class DrawingController extends Controller
         //     'message' => 'Drawing deleted successfully!'
         // ], 200);
     }
-
-    
 }

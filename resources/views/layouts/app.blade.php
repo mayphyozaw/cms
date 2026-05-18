@@ -4,7 +4,7 @@
 <head>
 
     {{-- <meta charset="utf-8"> --}}
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>CMS</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -56,8 +56,6 @@
         .note-editor .note-editable li {
             display: list-item !important;
         }
-
-        
     </style>
 </head>
 
@@ -76,12 +74,8 @@
 
 
         <div class="page-wrapper">
-            <div class="content pb-0">
-                <div class="row">
-                    @yield('content')
-                    @include('admin.body.footer')
-                </div>
-            </div>
+            @yield('content')
+            @include('admin.body.footer')
         </div>
     </div>
 
@@ -161,7 +155,7 @@
             time_24hr: true
         });
     </script>
-    
+
     @stack('scripts')
 
 </body>

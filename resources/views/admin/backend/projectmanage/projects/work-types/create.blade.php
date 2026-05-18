@@ -44,10 +44,12 @@
                                 <select name="unit" id="unit" class="form-control form-select">
                                     <option value="">Select Unit</option>
                                     <option value="m3"> m&sup3;</option>
+                                    <option value="ft3"> ft&sup3;</option>
                                     <option value="m2"> m&sup2;</option>
-                                    <option value="kg"> kg</option>
+                                    <option value="ft2"> ft&sup2;</option>
                                     <option value="m"> m</option>
-
+                                    <option value="rft"> Rft</option>
+                                    <option value="kg"> kg</option>
                                 </select>
                             </div>
 

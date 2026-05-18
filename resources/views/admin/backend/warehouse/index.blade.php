@@ -33,8 +33,9 @@
             <div class="card-body">
                 <div class="table-search d-flex align-items-center">
                     <div class="search-input">
-                        <a href="javascript:void(0);" class="btn-searchset"><i
-                                class="isax isax-search-normal fs-12"></i></a>
+                        <a href="javascript:void(0);" class="btn-searchset">
+                            <i class="isax isax-search-normal fs-12"></i>
+                        </a>
                     </div>
                 </div>
                 <div class="table-responsive">

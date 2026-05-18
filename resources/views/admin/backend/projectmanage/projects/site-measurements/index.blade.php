@@ -5,16 +5,16 @@
 
         <div class="d-flex align-items-center justify-content-between gap-2 mb-4 flex-wrap">
             <div>
-                <h4 class="mb-1">Drawings Lists</h4>
+                <h4 class="mb-1">Site Measurements Lists</h4>
 
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item">
-                            <a href="#">Project</a>
+                            <a href="{{ route('projectmanage.projects.index') }}">Project</a>
                         </li>
 
                         <li class="breadcrumb-item active" aria-current="page">
-                            Drawing Lists
+                            Site Measurements Lists
                         </li>
                     </ol>
                 </nav>
@@ -53,12 +53,13 @@
                                     Drawing Measurements
                                 </a>
 
-                                 <a href="{{ route('projectmanage.projects.site-measurements.index', $project->id) }}"
+                                <a href="{{ route('projectmanage.projects.site-measurements.index', $project->id) }}"
                                     class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.site-measurements.*') ? 'active' : '' }}">
                                     <i class="ti ti-list-check me-2"></i>
                                     Site Measurements
                                 </a>
 
+                                
                                 <a href="#" class="d-block p-2 fw-medium">
                                     <i class="ti ti-moneybag me-2"></i>
                                     BOQ
@@ -103,18 +104,18 @@
                         <ul class="nav nav-tabs nav-bordered nav-bordered-primary">
 
                             <li class="nav-item me-3">
-                                <a href="{{ route('projectmanage.projects.drawings.index', $project->id) }}"
-                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.drawings.index') ? 'active' : '' }}">
+                                <a href="{{ route('projectmanage.projects.site-measurements.index', $project->id) }}"
+                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.site-measurements.index') ? 'active' : '' }}">
                                     <i class="ti ti-settings-cog me-2"></i>
-                                    Drawing Lists
+                                    Site Measurement Lists
                                 </a>
                             </li>
 
                             <li class="nav-item me-3">
-                                <a href="{{ route('projectmanage.projects.drawing-type.index', $project->id) }}"
-                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.drawing-type.index') ? 'active' : '' }}">
+                                <a href="{{ route('projectmanage.projects.measurement-categories.index', $project->id) }}"
+                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.measurement-categories.index') ? 'active' : '' }}">
                                     <i class="ti ti-device-laptop me-2"></i>
-                                    Drawing Types
+                                    Measurement Categories
                                 </a>
                             </li>
 
@@ -131,13 +132,13 @@
                         <div class="row align-items-center">
 
                             <div class="col">
-                                <h5 class="card-title mb-0">Drawing Lists</h5>
+                                <h5 class="card-title mb-0">Site Measurement Lists</h5>
                             </div>
 
                             <div class="col-auto">
                                 <x-create-button
-                                    href="{{ route('projectmanage.projects.drawings.create', $project->id) }}">
-                                    Create Drawings
+                                    href="{{ route('projectmanage.projects.site-measurements.create', $project->id) }}">
+                                    Create Site Measurement
                                 </x-create-button>
                             </div>
 
@@ -157,108 +158,79 @@
 
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered align-middle w-100 nowrap" id="drawingTableId">
+                            <table class="table table-bordered align-middle w-100 nowrap" id="siteMeasurementsTable">
                                 <thead>
                                     <tr>
-                                        <th class="text-center" style="background-color: #9dd2e7">
-                                            Action
-                                        </th>
                                         <th class="text-center" style="background-color: #9dd2e7">Date</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Project Code</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Client Name</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Project</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Drawing Name</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Drawing Type</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Revision No</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Scale Ratio</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">
-                                            Drawing Upload File
-                                        </th>
-                                        <th class="text-center" style="background-color: #9dd2e7">
-                                            Remark
-                                        </th>
-                                        <th class="text-center" style="background-color: #9dd2e7">
-                                            Action
-                                        </th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Common Categories</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Length</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Width</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Height</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Unit Weight</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Unit</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Quantity</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Rate</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Total</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Remarks</th>
+                                        <th class="text-center" style="background-color: #9dd2e7"> Action</th>
                                     </tr>
                                 </thead>
+
                                 <tbody>
-
-                                    @foreach ($drawings as $drawing)
+                                    @foreach ($siteMeasurementAllData as $siteMeasurementData)
                                         <tr>
-                                            <td class="text-center">
-                                                <a class="btn btn-sm btn-info"
-                                                    href="{{ route('projectmanage.projects.drawings.edit', [$project->id, $drawing->id]) }}">
-                                                    <small>Edit</small>
-                                                </a>
-                                                {{-- <form
-                                                    action="{{ route('projectmanage.projects.drawings.destroy', [$project->id, $drawing->id]) }}"
-                                                    method="POST" style="display:inline;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="btn btn-danger btn-sm btn-icon deleteBtn">
-                                                        <i class="ti ti-trash"></i>
-                                                    </button>
-                                                </form> --}}
+                                            <td class="text-center"> 
+                                                {{$siteMeasurementData->created_at}}
+                                            </td>
+                                            <td class="text-center"> 
+                                                P- {{ $project->client->project_code }}
+                                            </td>
+                                            <td class="text-center"> 
+                                                {{$siteMeasurementData->drawing->drawing_name}}
+                                            </td>
+                                            <td class="text-center"> 
+                                                {{$siteMeasurementData->measurementCategory->category_name}}
+                                            </td>
+                                            <td class="text-center"> 
+                                                {{$siteMeasurementData->length}}
+                                            </td>
+                                            <td class="text-center"> 
+                                                {{$siteMeasurementData->width}}
+                                            </td>
+                                            <td class="text-center"> 
+                                                {{$siteMeasurementData->height}}
+                                            </td>
+                                            
+                                            <td class="text-center"> 
+                                                {{$siteMeasurementData->unit_weight}}
                                             </td>
 
-                                            <td class="text-center">
-                                                {{ $drawing->created_at }}
+                                            <td class="text-center"> 
+                                                {{$siteMeasurementData->measurementCategory->unit}}
                                             </td>
 
-                                            <td class="text-center">
-                                                P-{{ $project->client->project_code }}
+                                            <td class="text-center"> 
+                                                {{$siteMeasurementData->quantity}}
+                                            </td>
+                                            <td class="text-center"> 
+                                                {{$siteMeasurementData->rate}}
+                                            </td>
+                                            <td class="text-center"> 
+                                                {{$siteMeasurementData->total}}
                                             </td>
 
-                                            <td class="text-center">
-                                                {{ $project->client->name }}
-                                            </td>
-
-                                            <td>
-                                                {{ $drawing->drawing_name }}
-                                            </td>
-
-                                            <td class="text-center">
-                                                {{ $drawing->drawingType->name }}
-                                            </td>
-
-                                            <td class="text-center">
-                                                {{ $drawing->revision_no }}
-                                            </td>
-
-                                            <td class="text-center">
-                                                @if ($drawing->scale_ratio == '1_1')
-                                                    1" = 1'
-                                                @elseif($drawing->scale_ratio == '1_2')
-                                                    1" = 2'
-                                                @elseif($drawing->scale_ratio == '1_50')
-                                                    1:50
-                                                @elseif($drawing->scale_ratio == '1_100')
-                                                    1:100
-                                                @endif
-                                            </td>
-
-                                            <td class="text-center">
-
-                                                <a href="{{ asset('upload/drawings/' . $drawing->drawing_file) }}"
-                                                    target="_blank">
-
-                                                    <span style="color:red">
-                                                        {{ $drawing->drawing_file_name }}
-                                                    </span>
-
-                                                </a>
-                                            </td>
-
-                                            <td class="text-center">
-                                                {{ $drawing->remarks }}
+                                            <td class="text-center"> 
+                                                {{$siteMeasurementData->remarks}}
                                             </td>
                                             <td class="text-center">
                                                 <a class="btn btn-icon btn-sm btn-info"
-                                                    href="{{ route('projectmanage.projects.drawings.edit', [$project->id, $drawing->id]) }}">
+                                                    href="{{ route('projectmanage.projects.site-measurements.edit', [$project->id, $siteMeasurementData->id]) }}">
                                                     <i class="ti ti-edit"></i>
                                                 </a>
                                                 <form
-                                                    action="{{ route('projectmanage.projects.drawings.destroy', [$project->id, $drawing->id]) }}"
+                                                    action="{{ route('projectmanage.projects.drawing-measurements.destroy', [$project->id, $siteMeasurementData->id]) }}"
                                                     method="POST" style="display:inline;">
                                                     @csrf
                                                     @method('DELETE')
@@ -271,6 +243,7 @@
                                     @endforeach
 
                                 </tbody>
+                               
                             </table>
                         </div>
                     </div>
@@ -309,7 +282,7 @@
 
         });
 
-        $('#drawingTableId').DataTable({
+        $('#siteMeasurementsTable').DataTable({
             responsive: true,
             autoWidth: false
         });

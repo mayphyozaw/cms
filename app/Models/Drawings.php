@@ -9,8 +9,8 @@ class Drawings extends Model
     protected $fillable = [
         'project_id',
         'drawing_type_id',
+        'drawing_no',
         'drawing_name',
-        'drawing_code',
         'revision_no',
         'scale_ratio',
         'remarks',

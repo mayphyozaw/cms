@@ -29,10 +29,12 @@ use App\Http\Controllers\Backend\Payment\PaymentController;
 use App\Http\Controllers\Backend\ProjectManagement\DrawingController;
 use App\Http\Controllers\Backend\ProjectManagement\DrawingMeasurementsController;
 use App\Http\Controllers\Backend\ProjectManagement\DrawingTypeController;
+use App\Http\Controllers\Backend\ProjectManagement\MeasurementCategoriesController;
 use App\Http\Controllers\Backend\ProjectManagement\MeasurementTypeController;
 use App\Http\Controllers\Backend\ProjectManagement\ProjectCategoryController;
 use App\Http\Controllers\Backend\ProjectManagement\ProjectController;
 use App\Http\Controllers\Backend\ProjectManagement\ProjectFilesController;
+use App\Http\Controllers\Backend\ProjectManagement\SiteMeasurementController;
 use App\Http\Controllers\Backend\ProjectManagement\WorkscopeController;
 use App\Http\Controllers\Backend\ProjectManagement\WorkTypeController;
 use App\Http\Controllers\Backend\PurchaseController;
@@ -46,6 +48,7 @@ use App\Http\Controllers\Backend\UserManagement\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\UserManagement\Resign;
 use App\Http\Controllers\Backend\UserManagement\ResignController;
+use App\Models\MeasurementCategories;
 use App\Models\ProjectCategory;
 use Illuminate\Support\Facades\Route;
 
@@ -215,6 +218,8 @@ Route::middleware('auth', 'notBlocked')->group(function () {
                 Route::resource('drawing-measurements', DrawingMeasurementsController::class);
                 Route::resource('measurement-types', MeasurementTypeController::class);
                 Route::resource('work-types', WorkTypeController::class);
+                Route::resource('measurement-categories', MeasurementCategoriesController::class);
+                Route::resource('site-measurements', SiteMeasurementController::class);
             });
             
             Route::get('drawings_get', [DrawingMeasurementsController::class, 'getDrawing'])->name('drawings_get');

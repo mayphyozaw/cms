@@ -87,8 +87,14 @@
                                                 <td class="text-center">
                                                     @if ($workType->unit == 'm3')
                                                         m&sup3;
+                                                    @elseif($workType->unit == 'ft3')
+                                                        ft&sup3;
                                                     @elseif($workType->unit == 'm2')
                                                         m&sup2;
+                                                    @elseif($workType->unit == 'ft2')
+                                                        ft&sup2;
+                                                    @elseif($workType->unit == 'rft')
+                                                        Rft
                                                     @else
                                                         {{ $workType->unit }}
                                                     @endif

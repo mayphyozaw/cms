@@ -108,11 +108,20 @@
                                         <option value="m3" {{ $drawing_measurement->unit == 'm3' ? 'selected' : '' }}>
                                             m&sup3;
                                         </option>
+                                        <option value="ft3" {{ $drawing_measurement->unit == 'ft3' ? 'selected' : '' }}>
+                                            ft&sup3;
+                                        </option>
                                         <option value="m2" {{ $drawing_measurement->unit == 'm2' ? 'selected' : '' }}>
                                             m&sup2;
                                         </option>
+                                        <option value="ft2" {{ $drawing_measurement->unit == 'ft2' ? 'selected' : '' }}>
+                                            ft&sup2;
+                                        </option>
                                         <option value="m" {{ $drawing_measurement->unit == 'm' ? 'selected' : '' }}>
                                             m
+                                        </option>
+                                        <option value="rft" {{ $drawing_measurement->unit == 'rft' ? 'selected' : '' }}>
+                                            Rft
                                         </option>
                                         <option value="kg" {{ $drawing_measurement->unit == 'kg' ? 'selected' : '' }}>
                                             kg
@@ -127,7 +136,7 @@
                                     <select name="measurement_type_id" id="measurement_type_id" class="form-select">
                                         <option value="">Select Measurement Type</option>
                                         @foreach ($measurement_types as $measurement_type)
-                                            <option value="{{ $measurement_type->id }}"
+                                            <option value="{{ $measurement_type->id }}" data-symbol="{{ $measurement_type->symbol }}"
                                                 {{ $drawing_measurement->measurement_type_id == $measurement_type->id ? 'selected' : '' }}>
                                                 {{ $measurement_type->name }}
                                             </option>
@@ -345,11 +354,14 @@
 
 
             document.addEventListener("input", function(e) {
-
+                
                 if (
                     e.target.classList.contains("length") ||
                     e.target.classList.contains("width") ||
-                    e.target.classList.contains("height")
+                    e.target.classList.contains("height") ||
+                    e.target.classList.contains("unit_weight") ||
+                    e.target.classList.contains("qty") ||
+                    e.target.classList.contains("coats")
                 ) {
 
                     let length =
@@ -361,7 +373,35 @@
                     let height =
                         parseFloat(document.querySelector(".height").value) || 0;
 
-                    let quantity = length * width * height;
+                    let unit_weight =
+                        parseFloat(document.querySelector(".unit_weight").value) || 0;
+
+                    let qty =
+                        parseFloat(document.querySelector(".qty").value) || 0;
+
+                    let coats =
+                        parseFloat(document.querySelector(".coats").value) || 0;
+
+
+                    // let measurement_type = $('#measurement_type_id option:selected').text();
+
+                    let quantity = 0;
+
+                    let symbol = $('#measurement_type_id option:selected').data('symbol');
+
+                    console.log(symbol);
+
+                    if (symbol == 'V') {
+                        quantity = length * width * height;
+                    } else if (symbol == 'A') {
+                        quantity = length * height;
+                    } else if (symbol == 'L') {
+                        quantity = length;
+                    } else if (symbol == 'W') {
+                        quantity = unit_weight * qty;
+                    } else if (symbol == 'C') {
+                        quantity = length * height * coats;
+                    }
 
                     $('#quantity').val(quantity);
                 }

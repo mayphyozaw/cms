@@ -45,7 +45,7 @@ class ClientController extends Controller
             'phone' => $request->phone,
             'address' => $request->address,
             'client_type' => $request->client_type,
-            'client_code' => $request->prefix_code . $request->client_code, //$this->clientService->generateCode($request->client_code),
+            'client_code' => $request->prefix_code . $request->client_code, 
             'contact_person' => $request->contact_person,
             'project_code' => $request->project_code,
             'site_location' => $request->site_location,

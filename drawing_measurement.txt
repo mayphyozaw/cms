@@ -1,5 +1,6 @@
 1. drawing_table
     id
+    drawing_no
     project_id
     drawing_type_id
     drawing_name

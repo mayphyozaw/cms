@@ -72,24 +72,40 @@
                                 </select>
                             </div>
 
-
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-6 mb-3" hidden>
                                 <label for="form-label fs-14" class="form-label fs-14">
                                     Revision No :
                                 </label>
                                 <div class="input-group">
-                                    <input type="text" name="revision_no" class="form-control"
-                                        value="{{ $drawing->revision_no }}">
+                                    <input type="text" class="form-control" value="Auto Generate" readonly>
                                 </div>
                             </div>
+
                             <div class="col-md-6 mb-3">
                                 <label for="form-label fs-14" class="form-label fs-14">
                                     Scale Ratio :
                                 </label>
-                                <div class="input-group">
-                                    <input type="text" name="scale_ratio" class="form-control"
-                                        value="{{ $drawing->scale_ratio }}">
-                                </div>
+                                <select name="scale_ratio" class="form-control form-select">
+                                    <option value="">Select Scale Ratio</option>
+                                    
+                                    <option value="1_1" {{ $drawing->scale_ratio == "1_1" ? 'selected' : '' }}>
+                                        1" = 1'
+                                    </option>
+                                    <option value="1_2" {{ $drawing->scale_ratio == "1_2" ? 'selected' : '' }}>
+                                        1" = 2'
+                                    </option>
+                                    <option value="1:50" {{ $drawing->scale_ratio == "1:50" ? 'selected' : '' }}>
+                                        1:50
+                                    </option>
+                                    <option value="1:100" {{ $drawing->scale_ratio == "1:100" ? 'selected' : '' }}>
+                                        1:100
+                                    </option>
+                                    
+                                   
+                                </select>
+                                <small class="text-muted">
+                                    <span style="color:red">Choose drawing scale ratio (e.g. 1" = 1' means 1 inch on drawing = 1 foot actual)</span>
+                                </small>
                             </div>
                             <div class="col-md-6 mb-3">
 

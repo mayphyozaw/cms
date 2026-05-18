@@ -11,18 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('drawing_measurements', function (Blueprint $table) {
+        Schema::create('site_measurements', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('project_id')->nullable();
             $table->unsignedBigInteger('drawing_id')->nullable();
-            $table->unsignedBigInteger('work_type_id')->nullable();
-
+            $table->unsignedBigInteger('category_id')->nullable();
+            
             $table->string('length')->nullable();
             $table->string('width')->nullable();
             $table->string('height')->nullable();
-            $table->string('coats')->nullable();
-            $table->string('quantity')->nullable();
-            $table->string('remark')->nullable();
+            
+            $table->string('unit')->nullable();
+            
+            
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('drawing_measurements');
+        Schema::dropIfExists('site_measurements');
     }
 };

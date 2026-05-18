@@ -24,7 +24,8 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{route('projectmanage.projects.drawings.store', $project->id)}}" method="POST" id="submit-form" enctype="multipart/form-data">
+                    <form action="{{ route('projectmanage.projects.drawings.store', $project->id) }}" method="POST"
+                        id="submit-form" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -80,23 +81,28 @@
                                 </div>
                             </div> --}}
 
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-6 mb-3" hidden>
                                 <label for="form-label fs-14" class="form-label fs-14">
                                     Revision No :
                                 </label>
                                 <div class="input-group">
-                                    <input type="text" name="revision_no" class="form-control"
-                                        @error('revision_no') is-invalid @enderror placeholder="Enter Name" required>
+                                    <input type="text" class="form-control" value="Auto Generate" readonly>
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="form-label fs-14" class="form-label fs-14">
                                     Scale Ratio :
                                 </label>
-                                <div class="input-group">
-                                    <input type="text" name="scale_ratio" class="form-control"
-                                        @error('scale_ratio') is-invalid @enderror placeholder="Enter Name" required>
-                                </div>
+                                <select name="scale_ratio" class="form-control form-select">
+                                    <option value="">Select Scale Ratio</option>
+                                    <option value='1_1'>1" = 1'</option>
+                                    <option value='1_2'>1" = 2'</option>
+                                    <option value='1:50'>1:50</option>
+                                    <option value='1:100'>1:100</option>
+                                </select>
+                                <small class="text-muted">
+                                    <span style="color:red">Choose drawing scale ratio (e.g. 1" = 1' means 1 inch on drawing = 1 foot actual)</span>
+                                </small>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="drawing_file" class="form-label">
@@ -117,8 +123,8 @@
 
                         <button class="btn btn-primary" type="submit">Submit</button>
                     </form>
-                    </div>
-                
+                </div>
+
             </div>
         </div>
     </div>
