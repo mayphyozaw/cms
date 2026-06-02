@@ -22,7 +22,8 @@
                 <div class="card mb-3 mb-xl-0">
                     <div class="card-body">
                         <div class="settings-sidebar">
-                            <h5 class="mb-3 fs-17">Project Details</h5>
+                            <h6 class="mb-3 fs-15" style="color: red;">  P - {{ $project->client->project_code }}</h6>
+                             
                             <div class="list-group list-group-flush settings-sidebar">
 
                                 <a href="{{ route('projectmanage.projects.show',$project->id) }}" 

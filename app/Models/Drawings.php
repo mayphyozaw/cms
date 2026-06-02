@@ -29,6 +29,7 @@ class Drawings extends Model
 
     public function drawingMeasurement()
     {
-        return $this->hasMany(DrawingMeasurement::class);
+        return $this->hasMany(DrawingMeasurement::class,'drawing_id',
+        'id');
     }
 }

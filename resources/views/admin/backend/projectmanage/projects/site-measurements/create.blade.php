@@ -18,7 +18,80 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-12">
+
+            {{-- Sidebar --}}
+            <div class="col-xl-3 col-lg-12 theiaStickySidebar">
+
+                <div class="card mb-3 mb-xl-0">
+                    <div class="card-body">
+
+                        <div class="settings-sidebar">
+
+                            <h5 class="mb-3 fs-17">Project Details</h5>
+
+                            <div class="list-group list-group-flush settings-sidebar">
+
+                                <a href="{{ route('projectmanage.projects.show', $project->id) }}"
+                                    class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.show') ? 'active' : '' }}">
+                                    <i class="ti ti-settings-cog me-2"></i>
+                                    Project Information
+                                </a>
+
+                                <a href="{{ route('projectmanage.projects.drawings.index', $project->id) }}"
+                                    class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.drawings.*') ? 'active' : '' }}">
+                                    <i class="ti ti-device-laptop me-2"></i>
+                                    Drawings
+                                </a>
+
+                                <a href="{{ route('projectmanage.projects.drawing-measurements.index', $project->id) }}"
+                                    class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.drawing-measurements.*') ? 'active' : '' }}">
+                                    <i class="ti ti-list-check me-2"></i>
+                                    Drawing Measurements
+                                </a>
+
+                                <a href="{{ route('projectmanage.projects.site-measurements.index', $project->id) }}"
+                                    class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.site-measurements.*') ? 'active' : '' }}">
+                                    <i class="ti ti-list-check me-2"></i>
+                                    Site Measurements
+                                </a>
+
+
+                                <a href="#" class="d-block p-2 fw-medium">
+                                    <i class="ti ti-moneybag me-2"></i>
+                                    BOQ
+                                </a>
+
+                                <a href="#" class="d-block p-2 fw-medium">
+                                    <i class="ti ti-list-check me-2"></i>
+                                    Proposal
+                                </a>
+
+                                <a href="#" class="d-block p-2 fw-medium">
+                                    <i class="ti ti-list-check me-2"></i>
+                                    Variation Orders
+                                </a>
+
+                                <a href="#" class="d-block p-2 fw-medium">
+                                    <i class="ti ti-list-check me-2"></i>
+                                    Billing
+                                </a>
+
+                                <a href="#" class="d-block p-2 fw-medium">
+                                    <i class="ti ti-list-check me-2"></i>
+                                    Report
+                                </a>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <div class="col-xl-9 col-lg-12">
                 <div class="card border-0 rounded-0">
                     <div class="card-header">
                         <h5 class="card-title">Site Measurement Information</h5>
@@ -47,51 +120,76 @@
                                     </div>
                                 </div>
 
-                                <div class="col-12 col-lg-6 mb-3">
+                                <div class="col-12 col-lg-3 mb-3" hidden>
                                     <label class="form-label">
-                                        Drawing: <span style="color:red;">*</span>
+                                        Drawing Name:
                                     </label>
 
-                                    <select name="drawing_id" id="drawing_id" class="form-select">
-                                        <option value="">Select Drawing</option>
+                                    <input type="hidden" id="drawing_id" name="drawing_id" class="form-control" readonly>
+                                </div>
 
-                                        @foreach ($drawings as $drawing)
-                                            <option value="{{ $drawing->id }}">
-                                                {{ $drawing->drawing_name }}
+
+                                <div class="col-12 col-lg-3 mb-3">
+                                    <label class="form-label">
+                                        Drawing Name: <span style="color:red;">*</span>
+                                    </label>
+
+                                    <select name="drawing_measurement_id" id="drawing_measurement_id" class="form-select">
+                                        <option value="">Select Drawing Measurement</option>
+
+                                        @foreach ($drawingMeasurements as $drawingMeasurement)
+                                            <option value="{{ $drawingMeasurement->id }}"
+                                                data-category-id="{{ $drawingMeasurement->measurement_categories_id }}"
+                                                data-drawing-id="{{ $drawingMeasurement->drawing_id }}"
+                                                data-length="{{ $drawingMeasurement->length }}"
+                                                data-width="{{ $drawingMeasurement->width }}"
+                                                data-height="{{ $drawingMeasurement->height }}"
+                                                data-unit-weight="{{ $drawingMeasurement->unit_weight }}"
+                                                data-quantity="{{ $drawingMeasurement->quantity }}"
+                                                data-unit="{{ $drawingMeasurement->unit }}"
+                                                data-formula="{{ $drawingMeasurement->measurementCategory?->formula_types }}"
+                                                data-symbol="{{ $drawingMeasurement->measurementCategory?->symbol }}"
+                                                data-cal-formula="{{ $drawingMeasurement->measurementCategory?->formulas }}">
+
+                                                {{ $drawingMeasurement->drawing->drawing_name }}
                                             </option>
                                         @endforeach
                                     </select>
                                 </div>
 
-                                <div class="col-12 col-lg-6 mb-3">
+                                <div class="col-12 col-lg-3 mb-3" hidden>
                                     <label class="form-label">
-                                        Measurement Category: <span style="color:red;">*</span>
+                                        Measurement Categories:
+                                    </label>
+
+                                    <input type="hidden" id="category_id" name="category_id" class="form-control" readonly>
+                                </div>
+
+                                <div class="col-12 col-lg-3 mb-3">
+                                    <label class="form-label">
+                                        Measurement Categories:
                                     </label>
 
                                     <select name="category_id" id="category_id" class="form-select">
                                         <option value="">Select Measurement Category</option>
 
                                         @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}"
-                                                data-formula="{{ $category->formula_types }}"
-                                                data-symbol="{{ $category->symbol }}" data-unit="{{ $category->unit }}">
-
+                                            <option value="{{ $category->id }}">
                                                 {{ $category->category_name }}
-
                                             </option>
                                         @endforeach
                                     </select>
                                 </div>
 
-                                <div class="col-12 col-lg-4 mb-3">
+                                <div class="col-12 col-lg-3 mb-3" hidden>
                                     <label class="form-label">
                                         Formula Type:
                                     </label>
 
-                                    <input type="text" id="formula_type" class="form-control" readonly>
+                                    <input type="hidden" id="formula_type" class="form-control" readonly>
                                 </div>
 
-                                <div class="col-12 col-lg-4 mb-3">
+                                <div class="col-12 col-lg-3 mb-3" hidden>
                                     <label class="form-label">
                                         Symbol:
                                     </label>
@@ -99,13 +197,22 @@
                                     <input type="text" id="symbol" class="form-control" readonly>
                                 </div>
 
-                                <div class="col-md-4 col-sm-12">
+                                <div class="col-12 col-lg-3 mb-3">
+                                    <label class="form-label">
+                                        Formula:
+                                    </label>
+
+                                    <input type="text" id="cal_formula" class="form-control" readonly>
+                                </div>
+
+                                <div class="col-md-4 col-lg-3 col-sm-12">
                                     <div class="mb-3">
                                         <label class="form-label">
                                             Unit:
                                         </label>
 
-                                        <input type="text" name="unit" id="unit" class="form-control" readonly>
+                                        <input type="text" name="unit" id="unit" class="form-control"
+                                            readonly>
                                     </div>
                                 </div>
 
@@ -171,7 +278,11 @@
                                         <input type="text" name="rate" class="form-control rate"
                                             @error('rate') is-invalid @enderror>
                                     </div>
+
                                 </div>
+
+
+
 
                                 <div class="col-12 col-lg-4 mb-3">
                                     <label for="form-label fs-14" class="form-label fs-14">
@@ -197,6 +308,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 @endsection
@@ -253,38 +365,56 @@
             });
 
 
-            $('#category_id').on('change', function() {
+            $('#drawing_measurement_id').change(function() {
 
                 let selected = $(this).find(':selected');
 
-                let formula = selected.data('formula') || '';
-                let symbol = selected.data('symbol') || '';
-                let unit = selected.data('unit') || '';
+                $('#drawing_id').val(
+                    selected.data('drawing-id')
+                );
 
-                $('#formula_type').val(formula);
-                $('#symbol').val(symbol);
-                $('#unit').val(unit);
+                $('#category_id').val(
+                    selected.data('drawing-id')
+                );
 
-                calculateQuantity();
+                // $('#category_id').val(
+                //     selected.data('category-id')
+                // ).trigger('change');
+
+                console.log('category_id');
+
+                $('.length').val(selected.data('length'));
+                $('.width').val(selected.data('width'));
+                $('.height').val(selected.data('height'));
+                $('.unit_weight').val(selected.data('unit-weight'));
+
+                $('#quantity').val(selected.data('quantity'));
+                $('#unit').val(selected.data('unit'));
+
+                $('#formula_type').val(selected.data('formula'));
+                $('#symbol').val(selected.data('symbol'));
+                $('#cal_formula').val(selected.data('cal-formula'));
+
+                calculateTotal();
             });
 
-            $('.length, .width, .height, .unit_weight, .rate').on('input', function() {
 
-                calculateQuantity();
 
+            $('.length, .width, .height, .unit_weight, .coats, .rate').on('input', function() {
+                calculateTotal();
             });
 
-            function calculateQuantity() {
-
+            function calculateTotal() {
                 let length = parseFloat($('.length').val()) || 0;
                 let width = parseFloat($('.width').val()) || 0;
                 let height = parseFloat($('.height').val()) || 0;
+                let coats = parseFloat($('.coats').val()) || 0;
                 let unit_weight = parseFloat($('.unit_weight').val()) || 0;
+
+                let quantity = parseFloat($('#quantity').val()) || 0;
                 let rate = parseFloat($('.rate').val()) || 0;
 
                 let formula = $('#formula_type').val();
-
-                let quantity = 0;
 
                 if (formula === 'volume') {
 
@@ -298,6 +428,10 @@
 
                     quantity = length * height;
 
+                } else if (formula === 'painting_area') {
+
+                    quantity = 2 * (length + width) * height;
+
                 } else if (formula === 'linear') {
 
                     quantity = length;
@@ -306,15 +440,18 @@
 
                     quantity = length * unit_weight;
 
+                }else if (formula === 'coats_area') {
+
+                    quantity = length * height * coats;
+
                 }
 
-                $('#quantity').val(quantity.toFixed(2));
+                 $('#quantity').val(quantity.toFixed(2));
 
                 let total = quantity * rate;
 
                 $('#total').val(total.toFixed(2));
             }
-
 
 
         });

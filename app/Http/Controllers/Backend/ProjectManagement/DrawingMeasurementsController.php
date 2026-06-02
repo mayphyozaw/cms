@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\DrawingMeasurement;
 use App\Models\Drawings;
 use App\Models\DrawingTypes;
+use App\Models\MeasurementCategories;
 use App\Models\MeasurementTypes;
 use App\Models\Project;
 use App\Models\WorkType;
@@ -17,7 +18,8 @@ class DrawingMeasurementsController extends Controller
     {
         $project->load('client');
         $drawingMeasurementAllData = DrawingMeasurement::with(['workType.measurementType', 'drawing.drawingType'])
-            ->get();
+        ->orderBy('created_at', 'desc')    
+        ->get();
         return view('admin.backend.projectmanage.projects.drawing-measurements.index', compact('project', 'drawingMeasurementAllData'));
     }
 
@@ -26,20 +28,23 @@ class DrawingMeasurementsController extends Controller
         $project->load('client');
         $drawings = Drawings::all();
         $drawing_types = DrawingTypes::all();
-        $work_types = WorkType::all();
-        $measurement_types = MeasurementTypes::all();
-        return view('admin.backend.projectmanage.projects.drawing-measurements.create', compact('project', 'drawings', 'drawing_types', 'work_types', 'measurement_types'));
+        // $work_types = WorkType::all();
+        // $measurement_types = MeasurementTypes::all();
+        $categories = MeasurementCategories::all();
+        return view('admin.backend.projectmanage.projects.drawing-measurements.create', compact('project', 'drawings', 'drawing_types', 'categories'));
     }
 
     public function store(Request $request, Project $project)
     {
+        
         $request->validate([
-            'length' => 'required',
-            'width' => 'required',
-            'height' => 'required',
-            'qty' => 'required',
-            'unit_weight' => 'required',
-            'coats' => 'required',
+            'length'      => 'required|numeric|min:0',
+            'width'       => 'required|numeric|min:0',
+            'height'      => 'required|numeric|min:0',
+            'unit_weight' => 'required|numeric|min:0',
+            'coats'        => 'required|numeric|min:0',
+            'drawing_id'  => 'required|exists:drawings,id',
+            'measurement_categories_id' => 'required|exists:measurement_categories,id',
         ]);
 
         $length = $request->length ?? 0;
@@ -51,40 +56,46 @@ class DrawingMeasurementsController extends Controller
 
         $quantity = 0;
 
-        $measurementType = MeasurementTypes::findOrFail(
-            $request->measurement_type_id
+        $category = MeasurementCategories::findOrFail(
+            $request->measurement_categories_id
         );
 
-        // Volume
-        if ($measurementType->symbol == 'V') {
-            $quantity = $length * $width * $height;
+        switch ($category->formula_types) {
+
+            case 'volume':
+                $quantity = $length * $width * $height;
+                break;
+
+            case 'area':
+                $quantity = $length * $width;
+                break;
+
+            case 'wall_area':
+                $quantity = $length * $height;
+                break;
+
+            case 'coats_area':
+                $quantity = $length * $height * $coats;
+                break;
+
+
+            case 'painting_area':
+                $quantity = 2 * ($length + $width) * $height;
+                break;
+
+            case 'steel_linear':
+            case 'steel_handrail_linear':
+                $quantity = $length;
+                break;
+
+            case 'weight':
+                $quantity = $length * $unit_weight;
+                break;
         }
-
-        // Area
-        elseif ($measurementType->symbol == 'A') {
-
-            $quantity = $length * $height;
-        }
-
-        // Running Foot
-        elseif ($measurementType->symbol == 'L') {
-            $quantity = $length;
-        }
-
-        // Weight
-        elseif ($measurementType->symbol == 'W') {
-
-            $quantity = $unit_weight * $qty;
-        }
-        //Coats
-        elseif ($measurementType->symbol == 'C') {
-
-            $quantity = $length * $height * $coats;
-        }
-        DrawingMeasurement::create([
+         DrawingMeasurement::create([
             'project_id' => $project->id,
+            'measurement_categories_id' => $request->measurement_categories_id,
             'drawing_id' => $request->drawing_id,
-            'work_type_id' => $request->work_type_id,
             'measurement_type_id' => $request->measurement_type_id,
             'length' => $length,
             'width' => $width,
@@ -94,10 +105,9 @@ class DrawingMeasurementsController extends Controller
             'coats' => $coats,
             'quantity' => $quantity,
             'unit' => $request->unit,
-            'remarks' => $request->remarks,
+            'remark' => $request->remark,
         ]);
 
-        // return $drawing_measurements;
 
         return redirect()
             ->route('projectmanage.projects.drawing-measurements.index', $project->id)
@@ -109,20 +119,16 @@ class DrawingMeasurementsController extends Controller
 
     public function edit(Project $project, $id)
     {
-        // $drawing_measurement = DrawingMeasurement::findOrFail($id);
-        // $drawing_measurement = DrawingMeasurement::with([
-        //     'measurementType',
-        //     'drawing',
-        //     'workType'
-        // ])->findOrFail($id);
+        
         $drawing_measurement = DrawingMeasurement::with('measurementType')
             ->findOrFail($id);
         $drawings = Drawings::all();
         $drawing_types = DrawingTypes::all();
         $work_types = WorkType::all();
         $measurement_types = MeasurementTypes::all();
+        $categories = MeasurementCategories::all();
         $project->load('client');
-        return view('admin.backend.projectmanage.projects.drawing-measurements.edit', compact('project', 'drawing_measurement', 'drawings', 'drawing_types', 'work_types', 'measurement_types'));
+        return view('admin.backend.projectmanage.projects.drawing-measurements.edit', compact('project', 'drawing_measurement', 'drawings', 'drawing_types', 'work_types', 'measurement_types','categories'));
     }
 
     public function update(Request $request, Project $project, $id)
@@ -130,43 +136,47 @@ class DrawingMeasurementsController extends Controller
         $drawing_measurement = DrawingMeasurement::findOrFail($id);
         $quantity = 0;
 
-        $measurementType = MeasurementTypes::findOrFail(
-            $request->measurement_type_id
+        $category = MeasurementCategories::findOrFail(
+            $request->measurement_categories_id
         );
 
-        // Volume
-        if ($measurementType->symbol == 'V') {
+        switch ($category->formula_types) {
 
-            $quantity = $request->length * $request->width * $request->height;
-        }
+            case 'volume':
+                $quantity = $request->length * $request->width * $request->height;
+                break;
 
-        // Area
-        elseif ($measurementType->symbol == 'A') {
+            case 'area':
+                $quantity = $request->length * $request->width;
+                break;
 
-            $quantity = $request->length * $request->height;
-        }
+            case 'wall_area':
+                $quantity = $request->length * $request->height;
+                break;
 
-        // Length
-        elseif ($measurementType->symbol == 'L') {
+            case 'coats_area':
+                $quantity = $request->length * $request->height * $request->coats;
+                break;
 
-            $quantity = $request->length;
-        }
 
-        // Weight
-        elseif ($measurementType->symbol == 'W') {
+            case 'painting_area':
+                $quantity = 2 * ($request->length + $request->width) * $request->height;
+                break;
 
-            $quantity = $request->unit_weight * $request->qty;
-        }
+            case 'steel_linear':
+            case 'steel_handrail_linear':
+                $quantity = $request->length;
+                break;
 
-        // Paint / Coats
-        elseif ($measurementType->symbol == 'C') {
-
-            $quantity = $request->length * $request->height * $request->coats;
+            case 'weight':
+                $quantity = $request->length * $request->unit_weight;
+                break;
         }
         $drawing_measurement->update([
             'project_id' => $project->id,
             'drawing_id' => $request->drawing_id,
             'work_type_id' => $request->work_type_id,
+            'measurement_categories_id' => $request->measurement_categories_id,
             'measurement_type_id' => $request->measurement_type_id,
             'length' => $request->length,
             'width' => $request->width,
@@ -199,6 +209,26 @@ class DrawingMeasurementsController extends Controller
             ]);
     }
 
+    public function getDrawingMeasurement(Request $request)
+    {
+        $drawingMeasurement = DrawingMeasurement::find($request->drawing_measurement_id);
+
+        if (!$drawingMeasurement) {
+            return response()->json(['error' => 'Drawing Measurement not found'], 404);
+        }
+
+        return response()->json([
+        'id'           => $drawingMeasurement->id,
+        'length'       => $drawingMeasurement->length,
+        'width'        => $drawingMeasurement->width,
+        'height'       => $drawingMeasurement->height,
+        'unit_weight'  => $drawingMeasurement->unit_weight,
+        'quantity'     => $drawingMeasurement->quantity,
+        'unit'         => $drawingMeasurement->unit,
+        'formula'      => $drawingMeasurement->formula,
+    ]);
+    }
+
     public function getDrawing(Request $request)
     {
         $drawing = Drawings::find($request->drawing_id);
@@ -208,6 +238,7 @@ class DrawingMeasurementsController extends Controller
         }
 
         return response()->json([
+            
             'drawing_type_id' => $drawing->drawing_type_id
         ]);
     }

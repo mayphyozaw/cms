@@ -1,0 +1,54 @@
+VERY IMPORTANT CONCEPT
+Drawing Measurement = Planned Quantity
+Site Measurement = Executed Quantity
+
+
+STEP 1 — Project Structure
+Project
+Client
+Site
+Floors
+Units
+
+
+STEP 2 — Drawing Management
+Upload PDF
+Revision
+Version control
+Drawing categories
+
+STEP 3 — Site Measurement
+Actual dimensions
+Room measurements
+Wall measurements
+Column/beam/slab
+
+STEP 4 — Drawing Measurement
+Scale ratio
+PDF measurement
+Area calculation
+Quantity extraction
+
+
+STEP 5 — BOQ System
+BOQ Categories
+BOQ Items
+Unit
+Quantity
+Rate
+Amount
+
+
+STEP 6 — Estimation / Proposal
+Quotation
+Material cost
+Labor cost
+Overhead
+Profit margin
+
+
+STEP 7 — Site Progress
+Daily report
+Progress %
+Progress billing
+Claim management

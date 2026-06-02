@@ -45,7 +45,7 @@
                                         Formula Type:
                                     </label>
 
-                                    <select name="formula_types" class="form-control form-select" id="formula_type">
+                                    <select name="formula_types" class="form-control form-select" id="formulaTypes">
                                         <option value="">Select Formula Type</option>
 
                                         <option value="volume">
@@ -57,11 +57,23 @@
                                         </option>
 
                                         <option value="wall_area">
-                                            Wall Area
+                                            Wall-Area
                                         </option>
 
-                                        <option value="linear">
-                                            Linear
+                                        <option value="coats_area">
+                                            Coat Area
+                                        </option>
+
+                                        <option value="painting_area">
+                                            Wall Area Painting
+                                        </option>
+
+                                        <option value="steel_linear">
+                                            Steel Linear
+                                        </option>
+
+                                        <option value="steel_handrail_linear">
+                                            Steel Handrail Linear
                                         </option>
 
                                         <option value="weight">
@@ -84,32 +96,25 @@
                                     <input type="text" name="symbol" id="symbol" class="form-control" readonly>
                                 </div>
                             </div>
-
                             <div class="col-md-3 col-sm-12">
                                 <div class="mb-3">
-                                    <label class="form-label">
-                                        Unit: <span style="color:red;">*</span>
+                                    <label class="form-label fs-14">
+                                        Formula:
                                     </label>
-                                    <select name="unit" id="unit" class="form-select">
 
-                                        <option value="">Select Unit</option>
-
-                                        <!-- Volume -->
-                                        <option value="m3">m³</option>
-                                        <option value="ft3">ft³</option>
-                                        {{-- Ara --}}
-                                        <option value="m2">m²</option>
-                                        <option value="sqft">sqft</option>
-                                        <!-- Length -->
-                                        <option value="m">m</option>
-                                        <option value="rft">Rft</option>
-                                        <!-- Weight -->
-                                        <option value="ton">ton</option>
-                                        <option value="kg">kg</option>
-                                        <option value="nos">Nos</option>
-                                    </select>
+                                    <input type="text" name="formulas" id="formulas" class="form-control" readonly>
                                 </div>
                             </div>
+                            <div class="col-md-3 col-sm-12">
+                                <div class="mb-3">
+                                    <label class="form-label fs-14">
+                                        Unit:
+                                    </label>
+                                    <input type="text" name="unit" id="category_unit" class="form-control" readonly>
+                                </div>
+                            </div>
+
+                            
                         </div>
                     </div>
                     <div class="d-flex gap-2 align-items-center justify-content-start mb-0">
@@ -125,23 +130,74 @@
 @endsection
 @push('scripts')
     <script>
-        document.getElementById('formula_type').addEventListener('change', function() {
+        document.addEventListener('DOMContentLoaded', function() {
 
-            let symbol = '';
+            document.getElementById('formulaTypes')
+                .addEventListener('change', function() {
 
-            if (this.value === 'volume') {
-                symbol = 'V = L * W * H';
-            } else if (this.value === 'area') {
-                symbol = 'A = L * W';
-            } else if (this.value === 'wall_area') {
-                symbol = 'WallArea = L * H';
-            } else if (this.value === 'linear') {
-                symbol = 'L';
-            } else if (this.value === 'weight') {
-                symbol = 'W = L * Unit Weight';
-            }
 
-            document.getElementById('symbol').value = symbol;
+                    let symbol = '';
+                    let unit = '';
+                    let formulas = '';
+
+                    switch (this.value) {
+
+                        case 'volume':
+                            symbol = 'V';
+                            formulas = 'L * W * H';
+                            unit = 'ft³';
+                            break;
+
+                        case 'area':
+                            symbol = 'A';
+                            formulas = 'L * W';
+                            unit = 'sqft';
+                            break;
+
+                        case 'wall_area':
+                            symbol = 'WallArea';
+                            formulas = 'L * H';
+                            unit = 'Rft';
+                            break;
+
+                        case 'coats_area':
+                            symbol = 'CoatArea';
+                            formulas = 'L * H * coats';
+                            unit = 'sqft';
+                            break;
+
+                        case 'painting_area':
+                            symbol = 'PaintingArea';
+                            formulas = '2 * (L + W) * H';
+                            unit = 'sqft'
+                            break;
+
+                        case 'steel_linear':
+                            symbol = 'L';
+                            formulas = 'L';
+                            unit = 'kg'
+                            break;
+
+                        case 'steel_handrail_linear':
+                            symbol = 'L';
+                            formulas = 'L';
+                            unit = 'Rft';
+                            break;
+
+                        case 'weight':
+                            symbol = 'W';
+                            formulas = 'L * Unit Weight';
+                            unit = 'ton';
+                            break;
+                    }
+                    
+                    
+                    document.getElementById('symbol').value = symbol;
+                    document.getElementById('formulas').value = formulas;
+                    document.getElementById('category_unit').value = unit;
+                    
+                    
+                });
         });
     </script>
 @endpush

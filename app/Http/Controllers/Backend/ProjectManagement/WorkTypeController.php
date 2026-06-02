@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\ProjectManagement;
 
 use App\Http\Controllers\Controller;
+use App\Models\MeasurementCategories;
 use App\Models\MeasurementTypes;
 use App\Models\Project;
 use App\Models\WorkType;
@@ -17,14 +18,16 @@ class WorkTypeController extends Controller
         
         $workTypes = WorkType::with('measurementType')->get();
         $measurement_types = MeasurementTypes::all();
-        return view('admin.backend.projectmanage.projects.work-types.index', compact('project', 'workTypes', 'measurement_types'));
+        $measurement_categories = MeasurementCategories::all();
+        return view('admin.backend.projectmanage.projects.work-types.index', compact('project', 'workTypes', 'measurement_types','measurement_categories'));
     }
 
     public function create(Project $project)
     {
         $project->load('client');
         $measurement_types = MeasurementTypes::all();
-        return view('admin.backend.projectmanage.projects.work-types.create',compact('project','measurement_types'));
+        $measurement_categories = MeasurementCategories::all();
+        return view('admin.backend.projectmanage.projects.work-types.create',compact('project','measurement_types','measurement_categories'));
     }
 
     public function store(Request $request, Project $project)

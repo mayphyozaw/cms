@@ -9,6 +9,7 @@ class SiteMeasurements extends Model
     protected $fillable = [
         'project_id',
         'drawing_id',
+        'drawing_measurement_id',
         'category_id',
         'length',
         'width',
@@ -28,6 +29,11 @@ class SiteMeasurements extends Model
 
     public function drawing()
     {
-        return $this->belongsTo(Drawings::class);
+        return $this->belongsTo(Drawings::class, 'drawing_id');
+    }
+    
+    public function drawingMeasurement()
+    {
+        return $this->belongsTo(DrawingMeasurement::class, 'drawing_measurement_id');
     }
 }

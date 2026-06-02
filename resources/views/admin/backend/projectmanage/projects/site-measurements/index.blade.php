@@ -111,13 +111,13 @@
                                 </a>
                             </li>
 
-                            <li class="nav-item me-3">
+                            {{-- <li class="nav-item me-3">
                                 <a href="{{ route('projectmanage.projects.measurement-categories.index', $project->id) }}"
                                     class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.measurement-categories.index') ? 'active' : '' }}">
                                     <i class="ti ti-device-laptop me-2"></i>
                                     Measurement Categories
                                 </a>
-                            </li>
+                            </li> --}}
 
                         </ul>
 
@@ -188,10 +188,10 @@
                                                 P- {{ $project->client->project_code }}
                                             </td>
                                             <td class="text-center"> 
-                                                {{$siteMeasurementData->drawing->drawing_name}}
+                                                {{$siteMeasurementData->drawing->drawing_name ?? ''}}
                                             </td>
                                             <td class="text-center"> 
-                                                {{$siteMeasurementData->measurementCategory->category_name}}
+                                                {{ $siteMeasurementData->measurementCategory?->category_name ?? '-' }}
                                             </td>
                                             <td class="text-center"> 
                                                 {{$siteMeasurementData->length}}
@@ -208,7 +208,7 @@
                                             </td>
 
                                             <td class="text-center"> 
-                                                {{$siteMeasurementData->measurementCategory->unit}}
+                                                {{$siteMeasurementData->measurementCategory->unit ?? ''}}
                                             </td>
 
                                             <td class="text-center"> 
@@ -218,7 +218,7 @@
                                                 {{$siteMeasurementData->rate}}
                                             </td>
                                             <td class="text-center"> 
-                                                {{$siteMeasurementData->total}}
+                                                 {{ number_format($siteMeasurementData->total ?? 0, 2) }}
                                             </td>
 
                                             <td class="text-center"> 
@@ -230,7 +230,7 @@
                                                     <i class="ti ti-edit"></i>
                                                 </a>
                                                 <form
-                                                    action="{{ route('projectmanage.projects.drawing-measurements.destroy', [$project->id, $siteMeasurementData->id]) }}"
+                                                    action="{{ route('projectmanage.projects.site-measurements.destroy', [$project->id, $siteMeasurementData->id]) }}"
                                                     method="POST" style="display:inline;">
                                                     @csrf
                                                     @method('DELETE')
@@ -284,7 +284,8 @@
 
         $('#siteMeasurementsTable').DataTable({
             responsive: true,
-            autoWidth: false
+            autoWidth: false,
+            ordering: false,
         });
     </script>
 @endpush

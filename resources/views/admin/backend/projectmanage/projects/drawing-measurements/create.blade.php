@@ -7,7 +7,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item">
-                            <a href="#">Project</a>
+                            <a href="{{ route('projectmanage.projects.index') }}">Project</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
                             Drawing Measurements
@@ -17,7 +17,35 @@
             </div>
         </div>
 
+
         <div class="row">
+            {{-- Tabs --}}
+            <div class="card border-0">
+
+                <div class="card-body pb-0 pt-0 px-2">
+
+                    <ul class="nav nav-tabs nav-bordered nav-bordered-primary">
+
+                        <li class="nav-item me-3">
+                            <a href="{{ route('projectmanage.projects.drawing-measurements.index', $project->id) }}"
+                                class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.drawing-measurements.index') ? 'active' : '' }}">
+                                <i class="ti ti-settings-cog me-2"></i>
+                                Drawing Measurements Lists
+                            </a>
+                        </li>
+
+                        <li class="nav-item me-3">
+                            <a href="{{ route('projectmanage.projects.measurement-categories.index', $project->id) }}"
+                                class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.measurement-categories.index') ? 'active' : '' }}">
+                                <i class="ti ti-device-laptop me-2"></i>
+                                Measurement Categories
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
             <div class="col-sm-12">
                 <div class="card border-0 rounded-0">
                     <div class="card-header">
@@ -78,72 +106,64 @@
                                     </select>
                                 </div>
 
+                                
                                 <div class="col-12 col-lg-3 mb-3">
                                     <label class="form-label">
-                                        Work Type: <span style="color:red;">*</span>
+                                        Measurement Category: <span style="color:red;">*</span>
                                     </label>
-                                    <select name="work_type_id" id="work_type_id" class="form-select">
-                                        <option value="">Select Work Type</option>
 
-                                        @foreach ($work_types as $work_type)
-                                            <option value="{{ $work_type->id }}">
-                                                {{ $work_type->name }}
+                                    <select name="measurement_categories_id" id="category_id" class="form-select">
+                                        <option value="">Select Measurement Category</option>
+
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}"
+                                                data-formula="{{ $category->formula_types }}"
+                                                data-symbol="{{ $category->symbol }}"
+                                                data-cal-formula="{{ $category->formulas }}"
+                                                data-unit="{{ $category->unit }}">
+
+                                                {{ $category->category_name }}
+
                                             </option>
                                         @endforeach
                                     </select>
                                 </div>
 
-                                <div class="col-12 col-lg-3 mb-3">
+                                <div class="col-12 col-lg-3 mb-3" hidden>
                                     <label class="form-label">
-                                        Unit: <span style="color:red;">*</span>
+                                        Formula Type:
                                     </label>
-                                    <select name="unit" id="unit" class="form-select">
 
-                                        <option value="">Select Unit</option>
-
-                                        <!-- Volume -->
-                                        <option value="m3">m³</option>
-                                        <option value="ft3">ft³</option>
-                                        {{-- Ara --}}
-                                        <option value="m2">m²</option>
-                                        <option value="sqft">sqft</option>
-                                        <!-- Length -->
-                                        <option value="m">m</option>
-                                        <option value="rft">Rft</option>
-                                        <!-- Weight -->
-                                        <option value="kg">kg</option>
-                                    </select>
+                                    <input type="text" id="formula_type" class="form-control" readonly>
                                 </div>
 
                                 <div class="col-12 col-lg-3 mb-3">
                                     <label class="form-label">
-                                        Measurement Type: <span style="color:red;">*</span>
+                                        Symbol:
                                     </label>
-                                    <select name="measurement_type_id" id="measurement_type_id" class="form-select">
 
-                                        @foreach ($measurement_types as $measurement_type)
-                                            <option value="{{ $measurement_type->id }}"
-                                                data-symbol="{{ $measurement_type->symbol }}">
-
-                                                {{ $measurement_type->name }}
-
-                                            </option>
-                                        @endforeach
-
-                                    </select>
+                                    <input type="text" id="symbol" class="form-control" readonly>
                                 </div>
 
                                 <div class="col-12 col-lg-3 mb-3">
-                                    <label for="form-label fs-14" class="form-label fs-14">
+                                    <label class="form-label">
                                         Formula:
                                     </label>
-                                    <div class="input-group">
-                                        <input type="text" name="measurement_type" id="formula" class="form-control"
-                                            readonly disabled>
+
+                                    <input type="text" id="cal_formula" class="form-control" readonly>
+                                </div>
+
+                                <div class="col-md-4 col-lg-3 col-sm-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">
+                                            Unit:
+                                        </label>
+
+                                        <input type="text" name="unit" id="unit" class="form-control" readonly>
                                     </div>
                                 </div>
 
-                                <div class="col-12 col-lg-4 mb-3">
+                                <div class="col-12 col-lg-2 mb-3">
                                     <label for="form-label fs-14" class="form-label fs-14">
                                         Length:
                                     </label>
@@ -154,7 +174,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-12 col-lg-4 mb-3">
+                                <div class="col-12 col-lg-2 mb-3">
                                     <label for="form-label fs-14" class="form-label fs-14">
                                         Width:
                                     </label>
@@ -165,7 +185,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-12 col-lg-4 mb-3">
+                                <div class="col-12 col-lg-2 mb-3">
                                     <label for="form-label fs-14" class="form-label fs-14">
                                         Height:
                                     </label>
@@ -176,20 +196,7 @@
                                     </div>
                                 </div>
 
-
-
-                                <div class="col-12 col-lg-4 mb-3">
-                                    <label for="form-label fs-14" class="form-label fs-14">
-                                        Item Qty:
-                                    </label>
-                                    <div class="input-group">
-                                        <input type="text" name="qty" class="form-control qty"
-                                            @error('qty') is-invalid @enderror placeholder="Enter qty" required
-                                            value="0">
-                                    </div>
-                                </div>
-
-                                <div class="col-12 col-lg-4 mb-3">
+                                <div class="col-12 col-lg-3 mb-3">
                                     <label for="form-label fs-14" class="form-label fs-14">
                                         Unit Weight:
                                     </label>
@@ -200,16 +207,17 @@
                                     </div>
                                 </div>
 
-                                <div class="col-12 col-lg-4 mb-3">
+                                <div class="col-12 col-lg-3 mb-3">
                                     <label for="form-label fs-14" class="form-label fs-14">
-                                        C:
+                                        Coats:
                                     </label>
                                     <div class="input-group">
                                         <input type="text" name="coats" class="form-control coats"
-                                            @error('coats') is-invalid @enderror placeholder="Enter Coats" required
-                                            value="0">
+                                            @error('coats') is-invalid @enderror placeholder="Enter coats"
+                                            required value="0">
                                     </div>
                                 </div>
+
 
                                 <div class="col-12 col-lg-4 mb-3">
                                     <label for="form-label fs-14" class="form-label fs-14">
@@ -217,7 +225,7 @@
                                     </label>
                                     <div class="input-group">
                                         <input type="text" name="quantity" id="quantity" class="form-control"
-                                            @error('quantity') is-invalid @enderror>
+                                            @error('quantity') is-invalid @enderror readonly>
                                     </div>
                                 </div>
 
@@ -225,9 +233,8 @@
                                     <label class="form-label">
                                         Remark:
                                     </label>
-                                    <textarea name="remarks" class="form-control"></textarea>
+                                    <textarea name="remark" class="form-control"></textarea>
                                 </div>
-
                             </div>
 
                             <button class="btn btn-primary" type="submit">Submit</button>
@@ -319,63 +326,76 @@
                 });
             });
 
-            $('#measurement_type_id').on('change', function() {
-                $('.length').trigger('input');
+           $('#category_id').on('change', function() {
+
+                let selected = $(this).find(':selected');
+
+                let formula = selected.data('formula') || '';
+                let symbol = selected.data('symbol') || '';
+                let calFormula = selected.data('cal-formula') || '';
+                let unit = selected.data('unit') || '';
+
+                $('#formula_type').val(formula);
+                $('#cal_formula').val(calFormula);
+                $('#symbol').val(symbol);
+                $('#unit').val(unit);
+
+                
+                calculateQuantity();
             });
 
-            document.addEventListener("input", function(e) {
+            $('.length, .width, .height, .unit_weight, .coats').on('input', function() {
 
-                if (
-                    e.target.classList.contains("length") ||
-                    e.target.classList.contains("width") ||
-                    e.target.classList.contains("height") ||
-                    e.target.classList.contains("unit_weight") ||
-                    e.target.classList.contains("qty") ||
-                    e.target.classList.contains("coats")
-                ) {
+                calculateQuantity();
 
-                    let length =
-                        parseFloat(document.querySelector(".length").value) || 0;
+            });
 
-                    let width =
-                        parseFloat(document.querySelector(".width").value) || 0;
+            function calculateQuantity() {
 
-                    let height =
-                        parseFloat(document.querySelector(".height").value) || 0;
+                let length = parseFloat($('.length').val()) || 0;
+                let width = parseFloat($('.width').val()) || 0;
+                let height = parseFloat($('.height').val()) || 0;
+                let coats = parseFloat($('.coats').val()) || 0;
+                let unit_weight = parseFloat($('.unit_weight').val()) || 0;
 
-                    let unit_weight =
-                        parseFloat(document.querySelector(".unit_weight").value) || 0;
+                let formula = $('#formula_type').val();
 
-                    let qty =
-                        parseFloat(document.querySelector(".qty").value) || 0;
+                let quantity = 0;
 
-                    let coats =
-                        parseFloat(document.querySelector(".coats").value) || 0;
+                if (formula === 'volume') {
 
+                    quantity = length * width * height;
 
-                    // let measurement_type = $('#measurement_type_id option:selected').text();
+                } else if (formula === 'area') {
 
-                    let quantity = 0;
+                    quantity = length * width;
 
-                    let symbol = $('#measurement_type_id option:selected').data('symbol');
+                } else if (formula === 'wall_area') {
 
-                    console.log(symbol);
+                    quantity = length * height;
 
-                    if (symbol == 'V') {
-                        quantity = length * width * height;
-                    } else if (symbol == 'A') {
-                        quantity = length * height;
-                    } else if (symbol == 'L') {
-                        quantity = length;
-                    } else if (symbol == 'W') {
-                        quantity = unit_weight * qty;
-                    } else if (symbol == 'C') {
-                        quantity = length * height * coats;
-                    }
+                } else if (formula === 'painting_area') {
 
-                    $('#quantity').val(quantity);
+                    quantity = 2 * (length + width) * height;
+
+                } else if (formula === 'linear') {
+
+                    quantity = length;
+
+                } else if (formula === 'weight') {
+
+                    quantity = length * unit_weight;
+
+                }else if (formula === 'coats_area') {
+
+                    quantity = length * height * coats;
+
                 }
-            });
+
+                $('#quantity').val(quantity.toFixed(2));
+
+                
+            }
 
 
         });

@@ -19,6 +19,7 @@ class DrawingController extends Controller
         // $drawings = Drawings::with('drawingType')->where('project_id', $project->id)->get(); 
         $drawings = $project->drawings()
             ->with('drawingType')
+            ->orderBy('created_at', 'desc') 
             ->get();
         $drawing_types = DrawingTypes::all();
         return view('admin.backend.projectmanage.projects.drawings.index', compact('project', 'drawings', 'drawing_types'));

@@ -28,7 +28,7 @@
                         @method('PUT')
                         @csrf
                         <div class="row">
-                            <div class="col-md-3 mb-3">
+                            <div class="col-md-10 mb-3">
                                 <label for="form-label fs-14" class="form-label fs-14">
                                     Name:
                                 </label>
@@ -43,31 +43,40 @@
                                     Formula Type:
                                 </label>
 
-                                <select name="formula_types" class="form-control form-select" id="formula_type">
+                                <select name="formula_types" class="form-control form-select" id="formulaTypes">
                                     <option value="">Select Formula Type</option>
 
                                     
-                                    <option value="volume" {{ $category->formula_type == 'volume' ? 'selected' : '' }}>
+                                    <option value="volume" {{ $category->formulaTypes == 'volume' ? 'selected' : '' }}>
                                         Volume
                                     </option>
 
-                                    <option value="area" {{ $category->formula_type == 'area' ? 'selected' : '' }}>
+                                    <option value="area" {{ $category->formulaTypes == 'area' ? 'selected' : '' }}>
                                         Area
                                     </option>
                                     
-                                    <option value="wall_area" {{ $category->formula_type == 'wall_area' ? 'selected' : '' }}>
+                                    <option value="wall_area" {{ $category->formulaTypes == 'wall_area' ? 'selected' : '' }}>
                                         Wall Area
                                     </option>
 
-                                    <option value="linear" {{ $category->formula_type == 'linear' ? 'selected' : '' }}>
-                                        Linear
+                                    <option value="painting_area" {{ $category->formulaTypes == 'painting_area' ? 'selected' : '' }}>
+                                        Wall Area Painting
                                     </option>
 
-                                    <option value="weight" {{ $category->formula_type == 'weight' ? 'selected' : '' }}>
+                                    
+                                    <option value="steel_linear" {{ $category->formulaTypes == 'steel_linear' ? 'selected' : '' }}>
+                                        Steel Linear
+                                    </option>
+
+                                    <option value="steel_handrail_linear" {{ $category->formulaTypes == 'steel_handrail_linear' ? 'selected' : '' }}>
+                                        Steel Handrail Linear
+                                    </option>
+
+                                    <option value="weight" {{ $category->formulaTypes == 'weight' ? 'selected' : '' }}>
                                         Weight
                                     </option>
 
-                                    <option value="quantity" {{ $category->formula_type == 'quantity' ? 'selected' : '' }}>
+                                    <option value="quantity" {{ $category->formulaTypes == 'quantity' ? 'selected' : '' }}>
                                         Quantity Only
                                     </option>
                                 </select>
@@ -80,40 +89,23 @@
                                 <input type="text" name="symbol" id="symbol" class="form-control" readonly>
                             </div>
 
-                            <div class="col-md-3 mb-3">
-                                <label class="form-label">
-                                    Unit: <span style="color:red;">*</span>
-                                </label>
-                                <select name="unit" id="unit" class="form-control form-select">
-                                    <option value="">Select Unit</option>
-                                    <option value="m3" {{ $category->unit == 'm3' ? 'selected' : '' }}>
-                                        m&sup3;
-                                    </option>
-                                    <option value="ft3" {{ $category->unit == 'ft3' ? 'selected' : '' }}>
-                                        ft&sup3;
-                                    </option>
-                                    <option value="m2" {{ $category->unit == 'm2' ? 'selected' : '' }}>
-                                        m&sup2;
-                                    </option>
-                                    <option value="sqft" {{ $category->unit == 'sqft' ? 'selected' : '' }}>
-                                        sqft
-                                    </option>
-                                    <option value="m" {{ $category->unit == 'm' ? 'selected' : '' }}>
-                                        m
-                                    </option>
-                                    <option value="rft" {{ $category->unit == 'rft' ? 'selected' : '' }}>
-                                        Rft
-                                    </option>
-                                     <option value="ton" {{ $category->unit == 'ton' ? 'selected' : '' }}>
-                                        ton
-                                    </option>
-                                    <option value="kg" {{ $category->unit == 'kg' ? 'selected' : '' }}>
-                                        kg
-                                    </option>
-                                    <option value="nos" {{ $category->unit == 'nos' ? 'selected' : '' }}>
-                                        Nos
-                                    </option>
-                                </select>
+                            <div class="col-md-3 col-sm-12">
+                                <div class="mb-3">
+                                    <label class="form-label fs-14">
+                                        Formula:
+                                    </label>
+
+                                    <input type="text" name="formulas" id="formulas" class="form-control" readonly>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-12">
+                                <div class="mb-3">
+                                    <label class="form-label fs-14">
+                                        Unit:
+                                    </label>
+                                    <input type="text" name="unit" id="category_unit" class="form-control" readonly>
+                                </div>
                             </div>
 
                         </div>
@@ -126,21 +118,68 @@
 @endsection
 @push('scripts')
     <script>
-        document.getElementById('formula_type').addEventListener('change', function() {
+        document.addEventListener('DOMContentLoaded', function() {
 
-            let symbol = '';
+            document.getElementById('formulaTypes')
+                .addEventListener('change', function() {
 
-            if (this.value === 'volume') {
-                symbol = 'V = L * W * H';
-            } else if (this.value === 'area') {
-                symbol = 'A = L * W';
-            } else if (this.value === 'wall_area') {
-                symbol = 'WallArea = L * H';
-            } else if (this.value === 'linear') {
-                symbol = 'L';
-            }
 
-            document.getElementById('symbol').value = symbol;
+                    let symbol = '';
+                    let unit = '';
+                    let formulas = '';
+
+                    switch (this.value) {
+
+                        case 'volume':
+                            symbol = 'V';
+                            formulas = 'L * W * H';
+                            unit = 'ft³';
+                            break;
+
+                        case 'area':
+                            symbol = 'A';
+                            formulas = 'L * W';
+                            unit = 'sqft';
+                            break;
+
+                        case 'wall_area':
+                            symbol = 'WallArea';
+                            formulas = 'L * H';
+                            unit = 'Rft';
+                            break;
+
+                        case 'painting_area':
+                            symbol = 'PaintingArea';
+                            formulas = '2 * (L + W) * H';
+                            unit = 'sqft'
+                            break;
+
+                        case 'steel_linear':
+                            symbol = 'L';
+                            formulas = 'L';
+                            unit = 'kg'
+                            break;
+
+                        case 'steel_handrail_linear':
+                            symbol = 'L';
+                            formulas = 'L';
+                            unit = 'Rft';
+                            break;
+
+                        case 'weight':
+                            symbol = 'W';
+                            formulas = 'L * Unit Weight';
+                            unit = 'ton';
+                            break;
+                    }
+                    
+                    
+                    document.getElementById('symbol').value = symbol;
+                    document.getElementById('formulas').value = formulas;
+                    document.getElementById('category_unit').value = unit;
+                    
+                    
+                });
         });
     </script>
 @endpush

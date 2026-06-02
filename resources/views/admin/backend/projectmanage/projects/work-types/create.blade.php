@@ -70,6 +70,23 @@
                                 </select>
                             </div>
 
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">
+                                    Measurement Categories: <span style="color:red;">*</span>
+                                </label>
+                                <select name="measurement_category_id" id="measurement_category_id"
+                                    class="form-control form-select">
+                                    <option value="">Select Measurement Category</option>
+
+                                    @foreach ($measurement_categories as $measurement_category)
+                                        <option value="{{ $measurement_category->id }}">
+                                            {{ $measurement_category->name }}
+                                        </option>
+                                    @endforeach
+
+                                </select>
+                            </div>
+
                         </div>
 
                         <button class="btn btn-primary" type="submit">Submit</button>

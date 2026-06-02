@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\ProjectManagement;
 
 use App\Http\Controllers\Controller;
+use App\Models\DrawingMeasurement;
 use App\Models\Drawings;
 use App\Models\MeasurementCategories;
 use App\Models\Project;
@@ -14,12 +15,15 @@ class SiteMeasurementController extends Controller
     public function index(Project $project)
     {
         $project->load('client');
+        // $siteMeasurementAllData = SiteMeasurements::with(['drawing', 'measurementCategory'])
+        //     ->orderBy('created_at', 'desc')
+        //     ->get();
         $siteMeasurementAllData = SiteMeasurements::with([
             'drawing',
             'measurementCategory'
         ])
             ->where('project_id', $project->id)
-            ->latest()
+            ->orderBy('created_at', 'desc')
             ->get();
         return view('admin.backend.projectmanage.projects.site-measurements.index', compact('project', 'siteMeasurementAllData'));
     }
@@ -27,20 +31,27 @@ class SiteMeasurementController extends Controller
     public function create(Project $project)
     {
         $project->load('client');
-        $drawings = Drawings::all();
+        $site_measurement = SiteMeasurements::with([
+            'drawingMeasurement',
+            'drawing'
+        ])->get();
+        $drawingMeasurements = DrawingMeasurement::with([
+            'drawing',
+            'measurementCategory'
+        ])->get();
         $categories = MeasurementCategories::all();
-        return view('admin.backend.projectmanage.projects.site-measurements.create', compact('project', 'drawings', 'categories'));
+        return view('admin.backend.projectmanage.projects.site-measurements.create', compact('project', 'categories', 'drawingMeasurements', 'site_measurement'));
     }
 
     public function store(Request $request, Project $project)
     {
+
+
         $request->validate([
-            'length' => 'required',
-            'width' => 'required',
-            'height' => 'required',
-            'unit_weight' => 'required',
-            'rate' => 'required',
-            'unit' => 'required',
+            'rate'        => 'required|numeric|min:0',
+            'drawing_measurement_id'  => 'required|exists:drawing_measurements,id',
+            'category_id' => 'required|exists:measurement_categories,id',
+            'drawing_id' => 'required|exists:drawings,id',
 
         ]);
 
@@ -52,43 +63,44 @@ class SiteMeasurementController extends Controller
 
         $quantity = 0;
 
-        $category = MeasurementCategories::findOrFail(
-            $request->category_id
-        );
 
-        // Volume
-        if ($category->symbol == 'V = L * W * H') {
-            $quantity = $length * $width * $height;
+        $category = MeasurementCategories::findOrFail($request->category_id);
+
+        switch ($category->formula_types) {
+
+            case 'volume':
+                $quantity = $length * $width * $height;
+                break;
+
+            case 'area':
+                $quantity = $length * $width;
+                break;
+
+            case 'wall_area':
+                $quantity = $length * $height;
+                break;
+
+            case 'painting_area':
+                $quantity = 2 * ($length + $width) * $height;
+                break;
+
+            case 'steel_linear':
+            case 'steel_handrail_linear':
+                $quantity = $length;
+                break;
+
+            case 'weight':
+                $quantity = $length * $unit_weight;
+                break;
         }
 
-        // Area
-        elseif ($category->symbol == 'WallArea = L * H') {
 
-            $quantity = $length * $height;
-        }
-
-        elseif ($category->symbol == 'A = L * W') {
-
-            $quantity = $length * $height;
-        }
-
-        // Linear
-        elseif ($category->symbol == 'L') {
-            $quantity = $length;
-        }
-
-        // Weight
-        elseif ($category->symbol == 'W = L * Unit Weight') {
-
-            $quantity = $length * $unit_weight;
-        }
-
-        
         $total = $rate * $quantity;
 
-         SiteMeasurements::create([
+        SiteMeasurements::create([
             'project_id' => $project->id,
             'drawing_id' => $request->drawing_id,
+            'drawing_measurement_id' => $request->drawing_measurement_id,
             'category_id' => $request->category_id,
             'length' => $length,
             'width' => $width,
@@ -101,12 +113,107 @@ class SiteMeasurementController extends Controller
             'remarks' => $request->remarks,
         ]);
 
+        return redirect()
+            ->route('projectmanage.projects.site-measurements.index', $project->id)
+            ->with([
+                'message' => 'Successfully created',
+                'alert-type' => 'success'
+            ]);
+    }
+
+    public function edit(Project $project, $id)
+    {
+
+        $site_measurement = SiteMeasurements::with([
+            'drawing',
+            'drawingMeasurement',
+            'measurementCategory'
+        ])->findOrFail($id);
         
+        $drawingMeasurements = DrawingMeasurement::with([
+            'drawing',
+            'measurementCategory'
+        ])->get();
+        $project->load('client');
+        $categories = MeasurementCategories::all();
+        return view('admin.backend.projectmanage.projects.site-measurements.edit', compact('project', 'site_measurement', 'drawingMeasurements', 'categories'));
+    }
+
+    public function update(Request $request, Project $project, $id)
+    {
+        
+        $site_measurement = SiteMeasurements::findOrFail($id);
+        
+        $quantity = 0;
+
+        $category = MeasurementCategories::findOrFail($request->category_id);
+        
+
+        switch ($category->formula_types) {
+
+            case 'volume':
+                $quantity = $request->length * $request->width * $request->height;
+                break;
+
+            case 'area':
+                $quantity = $request->length * $request->width;
+                break;
+
+            case 'wall_area':
+                $quantity = $request->length * $request->height;
+                break;
+
+            case 'painting_area':
+                $quantity = 2 * ($request->length + $request->width) * $request->height;
+                break;
+
+            case 'steel_linear':
+            case 'steel_handrail_linear':
+                $quantity = $request->length;
+                break;
+
+            case 'weight':
+                $quantity = $request->length * $request->unit_weight;
+                break;
+        }
+
+
+        $total = $request->rate * $quantity;
+
+        $site_measurement->update([
+            'project_id' => $project->id,
+            'drawing_id' => $request->drawing_id,
+            'drawing_measurement_id' => $request->drawing_measurement_id,
+            'category_id' => $request->category_id,
+            'length' => $request->length,
+            'width' => $request->width,
+            'height' => $request->height,
+            'unit_weight' => $request->unit_weight,
+            'quantity' => $quantity,
+            'unit' => $request->unit,
+            'rate' => $request->rate,
+            'total' => $total,
+            'remarks' => $request->remarks,
+        ]);
 
         return redirect()
             ->route('projectmanage.projects.site-measurements.index', $project->id)
             ->with([
                 'message' => 'Successfully created',
+                'alert-type' => 'success'
+            ]);
+    }
+
+    public function destroy(Project $project, $id)
+    {
+        $site_measurement = SiteMeasurements::findOrFail($id);
+
+        $site_measurement->delete();
+
+        return redirect()
+            ->route('projectmanage.projects.site-measurements.index', $project->id)
+            ->with([
+                'message' => 'Successfully deleted',
                 'alert-type' => 'success'
             ]);
     }

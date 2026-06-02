@@ -1,0 +1,14 @@
+Room Size:
+
+Length = 20 ft
+Width = 15 ft
+Height = 10 ft
+
+Site Measurement => Length = 20 ft
+                 => Width = 15 ft
+                 => Height = 10 ft  
+
+Step 1: Floor Tile Quantity
+
+=> Floor Area => Area = Length × Width
+

@@ -21,5 +21,10 @@ class WorkType extends Model
         return $this->belongsTo(MeasurementTypes::class, 'measurement_type_id');
     }
 
+    public function measurementCategory()
+    {
+        return $this->belongsTo(MeasurementCategories::class, 'category_id');
+    }
+
     
 }

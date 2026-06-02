@@ -17,10 +17,10 @@
             <div class="card-body pb-0 pt-0 px-2">
                 <ul class="nav nav-tabs nav-bordered nav-bordered-primary">
                     <li class="nav-item me-3">
-                        <a href="{{ route('projectmanage.projects.site-measurements.index',$project->id) }}"
-                            class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.site-measurements.index') ? 'active' : '' }}">
+                        <a href="{{ route('projectmanage.projects.drawing-measurements.index',$project->id) }}"
+                            class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.drawing-measurements.index') ? 'active' : '' }}">
                             <i class="ti ti-settings-cog me-2"></i>
-                            Site Measurement Lists
+                            Drawing Measurement Lists
                         </a>
                     </li>
                     <li class="nav-item me-3">
@@ -62,6 +62,7 @@
                                             <th class="text-center" style="background-color: #9dd2e7">Name</th>
                                             <th class="text-center" style="background-color: #9dd2e7">Formula Type</th>
                                             <th class="text-center" style="background-color: #9dd2e7">Symbol</th>
+                                            <th class="text-center" style="background-color: #9dd2e7">Formulas</th>
                                             <th class="text-center" style="background-color: #9dd2e7">Unit</th>
                                             <th class="text-center" style="background-color: #9dd2e7">Action</th>
                                         </tr>
@@ -80,6 +81,9 @@
                                                 </td>
                                                 <td class="text-center">
                                                     {{ $category->symbol }}
+                                                </td>
+                                                 <td class="text-center">
+                                                    {{ $category->formulas }}
                                                 </td>
                                                 <td class="text-center">
                                                     {{ $category->unit }}

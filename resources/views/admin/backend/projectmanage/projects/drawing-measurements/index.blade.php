@@ -111,6 +111,14 @@
                             </li>
 
                             <li class="nav-item me-3">
+                                <a href="{{ route('projectmanage.projects.measurement-categories.index', $project->id) }}"
+                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.measurement-categories.index') ? 'active' : '' }}">
+                                    <i class="ti ti-device-laptop me-2"></i>
+                                    Measurement Categories
+                                </a>
+                            </li>
+
+                            {{-- <li class="nav-item me-3">
                                 <a href="{{ route('projectmanage.projects.measurement-types.index', $project->id) }}"
                                     class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.measurement-types.index') ? 'active' : '' }}">
                                     <i class="ti ti-device-laptop me-2"></i>
@@ -125,7 +133,7 @@
                                     <i class="ti ti-device-laptop me-2"></i>
                                     Work Types
                                 </a>
-                            </li>
+                            </li> --}}
 
                         </ul>
 
@@ -140,7 +148,7 @@
                         <div class="row align-items-center">
 
                             <div class="col">
-                                <h5 class="card-title mb-0">Drawing Measurement Lists</h5>
+                                <h5 class="card-title mb-0">Drawing Measurement Lists (Quantity Takeoff Lists)</h5>
                             </div>
 
                             <div class="col-auto">
@@ -164,14 +172,16 @@
                                     <tr>
                                         <th class="text-center" style="background-color: #9dd2e7">Date</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Project</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Work Type</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Drawing</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Drawing Type</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Category</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Length</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Width</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Height</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Item Qty</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Unit Weight</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Coats</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Quantity</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Unit</th>
                                         <th class="text-center" style="background-color: #9dd2e7">
                                             Remark
                                         </th>
@@ -190,8 +200,21 @@
                                             <td class="text-center"> 
                                                 P- {{ $project->client->project_code }}
                                             </td>
+
                                             <td class="text-center"> 
-                                                {{$drawingMeasurementData->workType->name}}
+                                                <a href="{{route('projectmanage.projects.site-measurements.create', $project->id)}}">
+                                                <span style="color: red">{{$drawingMeasurementData->drawing->drawing_name}}</span>
+                                                </a>
+                                            </td>
+                                            <td class="text-center"> 
+                                                <a href="{{route('projectmanage.projects.site-measurements.create', $project->id)}}">
+                                                <span style="color: red">{{$drawingMeasurementData->drawing->drawingType->name}}</span>
+                                                </a>
+                                            </td>
+                                             <td class="text-center"> 
+                                                <a href="{{route('projectmanage.projects.site-measurements.create', $project->id)}}">
+                                                <span style="color: red">{{$drawingMeasurementData->measurementCategory->category_name}}</span>
+                                                </a>
                                             </td>
                                             <td class="text-center"> 
                                                 {{$drawingMeasurementData->length}}
@@ -202,17 +225,20 @@
                                             <td class="text-center"> 
                                                 {{$drawingMeasurementData->height}}
                                             </td>
-                                            <td class="text-center"> 
-                                                {{$drawingMeasurementData->qty}}
-                                            </td>
+                                            
                                             <td class="text-center"> 
                                                 {{$drawingMeasurementData->unit_weight}}
                                             </td>
                                             <td class="text-center"> 
                                                 {{$drawingMeasurementData->coats}}
                                             </td>
+                                            
                                             <td class="text-center"> 
+
                                                 {{$drawingMeasurementData->quantity}}
+                                            </td>
+                                            <td class="text-center"> 
+                                                {{$drawingMeasurementData->unit}}
                                             </td>
                                             <td class="text-center"> 
                                                 {{$drawingMeasurementData->remark}}

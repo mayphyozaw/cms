@@ -10,8 +10,13 @@ class MeasurementCategories extends Model
         'category_name',
         'formula_types',
         'symbol',
+        'formulas',
         'unit',
     ];
 
+    public function workType()
+    {
+        return $this->belongsTo(WorkType::class);
+    }
     
 }

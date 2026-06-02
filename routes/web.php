@@ -224,6 +224,8 @@ Route::middleware('auth', 'notBlocked')->group(function () {
             
             Route::get('drawings_get', [DrawingMeasurementsController::class, 'getDrawing'])->name('drawings_get');
             Route::get('worktype_get', [DrawingMeasurementsController::class, 'getWorkType'])->name('worktype_get');
+            Route::get('drawing_measurement_get', [DrawingMeasurementsController::class, 'getDrawingMeasurement'])->name('drawing_measurement_get');
+
 
             
 

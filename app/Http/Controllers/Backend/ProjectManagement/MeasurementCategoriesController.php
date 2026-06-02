@@ -25,19 +25,24 @@ class MeasurementCategoriesController extends Controller
     public function store(Request $request, Project $project)
     {
         
+        
         $request->validate([
             'category_name' => 'required',
             'formula_types' => 'required',
             'symbol' => 'required',
+            'formulas' => 'required',
             'unit' => 'required',
         ]);
         
-        MeasurementCategories::create([
+        $measuremt_categories = MeasurementCategories::create([
             'category_name' => $request->category_name,
             'formula_types' => $request->formula_types,
             'symbol' => $request->symbol,
+            'formulas' => $request->formulas,
             'unit' => $request->unit,
         ]);
+
+        
 
         return redirect()
             ->route('projectmanage.projects.measurement-categories.index',$project->id)
@@ -62,6 +67,7 @@ class MeasurementCategoriesController extends Controller
             'category_name' => $request->category_name,
             'formula_types' => $request->formula_types,
             'symbol' => $request->symbol,
+            'formulas' => $request->formulas,
             'unit' => $request->unit,
         ]);
 
