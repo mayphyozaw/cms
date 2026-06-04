@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('unit')->nullable();
             $table->string('total_qty')->nullable();
-            $table->string('reorder_level')->nullable();
             $table->string('remarks')->nullable();
             $table->timestamps();
         });

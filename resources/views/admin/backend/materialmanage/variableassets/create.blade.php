@@ -25,7 +25,7 @@
                         <form action="{{ route('material.variableassets.store') }}" method="POST" id="submit-form"
                             enctype="multipart/form-data">
                             @csrf
-                            <div class="col-lg-6 col-md-12">
+                            <div class="col-lg-6 col-md-12" hidden>
                                 <div class="mb-3">
                                     <label class="form-label">Variable Asset Code</label>
                                     <div class="input-group">
@@ -86,7 +86,7 @@
 
 
 
-                            <div class="col-lg-6 col-md-12">
+                            <div class="col-lg-6 col-md-12" hidden>
                                 <div class="mb-3">
                                     <label class="form-label fs-14">Total Quantity</label>
                                     <div class="input-group">
@@ -95,18 +95,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-12">
-                                <div class="mb-3">
-                                    <label class="form-label" for="formBasic">Status : <span
-                                            class="text-danger">*</span></label>
-                                    <select name="reorder_level" id="reorder_level" class="form-control form-select">
-                                        <option selected="">Select Status</option>
-                                        <option value="Available">Available</option>
-                                        <option value="InUse">In Use</option>
-                                        <option value="UnderMaintenance">Under Maintenance</option>
-                                    </select>
-                                </div>
-                            </div>
+                            
 
                             <div class="col-lg-6 col-md-12">
                                 <div class="mb-3">

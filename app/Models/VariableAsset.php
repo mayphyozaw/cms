@@ -12,7 +12,6 @@ class VariableAsset extends Model
     'variable_category_id',
     'unit',
     'quantity',
-    'reorder_level',
     'remarks',
 ];
 

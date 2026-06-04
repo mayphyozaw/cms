@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\VariableAssets;
+namespace App\Http\Requests\MixRatioDetails;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class VariableAssetStoreRequest extends FormRequest
+class MixRatioDetailUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,10 +22,8 @@ class VariableAssetStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
-            'variable_category_id'   => 'required|exists:variable_categories,id',
-            'unit' => 'required|string|max:255',
-            // 'quantity' => 'required|numeric|min:0',
+            'mix_ratio_template_id'   => 'required|exists:mix_ratio_templates,id',
+            'variable_asset_id'   => 'required|exists:variable_assets,id',
         ];
     }
 }

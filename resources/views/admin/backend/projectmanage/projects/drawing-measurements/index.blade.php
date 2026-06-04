@@ -52,6 +52,18 @@
                                     <i class="ti ti-list-check me-2"></i>
                                     Drawing Measurements
                                 </a>
+                                
+                                <a href="{{route('projectmanage.projects.mixRatio.index', $project->id)}}" 
+                                    class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.mixRatio.*') ? 'active' : '' }}">
+                                    <i class="ti ti-moneybag me-2"></i>
+                                    Mix Ratio Header
+                                </a>
+
+                                <a href="{{route('projectmanage.projects.material-mappings.index', $project->id)}}" 
+                                    class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.material-mappings.*') ? 'active' : '' }}">
+                                    <i class="ti ti-moneybag me-2"></i>
+                                    Material Mapping
+                                </a>
 
                                  <a href="{{ route('projectmanage.projects.site-measurements.index', $project->id) }}"
                                     class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.site-measurements.*') ? 'active' : '' }}">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\MaterialManagement\VariableAssets;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VariableAssets\VariableAssetStoreRequest;
 use App\Http\Requests\VariableAssets\VariableAssetUpdateRequest;
+use App\Models\VariableAsset;
 use App\Models\VariableCategory;
 use App\Services\ResponseService;
 use App\Services\VariableAssetsService;
@@ -39,14 +40,19 @@ class VariableAssetsController extends Controller
     public function store(VariableAssetStoreRequest $request)
     {
 
+        
+        $lastAsset = VariableAsset::latest('id')->first();
+        $nextId = $lastAsset ? $lastAsset->id + 1 : 1;
+
+        $variableAssetCode = 'V-' . str_pad($nextId, 4, '0', STR_PAD_LEFT);
+        
         $variableAssetData = [
             'name'  => $request->name,
-            'material_code'  => $request->material_code,
+            'material_code'  => $variableAssetCode,
             'variable_category_id' => $request->variable_category_id,
             'unit' => $request->unit,
             'quantity' => $request->quantity,
             'remarks' => $request->remarks ?? null,
-            'reorder_level' => $request->reorder_level ?? null,
 
         ];
         $this->variableAssetsService->create($variableAssetData);
@@ -74,7 +80,6 @@ class VariableAssetsController extends Controller
             'variable_category_id' => $request->variable_category_id,
             'unit'        => $request->unit,
             'quantity'   => $request->quantity,
-            'reorder_level'      => $request->reorder_level,
             'remarks'     => $request->remarks,
         ];
 

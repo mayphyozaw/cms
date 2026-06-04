@@ -50,7 +50,6 @@ class VariableAssetRepository implements VariableAssetRepoInterface
                 'variable_category_id',
                 'unit',
                 'quantity',
-                'reorder_level',
             ])
             ->with('variableCategory');
     }

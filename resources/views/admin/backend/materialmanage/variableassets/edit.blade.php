@@ -26,7 +26,7 @@
                             enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
-                            <div class="col-lg-6 col-md-12">
+                            <div class="col-lg-6 col-md-12" hidden>
                                 <div class="mb-3">
                                     <label class="form-label">Variable Asset Code</label>
                                     <div class="input-group">
@@ -88,19 +88,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-12">
-                                <div class="mb-3">
-                                    <label class="form-label" for="formBasic">Status : <span
-                                            class="text-danger">*</span></label>
-                                    <select name="reorder_level" id="reorder_level" class="form-control form-select">
-                                        <option selected="">Select Status</option>
-                                        <option value="Available" {{ $variableAsset->reorder_level === 'Available' ? 'selected' : '' }}>Available</option>
-                                        <option value="InUse" {{ $variableAsset->reorder_level === 'InUse' ? 'selected' : '' }}>In Use</option>
-                                        <option value="UnderMaintenance" {{ $variableAsset->reorder_level === 'UnderMaintenance' ? 'selected' : '' }}>Under Maintenance</option>
-                                    </select>
-                                </div>
-                            </div>
-
+                            
                             <div class="col-lg-6 col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label">Remark:</label>

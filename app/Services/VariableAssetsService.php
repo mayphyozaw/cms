@@ -55,9 +55,7 @@ class VariableAssetsService
             ->editColumn('unit', function ($variableAssets) {
                 return $variableAssets->unit ?? '';
             })
-            //  ->editColumn('quantity', function ($variableAssets) {
-            //     return $variableAssets->quantity ?? '';
-            // })
+            
             ->addColumn('action', function ($variableAssets) {
                 return view('admin.backend.materialmanage.variableassets._action', compact('variableAssets'))->render();
             })

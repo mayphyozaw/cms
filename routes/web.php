@@ -29,8 +29,11 @@ use App\Http\Controllers\Backend\Payment\PaymentController;
 use App\Http\Controllers\Backend\ProjectManagement\DrawingController;
 use App\Http\Controllers\Backend\ProjectManagement\DrawingMeasurementsController;
 use App\Http\Controllers\Backend\ProjectManagement\DrawingTypeController;
+use App\Http\Controllers\Backend\ProjectManagement\MaterialMappingController;
 use App\Http\Controllers\Backend\ProjectManagement\MeasurementCategoriesController;
 use App\Http\Controllers\Backend\ProjectManagement\MeasurementTypeController;
+use App\Http\Controllers\Backend\ProjectManagement\MixRatioDetailsController;
+use App\Http\Controllers\Backend\ProjectManagement\MixRatioTemplatesController;
 use App\Http\Controllers\Backend\ProjectManagement\ProjectCategoryController;
 use App\Http\Controllers\Backend\ProjectManagement\ProjectController;
 use App\Http\Controllers\Backend\ProjectManagement\ProjectFilesController;
@@ -204,47 +207,6 @@ Route::middleware('auth', 'notBlocked')->group(function () {
         Route::get('variable-category-datatable', [VariableCategoryController::class, 'variablecategoryDataTable'])->name('variable-category-datatable');
     });
 
-    Route::prefix('projectmanage')->name('projectmanage.')->group(function () {
-        Route::resource('projects', ProjectController::class);
-        Route::get('/clients', [ProjectController::class, 'getClient'])->name('clients_get');
-        Route::get('/project', [ProjectController::class, 'getProject'])->name('projects_get');
-        Route::get('/load/projects', [ProjectController::class, 'load_projects'])->name('load_projects');
-        Route::get('project-datatable', [ProjectController::class, 'projectDataTable'])->name('project-datatable');
-        
-        Route::prefix('/projects/{project}')
-            ->name('projects.')->group(function () {
-                Route::resource('drawings', DrawingController::class);
-                Route::resource('drawing-type', DrawingTypeController::class);
-                Route::resource('drawing-measurements', DrawingMeasurementsController::class);
-                Route::resource('measurement-types', MeasurementTypeController::class);
-                Route::resource('work-types', WorkTypeController::class);
-                Route::resource('measurement-categories', MeasurementCategoriesController::class);
-                Route::resource('site-measurements', SiteMeasurementController::class);
-            });
-            
-            Route::get('drawings_get', [DrawingMeasurementsController::class, 'getDrawing'])->name('drawings_get');
-            Route::get('worktype_get', [DrawingMeasurementsController::class, 'getWorkType'])->name('worktype_get');
-            Route::get('drawing_measurement_get', [DrawingMeasurementsController::class, 'getDrawingMeasurement'])->name('drawing_measurement_get');
-
-
-            
-
-        // Route::resource('drawings', DrawingController::class);
-        // Route::resource('drawing-type', DrawingTypeController::class);
-
-
-        Route::resource('projectfiles', ProjectFilesController::class)->only('index', 'store', 'edit', 'update');
-        Route::get('/project/files', [ProjectFilesController::class, 'get_project_files'])->name('get_project_files');
-        Route::get('/project/files/view', [ProjectFilesController::class, 'get_project_files_with_view'])->name('get_project_files_with_view');
-        Route::get('/project/file', [ProjectFilesController::class, 'destroy'])->name('project_file_delete');
-
-        Route::resource('projectcategory', ProjectCategoryController::class);
-        Route::get('projectcategory-datatable', [ProjectCategoryController::class, 'projectCategoryDataTable'])->name('projectcategory-datatable');
-
-        Route::resource('workscope', WorkscopeController::class);
-        Route::get('workscope-datatable', [WorkscopeController::class, 'workscopeDataTable'])->name('workscope-datatable');
-    });
-
     Route::prefix('configuration')->name('configuration.')->group(function () {
         Route::resource('role', RoleController::class);
         Route::get('/role-datatable', [RoleController::class, 'roleDataTable'])->name('role-datatable');
@@ -266,4 +228,46 @@ Route::middleware('auth', 'notBlocked')->group(function () {
     Route::post('payment/purchase_payment/{id}', [PaymentController::class, 'payStore'])->name('payment.pay.store');
     Route::get('purchase/payment/{id}/history', [PaymentController::class, 'payDetail'])->name('payment.pay.detail');
     Route::get('/invoice/payment/{id}', [PaymentController::class, 'invoicePayment'])->name('payment.invoice.payment');
+
+
+
+    Route::prefix('projectmanage')->name('projectmanage.')->group(function () {
+        Route::resource('projects', ProjectController::class);
+        Route::get('/clients', [ProjectController::class, 'getClient'])->name('clients_get');
+        Route::get('/project', [ProjectController::class, 'getProject'])->name('projects_get');
+        Route::get('/load/projects', [ProjectController::class, 'load_projects'])->name('load_projects');
+        Route::get('project-datatable', [ProjectController::class, 'projectDataTable'])->name('project-datatable');
+
+        Route::prefix('/projects/{project}')
+            ->name('projects.')->group(function () {
+                Route::resource('drawings', DrawingController::class);
+                Route::resource('drawing-type', DrawingTypeController::class);
+                Route::resource('drawing-measurements', DrawingMeasurementsController::class);
+                Route::resource('measurement-types', MeasurementTypeController::class);
+                Route::resource('work-types', WorkTypeController::class);
+                Route::resource('measurement-categories', MeasurementCategoriesController::class);
+                Route::resource('site-measurements', SiteMeasurementController::class);
+                Route::resource('mixRatio', MixRatioTemplatesController::class);
+                Route::resource('mixRatio-details', MixRatioDetailsController::class);
+                Route::resource('material-mappings', MaterialMappingController::class);
+
+            });
+
+        Route::get('drawings_get', [DrawingMeasurementsController::class, 'getDrawing'])->name('drawings_get');
+        Route::get('worktype_get', [DrawingMeasurementsController::class, 'getWorkType'])->name('worktype_get');
+        Route::get('drawing_measurement_get', [DrawingMeasurementsController::class, 'getDrawingMeasurement'])->name('drawing_measurement_get');
+        
+        
+
+        Route::resource('projectfiles', ProjectFilesController::class)->only('index', 'store', 'edit', 'update');
+        Route::get('/project/files', [ProjectFilesController::class, 'get_project_files'])->name('get_project_files');
+        Route::get('/project/files/view', [ProjectFilesController::class, 'get_project_files_with_view'])->name('get_project_files_with_view');
+        Route::get('/project/file', [ProjectFilesController::class, 'destroy'])->name('project_file_delete');
+
+        Route::resource('projectcategory', ProjectCategoryController::class);
+        Route::get('projectcategory-datatable', [ProjectCategoryController::class, 'projectCategoryDataTable'])->name('projectcategory-datatable');
+
+        Route::resource('workscope', WorkscopeController::class);
+        Route::get('workscope-datatable', [WorkscopeController::class, 'workscopeDataTable'])->name('workscope-datatable');
+    });
 });

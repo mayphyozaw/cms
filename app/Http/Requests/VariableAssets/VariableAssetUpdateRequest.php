@@ -26,7 +26,6 @@ class VariableAssetUpdateRequest extends FormRequest
             'name' => 'required|string|max:255',
             'variable_category_id'   => 'required|exists:variable_categories,id',
             'unit' => 'required|string|max:255',
-            'reorder_level' => 'required',
             
         ];
     }

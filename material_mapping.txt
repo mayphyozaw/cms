@@ -1,0 +1,230 @@
+
+Work Items                                  Mix Ratio
+Concrete Grade C15.                         1 : 2 : 4
+Concrete Grade C20                          1 : 1.5 : 3
+Plastering                                  1 : 4
+Brick Motor                                  : 6
+
+Concrete Mix Ratio
+
+1 : 2 : 4   
+1 + 2 + 4 = 7 parts
+Cement : Sand : Aggregate
+Cement = 1
+Sand   = 2
+Aggregate = 4
+
+
+
+
+
+Concrete Volume (Wet Volume) 
+1 CFT ရဖို့ Dry Material  = 1.54 CFT
+
+Dry Volume Factor = 1.54 
+
+Dry Volume Formula
+==================
+Dry Volume = Wet Volume * 1.54
+
+
+Material Quantity
+================
+Material = Dry Volume * (Material Parts / Total Parts)
+
+Cement      =    1.54 × (1/7)
+            =    0.22 CFT
+
+
+Sand        =    1.54 × (2/7)
+            =    0.44 CFT
+
+
+Aggregrate  =    1.54 × (4/7)
+            =    0.88 CFT
+
+
+Example 
+Concrete Work = 40CFT (Wet Volume)
+Mix           =  1 : 2 : 4
+
+Dry Volume    = Wet Volume * 1.54
+              = 40 * 1.54
+              = 61.67 CFT
+
+Cement Volume      = Dry Volume * (Material Parts / Total Parts)
+                   = 61.67  * (1/7)
+                   = 8.8 CFT
+    
+Sand Volume       = Dry Volume * (Material Parts / Total Parts)
+                  = 61.67  * (2/7) 
+                  = 17.6 CFT
+       
+Aggregrate Volume  = Dry Volume * (Material Parts / Total Parts)
+                   = 61.67  * (4/7) 
+                   = 35.2 CFT
+
+1m3 = 35.3147 CFT
+
+1 Cement Bag = 1.25 CFT
+
+Example
+Concrete Work
+===============
+
+40 CFT
+Mix = 1:2:4
+
+Cement Volume = 8.8 CFT
+
+Cement Bags = Cement Volume / 1.25
+Sand Bags   = Sand Volume / 1.25
+Aggregate Bags = Aggregate Volume / 1.25
+
+Cement Bags = 8.8 / 1.25 = 7.04 Bags
+
+
+Material Mapping Engine
+      ↓
+Cement = 7.04 Bags
+Sand = 17.6 CFT
+Aggregate = 35.2 CFT
+
+Flooring (ကြမ်းခင်းအလုပ်): Length = 20, Width = 15Formula ရလဒ် (၁ ခန်းစာ): 
+20 * 15 = 300  sqft
+တကယ်လို့ ဒီဟာက ဟိုတယ် ဒါမှမဟုတ် တိုက်ခန်း (Apartment) ဖြစ်လို့ အတိုင်းအတာချင်း ထပ်တူညီတဲ့ အခန်းပေါင်း 10 ခန်း ရှိတယ်ဆိုပါစို့။
+User က Draw Measurements Form ထဲမှာ Multiplier = 10 လို့ ရိုက်ထည့်လိုက်ပါမယ်။
+
+Raw Quantity = Length * Width = 20 * 15 = 300  sqft
+Total Work Quantity = Raw Quantity *  multiplier
+Total Work Quantity = 300 sqft *  10 = 3,000 sqft
+
+final_quantity = [(raw_quantity - deduction) * multiplier](1 +  wastage_percentage / 100)
+
+material_mappings
+================
+Work Item                   Material                    Multiplier              Waste (%)
+Floor Tile                  Tile                            1                       5
+Painting                    Paint                           0.00333                 3
+Gypsum Ceiling              Gypsum Board                    0.03125                 5
+Concrete                    Cement                          0.22                    0
+Concrete                    Sand                            0.44                    0
+Concrete                    Aggregate                       0.88                    0
+
+
+
+
+
+Mix Ratio Table
+===================
+id
+code
+ratio_name
+ratio_type ['concrete', 'motor','plaster', 'screed']
+dry_volume_factor
+description
+status
+
+dry_volume_factor
+================
+Concrete => 1.54
+
+Mortar  => 1.30 ~ 1.35
+
+Plaster => 1.27 ~ 1.35
+
+
+
+material_mappings Table
+=====================
+id
+measurement_category_id
+variable_asset_id
+mix_ratio_template_id
+consumption_type
+consumption_ratio
+wastage_percentage
+is_active
+remark
+created_at
+updated_at
+
+variable_asset_id
+=============
+Cement
+Sand
+Aggregate
+Paint
+Floor Tile
+
+consumption_type
+==============
+coverage
+mix_ratio
+fixed
+percentage
+
+mix_ratio_template
+=============
+
+Concrete =>  1:2:4
+Concrete => 1:1.5:3
+Mortar => 1:4
+Floor Tile => Null
+Paint => Null
+
+consumption_ratio ဆိုတာ Material Consumption Factor ပါ။ 
+Measurement Quantity 1 Unit အတွက် Material ဘယ်လောက်လိုမလဲ ဆိုတာကို ဖော်ပြတဲ့ Value ဖြစ်တယ်။
+
+Floor Tile Example
+Floor Area =>300 sqft
+Tile Requirement => 1 sqft floor = 1 sqft tile
+Therefore => Consumption_Ratio = 1 / 300 = 0.0033
+
+Formula 
+drawing_measurement_quantity * consumption_ratio
+
+
+
+consumption_type => coverage => consumption_ratio = 0.0033
+                 => mix_ratio => consumption_ratio = mix_ratio_template_id
+                 => fixed => consumption_ratio = 1
+                 => percentage => consumption_ratio = 2% = 0.02
+
+
+Mix Ratio Materials
+==================
+Cement
+Sand
+Aggregate
+
+
+Coverage Materials
+==================
+Paint
+Primer
+Waterproofing
+Coating
+
+
+Paint
+=========
+Material Name : Paint
+Consumption Type : Coverage
+Coverage Qty : 10
+Unit : Liter
+
+Meaning:
+1 Liter Paint = 10 m²
+
+
+
+Tile Adhesive
+===============
+Material Name : Tile Adhesive
+Consumption Type : Coverage
+Coverage Qty : 5
+Unit : Bag
+
+Meaning:
+1 Bag Tile Adhesive = 5 m²
