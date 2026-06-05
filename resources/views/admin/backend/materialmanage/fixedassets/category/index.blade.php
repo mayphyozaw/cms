@@ -89,7 +89,7 @@
                     <h5 class="modal-title">Edit Fixed Asset Category</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('material.confirm_update') }}" method="POST" id="edit-form">
+                <form action="{{ route('material.update') }}" method="POST" id="edit-form">
                     @csrf
                     <input type="hidden" name="category_id" id="edit_category_id">
                     <div class="modal-body">

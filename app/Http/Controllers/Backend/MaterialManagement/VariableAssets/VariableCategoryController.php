@@ -46,17 +46,20 @@ class VariableCategoryController extends Controller
 
         return view('admin.backend.materialmanage.variableassets.variable-category.index', compact('category'));
     }
-    public function confirm_update(VariableCategoryUpdateRequest $request)
+    public function update(VariableCategoryUpdateRequest $request)
     {
-        $category = VariableCategory::findOrFail($request->category_id);
+        $this->variableCategoryService->update(
+            $request->variable_category_id,
+            $request->validated()
+        );
 
-        $category->update([
-            'variable_category_name' => $request->variable_category_name,
-        ]);
+        // return response()->json([
+        //     'status' => true,
+        //     'message' => 'Updated successfully'
+        // ]);
 
-        return redirect()
-            ->route('material.variable-category.index')
-            ->with('success', 'Category updated successfully!');
+        return redirect()->route('material.variable-category.index')
+            ->with('success', 'Successfully created');
     }
     public function show()
     {

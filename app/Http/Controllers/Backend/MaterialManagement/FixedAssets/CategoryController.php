@@ -53,10 +53,13 @@ class CategoryController extends Controller
             $request->validated()
         );
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Updated successfully'
-        ]);
+        // return response()->json([
+        //     'status' => true,
+        //     'message' => 'Updated successfully'
+        // ]);
+
+        return redirect()->route('material.category.index')
+            ->with('success', 'Successfully created');
     }
 
 

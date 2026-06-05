@@ -196,14 +196,14 @@ Route::middleware('auth', 'notBlocked')->group(function () {
 
 
         Route::resource('category', CategoryController::class)->names('category');
-        Route::post('confirm/update', [CategoryController::class, 'update'])->name('category.update');
+        Route::post('update', [CategoryController::class, 'update'])->name('update');
         Route::get('category-datatable', [CategoryController::class, 'categoryDataTable'])->name('category-datatable');
 
         Route::resource('variableassets', VariableAssetsController::class);
         Route::get('variableassets-datatable', [VariableAssetsController::class, 'variableassetsDataTable'])->name('variableassets-datatable');
 
         Route::resource('variable-category', VariableCategoryController::class)->names('variable-category');
-        Route::post('confirm/update', [VariableCategoryController::class, 'confirm_update'])->name('confirm_update');
+        Route::post('update', [VariableCategoryController::class, 'update'])->name('update');
         Route::get('variable-category-datatable', [VariableCategoryController::class, 'variablecategoryDataTable'])->name('variable-category-datatable');
     });
 

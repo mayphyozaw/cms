@@ -129,8 +129,8 @@
                                     Consumption Ratio:
                                 </label>
                                 <div class="input-group">
-                                    <input type="text" name="consumption_ratio" class="form-control"
-                                        value="{{ $consumption_ratio }}">
+                                    <input type="text" name="consumption_ratio" class="form-control" readonly>
+                                    
                                 </div>
                             </div>
 

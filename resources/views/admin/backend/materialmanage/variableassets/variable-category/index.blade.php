@@ -2,11 +2,11 @@
 @section('content')
     <div class="content pb-0">
         <div class="mb-4">
-            <h4 class="mb-1">Variable Category</h4>
+            <h4 class="mb-1">Category</h4>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Variable Assets</a></li>
+                    <li class="breadcrumb-item"><a href="#">Admin</a></li>
                     <li class="breadcrumb-item active" aria-current="page">All Category</li>
                 </ol>
             </nav>
@@ -29,7 +29,7 @@
         <div class="card border-0 rounded-0">
 
             <div class="card-header">
-                <h5 class="card-title">Category Information</h5>
+                <h5 class="card-title">Variable Category Information</h5>
             </div>
             <div class="card-body">
                 <div class="table-search d-flex align-items-center">
@@ -54,7 +54,7 @@
         </div>
     </div>
 
-    {{-- Add Fixed Asset Category Modal --}}
+    {{-- Add Variable Asset Category Modal --}}
     <div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -64,11 +64,11 @@
                 </div>
                 <form action="{{ route('material.variable-category.store') }}" method="POST" id="add-form">
                     @csrf
-                    <input type="hidden" name="category_id" id="variableasset_category_id">
+                    <input type="hidden" name="variable_category_id" id="variableAsset_category_id">
                     <div class="modal-body">
                         <div class="mb-3">
                             <label class="form-label">Category Name</label>
-                            <input type="text" class="form-control" id="variable_category_name" name="variable_category_name">
+                            <input type="text" class="form-control" id="category_name" name="category_name">
                         </div>
 
                     </div>
@@ -81,26 +81,26 @@
         </div>
     </div>
 
-    {{-- Edit Fixed Asset Category Modal --}}
+    {{-- Edit Variable Asset Category Modal --}}
     <div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Edit Fixed Asset Category</h5>
+                    <h5 class="modal-title">Edit Variable Asset Category</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('material.confirm_update') }}" method="POST" id="edit-form">
+                <form action="{{ route('material.update') }}" method="POST" id="edit-form">
                     @csrf
-                    <input type="hidden" name="variable_category_id" id="variableasset_category_id">
+                    <input type="hidden" name="variable_category_id" id="edit_variable_category_id">
                     <div class="modal-body">
                         <div class="mb-3">
                             <label class="form-label">Category Name</label>
-                            <input type="text" class="form-control" id="variable_category_name" name="variable_category_name">
+                            <input type="text" class="form-control" id="edit_variable_category_name" name="variable_category_name">
                         </div>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success">Save</button>
+                        <button type="submit" class="btn btn-success">Update</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </form>
@@ -149,31 +149,17 @@
                 ],
             });
 
-            $(document).on('click', '.editCategoryModal', function() {
-                let id = $(this).data('id');
-                let name = $(this).data('name');
-
-                let modal = $('#editModal');
-                modal.find('input[name="variable_category_id"]').val(id);
-                modal.find('input[name="variable_category_name"]').val(name);
-            });
-
-
-            $(document).on('click', '.addCategoryModal', function() {
+            $(document).on('click', '#addModal', function() {
                 let modal = $('#addModal');
                 modal.find('input[name="variable_category_id"]').val('');
                 modal.find('input[name="variable_category_name"]').val('');
             });
 
-            
-            // $(document).ready(function() {
-            //     $(document).on('click', '.editCategoryModal', function() {
-            //         let id = $(this).data('id');
-            //         let name = $(this).data('name');
-            //         $('#variable_category_id').val(id);
-            //         $('#category_name').val(name);
-            //     });
-            // });
+            $(document).on('click', '.editCategoryModal', function() {
+                $('#edit_variable_category_id').val($(this).data('id'));
+                $('#edit_variable_category_name').val($(this).data('name'));
+            });
+
 
             $(document).on('click', '.deleteBtn', function(event) {
                 event.preventDefault();
