@@ -52,19 +52,25 @@
                                     Drawing Measurements
                                 </a>
 
-                                <a href="{{route('projectmanage.projects.mixRatio.index', $project->id)}}" 
+                                <a href="{{ route('projectmanage.projects.mixRatio.index', $project->id) }}"
                                     class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.mixRatio.*') ? 'active' : '' }}">
                                     <i class="ti ti-moneybag me-2"></i>
                                     Mix Ratio Header
                                 </a>
-                                
-                                <a href="{{route('projectmanage.projects.material-mappings.index', $project->id)}}" 
+
+                                <a href="{{ route('projectmanage.projects.material-mappings.index', $project->id) }}"
                                     class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.material-mappings.*') ? 'active' : '' }}">
                                     <i class="ti ti-moneybag me-2"></i>
                                     Material Mapping
                                 </a>
 
-                                 <a href="{{ route('projectmanage.projects.site-measurements.index', $project->id) }}"
+                                <a href="{{ route('projectmanage.projects.material-requirements.index', $project->id) }}"
+                                    class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.material-requirements.*') ? 'active' : '' }}">
+                                    <i class="ti ti-moneybag me-2"></i>
+                                    Material Requirements
+                                </a>
+
+                                <a href="{{ route('projectmanage.projects.site-measurements.index', $project->id) }}"
                                     class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.site-measurements.*') ? 'active' : '' }}">
                                     <i class="ti ti-list-check me-2"></i>
                                     Site Measurements
@@ -171,7 +177,7 @@
                             <table class="table table-bordered align-middle w-100 nowrap" id="mixRatioTable">
                                 <thead>
                                     <tr>
-                                        
+
                                         <th class="text-center" style="background-color: #9dd2e7">No</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Code</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Ratio Name</th>
@@ -179,7 +185,7 @@
                                         <th class="text-center" style="background-color: #9dd2e7">Dry Volume Factor</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Status</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Action</th>
-                                        
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -187,14 +193,14 @@
                                     @foreach ($mixRatioTemps as $mixRatio)
                                         <tr>
                                             <td class="text-center">
-                                                
-                                                {{$loop->iteration}}
+
+                                                {{ $loop->iteration }}
                                             </td>
 
                                             <td class="text-center">
                                                 {{ $mixRatio->code }}
                                             </td>
-                                            
+
                                             <td class="text-center">
                                                 {{ $mixRatio->ratio_name }}
                                             </td>
@@ -213,20 +219,20 @@
 
 
                                             <td class="text-center">
-                                                    <a class="btn btn-icon btn-sm btn-info"
-                                                        href="{{ route('projectmanage.projects.mixRatio.edit', [$project->id, $mixRatio->id]) }}">
-                                                        <i class="ti ti-edit"></i>
-                                                    </a>
-                                                    <form
-                                                        action="{{ route('projectmanage.projects.mixRatio.destroy', [$project->id, $mixRatio->id]) }}"
-                                                        method="POST" style="display:inline;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button class="btn btn-danger btn-sm btn-icon deleteBtn">
-                                                            <i class="ti ti-trash"></i>
-                                                        </button>
-                                                    </form>
-                                                </td>
+                                                <a class="btn btn-icon btn-sm btn-info"
+                                                    href="{{ route('projectmanage.projects.mixRatio.edit', [$project->id, $mixRatio->id]) }}">
+                                                    <i class="ti ti-edit"></i>
+                                                </a>
+                                                <form
+                                                    action="{{ route('projectmanage.projects.mixRatio.destroy', [$project->id, $mixRatio->id]) }}"
+                                                    method="POST" style="display:inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-danger btn-sm btn-icon deleteBtn">
+                                                        <i class="ti ti-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
                                         </tr>
                                     @endforeach
 
@@ -243,7 +249,6 @@
     </div>
 @endsection
 @push('scripts')
-
     <script>
         $(document).on('click', '.deleteBtn', function(event) {
             event.preventDefault();

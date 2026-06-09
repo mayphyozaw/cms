@@ -15,7 +15,7 @@ class MixRatioTemplatesController extends Controller
     {
         $project->load('client');
         $mixRatioTemps = MixRatioTemplates::all();
-        return view('admin.backend.projectmanage.projects.mixRatio.index', compact('project','mixRatioTemps'));
+        return view('admin.backend.projectmanage.projects.mixRatio.index', compact('project', 'mixRatioTemps'));
     }
 
     public function create(Project $project)
@@ -31,7 +31,7 @@ class MixRatioTemplatesController extends Controller
         $nextId = $lastMixRatio ? $lastMixRatio->id + 1 : 1;
 
         $mixRatioCode = 'MX -' . str_pad($nextId, 4, '0', STR_PAD_LEFT);
-        
+
         MixRatioTemplates::create([
             'code'  => $mixRatioCode,
             'ratio_name'  => $request->ratio_name,
@@ -42,7 +42,7 @@ class MixRatioTemplatesController extends Controller
 
         ]);
 
-        return redirect()->route('projectmanage.projects.mixRatio.index',$project->id)
+        return redirect()->route('projectmanage.projects.mixRatio.index', $project->id)
             ->with([
                 'message' => 'Successfully created',
                 'alert-type' => 'success'
@@ -54,7 +54,7 @@ class MixRatioTemplatesController extends Controller
         $mixRatio = MixRatioTemplates::findOrFail($id);
         return view('admin.backend.projectmanage.projects.mixRatio.edit', compact('project', 'mixRatio'));
     }
-    
+
     public function update(MixRatioUpdateRequest $request, Project $project, $id)
     {
         $mixRatio = MixRatioTemplates::findOrFail($id);
@@ -67,7 +67,7 @@ class MixRatioTemplatesController extends Controller
         ]);
 
         return redirect()
-            ->route('projectmanage.projects.mixRatio.index',$project->id)
+            ->route('projectmanage.projects.mixRatio.index', $project->id)
             ->with([
                 'message' => 'Successfully updated',
                 'alert-type' => 'success'
@@ -85,5 +85,12 @@ class MixRatioTemplatesController extends Controller
                 'message' => 'Successfully deleted',
                 'alert-type' => 'success'
             ]);
+    }
+
+    public function getMixRatio(Request $request)
+    {
+        $mixRatio = MixRatioTemplates::findOrFail($request->id);
+
+        return response()->json($mixRatio);
     }
 }

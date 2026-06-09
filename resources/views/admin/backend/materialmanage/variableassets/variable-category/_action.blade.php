@@ -1,7 +1,7 @@
-<button type="button" class="btn btn-icon btn-sm btn-warning addCategoryModal" data-bs-toggle="modal"
+{{-- <button type="button" class="btn btn-icon btn-sm btn-warning addModal" data-bs-toggle="modal"
     data-bs-target="#addModal" title="Add">
     <i class="ti ti-plus"></i>
-</button>
+</button> --}}
 
 <button type="button" class="btn btn-icon btn-sm btn-info editCategoryModal" data-id="{{ $category->id }}"
     data-name="{{ $category->variable_category_name }}" data-bs-toggle="modal" data-bs-target="#editModal" title="Edit">

@@ -34,8 +34,16 @@
             <div class="card-body">
                 <div class="table-search d-flex align-items-center">
                     <div class="search-input">
-                        <a href="javascript:void(0);" class="btn-searchset"><i
-                                class="isax isax-search-normal fs-12"></i></a>
+                        <a href="javascript:void(0);" class="btn-searchset">
+                            <i class="isax isax-search-normal fs-12"></i>
+                        </a>
+                    </div>
+                    <div class="col-auto">
+
+                        <x-create-button href="{{ route('material.variable-category.store') }}" type="button" class="btn btn-sm btn-warning addCategoryModal" data-bs-toggle="modal"
+                            data-bs-target="#addModal" title="Add">
+                                Create Variable Category
+                        </x-create-button>
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -68,7 +76,7 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label class="form-label">Category Name</label>
-                            <input type="text" class="form-control" id="category_name" name="category_name">
+                            <input type="text" class="form-control" id="category_name" name="variable_category_name">
                         </div>
 
                     </div>
@@ -95,7 +103,8 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label class="form-label">Category Name</label>
-                            <input type="text" class="form-control" id="edit_variable_category_name" name="variable_category_name">
+                            <input type="text" class="form-control" id="edit_variable_category_name"
+                                name="variable_category_name">
                         </div>
 
                     </div>
@@ -149,7 +158,7 @@
                 ],
             });
 
-            $(document).on('click', '#addModal', function() {
+            $(document).on('click', '.addCategoryModal', function() {
                 let modal = $('#addModal');
                 modal.find('input[name="variable_category_id"]').val('');
                 modal.find('input[name="variable_category_name"]').val('');

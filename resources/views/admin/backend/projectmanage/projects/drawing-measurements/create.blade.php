@@ -106,7 +106,7 @@
                                     </select>
                                 </div>
 
-                                
+
                                 <div class="col-12 col-lg-3 mb-3">
                                     <label class="form-label">
                                         Measurement Category: <span style="color:red;">*</span>
@@ -213,8 +213,8 @@
                                     </label>
                                     <div class="input-group">
                                         <input type="text" name="coats" class="form-control coats"
-                                            @error('coats') is-invalid @enderror placeholder="Enter coats"
-                                            required value="0">
+                                            @error('coats') is-invalid @enderror placeholder="Enter coats" required
+                                            value="0">
                                     </div>
                                 </div>
 
@@ -326,7 +326,7 @@
                 });
             });
 
-           $('#category_id').on('change', function() {
+            $('#category_id').on('change', function() {
 
                 let selected = $(this).find(':selected');
 
@@ -340,7 +340,7 @@
                 $('#symbol').val(symbol);
                 $('#unit').val(unit);
 
-                
+
                 calculateQuantity();
             });
 
@@ -386,7 +386,7 @@
 
                     quantity = length * unit_weight;
 
-                }else if (formula === 'coats_area') {
+                } else if (formula === 'coats_area') {
 
                     quantity = length * height * coats;
 
@@ -394,7 +394,7 @@
 
                 $('#quantity').val(quantity.toFixed(2));
 
-                
+
             }
 
 

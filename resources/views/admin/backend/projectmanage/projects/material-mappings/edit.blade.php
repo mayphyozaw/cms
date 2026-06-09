@@ -43,15 +43,16 @@
                         <h5 class="card-title">Material Mappings Information</h5>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('projectmanage.projects.material-mappings.store', $project->id) }}"
+                        <form action="{{ route('projectmanage.projects.material-mappings.update', [$project->id, $materialMapping->id]) }}"
                             method="POST" id="submit-form" enctype="multipart/form-data">
                             @csrf
-                            
+                            @method('PUT')
+
 
                             <div class="row mb-3">
 
                                 <label class="col-sm-3 form-label">
-                                   Drawing Measurement:
+                                     Drawing Measurement:
                                 </label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
@@ -59,14 +60,18 @@
                                             class="form-control form-select">
                                             <option value="">Select Measurement Categories</option>
                                             @foreach ($drawingMeasurements as $drawingMeasurement)
-                                                <option value="{{ $drawingMeasurement->id }}">
+                                                <option value="{{ $drawingMeasurement->id }}"
+                                                    {{$materialMapping->drawing_measurement_id == $drawingMeasurement->id ? 'selected' : ''}}
+                                                    >
                                                     {{ $drawingMeasurement->drawing->drawing_name }}
                                                 </option>
+
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
                             </div>
+
 
                             <div class="row mb-3">
 
@@ -79,9 +84,12 @@
                                             class="form-control form-select">
                                             <option value="">Select Measurement Categories</option>
                                             @foreach ($measurementCategories as $measurementCategory)
-                                                <option value="{{ $measurementCategory->id }}">
+                                                <option value="{{ $measurementCategory->id }}"
+                                                    {{$materialMapping->measurement_category_id == $measurementCategory->id ? 'selected' : ''}}
+                                                    >
                                                     {{ $measurementCategory->category_name }}
                                                 </option>
+
                                             @endforeach
                                         </select>
                                     </div>
@@ -99,7 +107,10 @@
                                             class="form-control form-select">
                                             <option value="">Select Material</option>
                                             @foreach ($varilableAssets as $varilableAsset)
-                                                <option value="{{ $varilableAsset->id }}">{{ $varilableAsset->name }}
+                                                <option value="{{ $varilableAsset->id }}"
+                                                    {{$materialMapping->variable_asset_id == $varilableAsset->id ? 'selected' : ''}}
+                                                    >
+                                                    {{ $varilableAsset->name }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -117,10 +128,24 @@
                                         <select name="consumption_type" class="form-control form-select"
                                             id="consumption_type_id">
                                             <option value="">Select consumption_type</option>
-                                            <option value='coverage'> Coverage</option>
-                                            <option value='fixed'> Fixed</option>
-                                            <option value='mix_ratio'> Mix Ratio</option>
-                                            <option value='percentage'> Percentage</option>
+                                            <option value='coverage' {{ $materialMapping->consumption_type == 'coverage' ? 'selected' : '' }}
+                                                > 
+                                                Coverage
+                                            </option>
+                                            <option value='fixed'
+                                                {{ $materialMapping->consumption_type == 'fixed' ? 'selected' : '' }}
+                                                > 
+                                                Fixed
+                                            </option>
+                                            <option value='mix_ratio'
+                                                {{ $materialMapping->consumption_type == 'mix_ratio' ? 'selected' : '' }}
+                                                > 
+                                                Mix Ratio
+                                            </option>
+                                            <option value='percentage' {{ $materialMapping->consumption_type == 'percentage' ? 'selected' : '' }}
+                                                > 
+                                                Percentage
+                                            </option>
                                         </select>
 
                                     </div>
@@ -136,7 +161,8 @@
                                 </label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
-                                        <input type="number" name="coverage_quantity" class="form-control" id="coverage_qty">
+                                        <input type="number" name="coverage_quantity" class="form-control" id="coverage_qty"
+                                        value="{{$materialMapping->coverage_qty}}">
                                     </div>
                                 </div>
                             </div>
@@ -170,7 +196,8 @@
                                             </option>
 
                                             @foreach ($mixRatios as $mixRatio)
-                                                <option value="{{ $mixRatio->id }}">
+                                                <option value="{{ $mixRatio->id }}"
+                                                    {{$materialMapping->mix_ratio_template_id == $mixRatio->id ? 'selected' : ''}}>
                                                     {{ $mixRatio->ratio_name }}
                                                 </option>
                                             @endforeach
@@ -188,7 +215,8 @@
                                 </label>
                                 <div class="col-sm-9">
                                     <input type="text" name="consumption_ratio" id="consumption_ratio_input"
-                                        class="form-control" readonly>
+                                        class="form-control" readonly
+                                        value="{{$materialMapping->consumption_ratio}}">
                                 </div>
                             </div>
 
@@ -199,7 +227,7 @@
                                 <div class="col-sm-9">
                                     <div class="input-group">
                                         <input type="text" name="wastage_percentage" class="form-control"
-                                            value="1">
+                                            value="{{$materialMapping->wastage_percentage}}">
                                         <div class="input-group-text">
                                             <i class="ti ti-percentage"></i>
                                         </div>
@@ -213,7 +241,7 @@
                                 </label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
-                                        <input name="status" class="form-control"/>
+                                        <input name="status" class="form-control" value="{{$materialMapping->status}}">
                                     </div>
                                 </div>
                             </div>
@@ -225,7 +253,9 @@
                                 </label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
-                                        <textarea name="remark" class="form-control"></textarea>
+                                        <textarea name="remark" class="form-control">
+                                            {{$materialMapping->remark}}
+                                        </textarea>
                                     </div>
                                 </div>
                             </div>
@@ -275,6 +305,7 @@
                 } else if (type === 'mix_ratio') {
 
                     $('#mix_ratio_div').show();
+                    $('#consumption_ratio_input').val('-');
                     // $('#consumption_ratio').show();
 
                 }

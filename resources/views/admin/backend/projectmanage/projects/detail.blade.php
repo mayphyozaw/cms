@@ -60,6 +60,12 @@
                                     <i class="ti ti-moneybag me-2"></i>
                                     Material Mapping
                                 </a>
+
+                                <a href="{{route('projectmanage.projects.material-requirements.index', $project->id)}}" 
+                                    class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.material-requirements.*') ? 'active' : '' }}">
+                                    <i class="ti ti-moneybag me-2"></i>
+                                    Material Requirements
+                                </a>
                                 
                                 <a href="{{route('projectmanage.projects.site-measurements.index', $project->id)}}" 
                                     class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.site-measurements.*') ? 'active' : '' }}">

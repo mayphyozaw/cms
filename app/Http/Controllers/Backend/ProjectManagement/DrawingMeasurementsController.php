@@ -18,8 +18,8 @@ class DrawingMeasurementsController extends Controller
     {
         $project->load('client');
         $drawingMeasurementAllData = DrawingMeasurement::with(['workType.measurementType', 'drawing.drawingType'])
-        ->orderBy('created_at', 'desc')    
-        ->get();
+            ->orderBy('created_at', 'desc')
+            ->get();
         return view('admin.backend.projectmanage.projects.drawing-measurements.index', compact('project', 'drawingMeasurementAllData'));
     }
 
@@ -36,7 +36,7 @@ class DrawingMeasurementsController extends Controller
 
     public function store(Request $request, Project $project)
     {
-        
+
         $request->validate([
             'length'      => 'required|numeric|min:0',
             'width'       => 'required|numeric|min:0',
@@ -92,7 +92,7 @@ class DrawingMeasurementsController extends Controller
                 $quantity = $length * $unit_weight;
                 break;
         }
-         DrawingMeasurement::create([
+        DrawingMeasurement::create([
             'project_id' => $project->id,
             'measurement_categories_id' => $request->measurement_categories_id,
             'drawing_id' => $request->drawing_id,
@@ -119,7 +119,7 @@ class DrawingMeasurementsController extends Controller
 
     public function edit(Project $project, $id)
     {
-        
+
         $drawing_measurement = DrawingMeasurement::with('measurementType')
             ->findOrFail($id);
         $drawings = Drawings::all();
@@ -128,7 +128,7 @@ class DrawingMeasurementsController extends Controller
         $measurement_types = MeasurementTypes::all();
         $categories = MeasurementCategories::all();
         $project->load('client');
-        return view('admin.backend.projectmanage.projects.drawing-measurements.edit', compact('project', 'drawing_measurement', 'drawings', 'drawing_types', 'work_types', 'measurement_types','categories'));
+        return view('admin.backend.projectmanage.projects.drawing-measurements.edit', compact('project', 'drawing_measurement', 'drawings', 'drawing_types', 'work_types', 'measurement_types', 'categories'));
     }
 
     public function update(Request $request, Project $project, $id)
@@ -218,15 +218,15 @@ class DrawingMeasurementsController extends Controller
         }
 
         return response()->json([
-        'id'           => $drawingMeasurement->id,
-        'length'       => $drawingMeasurement->length,
-        'width'        => $drawingMeasurement->width,
-        'height'       => $drawingMeasurement->height,
-        'unit_weight'  => $drawingMeasurement->unit_weight,
-        'quantity'     => $drawingMeasurement->quantity,
-        'unit'         => $drawingMeasurement->unit,
-        'formula'      => $drawingMeasurement->formula,
-    ]);
+            'id'           => $drawingMeasurement->id,
+            'length'       => $drawingMeasurement->length,
+            'width'        => $drawingMeasurement->width,
+            'height'       => $drawingMeasurement->height,
+            'unit_weight'  => $drawingMeasurement->unit_weight,
+            'quantity'     => $drawingMeasurement->quantity,
+            'unit'         => $drawingMeasurement->unit,
+            'formula'      => $drawingMeasurement->formula,
+        ]);
     }
 
     public function getDrawing(Request $request)
@@ -238,7 +238,7 @@ class DrawingMeasurementsController extends Controller
         }
 
         return response()->json([
-            
+
             'drawing_type_id' => $drawing->drawing_type_id
         ]);
     }

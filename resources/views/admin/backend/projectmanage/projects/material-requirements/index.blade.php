@@ -1,11 +1,10 @@
 @extends('layouts.app')
-
 @section('content')
     <div class="content">
 
         <div class="d-flex align-items-center justify-content-between gap-2 mb-4 flex-wrap">
             <div>
-                <h4 class="mb-1">Drawings Lists</h4>
+                <h4 class="mb-1">Material Mappings </h4>
 
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
@@ -14,7 +13,7 @@
                         </li>
 
                         <li class="breadcrumb-item active" aria-current="page">
-                            Drawing Lists
+                            Material Mappings
                         </li>
                     </ol>
                 </nav>
@@ -65,11 +64,6 @@
                                     Material Mapping
                                 </a>
 
-                                <a href="{{route('projectmanage.projects.material-requirements.index', $project->id)}}" 
-                                    class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.material-requirements.*') ? 'active' : '' }}">
-                                    <i class="ti ti-moneybag me-2"></i>
-                                    Material Requirements
-                                </a>
 
                                  <a href="{{ route('projectmanage.projects.site-measurements.index', $project->id) }}"
                                     class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.site-measurements.*') ? 'active' : '' }}">
@@ -121,18 +115,18 @@
                         <ul class="nav nav-tabs nav-bordered nav-bordered-primary">
 
                             <li class="nav-item me-3">
-                                <a href="{{ route('projectmanage.projects.drawings.index', $project->id) }}"
-                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.drawings.index') ? 'active' : '' }}">
+                                <a href="{{ route('projectmanage.projects.material-mappings.index', $project->id) }}"
+                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.material-mappings.index') ? 'active' : '' }}">
                                     <i class="ti ti-settings-cog me-2"></i>
-                                    Drawing Lists
+                                    Material Mappings
                                 </a>
                             </li>
 
                             <li class="nav-item me-3">
-                                <a href="{{ route('projectmanage.projects.drawing-type.index', $project->id) }}"
-                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.drawing-type.index') ? 'active' : '' }}">
-                                    <i class="ti ti-device-laptop me-2"></i>
-                                    Drawing Types
+                                <a href="{{route('projectmanage.projects.material-requirements.index', $project->id)}}" 
+                                    class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.material-requirements.*') ? 'active' : '' }}">
+                                    <i class="ti ti-moneybag me-2"></i>
+                                    Material Requirements
                                 </a>
                             </li>
 
@@ -149,13 +143,13 @@
                         <div class="row align-items-center">
 
                             <div class="col">
-                                <h5 class="card-title mb-0">Drawing Lists</h5>
+                                <h5 class="card-title mb-0">Material Requirement Lists</h5>
                             </div>
 
                             <div class="col-auto">
                                 <x-create-button
-                                    href="{{ route('projectmanage.projects.drawings.create', $project->id) }}">
-                                    Create Drawings
+                                    href="{{ route('projectmanage.projects.material-requirements.create', $project->id) }}">
+                                    Create Material Requirement
                                 </x-create-button>
                             </div>
 
@@ -175,120 +169,69 @@
 
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered align-middle w-100 nowrap" id="drawingTableId">
+                            <table class="table table-bordered align-middle w-100 nowrap" id="materialMappingTable">
                                 <thead>
                                     <tr>
-                                        <th class="text-center" style="background-color: #9dd2e7">
-                                            Action
-                                        </th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Date</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Project Code</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Client Name</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Drawing Name</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Drawing Type</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Revision No</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Scale Ratio</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">
-                                            Drawing Upload File
-                                        </th>
-                                        <th class="text-center" style="background-color: #9dd2e7">
-                                            Remark
-                                        </th>
-                                        <th class="text-center" style="background-color: #9dd2e7">
-                                            Action
-                                        </th>
+                                        
+                                        <th class="text-center" style="background-color: #9dd2e7">No</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Mesurement Category</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Material</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Type</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Ratio</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Waste</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Action</th>
+                                        
                                     </tr>
                                 </thead>
-                                <tbody>
+                                {{-- <tbody>
 
-                                    @foreach ($drawings as $drawing)
+                                    @foreach ($materialMappings as $materialMapping)
                                         <tr>
                                             <td class="text-center">
-                                                <a class="btn btn-sm btn-info"
-                                                    href="{{ route('projectmanage.projects.drawings.edit', [$project->id, $drawing->id]) }}">
-                                                    <small>Edit</small>
-                                                </a>
-                                                {{-- <form
-                                                    action="{{ route('projectmanage.projects.drawings.destroy', [$project->id, $drawing->id]) }}"
-                                                    method="POST" style="display:inline;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="btn btn-danger btn-sm btn-icon deleteBtn">
-                                                        <i class="ti ti-trash"></i>
-                                                    </button>
-                                                </form> --}}
+                                                
+                                                {{$loop->iteration}}
                                             </td>
 
                                             <td class="text-center">
-                                                {{ $drawing->created_at }}
+                                                {{ $materialMapping->category->category_name }}
+                                            </td>
+                                            
+                                            <td class="text-center">
+                                                {{ $materialMapping->material->name }}
                                             </td>
 
                                             <td class="text-center">
-                                                P-{{ $project->client->project_code }}
+                                                {{ $materialMapping->consumption_type }}
                                             </td>
 
                                             <td class="text-center">
-                                                {{ $project->client->name }}
-                                            </td>
-
-                                            <td>
-                                                {{ $drawing->drawing_name }}
+                                                {{ $materialMapping->consumption_ratio }}
                                             </td>
 
                                             <td class="text-center">
-                                                {{ $drawing->drawingType->name }}
+                                                {{ $materialMapping->wastage_percentage }}
                                             </td>
 
-                                            <td class="text-center">
-                                                {{ $drawing->revision_no }}
-                                            </td>
 
                                             <td class="text-center">
-                                                @if ($drawing->scale_ratio == '1_1')
-                                                    1" = 1'
-                                                @elseif($drawing->scale_ratio == '1_2')
-                                                    1" = 2'
-                                                @elseif($drawing->scale_ratio == '1_50')
-                                                    1:50
-                                                @elseif($drawing->scale_ratio == '1_100')
-                                                    1:100
-                                                @endif
-                                            </td>
-
-                                            <td class="text-center">
-
-                                                <a href="{{ asset('upload/drawings/' . $drawing->drawing_file) }}"
-                                                    target="_blank">
-
-                                                    <span style="color:red">
-                                                        {{ $drawing->drawing_file_name }}
-                                                    </span>
-
-                                                </a>
-                                            </td>
-
-                                            <td class="text-center">
-                                                {{ $drawing->remarks }}
-                                            </td>
-                                            <td class="text-center">
-                                                <a class="btn btn-icon btn-sm btn-info"
-                                                    href="{{ route('projectmanage.projects.drawings.edit', [$project->id, $drawing->id]) }}">
-                                                    <i class="ti ti-edit"></i>
-                                                </a>
-                                                <form
-                                                    action="{{ route('projectmanage.projects.drawings.destroy', [$project->id, $drawing->id]) }}"
-                                                    method="POST" style="display:inline;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="btn btn-danger btn-sm btn-icon deleteBtn">
-                                                        <i class="ti ti-trash"></i>
-                                                    </button>
-                                                </form>
+                                                    <a class="btn btn-icon btn-sm btn-info"
+                                                        href="{{ route('projectmanage.projects.material-mappings.edit', [$project->id, $materialMapping->id]) }}">
+                                                        <i class="ti ti-edit"></i>
+                                                    </a>
+                                                    <form
+                                                        action="{{ route('projectmanage.projects.material-mappings.destroy', [$project->id, $materialMapping->id]) }}"
+                                                        method="POST" style="display:inline;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="btn btn-danger btn-sm btn-icon deleteBtn">
+                                                            <i class="ti ti-trash"></i>
+                                                        </button>
+                                                    </form>
                                             </td>
                                         </tr>
                                     @endforeach
 
-                                </tbody>
+                                </tbody> --}}
                             </table>
                         </div>
                     </div>
@@ -301,6 +244,7 @@
     </div>
 @endsection
 @push('scripts')
+
     <script>
         $(document).on('click', '.deleteBtn', function(event) {
             event.preventDefault();
@@ -324,10 +268,9 @@
 
             });
 
-
         });
 
-        $('#drawingTableId').DataTable({
+        $('#materialMappingTable').DataTable({
             responsive: true,
             autoWidth: false
         });

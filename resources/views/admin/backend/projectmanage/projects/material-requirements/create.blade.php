@@ -3,14 +3,14 @@
     <div class="content pb-0">
         <div class="d-flex align-items-center justify-content-between gap-2 mb-4 flex-wrap">
             <div>
-                <h4 class="mb-1">Material Mappings</h4>
+                <h4 class="mb-1">Material Requirements</h4>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item">
                             <a href="{{ route('projectmanage.projects.index') }}">Project</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            Material Mappings
+                            Material Requirements
                         </li>
                     </ol>
                 </nav>
@@ -25,8 +25,8 @@
                     <ul class="nav nav-tabs nav-bordered nav-bordered-primary">
 
                         <li class="nav-item me-3">
-                            <a href="{{ route('projectmanage.projects.material-mappings.index', $project->id) }}"
-                                class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.material-mappings.index') ? 'active' : '' }}">
+                            <a href="{{ route('projectmanage.projects.material-requirements.index', $project->id) }}"
+                                class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.material-requirements.index') ? 'active' : '' }}">
                                 <i class="ti ti-settings-cog me-2"></i>
                                 Material Mappings
                             </a>
@@ -40,18 +40,16 @@
             <div class="col-xl-9">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="card-title">Material Mappings Information</h5>
+                        <h5 class="card-title">Material Requirements Information</h5>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('projectmanage.projects.material-mappings.store', $project->id) }}"
+                        <form action="{{ route('projectmanage.projects.material-requirements.store', $project->id) }}"
                             method="POST" id="submit-form" enctype="multipart/form-data">
                             @csrf
-                            
-
                             <div class="row mb-3">
 
                                 <label class="col-sm-3 form-label">
-                                   Drawing Measurement:
+                                    Drawing Measurement:
                                 </label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
@@ -60,7 +58,9 @@
                                             <option value="">Select Measurement Categories</option>
                                             @foreach ($drawingMeasurements as $drawingMeasurement)
                                                 <option value="{{ $drawingMeasurement->id }}">
-                                                    {{ $drawingMeasurement->drawing->drawing_name }}
+                                                    {{ $drawingMeasurement->drawing->drawing_name }} -
+                                                    {{ $drawingMeasurement->quantity }}
+                                                    {{ $drawingMeasurement->unit }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -68,19 +68,20 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-3">
 
+                            <div class="row mb-3">
                                 <label class="col-sm-3 form-label">
-                                    Measurement Categories:
+                                    Material Mapping:
                                 </label>
+
                                 <div class="col-sm-9">
                                     <div class="input-group">
-                                        <select name="measurement_category_id" id="measurement_category_id"
+                                        <select name="material_mapping_id" id="material_mapping_id"
                                             class="form-control form-select">
-                                            <option value="">Select Measurement Categories</option>
-                                            @foreach ($measurementCategories as $measurementCategory)
-                                                <option value="{{ $measurementCategory->id }}">
-                                                    {{ $measurementCategory->category_name }}
+                                            <option value="">Select Material Mapping</option>
+                                            @foreach ($materialMappings as $materialMapping)
+                                                <option value="{{ $materialMapping->id }}">
+                                                    {{ $materialMapping->material->name }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -98,7 +99,7 @@
                                         <select name="variable_asset_id" id="variable_asset_id"
                                             class="form-control form-select">
                                             <option value="">Select Material</option>
-                                            @foreach ($varilableAssets as $varilableAsset)
+                                            @foreach ($variableAssets as $varilableAsset)
                                                 <option value="{{ $varilableAsset->id }}">{{ $varilableAsset->name }}
                                                 </option>
                                             @endforeach
@@ -115,7 +116,7 @@
                                 <div class="col-sm-9">
                                     <div class="input-group">
                                         <select name="consumption_type" class="form-control form-select"
-                                            id="consumption_type_id">
+                                            id="consumption_type">
                                             <option value="">Select consumption_type</option>
                                             <option value='coverage'> Coverage</option>
                                             <option value='fixed'> Fixed</option>
@@ -136,7 +137,7 @@
                                 </label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
-                                        <input type="number" name="coverage_quantity" class="form-control" id="coverage_qty">
+                                        <input type="number" name="coverage_qty" class="form-control" id="coverage_qty">
                                     </div>
                                 </div>
                             </div>
@@ -163,7 +164,8 @@
                                 </label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
-                                        <select name="mix_ratio_template_id" class="form-control form-select">
+                                        <select name="mix_ratio_template_id" class="form-control form-select"
+                                            id="mix_ratio_template_id">
 
                                             <option value="">
                                                 Select Mix Ratio
@@ -182,13 +184,13 @@
                             </div>
 
 
-                            <div class="row mb-3" id="consumption_ratio" style="display:none;">
+                            <div class="row mb-3">
                                 <label class="col-sm-3 form-label">
                                     Consumption Ratio
                                 </label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="consumption_ratio" id="consumption_ratio_input"
-                                        class="form-control" readonly>
+                                    <input type="text" name="consumption_ratio" id="consumption_ratio"
+                                        class="form-control consumption_ratio" readonly>
                                 </div>
                             </div>
 
@@ -198,10 +200,66 @@
                                 </label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
-                                        <input type="text" name="wastage_percentage" class="form-control"
-                                            value="1">
+                                        <input type="text" name="wastage_percentage"
+                                            class="form-control wastage_percentage" id="wastage_percentage">
                                         <div class="input-group-text">
                                             <i class="ti ti-percentage"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-sm-3 form-label">
+                                    Raw Quantity
+                                </label>
+                                <div class="col-sm-9">
+                                    <div class="input-group">
+                                        <input type="text" name="raw_quantity" class="form-control quantity"
+                                            id="quantity" readonly>
+                                        <div class="input-group-text">
+                                            <input type="text" name="drawing_measurement_id" class="form-control"
+                                                id="unit" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="form-label fs-14" class="form-label fs-14 col-sm-3">
+                                    Base Quantity :
+                                </label>
+                                <div class="col-sm-9">
+                                    <div class="input-group">
+                                        <input name="base_quantity" class="form-control base_quantity"
+                                            id="base_quantity" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3" hidden>
+                                <label for="form-label fs-14" class="form-label fs-14 col-sm-3">
+                                    Dry Volume Factor :
+                                </label>
+                                <div class="col-sm-9">
+                                    <div class="input-group">
+                                        <input name="dry_volume_factor" class="form-control dry_volume_factor"
+                                            id="dry_volume_factor" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                            <div class="row mb-3">
+                                <label class="col-sm-3 form-label">
+                                    Final Quantity
+                                </label>
+                                <div class="col-sm-9">
+                                    <div class="input-group">
+                                        <input type="text" name="final_quantity" class="form-control final_quantity"
+                                            id="final_quantity" readonly>
+                                        <div class="input-group-text">
+                                            <input type="text" name="variable_asset_id" class="form-control"
+                                                id="material_unit" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -213,7 +271,7 @@
                                 </label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
-                                        <input name="status" class="form-control"/>
+                                        <input name="status" class="form-control" />
                                     </div>
                                 </div>
                             </div>
@@ -245,69 +303,143 @@
     <script>
         $(document).ready(function() {
 
-            $('#consumption_type_id').change(function() {
+
+            $('#material_mapping_id').on('change', function() {
+                let type = $(this).val();
+                let materialMappingId = $(this).val();
+                $.ajax({
+                    url: "{{ route('projectmanage.material_mapping_get') }}",
+                    type: 'GET',
+                    data: {
+                        material_mapping_id: materialMappingId,
+                    },
+
+                    success: function(data) {
+                        $('#consumption_type').val(data.consumption_type);
+                        $('#variable_asset_id').val(data.variable_asset_id);
+                        $('#coverage_qty').val(data.coverage_qty);
+                        $('#percentage_div').val(data.percentage_div);
+                        $('#consumption_ratio').val(data.consumption_ratio);
+                        $('#wastage_percentage').val(data.wastage_percentage);
+                        $('#material_unit').val(data.unit);
+
+                        calculateBaseQuantity();
+                        calculateFinalQuantity();
+                    },
+
+
+                });
+
+            });
+
+            $('#drawing_measurement_id').on('change', function() {
+                let drawingMeasurementId = $(this).val();
+                $.ajax({
+                    url: "{{ route('projectmanage.drawing_measurement_get') }}",
+                    type: 'GET',
+                    data: {
+                        drawing_measurement_id: drawingMeasurementId
+                    },
+
+                    success: function(data) {
+                        $('#quantity').val(data.quantity);
+                        $('#unit').val(data.unit);
+
+                        calculateBaseQuantity();
+                        calculateFinalQuantity();
+                    }
+
+                });
+            });
+
+
+            $('#mix_ratio_template_id').change(function() {
+
+
+                let mixRatioTempId = $(this).val();
+
+                $.ajax({
+                    url: "{{ route('projectmanage.mix_ratio_get') }}",
+                    type: 'GET',
+                    data: {
+                        mix_ratio_template_id: mixRatioTempId
+                    },
+
+                    success: function(data) {
+
+                        $('#dry_volume_factor').val(data.dry_volume_factor);
+
+                    }
+
+                });
+
+            });
+
+            $('#drawing_measurement_id').on('change', function() {
 
                 let selected = $(this).find(':selected');
                 let type = $(this).val();
 
-                $('#coverage_qty_div').hide();
-                $('#percentage_div').hide();
-                $('#mix_ratio_div').hide();
+                $('#quantity').val(data.quantity);
+                $('#consumption_ratio').val(data.consumption_ratio);
+                $('#wastage_percentage').val(data.wastage_percentage);
+                $('#consumption_type').val(data.consumption_type);
 
-                $('#consumption_ratio_input').val('');
+                calculateBaseQuantity();
+                calculateFinalQuantity();
+            });
 
-                if (type === 'coverage') {
+            function calculateBaseQuantity() {
 
-                    $('#coverage_qty_div').show();
-                    $('#consumption_ratio').show();
+                let quantity = parseFloat($('.quantity').val()) || 0;
+                let consumption_ratio = parseFloat($('.consumption_ratio').val()) || 0;
+                let factor = parseFloat($('#dry_volume_factor').val()) || 0;
+
+                let type = $('#consumption_type').val();
+
+                let base_quantity = 0;
+
+                let dryVolume = quantity * factor;
 
 
-                } else if (type === 'fixed') {
+                if (
+                    type === 'fixed' ||
+                    type === 'coverage' ||
+                    type === 'percentage'
+                ) {
 
-                    $('#consumption_ratio').show();
-                    $('#consumption_ratio_input').val(1);
-
-                } else if (type === 'percentage') {
-
-                    $('#percentage_div').show();
-                    $('#consumption_ratio').show();
-
-                } else if (type === 'mix_ratio') {
-
-                    $('#mix_ratio_div').show();
-                    // $('#consumption_ratio').show();
+                    base_quantity =
+                        quantity * consumption_ratio;
 
                 }
 
-            });
+                $('#base_quantity').val(base_quantity.toFixed(2));
 
-            $('#coverage_qty').on('keyup change', function() {
+                calculateFinalQuantity();
+            }
 
-                let coverage = parseFloat($(this).val());
+            
 
-                if (coverage > 0) {
+            function calculateFinalQuantity() {
 
-                    let ratio = 1 / coverage;
+                let base_quantity =
+                    parseFloat($('#base_quantity').val()) || 0;
 
-                    $('#consumption_ratio_input')
-                        .val(ratio.toFixed(3));
-                }
+                let wastage_percentage =
+                    parseFloat($('#wastage_percentage').val()) || 0;
 
-            });
+                let final_quantity =
+                    base_quantity *
+                    (1 + wastage_percentage / 100);
 
-            $('#percentage_value').on('keyup change', function() {
+                $('#final_quantity').val(
+                    final_quantity.toFixed(2)
+                );
+            }
 
-                let percentage = parseFloat($(this).val());
 
-                if (percentage > 0) {
 
-                    let ratio = percentage / 100;
 
-                    $('#consumption_ratio_input')
-                        .val(ratio.toFixed(3));
-                }
-
-            });
 
         });
     </script>

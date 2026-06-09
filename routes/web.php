@@ -30,6 +30,7 @@ use App\Http\Controllers\Backend\ProjectManagement\DrawingController;
 use App\Http\Controllers\Backend\ProjectManagement\DrawingMeasurementsController;
 use App\Http\Controllers\Backend\ProjectManagement\DrawingTypeController;
 use App\Http\Controllers\Backend\ProjectManagement\MaterialMappingController;
+use App\Http\Controllers\Backend\ProjectManagement\MaterialRequirementsController;
 use App\Http\Controllers\Backend\ProjectManagement\MeasurementCategoriesController;
 use App\Http\Controllers\Backend\ProjectManagement\MeasurementTypeController;
 use App\Http\Controllers\Backend\ProjectManagement\MixRatioDetailsController;
@@ -51,6 +52,7 @@ use App\Http\Controllers\Backend\UserManagement\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\UserManagement\Resign;
 use App\Http\Controllers\Backend\UserManagement\ResignController;
+use App\Models\MaterialMappings;
 use App\Models\MeasurementCategories;
 use App\Models\ProjectCategory;
 use Illuminate\Support\Facades\Route;
@@ -192,7 +194,7 @@ Route::middleware('auth', 'notBlocked')->group(function () {
 
         Route::resource('fixedassets', FixedAssetsController::class);
         Route::get('fixedassets-datatable', [FixedAssetsController::class, 'fixedassetsDataTable'])->name('fixedassets-datatable');
-        Route::post('fixedassets/purchase', [FixedAssetsController::class], 'purchaseFixedAssets')->name('fixedassets.purchase');
+        Route::post('fixedassets/purchase', [FixedAssetsController::class, 'purchaseFixedAssets'])->name('fixedassets.purchase');
 
 
         Route::resource('category', CategoryController::class)->names('category');
@@ -250,12 +252,15 @@ Route::middleware('auth', 'notBlocked')->group(function () {
                 Route::resource('mixRatio', MixRatioTemplatesController::class);
                 Route::resource('mixRatio-details', MixRatioDetailsController::class);
                 Route::resource('material-mappings', MaterialMappingController::class);
+                Route::resource('material-requirements', MaterialRequirementsController::class);
 
             });
 
         Route::get('drawings_get', [DrawingMeasurementsController::class, 'getDrawing'])->name('drawings_get');
         Route::get('worktype_get', [DrawingMeasurementsController::class, 'getWorkType'])->name('worktype_get');
         Route::get('drawing_measurement_get', [DrawingMeasurementsController::class, 'getDrawingMeasurement'])->name('drawing_measurement_get');
+        Route::get('material_mapping_get',[MaterialMappingController::class, 'getMaterialMapping'])->name('material_mapping_get');
+        Route::get('mix_ratio_get',[MaterialRequirementsController::class, 'getMixRatio'])->name('mix_ratio_get');
         
         
 

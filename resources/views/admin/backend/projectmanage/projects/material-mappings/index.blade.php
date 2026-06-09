@@ -64,6 +64,12 @@
                                     Material Mapping
                                 </a>
 
+                                <a href="{{route('projectmanage.projects.material-requirements.index', $project->id)}}" 
+                                    class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.material-requirements.*') ? 'active' : '' }}">
+                                    <i class="ti ti-moneybag me-2"></i>
+                                    Material Requirements
+                                </a>
+
 
                                  <a href="{{ route('projectmanage.projects.site-measurements.index', $project->id) }}"
                                     class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.site-measurements.*') ? 'active' : '' }}">
@@ -122,13 +128,13 @@
                                 </a>
                             </li>
 
-                            {{-- <li class="nav-item me-3">
-                                <a href="{{ route('projectmanage.projects.mixRatio-details.index', $project->id) }}"
-                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.mixRatio-details.index') ? 'active' : '' }}">
-                                    <i class="ti ti-settings-cog me-2"></i>
-                                    Mix Ratio Detail
+                            <li class="nav-item me-3">
+                                <a href="{{route('projectmanage.projects.material-requirements.index', $project->id)}}" 
+                                    class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.material-requirements.*') ? 'active' : '' }}">
+                                    <i class="ti ti-moneybag me-2"></i>
+                                    Material Requirements
                                 </a>
-                            </li> --}}
+                            </li>
 
                         </ul>
 
@@ -174,18 +180,21 @@
                                     <tr>
                                         
                                         <th class="text-center" style="background-color: #9dd2e7">No</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Code</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Ratio Name</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Ratio Type</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Dry Volume Factor</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Status</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Drawing Name</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Mesurement Category</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Material</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Type</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Ratio</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Waste</th>
+                                        {{-- <th class="text-center" style="background-color: #9dd2e7">Status</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Status</th> --}}
                                         <th class="text-center" style="background-color: #9dd2e7">Action</th>
                                         
                                     </tr>
                                 </thead>
-                                {{-- <tbody>
+                                <tbody>
 
-                                    @foreach ($mixRatioTemps as $mixRatio)
+                                    @foreach ($materialMappings as $materialMapping)
                                         <tr>
                                             <td class="text-center">
                                                 
@@ -193,33 +202,38 @@
                                             </td>
 
                                             <td class="text-center">
-                                                {{ $mixRatio->code }}
+                                                {{ $materialMapping->drawingmeasurement->drawing->drawing_name }}
+                                            </td>
+
+                                            <td class="text-center">
+                                                {{ $materialMapping->category->category_name }}
                                             </td>
                                             
                                             <td class="text-center">
-                                                {{ $mixRatio->ratio_name }}
+                                                {{ $materialMapping->material->name }}
                                             </td>
 
                                             <td class="text-center">
-                                                {{ $mixRatio->ratio_type }}
+                                                {{ $materialMapping->consumption_type }}
                                             </td>
 
                                             <td class="text-center">
-                                                {{ $mixRatio->dry_volume_factor }}
+                                                {{ number_format($materialMapping->consumption_ratio, 5) }}
+                                                
                                             </td>
 
                                             <td class="text-center">
-                                                {{ $mixRatio->status }}
+                                                {{ $materialMapping->wastage_percentage }}
                                             </td>
 
 
                                             <td class="text-center">
                                                     <a class="btn btn-icon btn-sm btn-info"
-                                                        href="{{ route('projectmanage.projects.mixRatio.edit', [$project->id, $mixRatio->id]) }}">
+                                                        href="{{ route('projectmanage.projects.material-mappings.edit', [$project->id, $materialMapping->id]) }}">
                                                         <i class="ti ti-edit"></i>
                                                     </a>
                                                     <form
-                                                        action="{{ route('projectmanage.projects.mixRatio.destroy', [$project->id, $mixRatio->id]) }}"
+                                                        action="{{ route('projectmanage.projects.material-mappings.destroy', [$project->id, $materialMapping->id]) }}"
                                                         method="POST" style="display:inline;">
                                                         @csrf
                                                         @method('DELETE')
@@ -227,11 +241,11 @@
                                                             <i class="ti ti-trash"></i>
                                                         </button>
                                                     </form>
-                                                </td>
+                                            </td>
                                         </tr>
                                     @endforeach
 
-                                </tbody> --}}
+                                </tbody>
                             </table>
                         </div>
                     </div>
