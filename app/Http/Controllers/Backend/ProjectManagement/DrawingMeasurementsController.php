@@ -17,7 +17,7 @@ class DrawingMeasurementsController extends Controller
     public function index(Project $project)
     {
         $project->load('client');
-        $drawingMeasurementAllData = DrawingMeasurement::with(['workType.measurementType', 'drawing.drawingType'])
+        $drawingMeasurementAllData = DrawingMeasurement::with(['workType.measurementType', 'drawing.drawingType','category'])
             ->orderBy('created_at', 'desc')
             ->get();
         return view('admin.backend.projectmanage.projects.drawing-measurements.index', compact('project', 'drawingMeasurementAllData'));

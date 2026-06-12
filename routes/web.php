@@ -253,16 +253,20 @@ Route::middleware('auth', 'notBlocked')->group(function () {
                 Route::resource('mixRatio-details', MixRatioDetailsController::class);
                 Route::resource('material-mappings', MaterialMappingController::class);
                 Route::resource('material-requirements', MaterialRequirementsController::class);
-
             });
 
         Route::get('drawings_get', [DrawingMeasurementsController::class, 'getDrawing'])->name('drawings_get');
         Route::get('worktype_get', [DrawingMeasurementsController::class, 'getWorkType'])->name('worktype_get');
         Route::get('drawing_measurement_get', [DrawingMeasurementsController::class, 'getDrawingMeasurement'])->name('drawing_measurement_get');
-        Route::get('material_mapping_get',[MaterialMappingController::class, 'getMaterialMapping'])->name('material_mapping_get');
-        Route::get('mix_ratio_get',[MaterialRequirementsController::class, 'getMixRatio'])->name('mix_ratio_get');
-        
-        
+        Route::get('material_mapping_get', [MaterialMappingController::class, 'getMaterialMapping'])->name('material_mapping_get');
+        Route::get('mix_ratio_get', [MaterialMappingController::class, 'getMixRatio'])->name('mix_ratio_get');
+        // Route::get('mix_ratio_get', [MaterialRequirementsController::class, 'getMixRatio'])->name('mix_ratio_get');
+
+        // Route::get('material_mapping_get', [MaterialRequirementsController::class, 'getMaterialMapping'])->name('material_mapping_get');
+        // Route::get('drawing_measurement_get', [MaterialRequirementsController::class, 'getDrawingMeasurement'])->name('drawing_measurement_get');
+        Route::get('drawing_measurement_get',[MaterialRequirementsController::class, 'getDrawingMeasurement'])->name('drawing_measurement_get');
+
+
 
         Route::resource('projectfiles', ProjectFilesController::class)->only('index', 'store', 'edit', 'update');
         Route::get('/project/files', [ProjectFilesController::class, 'get_project_files'])->name('get_project_files');

@@ -32,13 +32,18 @@ class DrawingMeasurement extends Model
     }
     public function measurementType()
     {
-        return $this->belongsTo(MeasurementTypes::class,'measurement_type_id');
+        return $this->belongsTo(MeasurementTypes::class, 'measurement_type_id');
     }
 
-    public function measurementCategory()
+    public function category()
     {
         return $this->belongsTo(MeasurementCategories::class, 'measurement_categories_id');
     }
 
+    public function materialMappings()
+    {
+        return $this->hasMany(MaterialMappings::class, 'drawing_measurement_id');
+    }
 
+    
 }

@@ -13,7 +13,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::W4YfIcKGtoV3JIwJ',
+            '_route' => 'generated::jcak4QYteucZy35j',
           ),
           1 => NULL,
           2 => 
@@ -33,7 +33,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::dg37L1G5vlOZzaI0',
+            '_route' => 'generated::W79N8ymj2bqKSSVw',
           ),
           1 => NULL,
           2 => 
@@ -110,7 +110,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::uoJ4pkS57jlhCH6C',
+            '_route' => 'generated::PxcOeytELACeFkGK',
           ),
           1 => NULL,
           2 => 
@@ -146,7 +146,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::ytsm2KGlg4ocmNZA',
+            '_route' => 'generated::ZsiM5eNQfjw0i4rD',
           ),
           1 => NULL,
           2 => 
@@ -276,7 +276,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::lh66iNfu46EiTKZS',
+            '_route' => 'generated::ZNJzwkgF5uFs1M99',
           ),
           1 => NULL,
           2 => 
@@ -7044,7 +7044,7 @@ app('router')->setCompiledRoutes(
   ),
   'attributes' => 
   array (
-    'generated::W4YfIcKGtoV3JIwJ' => 
+    'generated::jcak4QYteucZy35j' => 
     array (
       'methods' => 
       array (
@@ -7072,8 +7072,8 @@ app('router')->setCompiledRoutes(
                     return response(\\Illuminate\\Support\\Facades\\View::file(\'/Users/may/Desktop/development/cms/vendor/laravel/framework/src/Illuminate/Foundation/Configuration\'.\'/../resources/health-up.blade.php\', [
                         \'exception\' => $exception,
                     ]), status: $exception ? 500 : 200);
-                }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"0000000000000ae90000000000000000";}}',
-        'as' => 'generated::W4YfIcKGtoV3JIwJ',
+                }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"000000000000059d0000000000000000";}}',
+        'as' => 'generated::jcak4QYteucZy35j',
       ),
       'fallback' => false,
       'defaults' => 
@@ -7089,7 +7089,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::dg37L1G5vlOZzaI0' => 
+    'generated::W79N8ymj2bqKSSVw' => 
     array (
       'methods' => 
       array (
@@ -7105,13 +7105,13 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => 'O:55:"Laravel\\SerializableClosure\\UnsignedSerializableClosure":1:{s:12:"serializable";O:46:"Laravel\\SerializableClosure\\Serializers\\Native":5:{s:3:"use";a:0:{}s:8:"function";s:47:"function () {
     return \\view(\'auth.login\');
-}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"0000000000000aed0000000000000000";}}',
+}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000005a10000000000000000";}}',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'generated::dg37L1G5vlOZzaI0',
+        'as' => 'generated::W79N8ymj2bqKSSVw',
       ),
       'fallback' => false,
       'defaults' => 
@@ -7146,7 +7146,7 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => 'O:55:"Laravel\\SerializableClosure\\UnsignedSerializableClosure":1:{s:12:"serializable";O:46:"Laravel\\SerializableClosure\\Serializers\\Native":5:{s:3:"use";a:0:{}s:8:"function";s:46:"function () {
     return \\view(\'dashboard\');
-}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"0000000000000aef0000000000000000";}}',
+}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000005a30000000000000000";}}',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
@@ -7243,7 +7243,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::uoJ4pkS57jlhCH6C' => 
+    'generated::PxcOeytELACeFkGK' => 
     array (
       'methods' => 
       array (
@@ -7264,7 +7264,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::uoJ4pkS57jlhCH6C',
+        'as' => 'generated::PxcOeytELACeFkGK',
       ),
       'fallback' => false,
       'defaults' => 
@@ -7318,7 +7318,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::ytsm2KGlg4ocmNZA' => 
+    'generated::ZsiM5eNQfjw0i4rD' => 
     array (
       'methods' => 
       array (
@@ -7339,7 +7339,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::ytsm2KGlg4ocmNZA',
+        'as' => 'generated::ZsiM5eNQfjw0i4rD',
       ),
       'fallback' => false,
       'defaults' => 
@@ -7659,7 +7659,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::lh66iNfu46EiTKZS' => 
+    'generated::ZNJzwkgF5uFs1M99' => 
     array (
       'methods' => 
       array (
@@ -7680,7 +7680,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::lh66iNfu46EiTKZS',
+        'as' => 'generated::ZNJzwkgF5uFs1M99',
       ),
       'fallback' => false,
       'defaults' => 
@@ -18902,8 +18902,8 @@ app('router')->setCompiledRoutes(
           1 => 'auth',
           2 => 'notBlocked',
         ),
-        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementsController@getDrawingMeasurement',
-        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementsController@getDrawingMeasurement',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\MaterialRequirementsController@getDrawingMeasurement',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\MaterialRequirementsController@getDrawingMeasurement',
         'as' => 'projectmanage.drawing_measurement_get',
         'namespace' => NULL,
         'prefix' => '/projectmanage',
@@ -18980,8 +18980,8 @@ app('router')->setCompiledRoutes(
           1 => 'auth',
           2 => 'notBlocked',
         ),
-        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\MaterialRequirementsController@getMixRatio',
-        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\MaterialRequirementsController@getMixRatio',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\MaterialMappingController@getMixRatio',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\MaterialMappingController@getMixRatio',
         'as' => 'projectmanage.mix_ratio_get',
         'namespace' => NULL,
         'prefix' => '/projectmanage',
@@ -19911,7 +19911,7 @@ app('router')->setCompiledRoutes(
                         $config,
                         $isProduction
                     ))($request, $path);
-                }";s:5:"scope";s:47:"Illuminate\\Filesystem\\FilesystemServiceProvider";s:4:"this";N;s:4:"self";s:32:"0000000000000af20000000000000000";}}',
+                }";s:5:"scope";s:47:"Illuminate\\Filesystem\\FilesystemServiceProvider";s:4:"this";N;s:4:"self";s:32:"00000000000005a60000000000000000";}}',
         'as' => 'storage.local',
       ),
       'fallback' => false,

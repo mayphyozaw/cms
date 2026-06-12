@@ -11,6 +11,8 @@ class MaterialMappings extends Model
         'drawing_measurement_id',
         'mix_ratio_template_id',
         'consumption_type',
+        'coverage_qty',
+        'percentage',
         'consumption_ratio',
         'variable_asset_id',
         'wastage_percentage',
@@ -25,7 +27,7 @@ class MaterialMappings extends Model
 
     public function drawingmeasurement()
     {
-        return $this->belongsTo(DrawingMeasurement::class,'drawing_measurement_id');
+        return $this->belongsTo(DrawingMeasurement::class, 'drawing_measurement_id');
     }
 
     public function mixRatio()
@@ -38,4 +40,5 @@ class MaterialMappings extends Model
         return $this->belongsTo(VariableAsset::class,'variable_asset_id');
     }
 
+    
 }

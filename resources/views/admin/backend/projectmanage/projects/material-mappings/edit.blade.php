@@ -209,7 +209,7 @@
                             </div>
 
 
-                            <div class="row mb-3" id="consumption_ratio" style="display:none;">
+                            <div class="row mb-3" id="consumption_ratio">
                                 <label class="col-sm-3 form-label">
                                     Consumption Ratio
                                 </label>
@@ -301,13 +301,15 @@
 
                     $('#percentage_div').show();
                     $('#consumption_ratio').show();
+                    $('#consumption_ratio_input').val();
 
                 } else if (type === 'mix_ratio') {
 
                     $('#mix_ratio_div').show();
-                    $('#consumption_ratio_input').val('-');
-                    // $('#consumption_ratio').show();
+                    $('#consumption_ratio').show();
+                    $('#volume_factor_div').show();
 
+                    $('#consumption_ratio_input').val(1);
                 }
 
             });
@@ -339,6 +341,31 @@
                 }
 
             });
+
+            $('#mix_ratio_template_id').change(function() {
+
+                let mixRatioTempId = $(this).val();
+
+                $.ajax({
+                    url: "{{ route('projectmanage.mix_ratio_get') }}",
+                    type: 'GET',
+                    data: {
+                        mix_ratio_template_id: mixRatioTempId
+                    },
+
+                    success: function(data) {
+
+                        $('#dry_volume_factor')
+                            .val(data.dry_volume_factor);
+
+                        $('#consumption_ratio_input')
+                            .val(parseFloat(data.dry_volume_factor).toFixed(5));
+
+                    }
+                });
+
+            });
+
 
         });
     </script>

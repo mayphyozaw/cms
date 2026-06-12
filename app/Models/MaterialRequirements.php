@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class MaterialRequirements extends Model
 {
     protected $fillable = [
-        'project_id',
         'drawing_measurement_id',
         'material_mapping_id',
         'variable_asset_id',
@@ -32,5 +31,10 @@ class MaterialRequirements extends Model
     public function material()
     {
         return $this->belongsTo(VariableAsset::class,'variable_asset_id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(MeasurementCategories::class,'measurement_category_id');
     }
 }

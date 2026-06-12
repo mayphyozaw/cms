@@ -4,7 +4,7 @@
 
         <div class="d-flex align-items-center justify-content-between gap-2 mb-4 flex-wrap">
             <div>
-                <h4 class="mb-1">Material Mappings </h4>
+                <h4 class="mb-1">Material Requirements </h4>
 
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
@@ -13,7 +13,7 @@
                         </li>
 
                         <li class="breadcrumb-item active" aria-current="page">
-                            Material Mappings
+                            Material Requirements
                         </li>
                     </ol>
                 </nav>
@@ -21,6 +21,7 @@
         </div>
 
         <div class="row">
+
 
             {{-- Sidebar --}}
             <div class="col-xl-3 col-lg-12 theiaStickySidebar">
@@ -52,20 +53,26 @@
                                     Drawing Measurements
                                 </a>
 
-                                <a href="{{route('projectmanage.projects.mixRatio.index', $project->id)}}" 
+                                <a href="{{ route('projectmanage.projects.mixRatio.index', $project->id) }}"
                                     class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.mixRatio.*') ? 'active' : '' }}">
                                     <i class="ti ti-moneybag me-2"></i>
                                     Mix Ratio Header
                                 </a>
 
-                                <a href="{{route('projectmanage.projects.material-mappings.index', $project->id)}}" 
+                                <a href="{{ route('projectmanage.projects.material-mappings.index', $project->id) }}"
                                     class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.material-mappings.*') ? 'active' : '' }}">
                                     <i class="ti ti-moneybag me-2"></i>
                                     Material Mapping
                                 </a>
 
+                                <a href="{{ route('projectmanage.projects.material-requirements.index', $project->id) }}"
+                                    class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.material-requirements.*') ? 'active' : '' }}">
+                                    <i class="ti ti-moneybag me-2"></i>
+                                    Material Requirements
+                                </a>
 
-                                 <a href="{{ route('projectmanage.projects.site-measurements.index', $project->id) }}"
+
+                                <a href="{{ route('projectmanage.projects.site-measurements.index', $project->id) }}"
                                     class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.site-measurements.*') ? 'active' : '' }}">
                                     <i class="ti ti-list-check me-2"></i>
                                     Site Measurements
@@ -115,20 +122,13 @@
                         <ul class="nav nav-tabs nav-bordered nav-bordered-primary">
 
                             <li class="nav-item me-3">
-                                <a href="{{ route('projectmanage.projects.material-mappings.index', $project->id) }}"
-                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.material-mappings.index') ? 'active' : '' }}">
+                                <a href="{{ route('projectmanage.projects.material-requirements.index', $project->id) }}"
+                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.material-requirements.index') ? 'active' : '' }}">
                                     <i class="ti ti-settings-cog me-2"></i>
-                                    Material Mappings
-                                </a>
-                            </li>
-
-                            <li class="nav-item me-3">
-                                <a href="{{route('projectmanage.projects.material-requirements.index', $project->id)}}" 
-                                    class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.material-requirements.*') ? 'active' : '' }}">
-                                    <i class="ti ti-moneybag me-2"></i>
                                     Material Requirements
                                 </a>
                             </li>
+
 
                         </ul>
 
@@ -172,66 +172,71 @@
                             <table class="table table-bordered align-middle w-100 nowrap" id="materialMappingTable">
                                 <thead>
                                     <tr>
-                                        
+
                                         <th class="text-center" style="background-color: #9dd2e7">No</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Mesurement Category</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Material</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Type</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Ratio</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Waste</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Raw Qty</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Base Qty</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Waste (%)</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Final Qty</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Unit</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Action</th>
-                                        
+
                                     </tr>
                                 </thead>
-                                {{-- <tbody>
+                                <tbody>
 
-                                    @foreach ($materialMappings as $materialMapping)
+                                    @foreach ($materialRequirements as $materialRequirement)
                                         <tr>
                                             <td class="text-center">
-                                                
-                                                {{$loop->iteration}}
+
+                                                {{ $loop->iteration }}
                                             </td>
 
                                             <td class="text-center">
-                                                {{ $materialMapping->category->category_name }}
-                                            </td>
-                                            
-                                            <td class="text-center">
-                                                {{ $materialMapping->material->name }}
+                                                {{ $materialRequirement->material->name }}
                                             </td>
 
                                             <td class="text-center">
-                                                {{ $materialMapping->consumption_type }}
+                                                {{ $materialRequirement->raw_quantity }}
                                             </td>
 
                                             <td class="text-center">
-                                                {{ $materialMapping->consumption_ratio }}
+                                                {{ $materialRequirement->base_quantity }}
                                             </td>
 
                                             <td class="text-center">
-                                                {{ $materialMapping->wastage_percentage }}
+                                                {{ $materialRequirement->materialMapping->wastage_percentage }}
+                                            </td>
+
+                                            <td class="text-center">
+                                                {{ $materialRequirement->final_quantity }}
+                                            </td>
+
+                                            <td class="text-center">
+                                                {{ $materialRequirement->material->unit }}
                                             </td>
 
 
                                             <td class="text-center">
-                                                    <a class="btn btn-icon btn-sm btn-info"
-                                                        href="{{ route('projectmanage.projects.material-mappings.edit', [$project->id, $materialMapping->id]) }}">
-                                                        <i class="ti ti-edit"></i>
-                                                    </a>
-                                                    <form
-                                                        action="{{ route('projectmanage.projects.material-mappings.destroy', [$project->id, $materialMapping->id]) }}"
-                                                        method="POST" style="display:inline;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button class="btn btn-danger btn-sm btn-icon deleteBtn">
-                                                            <i class="ti ti-trash"></i>
-                                                        </button>
-                                                    </form>
+                                                <a class="btn btn-icon btn-sm btn-info"
+                                                    href="{{ route('projectmanage.projects.material-mappings.edit', [$project->id, $materialRequirement->id]) }}">
+                                                    <i class="ti ti-edit"></i>
+                                                </a>
+                                                <form
+                                                    action="{{ route('projectmanage.projects.material-mappings.destroy', [$project->id, $materialRequirement->id]) }}"
+                                                    method="POST" style="display:inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-danger btn-sm btn-icon deleteBtn">
+                                                        <i class="ti ti-trash"></i>
+                                                    </button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
 
-                                </tbody> --}}
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -239,12 +244,12 @@
 
             </div>
 
+
         </div>
 
     </div>
 @endsection
 @push('scripts')
-
     <script>
         $(document).on('click', '.deleteBtn', function(event) {
             event.preventDefault();

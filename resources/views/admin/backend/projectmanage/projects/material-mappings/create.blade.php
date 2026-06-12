@@ -37,6 +37,8 @@
 
                 </div>
             </div>
+
+
             <div class="col-xl-9">
                 <div class="card">
                     <div class="card-header">
@@ -46,16 +48,16 @@
                         <form action="{{ route('projectmanage.projects.material-mappings.store', $project->id) }}"
                             method="POST" id="submit-form" enctype="multipart/form-data">
                             @csrf
-                            
+
 
                             <div class="row mb-3">
 
                                 <label class="col-sm-3 form-label">
-                                   Drawing Measurement:
+                                    Drawing Measurement:
                                 </label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
-                                        <select name="drawing_measurement_id" id="drawing_measurement_id"
+                                        <select name="drawing_measurement_id"
                                             class="form-control form-select">
                                             <option value="">Select Measurement Categories</option>
                                             @foreach ($drawingMeasurements as $drawingMeasurement)
@@ -136,7 +138,7 @@
                                 </label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
-                                        <input type="number" name="coverage_quantity" class="form-control" id="coverage_qty">
+                                        <input type="number" name="coverage_qty" class="form-control" id="coverage_qty">
                                     </div>
                                 </div>
                             </div>
@@ -147,8 +149,7 @@
                                 </label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
-                                        <input type="number" name="coverage_qty" class="form-control"
-                                            id="percentage_value">
+                                        <input type="number" name="percentage" class="form-control" id="percentage_value">
                                         <div class="input-group-text">
                                             <i class="ti ti-percentage"></i>
                                         </div>
@@ -163,8 +164,8 @@
                                 </label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
-                                        <select name="mix_ratio_template_id" class="form-control form-select">
-
+                                        <select name="mix_ratio_template_id" id="mix_ratio_template_id"
+                                            class="form-control form-select">
                                             <option value="">
                                                 Select Mix Ratio
                                             </option>
@@ -179,6 +180,17 @@
                                     </div>
                                 </div>
 
+                            </div>
+
+                            <div class="row mb-3" id="volume_factor_div" style="display:none;">
+                                <label class="col-sm-3 form-label">
+                                    Dry Volume Factor
+                                </label>
+
+                                <div class="col-sm-9">
+                                    <input type="text" id="dry_volume_factor" name="dry_volume_factor"
+                                        class="form-control">
+                                </div>
                             </div>
 
 
@@ -213,7 +225,7 @@
                                 </label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
-                                        <input name="status" class="form-control"/>
+                                        <input name="status" class="form-control" />
                                     </div>
                                 </div>
                             </div>
@@ -274,8 +286,11 @@
 
                 } else if (type === 'mix_ratio') {
 
+                    $('#coverage_qty_div').show();
                     $('#mix_ratio_div').show();
-                    // $('#consumption_ratio').show();
+                    $('#consumption_ratio').show();
+                    $('#volume_factor_div').show();
+
 
                 }
 
@@ -290,7 +305,7 @@
                     let ratio = 1 / coverage;
 
                     $('#consumption_ratio_input')
-                        .val(ratio.toFixed(3));
+                        .val(ratio.toFixed(5));
                 }
 
             });
@@ -304,10 +319,35 @@
                     let ratio = percentage / 100;
 
                     $('#consumption_ratio_input')
-                        .val(ratio.toFixed(3));
+                        .val(ratio.toFixed(5));
                 }
 
             });
+
+            $('#mix_ratio_template_id').change(function() {
+
+                let mixRatioTempId = $(this).val();
+
+                $.ajax({
+                    url: "{{ route('projectmanage.mix_ratio_get') }}",
+                    type: 'GET',
+                    data: {
+                        mix_ratio_template_id: mixRatioTempId
+                    },
+
+                    success: function(data) {
+
+                        $('#dry_volume_factor')
+                            .val(data.dry_volume_factor);
+
+                        $('#consumption_ratio_input')
+                            .val(parseFloat(data.dry_volume_factor).toFixed(5));
+
+                    }
+                });
+
+            });
+
 
         });
     </script>
