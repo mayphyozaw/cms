@@ -65,8 +65,49 @@
                                         </option>
 
                                         <option value="painting_area">
-                                            Wall Area Painting
+                                            Paint Area
                                         </option>
+
+                                        <option value="plaster_area">
+                                            Plaster Area
+                                        </option>
+
+                                        <option value="plaster_volume">
+                                            Plaster Volume
+                                        </option>
+
+                                        <option value="screed_area">
+                                            Screed Area
+                                        </option>
+
+                                        <option value="screed_volume">
+                                            Screed Volume
+                                        </option>
+
+                                        <option value="concrete_slab_area">
+                                            Concrete Slab Area
+                                        </option>
+
+                                        <option value="concrete_slab_volume">
+                                            Concrete Slab Volume
+                                        </option>
+
+                                        <option value="brick_wall_area">
+                                            Brick Wall Area
+                                        </option>
+
+                                        <option value="brick_wall_volume">
+                                            Brick Wall Volume
+                                        </option>
+
+                                        <option value="mortar_bed_area">
+                                            Mortar Bed Area
+                                        </option>
+
+                                        <option value="mortar_bed_volume">
+                                            Mortar Bed Volume
+                                        </option>
+
 
                                         <option value="steel_linear">
                                             Steel Linear
@@ -114,7 +155,7 @@
                                 </div>
                             </div>
 
-                            
+
                         </div>
                     </div>
                     <div class="d-flex gap-2 align-items-center justify-content-start mb-0">
@@ -172,6 +213,68 @@
                             unit = 'sqft'
                             break;
 
+
+                        case 'plaster_area':
+                            symbol = 'PlasterArea';
+                            formulas = '2 * (L + W) * H';
+                            unit = 'sqft'
+                            break;
+
+                        case 'plaster_volume':
+                            symbol = 'PlasterVolume';
+                            formulas = 'Plaster Area * Thickness';
+                            unit = 'cuft'
+                            break;
+
+
+                        case 'screed_area':
+                            symbol = 'ScreedArea';
+                            formulas = 'L * W';
+                            unit = 'sqft'
+                            break;
+
+                        case 'screed_volume':
+                            symbol = 'ScreedVolume';
+                            formulas = 'Screed Area * Thickness';
+                            unit = 'cuft'
+                            break;
+
+                        case 'concrete_slab_area':
+                            symbol = 'ConcreteSlabArea';
+                            formulas = 'L * W';
+                            unit = 'sqft'
+                            break;
+                        
+                        case 'concrete_slab_volume':
+                            symbol = 'concreteSlabVolume';
+                            formulas = 'Concrete Slab Area * Thickness';
+                            unit = 'cuft'
+                            break;
+
+                        case 'brick_wall_area':
+                            symbol = 'BrickWallArea';
+                            formulas = 'L * H';
+                            unit = 'sqft'
+                            break;
+
+                        case 'brick_wall_volume':
+                            symbol = 'BrickWallVolume';
+                            formulas = 'Brick Wall Area * Thickness';
+                            unit = 'cuft'
+                            break;
+
+                        case 'mortar_bed_area':
+                            symbol = 'MortarBedArea';
+                            formulas = 'L * W';
+                            unit = 'sqft'
+                            break;
+
+                        case 'mortar_bed_volume':
+                            symbol = 'MortarBedVolume';
+                            formulas = 'Mortar Bed Area * Thickness';
+                            unit = 'cuft'
+                            break;
+
                         case 'steel_linear':
                             symbol = 'L';
                             formulas = 'L';
@@ -190,13 +293,13 @@
                             unit = 'ton';
                             break;
                     }
-                    
-                    
+
+
                     document.getElementById('symbol').value = symbol;
                     document.getElementById('formulas').value = formulas;
                     document.getElementById('category_unit').value = unit;
-                    
-                    
+
+
                 });
         });
     </script>

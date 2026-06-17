@@ -162,8 +162,11 @@
                                         <input type="text" name="unit" id="unit" class="form-control" readonly>
                                     </div>
                                 </div>
+                                
+                                
 
-                                <div class="col-12 col-lg-2 mb-3">
+                                {{-- length --}}
+                                <div class="col-12 col-lg-2 mb-3" >
                                     <label for="form-label fs-14" class="form-label fs-14">
                                         Length:
                                     </label>
@@ -173,8 +176,10 @@
                                             value="0">
                                     </div>
                                 </div>
+                                 {{-- length --}}
 
-                                <div class="col-12 col-lg-2 mb-3">
+                                 {{-- width --}}
+                                <div class="col-12 col-lg-2 mb-3" >
                                     <label for="form-label fs-14" class="form-label fs-14">
                                         Width:
                                     </label>
@@ -184,8 +189,10 @@
                                             value="0">
                                     </div>
                                 </div>
+                                 {{-- width --}}
 
-                                <div class="col-12 col-lg-2 mb-3">
+                                {{-- height --}}
+                                <div class="col-12 col-lg-2 mb-3" >
                                     <label for="form-label fs-14" class="form-label fs-14">
                                         Height:
                                     </label>
@@ -195,8 +202,10 @@
                                             value="0">
                                     </div>
                                 </div>
+                                {{-- height --}}
 
-                                <div class="col-12 col-lg-3 mb-3">
+                               {{-- unit_weight --}}
+                                <div class="col-12 col-lg-3 mb-3" >
                                     <label for="form-label fs-14" class="form-label fs-14">
                                         Unit Weight:
                                     </label>
@@ -206,8 +215,10 @@
                                             required value="0">
                                     </div>
                                 </div>
+                                {{-- unit_weight --}}
 
-                                <div class="col-12 col-lg-3 mb-3">
+                                {{-- coats  --}}
+                                <div class="col-12 col-lg-3 mb-3" >
                                     <label for="form-label fs-14" class="form-label fs-14">
                                         Coats:
                                     </label>
@@ -217,9 +228,11 @@
                                             value="0">
                                     </div>
                                 </div>
+                                {{-- coats --}}
 
 
-                                <div class="col-12 col-lg-4 mb-3">
+                                {{-- quantity --}}
+                                 <div class="col-12 col-lg-4 mb-3">
                                     <label for="form-label fs-14" class="form-label fs-14">
                                         Quantity:
                                     </label>
@@ -228,6 +241,113 @@
                                             @error('quantity') is-invalid @enderror readonly>
                                     </div>
                                 </div>
+                                
+
+
+
+
+                                {{-- <div class="row mb-3">
+                                    <label class="col-sm-3 form-label">
+                                        Length:
+                                    </label>
+
+                                    <div class="col-sm-5">
+                                        <input type="text" name="length" class="form-control length"
+                                            @error('length') is-invalid @enderror placeholder="Enter Length" required
+                                            value="0">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label class="col-sm-3 form-label">
+                                        Width:
+                                    </label>
+
+                                    <div class="col-sm-5">
+                                        <input type="text" name="width" class="form-control width"
+                                            @error('width') is-invalid @enderror placeholder="Enter Width" required
+                                            value="0">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label class="col-sm-3 form-label">
+                                        Height:
+                                    </label>
+
+                                    <div class="col-sm-5">
+                                        <input type="text" name="height" class="form-control height"
+                                            @error('height') is-invalid @enderror placeholder="Enter Height" required
+                                            value="0">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label class="col-sm-3 form-label">
+                                        Thickness
+                                    </label>
+
+                                    <div class="col-sm-5">
+                                        <input type="number" step="0.01" name="thickness" class="form-control">
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <select name="thickness_unit" class="form-control form-select">
+                                            <option value="inch">Inch</option>
+                                            <option value="ft">Feet</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="row mb-3">
+                                    <label class="col-sm-3 form-label">
+                                        Unit Weight:
+                                    </label>
+
+                                    <div class="col-sm-5">
+                                        <input type="text" name="unit_weight" class="form-control unit_weight"
+                                            @error('unit_weight') is-invalid @enderror placeholder="Enter Unit Weight"
+                                            required value="0">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label class="col-sm-3 form-label">
+                                        Coats:
+                                    </label>
+
+                                    <div class="col-sm-5">
+                                        <input type="text" name="coats" class="form-control coats"
+                                            @error('coats') is-invalid @enderror placeholder="Enter coats" required
+                                            value="0">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="form-label fs-14" class="form-label fs-14">
+                                        Quantity:
+                                    </label>
+                                    <div class="col-sm-5">
+                                        <input type="text" name="quantity" id="quantity" class="form-control"
+                                            @error('quantity') is-invalid @enderror readonly>
+                                    </div>
+                                </div>
+
+
+                                 <div class="col-12 col-lg-4 mb-3">
+                                    <label for="form-label fs-14" class="form-label fs-14">
+                                        Quantity:
+                                    </label>
+                                    <div class="input-group">
+                                        <input type="text" name="quantity" id="quantity" class="form-control"
+                                            @error('quantity') is-invalid @enderror readonly>
+                                    </div>
+                                </div> --}}
+
+
+
+                               
 
                                 <div class="col-12 col-lg-12 mb-3">
                                     <label class="form-label">
@@ -357,6 +477,7 @@
                 let height = parseFloat($('.height').val()) || 0;
                 let coats = parseFloat($('.coats').val()) || 0;
                 let unit_weight = parseFloat($('.unit_weight').val()) || 0;
+                
 
                 let formula = $('#formula_type').val();
 
@@ -378,6 +499,25 @@
 
                     quantity = 2 * (length + width) * height;
 
+                } else if (formula === 'plaster_area') {
+
+                    quantity = 2 * (length + width) * height;
+
+                } else if (formula === 'screed_area') {
+
+                    quantity = length * width;
+
+                } else if (formula === 'concrete_slab_area') {
+
+                    quantity = length * width;
+
+                } else if (formula === 'mortar_bed_area') {
+
+                    quantity = length * width;
+
+                } else if (formula === 'brick_wall_area') {
+
+                    quantity = length * height;
                 } else if (formula === 'linear') {
 
                     quantity = length;
@@ -396,6 +536,8 @@
 
 
             }
+
+
 
 
         });

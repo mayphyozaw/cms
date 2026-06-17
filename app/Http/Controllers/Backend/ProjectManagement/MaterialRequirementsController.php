@@ -41,11 +41,15 @@ class MaterialRequirementsController extends Controller
         $drawingMeasurement = DrawingMeasurement::findOrFail(
             $request->drawing_measurement_id
         );
+        $materialMapping = MaterialMappings::findOrFail(
+            $request->material_mapping_id
+        );
+
+        $consumption_ratio = $materialMapping->consumption_ratio;
 
         $raw_quantity = $drawingMeasurement->quantity;
 
         $consumption_type = $request->consumption_type;
-        $consumption_ratio = 0;
 
         switch ($consumption_type) {
 
@@ -66,17 +70,19 @@ class MaterialRequirementsController extends Controller
                 break;
 
             case 'mix_ratio':
-                $consumption_ratio = 0;
+                $materialMapping = MaterialMappings::findOrFail(
+                    $request->material_mapping_id
+                );
+
+                $consumption_ratio =
+                    $materialMapping->consumption_ratio;
+
                 break;
         }
 
-        $base_quantity = 0;
 
+        $base_quantity = $raw_quantity * $consumption_ratio;
 
-
-        if ($consumption_type !== 'mix_ratio') {
-            $base_quantity = $raw_quantity * $consumption_ratio;
-        }
 
         $wastage_percentage = $request->wastage_percentage ?? 0;
 
@@ -133,7 +139,7 @@ class MaterialRequirementsController extends Controller
             )
             ->first();
 
-        
+
         return response()->json([
             'quantity' => $drawingMeasurement->quantity,
 

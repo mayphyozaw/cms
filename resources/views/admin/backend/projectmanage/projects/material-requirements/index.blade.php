@@ -206,7 +206,7 @@
                                             </td>
 
                                             <td class="text-center">
-                                                {{ $materialRequirement->materialMapping->wastage_percentage }}
+                                                {{ $materialRequirement->materialMapping->wastage_percentage ?? '' }}
                                             </td>
 
                                             <td class="text-center">

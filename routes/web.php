@@ -257,9 +257,11 @@ Route::middleware('auth', 'notBlocked')->group(function () {
 
         Route::get('drawings_get', [DrawingMeasurementsController::class, 'getDrawing'])->name('drawings_get');
         Route::get('worktype_get', [DrawingMeasurementsController::class, 'getWorkType'])->name('worktype_get');
+        Route::get('mix-ratio_total-part', [MixRatioDetailsController::class,'mixRatioTotalPart'])->name('mix-ratio_total-part');
         Route::get('drawing_measurement_get', [DrawingMeasurementsController::class, 'getDrawingMeasurement'])->name('drawing_measurement_get');
         Route::get('material_mapping_get', [MaterialMappingController::class, 'getMaterialMapping'])->name('material_mapping_get');
         Route::get('mix_ratio_get', [MaterialMappingController::class, 'getMixRatio'])->name('mix_ratio_get');
+        Route::get('consumption-ratio-get', [MaterialMappingController::class, 'getConsumptionRatio'])->name('consumption-ratio-get');
         // Route::get('mix_ratio_get', [MaterialRequirementsController::class, 'getMixRatio'])->name('mix_ratio_get');
 
         // Route::get('material_mapping_get', [MaterialRequirementsController::class, 'getMaterialMapping'])->name('material_mapping_get');

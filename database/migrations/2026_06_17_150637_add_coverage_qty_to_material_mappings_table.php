@@ -12,9 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('material_mappings', function (Blueprint $table) {
-            $table->string('coverage_qty')->nullable()->after('consumption_type');
-            $table->string('percentage')->nullable()->after('coverage_qty');
-
+            $table->decimal('coverage_qty', 12, 4)->nullable()->after('consumption_type');
+            $table->string('percentage')->nullable()->after('consumption_ratio');
         });
     }
 

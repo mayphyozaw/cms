@@ -52,19 +52,19 @@
                                     Drawing Measurements
                                 </a>
 
-                                <a href="{{route('projectmanage.projects.mixRatio.index', $project->id)}}" 
+                                <a href="{{ route('projectmanage.projects.mixRatio.index', $project->id) }}"
                                     class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.mixRatio.*') ? 'active' : '' }}">
                                     <i class="ti ti-moneybag me-2"></i>
                                     Mix Ratio Header
                                 </a>
 
-                                <a href="{{route('projectmanage.projects.material-mappings.index', $project->id)}}" 
+                                <a href="{{ route('projectmanage.projects.material-mappings.index', $project->id) }}"
                                     class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.material-mappings.*') ? 'active' : '' }}">
                                     <i class="ti ti-moneybag me-2"></i>
                                     Material Mapping
                                 </a>
 
-                                 <a href="{{ route('projectmanage.projects.site-measurements.index', $project->id) }}"
+                                <a href="{{ route('projectmanage.projects.site-measurements.index', $project->id) }}"
                                     class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.site-measurements.*') ? 'active' : '' }}">
                                     <i class="ti ti-list-check me-2"></i>
                                     Site Measurements
@@ -170,13 +170,15 @@
                             <table class="table table-bordered align-middle w-100 nowrap" id="mixRatioDetailTable">
                                 <thead>
                                     <tr>
-                                        
+
                                         <th class="text-center" style="background-color: #9dd2e7">No</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Code</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Material Name</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Part</th>
+                                        {{-- <th class="text-center" style="background-color: #9dd2e7">Total Part</th> --}}
+                                        <th class="text-center" style="background-color: #9dd2e7">Consumption Ratio</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Action</th>
-                                        
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -184,14 +186,14 @@
                                     @foreach ($mixRatioDetails as $detail)
                                         <tr>
                                             <td class="text-center">
-                                                
-                                                {{$loop->iteration}}
+
+                                                {{ $loop->iteration }}
                                             </td>
 
                                             <td class="text-center">
                                                 {{ $detail->mixRatio->code }}
                                             </td>
-                                            
+
                                             <td class="text-center">
                                                 {{ $detail->material->name }}
                                             </td>
@@ -199,22 +201,38 @@
                                             <td class="text-center">
                                                 {{ $detail->part }}
                                             </td>
+                                            @php
+                                                $totalPart = App\Models\MixRatioDetails::where(
+                                                    'mix_ratio_template_id',
+                                                    $detail->mix_ratio_template_id,
+                                                )->sum('part');
+
+                                                $consumptionRatio = $detail->part / $totalPart;
+                                            @endphp
+
+                                            {{-- <td class="text-center">
+                                                {{ $totalPart }}
+                                            </td> --}}
 
                                             <td class="text-center">
-                                                    <a class="btn btn-icon btn-sm btn-info"
-                                                        href="{{ route('projectmanage.projects.mixRatio-details.edit', [$project->id, $detail->id]) }}">
-                                                        <i class="ti ti-edit"></i>
-                                                    </a>
-                                                    <form
-                                                        action="{{ route('projectmanage.projects.mixRatio-details.destroy', [$project->id, $detail->id]) }}"
-                                                        method="POST" style="display:inline;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button class="btn btn-danger btn-sm btn-icon deleteBtn">
-                                                            <i class="ti ti-trash"></i>
-                                                        </button>
-                                                    </form>
-                                                </td>
+                                                {{ number_format($consumptionRatio,6)}}
+                                            </td>
+
+                                            <td class="text-center">
+                                                <a class="btn btn-icon btn-sm btn-info"
+                                                    href="{{ route('projectmanage.projects.mixRatio-details.edit', [$project->id, $detail->id]) }}">
+                                                    <i class="ti ti-edit"></i>
+                                                </a>
+                                                <form
+                                                    action="{{ route('projectmanage.projects.mixRatio-details.destroy', [$project->id, $detail->id]) }}"
+                                                    method="POST" style="display:inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-danger btn-sm btn-icon deleteBtn">
+                                                        <i class="ti ti-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
                                         </tr>
                                     @endforeach
 
@@ -231,7 +249,6 @@
     </div>
 @endsection
 @push('scripts')
-
     <script>
         $(document).on('click', '.deleteBtn', function(event) {
             event.preventDefault();

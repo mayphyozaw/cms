@@ -189,8 +189,6 @@
                                 </div>
 
 
-
-
                                 <div class="row mb-3">
                                     <label class="col-sm-3 form-label">
                                         Materials:
@@ -399,10 +397,10 @@
                                         <div class="input-group">
                                             <input type="text" name="final_quantity"
                                                 class="form-control final_quantity" id="final_quantity" readonly>
-                                            <div class="input-group-text">
-                                                <input type="text" name="material_unit" class="form-control"
-                                                    id="material_unit" readonly>
-                                            </div>
+                                           <div class="input-group-text">
+                                            <input type="text" name="material_unit" class="form-control"
+                                                id="material_unit" readonly>
+                                        </div>
                                         </div>
                                     </div>
                                 </div>
@@ -452,33 +450,139 @@
     <script>
         $(document).ready(function() {
 
+            $('#material_mapping_id').on('change', function() {
+                let type = $(this).val();
+                let materialMappingId = $(this).val();
+                $.ajax({
+                    url: "{{ route('projectmanage.material_mapping_get') }}",
+                    type: 'GET',
+                    data: {
+                        material_mapping_id: materialMappingId,
+                    },
+
+                    success: function(data) {
+                        $('#consumption_type').val(data.consumption_type);
+                        $('#variable_asset_id').val(data.variable_asset_id);
+                        $('#coverage_qty').val(data.coverage_qty);
+                        $('#percentage_div').val(data.percentage_div);
+                        $('#consumption_ratio').val(data.consumption_ratio);
+                        $('#wastage_percentage').val(data.wastage_percentage);
+                        $('#material_unit').val(data.unit);
+
+                        calculateBaseQuantity();
+                        calculateFinalQuantity();
+                    },
+
+
+                });
+
+            });
 
             $('#drawing_measurement_id').on('change', function() {
-
                 let drawingMeasurementId = $(this).val();
-
                 $.ajax({
                     url: "{{ route('projectmanage.drawing_measurement_get') }}",
                     type: 'GET',
                     data: {
-                        drawing_measurement_id: drawingMeasurementId,
+                        drawing_measurement_id: drawingMeasurementId
+                    },
 
+                    success: function(data) {
+                        $('#quantity').val(data.quantity);
+                        $('#unit').val(data.unit);
+
+                        calculateBaseQuantity();
+                        calculateFinalQuantity();
+                    }
+
+                });
+            });
+
+
+            $('#mix_ratio_template_id').change(function() {
+
+
+                let mixRatioTempId = $(this).val();
+
+                $.ajax({
+                    url: "{{ route('projectmanage.mix_ratio_get') }}",
+                    type: 'GET',
+                    data: {
+                        mix_ratio_template_id: mixRatioTempId
                     },
 
                     success: function(data) {
 
-                        $('#material_mapping_id').val(data.material_mapping_id);
-                        $('#variable_asset_id').val(data.variable_asset_id);
-                        $('#quantity').val(data.quantity);
-                        $('#consumption_type').val(data.consumption_type);
-                        $('#consumption_ratio').val(data.consumption_ratio);
-                        $('#mix_ratio_template_id').val(data.mix_ratio_template_id);
                         $('#dry_volume_factor').val(data.dry_volume_factor);
-                        $('#wastage_percentage').val(data.wastage_percentage);
 
                     }
+
                 });
+
             });
+
+            $('#drawing_measurement_id').on('change', function() {
+
+                let selected = $(this).find(':selected');
+                let type = $(this).val();
+
+                $('#quantity').val(data.quantity);
+                $('#consumption_ratio').val(data.consumption_ratio);
+                $('#wastage_percentage').val(data.wastage_percentage);
+                $('#consumption_type').val(data.consumption_type);
+
+
+
+                calculateBaseQuantity();
+                calculateFinalQuantity();
+            });
+
+            function calculateBaseQuantity() {
+
+                let quantity = parseFloat($('.quantity').val()) || 0;
+                let consumption_ratio = parseFloat($('.consumption_ratio').val()) || 0;
+                let factor = parseFloat($('#dry_volume_factor').val()) || 0;
+
+                let type = $('#consumption_type').val();
+
+                let base_quantity = 0;
+
+                let dryVolume = quantity * factor;
+
+
+                if (
+                    type === 'fixed' ||
+                    type === 'coverage' ||
+                    type === 'percentage'
+                ) {
+
+                    base_quantity =
+                        quantity * consumption_ratio;
+
+                }
+
+                $('#base_quantity').val(base_quantity.toFixed(2));
+
+                calculateFinalQuantity();
+            }
+
+            function calculateFinalQuantity() {
+
+                let base_quantity =
+                    parseFloat($('#base_quantity').val()) || 0;
+
+                let wastage_percentage =
+                    parseFloat($('#wastage_percentage').val()) || 0;
+
+                let final_quantity =
+                    base_quantity *
+                    (1 + wastage_percentage / 100);
+
+                $('#final_quantity').val(
+                    final_quantity.toFixed(2)
+                );
+            }
+            
         });
     </script>
 @endpush

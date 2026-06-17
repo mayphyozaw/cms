@@ -67,10 +67,14 @@ class DrawingMeasurementsController extends Controller
                 break;
 
             case 'area':
+            case 'screed_area':
+            case 'concrete_slab_area':
+            case 'mortar_bed_area':
                 $quantity = $length * $width;
                 break;
 
             case 'wall_area':
+            case 'brick_wall_area':
                 $quantity = $length * $height;
                 break;
 
@@ -80,6 +84,7 @@ class DrawingMeasurementsController extends Controller
 
 
             case 'painting_area':
+            case 'plaster_area':
                 $quantity = 2 * ($length + $width) * $height;
                 break;
 
@@ -147,10 +152,14 @@ class DrawingMeasurementsController extends Controller
                 break;
 
             case 'area':
+            case 'screed_area':
+            case 'concrete_slab_area':
+            case 'mortar_bed_area':
                 $quantity = $request->length * $request->width;
                 break;
 
             case 'wall_area':
+            case 'brick_wall_area':
                 $quantity = $request->length * $request->height;
                 break;
 
@@ -160,6 +169,7 @@ class DrawingMeasurementsController extends Controller
 
 
             case 'painting_area':
+            case 'plaster_area':
                 $quantity = 2 * ($request->length + $request->width) * $request->height;
                 break;
 

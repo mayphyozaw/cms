@@ -10,6 +10,8 @@ class MixRatioDetails extends Model
         'mix_ratio_template_id',
         'variable_asset_id',
         'part',
+        'total_part',
+        'consumption_ratio'
     ];
 
 

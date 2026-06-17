@@ -1,3 +1,10 @@
+Plaster	sqft → ft³	
+Screed	sqft → ft³	
+Concrete Slab	sqft → ft³	
+Brick Wall	sqft → ft³	
+Mortar Bed	sqft → ft³	
+
+
 1. drawing_table
     id
     drawing_no

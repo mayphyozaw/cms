@@ -112,7 +112,11 @@ Concrete                    Sand                            0.44                
 Concrete                    Aggregate                       0.88                    0
 
 
-
+300 ft²  → 1 Gallon
+600 ft²  → 2 Gallons
+900 ft²  → 3 Gallons
+1200 ft² → 4 Gallons
+1500 ft² → 5 Gallons
 
 
 Mix Ratio Table

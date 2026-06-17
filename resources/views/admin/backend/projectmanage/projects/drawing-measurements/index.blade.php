@@ -232,7 +232,7 @@
                                             </td>
                                              <td class="text-center"> 
                                                 <a href="{{route('projectmanage.projects.site-measurements.create', $project->id)}}">
-                                                <span style="color: red">{{$drawingMeasurementData->measurementCategory->category_name}}</span>
+                                                <span style="color: red">{{$drawingMeasurementData->category->category_name}}</span>
                                                 </a>
                                             </td>
                                             <td class="text-center"> 

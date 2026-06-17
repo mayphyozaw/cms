@@ -221,7 +221,8 @@
                                             </td>
 
                                             <td class="text-center">
-                                                {{ $materialMapping->coverage_qty ?? '-' }}
+                                                {{ number_format($materialMapping->coverage_qty, 2) }}
+                                               
                                             </td>
 
                                             <td class="text-center">
@@ -234,8 +235,7 @@
 
                                             <td class="text-center">
 
-                                                {{ $materialMapping->consumption_ratio }}
-                                                {{-- {{ number_format($materialMapping->consumption_ratio, 5) }} --}}
+                                                {{ number_format($materialMapping->consumption_ratio, 5) }}
 
                                             </td>
 

@@ -115,7 +115,7 @@
                                         value="{{ $drawing_measurement->category?->formula_types }}">
                                 </div>
 
-                                <div class="col-12 col-lg-3 mb-3">
+                                <div class="col-12 col-lg-3 mb-3" hidden>
                                     <label class="form-label">
                                         Symbol:
                                     </label>
@@ -124,7 +124,7 @@
                                         value="{{ $drawing_measurement->measurementCategory?->symbol }}" readonly>
                                 </div>
 
-                                <div class="col-12 col-lg-3 mb-3">
+                                <div class="col-12 col-lg-3 mb-3" >
                                     <label class="form-label">
                                         Formula:
                                     </label>
@@ -353,7 +353,7 @@
 
             });
 
-            function calculateQuantity() {
+             function calculateQuantity() {
 
                 let length = parseFloat($('.length').val()) || 0;
                 let width = parseFloat($('.width').val()) || 0;
@@ -366,24 +366,57 @@
                 let quantity = 0;
 
                 if (formula === 'volume') {
+
                     quantity = length * width * height;
+
                 } else if (formula === 'area') {
+
                     quantity = length * width;
+
                 } else if (formula === 'wall_area') {
+
                     quantity = length * height;
+
                 } else if (formula === 'painting_area') {
+
                     quantity = 2 * (length + width) * height;
-                } else if (formula === 'steel_linear') {
+
+                }else if (formula === 'plaster_area') {
+
+                    quantity = 2 * (length + width) * height;
+
+                }else if(formula === 'screed_area'){
+
+                    quantity = length * width;
+
+                } else if(formula === 'concrete_slab_area'){
+
+                    quantity = length * width;
+
+                }else if(formula === 'mortar_bed_area'){
+
+                    quantity = length * width;
+
+                }else if(formula === 'brick_wall_area'){
+
+                    quantity = length * height;
+                }else if (formula === 'linear') {
+
                     quantity = length;
-                } else if (formula === 'steel_handrail_linear') {
-                    quantity = length;
+
                 } else if (formula === 'weight') {
+
                     quantity = length * unit_weight;
+
                 } else if (formula === 'coats_area') {
+
                     quantity = length * height * coats;
+
                 }
 
                 $('#quantity').val(quantity.toFixed(2));
+
+
             }
 
 

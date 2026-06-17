@@ -13,7 +13,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::jcak4QYteucZy35j',
+            '_route' => 'generated::f1Wkb7lttzu7DQlH',
           ),
           1 => NULL,
           2 => 
@@ -33,7 +33,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::W79N8ymj2bqKSSVw',
+            '_route' => 'generated::YRnRQVIKEaf71QWH',
           ),
           1 => NULL,
           2 => 
@@ -110,7 +110,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::PxcOeytELACeFkGK',
+            '_route' => 'generated::7VUZz3iiI3BFpPdU',
           ),
           1 => NULL,
           2 => 
@@ -146,7 +146,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::ZsiM5eNQfjw0i4rD',
+            '_route' => 'generated::3k6JXAJKjHJh1NbS',
           ),
           1 => NULL,
           2 => 
@@ -276,7 +276,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::ZNJzwkgF5uFs1M99',
+            '_route' => 'generated::SKLgkoI0AFF3aHyV',
           ),
           1 => NULL,
           2 => 
@@ -2294,6 +2294,26 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
+      '/projectmanage/mix-ratio_total-part' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.mix-ratio_total-part',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
       '/projectmanage/drawing_measurement_get' => 
       array (
         0 => 
@@ -2341,6 +2361,26 @@ app('router')->setCompiledRoutes(
           0 => 
           array (
             '_route' => 'projectmanage.mix_ratio_get',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/projectmanage/consumption-ratio-get' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.consumption-ratio-get',
           ),
           1 => NULL,
           2 => 
@@ -7044,7 +7084,7 @@ app('router')->setCompiledRoutes(
   ),
   'attributes' => 
   array (
-    'generated::jcak4QYteucZy35j' => 
+    'generated::f1Wkb7lttzu7DQlH' => 
     array (
       'methods' => 
       array (
@@ -7073,7 +7113,7 @@ app('router')->setCompiledRoutes(
                         \'exception\' => $exception,
                     ]), status: $exception ? 500 : 200);
                 }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"000000000000059d0000000000000000";}}',
-        'as' => 'generated::jcak4QYteucZy35j',
+        'as' => 'generated::f1Wkb7lttzu7DQlH',
       ),
       'fallback' => false,
       'defaults' => 
@@ -7089,7 +7129,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::W79N8ymj2bqKSSVw' => 
+    'generated::YRnRQVIKEaf71QWH' => 
     array (
       'methods' => 
       array (
@@ -7111,7 +7151,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::W79N8ymj2bqKSSVw',
+        'as' => 'generated::YRnRQVIKEaf71QWH',
       ),
       'fallback' => false,
       'defaults' => 
@@ -7243,7 +7283,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::PxcOeytELACeFkGK' => 
+    'generated::7VUZz3iiI3BFpPdU' => 
     array (
       'methods' => 
       array (
@@ -7264,7 +7304,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::PxcOeytELACeFkGK',
+        'as' => 'generated::7VUZz3iiI3BFpPdU',
       ),
       'fallback' => false,
       'defaults' => 
@@ -7318,7 +7358,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::ZsiM5eNQfjw0i4rD' => 
+    'generated::3k6JXAJKjHJh1NbS' => 
     array (
       'methods' => 
       array (
@@ -7339,7 +7379,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::ZsiM5eNQfjw0i4rD',
+        'as' => 'generated::3k6JXAJKjHJh1NbS',
       ),
       'fallback' => false,
       'defaults' => 
@@ -7659,7 +7699,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::ZNJzwkgF5uFs1M99' => 
+    'generated::SKLgkoI0AFF3aHyV' => 
     array (
       'methods' => 
       array (
@@ -7680,7 +7720,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::ZNJzwkgF5uFs1M99',
+        'as' => 'generated::SKLgkoI0AFF3aHyV',
       ),
       'fallback' => false,
       'defaults' => 
@@ -18886,6 +18926,45 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
+    'projectmanage.mix-ratio_total-part' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/mix-ratio_total-part',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\MixRatioDetailsController@mixRatioTotalPart',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\MixRatioDetailsController@mixRatioTotalPart',
+        'as' => 'projectmanage.mix-ratio_total-part',
+        'namespace' => NULL,
+        'prefix' => '/projectmanage',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
     'projectmanage.drawing_measurement_get' => 
     array (
       'methods' => 
@@ -18983,6 +19062,45 @@ app('router')->setCompiledRoutes(
         'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\MaterialMappingController@getMixRatio',
         'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\MaterialMappingController@getMixRatio',
         'as' => 'projectmanage.mix_ratio_get',
+        'namespace' => NULL,
+        'prefix' => '/projectmanage',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.consumption-ratio-get' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/consumption-ratio-get',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\MaterialMappingController@getConsumptionRatio',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\MaterialMappingController@getConsumptionRatio',
+        'as' => 'projectmanage.consumption-ratio-get',
         'namespace' => NULL,
         'prefix' => '/projectmanage',
         'where' => 

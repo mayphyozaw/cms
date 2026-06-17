@@ -57,8 +57,7 @@
                                 </label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
-                                        <select name="drawing_measurement_id"
-                                            class="form-control form-select">
+                                        <select name="drawing_measurement_id" class="form-control form-select">
                                             <option value="">Select Measurement Categories</option>
                                             @foreach ($drawingMeasurements as $drawingMeasurement)
                                                 <option value="{{ $drawingMeasurement->id }}">
@@ -200,7 +199,7 @@
                                 </label>
                                 <div class="col-sm-9">
                                     <input type="text" name="consumption_ratio" id="consumption_ratio_input"
-                                        class="form-control" readonly>
+                                        class="form-control">
                                 </div>
                             </div>
 
@@ -286,7 +285,7 @@
 
                 } else if (type === 'mix_ratio') {
 
-                    $('#coverage_qty_div').show();
+
                     $('#mix_ratio_div').show();
                     $('#consumption_ratio').show();
                     $('#volume_factor_div').show();
@@ -305,10 +304,12 @@
                     let ratio = 1 / coverage;
 
                     $('#consumption_ratio_input')
-                        .val(ratio.toFixed(5));
+                        .val(ratio.toFixed(6));
                 }
 
             });
+
+
 
             $('#percentage_value').on('keyup change', function() {
 
@@ -341,11 +342,47 @@
                             .val(data.dry_volume_factor);
 
                         $('#consumption_ratio_input')
-                            .val(parseFloat(data.dry_volume_factor).toFixed(5));
-
+                            .val(data.consumption_ratio);
                     }
                 });
 
+            });
+
+            function loadMixRatioData() {
+
+                let mixRatioId = $('#mix_ratio_template_id').val();
+                let materialId = $('#variable_asset_id').val();
+
+                if (!mixRatioId || !materialId) {
+                    return;
+                }
+
+                $.ajax({
+                    url: "{{ route('projectmanage.consumption-ratio-get') }}",
+                    type: "GET",
+                    data: {
+                        mix_ratio_template_id: mixRatioId,
+                        variable_asset_id: materialId
+                    },
+                    success: function(data) {
+
+                        $('#dry_volume_factor').val(
+                            data.dry_volume_factor
+                        );
+
+                        $('#consumption_ratio_input').val(
+                            data.consumption_ratio
+                        );
+                    }
+                });
+            }
+
+            $('#mix_ratio_template_id').change(function() {
+                loadMixRatioData();
+            });
+
+            $('#variable_asset_id').change(function() {
+                loadMixRatioData();
             });
 
 
