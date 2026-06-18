@@ -202,7 +202,7 @@
                                             </td>
 
                                             <td class="text-center">
-                                                {{ $materialRequirement->base_quantity }}
+                                                {{ number_format($materialRequirement->base_quantity,2) }}
                                             </td>
 
                                             <td class="text-center">
@@ -210,7 +210,7 @@
                                             </td>
 
                                             <td class="text-center">
-                                                {{ $materialRequirement->final_quantity }}
+                                                {{ number_format($materialRequirement->final_quantity, 2) }}
                                             </td>
 
                                             <td class="text-center">

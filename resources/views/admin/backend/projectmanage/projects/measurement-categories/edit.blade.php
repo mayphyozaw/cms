@@ -46,7 +46,7 @@
                                 <select name="formula_types" class="form-control form-select" id="formulaTypes">
                                     <option value="">Select Formula Type</option>
 
-                                    
+
                                     <option value="volume" {{ $category->formulaTypes == 'volume' ? 'selected' : '' }}>
                                         Volume
                                     </option>
@@ -54,21 +54,71 @@
                                     <option value="area" {{ $category->formulaTypes == 'area' ? 'selected' : '' }}>
                                         Area
                                     </option>
-                                    
-                                    <option value="wall_area" {{ $category->formulaTypes == 'wall_area' ? 'selected' : '' }}>
+
+                                    <option value="wall_area"
+                                        {{ $category->formulaTypes == 'wall_area' ? 'selected' : '' }}>
                                         Wall Area
                                     </option>
 
-                                    <option value="painting_area" {{ $category->formulaTypes == 'painting_area' ? 'selected' : '' }}>
-                                        Wall Area Painting
+                                    <option value="painting_area"
+                                        {{ $category->formulaTypes == 'painting_area' ? 'selected' : '' }}>
+                                        Painting Area
                                     </option>
 
-                                    
-                                    <option value="steel_linear" {{ $category->formulaTypes == 'steel_linear' ? 'selected' : '' }}>
+                                    <option value="plaster_volume"
+                                        {{ $category->formulaTypes == 'plaster_volume' ? 'selected' : '' }}>
+                                        Plaster Volume
+                                    </option>
+
+                                    <option value="screed_area"
+                                        {{ $category->formulaTypes == 'screed_area' ? 'selected' : '' }}>
+                                        Screed Area
+                                    </option>
+
+                                    <option value="screed_volume"
+                                        {{ $category->formulaTypes == 'screed_volume' ? 'selected' : '' }}>
+                                        Screed Volume
+                                    </option>
+
+                                    <option value="concrete_slab_area"
+                                        {{ $category->formulaTypes == 'concrete_slab_area' ? 'selected' : '' }}>
+                                        Concrete Slab Area
+                                    </option>
+
+                                    <option value="concrete_slab_volume"
+                                        {{ $category->formulaTypes == 'concrete_slab_volume' ? 'selected' : '' }}>
+                                        Concrete Slab Volume
+                                    </option>
+
+                                    <option value="brick_wall_area"
+                                        {{ $category->formulaTypes == 'brick_wall_area' ? 'selected' : '' }}>
+                                        Brick Wall Area
+                                    </option>
+
+                                    <option value="brick_wall_volume"
+                                        {{ $category->formulaTypes == 'brick_wall_volume' ? 'selected' : '' }}>
+                                        Brick Wall Volume
+                                    </option>
+
+                                    <option value="mortar_bed_area"
+                                        {{ $category->formulaTypes == 'mortar_bed_area' ? 'selected' : '' }}>
+                                        Mortar Bed Area
+                                    </option>
+
+                                    <option value="mortar_bed_volume"
+                                        {{ $category->formulaTypes == 'mortar_bed_volume' ? 'selected' : '' }}>
+                                        Mortar Bed Volume
+                                    </option>
+
+
+
+                                    <option value="steel_linear"
+                                        {{ $category->formulaTypes == 'steel_linear' ? 'selected' : '' }}>
                                         Steel Linear
                                     </option>
 
-                                    <option value="steel_handrail_linear" {{ $category->formulaTypes == 'steel_handrail_linear' ? 'selected' : '' }}>
+                                    <option value="steel_handrail_linear"
+                                        {{ $category->formulaTypes == 'steel_handrail_linear' ? 'selected' : '' }}>
                                         Steel Handrail Linear
                                     </option>
 
@@ -127,6 +177,7 @@
                     let symbol = '';
                     let unit = '';
                     let formulas = '';
+                    let thickness = parseFloat($('#thickness_ft').val()) || 0;
 
                     switch (this.value) {
 
@@ -148,10 +199,78 @@
                             unit = 'Rft';
                             break;
 
+                        case 'coats_area':
+                            symbol = 'CoatArea';
+                            formulas = 'L * H * coats';
+                            unit = 'sqft';
+                            break;
+
                         case 'painting_area':
                             symbol = 'PaintingArea';
                             formulas = '2 * (L + W) * H';
                             unit = 'sqft'
+                            break;
+
+
+                        case 'plaster_area':
+                            symbol = 'PlasterArea';
+                            formulas = '2 * (L + W) * H';
+                            unit = 'sqft'
+                            break;
+
+                        case 'plaster_volume':
+                            symbol = 'PlasterVolume';
+                            formulas = '(2 * (L + W) * H) * thickness';
+                            unit = 'ft³'
+                            break;
+
+
+                        case 'screed_area':
+                            symbol = 'ScreedArea';
+                            formulas = 'L * W';
+                            unit = 'sqft'
+                            break;
+
+                        case 'screed_volume':
+                            symbol = 'ScreedVolume';
+                            formulas = '(L * W) * thickness';
+                            unit = 'ft³'
+                            break;
+
+                        case 'concrete_slab_area':
+                            symbol = 'ConcreteSlabArea';
+                            formulas = 'L * W';
+                            unit = 'sqft'
+                            break;
+
+                        case 'concrete_slab_volume':
+                            symbol = 'concreteSlabVolume';
+                            formulas = '(L * W) * thickness';
+                            unit = 'ft³'
+                            break;
+
+                        case 'brick_wall_area':
+                            symbol = 'BrickWallArea';
+                            formulas = 'L * H';
+                            unit = 'sqft'
+                            break;
+
+                        case 'brick_wall_volume':
+                            symbol = 'BrickWallVolume';
+                            formulas = '(L * H)* thickness';
+                            unit = 'ft³'
+                            break;
+
+                        case 'mortar_bed_area':
+                            symbol = 'MortarBedArea';
+                            formulas = 'L * W';
+                            unit = 'sqft'
+                            break;
+
+                        case 'mortar_bed_volume':
+                            symbol = 'MortarBedVolume';
+                            formulas = '(L * W) * thickness';
+                            unit = 'ft³'
                             break;
 
                         case 'steel_linear':
@@ -172,13 +291,13 @@
                             unit = 'ton';
                             break;
                     }
-                    
-                    
+
+
                     document.getElementById('symbol').value = symbol;
                     document.getElementById('formulas').value = formulas;
                     document.getElementById('category_unit').value = unit;
-                    
-                    
+
+
                 });
         });
     </script>

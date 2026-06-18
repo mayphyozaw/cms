@@ -146,6 +146,7 @@
                                     <input type="text" name="formulas" id="formulas" class="form-control" readonly>
                                 </div>
                             </div>
+                            
                             <div class="col-md-3 col-sm-12">
                                 <div class="mb-3">
                                     <label class="form-label fs-14">
@@ -180,6 +181,7 @@
                     let symbol = '';
                     let unit = '';
                     let formulas = '';
+                    let thickness = parseFloat($('#thickness_ft').val()) || 0;
 
                     switch (this.value) {
 
@@ -222,8 +224,8 @@
 
                         case 'plaster_volume':
                             symbol = 'PlasterVolume';
-                            formulas = 'Plaster Area * Thickness';
-                            unit = 'cuft'
+                            formulas = '(2 * (L + W) * H) * thickness';
+                            unit = 'ft³'
                             break;
 
 
@@ -235,8 +237,8 @@
 
                         case 'screed_volume':
                             symbol = 'ScreedVolume';
-                            formulas = 'Screed Area * Thickness';
-                            unit = 'cuft'
+                            formulas = '(L * W) * thickness';
+                            unit = 'ft³'
                             break;
 
                         case 'concrete_slab_area':
@@ -247,8 +249,8 @@
                         
                         case 'concrete_slab_volume':
                             symbol = 'concreteSlabVolume';
-                            formulas = 'Concrete Slab Area * Thickness';
-                            unit = 'cuft'
+                            formulas = '(L * W) * thickness';
+                            unit = 'ft³'
                             break;
 
                         case 'brick_wall_area':
@@ -259,8 +261,8 @@
 
                         case 'brick_wall_volume':
                             symbol = 'BrickWallVolume';
-                            formulas = 'Brick Wall Area * Thickness';
-                            unit = 'cuft'
+                            formulas = '(L * H)* thickness';
+                            unit = 'ft³'
                             break;
 
                         case 'mortar_bed_area':
@@ -271,8 +273,8 @@
 
                         case 'mortar_bed_volume':
                             symbol = 'MortarBedVolume';
-                            formulas = 'Mortar Bed Area * Thickness';
-                            unit = 'cuft'
+                            formulas = '(L * W) * thickness';
+                            unit = 'ft³'
                             break;
 
                         case 'steel_linear':

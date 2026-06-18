@@ -32,33 +32,22 @@ class MaterialRequirementsController extends Controller
         return view('admin.backend.projectmanage.projects.material-requirements.create', compact('project', 'drawingMeasurements', 'materialMappings', 'variableAssets', 'mixRatios'));
     }
 
+   
     public function store(Request $request, Project $project)
     {
-        $material = VariableAsset::findOrFail(
-            $request->variable_asset_id
-        );
-
-        $drawingMeasurement = DrawingMeasurement::findOrFail(
-            $request->drawing_measurement_id
-        );
-        $materialMapping = MaterialMappings::findOrFail(
-            $request->material_mapping_id
-        );
-
-        $consumption_ratio = $materialMapping->consumption_ratio;
-
-        $raw_quantity = $drawingMeasurement->quantity;
+        $material = VariableAsset::findOrFail($request->variable_asset_id);
+        $drawingMeasurement = DrawingMeasurement::findOrFail($request->drawing_measurement_id);
+        $materialMapping = MaterialMappings::findOrFail($request->material_mapping_id);
 
         $consumption_type = $request->consumption_type;
+
+        $consumption_ratio = 0;
 
         switch ($consumption_type) {
 
             case 'coverage':
                 $coverageQty = $request->coverage_qty ?? 0;
-                $consumption_ratio = $coverageQty > 0
-                    ? (1 / $coverageQty)
-                    : 0;
-
+                $consumption_ratio = $coverageQty > 0 ? (1 / $coverageQty) : 0;
                 break;
 
             case 'fixed':
@@ -70,26 +59,26 @@ class MaterialRequirementsController extends Controller
                 break;
 
             case 'mix_ratio':
-                $materialMapping = MaterialMappings::findOrFail(
-                    $request->material_mapping_id
-                );
-
-                $consumption_ratio =
-                    $materialMapping->consumption_ratio;
-
+                $consumption_ratio = $materialMapping->consumption_ratio;
                 break;
         }
 
+        $raw_quantity = $drawingMeasurement->quantity;
 
-        $base_quantity = $raw_quantity * $consumption_ratio;
+        $dryVolume = $raw_quantity * $materialMapping->dry_volume_factor;
 
+        
+        if ($consumption_type === 'mix_ratio') {
+            $base_quantity = $dryVolume * $consumption_ratio;
+        } else {
+            $base_quantity = $raw_quantity * $consumption_ratio;
+        }
 
         $wastage_percentage = $request->wastage_percentage ?? 0;
 
-        $final_quantity = $base_quantity *
-            (1 + ($wastage_percentage / 100));
+        $final_quantity = $base_quantity * (1 + $wastage_percentage / 100);
 
-        MaterialRequirements::create([
+        $material_requirements = MaterialRequirements::create([
             'drawing_measurement_id' => $request->drawing_measurement_id,
             'material_mapping_id'    => $request->material_mapping_id,
             'variable_asset_id'      => $request->variable_asset_id,
@@ -101,14 +90,14 @@ class MaterialRequirementsController extends Controller
             'remark'                 => $request->remark,
         ]);
 
-        // return $material_requirements;
-        return redirect()->route(
-            'projectmanage.projects.material-requirements.index',
-            ['project' => $project->id]
-        )->with([
-            'message' => 'Successfully created',
-            'alert-type' => 'success'
-        ]);
+        return $material_requirements;
+
+        return redirect()
+            ->route('projectmanage.projects.material-requirements.index', $project->id)
+            ->with([
+                'message' => 'Successfully created',
+                'alert-type' => 'success'
+            ]);
     }
 
     public function edit(Project $project, $id)

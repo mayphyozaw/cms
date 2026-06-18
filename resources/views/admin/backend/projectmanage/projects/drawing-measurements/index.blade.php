@@ -197,6 +197,8 @@
                                         <th class="text-center" style="background-color: #9dd2e7">Length</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Width</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Height</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Thickness</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Thickness Unit</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Unit Weight</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Coats</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Quantity</th>
@@ -244,6 +246,14 @@
                                             <td class="text-center"> 
                                                 {{$drawingMeasurementData->height}}
                                             </td>
+
+                                            <td class="text-center"> 
+                                                {{$drawingMeasurementData->thickness ?? '-'}}
+                                            </td>
+
+                                            <td class="text-center"> 
+                                                {{$drawingMeasurementData->thickness_unit ?? '-'}}
+                                            </td>
                                             
                                             <td class="text-center"> 
                                                 {{$drawingMeasurementData->unit_weight}}
@@ -251,10 +261,10 @@
                                             <td class="text-center"> 
                                                 {{$drawingMeasurementData->coats}}
                                             </td>
-                                            
+
                                             <td class="text-center"> 
 
-                                                {{$drawingMeasurementData->quantity}}
+                                                {{ number_format($drawingMeasurementData->quantity, 2)}}
                                             </td>
                                             <td class="text-center"> 
                                                 {{$drawingMeasurementData->unit}}

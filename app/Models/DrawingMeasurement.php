@@ -14,6 +14,8 @@ class DrawingMeasurement extends Model
         'length',
         'width',
         'height',
+        'thickness',
+        'thickness_unit',
         'coats',
         'unit_weight',
         'quantity',
