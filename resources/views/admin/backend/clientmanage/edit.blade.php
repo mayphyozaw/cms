@@ -29,68 +29,50 @@
 
                                     <div class="form-row row">
 
-                                        <div class="col-md-4 mb-3">
-                                            <label class="form-label">
-                                                Client Type</label>
-                                            <select class="form-control" name="client_type" id="client_type">
-                                                <option value="">-- Select Client Type--</option>
-                                                <option value="Individual"
-                                                    {{ $client->client_type === 'Individual' ? 'selected' : '' }}>Individual
-                                                </option>
-                                                <option value="Company"
-                                                    {{ $client->client_type === 'Company' ? 'selected' : '' }}>Company
-                                                </option>
-                                            </select>
-                                        </div>
-
-                                        <div class="col-md-4 mb-3">
+                                        <div class="col-md-4 mb-3" hidden>
                                             <label for="form-label fs-14" class="form-label fs-14">
                                                 Client Code Number
                                             </label>
                                             <div class="input-group">
-                                                <span class="input-group-text" id="clientcodePrefix"></span>
-                                                <input type="hidden" id="clientcodePrefixHidden" name="prefix_code">
-                                                <input type="text" value="{{ Str::after($client->client_code, '-') }}"
-                                                    class="form-control" name="client_code">
-
+                                                <input type="text" name="client_code" class="form-control">
                                             </div>
                                         </div>
 
-                                        <div class="col-md-4 mb-3">
+                                        <div class="col-md-3 mb-3">
                                             <label class="form-label" for="validationCustom01">Customer Name
                                             </label>
                                             <input type="text" class="form-control" name="name"
                                                 value="{{ $client->name }}">
                                         </div>
 
-                                        <div class="col-md-4 mb-3">
+                                        <div class="col-md-3 mb-3">
                                             <label class="form-label" for="validationCustom01">Phone Number
                                             </label>
                                             <input type="text" class="form-control" name="phone"
                                                 value="{{ $client->phone }}">
                                         </div>
 
-                                        <div class="col-md-4 mb-3">
+                                        <div class="col-md-3 mb-3">
                                             <label class="form-label" for="validationCustom01">Email
                                             </label>
                                             <input type="email" class="form-control" name="email"
                                                 value="{{ $client->email }}">
                                         </div>
 
-                                        <div class="col-md-4 mb-3">
+                                        <div class="col-md-3 mb-3">
                                             <label class="form-label" for="validationCustom01">Contact Person
                                             </label>
                                             <input type="text" class="form-control" name="contact_person"
                                                 value="{{ $client->contact_person }}">
                                         </div>
 
-                                        <div class="col-md-4 mb-3">
+                                        <div class="col-md-3 mb-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Address:</label>
                                                 <textarea name="address" class="form-control">{{ $client->address }}</textarea>
                                             </div>
                                         </div>
-                                        <div class="col-md-4 mb-3">
+                                        <div class="col-md-3 mb-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Remark:</label>
                                                 <textarea name="remark" class="form-control">{{ $client->remark }}</textarea>
@@ -114,15 +96,13 @@
                                 <div class="col-sm">
 
                                     <div class="form-row row">
-                                        <div class="col-md-4 mb-3">
+                                        <div class="col-md-4 mb-3" hidden>
                                             <label class="form-label">Project Code</label>
                                             <div class="input-group">
-                                                <span class="input-group-text">P-</span>
-                                                <input type="text" class="form-control" name="project_code"
-                                                    value="{{ $client->project_code }}">
-
+                                                <input type="hidden" name="project_code" value="">
                                             </div>
                                         </div>
+
 
                                         <div class="col-md-4 mb-3">
                                             <label class="form-label" for="validationDefault04">Site Location</label>
@@ -140,29 +120,10 @@
 
                                         </div>
 
-                                    </div>
-                                    <div class="form-row row">
-
-                                        <div class="col-md-4 mb-3">
-                                            <label class="form-label">
-                                                Building Area
-                                            </label>
-                                            <input type="text" class="form-control" name="building_area"
-                                                value="{{ $client->building_area }}">
-                                        </div>
-
-                                        <div class="col-md-4 mb-3">
-                                            <label class="form-label">
-                                                Number of Storeys
-                                            </label>
-                                            <input type="text" class="form-control" name="storeys"
-                                                value="{{ $client->storeys }}">
-                                        </div>
-
                                         <div class="col-md-4 mb-3">
                                             <label class="form-label">
                                                 Construction Type</label>
-                                            <select class="form-control" name="construction_type">
+                                            <select class="form-control select2" name="construction_type">
                                                 <option value="">-- Select Construction Type--</option>
                                                 <option value="Residential"
                                                     {{ $client->construction_type === 'Residential' ? 'selected' : '' }}>
@@ -187,13 +148,80 @@
                                                     Electrical</option>
                                             </select>
                                         </div>
+
+                                    </div>
+                                    <div class="form-row row">
+
+                                        <div class="col-md-3 mb-3">
+                                            <label class="form-label">
+                                                Length
+                                            </label>
+
+                                            <div class="input-group">
+                                                <input type="text" class="form-control building_length"
+                                                     name="length" id="length" value="{{$client->length}}">
+                                                <div class="input-group-text">
+                                                    <span>ft</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="col-md-3 mb-3">
+                                            <label class="form-label">
+                                                Width
+                                            </label>
+
+                                            <div class="input-group">
+                                                <input type="text" class="form-control building_width"
+                                                     name="width"  id="width" value="{{$client->width}}">
+                                                <div class="input-group-text">
+                                                    <span>ft</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 mb-3">
+                                            <label class="form-label">
+                                                Building Area
+                                            </label>
+                                            <input type="text" class="form-control" name="building_area"
+                                                value="{{ $client->building_area }}" id="building_area">
+                                        </div>
+
+                                        <div class="col-md-4 mb-3">
+                                            <label class="form-label">
+                                                Number of Storeys
+                                            </label>
+                                            <input type="text" class="form-control" name="storeys"
+                                                value="{{ $client->storeys }}" id="storeys">
+                                        </div>
+
+
+                                        <div class="col-md-4 mb-3">
+                                            <label class="form-label">
+                                                Total Area
+                                            </label>
+
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="total_area" readonly
+                                                    id="total_area" value="{{$client->total_area}}">
+                                                <div class="input-group-text">
+                                                    <span>sqft</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        
                                     </div>
 
                                     <div class="form-row row">
                                         <div class="col-md-6 mb-3">
                                             <label class="form-label">
                                                 Job Scope</label>
-                                            <select class="form-control" name="job_scope">
+                                            <select class="form-control select2" name="job_scope">
                                                 <option value="">-- Select Job Scope Type--</option>
                                                 <option value="Structure"
                                                     {{ $client->job_scope === 'Structure' ? 'selected' : '' }}>Structure
@@ -215,7 +243,7 @@
                                         <div class="col-md-6 mb-3">
                                             <label class="form-label">
                                                 Job Package</label>
-                                            <select class="form-control" name="job_package">
+                                            <select class="form-control select2" name="job_package">
                                                 <option value="">-- Select Job Package--</option>
                                                 <option value="NormalPackage"
                                                     {{ $client->job_package === 'NormalPackage' ? 'selected' : '' }}>
@@ -248,26 +276,37 @@
     {!! JsValidator::formRequest('App\Http\Requests\Client\ClientUpdateRequest', '#submit-form') !!}
 
     <script>
+        $('.select2').select2({
+            width: '100%'
+        });
+    </script>
+    <script>
         $(document).ready(function() {
 
-            const prefixMap = {
-                Individual: 'SKGI-',
-                Company: 'SKGC-',
-            };
+            $('.building_length, .building_width, #storeys').on('input', function() {
 
-            function updatePrefix() {
-                let clienttype = $('#client_type').val();
-                $('#clientcodePrefix').text(prefixMap[clienttype] || '');
-                $('#clientcodePrefixHidden').val(prefixMap[clienttype] || '');
+                calculateQuantity();
+
+            });
+
+            function calculateQuantity() {
+
+                let length = parseFloat($('#length').val()) || 0;
+                let width = parseFloat($('#width').val()) || 0;
+                let storeys = parseFloat($('#storeys').val()) || 0;
+
+                let building_area = 0;
+                let total_area = 0;
+
+                building_area = length * width;
+                total_area = length * width * storeys;
+
+                $('#building_area').val(building_area.toFixed(2));
+                $('#total_area').val(total_area.toFixed(2));
+
+
             }
 
-            // Run on page load (EDIT page fix)
-            updatePrefix();
-
-            // Run on change (CREATE & EDIT)
-            $('#client_type').on('change', function() {
-                updatePrefix();
-            });
 
         });
     </script>

@@ -4,12 +4,13 @@
 <head>
 
     {{-- <meta charset="utf-8"> --}}
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>CMS</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="shortcut icon" href="{{ asset('backend/assets/img/favicon.png') }}">
     <link rel="apple-touch-icon" href="{{ asset('backend/assets/img/apple-icon.png') }}">
     <script src="{{ asset('backend/assets/js/theme-script.js') }}"></script>
     <link rel="stylesheet" type="text/css"
@@ -27,8 +28,11 @@
     {{-- <link rel="stylesheet" href="{{ asset('backend/assets/plugins/datatables/css/dataTables.bootstrap5.min.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('backend/assets/plugins/daterangepicker/daterangepicker.css') }}">
     <!-- Select2 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('backend/assets/plugins/select2/css/select2.min.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+
+    {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
     <!-- Choices CSS -->
     <link rel="stylesheet" href="{{ asset('backend/assets/plugins/choices.js/public/assets/styles/choices.min.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css') }}" id="app-style">
@@ -55,6 +59,22 @@
 
         .note-editor .note-editable li {
             display: list-item !important;
+        }
+
+        .select2-container {
+            width: 100% !important;
+        }
+
+        .select2-selection--single {
+            height: 38px !important;
+        }
+
+        .select2-selection__rendered {
+            line-height: 38px !important;
+        }
+
+        .select2-selection__arrow {
+            height: 38px !important;
         }
     </style>
 </head>
@@ -98,13 +118,24 @@
     {{-- <script src="{{ asset('backend/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}"
         data-cf-settings="2feec2ecac7da57f288991d1-|49" defer></script> --}}
 
+    <!-- Select2 -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <!-- Choices Js -->
-    <script src="{{asset('backend/assets/plugins/choices.js/public/assets/scripts/choices.min.js')}}" type="a1dcc44babf6ba6f47b105cc-text/javascript"></script>
+    {{-- <script src="{{asset('backend/assets/plugins/choices.js/public/assets/scripts/choices.min.js')}}" type="a1dcc44babf6ba6f47b105cc-text/javascript"></script> --}}
     <script src="https://cdn.datatables.net/2.3.6/js/dataTables.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script>
+        $(document).ready(function() {
+
+            $('.select2').select2({
+                width: '100%'
+            });
+
+        });
         @if (session()->has('message'))
             toastr.options = {
                 closeButton: true,

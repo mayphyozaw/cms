@@ -57,7 +57,8 @@
                                 </label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
-                                        <select name="drawing_measurement_id" class="form-control form-select">
+                                        <select name="drawing_measurement_id" class="form-control form-select"
+                                            id="drawing_measurement_id">
                                             <option value="">Select Measurement Categories</option>
                                             @foreach ($drawingMeasurements as $drawingMeasurement)
                                                 <option value="{{ $drawingMeasurement->id }}">
@@ -69,7 +70,7 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-3">
+                            <div class="row mb-3" hidden>
 
                                 <label class="col-sm-3 form-label">
                                     Measurement Categories:
@@ -127,9 +128,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
 
                             <div class="row mb-3" id="coverage_qty_div" style="display:none;">
                                 <label class="col-sm-3 form-label">
@@ -193,7 +191,7 @@
                             </div>
 
 
-                            <div class="row mb-3" id="consumption_ratio" style="display:none;">
+                            <div class="row mb-3" id="consumption_ratio_div" style="display:none;">
                                 <label class="col-sm-3 form-label">
                                     Consumption Ratio
                                 </label>
@@ -250,12 +248,14 @@
             </div>
 
         </div>
+
+
+
     </div>
 @endsection
 @push('scripts')
     <script>
         $(document).ready(function() {
-
             $('#consumption_type_id').change(function() {
 
                 let selected = $(this).find(':selected');
@@ -264,35 +264,31 @@
                 $('#coverage_qty_div').hide();
                 $('#percentage_div').hide();
                 $('#mix_ratio_div').hide();
+                $('#consumption_ratio_div').hide();
 
                 $('#consumption_ratio_input').val('');
 
-                if (type === 'coverage') {
+                if (type == 'coverage') {
 
                     $('#coverage_qty_div').show();
-                    $('#consumption_ratio').show();
+                    $('#consumption_ratio_div').show();
+                }else if (type === 'fixed') {
 
-
-                } else if (type === 'fixed') {
-
-                    $('#consumption_ratio').show();
+                    $('#consumption_ratio_div').show();
                     $('#consumption_ratio_input').val(1);
 
                 } else if (type === 'percentage') {
 
                     $('#percentage_div').show();
-                    $('#consumption_ratio').show();
+                    $('#consumption_ratio_div').show();
 
                 } else if (type === 'mix_ratio') {
 
-
                     $('#mix_ratio_div').show();
-                    $('#consumption_ratio').show();
+                    $('#consumption_ratio_div').show();
                     $('#volume_factor_div').show();
 
-
                 }
-
             });
 
             $('#coverage_qty').on('keyup change', function() {
@@ -308,8 +304,6 @@
                 }
 
             });
-
-
 
             $('#percentage_value').on('keyup change', function() {
 
@@ -345,6 +339,7 @@
                             .val(data.consumption_ratio);
                     }
                 });
+                
 
             });
 
@@ -366,9 +361,9 @@
                     },
                     success: function(data) {
 
-                        $('#dry_volume_factor').val(
-                            data.dry_volume_factor
-                        );
+                        console.log(data);
+
+                        $('#dry_volume_factor').val(data.dry_volume_factor);
 
                         $('#consumption_ratio_input').val(
                             data.consumption_ratio
@@ -377,13 +372,8 @@
                 });
             }
 
-            $('#mix_ratio_template_id').change(function() {
-                loadMixRatioData();
-            });
-
-            $('#variable_asset_id').change(function() {
-                loadMixRatioData();
-            });
+            $('#mix_ratio_template_id, #variable_asset_id').on('change', loadMixRatioData);
+           
 
 
         });

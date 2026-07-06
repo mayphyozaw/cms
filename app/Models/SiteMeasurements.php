@@ -22,7 +22,7 @@ class SiteMeasurements extends Model
         'remarks',
     ];
 
-    public function measurementCategory()
+    public function category()
     {
         return $this->belongsTo(MeasurementCategories::class, 'category_id');
     }

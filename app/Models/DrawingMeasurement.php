@@ -11,6 +11,7 @@ class DrawingMeasurement extends Model
         'project_id',
         'measurement_categories_id',
         'drawing_id',
+        'nos',
         'length',
         'width',
         'height',

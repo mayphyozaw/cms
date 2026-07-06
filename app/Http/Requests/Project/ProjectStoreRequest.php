@@ -23,7 +23,6 @@ class ProjectStoreRequest extends FormRequest
     {
         return [
             'client_id' => 'required|integer|exists:clients,id',
-            'project_code' => 'required|string|max:50',
             'project_type' => 'required|string|max:50',
             'status' => 'required|string|max:50',
             'start_date' => 'nullable|date',

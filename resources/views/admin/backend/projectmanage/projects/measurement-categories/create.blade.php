@@ -52,6 +52,22 @@
                                             Volume
                                         </option>
 
+                                        <option value="excavation_volume">
+                                            Excavation Volume
+                                        </option>
+
+                                        <option value="pcc_1:3:6">
+                                            PCC 1:3:6
+                                        </option>
+
+                                        <option value="rcc_footing">
+                                            RCC Footing
+                                        </option>
+
+                                        <option value="rcc_column">
+                                            RCC Column
+                                        </option>
+
                                         <option value="area">
                                             Area
                                         </option>
@@ -190,6 +206,31 @@
                             formulas = 'L * W * H';
                             unit = 'ft³';
                             break;
+                            
+                        case 'excavation_volume':
+                            symbol = 'V';
+                            formulas = 'Nos * L * W * H';
+                            unit = 'cu.ft';
+                            break;
+                        
+
+                        case 'pcc_1:3:6':
+                            symbol = 'V';
+                            formulas = 'Nos * L * W * H';
+                            unit = 'cu.ft';
+                            break;
+                        
+                        case 'rcc_footing':
+                            symbol = 'V';
+                            formulas = 'Nos * L * W * H';
+                            unit = 'cu.ft';
+                            break;
+
+                        case 'rcc_column':
+                            symbol = 'V';
+                            formulas = 'Nos * L * W * H';
+                            unit = 'cu.ft';
+                            break;
 
                         case 'area':
                             symbol = 'A';
@@ -249,7 +290,7 @@
                         
                         case 'concrete_slab_volume':
                             symbol = 'concreteSlabVolume';
-                            formulas = '(L * W) * thickness';
+                            formulas = 'L * W * thickness';
                             unit = 'ft³'
                             break;
 
@@ -261,7 +302,7 @@
 
                         case 'brick_wall_volume':
                             symbol = 'BrickWallVolume';
-                            formulas = '(L * H)* thickness';
+                            formulas = 'L * H * thickness';
                             unit = 'ft³'
                             break;
 
@@ -273,7 +314,7 @@
 
                         case 'mortar_bed_volume':
                             symbol = 'MortarBedVolume';
-                            formulas = '(L * W) * thickness';
+                            formulas = 'L * W * thickness';
                             unit = 'ft³'
                             break;
 

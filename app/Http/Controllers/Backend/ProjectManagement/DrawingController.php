@@ -50,8 +50,12 @@ class DrawingController extends Controller
             $drawing_upload_file_name = uniqid() . '_' . time() . '.' . $drawing_upload_file->getClientOriginalExtension();
             $drawing_upload_file->move(public_path('/upload/drawings'), $drawing_upload_file_name);
 
-            $drawingNo = 'P-00' . date('ymd');
-            $revisionNo = $drawingNo . 'R1';
+            $lastDrawing = Drawings::latest('id')->first();
+            $nextDrawingId = $lastDrawing ? $lastDrawing->id + 1 : 1;
+            $drawingNo = 'DRW-' . date('Y') . '-' . str_pad($nextDrawingId, 4, '0', STR_PAD_LEFT);
+            
+            $revisionNo = $drawingNo . '-R1';
+            
 
             Drawings::create([
                 'project_id' => $project->id,

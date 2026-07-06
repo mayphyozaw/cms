@@ -58,13 +58,14 @@
                             <tr>
                                 <th class="text-center" style="background-color: #9dd2e7">#</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Client Code</th>
-                                <th class="text-center" style="background-color: #9dd2e7">Client Type</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Name</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Email</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Phone </th>
                                 <th class="text-center" style="background-color: #9dd2e7">Address</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Contact Person</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Project Code</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Length</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Width</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Building Area</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Number of Storeys</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Site Location</th>
@@ -112,11 +113,6 @@
                     },
                     
                     {
-                        data: 'client_type',
-                        name: 'client_type',
-                        className: 'text-center',
-                    },
-                    {
                         data: 'name',
                         name: 'name',
                         className: 'text-center',
@@ -144,6 +140,16 @@
                     {
                         data: 'project_code',
                         name: 'project_code',
+                        className: 'text-center',
+                    },
+                    {
+                        data: 'length',
+                        name: 'length',
+                        className: 'text-center',
+                    },
+                    {
+                        data: 'width',
+                        name: 'width',
                         className: 'text-center',
                     },
                     {

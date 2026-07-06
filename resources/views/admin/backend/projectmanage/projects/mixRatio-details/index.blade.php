@@ -175,7 +175,7 @@
                                         <th class="text-center" style="background-color: #9dd2e7">Code</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Material Name</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Part</th>
-                                        {{-- <th class="text-center" style="background-color: #9dd2e7">Total Part</th> --}}
+                                        <th class="text-center" style="background-color: #9dd2e7">Total Part</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Consumption Ratio</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Action</th>
 
@@ -210,9 +210,9 @@
                                                 $consumptionRatio = $detail->part / $totalPart;
                                             @endphp
 
-                                            {{-- <td class="text-center">
+                                            <td class="text-center">
                                                 {{ $totalPart }}
-                                            </td> --}}
+                                            </td>
 
                                             <td class="text-center">
                                                 {{ number_format($consumptionRatio,6)}}

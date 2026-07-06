@@ -24,178 +24,171 @@
                         enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="col-md-12 mb-3">
-                                    <label class="form-label">
-                                        Customer: </label>
-                                    <select name="client_id" id="client_id" class="form-control form-select">
-                                        <option value="">Select Customer</option>
-                                        @foreach ($clients as $client)
-                                            <option value="{{ $client->id }}">
-                                                {{ $client->client_code }} - {{ $client->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
 
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                    <label class="form-label">
-                                        Client Type</label>
-                                    <select class="form-control" name="client_type" id="client_type">
-                                        <option value="">-- Select Client Type--</option>
-                                        <option value="Individual">
-                                            Individual
+                            {{-- Customer --}}
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">
+                                    Customer: </label>
+                                <select name="client_id" id="client_id" class="form-control select2">
+                                    <option value="">Select Customer</option>
+                                    @foreach ($clients as $client)
+                                        <option value="{{ $client->id }}">
+                                            {{ $client->client_code }} - {{ $client->name }}
                                         </option>
-                                        <option value="Company">
-                                            Company
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="form-label fs-14" class="form-label fs-14">
-                                        Client Code Number
-                                    </label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"></span>
-                                        {{-- <input type="hidden" id="clientcodePrefixHidden" name="prefix_code"> --}}
-                                        <input type="text" class="form-control" name="client_code" id="client_code">
+                                    @endforeach
+                                </select>
+                            </div>
 
+                            {{-- Client Code Number --}}
+                            <div class="col-md-3 mb-3">
+                                <label for="form-label fs-14" class="form-label fs-14">
+                                    Client Code Number
+                                </label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="client_code" id="client_code" readonly>
+                                </div>
+                            </div>
+
+                            {{-- Project Code: --}}
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">Project Code:</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="project_code" id="project_code">
+                                </div>
+                            </div>
+
+                            {{-- Construction Type: --}}
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">
+                                    Construction Type:</label>
+                                <select class="form-control select2" name="construction_type" id="construction_type">
+                                    <option value="">-- Select Construction Type--</option>
+                                    <option value="Residential">Residential</option>
+                                    <option value="Commercial">Commercial</option>
+                                    <option value="Renovation">Renovation</option>
+                                    <option value="PAE">PAE</option>
+                                    <option value="RC">RC</option>
+                                    <option value="Steel Structure">Steel Structure</option>
+                                    <option value="Electrical">Electrical</option>
+                                </select>
+                            </div>
+
+
+                            {{-- Length: --}}
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">
+                                    Length:
+                                </label>
+                                <input type="text" class="form-control" name="length" id="length">
+                            </div>
+
+                            {{-- Width: --}}
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">
+                                    Width:
+                                </label>
+                                <input type="text" class="form-control" name="width" id="width">
+                            </div>
+
+                            {{-- Number of Storeys: --}}
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">
+                                    Number of Storeys:
+                                </label>
+                                <input type="text" class="form-control" name="storeys" id="storeys">
+                            </div>
+
+                            {{-- Building Area --}}
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">
+                                    Building Area
+                                </label>
+
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="building_area" id="building_area"
+                                        readonly>
+                                    <div class="input-group-text">
+                                        <span>sqft</span>
                                     </div>
                                 </div>
-                                </div>
-
-                                <div class="col-md-12 mb-3">
-                                    <label for="form-label fs-14" class="form-label fs-14">
-                                        Address:
-                                    </label>
-                                    <div class="input-group">
-                                        <input type="text" name="address" class="form-control" id="address">
-
-                                    </div>
-                                </div>
+                            </div>
 
 
-
-                                <div class="col-md-12 mb-3">
-                                    <label class="form-label">Site Location:</label>
-                                    <input type="text" class="form-control" name="site_location" id="site_location">
-
-                                </div>
-
-                                <div class="col-md-12 mb-3">
-                                    <label class="form-label">
-                                        Building Area:
-                                    </label>
-                                    <input type="text" class="form-control" name="building_area" id="building_area">
-                                </div>
-
-
-
-                                <div class="col-md-12 mb-3">
-                                    <label class="form-label">
-                                        Number of Storeys:
-                                    </label>
-                                    <input type="text" class="form-control" name="storeys" id="storeys">
-                                </div>
-
-                                <div class="col-md-12 mb-3">
-                                    <label class="form-label">
-                                        Job Scope:</label>
-                                    <select class="form-control" name="job_scope" id="job_scope">
-                                        <option value="">-- Select Job Scope Type--</option>
-                                        <option value="Structure">Structure</option>
-                                        <option value="Electrical">Electrical</option>
-                                        <option value="Plumbing">Plumbing</option>
-                                        <option value="PAE">PAE</option>
-                                        <option value="Steel">Steel Structure</option>
-                                    </select>
-                                </div>
+                            {{-- Site Location --}}
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">Site Location:</label>
+                                <input type="text" class="form-control" name="site_location" id="site_location">
 
                             </div>
 
 
-                            <div class="col-md-6">
-                                <div class="col-md-12 mb-3">
-                                    <label class="form-label">Project Code:</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text">P-</span>
-                                        <input type="text" class="form-control" name="project_code" id="project_code">
-                                    </div>
+                            {{-- Job Scope: --}}
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">
+                                    Job Scope:</label>
+                                <select class="form-control select2" name="job_scope" id="job_scope">
+                                    <option value="">-- Select Job Scope Type--</option>
+                                    <option value="Structure">Structure</option>
+                                    <option value="Electrical">Electrical</option>
+                                    <option value="Plumbing">Plumbing</option>
+                                    <option value="PAE">PAE</option>
+                                    <option value="Steel">Steel Structure</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">
+                                    Project Type: </label>
+                                <select class="form-control" name="project_type" id="project_type">
+                                    <option value="">-- Select Project Type--</option>
+                                    <option value="Developer">Developer</option>
+                                    <option value="PAE">PAE</option>
+                                </select>
+                            </div>
+
+
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">
+                                    Project Status: </label>
+                                <select class="form-control select2" name="status" id="status">
+                                    <option value="">-- Select Project Type--</option>
+                                    <option value="Planned">Planned</option>
+                                    <option value="Ongoing">Ongoing</option>
+                                    <option value="Complete">Complete</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Project Start Date:</label>
+                                <div class="input-group">
+                                    <input type="date" class="form-control" name="start_date" id="start_date">
                                 </div>
+                            </div>
 
-                                <div class="col-md-12 mb-3">
-                                    <label class="form-label">
-                                        Construction Type:</label>
-                                    <select class="form-control" name="construction_type" id="construction_type">
-                                        <option value="">-- Select Construction Type--</option>
-                                        <option value="Residential">Residential</option>
-                                        <option value="Commercial">Commercial</option>
-                                        <option value="Renovation">Renovation</option>
-                                        <option value="PAE">PAE</option>
-                                        <option value="RC">RC</option>
-                                        <option value="Steel Structure">Steel Structure</option>
-                                        <option value="Electrical">Electrical</option>
-                                    </select>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Project Exepecting End Date:</label>
+                                <div class="input-group">
+                                    <input type="date" class="form-control" name="end_date" id="end_date">
                                 </div>
+                            </div>
 
 
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">Remark:</label>
 
-                                <div class="col-md-12 mb-3">
-                                    <label class="form-label">
-                                        Project Type: </label>
-                                    <select class="form-control" name="project_type" id="project_type">
-                                        <option value="">-- Select Project Type--</option>
-                                        <option value="Developer">Developer</option>
-                                        <option value="PAE">PAE</option>
-                                    </select>
-                                </div>
-
-                                <div class="col-md-12 mb-3">
-                                    <label class="form-label">Project Start Date:</label>
-                                    <div class="input-group">
-                                        <input type="date" class="form-control" name="start_date" id="start_date">
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12 mb-3">
-                                    <label class="form-label">Project Exepecting End Date:</label>
-                                    <div class="input-group">
-                                        <input type="date" class="form-control" name="end_date" id="end_date">
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12 mb-3">
-                                    <label class="form-label">
-                                        Project Status: </label>
-                                    <select class="form-control" name="status" id="status">
-                                        <option value="">-- Select Project Type--</option>
-                                        <option value="Planned">Planned</option>
-                                        <option value="Ongoing">Ongoing</option>
-                                        <option value="Complete">Complete</option>
-                                    </select>
-                                </div>
-
-                                {{-- <div class="col-md-12 mb-3">
-                                    <label class="form-label">Overall Progress:</label>
-
-                                    <button type="button" class="btn btn-outline-danger">View Overall Progress</button>
-                                </div> --}}
-                                <div class="col-md-12 mb-3">
-                                    <label class="form-label">Remark:</label>
-
-                                    <textarea name="remark" class="form-control"></textarea>
-                                </div>
-
-
+                                <textarea name="remark" class="form-control"></textarea>
                             </div>
 
                         </div>
+
                         <button class="btn btn-primary" type="submit">Submit</button>
                     </form>
                 </div>
+
             </div>
         </div>
+    </div>
 
     </div>
 
@@ -204,7 +197,12 @@
 
 
 @push('scripts')
-    {!! JsValidator::formRequest('App\Http\Requests\Project\ProjectStoreRequest', '#submit-form') !!}
+    {{-- {!! JsValidator::formRequest('App\Http\Requests\Project\ProjectStoreRequest', '#submit-form') !!} --}}
+    <script>
+        $('.select2').select2({
+            width: '100%'
+        });
+    </script>
     <script>
         $(document).ready(function() {
 
@@ -219,14 +217,25 @@
 
                     success: function(data) {
                         $('#address').val(data.address);
+                        
                         $('#client_code').val(data.client_code);
+
+                        $('#construction_type')
+                            .val(data.construction_type)
+                            .trigger('change');
+
+                        $('#job_scope')
+                            .val(data.job_scope)
+                            .trigger('change');
                         $('#project_code').val(data.project_code);
+                        
                         $('#site_location').val(data.site_location);
-                        $('#building_area').val(data.building_area);
-                        $('#construction_type').val(data.construction_type);
-                        $('#job_scope').val(data.job_scope);
+                        $('#length').val(data.length);
+                        $('#width').val(data.width);
                         $('#storeys').val(data.storeys);
-                        $('#client_type').val(data.client_type);
+                        $('#building_area').val(data.building_area);
+                        
+
                     },
 
                     error: function() {

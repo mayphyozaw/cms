@@ -147,9 +147,9 @@
                                                 data-unit-weight="{{ $drawingMeasurement->unit_weight }}"
                                                 data-quantity="{{ $drawingMeasurement->quantity }}"
                                                 data-unit="{{ $drawingMeasurement->unit }}"
-                                                data-formula="{{ $drawingMeasurement->measurementCategory?->formula_types }}"
-                                                data-symbol="{{ $drawingMeasurement->measurementCategory?->symbol }}"
-                                                data-cal-formula="{{ $drawingMeasurement->measurementCategory?->formulas }}">
+                                                data-formula="{{ $drawingMeasurement->category?->formula_types }}"
+                                                data-symbol="{{ $drawingMeasurement->category?->symbol }}"
+                                                data-cal-formula="{{ $drawingMeasurement->category?->formulas }}">
 
                                                 {{ $drawingMeasurement->drawing->drawing_name }}
                                             </option>

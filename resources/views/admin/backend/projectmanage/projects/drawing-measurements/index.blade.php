@@ -194,6 +194,7 @@
                                         <th class="text-center" style="background-color: #9dd2e7">Drawing</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Drawing Type</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Category</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Nos</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Length</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Width</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Height</th>
@@ -219,7 +220,9 @@
                                                 {{$drawingMeasurementData->created_at}}
                                             </td>
                                             <td class="text-center"> 
-                                                P- {{ $project->client->project_code }}
+                                                <span class="badge bg-primary">
+                                               {{ $project->client->project_code }}
+                                               </span>
                                             </td>
 
                                             <td class="text-center"> 
@@ -232,17 +235,25 @@
                                                 <span style="color: red">{{$drawingMeasurementData->drawing->drawingType->name}}</span>
                                                 </a>
                                             </td>
+
                                              <td class="text-center"> 
                                                 <a href="{{route('projectmanage.projects.site-measurements.create', $project->id)}}">
                                                 <span style="color: red">{{$drawingMeasurementData->category->category_name}}</span>
                                                 </a>
                                             </td>
+
+                                            <td class="text-center"> 
+                                                {{$drawingMeasurementData->nos}}
+                                            </td>
+
                                             <td class="text-center"> 
                                                 {{$drawingMeasurementData->length}}
                                             </td>
+
                                             <td class="text-center"> 
                                                 {{$drawingMeasurementData->width}}
                                             </td>
+
                                             <td class="text-center"> 
                                                 {{$drawingMeasurementData->height}}
                                             </td>

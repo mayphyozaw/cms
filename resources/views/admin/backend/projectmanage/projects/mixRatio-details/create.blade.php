@@ -54,17 +54,7 @@
                         @csrf
                         <div class="row">
 
-                            {{-- <div class="col-md-6 mb-3">
-                                <label for="form-label fs-14" class="form-label fs-14">
-                                    Mix Ratio Template Code:
-                                </label>
-                                <div class="input-group">
-                                    <input type="text" name="mix_ratio_template_id" class="form-control">
-
-                                </div>
-                            </div> --}}
-
-
+                          
                             <div class="col-lg-6 col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label">
@@ -111,16 +101,16 @@
                             
 
 
-                            <div class="col-md-6 mb-3">
+                            {{-- <div class="col-md-6 mb-3">
                                 <label for="form-label fs-14" class="form-label fs-14">
                                     Total Part:
                                 </label>
                                 <div class="input-group">
                                     <input type="text" name="total_part" class="form-control" id="total_part" readonly>
                                 </div>
-                            </div>
+                            </div> --}}
 
-                            <div class="col-md-6 mb-3">
+                            {{-- <div class="col-md-6 mb-3">
                                 <label for="form-label fs-14" class="form-label fs-14">
                                     Consumptiom Ratio:
                                 </label>
@@ -128,7 +118,7 @@
                                     <input type="text" name="consumption_ratio" class="form-control"
                                         id="consumption_ratio" readonly>
                                 </div>
-                            </div>
+                            </div> --}}
 
 
                         </div>
@@ -147,13 +137,9 @@
     <script>
         $(document).ready(function() {
 
-            
-
             $('#mix_ratio_template_id').change(function() {
 
                 let mixRatioId = $(this).val();
-
-                console.log('Mix Ratio ID =', mixRatioId);
 
                 $.ajax({
                     url: "{{ route('projectmanage.mix-ratio_total-part') }}",

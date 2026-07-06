@@ -55,16 +55,15 @@ class ProjectController extends Controller
         return view('admin.backend.projectmanage.projects.create', compact('clients', 'project_categories', 'project_files'));
     }
 
-    public function store(ProjectStoreRequest $request)
+    public function store(Request $request)
     {
         Project::create([
-            'client_id' => $request->client_id,
-            'project_code' => $request->project_code,
-            'project_type' => $request->project_type,
+            'client_id'=>$request->client_id,
             'status' => $request->status,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'remark' => $request->remark,
+            'project_type' => $request->project_type,
         ]);
 
         return redirect()
@@ -85,7 +84,17 @@ class ProjectController extends Controller
             return response()->json(['error' => 'Client not found'], 404);
         }
 
-        return response()->json($project);
+        return response()->json([
+            'client_code' => $project->client_code,
+            'project_code' => $project->project_code,
+            'construction_type' => $project->construction_type,
+            'job_scope' => $project->job_scope,
+            'site_location' => $project->site_location,
+            'length' => $project->length,
+            'width' => $project->width,
+            'storeys' => $project->storeys,
+            'building_area' => $project->building_area,
+        ]);
     }
 
     public function getProject(Request $request)
@@ -112,11 +121,10 @@ class ProjectController extends Controller
         $project = Project::findOrFail($id);
         $project->update([
             'client_id' => $request->client_id,
-            'project_code' => $request->project_code,
             'project_type' => $request->project_type,
             'status' => $request->status,
             'start_date' => $request->start_date,
-            'project_code' => $request->project_code,
+
         ]);
 
         return redirect()
@@ -129,7 +137,7 @@ class ProjectController extends Controller
     public function destroy($id)
     {
         $project = Project::findOrFail($id);
-        
+
 
         // if ($item->file_exists(public_path('upload/project_files/' . $item->files))) {
         //     Storage::delete(public_path('upload/project_files/' . $item->files));
@@ -150,8 +158,6 @@ class ProjectController extends Controller
     {
         $project = Project::with(['client', 'project_files', 'project_file'])->findOrFail($id);
         $clients = Client::select('id', 'client_code', 'name')->get();
-        return view('admin.backend.projectmanage.projects.detail',compact('project','clients'));
+        return view('admin.backend.projectmanage.projects.detail', compact('project', 'clients'));
     }
-
-    
 }

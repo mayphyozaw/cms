@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Client\ClientStoreRequest;
 use App\Http\Requests\Client\ClientUpdateRequest;
 use App\Models\Client;
+use App\Models\Project;
 use App\Services\ClientService;
 use App\Services\ResponseService;
 use Exception;
@@ -38,26 +39,44 @@ class ClientController extends Controller
 
     public function store(ClientStoreRequest $request)
     {
+        
+        $lastClient = Client::latest('id')->first();
+        $nextClientId = $lastClient ? $lastClient->id + 1 : 1;
+
+        $clientCode = 'CL -' . str_pad($nextClientId, 4, '0', STR_PAD_LEFT);
+
+
+        $lastProject = Project::latest('id')->first();
+        $nextProjectId = $lastProject ? $lastProject->id + 1 : 1;
+        $projectCode = 'P -' . str_pad($nextProjectId, 4, '0', STR_PAD_LEFT);
+
+
+        $length = $request->length ?? 0;
+        $width  = $request->width ?? 0;
+        $storeys  = $request->storeys ?? 0;
+        $buildingArea = $length * $width;
+        $totalArea = $length * $width * $storeys;
 
         $clientData = [
             'name' => $request->name,
             'email' => $request->email ?? '',
             'phone' => $request->phone,
             'address' => $request->address,
-            'client_type' => $request->client_type,
-            'client_code' => $request->prefix_code . $request->client_code, 
+            'client_code' => $clientCode,
             'contact_person' => $request->contact_person,
-            'project_code' => $request->project_code,
+            'project_code' => $projectCode,
             'site_location' => $request->site_location,
             'city' => $request->city,
-            'building_area' => $request->building_area,
+            'length' => $request->length,
+            'width' => $request->width,
+            'building_area' => $buildingArea,
             'storeys' => $request->storeys,
             'construction_type' => $request->construction_type,
             'job_scope' => $request->job_scope,
             'job_package' => $request->job_package,
         ];
         $this->clientService->create($clientData);
-        return redirect()->route('client.index')
+        return redirect()->route('clientmanage.index')
             ->with([
                 'message' => 'Successfully created',
                 'alert-type' => 'success'
@@ -70,30 +89,40 @@ class ClientController extends Controller
         return view('admin.backend.clientmanage.edit', compact('client'));
     }
 
+    
+
     public function update(ClientUpdateRequest $request, $id)
     {
+        
+        $clientData = Client::findOrFail($id);
+        $buildingArea = 0;
+
+        
+        $buildingArea = $request->length * $request->width;
+        $totalArea = $request->length * $request->width * $request->storeys;
+
         $clientData = [
             'name' => $request->name,
-            'email' => $request->email,
+            'email' => $request->email ?? '',
             'phone' => $request->phone,
             'address' => $request->address,
-            'client_type' => $request->client_type,
-            'client_code' => $request->prefix_code . $request->client_code,
             'contact_person' => $request->contact_person,
-            'project_code' => $request->project_code,
             'site_location' => $request->site_location,
             'city' => $request->city,
-            'building_area' => $request->building_area,
+            'length' => $request->length,
+            'width' => $request->width,
+            'building_area' => $buildingArea,
             'storeys' => $request->storeys,
             'construction_type' => $request->construction_type,
             'job_scope' => $request->job_scope,
             'job_package' => $request->job_package,
         ];
         $this->clientService->update($id, $clientData);
-
-        return redirect()->route('client.index')
-            ->with('message', 'Successfully updated')
-            ->with('alert-type', 'success');
+        return redirect()->route('clientmanage.client.index')
+            ->with([
+                'message' => 'Successfully created',
+                'alert-type' => 'success'
+            ]);
     }
 
     public function destroy($id)

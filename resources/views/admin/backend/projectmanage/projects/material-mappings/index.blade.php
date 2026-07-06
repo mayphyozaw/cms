@@ -180,6 +180,7 @@
                                     <tr>
 
                                         <th class="text-center" style="background-color: #9dd2e7">No</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Code</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Drawing Name</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Mesurement Category</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Material</th>
@@ -202,6 +203,10 @@
                                             <td class="text-center">
 
                                                 {{ $loop->iteration }}
+                                            </td>
+
+                                            <td class="text-center">
+                                                {{ $materialMapping->mixRatio?->code ?? 'N/A' }}
                                             </td>
 
                                             <td class="text-center">

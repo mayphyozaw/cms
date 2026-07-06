@@ -16,9 +16,9 @@ class MixRatioDetailsController extends Controller
     public function index(Project $project)
     {
         $project->load('client');
-        
+
         $mixRatioDetails = MixRatioDetails::with(['mixRatio', 'material'])->get();
-        
+
         return view('admin.backend.projectmanage.projects.mixRatio-details.index', compact('project', 'mixRatioDetails'));
     }
 
@@ -30,7 +30,7 @@ class MixRatioDetailsController extends Controller
         return view('admin.backend.projectmanage.projects.mixRatio-details.create', compact('project', 'mixRatios', 'varilableAssets'));
     }
 
-    public function store(MixRatioDetailStoreRequest $request, Project $project)
+    public function store1(MixRatioDetailStoreRequest $request, Project $project)
     {
         $part = (float) $request->part;
 
@@ -59,6 +59,52 @@ class MixRatioDetailsController extends Controller
                 'message' => 'Successfully created',
                 'alert-type' => 'success'
             ]);
+    }
+
+    public function store(MixRatioDetailStoreRequest $request, Project $project)
+    {
+
+         MixRatioDetails::create([
+            'mix_ratio_template_id' => $request->mix_ratio_template_id,
+            'variable_asset_id'     => $request->variable_asset_id,
+            'part'                  => $request->part,
+        ]);
+
+        // $this->recalculateRatio(
+        //     $request->mix_ratio_template_id
+        // );
+
+        return redirect()
+            ->route(
+                'projectmanage.projects.mixRatio-details.index',
+                $project->id
+            )
+            ->with([
+                'message' => 'Successfully created',
+                'alert-type' => 'success'
+            ]);
+    }
+
+
+    private function recalculateRatio($templateId)
+    {
+        $details = MixRatioDetails::where(
+            'mix_ratio_template_id',
+            $templateId
+        )->get();
+
+        $totalPart = $details->sum('part');
+
+        foreach ($details as $detail) {
+
+            $detail->update([
+                'total_part' => $totalPart,
+                'consumption_ratio' =>
+                $totalPart > 0
+                    ? ($detail->part / $totalPart)
+                    : 0
+            ]);
+        }
     }
     public function edit(Project $project, $id)
     {

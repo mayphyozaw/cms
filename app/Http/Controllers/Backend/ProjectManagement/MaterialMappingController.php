@@ -38,11 +38,27 @@ class MaterialMappingController extends Controller
 
     public function store(Request $request, Project $project)
     {
+
         $coverageQty = $request->coverage_qty;
         $consumption_type = $request->consumption_type;
         $percent = $request->percentage;
 
+        $detail = MixRatioDetails::where(
+            'mix_ratio_template_id',
+            $request->mix_ratio_template_id
+        )
+            ->where(
+                'variable_asset_id',
+                $request->variable_asset_id
+            )
+            ->first();
         
+
+        $totalPart = MixRatioDetails::where(
+            'mix_ratio_template_id',
+            $request->mix_ratio_template_id
+        )->sum('part');
+
         $consumption_ratio = 0;
 
         if ($consumption_type == 'coverage') {
@@ -57,24 +73,6 @@ class MaterialMappingController extends Controller
 
             $consumption_ratio = $percent / 100;
         } elseif ($consumption_type == 'mix_ratio') {
-
-            $detail = MixRatioDetails::where(
-                'mix_ratio_template_id',
-                $request->mix_ratio_template_id
-            )
-                ->where(
-                    'variable_asset_id',
-                    $request->variable_asset_id
-                )
-                ->first();
-
-
-
-
-            $totalPart = MixRatioDetails::where(
-                'mix_ratio_template_id',
-                $request->mix_ratio_template_id
-            )->sum('part');
 
             $consumption_ratio = ($detail && $totalPart > 0)
                 ? ($detail->part / $totalPart)
@@ -189,13 +187,23 @@ class MaterialMappingController extends Controller
 
     public function getMaterialMapping(Request $request)
     {
+
         $materialMapping = MaterialMappings::find($request->material_mapping_id);
+
+        $mixRatioDetail = MixRatioDetails::where(
+            'mix_ratio_template_id',
+            $materialMapping->mix_ratio_template_id
+        )
+            ->where(
+                'variable_asset_id',
+                $materialMapping->variable_asset_id
+            )
+            ->first();
+
 
         if (!$materialMapping) {
             return response()->json(['error' => 'Drawing Measurement not found'], 404);
         }
-
-
         return response()->json([
             'id'           => $materialMapping->id,
             'variable_asset_id' => $materialMapping->variable_asset_id,
@@ -217,14 +225,13 @@ class MaterialMappingController extends Controller
             'id' => $mixRatio->id,
             'ratio_name' => $mixRatio->ratio_name,
             'dry_volume_factor' => $mixRatio->dry_volume_factor,
-            // 'cement_ratio' => $mixRatio->cement_ratio,
+            // 'consumption_ratio' => $mixRatio->detail->consumption_ratio,
             // 'sand_ratio' => $mixRatio->sand_ratio,
             // 'aggregate_ratio' => $mixRatio->aggregate_ratio,
         ]);
     }
 
-
-    public function getConsumptionRatio(Request $request)
+    public function getConsumptionRatio_Old(Request $request)
     {
         $detail = MixRatioDetails::where(
             'mix_ratio_template_id',
@@ -236,6 +243,10 @@ class MaterialMappingController extends Controller
             )
             ->first();
 
+        $template = MixRatioTemplates::find(
+            $request->mix_ratio_template_id
+        );
+
         $totalPart = MixRatioDetails::where(
             'mix_ratio_template_id',
             $request->mix_ratio_template_id
@@ -245,13 +256,42 @@ class MaterialMappingController extends Controller
             ? ($detail->part / $totalPart)
             : 0;
 
-        $mixRatio = MixRatioTemplates::find(
-            $request->mix_ratio_template_id
-        );
-
         return response()->json([
-            'dry_volume_factor' => $mixRatio?->dry_volume_factor ?? 0,
+            'dry_volume_factor' => $template->dry_volume_factor,
             'consumption_ratio' => round($ratio, 6),
         ]);
     }
+
+    public function getConsumptionRatio(Request $request)
+{
+    $templateId = $request->mix_ratio_template_id;
+    $assetId = $request->variable_asset_id;
+
+    if (!$templateId || !$assetId) {
+        return response()->json([
+            'dry_volume_factor' => 0,
+            'consumption_ratio' => 0,
+        ]);
+    }
+
+    $template = MixRatioTemplates::find($templateId);
+
+    $detail = MixRatioDetails::where('mix_ratio_template_id', $templateId)
+        ->where('variable_asset_id', $assetId)
+        ->first();
+
+    $totalPart = MixRatioDetails::where('mix_ratio_template_id', $templateId)
+        ->sum('part');
+
+    $ratio = 0;
+
+    if ($detail && $totalPart > 0) {
+        $ratio = $detail->part / $totalPart;
+    }
+
+    return response()->json([
+        'dry_volume_factor' => $template?->dry_volume_factor ?? 0,
+        'consumption_ratio' => round($ratio, 6),
+    ]);
+}
 }

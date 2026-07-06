@@ -77,10 +77,10 @@ Route::get('admin/logout', [AdminController::class, 'adminLogout'])->name('admin
 
 require __DIR__ . '/auth.php';
 
-Route::middleware('auth', 'notBlocked')->group(function () {
+Route::middleware('auth','notBlocked')->group(function () {
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::get('/change-password', [PasswordController::class, 'edit'])->name('change-password.edit');
+    // Route::get('/change-password', [PasswordController::class, 'edit'])->name('change-password.edit');
     Route::put('/change-password', [PasswordController::class, 'update'])->name('change-password.update');
 
     Route::resource('usermanage', UserController::class)->except(['show']);
@@ -110,7 +110,7 @@ Route::middleware('auth', 'notBlocked')->group(function () {
 
 
     Route::prefix('clientmanage')->name('clientmanage.')->group(function () {
-        Route::resource('client', ClientController::class);
+        Route::resource('client', ClientController::class)->only('index','create','store','edit','update','destroy');
         Route::get('client-datatable', [ClientController::class, 'clientDataTable'])->name('client-datatable');
 
         Route::resource('quototation-proposal', QuotationProposalController::class);

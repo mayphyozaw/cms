@@ -42,29 +42,24 @@ class ClientService
 
         return DataTables::eloquent($query)
             ->addIndexColumn()
-            ->addColumn('client_type', function ($client) {
-                return $client->client_type;
-            })
-            ->editColumn('client_type', function ($client) {
-                $color = match ($client->client_type) {
-                    'Individual' => 'bg-primary',
-                    'Company' => 'bg-info',
-                    default => 'bg-danger',
-                };
-
-                return '<span class="badge badge-status ' . $color . '">' . $client->client_type . '</span>';
-            })
+           
             ->addColumn('client_code', function ($client) {
-                return $client->client_code;
+                return'<span class="badge bg-info ">' . $client->client_code . '</span>';
             })
             ->addColumn('project_code', function ($client) {
-                return 'P-' . $client->project_code;
+                return '<span class="badge bg-primary ">' . $client->project_code . '</span>';
             })
             ->addColumn('site_location', function ($client) {
                 return $client->site_location;
             })
             ->addColumn('city', function ($client) {
                 return $client->city;
+            })
+            ->addColumn('length', function ($client) {
+                return $client->length;
+            })
+            ->addColumn('width', function ($client) {
+                return $client->width;
             })
             ->editColumn('building_area', function ($client) {
                 return $client->building_area;
@@ -86,10 +81,11 @@ class ClientService
                 return view('admin.backend.clientmanage._action', compact('client'))->render();
             })
             ->rawColumns([
-                'client_type',
                 'client_code',
                 'project_code',
                 'site_location',
+                'length',
+                'width',
                 'building_area',
                 'storeys',
                 'city',

@@ -113,10 +113,10 @@
                     </a>
 
                     <!-- Item-->
-                    <a href="{{ route('change-password.edit') }}" class="dropdown-item">
+                    {{-- <a href="{{ route('change-password.edit') }}" class="dropdown-item">
                         <i class="ti ti-lock me-1 align-middle"></i>
                         <span class="align-middle">Change Password</span>
-                    </a>
+                    </a> --}}
 
 
                     <!-- Item-->

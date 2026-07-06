@@ -41,6 +41,7 @@ class DrawingMeasurementsController extends Controller
             'length' => 'required|numeric|min:0',
             'width' => 'nullable|numeric|min:0',
             'height' => 'nullable|numeric|min:0',
+            'nos' => 'nullable|numeric|min:0',
 
             'thickness' => 'nullable',
             'unit_weight' => 'nullable|numeric|min:0',
@@ -53,6 +54,7 @@ class DrawingMeasurementsController extends Controller
         $length = $request->length ?? 0;
         $width  = $request->width ?? 0;
         $height = $request->height ?? 0;
+        $nos = $request->nos ?? 0;
         $unit_weight = $request->unit_weight ?? 0;
         $coats = $request->coats ?? 0;
         $thickness = $request->thickness;
@@ -76,6 +78,13 @@ class DrawingMeasurementsController extends Controller
 
             case 'volume':
                 $quantity = $length * $width * $height;
+                break;
+
+            case 'excavation_volume':
+            case 'pcc_1:3:6':
+            case 'rcc_footing':
+            case 'rcc_column':
+                $quantity = $nos * $length * $width * $height;
                 break;
 
             case 'area':
@@ -104,6 +113,11 @@ class DrawingMeasurementsController extends Controller
                 $quantity = 2 * ($length + $width) * $height * $thickness_ft;
                 break;
 
+
+            case 'concrete_slab_volume':
+                $quantity = $length * $width * $thickness_ft;
+                 break;
+
             case 'steel_linear':
             case 'steel_handrail_linear':
                 $quantity = $length;
@@ -119,6 +133,7 @@ class DrawingMeasurementsController extends Controller
                 'project_id' => $project->id,
                 'measurement_categories_id' => $request->measurement_categories_id,
                 'drawing_id' => $request->drawing_id,
+                'nos' => $nos,
                 'length' => $length,
                 'width' => $width,
                 'height' => $height,
@@ -184,6 +199,13 @@ class DrawingMeasurementsController extends Controller
             case 'volume':
                 $quantity = $request->length * $request->width * $request->height;
                 break;
+            
+            case 'excavation_volume':
+            case 'pcc_1:3:6':
+            case 'rcc_footing':
+            case 'rcc_column':
+                $quantity = $request->nos * $request->length * $request->width * $request->height;
+                break;
 
             case 'area':
             case 'screed_area':
@@ -226,6 +248,7 @@ class DrawingMeasurementsController extends Controller
             'work_type_id' => $request->work_type_id,
             'measurement_categories_id' => $request->measurement_categories_id,
             'measurement_type_id' => $request->measurement_type_id,
+            'nos' => $request->nos,
             'length' => $request->length,
             'width' => $request->width,
             'height' => $request->height,
@@ -269,6 +292,7 @@ class DrawingMeasurementsController extends Controller
 
         return response()->json([
             'id'           => $drawingMeasurement->id,
+            'nos'       => $drawingMeasurement->nos,
             'length'       => $drawingMeasurement->length,
             'width'        => $drawingMeasurement->width,
             'height'       => $drawingMeasurement->height,

@@ -153,6 +153,19 @@
                                     <input type="text" id="cal_formula" class="form-control" readonly>
                                 </div>
 
+
+                                <div class="row mb-3">
+                                    <label class="col-sm-3 form-label">
+                                        No of Footings:
+                                    </label>
+
+                                    <div class="col-sm-5">
+                                        <input type="text" name="nos" class="form-control nos"
+                                            @error('nos') is-invalid @enderror placeholder="Enter Nos" required
+                                            value="0">
+                                    </div>
+                                </div>
+
                                 
                                 <div class="row mb-3">
                                     <label class="col-sm-3 form-label">
@@ -302,7 +315,7 @@
                         $('#construction_type').val(data.construction_type);
                         $('#job_scope').val(data.job_scope);
                         $('#storeys').val(data.storeys);
-                        $('#client_type').val(data.client_type);
+                        
                     },
 
                     error: function() {
@@ -375,7 +388,7 @@
                 calculateQuantity();
             });
 
-            $('.length, .width, .height, .unit_weight, .coats, #thickness_ft').on('input', function() {
+            $('.nos, .length, .width, .height, .unit_weight, .coats, #thickness_ft').on('input', function() {
 
                 calculateQuantity();
 
@@ -383,6 +396,7 @@
 
             function calculateQuantity() {
 
+                let nos = parseFloat($('.nos').val()) || 0;
                 let length = parseFloat($('.length').val()) || 0;
                 let width = parseFloat($('.width').val()) || 0;
                 let height = parseFloat($('.height').val()) || 0;
@@ -399,7 +413,23 @@
 
                     quantity = length * width * height;
 
-                } else if (formula === 'area') {
+                }else if (formula === 'excavation_volume') {
+
+                    quantity = nos * length * width * height;
+
+                }else if (formula === 'pcc_1:3:6') {
+
+                    quantity = nos * length * width * height;
+
+                }else if (formula === 'rcc_footing') {
+
+                    quantity = nos * length * width * height;
+
+                }else if (formula === 'rcc_column') {
+
+                    quantity = nos * length * width * height;
+
+                }else if (formula === 'area') {
 
                     quantity = length * width;
 
@@ -445,6 +475,9 @@
                 } else if (formula == 'plaster_volume') {
 
                     quantity = (2 * (length + width) * height) * thickness;
+                }else if (formula == 'concrete_slab_volume') {
+
+                    quantity = length * width * thickness;
                 }
 
                 $('#quantity').val(quantity.toFixed(2));

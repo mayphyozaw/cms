@@ -25,7 +25,9 @@
             <i class="ti ti-x align-middle"></i>
         </button>
     </div>
-   
+
+    
+
     <div class="sidebar-inner" data-simplebar>
         <div id="sidebar-menu" class="sidebar-menu">
             <ul>
@@ -86,7 +88,8 @@
                                 </li>
 
                                 <li>
-                                    <a href="{{ route('clientmanage.quototation-proposal.index') }}" class="{{ request()->routeIs('clientmanage.quototation-proposal*') ? 'active' : '' }}">
+                                    <a href="{{ route('clientmanage.quototation-proposal.index') }}"
+                                        class="{{ request()->routeIs('clientmanage.quototation-proposal*') ? 'active' : '' }}">
                                         <i class="ti ti-file-invoice">
                                         </i><span>Quotation Proposal</span>
                                     </a>
@@ -138,9 +141,8 @@
                                         <span>Work Scope</span>
                                     </a>
                                 </li>
-                                 <li>
-                                    <a href=""
-                                        class="">
+                                <li>
+                                    <a href="" class="">
                                         <i class="ti ti-users">
                                         </i><span>Work Location </span>
                                     </a>
@@ -261,51 +263,45 @@
 
                             <ul style="">
                                 <li>
-                                    <a href=""
-                                        class="">
+                                    <a href="" class="">
                                         <i class="ti ti-atom-2">
                                         </i><span>Project Information</span>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href=""
-                                        class="">
+                                    <a href="" class="">
                                         <i class="ti ti-list-check">
                                         </i>
                                         <span>Drawings</span>
                                     </a>
                                 </li>
 
-                                 <li>
-                                    <a href=""
-                                        class="">
+                                <li>
+                                    <a href="" class="">
                                         <i class="ti ti-list-check">
                                         </i>
-                                        
+
                                         <span>Drawing Measurements</span>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href=""
-                                        class="">
+                                    <a href="" class="">
                                         <i class="ti ti-list-check">
                                         </i>
                                         <span>Site Measurements</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href=""
-                                        class="">
+                                    <a href="" class="">
                                         <i class="ti ti-list-check">
                                         </i>
                                         <span>BOQ</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href=""
-                                        class="">
+                                    <a href="" class="">
                                         <i class="ti ti-list-check">
                                         </i>
                                         <span>Proposal</span>

@@ -174,6 +174,7 @@
                                     <tr>
 
                                         <th class="text-center" style="background-color: #9dd2e7">No</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Code</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Material</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Raw Qty</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Base Qty</th>
@@ -194,11 +195,15 @@
                                             </td>
 
                                             <td class="text-center">
+                                                {{ $materialRequirement->materialMapping->mixRatio->code }}
+                                            </td>
+
+                                            <td class="text-center">
                                                 {{ $materialRequirement->material->name }}
                                             </td>
 
                                             <td class="text-center">
-                                                {{ $materialRequirement->raw_quantity }}
+                                                {{ number_format($materialRequirement->raw_quantity, 2) }}
                                             </td>
 
                                             <td class="text-center">
@@ -237,7 +242,11 @@
                                     @endforeach
 
                                 </tbody>
+
+                                
                             </table>
+
+                            
                         </div>
                     </div>
                 </div>

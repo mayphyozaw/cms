@@ -15,8 +15,8 @@
 
         <div class="row">
             <div class="col-sm-12">
-                <form class="needs-validation" action="{{ route('clientmanage.client.store') }}" method="POST" id="submit-form"
-                    enctype="multipart/form-data">
+                <form class="needs-validation" action="{{ route('clientmanage.client.store') }}" method="POST"
+                    id="submit-form" enctype="multipart/form-data">
                     @csrf
                     <div class="card">
                         <div class="card-header">
@@ -28,30 +28,20 @@
 
                                     <div class="form-row row">
 
-                                        <div class="col-md-4 mb-3">
-                                            <label class="form-label">
-                                                Client Type</label>
-                                            <select class="form-control" name="client_type" id="client_type">
-                                                <option value="">-- Select Client Type--</option>
-                                                <option value="Individual">Individual</option>
-                                                <option value="Company">Company</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="col-md-4 mb-3">
+                                        
+                                        <div class="col-md-4 mb-3" hidden>
                                             <label for="form-label fs-14" class="form-label fs-14">
                                                 Client Code Number
                                             </label>
                                             <div class="input-group">
-                                                <span class="input-group-text" id="clientcodePrefix"></span>
-                                                <input type="hidden" id="clientcodePrefixHidden" name="prefix_code">
                                                 <input type="text" name="client_code" class="form-control"
                                                     placeholder="">
                                             </div>
                                         </div>
 
-                                        <div class="col-md-4 mb-3">
-                                            <label class="form-label">Customer Name
+                                        <div class="col-md-3 mb-3">
+                                            <label class="form-label">
+                                                Customer Name
                                             </label>
                                             <input type="text" class="form-control" name="name"
                                                 @error('name') is-invalid @enderror placeholder="Enter Name" required>
@@ -62,8 +52,9 @@
                                             @enderror
                                         </div>
 
-                                        <div class="col-md-4 mb-3">
-                                            <label class="form-label" for="validationCustom01">Phone Number
+                                        <div class="col-md-3 mb-3">
+                                            <label class="form-label" for="validationCustom01">
+                                                Phone Number
                                             </label>
                                             <input type="text" class="form-control" name="phone"
                                                 @error('phone') is-invalid @enderror placeholder="Enter Phone Number"
@@ -75,19 +66,23 @@
                                             @enderror
                                         </div>
 
-                                        <div class="col-md-4 mb-3">
-                                            <label class="form-label">Email
-                                            </label>
-                                            <input type="email" class="form-control" name="email"
-                                                 placeholder="Enter Email">
-                                        </div>
-
-                                        <div class="col-md-4 mb-3">
-                                            <label class="form-label" for="validationCustom01">Contact Person
+                                        <div class="col-md-3 mb-3">
+                                            <label class="form-label" for="validationCustom01">
+                                                Contact Person
                                             </label>
                                             <input type="text" class="form-control" name="contact_person"
                                                 placeholder="Enter Contact Person	" required>
                                         </div>
+
+                                        <div class="col-md-3 mb-3">
+                                            <label class="form-label">
+                                                Email
+                                            </label>
+                                            <input type="email" class="form-control" name="email"
+                                                placeholder="Enter Email">
+                                        </div>
+
+
 
                                         <div class="col-md-4 mb-3">
                                             <div class="mb-3">
@@ -119,12 +114,11 @@
                                 <div class="col-sm">
 
                                     <div class="form-row row">
-                                        <div class="col-md-4 mb-3">
+                                        <div class="col-md-4 mb-3" hidden>
                                             <label class="form-label">Project Code</label>
                                             <div class="input-group">
-                                                <span class="input-group-text">P-</span>
-                                                <input type="text" class="form-control" name="project_code"
-                                                    placeholder="Enter Project Code Number" required>
+                                                {{-- <span class="input-group-text">P-</span> --}}
+                                                <input type="hidden" name="project_code" value="">
                                             </div>
                                         </div>
 
@@ -142,29 +136,10 @@
                                                 required>
                                         </div>
 
-                                    </div>
-                                    <div class="form-row row">
-
-                                        <div class="col-md-4 mb-3">
-                                            <label class="form-label">
-                                                Building Area
-                                            </label>
-                                            <input type="text" class="form-control" placeholder="Enter Building Area"
-                                                name="building_area" required>
-                                        </div>
-
-                                        <div class="col-md-4 mb-3">
-                                            <label class="form-label">
-                                                Number of Storeys
-                                            </label>
-                                            <input type="text" class="form-control"
-                                                placeholder="Enter Number of Storeys" name="storeys" required>
-                                        </div>
-
                                         <div class="col-md-4 mb-3">
                                             <label class="form-label">
                                                 Construction Type</label>
-                                            <select class="form-control" name="construction_type">
+                                            <select class="form-control select2" name="construction_type">
                                                 <option value="">-- Select Construction Type--</option>
                                                 <option value="Residential">Residential</option>
                                                 <option value="Commercial">Commercial</option>
@@ -175,13 +150,86 @@
                                                 <option value="Electrical">Electrical</option>
                                             </select>
                                         </div>
+
+                                    </div>
+                                    <div class="form-row row">
+
+                                        <div class="col-md-3 mb-3">
+                                            <label class="form-label">
+                                                Length
+                                            </label>
+
+                                            <div class="input-group">
+                                                <input type="text" class="form-control building_length"
+                                                    placeholder="Enter Length" name="length" required id="length">
+                                                <div class="input-group-text">
+                                                    <span>ft</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="col-md-3 mb-3">
+                                            <label class="form-label">
+                                                Width
+                                            </label>
+
+                                            <div class="input-group">
+                                                <input type="text" class="form-control building_width"
+                                                    placeholder="Enter Width" name="width" required id="width">
+                                                <div class="input-group-text">
+                                                    <span>ft</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3 mb-3">
+                                            <label class="form-label">
+                                                Building Area
+                                            </label>
+
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="building_area"
+                                                    id="building_area" readonly>
+                                                <div class="input-group-text">
+                                                    <span>sqft</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 mb-3">
+                                            <label class="form-label">
+                                                Number of Storeys
+                                            </label>
+                                            <input type="text" class="form-control"
+                                                placeholder="Enter Number of Storeys" name="storeys" id="storeys"
+                                                required>
+                                        </div>
+
+                                        {{-- total_area = length * width * storey; --}}
+                                        <div class="col-md-4 mb-3">
+                                            <label class="form-label">
+                                                Total Area
+                                            </label>
+
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="total_area" readonly
+                                                    id="total_area">
+                                                <div class="input-group-text">
+                                                    <span>sqft</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
                                     </div>
 
                                     <div class="form-row row">
                                         <div class="col-md-6 mb-3">
                                             <label class="form-label">
                                                 Job Scope</label>
-                                            <select class="form-control" name="job_scope">
+                                            <select class="form-control select2" name="job_scope">
                                                 <option value="">-- Select Job Scope Type--</option>
                                                 <option value="Structure">Structure</option>
                                                 <option value="Electrical">Electrical</option>
@@ -194,7 +242,7 @@
                                         <div class="col-md-6 mb-3">
                                             <label class="form-label">
                                                 Job Package</label>
-                                            <select class="form-control" name="job_package">
+                                            <select class="form-control select2" name="job_package">
                                                 <option value="">-- Select Job Package--</option>
                                                 <option value="NormalPackage">Normal Package</option>
                                                 <option value="GoldPackage">Gold Package</option>
@@ -218,19 +266,38 @@
 @push('scripts')
     {!! JsValidator::formRequest('App\Http\Requests\Client\ClientStoreRequest', '#submit-form') !!}
 
-    <script type="text/javascript">
+    <script>
+        $('.select2').select2({
+            width: '100%'
+        });
+    </script>
+    <script>
         $(document).ready(function() {
 
-            const prefixMap = {
-                Individual: 'SKGI-',
-                Company: 'SKGC-',
-            };
+            $('.building_length, .building_width, #storeys').on('input', function() {
 
-            $('#client_type').on('change', function() {
-                let clienttype = $(this).val();
-                $('#clientcodePrefix').text(prefixMap[clienttype] || '');
-                $('#clientcodePrefixHidden').val(prefixMap[clienttype] || '');
+                calculateQuantity();
+
             });
+
+            function calculateQuantity() {
+
+                let length = parseFloat($('#length').val()) || 0;
+                let width = parseFloat($('#width').val()) || 0;
+                let storeys = parseFloat($('#storeys').val()) || 0;
+
+                let building_area = 0;
+                let total_area = 0;
+
+                building_area = length * width;
+                total_area = length * width * storeys;
+
+                $('#building_area').val(building_area.toFixed(2));
+                $('#total_area').val(total_area.toFixed(2));
+
+
+            }
+
 
         });
     </script>

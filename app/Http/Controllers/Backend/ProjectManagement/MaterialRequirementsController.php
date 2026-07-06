@@ -26,7 +26,7 @@ class MaterialRequirementsController extends Controller
     {
         $project->load('client');
         $drawingMeasurements = DrawingMeasurement::all();
-        $materialMappings  = MaterialMappings::all();
+        $materialMappings  = MaterialMappings::with('material')->get();
         $variableAssets = VariableAsset::all();
         $mixRatios = MixRatioTemplates::all();
         return view('admin.backend.projectmanage.projects.material-requirements.create', compact('project', 'drawingMeasurements', 'materialMappings', 'variableAssets', 'mixRatios'));
@@ -35,6 +35,7 @@ class MaterialRequirementsController extends Controller
    
     public function store(Request $request, Project $project)
     {
+        
         $material = VariableAsset::findOrFail($request->variable_asset_id);
         $drawingMeasurement = DrawingMeasurement::findOrFail($request->drawing_measurement_id);
         $materialMapping = MaterialMappings::findOrFail($request->material_mapping_id);
@@ -64,8 +65,8 @@ class MaterialRequirementsController extends Controller
         }
 
         $raw_quantity = $drawingMeasurement->quantity;
-
-        $dryVolume = $raw_quantity * $materialMapping->dry_volume_factor;
+        
+        $dryVolume = $raw_quantity * $materialMapping->mixRatio->dry_volume_factor;
 
         
         if ($consumption_type === 'mix_ratio') {
@@ -90,7 +91,6 @@ class MaterialRequirementsController extends Controller
             'remark'                 => $request->remark,
         ]);
 
-        return $material_requirements;
 
         return redirect()
             ->route('projectmanage.projects.material-requirements.index', $project->id)
@@ -111,6 +111,72 @@ class MaterialRequirementsController extends Controller
     }
 
 
+public function update(Request $request, Project $project)
+    {
+        
+        $material = VariableAsset::findOrFail($request->variable_asset_id);
+        $drawingMeasurement = DrawingMeasurement::findOrFail($request->drawing_measurement_id);
+        $materialMapping = MaterialMappings::findOrFail($request->material_mapping_id);
+
+        $consumption_type = $request->consumption_type;
+
+        $consumption_ratio = 0;
+
+        switch ($consumption_type) {
+
+            case 'coverage':
+                $coverageQty = $request->coverage_qty ?? 0;
+                $consumption_ratio = $coverageQty > 0 ? (1 / $coverageQty) : 0;
+                break;
+
+            case 'fixed':
+                $consumption_ratio = 1;
+                break;
+
+            case 'percentage':
+                $consumption_ratio = ($request->percentage ?? 0) / 100;
+                break;
+
+            case 'mix_ratio':
+                $consumption_ratio = $materialMapping->consumption_ratio;
+                break;
+        }
+
+        $raw_quantity = $drawingMeasurement->quantity;
+        
+        $dryVolume = $raw_quantity * $materialMapping->mixRatio->dry_volume_factor;
+
+        
+        if ($consumption_type === 'mix_ratio') {
+            $base_quantity = $dryVolume * $consumption_ratio;
+        } else {
+            $base_quantity = $raw_quantity * $consumption_ratio;
+        }
+
+        $wastage_percentage = $request->wastage_percentage ?? 0;
+
+        $final_quantity = $base_quantity * (1 + $wastage_percentage / 100);
+
+        $material_requirements = MaterialRequirements::update([
+            'drawing_measurement_id' => $request->drawing_measurement_id,
+            'material_mapping_id'    => $request->material_mapping_id,
+            'variable_asset_id'      => $request->variable_asset_id,
+            'raw_quantity'           => $raw_quantity,
+            'base_quantity'          => $base_quantity,
+            'final_quantity'         => $final_quantity,
+            'unit'                   => $material->unit,
+            'status'                 => $request->status,
+            'remark'                 => $request->remark,
+        ]);
+
+
+        return redirect()
+            ->route('projectmanage.projects.material-requirements.index', $project->id)
+            ->with([
+                'message' => 'Successfully created',
+                'alert-type' => 'success'
+            ]);
+    }
 
 
     public function getDrawingMeasurement(Request $request)

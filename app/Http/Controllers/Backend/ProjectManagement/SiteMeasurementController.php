@@ -15,12 +15,12 @@ class SiteMeasurementController extends Controller
     public function index(Project $project)
     {
         $project->load('client');
-        // $siteMeasurementAllData = SiteMeasurements::with(['drawing', 'measurementCategory'])
+        // $siteMeasurementAllData = SiteMeasurements::with(['drawing', 'category'])
         //     ->orderBy('created_at', 'desc')
         //     ->get();
         $siteMeasurementAllData = SiteMeasurements::with([
             'drawing',
-            'measurementCategory'
+            'category'
         ])
             ->where('project_id', $project->id)
             ->orderBy('created_at', 'desc')
@@ -37,7 +37,7 @@ class SiteMeasurementController extends Controller
         ])->get();
         $drawingMeasurements = DrawingMeasurement::with([
             'drawing',
-            'measurementCategory'
+            'category'
         ])->get();
         $categories = MeasurementCategories::all();
         return view('admin.backend.projectmanage.projects.site-measurements.create', compact('project', 'categories', 'drawingMeasurements', 'site_measurement'));
@@ -127,12 +127,12 @@ class SiteMeasurementController extends Controller
         $site_measurement = SiteMeasurements::with([
             'drawing',
             'drawingMeasurement',
-            'measurementCategory'
+            'category'
         ])->findOrFail($id);
         
         $drawingMeasurements = DrawingMeasurement::with([
             'drawing',
-            'measurementCategory'
+            'category'
         ])->get();
         $project->load('client');
         $categories = MeasurementCategories::all();

@@ -51,6 +51,22 @@
                                         Volume
                                     </option>
 
+                                    <option value="excavation_volume" {{ $category->formulaTypes == 'excavation_volume' ? 'selected' : '' }}>
+                                            Excavation Volume
+                                    </option>
+
+                                    <option value="pcc_1:3:6" {{ $category->formulaTypes == 'pcc_1:3:6' ? 'selected' : '' }}>
+                                            PCC 1:3:6
+                                    </option>
+
+                                    <option value="rcc_footing" {{ $category->formulaTypes == 'rcc_footing' ? 'selected' : '' }}>
+                                            RCC Footing
+                                    </option>
+
+                                    <option value="rcc_column" {{ $category->formulaTypes == 'rcc_column' ? 'selected' : '' }}>
+                                            RCC Footing
+                                    </option>
+
                                     <option value="area" {{ $category->formulaTypes == 'area' ? 'selected' : '' }}>
                                         Area
                                     </option>
@@ -186,6 +202,30 @@
                             formulas = 'L * W * H';
                             unit = 'ft³';
                             break;
+                        
+                        case 'excavation_volume':
+                            symbol = 'V';
+                            formulas = 'Nos * L * W * H';
+                            unit = 'cu.ft';
+                            break;
+
+                        case 'pcc_1:3:6':
+                            symbol = 'V';
+                            formulas = 'Nos * L * W * H';
+                            unit = 'cu.ft';
+                            break;
+                        
+                        case 'rcc_footing':
+                            symbol = 'V';
+                            formulas = 'Nos * L * W * H';
+                            unit = 'cu.ft';
+                            break;
+                        case 'rcc_column':
+                            symbol = 'V';
+                            formulas = 'Nos * L * W * H';
+                            unit = 'cu.ft';
+                            break;
+
 
                         case 'area':
                             symbol = 'A';

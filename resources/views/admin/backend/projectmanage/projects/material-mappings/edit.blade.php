@@ -63,7 +63,7 @@
                                                 <option value="{{ $drawingMeasurement->id }}"
                                                     {{$materialMapping->drawing_measurement_id == $drawingMeasurement->id ? 'selected' : ''}}
                                                     >
-                                                    {{ $drawingMeasurement->drawing->drawing_name }}
+                                                    {{ $drawingMeasurement->drawing->drawing_name }} 
                                                 </option>
 
                                             @endforeach
@@ -88,6 +88,7 @@
                                                     {{$materialMapping->measurement_category_id == $measurementCategory->id ? 'selected' : ''}}
                                                     >
                                                     {{ $measurementCategory->category_name }}
+
                                                 </option>
 
                                             @endforeach
@@ -209,7 +210,7 @@
                             </div>
 
 
-                            <div class="row mb-3" id="consumption_ratio">
+                            <div class="row mb-3">
                                 <label class="col-sm-3 form-label">
                                     Consumption Ratio
                                 </label>

@@ -14,7 +14,7 @@
             {{ $project->client?->name }}
         </td>
         <td class="text-center">
-            P- {{ $project->client->project_code }}
+           {{ $project->client->project_code }}
         </td>
         <td class="text-center">
             <span

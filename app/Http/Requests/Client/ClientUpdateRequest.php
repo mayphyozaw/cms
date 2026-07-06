@@ -26,7 +26,6 @@ class ClientUpdateRequest extends FormRequest
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:clients,email,' . $id,
             'address' => 'nullable|string|max:255',
-            'client_type' => 'nullable|string|max:255',
             'client_code' => 'nullable|string|max:255',
             'project_code' => 'nullable|string|max:255',
             'site_location' => 'nullable|string|max:255',

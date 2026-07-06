@@ -182,6 +182,7 @@
                                             Action
                                         </th>
                                         <th class="text-center" style="background-color: #9dd2e7">Date</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Drawing No</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Project Code</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Client Name</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Drawing Name</th>
@@ -222,9 +223,16 @@
                                             <td class="text-center">
                                                 {{ $drawing->created_at }}
                                             </td>
+                                            <td class="text-center">
+                                                <span class="badge bg-danger">
+                                                {{ $drawing->drawing_no }}
+                                                </span>
+                                            </td>
 
                                             <td class="text-center">
-                                                P-{{ $project->client->project_code }}
+                                                <span class="badge bg-primary">
+                                                {{ $project->client->project_code }}
+                                                </span>
                                             </td>
 
                                             <td class="text-center">
