@@ -15,6 +15,16 @@
                     </ol>
                 </nav>
             </div>
+            <div class="gap-2 d-flex align-items-center flex-wrap">
+
+                <a href="{{route('projectmanage.projects.index')}}" class="btn btn-outline-light shadow" >
+                     <span style="color:black">{{ $project->client->project_code }} @
+                        {{ $project->client->name }} - ({{ $project->client->length }} * {{ $project->client->width }}) -
+                        {{ $project->client->building_area }} sqft
+                    </span>
+                </a>
+
+            </div>
         </div>
 
         <div class="row justify-content-center">
@@ -59,7 +69,7 @@
                                 <label class="form-label">
                                     Drawing Type: <span style="color:red;">*</span>
                                 </label>
-                                <select name="drawing_type_id" id="drawing_type_id" class="form-control form-select">
+                                <select name="drawing_type_id" id="drawing_type_id" class="form-control select2">
                                     <option value="">Select Drawing Type</option>
 
                                     @foreach ($drawing_types as $drawing_type)
@@ -134,6 +144,11 @@
     </div>
 @endsection
 @push('scripts')
+    <script>
+        $('.select2').select2({
+            width: '100%'
+        });
+    </script>
     <script>
         $(document).ready(function() {
 

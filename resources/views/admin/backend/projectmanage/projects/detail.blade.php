@@ -3,13 +3,24 @@
     <div class="content">
         <div class="d-flex align-items-center justify-content-between gap-2 mb-4 flex-wrap">
             <div>
-                <h4 class="mb-1">Project Detail -  <span style="color:red">P -  {{ $project->client->project_code }}</span></h4>
+                <h4 class="mb-1">Project Detail </h4>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Project Detail</li>
                     </ol>
                 </nav>
+            </div>
+
+            <div class="gap-2 d-flex align-items-center flex-wrap">
+
+                <a href="{{route('projectmanage.projects.index')}}" class="btn btn-outline-light shadow" >
+                     <span style="color:black">{{ $project->client->project_code }} @
+                        {{ $project->client->name }} - ({{ $project->client->length }} * {{ $project->client->width }}) -
+                        {{ $project->client->building_area }} sqft
+                    </span>
+                </a>
+
             </div>
 
         </div>
@@ -22,22 +33,23 @@
                 <div class="card mb-3 mb-xl-0">
                     <div class="card-body">
                         <div class="settings-sidebar">
-                            <h6 class="mb-3 fs-15" style="color: red;">  P - {{ $project->client->project_code }}</h6>
-                             
+                            <h6 class="mb-3 fs-15" style="color: red;"> {{ $project->client->project_code }} @
+                                {{ $project->client->name }} - {{ $project->client->building_area }} sqft</h6>
+
                             <div class="list-group list-group-flush settings-sidebar">
 
-                                <a href="{{ route('projectmanage.projects.show',$project->id) }}" 
+                                <a href="{{ route('projectmanage.projects.show', $project->id) }}"
                                     class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.show') ? 'active' : '' }}">
                                     <i class="ti ti-settings-cog me-2"></i>
                                     Project Information
                                 </a>
-                                <a href="{{route('projectmanage.projects.drawings.index', $project->id)}}" 
+                                <a href="{{ route('projectmanage.projects.drawings.index', $project->id) }}"
                                     class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.drawings.*') ? 'active' : '' }}">
                                     <i class="ti ti-device-laptop me-2"></i>
                                     Drawings
                                 </a>
 
-                                <a href="{{route('projectmanage.projects.drawing-measurements.index', $project->id)}}" 
+                                <a href="{{ route('projectmanage.projects.drawing-measurements.index', $project->id) }}"
                                     class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.drawing-measurements.*') ? 'active' : '' }}">
                                     <i class="ti ti-list-check me-2"></i>
                                     Drawing Measurements
@@ -49,25 +61,25 @@
                                     BOQ
                                 </a> --}}
 
-                                <a href="{{route('projectmanage.projects.mixRatio.index', $project->id)}}" 
+                                <a href="{{ route('projectmanage.projects.mixRatio.index', $project->id) }}"
                                     class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.mixRatio.*') ? 'active' : '' }}">
                                     <i class="ti ti-moneybag me-2"></i>
                                     Mix Ratio Header
                                 </a>
 
-                                <a href="{{route('projectmanage.projects.material-mappings.index', $project->id)}}" 
+                                <a href="{{ route('projectmanage.projects.material-mappings.index', $project->id) }}"
                                     class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.material-mappings.*') ? 'active' : '' }}">
                                     <i class="ti ti-moneybag me-2"></i>
                                     Material Mapping
                                 </a>
 
-                                <a href="{{route('projectmanage.projects.material-requirements.index', $project->id)}}" 
+                                <a href="{{ route('projectmanage.projects.material-requirements.index', $project->id) }}"
                                     class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.material-requirements.*') ? 'active' : '' }}">
                                     <i class="ti ti-moneybag me-2"></i>
                                     Material Requirements
                                 </a>
-                                
-                                <a href="{{route('projectmanage.projects.site-measurements.index', $project->id)}}" 
+
+                                <a href="{{ route('projectmanage.projects.site-measurements.index', $project->id) }}"
                                     class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.site-measurements.*') ? 'active' : '' }}">
                                     <i class="ti ti-list-check me-2"></i>
                                     Site Measurements
@@ -120,7 +132,7 @@
                                     <tbody>
 
                                         <tr>
-                                            
+
                                             <td class="text-center">
                                                 {{ $project->client->project_code }}
                                             </td>

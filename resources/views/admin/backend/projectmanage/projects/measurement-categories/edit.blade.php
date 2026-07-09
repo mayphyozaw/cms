@@ -291,7 +291,7 @@
 
                         case 'brick_wall_area':
                             symbol = 'BrickWallArea';
-                            formulas = 'L * H';
+                            formulas = '(L + W) * 2 * H';
                             unit = 'sqft'
                             break;
 

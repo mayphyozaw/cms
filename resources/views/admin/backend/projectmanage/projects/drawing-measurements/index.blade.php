@@ -19,6 +19,17 @@
                     </ol>
                 </nav>
             </div>
+
+            <div class="gap-2 d-flex align-items-center flex-wrap">
+
+                <a href="{{ route('projectmanage.projects.index') }}" class="btn btn-outline-light shadow">
+                    <span style="color:black">{{ $project->client->project_code }} @
+                        {{ $project->client->name }} - ({{ $project->client->length }} * {{ $project->client->width }}) -
+                        {{ $project->client->building_area }} sqft
+                    </span>
+                </a>
+
+            </div>
         </div>
 
         <div class="row">
@@ -52,27 +63,27 @@
                                     <i class="ti ti-list-check me-2"></i>
                                     Drawing Measurements
                                 </a>
-                                
-                                <a href="{{route('projectmanage.projects.mixRatio.index', $project->id)}}" 
+
+                                <a href="{{ route('projectmanage.projects.mixRatio.index', $project->id) }}"
                                     class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.mixRatio.*') ? 'active' : '' }}">
                                     <i class="ti ti-moneybag me-2"></i>
                                     Mix Ratio Header
                                 </a>
 
-                                <a href="{{route('projectmanage.projects.material-mappings.index', $project->id)}}" 
+                                <a href="{{ route('projectmanage.projects.material-mappings.index', $project->id) }}"
                                     class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.material-mappings.*') ? 'active' : '' }}">
                                     <i class="ti ti-moneybag me-2"></i>
                                     Material Mapping
                                 </a>
 
 
-                                <a href="{{route('projectmanage.projects.material-requirements.index', $project->id)}}" 
+                                <a href="{{ route('projectmanage.projects.material-requirements.index', $project->id) }}"
                                     class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.material-requirements.*') ? 'active' : '' }}">
                                     <i class="ti ti-moneybag me-2"></i>
                                     Material Requirements
                                 </a>
 
-                                 <a href="{{ route('projectmanage.projects.site-measurements.index', $project->id) }}"
+                                <a href="{{ route('projectmanage.projects.site-measurements.index', $project->id) }}"
                                     class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.site-measurements.*') ? 'active' : '' }}">
                                     <i class="ti ti-list-check me-2"></i>
                                     Site Measurements
@@ -137,6 +148,22 @@
                                 </a>
                             </li>
 
+                            <li class="nav-item me-3">
+                                <a href="{{ route('projectmanage.projects.drawing-measurement-detail.index', $project->id) }}"
+                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.drawing-measurement-detail.index') ? 'active' : '' }}">
+                                    <i class="ti ti-device-laptop me-2"></i>
+                                    Drawing Measurement Details
+                                </a>
+                            </li>
+
+                            {{-- <li class="nav-item me-3">
+                                <a href="{{ route('projectmanage.projects.drawing-measurement-deduction.index', $project->id) }}"
+                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.drawing-measurement-deduction.index') ? 'active' : '' }}">
+                                    <i class="ti ti-device-laptop me-2"></i>
+                                     Deduction
+                                </a>
+                            </li> --}}
+
                             {{-- <li class="nav-item me-3">
                                 <a href="{{ route('projectmanage.projects.measurement-types.index', $project->id) }}"
                                     class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.measurement-types.index') ? 'active' : '' }}">
@@ -185,11 +212,12 @@
 
                         <div class="table-responsive">
 
-                            <table class="table table-bordered table-hover text-nowrap" style="width:100%;">
+                            <table class="table table-bordered table-hover text-nowrap" id="drawingMeasurementTableId"
+                                style="width:100%;">
 
                                 <thead>
                                     <tr>
-                                        <th class="text-center" style="background-color: #9dd2e7">Date</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Detail</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Project</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Drawing</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Drawing Type</th>
@@ -216,72 +244,83 @@
                                 <tbody>
                                     @foreach ($drawingMeasurementAllData as $drawingMeasurementData)
                                         <tr>
-                                            <td class="text-center"> 
-                                                {{$drawingMeasurementData->created_at}}
+                                            <td class="text-center">
+                                                
+                                                    <a href="{{route('projectmanage.projects.drawing-measurement-detail.index', [$project->id, $drawingMeasurementData->id])}}"
+                                                        class="btn btn-sm btn-success">
+                                                         Detail 
+                                                    </a>
+                                               
                                             </td>
-                                            <td class="text-center"> 
+                                            <td class="text-center">
                                                 <span class="badge bg-primary">
-                                               {{ $project->client->project_code }}
-                                               </span>
+                                                    {{ $project->client->project_code }}
+                                                </span>
                                             </td>
 
-                                            <td class="text-center"> 
-                                                <a href="{{route('projectmanage.projects.site-measurements.create', $project->id)}}">
-                                                <span style="color: red">{{$drawingMeasurementData->drawing->drawing_name}}</span>
+                                            <td class="text-center">
+                                                <a
+                                                    href="{{ route('projectmanage.projects.site-measurements.create', $project->id) }}">
+                                                    <span
+                                                        style="color: red">{{ $drawingMeasurementData->drawing->drawing_name }}</span>
                                                 </a>
                                             </td>
-                                            <td class="text-center"> 
-                                                <a href="{{route('projectmanage.projects.site-measurements.create', $project->id)}}">
-                                                <span style="color: red">{{$drawingMeasurementData->drawing->drawingType->name}}</span>
+                                            <td class="text-center">
+                                                <a
+                                                    href="{{ route('projectmanage.projects.site-measurements.create', $project->id) }}">
+                                                    <span
+                                                        style="color: red">{{ $drawingMeasurementData->drawing->drawingType->name }}</span>
                                                 </a>
                                             </td>
 
-                                             <td class="text-center"> 
-                                                <a href="{{route('projectmanage.projects.site-measurements.create', $project->id)}}">
-                                                <span style="color: red">{{$drawingMeasurementData->category->category_name}}</span>
+                                            <td class="text-center">
+                                                <a
+                                                    href="{{ route('projectmanage.projects.site-measurements.create', $project->id) }}">
+                                                    <span
+                                                        style="color: red">{{ $drawingMeasurementData->category->category_name }}</span>
                                                 </a>
                                             </td>
 
-                                            <td class="text-center"> 
-                                                {{$drawingMeasurementData->nos}}
+                                            <td class="text-center">
+                                                {{ $drawingMeasurementData->nos }}
                                             </td>
 
-                                            <td class="text-center"> 
-                                                {{$drawingMeasurementData->length}}
+                                            <td class="text-center">
+                                                {{ $drawingMeasurementData->length }}
                                             </td>
 
-                                            <td class="text-center"> 
-                                                {{$drawingMeasurementData->width}}
+                                            <td class="text-center">
+                                                {{ $drawingMeasurementData->width }}
                                             </td>
 
-                                            <td class="text-center"> 
-                                                {{$drawingMeasurementData->height}}
+                                            <td class="text-center">
+                                                {{ $drawingMeasurementData->height }}
                                             </td>
 
-                                            <td class="text-center"> 
-                                                {{$drawingMeasurementData->thickness ?? '-'}}
+                                            <td class="text-center">
+                                                {{ $drawingMeasurementData->thickness ?? '-' }}
                                             </td>
 
-                                            <td class="text-center"> 
-                                                {{$drawingMeasurementData->thickness_unit ?? '-'}}
-                                            </td>
-                                            
-                                            <td class="text-center"> 
-                                                {{$drawingMeasurementData->unit_weight}}
-                                            </td>
-                                            <td class="text-center"> 
-                                                {{$drawingMeasurementData->coats}}
+                                            <td class="text-center">
+                                                {{ $drawingMeasurementData->thickness_unit ?? '-' }}
                                             </td>
 
-                                            <td class="text-center"> 
+                                            <td class="text-center">
+                                                {{ $drawingMeasurementData->unit_weight }}
+                                            </td>
+                                            <td class="text-center">
+                                                {{ $drawingMeasurementData->coats }}
+                                            </td>
 
-                                                {{ number_format($drawingMeasurementData->quantity, 2)}}
+                                            <td class="text-center">
+
+                                                {{ number_format($drawingMeasurementData->quantity, 2) }}
                                             </td>
-                                            <td class="text-center"> 
-                                                {{$drawingMeasurementData->unit}}
+                                            <td class="text-center">
+                                                {{ $drawingMeasurementData->unit }}
                                             </td>
-                                            <td class="text-center"> 
-                                                {{$drawingMeasurementData->remark}}
+                                            <td class="text-center">
+                                                {{ $drawingMeasurementData->remark }}
                                             </td>
                                             <td class="text-center">
                                                 <a class="btn btn-icon btn-sm btn-info"
@@ -341,6 +380,10 @@
             });
 
 
+        });
+        $('#drawingMeasurementTableId').DataTable({
+            responsive: true,
+            autoWidth: false
         });
     </script>
 @endpush

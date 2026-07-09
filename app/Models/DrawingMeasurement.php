@@ -47,6 +47,8 @@ class DrawingMeasurement extends Model
     {
         return $this->hasMany(MaterialMappings::class, 'drawing_measurement_id');
     }
-
-    
+    public function details()
+    {
+        return $this->hasMany(DrawingMeasurementDetail::class);
+    }
 }

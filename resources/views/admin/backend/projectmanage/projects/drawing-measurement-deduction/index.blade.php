@@ -1,10 +1,11 @@
 @extends('layouts.app')
+
 @section('content')
     <div class="content">
 
         <div class="d-flex align-items-center justify-content-between gap-2 mb-4 flex-wrap">
             <div>
-                <h4 class="mb-1">Material Requirements </h4>
+                <h4 class="mb-1">Drawings Measurement Deduction</h4>
 
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
@@ -13,15 +14,15 @@
                         </li>
 
                         <li class="breadcrumb-item active" aria-current="page">
-                            Material Requirements
+                            Drawing Measurement Deduction
                         </li>
                     </ol>
                 </nav>
             </div>
             <div class="gap-2 d-flex align-items-center flex-wrap">
 
-                <a href="{{route('projectmanage.projects.index')}}" class="btn btn-outline-light shadow" >
-                     <span style="color:black">{{ $project->client->project_code }} @
+                <a href="{{ route('projectmanage.projects.index') }}" class="btn btn-outline-light shadow">
+                    <span style="color:black">{{ $project->client->project_code }} @
                         {{ $project->client->name }} - ({{ $project->client->length }} * {{ $project->client->width }}) -
                         {{ $project->client->building_area }} sqft
                     </span>
@@ -31,7 +32,6 @@
         </div>
 
         <div class="row">
-
 
             {{-- Sidebar --}}
             <div class="col-xl-3 col-lg-12 theiaStickySidebar">
@@ -75,12 +75,12 @@
                                     Material Mapping
                                 </a>
 
+
                                 <a href="{{ route('projectmanage.projects.material-requirements.index', $project->id) }}"
                                     class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.material-requirements.*') ? 'active' : '' }}">
                                     <i class="ti ti-moneybag me-2"></i>
                                     Material Requirements
                                 </a>
-
 
                                 <a href="{{ route('projectmanage.projects.site-measurements.index', $project->id) }}"
                                     class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.site-measurements.*') ? 'active' : '' }}">
@@ -132,13 +132,53 @@
                         <ul class="nav nav-tabs nav-bordered nav-bordered-primary">
 
                             <li class="nav-item me-3">
-                                <a href="{{ route('projectmanage.projects.material-requirements.index', $project->id) }}"
-                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.material-requirements.index') ? 'active' : '' }}">
+                                <a href="{{ route('projectmanage.projects.drawing-measurements.index', $project->id) }}"
+                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.drawing-measurements.index') ? 'active' : '' }}">
                                     <i class="ti ti-settings-cog me-2"></i>
-                                    Material Requirements
+                                    Drawing Measurements Lists
                                 </a>
                             </li>
 
+                            <li class="nav-item me-3">
+                                <a href="{{ route('projectmanage.projects.measurement-categories.index', $project->id) }}"
+                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.measurement-categories.index') ? 'active' : '' }}">
+                                    <i class="ti ti-device-laptop me-2"></i>
+                                    Measurement Categories
+                                </a>
+                            </li>
+
+                            <li class="nav-item me-3">
+                                <a href="{{ route('projectmanage.projects.drawing-measurement-detail.index', $project->id) }}"
+                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.drawing-measurement-detail.index') ? 'active' : '' }}">
+                                    <i class="ti ti-device-laptop me-2"></i>
+                                    Drawing Measurement Details
+                                </a>
+                            </li>
+
+                            <li class="nav-item me-3">
+                                <a href="{{ route('projectmanage.projects.drawing-measurement-deduction.index', $project->id) }}"
+                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.drawing-measurement-deduction.index') ? 'active' : '' }}">
+                                    <i class="ti ti-device-laptop me-2"></i>
+                                    Drawing Measurement Deduction
+                                </a>
+                            </li>
+
+                            {{-- <li class="nav-item me-3">
+                                <a href="{{ route('projectmanage.projects.measurement-types.index', $project->id) }}"
+                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.measurement-types.index') ? 'active' : '' }}">
+                                    <i class="ti ti-device-laptop me-2"></i>
+                                    Measurement Types
+                                </a>
+                            </li>
+
+
+                            <li class="nav-item me-3">
+                                <a href="{{ route('projectmanage.projects.work-types.index', $project->id) }}"
+                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.work-types.index') ? 'active' : '' }}">
+                                    <i class="ti ti-device-laptop me-2"></i>
+                                    Work Types
+                                </a>
+                            </li> --}}
 
                         </ul>
 
@@ -153,93 +193,73 @@
                         <div class="row align-items-center">
 
                             <div class="col">
-                                <h5 class="card-title mb-0">Material Requirement Lists</h5>
-                            </div>
-
-                            <div class="col-auto">
-                                <x-create-button
-                                    href="{{ route('projectmanage.projects.material-requirements.create', $project->id) }}">
-                                    Create Material Requirement
-                                </x-create-button>
+                                <h5 class="card-title mb-0">Drawing Measurement Deduction </h5>
                             </div>
 
                         </div>
 
                     </div>
-                    <style>
-                        .table-responsive {
-                            width: 100%;
-                            overflow-x: auto;
-                        }
 
-                        table {
-                            width: 100% !important;
-                        }
-                    </style>
+                    <div class="card-body pb-0">
 
-                    <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered align-middle w-100 nowrap" id="materialMappingTable">
+
+                            <table class="table table-bordered table-hover text-nowrap" id="drawingMeasurementTableId"
+                                style="width:100%;">
+
                                 <thead>
                                     <tr>
-
-                                        <th class="text-center" style="background-color: #9dd2e7">No</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Code</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Material</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Raw Qty</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Base Qty</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Waste (%)</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Final Qty</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Unit</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Action</th>
-
+                                        <th class="text-center" style="background-color: #9dd2e7">No.</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Type</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Description</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Width</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Height</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Nos</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Area</th>
                                     </tr>
                                 </thead>
-                                <tbody>
 
-                                    @foreach ($materialRequirements as $materialRequirement)
+                                <tbody>
+                                    @foreach ($deductions as $deduction)
                                         <tr>
                                             <td class="text-center">
-
                                                 {{ $loop->iteration }}
                                             </td>
-
                                             <td class="text-center">
-                                                {{ $materialRequirement->materialMapping->mixRatio->code }}
+                                                <span class="badge bg-primary">
+                                                    {{ $deduction->type }}
+                                                </span>
                                             </td>
 
                                             <td class="text-center">
-                                                {{ $materialRequirement->material->name }}
-                                            </td>
-
-                                            <td class="text-center">
-                                                {{ number_format($materialRequirement->raw_quantity, 2) }}
-                                            </td>
-
-                                            <td class="text-center">
-                                                {{ number_format($materialRequirement->base_quantity,2) }}
-                                            </td>
-
-                                            <td class="text-center">
-                                                {{ $materialRequirement->materialMapping->wastage_percentage ?? '' }}
-                                            </td>
-
-                                            <td class="text-center">
-                                                {{ number_format($materialRequirement->final_quantity, 2) }}
-                                            </td>
-
-                                            <td class="text-center">
-                                                {{ $materialRequirement->material->unit }}
+                                                {{ $deduction->description }}
                                             </td>
 
 
+
                                             <td class="text-center">
+                                                {{ $deduction->width }}
+                                            </td>
+                                            <td class="text-center">
+                                                {{ $deduction->height }}
+                                            </td>
+
+                                            <td class="text-center">
+                                                {{ $deduction->nos }}
+                                            </td>
+
+
+                                            <td class="text-end">
+                                                {{ number_format($deduction->area, 2) }}
+                                            </td>
+
+                                            <td class="text-center" hidden>
                                                 <a class="btn btn-icon btn-sm btn-info"
-                                                    href="{{ route('projectmanage.projects.material-mappings.edit', [$project->id, $materialRequirement->id]) }}">
+                                                    href="{{ route('projectmanage.projects.drawing-measurements.edit', [$project->id, $drawingMeasurementDetail->id]) }}">
                                                     <i class="ti ti-edit"></i>
                                                 </a>
                                                 <form
-                                                    action="{{ route('projectmanage.projects.material-mappings.destroy', [$project->id, $materialRequirement->id]) }}"
+                                                    action="{{ route('projectmanage.projects.drawing-measurements.destroy', [$project->id, $drawingMeasurementDetail->id]) }}"
                                                     method="POST" style="display:inline;">
                                                     @csrf
                                                     @method('DELETE')
@@ -252,17 +272,25 @@
                                     @endforeach
 
                                 </tbody>
-
-                                
+                                <tfoot>
+                                    <tr>
+                                        <th colspan="6" class="text-end">
+                                            Total Deduction Area
+                                        </th>
+                                        <th class="text-end">
+                                            {{ number_format($deductions->sum('area'), 2) }}
+                                        </th>
+                                    </tr>
+                                </tfoot>
                             </table>
 
-                            
                         </div>
+
                     </div>
+
                 </div>
 
             </div>
-
 
         </div>
 
@@ -292,9 +320,9 @@
 
             });
 
-        });
 
-        $('#materialMappingTable').DataTable({
+        });
+        $('#drawingMeasurementTableId').DataTable({
             responsive: true,
             autoWidth: false
         });

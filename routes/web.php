@@ -27,6 +27,8 @@ use App\Http\Controllers\Backend\MaterialManagement\VariableAssets\VariableAsset
 use App\Http\Controllers\Backend\MaterialManagement\VariableAssets\VariableCategoryController;
 use App\Http\Controllers\Backend\Payment\PaymentController;
 use App\Http\Controllers\Backend\ProjectManagement\DrawingController;
+use App\Http\Controllers\Backend\ProjectManagement\DrawingMeasurementDeductionController;
+use App\Http\Controllers\Backend\ProjectManagement\DrawingMeasurementDetailController;
 use App\Http\Controllers\Backend\ProjectManagement\DrawingMeasurementsController;
 use App\Http\Controllers\Backend\ProjectManagement\DrawingTypeController;
 use App\Http\Controllers\Backend\ProjectManagement\MaterialMappingController;
@@ -77,7 +79,7 @@ Route::get('admin/logout', [AdminController::class, 'adminLogout'])->name('admin
 
 require __DIR__ . '/auth.php';
 
-Route::middleware('auth','notBlocked')->group(function () {
+Route::middleware('auth', 'notBlocked')->group(function () {
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     // Route::get('/change-password', [PasswordController::class, 'edit'])->name('change-password.edit');
@@ -110,7 +112,7 @@ Route::middleware('auth','notBlocked')->group(function () {
 
 
     Route::prefix('clientmanage')->name('clientmanage.')->group(function () {
-        Route::resource('client', ClientController::class)->only('index','create','store','edit','update','destroy');
+        Route::resource('client', ClientController::class)->only('index', 'create', 'store', 'edit', 'update', 'destroy');
         Route::get('client-datatable', [ClientController::class, 'clientDataTable'])->name('client-datatable');
 
         Route::resource('quototation-proposal', QuotationProposalController::class);
@@ -245,6 +247,12 @@ Route::middleware('auth','notBlocked')->group(function () {
                 Route::resource('drawings', DrawingController::class);
                 Route::resource('drawing-type', DrawingTypeController::class);
                 Route::resource('drawing-measurements', DrawingMeasurementsController::class);
+                Route::resource('drawing-measurement-detail', DrawingMeasurementDetailController::class);
+                
+                Route::get('/drawing-measurement-deduction/create/{detailId}',[DrawingMeasurementDeductionController::class, 'create'])->name('projectmanage.projects.drawing-measurement-deduction.create');
+                Route::post('/drawing-measurement-details/{detail}/deductions',[DrawingMeasurementDeductionController::class, 'store'])->name('projectmanage.projects.drawing-measurement-deduction.store');
+                
+                // Route::resource('drawing-measurement-deduction', DrawingMeasurementDeductionController::class);
                 Route::resource('measurement-types', MeasurementTypeController::class);
                 Route::resource('work-types', WorkTypeController::class);
                 Route::resource('measurement-categories', MeasurementCategoriesController::class);
@@ -257,7 +265,7 @@ Route::middleware('auth','notBlocked')->group(function () {
 
         Route::get('drawings_get', [DrawingMeasurementsController::class, 'getDrawing'])->name('drawings_get');
         Route::get('worktype_get', [DrawingMeasurementsController::class, 'getWorkType'])->name('worktype_get');
-        Route::get('mix-ratio_total-part', [MixRatioDetailsController::class,'mixRatioTotalPart'])->name('mix-ratio_total-part');
+        Route::get('mix-ratio_total-part', [MixRatioDetailsController::class, 'mixRatioTotalPart'])->name('mix-ratio_total-part');
         Route::get('drawing_measurement_get', [DrawingMeasurementsController::class, 'getDrawingMeasurement'])->name('drawing_measurement_get');
         Route::get('material_mapping_get', [MaterialMappingController::class, 'getMaterialMapping'])->name('material_mapping_get');
         Route::get('mix_ratio_get', [MaterialMappingController::class, 'getMixRatio'])->name('mix_ratio_get');
@@ -266,7 +274,7 @@ Route::middleware('auth','notBlocked')->group(function () {
 
         // Route::get('material_mapping_get', [MaterialRequirementsController::class, 'getMaterialMapping'])->name('material_mapping_get');
         // Route::get('drawing_measurement_get', [MaterialRequirementsController::class, 'getDrawingMeasurement'])->name('drawing_measurement_get');
-        Route::get('drawing_measurement_get',[MaterialRequirementsController::class, 'getDrawingMeasurement'])->name('drawing_measurement_get');
+        Route::get('drawing_measurement_get', [MaterialRequirementsController::class, 'getDrawingMeasurement'])->name('drawing_measurement_get');
 
 
 

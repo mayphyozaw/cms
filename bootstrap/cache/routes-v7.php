@@ -13,7 +13,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::eALENCoH3lvggtGe',
+            '_route' => 'generated::rjC8mFV16L2COXBC',
           ),
           1 => NULL,
           2 => 
@@ -33,7 +33,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::aGcIA1rNJeJY00nu',
+            '_route' => 'generated::iD5Eq9OlLWVoU9wu',
           ),
           1 => NULL,
           2 => 
@@ -110,7 +110,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::aohP3OxCGSLiT1m4',
+            '_route' => 'generated::tXZwSDTK07nH0bIP',
           ),
           1 => NULL,
           2 => 
@@ -146,7 +146,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::4eQ4bTyQxec68tVa',
+            '_route' => 'generated::jhW1OdsAdPlIUw3T',
           ),
           1 => NULL,
           2 => 
@@ -276,7 +276,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::0K9rurlFSIfnNdeu',
+            '_route' => 'generated::hx4Jj9gHLNe9nt1b',
           ),
           1 => NULL,
           2 => 
@@ -2628,7 +2628,7 @@ app('router')->setCompiledRoutes(
     ),
     2 => 
     array (
-      0 => '{^(?|/res(?|et\\-password/([^/]++)(*:35)|ign\\-employees/([^/]++)(?|(*:68)|/edit(*:80)|(*:87)))|/verify\\-email/([^/]++)/([^/]++)(*:128)|/usermanage/(?|([^/]++)(?|/edit(*:167)|(*:175))|resign\\-submit(*:198)|block/([^/]++)(*:220)|unblock/([^/]++)(*:244)|toggle\\-block/([^/]++)(*:274))|/a(?|ccounting/bankmanage/([^/]++)(?|(*:320)|/edit(*:333)|(*:341))|ssign\\-(?|edit/([^/]++)(*:373)|update/([^/]++)(*:396)|destroy/([^/]++)(*:420)))|/c(?|lientmanage/(?|client/([^/]++)(?|/edit(*:473)|(*:481))|quot(?|otation\\-proposal/([^/]++)(?|(*:526)|/edit(*:539)|(*:547))|ation\\-proposal/([^/]++)(*:580))|d(?|e(?|tail/quotation\\-proposal/([^/]++)(*:630)|cline/quotation\\-proposal/([^/]++)(*:672))|raft/quotation\\-proposal/([^/]++)(*:714))|accept/quotation\\-proposal/([^/]++)(*:758))|onfiguration/(?|role/([^/]++)(?|(*:799)|/edit(*:812)|(*:820))|permission/([^/]++)(?|(*:851)|/edit(*:864)|(*:872))))|/warehouse/([^/]++)(?|(*:905)|/edit(*:918)|(*:926))|/s(?|to(?|ck\\-movements/([^/]++)(?|(*:970)|/edit(*:983)|(*:991))|rage/(.*)(*:1009))|uppliermanage/supplier/([^/]++)(?|(*:1053)|/edit(*:1067)|(*:1076)))|/bq/bq(?|category/([^/]++)(?|(*:1116)|/edit(*:1130)|(*:1139))|workscope/([^/]++)(?|(*:1170)|/edit(*:1184)|(*:1193)))|/engineer(?|s/(?|([^/]++)(?|(*:1232)|/edit(*:1246)|(*:1255))|assign(?|/([^/]++)(*:1283)|\\-project/([^/]++)(*:1310)))|\\-requests/pass_qty/([^/]++)(*:1349))|/qs\\-check\\-(?|create/([^/]++)(*:1389)|detail/([^/]++)(*:1413))|/logistics\\-check\\-create/([^/]++)(*:1457)|/material/(?|asset(?|s/([^/]++)(?|(*:1500)|/edit(*:1514)|(*:1523))|/damage/([^/]++)(*:1549))|detail/asset/([^/]++)(*:1580)|fixedassets/(?|([^/]++)(?|(*:1615)|/edit(*:1629)|(*:1638))|purchase(*:1656))|category/([^/]++)(?|(*:1686)|/edit(*:1700)|(*:1709))|variable(?|assets/([^/]++)(?|(*:1748)|/edit(*:1762)|(*:1771))|\\-category/([^/]++)(?|(*:1803)|/edit(*:1817)|(*:1826))))|/p(?|urchase(?|/(?|([^/]++)(?|(*:1868)|/edit(*:1882)|(*:1891))|payment/([^/]++)/history(*:1925))|_order/purchase/([^/]++)(*:1959))|ayment/purchase_payment/([^/]++)(?|(*:2004))|rojectmanage/(?|project(?|s/([^/]++)(?|(*:2053)|/(?|edit(*:2070)|drawing(?|s(?|(*:2093)|/(?|create(*:2112)|([^/]++)(?|(*:2132)|/edit(*:2146)|(*:2155)))|(*:2166))|\\-(?|type(?|(*:2188)|/(?|create(*:2207)|([^/]++)(?|(*:2227)|/edit(*:2241)|(*:2250)))|(*:2261))|measurements(?|(*:2286)|/(?|create(*:2305)|([^/]++)(?|(*:2325)|/edit(*:2339)|(*:2348)))|(*:2359))))|m(?|easurement\\-(?|types(?|(*:2398)|/(?|create(*:2417)|([^/]++)(?|(*:2437)|/edit(*:2451)|(*:2460)))|(*:2471))|categories(?|(*:2494)|/(?|create(*:2513)|([^/]++)(?|(*:2533)|/edit(*:2547)|(*:2556)))|(*:2567)))|ixRatio(?|(*:2588)|/(?|create(*:2607)|([^/]++)(?|(*:2627)|/edit(*:2641)|(*:2650)))|(*:2661)|\\-details(?|(*:2682)|/(?|create(*:2701)|([^/]++)(?|(*:2721)|/edit(*:2735)|(*:2744)))|(*:2755)))|aterial\\-(?|mappings(?|(*:2789)|/(?|create(*:2808)|([^/]++)(?|(*:2828)|/edit(*:2842)|(*:2851)))|(*:2862))|requirements(?|(*:2887)|/(?|create(*:2906)|([^/]++)(?|(*:2926)|/edit(*:2940)|(*:2949)))|(*:2960))))|work\\-types(?|(*:2986)|/(?|create(*:3005)|([^/]++)(?|(*:3025)|/edit(*:3039)|(*:3048)))|(*:3059))|site\\-measurements(?|(*:3090)|/(?|create(*:3109)|([^/]++)(?|(*:3129)|/edit(*:3143)|(*:3152)))|(*:3163)))|(*:3174))|files/([^/]++)(?|/edit(*:3206)|(*:3215))|category/([^/]++)(?|(*:3245)|/edit(*:3259)|(*:3268)))|workscope/([^/]++)(?|(*:3300)|/edit(*:3314)|(*:3323))))|/invoice/p(?|urchase/([^/]++)(*:3364)|ayment/([^/]++)(*:3388))|/detail/purchase/([^/]++)(*:3423))/?$}sDu',
+      0 => '{^(?|/res(?|et\\-password/([^/]++)(*:35)|ign\\-employees/([^/]++)(?|(*:68)|/edit(*:80)|(*:87)))|/verify\\-email/([^/]++)/([^/]++)(*:128)|/usermanage/(?|([^/]++)(?|/edit(*:167)|(*:175))|resign\\-submit(*:198)|block/([^/]++)(*:220)|unblock/([^/]++)(*:244)|toggle\\-block/([^/]++)(*:274))|/a(?|ccounting/bankmanage/([^/]++)(?|(*:320)|/edit(*:333)|(*:341))|ssign\\-(?|edit/([^/]++)(*:373)|update/([^/]++)(*:396)|destroy/([^/]++)(*:420)))|/c(?|lientmanage/(?|client/([^/]++)(?|/edit(*:473)|(*:481))|quot(?|otation\\-proposal/([^/]++)(?|(*:526)|/edit(*:539)|(*:547))|ation\\-proposal/([^/]++)(*:580))|d(?|e(?|tail/quotation\\-proposal/([^/]++)(*:630)|cline/quotation\\-proposal/([^/]++)(*:672))|raft/quotation\\-proposal/([^/]++)(*:714))|accept/quotation\\-proposal/([^/]++)(*:758))|onfiguration/(?|role/([^/]++)(?|(*:799)|/edit(*:812)|(*:820))|permission/([^/]++)(?|(*:851)|/edit(*:864)|(*:872))))|/warehouse/([^/]++)(?|(*:905)|/edit(*:918)|(*:926))|/s(?|to(?|ck\\-movements/([^/]++)(?|(*:970)|/edit(*:983)|(*:991))|rage/(.*)(*:1009))|uppliermanage/supplier/([^/]++)(?|(*:1053)|/edit(*:1067)|(*:1076)))|/bq/bq(?|category/([^/]++)(?|(*:1116)|/edit(*:1130)|(*:1139))|workscope/([^/]++)(?|(*:1170)|/edit(*:1184)|(*:1193)))|/engineer(?|s/(?|([^/]++)(?|(*:1232)|/edit(*:1246)|(*:1255))|assign(?|/([^/]++)(*:1283)|\\-project/([^/]++)(*:1310)))|\\-requests/pass_qty/([^/]++)(*:1349))|/qs\\-check\\-(?|create/([^/]++)(*:1389)|detail/([^/]++)(*:1413))|/logistics\\-check\\-create/([^/]++)(*:1457)|/material/(?|asset(?|s/([^/]++)(?|(*:1500)|/edit(*:1514)|(*:1523))|/damage/([^/]++)(*:1549))|detail/asset/([^/]++)(*:1580)|fixedassets/(?|([^/]++)(?|(*:1615)|/edit(*:1629)|(*:1638))|purchase(*:1656))|category/([^/]++)(?|(*:1686)|/edit(*:1700)|(*:1709))|variable(?|assets/([^/]++)(?|(*:1748)|/edit(*:1762)|(*:1771))|\\-category/([^/]++)(?|(*:1803)|/edit(*:1817)|(*:1826))))|/p(?|urchase(?|/(?|([^/]++)(?|(*:1868)|/edit(*:1882)|(*:1891))|payment/([^/]++)/history(*:1925))|_order/purchase/([^/]++)(*:1959))|ayment/purchase_payment/([^/]++)(?|(*:2004))|rojectmanage/(?|project(?|s/([^/]++)(?|(*:2053)|/(?|edit(*:2070)|drawing(?|s(?|(*:2093)|/(?|create(*:2112)|([^/]++)(?|(*:2132)|/edit(*:2146)|(*:2155)))|(*:2166))|\\-(?|type(?|(*:2188)|/(?|create(*:2207)|([^/]++)(?|(*:2227)|/edit(*:2241)|(*:2250)))|(*:2261))|measurement(?|s(?|(*:2289)|/(?|create(*:2308)|([^/]++)(?|(*:2328)|/edit(*:2342)|(*:2351)))|(*:2362))|\\-de(?|tail(?|(*:2386)|/(?|create(*:2405)|([^/]++)(?|(*:2425)|/edit(*:2439)|(*:2448)))|(*:2459)|s/([^/]++)/deductions(*:2489))|duction/create/([^/]++)(*:2522)))))|m(?|easurement\\-(?|types(?|(*:2562)|/(?|create(*:2581)|([^/]++)(?|(*:2601)|/edit(*:2615)|(*:2624)))|(*:2635))|categories(?|(*:2658)|/(?|create(*:2677)|([^/]++)(?|(*:2697)|/edit(*:2711)|(*:2720)))|(*:2731)))|ixRatio(?|(*:2752)|/(?|create(*:2771)|([^/]++)(?|(*:2791)|/edit(*:2805)|(*:2814)))|(*:2825)|\\-details(?|(*:2846)|/(?|create(*:2865)|([^/]++)(?|(*:2885)|/edit(*:2899)|(*:2908)))|(*:2919)))|aterial\\-(?|mappings(?|(*:2953)|/(?|create(*:2972)|([^/]++)(?|(*:2992)|/edit(*:3006)|(*:3015)))|(*:3026))|requirements(?|(*:3051)|/(?|create(*:3070)|([^/]++)(?|(*:3090)|/edit(*:3104)|(*:3113)))|(*:3124))))|work\\-types(?|(*:3150)|/(?|create(*:3169)|([^/]++)(?|(*:3189)|/edit(*:3203)|(*:3212)))|(*:3223))|site\\-measurements(?|(*:3254)|/(?|create(*:3273)|([^/]++)(?|(*:3293)|/edit(*:3307)|(*:3316)))|(*:3327)))|(*:3338))|files/([^/]++)(?|/edit(*:3370)|(*:3379))|category/([^/]++)(?|(*:3409)|/edit(*:3423)|(*:3432)))|workscope/([^/]++)(?|(*:3464)|/edit(*:3478)|(*:3487))))|/invoice/p(?|urchase/([^/]++)(*:3528)|ayment/([^/]++)(*:3552))|/detail/purchase/([^/]++)(*:3587))/?$}sDu',
     ),
     3 => 
     array (
@@ -5256,7 +5256,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2286 => 
+      2289 => 
       array (
         0 => 
         array (
@@ -5279,7 +5279,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2305 => 
+      2308 => 
       array (
         0 => 
         array (
@@ -5302,7 +5302,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2325 => 
+      2328 => 
       array (
         0 => 
         array (
@@ -5326,7 +5326,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2339 => 
+      2342 => 
       array (
         0 => 
         array (
@@ -5350,7 +5350,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2348 => 
+      2351 => 
       array (
         0 => 
         array (
@@ -5394,7 +5394,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2359 => 
+      2362 => 
       array (
         0 => 
         array (
@@ -5416,7 +5416,214 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2398 => 
+      2386 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.drawing-measurement-detail.index',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      2405 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.drawing-measurement-detail.create',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      2425 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.drawing-measurement-detail.show',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+            1 => 'drawing_measurement_detail',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      2439 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.drawing-measurement-detail.edit',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+            1 => 'drawing_measurement_detail',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      2448 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.drawing-measurement-detail.update',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+            1 => 'drawing_measurement_detail',
+          ),
+          2 => 
+          array (
+            'PUT' => 0,
+            'PATCH' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.drawing-measurement-detail.destroy',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+            1 => 'drawing_measurement_detail',
+          ),
+          2 => 
+          array (
+            'DELETE' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      2459 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.drawing-measurement-detail.store',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+          ),
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      2489 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.projectmanage.projects.drawing-measurement-deduction.store',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+            1 => 'detail',
+          ),
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      2522 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'projectmanage.projects.projectmanage.projects.drawing-measurement-deduction.create',
+          ),
+          1 => 
+          array (
+            0 => 'project',
+            1 => 'detailId',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      2562 => 
       array (
         0 => 
         array (
@@ -5439,7 +5646,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2417 => 
+      2581 => 
       array (
         0 => 
         array (
@@ -5462,7 +5669,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2437 => 
+      2601 => 
       array (
         0 => 
         array (
@@ -5486,7 +5693,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2451 => 
+      2615 => 
       array (
         0 => 
         array (
@@ -5510,7 +5717,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2460 => 
+      2624 => 
       array (
         0 => 
         array (
@@ -5554,7 +5761,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2471 => 
+      2635 => 
       array (
         0 => 
         array (
@@ -5576,7 +5783,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2494 => 
+      2658 => 
       array (
         0 => 
         array (
@@ -5599,7 +5806,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2513 => 
+      2677 => 
       array (
         0 => 
         array (
@@ -5622,7 +5829,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2533 => 
+      2697 => 
       array (
         0 => 
         array (
@@ -5646,7 +5853,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2547 => 
+      2711 => 
       array (
         0 => 
         array (
@@ -5670,7 +5877,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2556 => 
+      2720 => 
       array (
         0 => 
         array (
@@ -5714,7 +5921,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2567 => 
+      2731 => 
       array (
         0 => 
         array (
@@ -5736,7 +5943,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2588 => 
+      2752 => 
       array (
         0 => 
         array (
@@ -5759,7 +5966,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2607 => 
+      2771 => 
       array (
         0 => 
         array (
@@ -5782,7 +5989,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2627 => 
+      2791 => 
       array (
         0 => 
         array (
@@ -5806,7 +6013,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2641 => 
+      2805 => 
       array (
         0 => 
         array (
@@ -5830,7 +6037,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2650 => 
+      2814 => 
       array (
         0 => 
         array (
@@ -5874,7 +6081,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2661 => 
+      2825 => 
       array (
         0 => 
         array (
@@ -5896,7 +6103,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2682 => 
+      2846 => 
       array (
         0 => 
         array (
@@ -5919,7 +6126,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2701 => 
+      2865 => 
       array (
         0 => 
         array (
@@ -5942,7 +6149,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2721 => 
+      2885 => 
       array (
         0 => 
         array (
@@ -5966,7 +6173,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2735 => 
+      2899 => 
       array (
         0 => 
         array (
@@ -5990,7 +6197,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2744 => 
+      2908 => 
       array (
         0 => 
         array (
@@ -6034,7 +6241,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2755 => 
+      2919 => 
       array (
         0 => 
         array (
@@ -6056,7 +6263,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2789 => 
+      2953 => 
       array (
         0 => 
         array (
@@ -6079,7 +6286,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2808 => 
+      2972 => 
       array (
         0 => 
         array (
@@ -6102,7 +6309,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2828 => 
+      2992 => 
       array (
         0 => 
         array (
@@ -6126,7 +6333,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2842 => 
+      3006 => 
       array (
         0 => 
         array (
@@ -6150,7 +6357,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2851 => 
+      3015 => 
       array (
         0 => 
         array (
@@ -6194,7 +6401,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2862 => 
+      3026 => 
       array (
         0 => 
         array (
@@ -6216,7 +6423,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2887 => 
+      3051 => 
       array (
         0 => 
         array (
@@ -6239,7 +6446,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2906 => 
+      3070 => 
       array (
         0 => 
         array (
@@ -6262,7 +6469,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2926 => 
+      3090 => 
       array (
         0 => 
         array (
@@ -6286,7 +6493,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2940 => 
+      3104 => 
       array (
         0 => 
         array (
@@ -6310,7 +6517,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2949 => 
+      3113 => 
       array (
         0 => 
         array (
@@ -6354,7 +6561,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2960 => 
+      3124 => 
       array (
         0 => 
         array (
@@ -6376,7 +6583,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2986 => 
+      3150 => 
       array (
         0 => 
         array (
@@ -6399,7 +6606,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      3005 => 
+      3169 => 
       array (
         0 => 
         array (
@@ -6422,7 +6629,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      3025 => 
+      3189 => 
       array (
         0 => 
         array (
@@ -6446,7 +6653,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      3039 => 
+      3203 => 
       array (
         0 => 
         array (
@@ -6470,7 +6677,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      3048 => 
+      3212 => 
       array (
         0 => 
         array (
@@ -6514,7 +6721,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      3059 => 
+      3223 => 
       array (
         0 => 
         array (
@@ -6536,7 +6743,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      3090 => 
+      3254 => 
       array (
         0 => 
         array (
@@ -6559,7 +6766,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      3109 => 
+      3273 => 
       array (
         0 => 
         array (
@@ -6582,7 +6789,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      3129 => 
+      3293 => 
       array (
         0 => 
         array (
@@ -6606,7 +6813,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      3143 => 
+      3307 => 
       array (
         0 => 
         array (
@@ -6630,7 +6837,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      3152 => 
+      3316 => 
       array (
         0 => 
         array (
@@ -6674,7 +6881,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      3163 => 
+      3327 => 
       array (
         0 => 
         array (
@@ -6696,7 +6903,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      3174 => 
+      3338 => 
       array (
         0 => 
         array (
@@ -6738,7 +6945,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      3206 => 
+      3370 => 
       array (
         0 => 
         array (
@@ -6761,7 +6968,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      3215 => 
+      3379 => 
       array (
         0 => 
         array (
@@ -6784,7 +6991,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      3245 => 
+      3409 => 
       array (
         0 => 
         array (
@@ -6807,7 +7014,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      3259 => 
+      3423 => 
       array (
         0 => 
         array (
@@ -6830,7 +7037,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      3268 => 
+      3432 => 
       array (
         0 => 
         array (
@@ -6872,7 +7079,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      3300 => 
+      3464 => 
       array (
         0 => 
         array (
@@ -6895,7 +7102,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      3314 => 
+      3478 => 
       array (
         0 => 
         array (
@@ -6918,7 +7125,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      3323 => 
+      3487 => 
       array (
         0 => 
         array (
@@ -6960,7 +7167,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      3364 => 
+      3528 => 
       array (
         0 => 
         array (
@@ -6983,7 +7190,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      3388 => 
+      3552 => 
       array (
         0 => 
         array (
@@ -7006,7 +7213,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      3423 => 
+      3587 => 
       array (
         0 => 
         array (
@@ -7044,7 +7251,7 @@ app('router')->setCompiledRoutes(
   ),
   'attributes' => 
   array (
-    'generated::eALENCoH3lvggtGe' => 
+    'generated::rjC8mFV16L2COXBC' => 
     array (
       'methods' => 
       array (
@@ -7073,7 +7280,7 @@ app('router')->setCompiledRoutes(
                         \'exception\' => $exception,
                     ]), status: $exception ? 500 : 200);
                 }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"000000000000059d0000000000000000";}}',
-        'as' => 'generated::eALENCoH3lvggtGe',
+        'as' => 'generated::rjC8mFV16L2COXBC',
       ),
       'fallback' => false,
       'defaults' => 
@@ -7089,7 +7296,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::aGcIA1rNJeJY00nu' => 
+    'generated::iD5Eq9OlLWVoU9wu' => 
     array (
       'methods' => 
       array (
@@ -7111,7 +7318,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::aGcIA1rNJeJY00nu',
+        'as' => 'generated::iD5Eq9OlLWVoU9wu',
       ),
       'fallback' => false,
       'defaults' => 
@@ -7243,7 +7450,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::aohP3OxCGSLiT1m4' => 
+    'generated::tXZwSDTK07nH0bIP' => 
     array (
       'methods' => 
       array (
@@ -7264,7 +7471,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::aohP3OxCGSLiT1m4',
+        'as' => 'generated::tXZwSDTK07nH0bIP',
       ),
       'fallback' => false,
       'defaults' => 
@@ -7318,7 +7525,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::4eQ4bTyQxec68tVa' => 
+    'generated::jhW1OdsAdPlIUw3T' => 
     array (
       'methods' => 
       array (
@@ -7339,7 +7546,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::4eQ4bTyQxec68tVa',
+        'as' => 'generated::jhW1OdsAdPlIUw3T',
       ),
       'fallback' => false,
       'defaults' => 
@@ -7659,7 +7866,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::0K9rurlFSIfnNdeu' => 
+    'generated::hx4Jj9gHLNe9nt1b' => 
     array (
       'methods' => 
       array (
@@ -7680,7 +7887,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::0K9rurlFSIfnNdeu',
+        'as' => 'generated::hx4Jj9gHLNe9nt1b',
       ),
       'fallback' => false,
       'defaults' => 
@@ -16542,6 +16749,354 @@ app('router')->setCompiledRoutes(
         'as' => 'projectmanage.projects.drawing-measurements.destroy',
         'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementsController@destroy',
         'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementsController@destroy',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.drawing-measurement-detail.index' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/projects/{project}/drawing-measurement-detail',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.drawing-measurement-detail.index',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementDetailController@index',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementDetailController@index',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.drawing-measurement-detail.create' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/projects/{project}/drawing-measurement-detail/create',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.drawing-measurement-detail.create',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementDetailController@create',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementDetailController@create',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.drawing-measurement-detail.store' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'projectmanage/projects/{project}/drawing-measurement-detail',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.drawing-measurement-detail.store',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementDetailController@store',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementDetailController@store',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.drawing-measurement-detail.show' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/projects/{project}/drawing-measurement-detail/{drawing_measurement_detail}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.drawing-measurement-detail.show',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementDetailController@show',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementDetailController@show',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.drawing-measurement-detail.edit' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/projects/{project}/drawing-measurement-detail/{drawing_measurement_detail}/edit',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.drawing-measurement-detail.edit',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementDetailController@edit',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementDetailController@edit',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.drawing-measurement-detail.update' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'PUT',
+        1 => 'PATCH',
+      ),
+      'uri' => 'projectmanage/projects/{project}/drawing-measurement-detail/{drawing_measurement_detail}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.drawing-measurement-detail.update',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementDetailController@update',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementDetailController@update',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.drawing-measurement-detail.destroy' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'DELETE',
+      ),
+      'uri' => 'projectmanage/projects/{project}/drawing-measurement-detail/{drawing_measurement_detail}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'as' => 'projectmanage.projects.drawing-measurement-detail.destroy',
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementDetailController@destroy',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementDetailController@destroy',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.projectmanage.projects.drawing-measurement-deduction.create' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'projectmanage/projects/{project}/drawing-measurement-deduction/create/{detailId}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementDeductionController@create',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementDeductionController@create',
+        'as' => 'projectmanage.projects.projectmanage.projects.drawing-measurement-deduction.create',
+        'namespace' => NULL,
+        'prefix' => 'projectmanage/projects/{project}',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'projectmanage.projects.projectmanage.projects.drawing-measurement-deduction.store' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'projectmanage/projects/{project}/drawing-measurement-details/{detail}/deductions',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'notBlocked',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementDeductionController@store',
+        'controller' => 'App\\Http\\Controllers\\Backend\\ProjectManagement\\DrawingMeasurementDeductionController@store',
+        'as' => 'projectmanage.projects.projectmanage.projects.drawing-measurement-deduction.store',
         'namespace' => NULL,
         'prefix' => 'projectmanage/projects/{project}',
         'where' => 

@@ -18,6 +18,16 @@
                     </ol>
                 </nav>
             </div>
+            <div class="gap-2 d-flex align-items-center flex-wrap">
+
+                <a href="{{route('projectmanage.projects.index')}}" class="btn btn-outline-light shadow" >
+                     <span style="color:black">{{ $project->client->project_code }} @
+                        {{ $project->client->name }} - ({{ $project->client->length }} * {{ $project->client->width }}) -
+                        {{ $project->client->building_area }} sqft
+                    </span>
+                </a>
+
+            </div>
         </div>
 
         <div class="row">

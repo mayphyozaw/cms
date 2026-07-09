@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend\ProjectManagement;
 
 use App\Http\Controllers\Controller;
 use App\Models\DrawingMeasurement;
+use App\Models\DrawingMeasurementDetail;
 use App\Models\Drawings;
 use App\Models\DrawingTypes;
 use App\Models\MeasurementCategories;
@@ -36,7 +37,7 @@ class DrawingMeasurementsController extends Controller
 
     public function store(Request $request, Project $project)
     {
-        // return $request->all();
+
         $request->validate([
             'length' => 'required|numeric|min:0',
             'width' => 'nullable|numeric|min:0',
@@ -96,7 +97,7 @@ class DrawingMeasurementsController extends Controller
 
             case 'wall_area':
             case 'brick_wall_area':
-                $quantity = $length * $height;
+                $quantity = ($length + $width)  * 2 * $height;
                 break;
 
             case 'coats_area':
@@ -116,7 +117,7 @@ class DrawingMeasurementsController extends Controller
 
             case 'concrete_slab_volume':
                 $quantity = $length * $width * $thickness_ft;
-                 break;
+                break;
 
             case 'steel_linear':
             case 'steel_handrail_linear':
@@ -127,36 +128,46 @@ class DrawingMeasurementsController extends Controller
                 $quantity = $length * $unit_weight;
                 break;
         }
-        
-
-            $drawingMeasurements = DrawingMeasurement::create([
-                'project_id' => $project->id,
-                'measurement_categories_id' => $request->measurement_categories_id,
-                'drawing_id' => $request->drawing_id,
-                'nos' => $nos,
-                'length' => $length,
-                'width' => $width,
-                'height' => $height,
-                'thickness' => $thickness,
-                'thickness_unit' => $request->thickness_unit,
-                'unit_weight' => $unit_weight,
-                'coats' => $coats,
-                'quantity' => $quantity,
-                'unit' => $request->unit,
-                'remark' => $request->remark,
 
 
+        $measurement = DrawingMeasurement::create([
+            'project_id' => $project->id,
+            'measurement_categories_id' => $request->measurement_categories_id,
+            'drawing_id' => $request->drawing_id,
+            'nos' => $nos,
+            'length' => $length,
+            'width' => $width,
+            'height' => $height,
+            'thickness' => $thickness,
+            'thickness_unit' => $request->thickness_unit,
+            'unit_weight' => $unit_weight,
+            'coats' => $coats,
+            'quantity' => $quantity,
+            'unit' => $request->unit,
+            'remark' => $request->remark,
+
+
+        ]);
+
+        $measurement->details()->create([
+            'description' => $measurement->category?->category_name,
+            'formula_type'=>$measurement->category->formula_types,
+            'nos' => $measurement->nos,
+            'length' => $measurement->length,
+            'width' => $measurement->width,
+            'height' => $measurement->height,
+            'gross_quantity' => $measurement->quantity,
+            'deduction_quantity' => 0,
+            'net_quantity' => $measurement->quantity,
+            'unit' => $measurement->unit,
+        ]);
+
+        return redirect()
+            ->route('projectmanage.projects.drawing-measurements.index', $project->id)
+            ->with([
+                'message' => 'Successfully created',
+                'alert-type' => 'success'
             ]);
-
-            
-
-            return redirect()
-                ->route('projectmanage.projects.drawing-measurements.index', $project->id)
-                ->with([
-                    'message' => 'Successfully created',
-                    'alert-type' => 'success'
-                ]);
-        
     }
 
     public function edit(Project $project, $id)
@@ -199,7 +210,7 @@ class DrawingMeasurementsController extends Controller
             case 'volume':
                 $quantity = $request->length * $request->width * $request->height;
                 break;
-            
+
             case 'excavation_volume':
             case 'pcc_1:3:6':
             case 'rcc_footing':
@@ -216,7 +227,7 @@ class DrawingMeasurementsController extends Controller
 
             case 'wall_area':
             case 'brick_wall_area':
-                $quantity = $request->length * $request->height;
+                $quantity = ($request->length + $request->width) * 2 * $request->height;
                 break;
 
             case 'coats_area':

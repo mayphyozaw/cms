@@ -48,7 +48,7 @@ class ClientController extends Controller
 
         $lastProject = Project::latest('id')->first();
         $nextProjectId = $lastProject ? $lastProject->id + 1 : 1;
-        $projectCode = 'P -' . str_pad($nextProjectId, 4, '0', STR_PAD_LEFT);
+        $projectCode = 'P - ' . str_pad($nextProjectId, 4, '0', STR_PAD_LEFT);
 
 
         $length = $request->length ?? 0;

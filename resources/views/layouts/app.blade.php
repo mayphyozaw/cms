@@ -106,6 +106,7 @@
     <script src="{{ asset('backend/assets/js/script.js') }}"></script>
     {{-- Summernote --}}
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js"></script>
+
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js') }}"></script>
     <script src="{{ asset('backend/assets/plugins/simplebar/simplebar.min.js') }}"></script>
     <script src="{{ asset('backend/assets/plugins/datatables/js/jquery.dataTables.min.js') }}"></script>
@@ -119,7 +120,7 @@
         data-cf-settings="2feec2ecac7da57f288991d1-|49" defer></script> --}}
 
     <!-- Select2 -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> --}}
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <!-- Choices Js -->
