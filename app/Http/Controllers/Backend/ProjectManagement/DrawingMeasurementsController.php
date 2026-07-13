@@ -38,18 +38,15 @@ class DrawingMeasurementsController extends Controller
     public function store(Request $request, Project $project)
     {
 
+
         $request->validate([
-            'length' => 'required|numeric|min:0',
-            'width' => 'nullable|numeric|min:0',
-            'height' => 'nullable|numeric|min:0',
-            'nos' => 'nullable|numeric|min:0',
+            'drawing_id' => 'required|array',
+            'drawing_id.*' => 'exists:drawings,id',
 
-            'thickness' => 'nullable',
-            'unit_weight' => 'nullable|numeric|min:0',
-            'coats' => 'nullable|numeric|min:0',
+            'measurement_categories_id' => 'required|array',
+            'measurement_categories_id.*' => 'exists:measurement_categories,id',
 
-            'drawing_id' => 'required|exists:drawings,id',
-            'measurement_categories_id' => 'required|exists:measurement_categories,id',
+            'rows' => 'required|array|min:1',
         ]);
 
         $length = $request->length ?? 0;
@@ -68,11 +65,12 @@ class DrawingMeasurementsController extends Controller
             $thickness_ft = $thickness;
         }
 
+        
 
         $quantity = 0;
 
         $category = MeasurementCategories::findOrFail(
-            $request->measurement_categories_id
+            $request->measurement_categories_id[0]
         );
 
         switch ($category->formula_types) {
@@ -129,11 +127,16 @@ class DrawingMeasurementsController extends Controller
                 break;
         }
 
+        $totalQty = collect($request->rows)
+            ->pluck('quantity')
+            ->sum();
+
+        $unit = collect($request->rows)->first()['unit'] ?? '';
 
         $measurement = DrawingMeasurement::create([
             'project_id' => $project->id,
-            'measurement_categories_id' => $request->measurement_categories_id,
-            'drawing_id' => $request->drawing_id,
+            'measurement_categories_id' => $request->measurement_categories_id[0],
+            'drawing_id' => $request->drawing_id[0],
             'nos' => $nos,
             'length' => $length,
             'width' => $width,
@@ -142,25 +145,30 @@ class DrawingMeasurementsController extends Controller
             'thickness_unit' => $request->thickness_unit,
             'unit_weight' => $unit_weight,
             'coats' => $coats,
-            'quantity' => $quantity,
-            'unit' => $request->unit,
+            'quantity' => $totalQty,
+            'unit' => $unit,
             'remark' => $request->remark,
 
 
         ]);
 
-        $measurement->details()->create([
-            'description' => $measurement->category?->category_name,
-            'formula_type'=>$measurement->category->formula_types,
-            'nos' => $measurement->nos,
-            'length' => $measurement->length,
-            'width' => $measurement->width,
-            'height' => $measurement->height,
-            'gross_quantity' => $measurement->quantity,
-            'deduction_quantity' => 0,
-            'net_quantity' => $measurement->quantity,
-            'unit' => $measurement->unit,
-        ]);
+        
+
+
+        foreach ($request->rows as $row) {
+            $measurement->details()->create([
+                'description' => $row['title'],
+                'detail_no' => $row['detail_no'],
+                'nos' => $row['nos'],
+                'length' => $row['length'],
+                'width' => $row['width'],
+                'height' => $row['height'],
+                'gross_quantity' => $row['quantity'],
+                'net_quantity' => $row['quantity'],
+                'unit' => $row['unit'],
+            ]);
+        }
+        
 
         return redirect()
             ->route('projectmanage.projects.drawing-measurements.index', $project->id)

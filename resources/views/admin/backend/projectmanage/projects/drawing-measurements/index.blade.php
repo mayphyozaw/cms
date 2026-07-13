@@ -217,19 +217,19 @@
 
                                 <thead>
                                     <tr>
-                                        <th class="text-center" style="background-color: #9dd2e7">Detail</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Details</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Project</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Drawing</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Drawing Type</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Category</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Nos</th>
+                                        {{-- <th class="text-center" style="background-color: #9dd2e7">Nos</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Length</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Width</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Height</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Thickness</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Thickness Unit</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Unit Weight</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Coats</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Coats</th> --}}
                                         <th class="text-center" style="background-color: #9dd2e7">Quantity</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Unit</th>
                                         <th class="text-center" style="background-color: #9dd2e7">
@@ -279,37 +279,6 @@
                                                     <span
                                                         style="color: red">{{ $drawingMeasurementData->category->category_name }}</span>
                                                 </a>
-                                            </td>
-
-                                            <td class="text-center">
-                                                {{ $drawingMeasurementData->nos }}
-                                            </td>
-
-                                            <td class="text-center">
-                                                {{ $drawingMeasurementData->length }}
-                                            </td>
-
-                                            <td class="text-center">
-                                                {{ $drawingMeasurementData->width }}
-                                            </td>
-
-                                            <td class="text-center">
-                                                {{ $drawingMeasurementData->height }}
-                                            </td>
-
-                                            <td class="text-center">
-                                                {{ $drawingMeasurementData->thickness ?? '-' }}
-                                            </td>
-
-                                            <td class="text-center">
-                                                {{ $drawingMeasurementData->thickness_unit ?? '-' }}
-                                            </td>
-
-                                            <td class="text-center">
-                                                {{ $drawingMeasurementData->unit_weight }}
-                                            </td>
-                                            <td class="text-center">
-                                                {{ $drawingMeasurementData->coats }}
                                             </td>
 
                                             <td class="text-center">

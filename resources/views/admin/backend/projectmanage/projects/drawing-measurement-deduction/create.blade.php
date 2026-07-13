@@ -60,10 +60,15 @@
 
             <div class="card">
                 <div class="card-body">
-                   {{-- {{ route('projectmanage.projects.drawing-measurement-deduction.store', $project) }} --}}
-                    <form action=""
+                    {{-- {{ route('projectmanage.projects.drawing-measurement-deduction.store', $project) }} --}}
+                    <form
+                        action="{{ route('projectmanage.projects.drawing-measurement-deduction.store', [
+                            'project' => $project->id,
+                            'detail' => $detail->id,
+                        ]) }}"
                         method="POST" id="submit-form">
                         @csrf
+                        
                         <div class="row">
                             <div class="col-12 col-lg-6 mb-3">
                                 <label for="form-label fs-14" class="form-label fs-14">
@@ -84,97 +89,144 @@
                                 </div>
                             </div>
 
-                            <div class="col-12 col-lg-6 mb-3" hidden>
+                            <div class="col-12 col-lg-6 mb-3">
                                 <label class="form-label">
-                                    Drawing Measurement Detail:
+                                    Drawing Measurement Description:
                                 </label>
                                 <input type="hidden" name="drawing_measurement_detail_id" value="{{ $detail->id ?? '' }}">
-                            </div>
-
-                            <div class="col-12 col-lg-6 mb-3">
-                                <label class="form-label">
-                                    Opening Type: <span style="color:red;">*</span>
-                                </label>
-
-
-                                <select name="opening_type" class="form-control select2">
-                                    <option value="">Select Type</option>
-                                    <option>Door</option>
-                                    <option>Window</option>
-                                    <option>Ventilator</option>
-                                </select>
-                            </div>
-
-                            <div class="col-12 col-lg-6 mb-3">
-                                <label class="form-label">
-                                    Description:
-                                </label>
-
-                                <input type="text" name="description" class="form-control">
+                                <input type="text" name="drawing_measurement_detail_id" class="form-control"
+                                    value="{{ $detail->description }}" readonly disabled>
                             </div>
 
 
 
-                            <div class="row mb-3">
-                                <label class="col-sm-3 form-label">
-                                    Width:
-                                </label>
 
-                                <div class="col-sm-5">
-                                    <input type="text" name="width" class="form-control width"
-                                        @error('width') is-invalid @enderror placeholder="Enter Width" required
-                                        value="0">
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="form-label">Deductions: <span class="text-danger">*</span></label>
+                                    <table class="table table-striped table-bordered dataTable" style="width: 100%;">
+                                        <thead>
+                                            <tr role="row">
+                                                <th style="width: 30%;background-color: #9dd2e7;">Opening Type</th>
+                                                <th style="width: 20%;background-color: #9dd2e7;">Description</th>
+                                                <th style="width: 12%;background-color: #9dd2e7;">Width</th>
+                                                <th style="width: 12%;background-color: #9dd2e7;">Height</th>
+                                                <th style="width: 12%;background-color: #9dd2e7;">Nos</th>
+                                                <th style="width: 30%;background-color: #9dd2e7;">Area</th>
+                                                <th style="width: 20%;background-color: #9dd2e7;">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="deductionTable">
+                                            <tr>
+                                                <td>
+                                                    <select name="opening_type[]" class="form-control select2">
+                                                        <option value="">Select Type</option>
+                                                        <option value="Door">Door</option>
+                                                        <option value="Window">Window</option>
+                                                        <option value="Ventilator">Ventilator</option>
+                                                    </select>
+                                                </td>
+
+                                                <td>
+                                                    <input name="description[]" class="form-control">
+                                                </td>
+
+                                                <td>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control text-center width-input"
+                                                            name="width[]" value="1" min="1"
+                                                            style="width:30px;">
+                                                    </div>
+                                                </td>
+
+
+                                                <td>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control text-center height-input"
+                                                            name="height[]" value="1" min="1"
+                                                            style="width:30px;">
+                                                    </div>
+                                                </td>
+
+                                                <td>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control text-center nos-input"
+                                                            name="nos[]" value="1" min="1"
+                                                            style="width:30px;">
+                                                    </div>
+                                                </td>
+
+                                                <td class="text-end">
+                                                    <span class="totalArea" name="area">
+                                                        0.00
+                                                    </span>
+                                                    <input type="hidden" name="area[]" class="area-input">
+                                                </td>
+
+                                                <td class="text-center">
+                                                    <button class="btn btn-danger btn-sm removeRow" type="button">
+                                                        <i class="ti ti-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <div class="py-3">
+                                        <button class="btn btn-info btn-sm" id="addRowBtn" type="button">
+                                            Add Row
+                                        </button>
+
+                                    </div>
+
                                 </div>
                             </div>
 
-                            <div class="row mb-3">
-                                <label class="col-sm-3 form-label">
-                                    Height:
-                                </label>
-
-                                <div class="col-sm-5">
-                                    <input type="text" name="height" class="form-control height"
-                                        @error('height') is-invalid @enderror placeholder="Enter Height" required
-                                        value="0">
+                            <div class="row">
+                                <div class="col-md-6 ms-auto">
+                                    <div class="card">
+                                        <div class="card-body pt-7 pb-2">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="py-3">Total</td>
+                                                            <td class="py-3" id="subtotalDisplay"
+                                                                style="text-align:end">0.00</td>
+                                                            <input type="hidden" id="total_area" name="total_area"
+                                                                value="0">
+                                                            <td></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="row" hidden>
+                                <div class="col-md-6 ms-auto">
+                                    <div class="card">
+                                        <div class="card-body pt-7 pb-2">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered">
+                                                    <tbody>
 
-                            <div class="row mb-3">
-                                <label class="col-sm-3 form-label">
-                                    Nos:
-                                </label>
+                                                        <tr>
+                                                            <td class="py-3">Subtotal</td>
+                                                            <td class="py-3" id="total_area" name="total_area"
+                                                                style="text-align:end">
 
-                                <div class="col-sm-5">
-                                    <input type="text" name="nos" class="form-control nos"
-                                        @error('nos') is-invalid @enderror placeholder="Enter Nos" required value="0">
-                                </div>
-                            </div>
+                                                            </td>
+                                                            <input type="hidden" name="total_area">
+                                                        </tr>
 
-
-
-
-                            <div class="row mb-3">
-                                <label class="col-sm-3 form-label">
-                                    Area:
-                                </label>
-
-                                <div class="col-sm-3">
-                                    <input type="text" name="area" id="area" class="form-control area"
-                                        @error('area') is-invalid @enderror readonly>
-                                </div>
-                                <div class="col-sm-2">
-                                    sqft
-                                </div>
-                            </div>
-
-
-                            <div class="row mb-3">
-                                <label class="col-sm-3 form-label">
-                                    Remark:
-                                </label>
-
-                                <div class="col-sm-5">
-                                    <textarea name="remarks" class="form-control"></textarea>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -199,26 +251,117 @@
         $(document).ready(function() {
 
 
-            $('.nos,  .width, .height').on('input', function() {
+            document.getElementById("addRowBtn").addEventListener("click", function() {
+                const itemTable = document.getElementById("deductionTable");
 
+                let row = `
+                    <tr>
+                             <td>
+                                <select name="opening_type[]" class="form-control select2">
+                                    <option value="">Select Type</option>
+                                    <option>Door</option>
+                                    <option>Window</option>
+                                    <option>Ventilator</option>
+                                </select>
+                            </td>
+
+                            <td>
+                                <input name="description[]" class="form-control">
+                            </td>
+
+                            <td>
+                                <div class="input-group">
+                                    <input type="text" class="form-control text-center width-input"
+                                        name="width[]" value="1" min="1"
+                                        style="width:30px;">
+                                </div>
+                            </td>
+
+
+                            <td>
+                                <div class="input-group">
+                                    <input type="text"
+                                        class="form-control text-center height-input" name="height[]"
+                                        value="1" min="1" style="width:30px;">
+                                </div>
+                            </td>
+
+                            <td>
+                                <div class="input-group">
+                                    <input type="text" class="form-control text-center nos-input"
+                                        name="nos[]" value="1" min="1"
+                                        style="width:30px;">
+                                </div>
+                            </td>
+
+                            <td class="text-end">
+                                <span class="totalArea" name="area[]">
+                                    0.00
+                                </span>
+                                 <input type="hidden" name="area[]" class="area-input">
+                            </td>
+
+                            <td>
+                                <button class="btn btn-danger btn-sm removeRow" type="button">
+                                    <i class="ti ti-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                `;
+
+                itemTable.insertAdjacentHTML("beforeend", row);
                 calculateArea();
+                calculateTotal();
 
+            });
+
+
+            $(document).on('input', '.nos-input, .width-input, .height-input', function() {
+                calculateArea();
             });
 
             function calculateArea() {
 
-                let width = parseFloat($('.width').val()) || 0;
-                let height = parseFloat($('.height').val()) || 0;
-                let nos = parseFloat($('.nos').val()) || 0;
+                $('#deductionTable tr').each(function() {
 
-                let area = 0;
+                    let width = parseFloat($(this).find('.width-input').val()) || 0;
+                    let height = parseFloat($(this).find('.height-input').val()) || 0;
+                    let nos = parseFloat($(this).find('.nos-input').val()) || 0;
 
-                area = width * height * nos;
+                    let area = width * height * nos;
 
-                $('#area').val(area.toFixed(2));
+                    $(this).find('.totalArea').text(area.toFixed(2));
+                    $(this).find('.area-input').val(area.toFixed(2));
+                });
+
+                calculateTotal();
             }
 
+            document.addEventListener("click", function(e) {
+                if (e.target.closest(".removeRow")) {
+                    let row = e.target.closest("tr");
+                    if (document.querySelectorAll("#deductionTable tr").length > 1) {
+                        row.remove();
+                        calculateArea();
+                    }
+                }
 
+            });
+
+
+            function calculateTotal() {
+
+                let total_area = 0;
+
+                $('.totalArea').each(function() {
+
+                    total_area += parseFloat($(this).text()) || 0;
+
+                });
+
+                $('#subtotalDisplay').text(total_area.toFixed(2));
+                $('#total_area').val(total_area.toFixed(2));
+            }
 
 
         });

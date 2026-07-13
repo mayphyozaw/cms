@@ -17,20 +17,11 @@ class DrawingMeasurementDetailController extends Controller
     {
         $project->load('client');
         
-        // $details = DrawingMeasurementDetail::where(
-        //     'drawing_measurement_id',
-        //     $measurement->id
-        // )->get();
         $details = DrawingMeasurementDetail::with('drawingMeasurement')->get();
         
         return view('admin.backend.projectmanage.projects.drawing-measurement-detail.index', compact('project','measurement', 'details'));
 
     }
 
-    public function create(Project $project)
-    {
-        $project->load('client');
-        $drawings = Drawings::all();
-        $drawing_types = DrawingTypes::all();
-    }
+    
 }

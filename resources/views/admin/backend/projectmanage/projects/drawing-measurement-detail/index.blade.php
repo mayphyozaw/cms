@@ -220,6 +220,7 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center" style="background-color: #9dd2e7">No.</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Deduction</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Description</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Formula</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Nos</th>
@@ -237,37 +238,55 @@
                                     @foreach ($details as $detail)
                                         <tr>
                                             <td>
-                                                {{$loop->iteration}}
+                                                {{ $loop->iteration }}
+                                            </td>
+                                            
+                                            <td class="text-center">
+                                                <a href="{{ route('projectmanage.projects.drawing-measurement-deduction.create', [
+                                                    'project' => $project->id,
+                                                    'detail' => $detail->id,]) }}"
+                                                    class="btn btn-sm btn-outline-danger shadow">
+                                                    Deduction
+                                                </a>
+                                            </td>
+
+                                            {{-- <td>
+                                                @if ($detail->drawingMeasurement->category->formula_types == 'brick_wall_area')
+                                                    <a href="{{ route('projectmanage.projects.drawing-measurement-deduction.create', [$project, $detail]) }}"
+                                                        class="btn btn-sm bg-primary text-white">
+                                                        Deduction
+                                                    </a>
+                                                @endif
+                                            </td> --}}
+                                            <td>
+                                                {{ $detail->description }}
                                             </td>
                                             <td>
-                                                {{$detail->description}}
+                                                {{ $detail->drawingMeasurement->category->formula_types }}
                                             </td>
                                             <td>
-                                                {{$detail->formula_type}}
+                                                {{ $detail->nos }}
                                             </td>
                                             <td>
-                                                {{$detail->nos}}
+                                                {{ $detail->length }}
                                             </td>
                                             <td>
-                                                {{$detail->length}}
+                                                {{ $detail->width }}
                                             </td>
                                             <td>
-                                                {{$detail->width}}
+                                                {{ $detail->height }}
                                             </td>
                                             <td>
-                                                {{$detail->height}}
+                                                {{ $detail->deduction ?? '0' }}
                                             </td>
                                             <td>
-                                                {{$detail->deduction}}
+                                                {{ $detail->gross_quantity }}
                                             </td>
                                             <td>
-                                                {{$detail->gross_quantity}}
+                                                {{ $detail->net_quantity }}
                                             </td>
                                             <td>
-                                                {{$detail->net_quantity}}
-                                            </td>
-                                            <td>
-                                                {{$detail->unit}}
+                                                {{ $detail->unit }}
                                             </td>
                                         </tr>
                                     @endforeach

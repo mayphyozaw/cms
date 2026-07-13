@@ -248,11 +248,12 @@ Route::middleware('auth', 'notBlocked')->group(function () {
                 Route::resource('drawing-type', DrawingTypeController::class);
                 Route::resource('drawing-measurements', DrawingMeasurementsController::class);
                 Route::resource('drawing-measurement-detail', DrawingMeasurementDetailController::class);
-                
-                Route::get('/drawing-measurement-deduction/create/{detailId}',[DrawingMeasurementDeductionController::class, 'create'])->name('projectmanage.projects.drawing-measurement-deduction.create');
-                Route::post('/drawing-measurement-details/{detail}/deductions',[DrawingMeasurementDeductionController::class, 'store'])->name('projectmanage.projects.drawing-measurement-deduction.store');
-                
+                // Route::get('/drawing-measurements/{measurement}/detail',[DrawingMeasurementDetailController::class, 'index'])->name('drawing-measurement-detail.index');
+
+
                 // Route::resource('drawing-measurement-deduction', DrawingMeasurementDeductionController::class);
+                Route::get('/drawing-measurement-detail/{detail}/deduction/create',[DrawingMeasurementDeductionController::class, 'create'])->name('drawing-measurement-deduction.create');
+                Route::post('/drawing-measurement-detail/{detail}/deduction/store',[DrawingMeasurementDeductionController::class, 'store'])->name('drawing-measurement-deduction.store');
                 Route::resource('measurement-types', MeasurementTypeController::class);
                 Route::resource('work-types', WorkTypeController::class);
                 Route::resource('measurement-categories', MeasurementCategoriesController::class);
