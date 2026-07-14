@@ -18,5 +18,10 @@ class MeasurementCategories extends Model
     {
         return $this->belongsTo(WorkType::class);
     }
+
+    public function materialMapping()
+    {
+        return $this->belongsTo(MaterialMappings::class);
+    }
     
 }

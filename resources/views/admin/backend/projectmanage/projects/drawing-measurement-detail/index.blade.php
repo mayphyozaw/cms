@@ -248,6 +248,13 @@
                                                     class="btn btn-sm btn-outline-danger shadow">
                                                     Deduction
                                                 </a>
+                                               
+                                                <a href="{{ route('projectmanage.projects.drawing-measurement-deduction.index', [
+                                                    'project' => $project->id,
+                                                    'detail' => $detail->id,]) }}"
+                                                    class="btn btn-sm btn-outline-success shadow">
+                                                    Deduction Detail
+                                                </a>
                                             </td>
 
                                             {{-- <td>

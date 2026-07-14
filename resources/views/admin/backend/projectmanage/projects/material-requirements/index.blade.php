@@ -184,7 +184,7 @@
                                     <tr>
 
                                         <th class="text-center" style="background-color: #9dd2e7">No</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Code</th>
+                                        {{-- <th class="text-center" style="background-color: #9dd2e7">Code</th> --}}
                                         <th class="text-center" style="background-color: #9dd2e7">Material</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Raw Qty</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Base Qty</th>
@@ -204,9 +204,9 @@
                                                 {{ $loop->iteration }}
                                             </td>
 
-                                            <td class="text-center">
-                                                {{ $materialRequirement->materialMapping->mixRatio->code }}
-                                            </td>
+                                            {{-- <td class="text-center">
+                                                {{ $materialRequirement->materialMapping?->mixRatio?->code }}
+                                            </td> --}}
 
                                             <td class="text-center">
                                                 {{ $materialRequirement->material->name }}

@@ -216,7 +216,7 @@
                                 </label>
                                 <div class="col-sm-9">
                                     <input type="text" name="consumption_ratio" id="consumption_ratio_input"
-                                        class="form-control" readonly
+                                        class="form-control"
                                         value="{{$materialMapping->consumption_ratio}}">
                                 </div>
                             </div>

@@ -80,7 +80,7 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-3" hidden>
+                            <div class="row mb-3">
 
                                 <label class="col-sm-3 form-label">
                                     Measurement Categories:
@@ -285,7 +285,7 @@
                 }else if (type === 'fixed') {
 
                     $('#consumption_ratio_div').show();
-                    $('#consumption_ratio_input').val(1);
+                    $('#consumption_ratio_input').val();
 
                 } else if (type === 'percentage') {
 
@@ -314,6 +314,7 @@
                 }
 
             });
+            
 
             $('#percentage_value').on('keyup change', function() {
 

@@ -32,10 +32,10 @@ class MaterialRequirementsController extends Controller
         return view('admin.backend.projectmanage.projects.material-requirements.create', compact('project', 'drawingMeasurements', 'materialMappings', 'variableAssets', 'mixRatios'));
     }
 
-   
+
     public function store(Request $request, Project $project)
     {
-        
+
         $material = VariableAsset::findOrFail($request->variable_asset_id);
         $drawingMeasurement = DrawingMeasurement::findOrFail($request->drawing_measurement_id);
         $materialMapping = MaterialMappings::findOrFail($request->material_mapping_id);
@@ -52,7 +52,7 @@ class MaterialRequirementsController extends Controller
                 break;
 
             case 'fixed':
-                $consumption_ratio = 1;
+                $consumption_ratio = $request->consumption_ratio;
                 break;
 
             case 'percentage':
@@ -65,10 +65,18 @@ class MaterialRequirementsController extends Controller
         }
 
         $raw_quantity = $drawingMeasurement->quantity;
-        
-        $dryVolume = $raw_quantity * $materialMapping->mixRatio->dry_volume_factor;
 
-        
+        $dryVolume = 0;
+
+        if (
+            $consumption_type === 'mix_ratio'
+            && $materialMapping->mixRatio
+        ) {
+            $dryVolume = $raw_quantity * $materialMapping->mixRatio->dry_volume_factor;
+        }
+
+
+
         if ($consumption_type === 'mix_ratio') {
             $base_quantity = $dryVolume * $consumption_ratio;
         } else {
@@ -111,9 +119,9 @@ class MaterialRequirementsController extends Controller
     }
 
 
-public function update(Request $request, Project $project)
+    public function update(Request $request, Project $project)
     {
-        
+
         $material = VariableAsset::findOrFail($request->variable_asset_id);
         $drawingMeasurement = DrawingMeasurement::findOrFail($request->drawing_measurement_id);
         $materialMapping = MaterialMappings::findOrFail($request->material_mapping_id);
@@ -143,10 +151,10 @@ public function update(Request $request, Project $project)
         }
 
         $raw_quantity = $drawingMeasurement->quantity;
-        
+
         $dryVolume = $raw_quantity * $materialMapping->mixRatio->dry_volume_factor;
 
-        
+
         if ($consumption_type === 'mix_ratio') {
             $base_quantity = $dryVolume * $consumption_ratio;
         } else {

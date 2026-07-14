@@ -155,13 +155,13 @@
                                 </a>
                             </li>
 
-                            <li class="nav-item me-3">
+                            {{-- <li class="nav-item me-3">
                                 <a href="{{ route('projectmanage.projects.drawing-measurement-deduction.index', $project->id) }}"
                                     class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.drawing-measurement-deduction.index') ? 'active' : '' }}">
                                     <i class="ti ti-device-laptop me-2"></i>
                                     Drawing Measurement Deduction
                                 </a>
-                            </li>
+                            </li> --}}
 
                             {{-- <li class="nav-item me-3">
                                 <a href="{{ route('projectmanage.projects.measurement-types.index', $project->id) }}"
@@ -210,7 +210,8 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center" style="background-color: #9dd2e7">No.</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Type</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Opening Type</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Detail Description</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Description</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Width</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Height</th>
@@ -220,14 +221,19 @@
                                 </thead>
 
                                 <tbody>
-                                    @foreach ($deductions as $deduction)
+                                    @foreach ($detail->deductions as $deduction)
                                         <tr>
                                             <td class="text-center">
                                                 {{ $loop->iteration }}
                                             </td>
                                             <td class="text-center">
                                                 <span class="badge bg-primary">
-                                                    {{ $deduction->type }}
+                                                    {{ $deduction->drawingMeasurementDetail->description }}
+                                                </span>
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="badge bg-primary">
+                                                    {{ $deduction->opening_type }}
                                                 </span>
                                             </td>
 
@@ -253,7 +259,7 @@
                                                 {{ number_format($deduction->area, 2) }}
                                             </td>
 
-                                            <td class="text-center" hidden>
+                                            {{-- <td class="text-center" hidden>
                                                 <a class="btn btn-icon btn-sm btn-info"
                                                     href="{{ route('projectmanage.projects.drawing-measurements.edit', [$project->id, $drawingMeasurementDetail->id]) }}">
                                                     <i class="ti ti-edit"></i>
@@ -267,7 +273,9 @@
                                                         <i class="ti ti-trash"></i>
                                                     </button>
                                                 </form>
-                                            </td>
+                                            </td> --}}
+                                            {{-- <td></td> --}}
+                                            
                                         </tr>
                                     @endforeach
 
@@ -278,7 +286,7 @@
                                             Total Deduction Area
                                         </th>
                                         <th class="text-end">
-                                            {{ number_format($deductions->sum('area'), 2) }}
+                                            {{ number_format($deduction->sum('area'), 2) }}
                                         </th>
                                     </tr>
                                 </tfoot>

@@ -253,6 +253,7 @@ Route::middleware('auth', 'notBlocked')->group(function () {
 
                 // Route::resource('drawing-measurement-deduction', DrawingMeasurementDeductionController::class);
                 Route::get('/drawing-measurement-detail/{detail}/deduction/create',[DrawingMeasurementDeductionController::class, 'create'])->name('drawing-measurement-deduction.create');
+                Route::get('/drawing-measurement-detail/{detail}/deduction/index',[DrawingMeasurementDeductionController::class, 'index'])->name('drawing-measurement-deduction.index');
                 Route::post('/drawing-measurement-detail/{detail}/deduction/store',[DrawingMeasurementDeductionController::class, 'store'])->name('drawing-measurement-deduction.store');
                 Route::resource('measurement-types', MeasurementTypeController::class);
                 Route::resource('work-types', WorkTypeController::class);

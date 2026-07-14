@@ -11,11 +11,11 @@ use Illuminate\Support\Facades\DB;
 
 class DrawingMeasurementDeductionController extends Controller
 {
-    public function index(Project $project, $detailId)
+    public function index(Project $project, DrawingMeasurementDetail $detail)
     {
         $project->load('client');
-        $deductions = DrawingMeasurementDeduction::with('drawingMeasurementDetail')->get();
-        return view('admin.backend.projectmanage.projects.drawing-measurement-deduction.index', compact('project', 'deductions'));
+        // $deductions = DrawingMeasurementDeduction::with('drawingMeasurementDetail')->get();
+        return view('admin.backend.projectmanage.projects.drawing-measurement-deduction.index', compact('project', 'detail'));
     }
 
 

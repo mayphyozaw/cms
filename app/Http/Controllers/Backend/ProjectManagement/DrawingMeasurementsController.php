@@ -164,6 +164,7 @@ class DrawingMeasurementsController extends Controller
                 'width' => $row['width'],
                 'height' => $row['height'],
                 'gross_quantity' => $row['quantity'],
+                'deduction' => $row['deduction'],
                 'net_quantity' => $row['quantity'],
                 'unit' => $row['unit'],
             ]);

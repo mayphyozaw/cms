@@ -20,8 +20,8 @@
             </div>
             <div class="gap-2 d-flex align-items-center flex-wrap">
 
-                <a href="{{route('projectmanage.projects.index')}}" class="btn btn-outline-light shadow" >
-                     <span style="color:black">{{ $project->client->project_code }} @
+                <a href="{{ route('projectmanage.projects.index') }}" class="btn btn-outline-light shadow">
+                    <span style="color:black">{{ $project->client->project_code }} @
                         {{ $project->client->name }} - ({{ $project->client->length }} * {{ $project->client->width }}) -
                         {{ $project->client->building_area }} sqft
                     </span>
@@ -163,7 +163,7 @@
                                 @csrf
 
 
-                                
+
 
                                 <div class="row mb-3">
 
@@ -204,7 +204,8 @@
                                                 <option value="">Select Material Mapping</option>
                                                 @foreach ($materialMappings as $materialMapping)
                                                     <option value="{{ $materialMapping->id }}">
-                                                        {{ $materialMapping->category->category_name }}
+                                                        {{ $materialMapping->category?->category_name }} -
+                                                        {{ $materialMapping->material?->name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -434,34 +435,7 @@
     </script>
     <script>
         $(document).ready(function() {
-            $('#material_mapping_id').on('change', function() {
 
-                let materialMappingId = $(this).val();
-
-                $.ajax({
-                    url: "{{ route('projectmanage.material_mapping_get') }}",
-                    type: 'GET',
-                    data: {
-                        material_mapping_id: materialMappingId,
-                    },
-                    success: function(data) {
-                        
-                        
-                        $('#consumption_type').val(data.consumption_type);
-                        $('#variable_asset_id').val(data.variable_asset_id);
-                        $('#coverage_qty').val(data.coverage_qty);
-                        $('#consumption_ratio').val(data.consumption_ratio);
-                        $('#wastage_percentage').val(data.wastage_percentage);
-                        $('#material_unit').val(data.unit);
-
-                        if (data.mix_ratio_template_id) {
-                            $('#mix_ratio_template_id').val(data.mix_ratio_template_id);
-                        }
-
-                        calculateBaseQuantity();
-                    }
-                });
-            });
 
 
             $('#drawing_measurement_id').on('change', function() {
@@ -478,14 +452,66 @@
 
                         // console.log(data);
 
+
+
+                        $('#coverage_qty').val(data.coverage_qty);
+                        $('#wastage_percentage').val(data.wastage_percentage);
                         $('#quantity').val(data.quantity);
+                        $('#material_unit').val(data.unit);
                         $('#unit').val(data.unit);
+                        if (data.mix_ratio_template_id) {
+                            $('#mix_ratio_template_id').val(data.mix_ratio_template_id);
+                        }
 
                         calculateBaseQuantity();
                     }
                 });
             });
 
+
+            $('#material_mapping_id').on('change', function() {
+
+                let materialMappingId = $(this).val();
+
+                $.ajax({
+                    url: "{{ route('projectmanage.material_mapping_get') }}",
+                    type: 'GET',
+                    data: {
+                        material_mapping_id: materialMappingId,
+                    },
+                    success: function(data) {
+
+
+                        $('#consumption_type').val(data.consumption_type).trigger('change');;
+                        $('#variable_asset_id').val(data.variable_asset_id).trigger('change');
+                        $('#coverage_qty').val(data.coverage_qty);
+                        $('#consumption_ratio').val(data.consumption_ratio);
+                        $('#dry-volume-factor').val(data.dry_volume_factor);
+                        $('#wastage_percentage').val(data.wastage_percentage);
+                        $('#material_unit').val(data.unit);
+
+                        if (data.mix_ratio_template_id) {
+                            $('#mix_ratio_template_id').val(data.mix_ratio_template_id);
+                        }
+
+                        calculateBaseQuantity();
+                    }
+                });
+            });
+
+
+            // $('#material_mapping_id').on('change', function() {
+
+            //     let id = $(this).val();
+
+            //     let mapping = mappings.find(x => x.id == id);
+
+            //     $('#consumption_type').val(mapping.consumption_type);
+            //     $('#consumption_ratio').val(mapping.consumption_ratio);
+            //     $('#coverage_qty').val(mapping.coverage_qty);
+            //     $('#wastage_percentage').val(mapping.wastage_percentage);
+
+            // });
 
             $('#mix_ratio_template_id').on('change', function() {
 
