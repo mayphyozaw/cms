@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class VariableAsset extends Model
 {
     protected $fillable = [
-    'name',
-    'material_code',
-    'variable_category_id',
-    'unit',
-    'quantity',
-    'remarks',
-];
+        'name',
+        'material_code',
+        'variable_category_id',
+        'unit',
+        'quantity',
+        'remarks',
+    ];
 
     public function variableCategory()
     {
@@ -22,5 +22,16 @@ class VariableAsset extends Model
     public function fixedAsset()
     {
         return $this->belongsTo(FixedAsset::class, 'fixed_asset_id');
+    }
+
+    public function materialRate()
+    {
+        return $this->hasMany(MaterialRate::class);
+    }
+
+    public function latestRate()
+    {
+        return $this->hasOne(MaterialRate::class)
+            ->latestOfMany('effective_date');
     }
 }

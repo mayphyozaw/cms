@@ -6,7 +6,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Variable Assets</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('material.variableassets.index')}}">Variable Assets</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Create Variable Assets</li>
                 </ol>
             </nav>

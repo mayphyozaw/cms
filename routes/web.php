@@ -19,6 +19,8 @@ use App\Http\Controllers\Backend\EngineerAssign\EnigneerAssignController;
 use App\Http\Controllers\Backend\EngineerManage\EngineersController;
 use App\Http\Controllers\Backend\EngineerRequest\EngineerRequestController;
 use App\Http\Controllers\Backend\EngineerRequest\QSTeamCheckController as EngineerRequestQSTeamCheckController;
+use App\Http\Controllers\Backend\LaborManage\LaborRateController;
+use App\Http\Controllers\Backend\LaborManage\LaborTypeController;
 use App\Http\Controllers\Backend\LogisticsTeamCheck\LogisticsTeamCheckController;
 use App\Http\Controllers\Backend\MaterialManagement\AssetController;
 use App\Http\Controllers\Backend\MaterialManagement\FixedAssets\CategoryController;
@@ -32,6 +34,8 @@ use App\Http\Controllers\Backend\ProjectManagement\DrawingMeasurementDetailContr
 use App\Http\Controllers\Backend\ProjectManagement\DrawingMeasurementsController;
 use App\Http\Controllers\Backend\ProjectManagement\DrawingTypeController;
 use App\Http\Controllers\Backend\ProjectManagement\MaterialMappingController;
+use App\Http\Controllers\Backend\ProjectManagement\MaterialRateController;
+use App\Http\Controllers\Backend\ProjectManagement\MaterialRateHistoryController;
 use App\Http\Controllers\Backend\ProjectManagement\MaterialRequirementsController;
 use App\Http\Controllers\Backend\ProjectManagement\MeasurementCategoriesController;
 use App\Http\Controllers\Backend\ProjectManagement\MeasurementTypeController;
@@ -203,14 +207,24 @@ Route::middleware('auth', 'notBlocked')->group(function () {
         Route::post('update', [CategoryController::class, 'update'])->name('update');
         Route::get('category-datatable', [CategoryController::class, 'categoryDataTable'])->name('category-datatable');
 
-        Route::resource('variableassets', VariableAssetsController::class);
-        Route::get('variableassets-datatable', [VariableAssetsController::class, 'variableassetsDataTable'])->name('variableassets-datatable');
-
+        
         Route::resource('variable-category', VariableCategoryController::class)->names('variable-category');
         Route::post('update', [VariableCategoryController::class, 'update'])->name('update');
         Route::get('variable-category-datatable', [VariableCategoryController::class, 'variablecategoryDataTable'])->name('variable-category-datatable');
+
+
+        Route::resource('variableassets', VariableAssetsController::class);
+        Route::get('variableassets-datatable', [VariableAssetsController::class, 'variableassetsDataTable'])->name('variableassets-datatable');
+
+        Route::resource('rate', MaterialRateController::class);
     });
 
+    Route::prefix('labor')->name('labor.')->group(function () {
+        Route::resource('type', LaborTypeController::class);
+        Route::resource('labor-rate', LaborRateController::class);
+    });
+
+    
     Route::prefix('configuration')->name('configuration.')->group(function () {
         Route::resource('role', RoleController::class);
         Route::get('/role-datatable', [RoleController::class, 'roleDataTable'])->name('role-datatable');
@@ -264,6 +278,8 @@ Route::middleware('auth', 'notBlocked')->group(function () {
                 Route::resource('material-mappings', MaterialMappingController::class);
                 Route::resource('material-requirements', MaterialRequirementsController::class);
             });
+
+        
 
         Route::get('drawings_get', [DrawingMeasurementsController::class, 'getDrawing'])->name('drawings_get');
         Route::get('worktype_get', [DrawingMeasurementsController::class, 'getWorkType'])->name('worktype_get');

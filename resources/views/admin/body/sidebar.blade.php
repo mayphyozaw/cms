@@ -357,11 +357,66 @@
                                     </a>
                                 </li>
 
+                                <li>
+                                    <a href="{{ route('material.rate.index') }}"
+                                        class="{{ request()->routeIs('material.rate.*') ? 'active' : '' }}">
+                                        <i class="ti ti-icons">
+                                        </i><span>Material Rate</span>
+                                    </a>
+                                </li>
+
+
 
                             </ul>
                         </li>
                     </ul>
                 </li>
+
+
+
+                <li>
+                    <ul>
+                        <li class="submenu {{ request()->routeIs('labor.*') ? 'menu-selected' : '' }}">
+                            <a href="javascript:void(0);">
+                                <i class="ti ti-database"></i>
+                                <span>Labor Manage</span>
+                                <span class="menu-arrow"></span>
+                            </a>
+
+                            <ul style="{{ request()->routeIs('labor.type.*') ? 'display:block;' : '' }}">
+                                <li>
+                                    <a href="{{ route('labor.type.index') }}"
+                                        class="{{ request()->routeIs('labor.type.*') ? 'active' : '' }}">
+                                        <i class="ti ti-icons">
+                                        </i><span>Labor Type</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="{{ route('labor.labor-rate.index') }}"
+                                        class="{{ request()->routeIs('labor.labor-rate.*') ? 'active' : '' }}">
+                                        <i class="ti ti-icons">
+                                        </i><span>Labor Rate</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                            {{-- <ul style="{{ request()->routeIs('labor.labor-rate.*') ? 'display:block;' : '' }}">
+                                <li>
+                                    <a href="{{ route('labor.labor-rate.index') }}"
+                                        class="{{ request()->routeIs('labor.labor-rate.*') ? 'active' : '' }}">
+                                        <i class="ti ti-icons">
+                                        </i><span>Labor Rate</span>
+                                    </a>
+                                </li>
+
+                            </ul> --}}
+                        </li>
+                    </ul>
+                </li>
+                 
+                
 
                 {{-- @php
                     $isActive = request()->routeIs('engineer-requests.*') || $hasProcessingRequests;
