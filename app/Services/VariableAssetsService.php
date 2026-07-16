@@ -51,6 +51,9 @@ class VariableAssetsService
             ->addColumn('variable_category_name', function ($variableAssets) {
                 return $variableAssets->variableCategory->variable_category_name ?? '';
             })
+            ->addColumn('boq_category_name', function ($variableAssets) {
+                return $variableAssets->boqCategory->name ?? '';
+            })
             
             ->editColumn('unit', function ($variableAssets) {
                 return $variableAssets->unit ?? '';
@@ -60,6 +63,8 @@ class VariableAssetsService
                 return view('admin.backend.materialmanage.variableassets._action', compact('variableAssets'))->render();
             })
             ->rawColumns([
+                
+                'boq_category_name',
                 'action',
             ])
             ->make(true);

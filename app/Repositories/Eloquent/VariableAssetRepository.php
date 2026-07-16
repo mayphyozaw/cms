@@ -48,10 +48,11 @@ class VariableAssetRepository implements VariableAssetRepoInterface
                 'material_code',
                 'name',
                 'variable_category_id',
+                'boq_category_id',
                 'unit',
                 'quantity',
             ])
-            ->with('variableCategory');
+            ->with(['variableCategory', 'boqCategory']);
     }
 
 }

@@ -10,6 +10,7 @@ class VariableAsset extends Model
         'name',
         'material_code',
         'variable_category_id',
+        'boq_category_id',
         'unit',
         'quantity',
         'remarks',
@@ -18,6 +19,11 @@ class VariableAsset extends Model
     public function variableCategory()
     {
         return $this->belongsTo(VariableCategory::class, 'variable_category_id');
+    }
+
+    public function boqCategory()
+    {
+        return $this->belongsTo(BoqCategories::class, 'boq_category_id');
     }
     public function fixedAsset()
     {

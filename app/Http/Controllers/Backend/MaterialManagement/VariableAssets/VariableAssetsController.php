@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\MaterialManagement\VariableAssets;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VariableAssets\VariableAssetStoreRequest;
 use App\Http\Requests\VariableAssets\VariableAssetUpdateRequest;
+use App\Models\BoqCategories;
 use App\Models\VariableAsset;
 use App\Models\VariableCategory;
 use App\Services\ResponseService;
@@ -29,7 +30,8 @@ class VariableAssetsController extends Controller
     public function create()
     {
         $categories = VariableCategory::all();
-        return view('admin.backend.materialmanage.variableassets.create', compact('categories'));
+        $boqCategories = BoqCategories::all();
+        return view('admin.backend.materialmanage.variableassets.create', compact('categories','boqCategories'));
     }
 
     public function variableassetsDataTable(Request $request)
@@ -50,6 +52,7 @@ class VariableAssetsController extends Controller
             'name'  => $request->name,
             'material_code'  => $variableAssetCode,
             'variable_category_id' => $request->variable_category_id,
+            'boq_category_id' => $request->boq_category_id,
             'unit' => $request->unit,
             'quantity' => $request->quantity,
             'remarks' => $request->remarks ?? null,
@@ -69,7 +72,8 @@ class VariableAssetsController extends Controller
     {
         $variableAsset = $this->variableAssetsService->find($id);
         $categories = VariableCategory::all();
-        return view('admin.backend.materialmanage.variableassets.edit', compact('variableAsset', 'categories'));
+        $boqCategories = BoqCategories::all();
+        return view('admin.backend.materialmanage.variableassets.edit', compact('variableAsset', 'categories','boqCategories'));
     }
 
     public function update(VariableAssetUpdateRequest $request, $id)
@@ -78,6 +82,7 @@ class VariableAssetsController extends Controller
             'name'        => $request->name,
             'material_code' => $request->material_code,
             'variable_category_id' => $request->variable_category_id,
+            'boq_category_id' => $request->boq_category_id,
             'unit'        => $request->unit,
             'quantity'   => $request->quantity,
             'remarks'     => $request->remarks,

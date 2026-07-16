@@ -22,7 +22,7 @@ class LaborTypeUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            
+            'boq_category_id'   => 'required|exists:boq_categories,id',
             'name' => 'required|string|max:255',
             'unit' => 'required|string',
         ];

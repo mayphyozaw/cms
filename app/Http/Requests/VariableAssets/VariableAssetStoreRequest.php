@@ -24,6 +24,7 @@ class VariableAssetStoreRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'variable_category_id'   => 'required|exists:variable_categories,id',
+            'boq_category_id'   => 'required|exists:boq_categories,id',
             'unit' => 'required|string|max:255',
             // 'quantity' => 'required|numeric|min:0',
         ];

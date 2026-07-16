@@ -4,12 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class BoqCategories extends Model
+class EquipmentCategory extends Model
 {
     protected $fillable = [
         'name',
-        'description'
+        'description',
+        
     ];
-
-    
 }

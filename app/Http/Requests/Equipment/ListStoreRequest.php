@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\LaborType;
+namespace App\Http\Requests\Equipment;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LaborTypeStoreRequest extends FormRequest
+class ListStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,10 +22,21 @@ class LaborTypeStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            
             'boq_category_id'   => 'required|exists:boq_categories,id',
+            'equipment_category_id'   => 'required|exists:equipment_categories,id',
             'name' => 'required|string|max:255',
-            'unit' => 'required|string',
+            'brand' => 'nullable',
+            'model' => 'nullable',
+            'serial_no' => 'nullable',
+            'capacity_spec' => 'nullable',
+            'rate_unit' => 'required|string',
+            'ownership_type' => 'required|string',
+            'purchase_date' => 'required|date',
+            'status' => 'nullable',
+            'remarks' => 'nullable',
+
         ];
     }
+
+
 }

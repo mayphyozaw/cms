@@ -170,6 +170,7 @@
                                 <th class="text-center" style="background-color: #9dd2e7">Variable Asset Code</th>
                                 <th class="text-center" style="background-color: #9dd2e7"> Item Name</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Variable Category Name</th>
+                                <th class="text-center" style="background-color: #9dd2e7">Boq Category Name</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Unit</th>
                                 <th class="text-center" style="background-color: #9dd2e7">Action</th>
                             </tr>
@@ -246,6 +247,11 @@
                     {
                         data: 'variable_category_name',
                         name: 'variable_category_name',
+                        className: 'text-center',
+                    },
+                    {
+                        data: 'boq_category_name',
+                        name: 'boq_category_name',
                         className: 'text-center',
                     },
                     {

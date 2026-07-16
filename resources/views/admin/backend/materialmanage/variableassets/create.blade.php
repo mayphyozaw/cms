@@ -57,10 +57,25 @@
                                 <div class="mb-3">
                                     <label class="form-label">
                                         Choose Asset Category</label>
-                                    <select name="variable_category_id" id="variable_category_id" class="form-control form-select">
+                                    <select name="variable_category_id" id="variable_category_id" class="form-control select2">
                                         <option value="">Select Category</option>
                                         @foreach ($categories as $item)
                                             <option value="{{ $item->id }}">{{ $item->variable_category_name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label">
+                                        Choose Boq Category</label>
+                                    <select name="boq_category_id" id="boq_category_id" class="form-control select2">
+                                        <option value="">Select Category</option>
+                                        @foreach ($boqCategories as $boqCategory)
+                                            <option value="{{ $boqCategory->id }}">
+                                                {{ $boqCategory->name }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -117,4 +132,10 @@
 @endsection
 @push('scripts')
     {!! JsValidator::formRequest('App\Http\Requests\VariableAssets\VariableAssetStoreRequest', '#submit-form') !!}
+
+    <script>
+        $('.select2').select2({
+            width: '100%'
+        });
+    </script>
 @endpush

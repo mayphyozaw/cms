@@ -372,8 +372,6 @@
                     </ul>
                 </li>
 
-
-
                 <li>
                     <ul>
                         <li class="submenu {{ request()->routeIs('labor.*') ? 'menu-selected' : '' }}">
@@ -401,21 +399,40 @@
                                 </li>
 
                             </ul>
-
-                            {{-- <ul style="{{ request()->routeIs('labor.labor-rate.*') ? 'display:block;' : '' }}">
-                                <li>
-                                    <a href="{{ route('labor.labor-rate.index') }}"
-                                        class="{{ request()->routeIs('labor.labor-rate.*') ? 'active' : '' }}">
-                                        <i class="ti ti-icons">
-                                        </i><span>Labor Rate</span>
-                                    </a>
-                                </li>
-
-                            </ul> --}}
                         </li>
                     </ul>
                 </li>
                  
+                 <li>
+                    <ul>
+                        <li class="submenu {{ request()->routeIs('equipment.*') ? 'menu-selected' : '' }}">
+                            <a href="javascript:void(0);">
+                                <i class="ti ti-database"></i>
+                                <span>Equipment Manage</span>
+                                <span class="menu-arrow"></span>
+                            </a>
+
+                            <ul style="{{ request()->routeIs('equipment.category.*') ? 'display:block;' : '' }}">
+                                <li>
+                                    <a href="{{ route('equipment.category.index') }}"
+                                        class="{{ request()->routeIs('equipment.category.*') ? 'active' : '' }}">
+                                        <i class="ti ti-icons">
+                                        </i><span>Equipment Category</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="{{ route('equipment.lists.index') }}"
+                                        class="{{ request()->routeIs('equipment.lists.*') ? 'active' : '' }}">
+                                        <i class="ti ti-icons">
+                                        </i><span>Equipment</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
                 
 
                 {{-- @php

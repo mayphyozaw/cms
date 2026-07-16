@@ -19,6 +19,8 @@ use App\Http\Controllers\Backend\EngineerAssign\EnigneerAssignController;
 use App\Http\Controllers\Backend\EngineerManage\EngineersController;
 use App\Http\Controllers\Backend\EngineerRequest\EngineerRequestController;
 use App\Http\Controllers\Backend\EngineerRequest\QSTeamCheckController as EngineerRequestQSTeamCheckController;
+use App\Http\Controllers\Backend\EquipmentManage\EquipmentCategoryController;
+use App\Http\Controllers\Backend\EquipmentManage\EquipmentController;
 use App\Http\Controllers\Backend\LaborManage\LaborRateController;
 use App\Http\Controllers\Backend\LaborManage\LaborTypeController;
 use App\Http\Controllers\Backend\LogisticsTeamCheck\LogisticsTeamCheckController;
@@ -222,6 +224,11 @@ Route::middleware('auth', 'notBlocked')->group(function () {
     Route::prefix('labor')->name('labor.')->group(function () {
         Route::resource('type', LaborTypeController::class);
         Route::resource('labor-rate', LaborRateController::class);
+    });
+
+    Route::prefix('equipment')->name('equipment.')->group(function () {
+        Route::resource('category', EquipmentCategoryController::class);
+        Route::resource('lists', EquipmentController::class);
     });
 
     

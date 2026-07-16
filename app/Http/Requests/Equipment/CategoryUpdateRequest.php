@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\VariableAssets;
+namespace App\Http\Requests\Equipment;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class VariableAssetUpdateRequest extends FormRequest
+class CategoryUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,12 +22,9 @@ class VariableAssetUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'material_code' => 'required|string|max:255',
-            'name' => 'required|string|max:255',
-            'variable_category_id'   => 'required|exists:variable_categories,id',
-            'boq_category_id'   => 'required|exists:boq_categories,id',
-            'unit' => 'required|string|max:255',
             
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
         ];
     }
 }

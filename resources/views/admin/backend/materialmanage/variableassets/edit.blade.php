@@ -65,6 +65,25 @@
                                     </select>
                                 </div>
                             </div>
+
+
+                            <div class="col-lg-6 col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label">
+                                        Choose Boq Category</label>
+                                    <select name="boq_category_id" id="boq_category_id" class="form-control form-select">
+                                        <option value="">Select Category</option>
+                                        @foreach ($boqCategories as $boqCategory)
+                                             <option value="{{ $boqCategory->id }}"
+                                                {{ old('boq_category_id', $variableAsset->boq_category_id) == $boqCategory->id ? 'selected' : '' }}>
+                                                {{ $boqCategory->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+
                             <div class="col-lg-6 col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label fs-14">Unit</label>
