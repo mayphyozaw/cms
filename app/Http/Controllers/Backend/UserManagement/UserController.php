@@ -91,42 +91,38 @@ class UserController extends Controller
             $esign_img_file->move(public_path('/upload/user_images'), $esign_img_name);
         }
 
-        try {
-            $userData = [
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'phone' => $request->phone,
-                'address' => $request->address,
-                'employeetype'   => $request->employeetype,
-                'department'   => $request->department,
-                'employee_number' => $this->userService->generateCode($request->employee_number),
-                'gender'   => $request->gender,
-                'nrc'   => $request->nrc,
-                'nrcfrontphoto' => $nrc_front_img_name,
-                'nrcbackphoto' => $nrc_back_img_name,
-                'householdphoto' => $household_img_name,
-                'referenceletter' => $reference_letter_img_name,
-                'photo' => $user_img_name,
-                'esingphoto' => $esign_img_name,
-                'join' => $request->joindate,
-                'contact_person' => $request->contact_person,
-                'contact_number' => $request->contact_number,
-                'status' => 'active',
 
+        $userData = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'employeetype'   => $request->employeetype,
+            'department'   => $request->department,
+            'employee_number' => $this->userService->generateCode($request->employee_number),
+            'gender'   => $request->gender,
+            'nrc'   => $request->nrc,
+            'nrcfrontphoto' => $nrc_front_img_name,
+            'nrcbackphoto' => $nrc_back_img_name,
+            'householdphoto' => $household_img_name,
+            'referenceletter' => $reference_letter_img_name,
+            'photo' => $user_img_name,
+            'esingphoto' => $esign_img_name,
+            'join' => $request->joindate,
+            'contact_person' => $request->contact_person,
+            'contact_number' => $request->contact_number,
+            'status' => 'active',
 
-            ];
-            $user = $this->userService->create($userData);
-            $user->assignRole($request->role);
+        ];
+        $user = $this->userService->create($userData);
+        // $user->assignRole($request->role);
 
-            return redirect()->route('usermanage.index')
-                ->with([
-                    'message' => 'Successfully created',
-                    'alert-type' => 'success'
-                ]);
-        } catch (\Exception $e) {
-            return back()->with('error', $e->getMessage())->withInput();
-        }
+        return redirect()->route('usermanage.index')
+            ->with([
+                'message' => 'Successfully created',
+                'alert-type' => 'success'
+            ]);
     }
 
     public function edit($id)
@@ -239,7 +235,7 @@ class UserController extends Controller
         if ($request->filled('role')) {
             $user->syncRoles([$request->role]);
         }
-        
+
 
         return redirect()->route('usermanage.index')
             ->with('message', 'Successfully updated')

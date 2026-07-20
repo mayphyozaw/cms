@@ -114,4 +114,9 @@ class Project extends Model
     {
         return $this->hasMany(WorkType::class);
     }
+
+    public function boq()
+    {
+        return $this->hasMany(Boq::class);
+    }
 }

@@ -9,7 +9,7 @@ use App\Http\Controllers\Backend\AssetRequestController;
 use App\Http\Controllers\Backend\AssetRequestItemApprovalController;
 use App\Http\Controllers\Backend\BankManagement\BankController;
 use App\Http\Controllers\Backend\BQ\BoqCategoriesController;
-use App\Http\Controllers\Backend\BQ\BOQController;
+use App\Http\Controllers\Backend\BQ\BoqController;
 use App\Http\Controllers\Backend\ClientManagement\ClientController;
 use App\Http\Controllers\Backend\ClientManagement\QuotationProposalController;
 use App\Http\Controllers\Backend\Configuration\PermissionController;
@@ -21,6 +21,7 @@ use App\Http\Controllers\Backend\EngineerRequest\EngineerRequestController;
 use App\Http\Controllers\Backend\EngineerRequest\QSTeamCheckController as EngineerRequestQSTeamCheckController;
 use App\Http\Controllers\Backend\EquipmentManage\EquipmentCategoryController;
 use App\Http\Controllers\Backend\EquipmentManage\EquipmentController;
+use App\Http\Controllers\Backend\EquipmentManage\EquipmentRateController;
 use App\Http\Controllers\Backend\LaborManage\LaborRateController;
 use App\Http\Controllers\Backend\LaborManage\LaborTypeController;
 use App\Http\Controllers\Backend\LogisticsTeamCheck\LogisticsTeamCheckController;
@@ -147,6 +148,7 @@ Route::middleware('auth', 'notBlocked')->group(function () {
     Route::prefix('bq')->name('bq.')->group(function () {
         Route::resource('bqcategory', BoqCategoriesController::class);
         Route::resource('bqworkscope', WorkscopeController::class);
+        // Route::resource('boq', BoqController::class);
     });
 
     Route::resource('engineers', EngineersController::class);
@@ -229,6 +231,7 @@ Route::middleware('auth', 'notBlocked')->group(function () {
     Route::prefix('equipment')->name('equipment.')->group(function () {
         Route::resource('category', EquipmentCategoryController::class);
         Route::resource('lists', EquipmentController::class);
+        Route::resource('rate', EquipmentRateController::class);
     });
 
     
@@ -284,6 +287,9 @@ Route::middleware('auth', 'notBlocked')->group(function () {
                 Route::resource('mixRatio-details', MixRatioDetailsController::class);
                 Route::resource('material-mappings', MaterialMappingController::class);
                 Route::resource('material-requirements', MaterialRequirementsController::class);
+                Route::resource('boq',BoqController::class);
+                Route::get('/boq-approved/{boq}', [BoqController::class, 'approved'])->name('boq-approved');
+                Route::post('/boq-approved/{boq}', [BoqController::class, 'approvedStore'])->name('boq-approved.store');
             });
 
         

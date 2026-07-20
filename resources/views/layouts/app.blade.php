@@ -81,54 +81,82 @@
 
 <body>
     <div class="main-wrapper">
+
         @include('admin.body.header')
-        @include('layouts.sidebar')
 
-        @if (!request()->routeIs('dashboard'))
-            @include('admin.body.sidebar')
-        @endif
-
-        {{-- @if (!request()->routeIs('accounting*.'))
-            @include('admin.body.accounting.sidebar')
-        @endif --}}
-
+        {{-- Sidebar --}}
+        @include('admin.body.sidebar')
 
         <div class="page-wrapper">
             @yield('content')
             @include('admin.body.footer')
         </div>
+
     </div>
 
+    {{-- JS --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script src="{{ asset('backend/assets/js/bootstrap.bundle.min.js') }}"></script>
+
     <script src="{{ asset('backend/assets/plugins/simplebar/simplebar.min.js') }}"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+    <script src="{{ asset('backend/assets/js/moment.min.js') }}"></script>
+
+    <script src="{{ asset('backend/assets/plugins/daterangepicker/daterangepicker.js') }}"></script>
+
     <script src="{{ asset('backend/assets/js/script.js') }}"></script>
+
     {{-- Summernote --}}
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js"></script>
 
-    <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js') }}"></script>
-    <script src="{{ asset('backend/assets/plugins/simplebar/simplebar.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/plugins/datatables/js/jquery.dataTables.min.js') }}"></script>
-    {{-- <script src="{{ asset('backend/assets/plugins/datatables/js/dataTables.bootstrap5.min.js') }}"></script> --}}
-    <script src="{{asset('backend/assets/js/moment.min.js')}}" type="2feec2ecac7da57f288991d1-text/javascript"></script>
-    <script src="{{asset('backend/assets/plugins/daterangepicker/daterangepicker.js')}}" type="2feec2ecac7da57f288991d1-text/javascript"></script>
-    <script src="{{asset('backend/assets/plugins/apexchart/apexcharts.min.js')}}" type="2feec2ecac7da57f288991d1-text/javascript"></script>
-    <script src="{{asset('backend/assets/plugins/apexchart/chart-data.js')}}" type="2feec2ecac7da57f288991d1-text/javascript"></script>
-    <script src="{{asset('backend/assets/js/jsonscript.js')}}" type="2feec2ecac7da57f288991d1-text/javascript"></script>
-    {{-- <script src="{{ asset('backend/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}"
-        data-cf-settings="2feec2ecac7da57f288991d1-|49" defer></script> --}}
-
-    <!-- Select2 -->
-    {{-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> --}}
-
+    {{-- Select2 --}}
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <!-- Choices Js -->
-    {{-- <script src="{{asset('backend/assets/plugins/choices.js/public/assets/scripts/choices.min.js')}}" type="a1dcc44babf6ba6f47b105cc-text/javascript"></script> --}}
-    <script src="https://cdn.datatables.net/2.3.6/js/dataTables.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {{-- Choices --}}
+    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+
+    {{-- DataTable --}}
+    <script src="{{ asset('backend/assets/plugins/datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+    {{-- Toastr --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    {{-- SweetAlert --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {{-- Flatpickr --}}
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script src="{{ asset('vendor/jsvalidation/js/jsvalidation.js') }}"></script>
+
+    {{-- Apex Chart --}}
+    <script src="{{asset('backend/assets/plugins/apexchart/apexcharts.min.js')}}"></script>
+    <script src="{{asset('backend/assets/plugins/apexchart/chart-data.js')}}"></script>
+    <script src="{{asset('backend/assets/js/jsonscript.js')}}"></script>
+
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('[data-choices]');
+
+            elements.forEach(function(el) {
+                new Choices(el, {
+                    searchEnabled: true,
+                    itemSelectText: '',
+                });
+            });
+        });
+
+        flatpickr("#datetime", {
+            enableTime: true,
+            enableSeconds: true,
+            dateFormat: "Y-m-d H:i:S",
+            time_24hr: true
+        });
+    </script>
+
     <script>
         $(document).ready(function() {
 
@@ -160,32 +188,6 @@
                     break;
             }
         @endif
-    </script>
-
-    <script src="{{ asset('vendor/jsvalidation/js/jsvalidation.js') }}"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const elements = document.querySelectorAll('[data-choices]');
-
-            elements.forEach(function(el) {
-                new Choices(el, {
-                    searchEnabled: true,
-                    itemSelectText: '',
-                });
-            });
-        });
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script>
-        flatpickr("#datetime", {
-            enableTime: true,
-            enableSeconds: true,
-            dateFormat: "Y-m-d H:i:S",
-            time_24hr: true
-        });
     </script>
 
     @stack('scripts')

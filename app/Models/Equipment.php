@@ -32,4 +32,10 @@ class Equipment extends Model
     {
         return $this->belongsTo(EquipmentCategory::class, 'equipment_category_id');
     }
+
+    public function equipmentRate()
+    {
+        return $this->hasMany(EquipmentRate::class);
+    }
+
 }

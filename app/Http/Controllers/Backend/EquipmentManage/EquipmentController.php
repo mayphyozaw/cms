@@ -14,25 +14,30 @@ class EquipmentController extends Controller
 {
     public function index()
     {
-        $equipments = Equipment::with(['eqCategory','boqCategory'])->get();
-        return view('admin.backend.equipment-lists.index',compact('equipments'));
+        $equipments = Equipment::with([
+            'eqCategory',
+            'boqCategory'
+        ])
+            ->get()
+            ->sortBy('eqCategory.name');
+        return view('admin.backend.equipment-lists.index', compact('equipments'));
     }
 
     public function create()
     {
         $eqCategories = EquipmentCategory::all();
         $boqCategories = BoqCategories::all();
-        return view('admin.backend.equipment-lists.create',compact('eqCategories','boqCategories'));
+        return view('admin.backend.equipment-lists.create', compact('eqCategories', 'boqCategories'));
     }
 
     public function store(ListStoreRequest $request)
     {
-        
-        $lastEquipment = Equipment::latest('id')->first();
-        $nextId = $lastEquipment ? $lastEquipment->id + 1 : 1;
 
+        // $lastEquipment = Equipment::latest('id')->first();
+        // $nextId = $lastEquipment ? $lastEquipment->id + 1 : 1;
+       $nextId = (Equipment::max('id') ?? 0) + 1;
         $eqCode = 'Eq -' . str_pad($nextId, 4, '0', STR_PAD_LEFT);
-        
+
         Equipment::create([
             'equipment_code' => $eqCode,
             'boq_category_id' => $request->boq_category_id,
@@ -48,7 +53,7 @@ class EquipmentController extends Controller
             'status' => $request->status,
             'remarks' => $request->remarks,
         ]);
-        
+
         return redirect()
             ->route('equipment.lists.index')
             ->with([
@@ -63,7 +68,7 @@ class EquipmentController extends Controller
         $equipment = Equipment::findOrFail($id);
         $eqCategories = EquipmentCategory::all();
         $boqCategories = BoqCategories::all();
-        return view('admin.backend.equipment-lists.edit',compact('equipment','eqCategories','boqCategories'));
+        return view('admin.backend.equipment-lists.edit', compact('equipment', 'eqCategories', 'boqCategories'));
     }
 
     public function update(ListUpdateRequest $request, $id)
@@ -83,7 +88,7 @@ class EquipmentController extends Controller
             'status' => $request->status,
             'remarks' => $request->remarks,
         ]);
-        
+
         return redirect()
             ->route('equipment.lists.index')
             ->with([
@@ -92,7 +97,7 @@ class EquipmentController extends Controller
             ]);
     }
 
-    
+
 
     public function destroy($id)
     {

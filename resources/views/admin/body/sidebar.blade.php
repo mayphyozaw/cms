@@ -161,7 +161,7 @@
                                         class="{{ request()->routeIs('bq.bqcategory.*') ? 'active' : '' }}">
                                         <i class="ti ti-list-check">
                                         </i>
-                                        <span>Cost Category</span>
+                                        <span>Boq Category</span>
                                     </a>
                                 </li>
                             </ul>

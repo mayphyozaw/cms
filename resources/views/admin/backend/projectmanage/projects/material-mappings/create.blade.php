@@ -17,8 +17,8 @@
             </div>
             <div class="gap-2 d-flex align-items-center flex-wrap">
 
-                <a href="{{route('projectmanage.projects.index')}}" class="btn btn-outline-light shadow" >
-                     <span style="color:black">{{ $project->client->project_code }} @
+                <a href="{{ route('projectmanage.projects.index') }}" class="btn btn-outline-light shadow">
+                    <span style="color:black">{{ $project->client->project_code }} @
                         {{ $project->client->name }} - ({{ $project->client->length }} * {{ $project->client->width }}) -
                         {{ $project->client->building_area }} sqft
                     </span>
@@ -67,7 +67,7 @@
                                 </label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
-                                        <select name="drawing_measurement_id" class="form-control form-select"
+                                        <select name="drawing_measurement_id" class="form-control select2"
                                             id="drawing_measurement_id">
                                             <option value="">Select Measurement Categories</option>
                                             @foreach ($drawingMeasurements as $drawingMeasurement)
@@ -88,7 +88,7 @@
                                 <div class="col-sm-9">
                                     <div class="input-group">
                                         <select name="measurement_category_id" id="measurement_category_id"
-                                            class="form-control form-select">
+                                            class="form-control select2">
                                             <option value="">Select Measurement Categories</option>
                                             @foreach ($measurementCategories as $measurementCategory)
                                                 <option value="{{ $measurementCategory->id }}">
@@ -108,7 +108,7 @@
                                 <div class="col-sm-9">
                                     <div class="input-group">
                                         <select name="variable_asset_id" id="variable_asset_id"
-                                            class="form-control form-select">
+                                            class="form-control select2">
                                             <option value="">Select Material</option>
                                             @foreach ($varilableAssets as $varilableAsset)
                                                 <option value="{{ $varilableAsset->id }}">{{ $varilableAsset->name }}
@@ -126,7 +126,7 @@
 
                                 <div class="col-sm-9">
                                     <div class="input-group">
-                                        <select name="consumption_type" class="form-control form-select"
+                                        <select name="consumption_type" class="form-control select2"
                                             id="consumption_type_id">
                                             <option value="">Select consumption_type</option>
                                             <option value='coverage'> Coverage</option>
@@ -172,7 +172,7 @@
                                 <div class="col-sm-9">
                                     <div class="input-group">
                                         <select name="mix_ratio_template_id" id="mix_ratio_template_id"
-                                            class="form-control form-select">
+                                            class="form-control select2">
                                             <option value="">
                                                 Select Mix Ratio
                                             </option>
@@ -265,6 +265,11 @@
 @endsection
 @push('scripts')
     <script>
+        $('.select2').select2({
+            width: '100%'
+        });
+    </script>
+    <script>
         $(document).ready(function() {
             $('#consumption_type_id').change(function() {
 
@@ -282,7 +287,7 @@
 
                     $('#coverage_qty_div').show();
                     $('#consumption_ratio_div').show();
-                }else if (type === 'fixed') {
+                } else if (type === 'fixed') {
 
                     $('#consumption_ratio_div').show();
                     $('#consumption_ratio_input').val();
@@ -314,7 +319,7 @@
                 }
 
             });
-            
+
 
             $('#percentage_value').on('keyup change', function() {
 
@@ -350,7 +355,7 @@
                             .val(data.consumption_ratio);
                     }
                 });
-                
+
 
             });
 
@@ -384,7 +389,7 @@
             }
 
             $('#mix_ratio_template_id, #variable_asset_id').on('change', loadMixRatioData);
-           
+
 
 
         });

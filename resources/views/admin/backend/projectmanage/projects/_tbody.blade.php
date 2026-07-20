@@ -6,7 +6,7 @@
         <td class="text-center">
             <a href="{{ route('projectmanage.projects.show', $project->id) }}"
                 class="btn btn-sm bg-secondary-gradient" title="View">
-               <span style="color:white;">View Project</span>
+               <span style="color:white;">Detail Project</span>
             </a>
         </td>
 

@@ -66,8 +66,8 @@
                                                     <span class="text-danger">*</span>
                                                 </label>
 
-                                                <select name="warehouse_id" id="warehouse_id"
-                                                    class="form-control form-select" disabled>
+                                                <select name="warehouse_id" id="warehouse_id" class="form-control select2"
+                                                    disabled>
                                                     <option value="">Select WareHouse</option>
                                                     @foreach ($warehouses as $warehouse)
                                                         <option value="{{ $warehouse->id }}"
@@ -87,7 +87,7 @@
                                                     Supplier:
                                                     <span class="text-danger">*</span>
                                                 </label>
-                                                <select name="supplier_id" id="supplier_id" class="form-control form-select"
+                                                <select name="supplier_id" id="supplier_id" class="form-control select2"
                                                     disabled>
                                                     <option value="">Select Suppliers</option>
                                                     @foreach ($suppliers as $supplier)
@@ -224,7 +224,7 @@
                                                                 <td class="py-3">Payment Method</td>
                                                                 <td class="py-3 text-end">
                                                                     <select name="payment_method"
-                                                                        class="form-control payment_method form-select">
+                                                                        class="form-control payment_method select2">
                                                                         <option value="">Select</option>
                                                                         <option value="cash">
                                                                             Cash
@@ -274,7 +274,8 @@
                                                                                     <p class="mb-1 text-dark fw-medium">
                                                                                         Upload Payment Screenshot</p>
                                                                                     <small class="text-muted">Drag & drop
-                                                                                        or <span  class="text-primary text-decoration-underline">browse</span></small>
+                                                                                        or <span
+                                                                                            class="text-primary text-decoration-underline">browse</span></small>
                                                                                 </div>
 
                                                                                 <img id="showPaymentProof"
@@ -293,7 +294,7 @@
                                                                 </td>
                                                             </tr>
 
-                                                            
+
                                                             <tr>
                                                                 <td class="py-3">Due Amount</td>
                                                                 <td class="py-3 text-end" id="dueAmount">
@@ -330,7 +331,7 @@
                                         <div class="form-group w-100">
                                             <label class="form-label" for="formBasic">Status : <span
                                                     class="text-danger">*</span></label>
-                                            <select name="status" id="status" class="form-control form-select">
+                                            <select name="status" id="status" class="form-control select2">
                                                 <option value="">Select Status</option>
                                                 <option value="Received"
                                                     {{ $purchaseData->status === 'Received' ? 'selected' : '' }}>
@@ -379,6 +380,11 @@
     @endsection
 
     @push('scripts')
+        <script>
+            $('.select2').select2({
+                width: '100%'
+            });
+        </script>
         <script>
             document.addEventListener("DOMContentLoaded", function() {
                 const productBody = document.getElementById("productBody");
@@ -514,10 +520,10 @@
                     const file = event.target.files[0];
 
                     if (file) {
-                        
+
                         img.src = URL.createObjectURL(file);
 
-                        
+
                         img.style.display = 'block';
                         content.setAttribute('style', 'display:none !important');
                     }
