@@ -211,7 +211,7 @@ Route::middleware('auth', 'notBlocked')->group(function () {
         Route::post('update', [CategoryController::class, 'update'])->name('update');
         Route::get('category-datatable', [CategoryController::class, 'categoryDataTable'])->name('category-datatable');
 
-        
+
         Route::resource('variable-category', VariableCategoryController::class)->names('variable-category');
         Route::post('update', [VariableCategoryController::class, 'update'])->name('update');
         Route::get('variable-category-datatable', [VariableCategoryController::class, 'variablecategoryDataTable'])->name('variable-category-datatable');
@@ -234,7 +234,7 @@ Route::middleware('auth', 'notBlocked')->group(function () {
         Route::resource('rate', EquipmentRateController::class);
     });
 
-    
+
     Route::prefix('configuration')->name('configuration.')->group(function () {
         Route::resource('role', RoleController::class);
         Route::get('/role-datatable', [RoleController::class, 'roleDataTable'])->name('role-datatable');
@@ -271,14 +271,14 @@ Route::middleware('auth', 'notBlocked')->group(function () {
                 Route::resource('drawings', DrawingController::class);
                 Route::resource('drawing-type', DrawingTypeController::class);
                 Route::resource('drawing-measurements', DrawingMeasurementsController::class);
-                Route::resource('drawing-measurement-detail', DrawingMeasurementDetailController::class);
-                // Route::get('/drawing-measurements/{measurement}/detail',[DrawingMeasurementDetailController::class, 'index'])->name('drawing-measurement-detail.index');
-
+                // Route::resource('drawing-measurement-detail', DrawingMeasurementDetailController::class);
+                // Route::get('/drawing-measurements/{measurement}/detail',[DrawingMeasurementDetailController::class, 'index'])->name('projectmanage.projects.drawing-measurement-detail.index');
+                Route::get('/drawing-measurement-detail/{drawingMeasurement}',[DrawingMeasurementDetailController::class, 'index'])->name('drawing-measurement-detail.index');
 
                 // Route::resource('drawing-measurement-deduction', DrawingMeasurementDeductionController::class);
-                Route::get('/drawing-measurement-detail/{detail}/deduction/create',[DrawingMeasurementDeductionController::class, 'create'])->name('drawing-measurement-deduction.create');
-                Route::get('/drawing-measurement-detail/{detail}/deduction/index',[DrawingMeasurementDeductionController::class, 'index'])->name('drawing-measurement-deduction.index');
-                Route::post('/drawing-measurement-detail/{detail}/deduction/store',[DrawingMeasurementDeductionController::class, 'store'])->name('drawing-measurement-deduction.store');
+                Route::get('/drawing-measurement-detail/{detail}/deduction/create', [DrawingMeasurementDeductionController::class, 'create'])->name('drawing-measurement-deduction.create');
+                Route::get('/drawing-measurement-detail/{detail}/deduction/index', [DrawingMeasurementDeductionController::class, 'index'])->name('drawing-measurement-deduction.index');
+                Route::post('/drawing-measurement-detail/{detail}/deduction/store', [DrawingMeasurementDeductionController::class, 'store'])->name('drawing-measurement-deduction.store');
                 Route::resource('measurement-types', MeasurementTypeController::class);
                 Route::resource('work-types', WorkTypeController::class);
                 Route::resource('measurement-categories', MeasurementCategoriesController::class);
@@ -287,12 +287,12 @@ Route::middleware('auth', 'notBlocked')->group(function () {
                 Route::resource('mixRatio-details', MixRatioDetailsController::class);
                 Route::resource('material-mappings', MaterialMappingController::class);
                 Route::resource('material-requirements', MaterialRequirementsController::class);
-                Route::resource('boq',BoqController::class);
+                Route::resource('boq', BoqController::class);
                 Route::get('/boq-approved/{boq}', [BoqController::class, 'approved'])->name('boq-approved');
                 Route::post('/boq-approved/{boq}', [BoqController::class, 'approvedStore'])->name('boq-approved.store');
             });
 
-        
+
 
         Route::get('drawings_get', [DrawingMeasurementsController::class, 'getDrawing'])->name('drawings_get');
         Route::get('worktype_get', [DrawingMeasurementsController::class, 'getWorkType'])->name('worktype_get');

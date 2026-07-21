@@ -149,12 +149,19 @@
                             </li>
 
                             <li class="nav-item me-3">
-                                <a href="{{ route('projectmanage.projects.drawing-measurement-detail.index', $project->id) }}"
-                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.drawing-measurement-detail.index') ? 'active' : '' }}">
+                                <a href="" class="nav-link p-2 ">
                                     <i class="ti ti-device-laptop me-2"></i>
-                                    Drawing Measurement Details
+                                    Details
                                 </a>
                             </li>
+
+                            {{-- <li class="nav-item me-3">
+                                <a href="{{ route('projectmanage.projects.drawing-measurement-detail.index', [$project->id, $drawingMeasurementAllData->id]) }}"
+                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.drawing-measurement-detail.index') ? 'active' : '' }}">
+                                    <i class="ti ti-device-laptop me-2"></i>
+                                    Details
+                                </a>
+                            </li> --}}
 
                             {{-- <li class="nav-item me-3">
                                 <a href="{{ route('projectmanage.projects.drawing-measurement-deduction.index', $project->id) }}"
@@ -217,21 +224,13 @@
 
                                 <thead>
                                     <tr>
-                                        <th class="text-center" style="background-color: #9dd2e7">Details</th>
+                                        {{-- <th class="text-center" style="background-color: #9dd2e7">Details</th> --}}
                                         <th class="text-center" style="background-color: #9dd2e7">Project</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Drawing</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Drawing Type</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Category</th>
-                                        {{-- <th class="text-center" style="background-color: #9dd2e7">Nos</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Length</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Width</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Height</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Thickness</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Thickness Unit</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Unit Weight</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Coats</th> --}}
                                         <th class="text-center" style="background-color: #9dd2e7">Quantity</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Unit</th>
+                                        {{-- <th class="text-center" style="background-color: #9dd2e7">Unit</th> --}}
                                         <th class="text-center" style="background-color: #9dd2e7">
                                             Remark
                                         </th>
@@ -244,14 +243,14 @@
                                 <tbody>
                                     @foreach ($drawingMeasurementAllData as $drawingMeasurementData)
                                         <tr>
-                                            <td class="text-center">
-                                                
-                                                    <a href="{{route('projectmanage.projects.drawing-measurement-detail.index', [$project->id, $drawingMeasurementData->id])}}"
-                                                        class="btn btn-sm btn-success">
-                                                         Detail 
-                                                    </a>
-                                               
-                                            </td>
+                                            {{-- <td class="text-center">
+
+                                                <a href="{{ route('projectmanage.projects.drawing-measurement-detail.detail', [$project->id, $drawingMeasurementData->id]) }}"
+                                                    class="btn btn-sm btn-success">
+                                                    Detail
+                                                </a>
+
+                                            </td> --}}
                                             <td class="text-center">
                                                 <span class="badge bg-primary">
                                                     {{ $project->client->project_code }}
@@ -262,14 +261,14 @@
                                                 <a
                                                     href="{{ route('projectmanage.projects.site-measurements.create', $project->id) }}">
                                                     <span
-                                                        style="color: red">{{ $drawingMeasurementData->drawing->drawing_name }}</span>
+                                                        style="color: red">{{ $drawingMeasurementData->drawing?->drawing_name }}</span>
                                                 </a>
                                             </td>
                                             <td class="text-center">
                                                 <a
                                                     href="{{ route('projectmanage.projects.site-measurements.create', $project->id) }}">
                                                     <span
-                                                        style="color: red">{{ $drawingMeasurementData->drawing->drawingType->name }}</span>
+                                                        style="color: red">{{ $drawingMeasurementData->drawing?->drawingType?->name }}</span>
                                                 </a>
                                             </td>
 
@@ -277,7 +276,7 @@
                                                 <a
                                                     href="{{ route('projectmanage.projects.site-measurements.create', $project->id) }}">
                                                     <span
-                                                        style="color: red">{{ $drawingMeasurementData->category->category_name }}</span>
+                                                        style="color: red">{{ $drawingMeasurementData->category?->category_name }}</span>
                                                 </a>
                                             </td>
 
@@ -285,9 +284,9 @@
 
                                                 {{ number_format($drawingMeasurementData->quantity, 2) }}
                                             </td>
-                                            <td class="text-center">
+                                            {{-- <td class="text-center">
                                                 {{ $drawingMeasurementData->unit }}
-                                            </td>
+                                            </td> --}}
                                             <td class="text-center">
                                                 {{ $drawingMeasurementData->remark }}
                                             </td>

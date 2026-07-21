@@ -66,7 +66,7 @@
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card" hidden>
                 <div class="card-body">
                    {{-- {{ route('projectmanage.projects.drawing-measurement-deduction.store', $project) }} --}}
                     <form action=""
@@ -202,6 +202,170 @@
                         <button class="btn btn-primary">Submit</button>
                     </form>
 
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="card border-0 rounded-0">
+                    <div class="card-header">
+                        <h5 class="card-title">Drawing Measurement Information</h5>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ route('projectmanage.projects.drawing-measurements.store', $project) }}"
+                            method="POST" id="submit-form" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row">
+                                <div class="col-12 col-lg-6 mb-3">
+                                    <label for="form-label fs-14" class="form-label fs-14">
+                                        Project Code:
+                                    </label>
+                                    <div class="input-group">
+                                        <input type="text" name="project_id" class="form-control"
+                                            value=" {{ $project->client->project_code }}" readonly disabled>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6 mb-3">
+                                    <label for="form-label fs-14" class="form-label fs-14">
+                                        Client Name:
+                                    </label>
+                                    <div class="input-group">
+                                        <input type="text" name="project_id" class="form-control"
+                                            value="{{ $project->client->name }}" readonly disabled>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="card">
+                                    <div class="card-body">
+                                        {{-- ================= ITEMS ================= --}}
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="mb-3">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="text-center" style="background-color: #9dd2e7;">
+                                                                    No</th>
+                                                                <th class="text-center"
+                                                                    style="background-color: #9dd2e7;width:150px;">Drawing
+                                                                    Name</th>
+                                                                <th class="text-center"
+                                                                    style="background-color: #9dd2e7;width:250px;">
+                                                                    Particular</th>
+                                                                <th class="text-center"
+                                                                    style="background-color: #9dd2e7;width:100px;">Nos</th>
+                                                                <th class="text-center"
+                                                                    style="background-color: #9dd2e7;width:100px;">Length
+                                                                </th>
+                                                                <th class="text-center"
+                                                                    style="background-color: #9dd2e7;width:100px;">Width
+                                                                </th>
+                                                                <th class="text-center"
+                                                                    style="background-color: #9dd2e7;width:100px;">Height
+                                                                </th>
+                                                                <th class="text-center"
+                                                                    style="background-color: #9dd2e7;width:100px;">Thickness
+                                                                </th>
+                                                                <th class="text-center"
+                                                                    style="background-color: #9dd2e7;width:100px;">Thickness
+                                                                    Unit</th>
+                                                                <th class="text-center"
+                                                                    style="background-color: #9dd2e7;width:100px;">Unit
+                                                                    Weight</th>
+                                                                <th class="text-center"
+                                                                    style="background-color: #9dd2e7;width:100px;">Coats
+                                                                </th>
+                                                                <th class="text-center"
+                                                                    style="background-color: #9dd2e7;width:100px;">Unit</th>
+                                                                <th class="text-center"
+                                                                    style="background-color: #9dd2e7;width:100px;">Quantity
+                                                                </th>
+                                                                <th class="text-center"
+                                                                    style="background-color: #9dd2e7;width:100px;">Action
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="table-body"></tbody>
+                                                    </table>
+                                                    <div class="py-3">
+                                                        <button type="button" id="add-category"
+                                                            class="btn btn-primary btn-sm">+ Category</button>
+                                                        <button type="button" id="add-description"
+                                                            class="btn btn-success btn-sm">+ Description</button>
+                                                        <button type="button" id="add-detail" class="btn btn-info btn-sm">+
+                                                            Detail</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- ================= TOTAL ================= --}}
+                                        <div class="row">
+                                            <div class="col-md-6 ms-auto">
+                                                <div class="card">
+                                                    <div class="card-body pt-7 pb-2">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-bordered">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="py-3">Total</td>
+                                                                        <td class="py-3" id="subtotalDisplay"
+                                                                            style="text-align:end">0.00</td>
+                                                                        <input type="hidden" id="total_qty"
+                                                                            name="total_qty" value="0">
+                                                                        <input type="hidden" id="unit"
+                                                                            name="unit" value="0">
+                                                                        <td></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <style>
+                                            .proposal-content {
+                                                word-wrap: break-word;
+                                                line-height: 1.6;
+                                            }
+
+                                            .proposal-content ul {
+                                                display: block !important;
+                                                list-style-type: disc !important;
+                                                list-style-position: outside !important;
+                                                padding-left: 2.0rem !important;
+                                                margin-top: 10px !important;
+                                                margin-bottom: 10px !important;
+                                            }
+
+                                            .proposal-content li {
+                                                display: list-item !important;
+                                                list-style-type: disc !important;
+                                                margin-bottom: 5px;
+                                            }
+
+                                            .proposal-content ol {
+                                                display: block !important;
+                                                list-style-type: decimal !important;
+                                                padding-left: 2.0rem !important;
+                                            }
+                                        </style>
+
+                                        <div class="col-md-12 mt-2">
+                                            <label class="form-label">Remark:</label>
+                                            <textarea class="summernote" name="notes"></textarea>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                        </form>
+                    </div>
                 </div>
             </div>
 

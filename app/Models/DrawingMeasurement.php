@@ -45,10 +45,11 @@ class DrawingMeasurement extends Model
 
     public function materialMappings()
     {
-        return $this->hasMany(MaterialMappings::class, 'drawing_measurement_id');
+        return $this->hasMany(MaterialMappings::class);
     }
+
     public function details()
     {
-        return $this->hasMany(DrawingMeasurementDetail::class);
+        return $this->hasMany(DrawingMeasurementDetail::class, 'drawing_measurement_id','id');
     }
 }

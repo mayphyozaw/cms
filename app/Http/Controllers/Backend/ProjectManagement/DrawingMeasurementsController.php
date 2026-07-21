@@ -11,16 +11,19 @@ use App\Models\MeasurementCategories;
 use App\Models\MeasurementTypes;
 use App\Models\Project;
 use App\Models\WorkType;
+use App\Services\Measurement\MeasurementCalculationService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DrawingMeasurementsController extends Controller
 {
     public function index(Project $project)
     {
+        
         $project->load('client');
-        $drawingMeasurementAllData = DrawingMeasurement::with(['workType.measurementType', 'drawing.drawingType', 'category'])
-            ->orderBy('created_at', 'desc')
-            ->get();
+        
+        $drawingMeasurementAllData = DrawingMeasurement::with(['drawing.drawingType', 'category'])->get();
+        // return $drawingMeasurementAllData;
         return view('admin.backend.projectmanage.projects.drawing-measurements.index', compact('project', 'drawingMeasurementAllData'));
     }
 
@@ -34,10 +37,22 @@ class DrawingMeasurementsController extends Controller
         $categories = MeasurementCategories::all();
         return view('admin.backend.projectmanage.projects.drawing-measurements.create', compact('project', 'drawings', 'drawing_types', 'categories'));
     }
-
-    public function store(Request $request, Project $project)
+    // id
+    // project_id
+    // drawing_id
+    // measurement_no
+    // measurement_date
+    // drawing_type_id
+    // total_quantity
+    // unit
+    // status
+    // remarks
+    // created_by
+    // created_at
+    // updated_at
+    public function storebackup(Request $request, Project $project, MeasurementCalculationService $measurementService)
     {
-
+        return $request->all();
 
         $request->validate([
             'drawing_id' => 'required|array',
@@ -48,6 +63,8 @@ class DrawingMeasurementsController extends Controller
 
             'rows' => 'required|array|min:1',
         ]);
+
+
 
         $length = $request->length ?? 0;
         $width  = $request->width ?? 0;
@@ -65,111 +82,83 @@ class DrawingMeasurementsController extends Controller
             $thickness_ft = $thickness;
         }
 
-        
-
-        $quantity = 0;
-
         $category = MeasurementCategories::findOrFail(
             $request->measurement_categories_id[0]
         );
 
-        switch ($category->formula_types) {
-
-            case 'volume':
-                $quantity = $length * $width * $height;
-                break;
-
-            case 'excavation_volume':
-            case 'pcc_1:3:6':
-            case 'rcc_footing':
-            case 'rcc_column':
-                $quantity = $nos * $length * $width * $height;
-                break;
-
-            case 'area':
-            case 'screed_area':
-            case 'concrete_slab_area':
-            case 'mortar_bed_area':
-                $quantity = $length * $width;
-                break;
-
-            case 'wall_area':
-            case 'brick_wall_area':
-                $quantity = ($length + $width)  * 2 * $height;
-                break;
-
-            case 'coats_area':
-                $quantity = $length * $height * $coats;
-                break;
-
-
-            case 'painting_area':
-            case 'plaster_area':
-                $quantity = 2 * ($length + $width) * $height;
-                break;
-
-            case 'plaster_volume':
-                $quantity = 2 * ($length + $width) * $height * $thickness_ft;
-                break;
-
-
-            case 'concrete_slab_volume':
-                $quantity = $length * $width * $thickness_ft;
-                break;
-
-            case 'steel_linear':
-            case 'steel_handrail_linear':
-                $quantity = $length;
-                break;
-
-            case 'weight':
-                $quantity = $length * $unit_weight;
-                break;
-        }
-
-        $totalQty = collect($request->rows)
-            ->pluck('quantity')
-            ->sum();
-
         $unit = collect($request->rows)->first()['unit'] ?? '';
 
-        $measurement = DrawingMeasurement::create([
-            'project_id' => $project->id,
-            'measurement_categories_id' => $request->measurement_categories_id[0],
-            'drawing_id' => $request->drawing_id[0],
-            'nos' => $nos,
-            'length' => $length,
-            'width' => $width,
-            'height' => $height,
-            'thickness' => $thickness,
-            'thickness_unit' => $request->thickness_unit,
-            'unit_weight' => $unit_weight,
-            'coats' => $coats,
-            'quantity' => $totalQty,
-            'unit' => $unit,
-            'remark' => $request->remark,
+        try {
+            DB::transaction(function () use (
+                $request,
+                $project,
+                $measurementService,
+                $category,
+                $thickness_ft,
+                $unit,
+            ) {
+                $measurement = DrawingMeasurement::create([
+                    'project_id' => $project->id,
+                    'measurement_categories_id' => $request->measurement_categories_id[0],
+                    'drawing_id' => $request->drawing_id[0],
+                    'nos' => $request->nos,
+                    'length' => $request->length,
+                    'width' => $request->width,
+                    'height' => $request->height,
+                    'thickness' => $request->thickness,
+                    'thickness_unit' => $request->thickness_unit,
+                    'unit_weight' => $request->unit_weight,
+                    'coats' => $request->coats,
+                    'unit' => $unit,
+                    'remark' => $request->remark,
+
+                ]);
+
+                $totalQty = 0;
+                foreach ($request->rows as $row) {
+
+                    $rowData = [
+                        'nos' => $row['nos'] ?? 0,
+                        'length' => $row['length'] ?? 0,
+                        'width' => $row['width'] ?? 0,
+                        'height' => $row['height'] ?? 0,
+                        'coats' => $request->coats ?? 0,
+                        'unit_weight' => $request->unit_weight ?? 0,
+                        'thickness_ft' => $thickness_ft,
+                    ];
 
 
-        ]);
+                    $grossQty = $measurementService->calculate(
+                        $category->formula_types,
+                        $rowData
+                    );
 
-        
 
+                    $netQty = $grossQty - ($row['deduction'] ?? 0);
+                    $totalQty += $netQty;
 
-        foreach ($request->rows as $row) {
-            $measurement->details()->create([
-                'description' => $row['title'],
-                'detail_no' => $row['detail_no'],
-                'nos' => $row['nos'],
-                'length' => $row['length'],
-                'width' => $row['width'],
-                'height' => $row['height'],
-                'gross_quantity' => $row['quantity'],
-                'deduction' => $row['deduction'],
-                'net_quantity' => $row['quantity'],
-                'unit' => $row['unit'],
-            ]);
+                    $measurement->details()->create([
+                        'drawing_measurement_id' => $measurement->id,
+                        'description' => $row['title'],
+                        'detail_no' => $row['detail_no'],
+                        'nos' => $row['nos'],
+                        'length' => $row['length'],
+                        'width' => $row['width'],
+                        'height' => $row['height'],
+                        'gross_quantity' => $grossQty,
+                        'deduction' => $row['deduction'] ?? 0,
+                        'net_quantity' => $netQty,
+                        'unit' => $row['unit'],
+                    ]);
+                }
+                $measurement->update([
+                    'quantity' => $totalQty,
+                ]);
+            });
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('error', $e->getMessage());
         }
-        
 
         return redirect()
             ->route('projectmanage.projects.drawing-measurements.index', $project->id)
@@ -177,6 +166,24 @@ class DrawingMeasurementsController extends Controller
                 'message' => 'Successfully created',
                 'alert-type' => 'success'
             ]);
+    }
+
+
+    public function store(Request $request, Project $project)
+    {
+        
+        $measurement = DrawingMeasurement::create([
+            'project_id' => $project->id,
+            'measurement_categories_id' => $request->measurement_categories_id,
+            'drawing_id' => $request->drawing_id,
+            'quantity' => 0,
+            'remark' => $request->remark,
+        ]);
+
+        return redirect()->route(
+            'projectmanage.projects.drawing-measurement-detail.index',
+            [$project->id, $measurement->id]
+        );
     }
 
     public function edit(Project $project, $id)
@@ -197,10 +204,10 @@ class DrawingMeasurementsController extends Controller
         return view('admin.backend.projectmanage.projects.drawing-measurements.edit', compact('project', 'drawing_measurement', 'drawings', 'drawing_types', 'work_types', 'measurement_types', 'categories', 'thickness_ft'));
     }
 
-    public function update(Request $request, Project $project, $id)
+    public function update(Request $request, Project $project, $id, MeasurementCalculationService $measurementService)
     {
         $drawing_measurement = DrawingMeasurement::findOrFail($id);
-        $quantity = 0;
+
 
         $category = MeasurementCategories::findOrFail(
             $request->measurement_categories_id
@@ -214,54 +221,23 @@ class DrawingMeasurementsController extends Controller
             $thickness_ft = $request->thickness;
         }
 
-        switch ($category->formula_types) {
-
-            case 'volume':
-                $quantity = $request->length * $request->width * $request->height;
-                break;
-
-            case 'excavation_volume':
-            case 'pcc_1:3:6':
-            case 'rcc_footing':
-            case 'rcc_column':
-                $quantity = $request->nos * $request->length * $request->width * $request->height;
-                break;
-
-            case 'area':
-            case 'screed_area':
-            case 'concrete_slab_area':
-            case 'mortar_bed_area':
-                $quantity = $request->length * $request->width;
-                break;
-
-            case 'wall_area':
-            case 'brick_wall_area':
-                $quantity = ($request->length + $request->width) * 2 * $request->height;
-                break;
-
-            case 'coats_area':
-                $quantity = $request->length * $request->height * $request->coats;
-                break;
 
 
-            case 'painting_area':
-            case 'plaster_area':
-                $quantity = 2 * ($request->length + $request->width) * $request->height;
-                break;
+        $data = [
+            'nos' => $request->nos,
+            'length' => $request->length,
+            'width' => $request->width,
+            'height' => $request->height,
+            'coats' => $request->coats,
+            'unit_weight' => $request->unit_weight,
+            'thickness_ft' => $thickness_ft,
+        ];
 
-            case 'plaster_volume':
-                $quantity = (2 * ($request->length + $request->width) * $request->height) * $thickness_ft;
-                break;
+        // $service = new MeasurementCalculationService();
 
-            case 'steel_linear':
-            case 'steel_handrail_linear':
-                $quantity = $request->length;
-                break;
 
-            case 'weight':
-                $quantity = $request->length * $request->unit_weight;
-                break;
-        }
+        $calculatedQty = $measurementService->calculate($category->formula_types, $data);
+
         $drawing_measurement->update([
             'project_id' => $project->id,
             'drawing_id' => $request->drawing_id,
@@ -277,9 +253,10 @@ class DrawingMeasurementsController extends Controller
             'qty' => $request->qty,
             'unit_weight' => $request->unit_weight,
             'coats' => $request->coats,
-            'quantity' => $quantity,
+            'quantity' => $calculatedQty,
             'remark' => $request->remark,
         ]);
+
         return redirect()
             ->route('projectmanage.projects.drawing-measurements.index', $project->id)
             ->with([

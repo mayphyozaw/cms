@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class DrawingMeasurementDetail extends Model
 {
+    protected $table = 'drawing_measurement_details';
+    
     protected $fillable = [
         'drawing_measurement_id',
         'description',
@@ -19,7 +21,7 @@ class DrawingMeasurementDetail extends Model
         'net_quantity',
         'unit',
     ];
-    
+
 
     // formula_type => AREA, VOLUME, LINEAR, COUNT, WEIGHT
 
@@ -35,7 +37,7 @@ class DrawingMeasurementDetail extends Model
 
     public function drawingMeasurement()
     {
-        return $this->belongsTo(DrawingMeasurement::class,'drawing_measurement_id');
+        return $this->belongsTo(DrawingMeasurement::class,'drawing_measurement_id','id');
     }
 
 

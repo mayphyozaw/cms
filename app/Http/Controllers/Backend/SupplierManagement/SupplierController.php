@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Supplier\SupplierStoreRequest;
 use App\Http\Requests\Supplier\SupplierUpdateRequest;
 use App\Models\Supplier;
+use App\Services\Measurement\MeasurementStrategyFactory;
 use App\Services\ResponseService;
 use App\Services\SupplierService;
 use Exception;
@@ -13,7 +14,10 @@ use Illuminate\Http\Request;
 
 class SupplierController extends Controller
 {
-   protected $supplierService;
+    protected $supplierService;
+
+
+
 
     public function __construct(SupplierService $supplierService)
     {
@@ -23,9 +27,10 @@ class SupplierController extends Controller
     public function index()
     {
         $suppliers = $this->supplierService->all();
+        
         return view('admin.backend.suppliermanage.index', compact('suppliers'));
     }
-    
+
     public function create()
     {
         return view('admin.backend.suppliermanage.create');
@@ -76,7 +81,7 @@ class SupplierController extends Controller
 
     public function destroy($id)
     {
-         try {
+        try {
             $this->supplierService->delete($id);
 
             return ResponseService::success([], 'Successfully deleted');
@@ -84,6 +89,4 @@ class SupplierController extends Controller
             return ResponseService::fail($e->getMessage());
         }
     }
-
-    
 }

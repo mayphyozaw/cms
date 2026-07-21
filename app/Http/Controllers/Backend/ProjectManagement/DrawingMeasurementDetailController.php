@@ -12,16 +12,39 @@ use Illuminate\Http\Request;
 
 class DrawingMeasurementDetailController extends Controller
 {
-    
-    public function index(Project $project, DrawingMeasurement $measurement)
+
+    // public function index(Project $project, DrawingMeasurement $measurement)
+    // {
+    //     $project->load('client');
+
+    //     $details = DrawingMeasurementDetail::with('drawingMeasurement')->get();
+
+    //     return view('admin.backend.projectmanage.projects.drawing-measurement-detail.index', compact('project','measurement', 'details'));
+
+    // }
+
+
+
+
+
+    public function index(Project $project, DrawingMeasurement $drawingMeasurement)
     {
+        
         $project->load('client');
         
-        $details = DrawingMeasurementDetail::with('drawingMeasurement')->get();
-        
-        return view('admin.backend.projectmanage.projects.drawing-measurement-detail.index', compact('project','measurement', 'details'));
+        $drawingMeasurement->load('details');
+       
 
+        return view('admin.backend.projectmanage.projects.drawing-measurement-detail.index',
+            compact('project', 'drawingMeasurement')
+        );
+    
     }
 
-    
+    public function create()
+    {
+        return view('admin.backend.projectmanage.projects.drawing-measurement-detail.create',
+            compact('project', 'drawingMeasurement')
+        );
+    }
 }
