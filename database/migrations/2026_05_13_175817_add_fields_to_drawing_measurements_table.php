@@ -12,8 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('drawing_measurements', function (Blueprint $table) {
-            $table->string('qty')->nullable()->after('coats');
-            $table->string('unit_weight')->nullable()->after('qty');
             $table->string('unit')->nullable()->after('quantity');
         });
     }

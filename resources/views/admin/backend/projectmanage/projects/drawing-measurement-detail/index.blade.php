@@ -148,8 +148,8 @@
                             </li>
 
                             <li class="nav-item me-3">
-                                <a href="{{ route('projectmanage.projects.drawing-measurement-detail.index', [$project->id, $drawingMeasurement->id]) }}"
-                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.drawing-measurement-detail.detail') ? 'active' : '' }}">
+                                <a href=""
+                                    class="nav-link p-2">
                                     <i class="ti ti-device-laptop me-2"></i>
                                     Details
                                 </a>
@@ -201,7 +201,7 @@
 
                             <div class="col-auto">
                                 <x-create-button
-                                    href="{{ route('projectmanage.projects.drawing-measurements.create', $project->id) }}">
+                                    href="{{ route('projectmanage.projects.drawing-measurement-detail.create', [$project->id, $drawingMeasurement->id]) }}">
                                     Create Drawing Measurement Detail
                                 </x-create-button>
                             </div>
@@ -220,7 +220,7 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center" style="background-color: #9dd2e7">No.</th>
-                                        {{-- <th class="text-center" style="background-color: #9dd2e7">Description</th> --}}
+                                        <th class="text-center" style="background-color: #9dd2e7">Deduction</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Description</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Nos</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Length</th>
@@ -235,29 +235,53 @@
 
                                 <tbody>
                                     @foreach ($drawingMeasurement->details as $detail)
-                                        <tr>
+                                        <tr class="text-center">
                                             <td>{{$loop->iteration}}</td>
+
                                             <td>
-                                                {{$detail->description}}
+                                                <a href="{{ route('projectmanage.projects.drawing-measurement-deduction.index', [
+                                                    'project' => $project->id,
+                                                    'detail' => $detail->id,]) }}"
+                                                    class="btn btn-sm btn-outline-success shadow">
+                                                   Detail Deduction
+                                                </a>
+                                                
                                             </td>
+
+                                            <td>
+                                                <a href="{{ route('projectmanage.projects.drawing-measurement-deduction.create', [
+                                                    'project' => $project->id,
+                                                    'detail' => $detail->id,]) }}"
+                                                    class="btn btn-sm btn-outline-danger shadow">
+                                                    {{$detail->description}}
+                                                </a>
+                                                
+                                            </td>
+
                                             <td>
                                                 {{$detail->nos}}
                                             </td>
+
                                             <td>
                                                 {{$detail->length}}
                                             </td>
+
                                             <td>
                                                 {{$detail->width}}
                                             </td>
+                                            
                                             <td>
                                                 {{$detail->height}}
                                             </td>
+
                                             <td>
                                                 {{$detail->deduction}}
                                             </td>
+
                                             <td>
                                                 {{$detail->gross_quantity}}
                                             </td>
+                                            
                                             <td>
                                                 {{$detail->net_quantity}}
                                             </td>

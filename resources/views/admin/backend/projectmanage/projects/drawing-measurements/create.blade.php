@@ -234,7 +234,7 @@
                 let symbol = selected.data('symbol') || '';
                 let calFormula = selected.data('cal-formula') || '';
                 let unit = selected.data('unit') || '';
-
+            
                 $('#formula_type').val(formula);
                 $('#cal_formula').val(calFormula);
                 $('#symbol').val(symbol);

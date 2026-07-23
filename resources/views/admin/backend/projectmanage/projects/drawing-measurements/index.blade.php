@@ -149,44 +149,35 @@
                             </li>
 
                             <li class="nav-item me-3">
-                                <a href="" class="nav-link p-2 ">
-                                    <i class="ti ti-device-laptop me-2"></i>
-                                    Details
-                                </a>
-                            </li>
-
-                            {{-- <li class="nav-item me-3">
-                                <a href="{{ route('projectmanage.projects.drawing-measurement-detail.index', [$project->id, $drawingMeasurementAllData->id]) }}"
-                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.drawing-measurement-detail.index') ? 'active' : '' }}">
-                                    <i class="ti ti-device-laptop me-2"></i>
-                                    Details
-                                </a>
-                            </li> --}}
-
-                            {{-- <li class="nav-item me-3">
-                                <a href="{{ route('projectmanage.projects.drawing-measurement-deduction.index', $project->id) }}"
-                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.drawing-measurement-deduction.index') ? 'active' : '' }}">
-                                    <i class="ti ti-device-laptop me-2"></i>
-                                     Deduction
-                                </a>
-                            </li> --}}
-
-                            {{-- <li class="nav-item me-3">
-                                <a href="{{ route('projectmanage.projects.measurement-types.index', $project->id) }}"
-                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.measurement-types.index') ? 'active' : '' }}">
-                                    <i class="ti ti-device-laptop me-2"></i>
-                                    Measurement Types
-                                </a>
+                                @isset($drawingMeasurement)
+                                    <a href="{{ route('projectmanage.projects.drawing-measurement-detail.index', [$project->id, $drawingMeasurement->id]) }}"
+                                        class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.drawing-measurement-detail.*') ? 'active' : '' }}">
+                                        <i class="ti ti-list-details me-2"></i>
+                                        Detail Lists
+                                    </a>
+                                @else
+                                    <span class="nav-link p-2 text-muted">
+                                        <i class="ti ti-list-details me-2"></i>
+                                        Detail Lists
+                                    </span>
+                                @endisset
                             </li>
 
 
                             <li class="nav-item me-3">
-                                <a href="{{ route('projectmanage.projects.work-types.index', $project->id) }}"
-                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.work-types.index') ? 'active' : '' }}">
-                                    <i class="ti ti-device-laptop me-2"></i>
-                                    Work Types
-                                </a>
-                            </li> --}}
+                                @isset($detail)
+                                    <a href="{{ route('projectmanage.projects.drawing-measurement-deduction.index', [$project->id, $detail->id]) }}"
+                                        class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.drawing-measurement-deduction.*') ? 'active' : '' }}">
+                                        <i class="ti ti-calculator me-2"></i>
+                                        Deduction Lists
+                                    </a>
+                                @else
+                                    <span class="nav-link p-2 text-muted">
+                                        <i class="ti ti-calculator me-2"></i>
+                                        Deduction Lists
+                                    </span>
+                                @endisset
+                            </li>
 
                         </ul>
 
@@ -211,7 +202,7 @@
                                 </x-create-button>
                             </div>
 
-                        </div>
+                        </div>'
 
                     </div>
 
@@ -224,13 +215,13 @@
 
                                 <thead>
                                     <tr>
-                                        {{-- <th class="text-center" style="background-color: #9dd2e7">Details</th> --}}
+                                        <th class="text-center" style="background-color: #9dd2e7">Details</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Project</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Drawing</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Drawing Type</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Category</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Quantity</th>
-                                        {{-- <th class="text-center" style="background-color: #9dd2e7">Unit</th> --}}
+                                        <th class="text-center" style="background-color: #9dd2e7">Unit</th>
                                         <th class="text-center" style="background-color: #9dd2e7">
                                             Remark
                                         </th>
@@ -243,14 +234,16 @@
                                 <tbody>
                                     @foreach ($drawingMeasurementAllData as $drawingMeasurementData)
                                         <tr>
-                                            {{-- <td class="text-center">
+                                            <td class="text-center">
 
-                                                <a href="{{ route('projectmanage.projects.drawing-measurement-detail.detail', [$project->id, $drawingMeasurementData->id]) }}"
+                                                <a href="{{ route('projectmanage.projects.drawing-measurement-detail.index', [$project->id, $drawingMeasurementData->id]) }}"
                                                     class="btn btn-sm btn-success">
                                                     Detail
                                                 </a>
 
-                                            </td> --}}
+
+                                            </td>
+
                                             <td class="text-center">
                                                 <span class="badge bg-primary">
                                                     {{ $project->client->project_code }}
@@ -258,11 +251,10 @@
                                             </td>
 
                                             <td class="text-center">
-                                                <a
-                                                    href="{{ route('projectmanage.projects.site-measurements.create', $project->id) }}">
-                                                    <span
-                                                        style="color: red">{{ $drawingMeasurementData->drawing?->drawing_name }}</span>
-                                                </a>
+
+                                                <span
+                                                    style="color: red">{{ $drawingMeasurementData->drawing?->drawing_name }}</span>
+
                                             </td>
                                             <td class="text-center">
                                                 <a
@@ -284,9 +276,9 @@
 
                                                 {{ number_format($drawingMeasurementData->quantity, 2) }}
                                             </td>
-                                            {{-- <td class="text-center">
-                                                {{ $drawingMeasurementData->unit }}
-                                            </td> --}}
+                                            <td class="text-center">
+                                                {{ $drawingMeasurementData->category->unit }}
+                                            </td>
                                             <td class="text-center">
                                                 {{ $drawingMeasurementData->remark }}
                                             </td>

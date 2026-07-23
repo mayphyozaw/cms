@@ -147,38 +147,7 @@
                                 </a>
                             </li>
 
-                            <li class="nav-item me-3">
-                                <a href="{{ route('projectmanage.projects.drawing-measurement-detail.index', $project->id) }}"
-                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.drawing-measurement-detail.index') ? 'active' : '' }}">
-                                    <i class="ti ti-device-laptop me-2"></i>
-                                    Drawing Measurement Details
-                                </a>
-                            </li>
 
-                            {{-- <li class="nav-item me-3">
-                                <a href="{{ route('projectmanage.projects.drawing-measurement-deduction.index', $project->id) }}"
-                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.drawing-measurement-deduction.index') ? 'active' : '' }}">
-                                    <i class="ti ti-device-laptop me-2"></i>
-                                    Drawing Measurement Deduction
-                                </a>
-                            </li> --}}
-
-                            {{-- <li class="nav-item me-3">
-                                <a href="{{ route('projectmanage.projects.measurement-types.index', $project->id) }}"
-                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.measurement-types.index') ? 'active' : '' }}">
-                                    <i class="ti ti-device-laptop me-2"></i>
-                                    Measurement Types
-                                </a>
-                            </li>
-
-
-                            <li class="nav-item me-3">
-                                <a href="{{ route('projectmanage.projects.work-types.index', $project->id) }}"
-                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.work-types.index') ? 'active' : '' }}">
-                                    <i class="ti ti-device-laptop me-2"></i>
-                                    Work Types
-                                </a>
-                            </li> --}}
 
                         </ul>
 
@@ -204,14 +173,14 @@
 
                         <div class="table-responsive">
 
-                            <table class="table table-bordered table-hover text-nowrap" id="drawingMeasurementTableId"
+                            <table class="table table-bordered table-hover text-nowrap" id="deductionTableId"
                                 style="width:100%;">
 
                                 <thead>
                                     <tr>
                                         <th class="text-center" style="background-color: #9dd2e7">No.</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Opening Type</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Detail Description</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Opening Type</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Description</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Width</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Height</th>
@@ -221,7 +190,8 @@
                                 </thead>
 
                                 <tbody>
-                                    @foreach ($detail->deductions as $deduction)
+
+                                    @foreach ($deductions as $deduction)
                                         <tr>
                                             <td class="text-center">
                                                 {{ $loop->iteration }}
@@ -231,6 +201,7 @@
                                                     {{ $deduction->drawingMeasurementDetail->description }}
                                                 </span>
                                             </td>
+
                                             <td class="text-center">
                                                 <span class="badge bg-primary">
                                                     {{ $deduction->opening_type }}
@@ -241,11 +212,10 @@
                                                 {{ $deduction->description }}
                                             </td>
 
-
-
                                             <td class="text-center">
                                                 {{ $deduction->width }}
                                             </td>
+
                                             <td class="text-center">
                                                 {{ $deduction->height }}
                                             </td>
@@ -254,40 +224,30 @@
                                                 {{ $deduction->nos }}
                                             </td>
 
-
                                             <td class="text-end">
                                                 {{ number_format($deduction->area, 2) }}
                                             </td>
 
-                                            {{-- <td class="text-center" hidden>
-                                                <a class="btn btn-icon btn-sm btn-info"
-                                                    href="{{ route('projectmanage.projects.drawing-measurements.edit', [$project->id, $drawingMeasurementDetail->id]) }}">
-                                                    <i class="ti ti-edit"></i>
-                                                </a>
-                                                <form
-                                                    action="{{ route('projectmanage.projects.drawing-measurements.destroy', [$project->id, $drawingMeasurementDetail->id]) }}"
-                                                    method="POST" style="display:inline;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="btn btn-danger btn-sm btn-icon deleteBtn">
-                                                        <i class="ti ti-trash"></i>
-                                                    </button>
-                                                </form>
-                                            </td> --}}
-                                            {{-- <td></td> --}}
-                                            
                                         </tr>
                                     @endforeach
+
+
+                                    @if ($deductions->isEmpty())
+                                        <div class="alert alert-info">
+                                            No deduction records found.
+                                        </div>
+                                    @endif
 
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th colspan="6" class="text-end">
+                                        <th colspan="7" class="text-end">
                                             Total Deduction Area
                                         </th>
                                         <th class="text-end">
-                                            {{ number_format($deduction->sum('area'), 2) }}
+                                            {{ number_format($deductions->sum('area') ?? 0, 2) }}
                                         </th>
+
                                     </tr>
                                 </tfoot>
                             </table>
@@ -330,9 +290,14 @@
 
 
         });
-        $('#drawingMeasurementTableId').DataTable({
-            responsive: true,
-            autoWidth: false
+        $('#deductionTableId').DataTable({
+            language: {
+                emptyTable: "No deduction records found"
+            }
         });
+        // $('#deductionTableId').DataTable({
+        //     responsive: true,
+        //     autoWidth: false
+        // });
     </script>
 @endpush

@@ -18,7 +18,7 @@ class DrawingMeasurementDeduction extends Model
         'remarks',
     ];
 
-    //Opening_type => DOOR, WINDOW, VENTILATOR, OPENING, OTHER
+    
 
 
     public function drawingMeasurementDetail()
@@ -26,3 +26,6 @@ class DrawingMeasurementDeduction extends Model
         return $this->belongsTo(DrawingMeasurementDetail::class);
     }
 }
+
+
+//Opening_type => DOOR, WINDOW, VENTILATOR, OPENING, OTHER

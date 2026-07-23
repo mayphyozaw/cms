@@ -14,8 +14,11 @@ class DrawingMeasurementDeductionController extends Controller
     public function index(Project $project, DrawingMeasurementDetail $detail)
     {
         $project->load('client');
+
+        $deductions = $detail->deductions;
+
         // $deductions = DrawingMeasurementDeduction::with('drawingMeasurementDetail')->get();
-        return view('admin.backend.projectmanage.projects.drawing-measurement-deduction.index', compact('project', 'detail'));
+        return view('admin.backend.projectmanage.projects.drawing-measurement-deduction.index', compact('project', 'detail','deductions'));
     }
 
 
@@ -33,11 +36,11 @@ class DrawingMeasurementDeductionController extends Controller
     public function store(Request $request, Project $project, DrawingMeasurementDetail $detail)
     {
 
-
+        
         $request->validate([
             'drawing_measurement_detail_id' => 'required|exists:drawing_measurement_details,id',
             'opening_type'                  => 'required|array',
-            'opening_type.*'                => 'nullable|string', // Changed to nullable if index 1 can be missing
+            'opening_type.*'                => 'nullable|string',
             'width'                         => 'required|array',
             'width.*'                       => 'required|numeric|min:0',
             'height'                        => 'required|array',
@@ -55,9 +58,11 @@ class DrawingMeasurementDeductionController extends Controller
 
             $height = $request->height[$key] ?? 0;
             $nos    = $request->nos[$key] ?? 1;
+
             $area = $width * $height * $nos;
 
-            $deductions = DrawingMeasurementDeduction::create([
+
+            DrawingMeasurementDeduction::create([
                 'drawing_measurement_detail_id' => $request->drawing_measurement_detail_id,
                 'opening_type' => $request->opening_type[$key] ?? '',
                 'description' => $request->description[$key] ?? '',
@@ -67,7 +72,7 @@ class DrawingMeasurementDeductionController extends Controller
                 'area' => $area,
             ]);
         }
-        // return $deductions;
+
         $detail = DrawingMeasurementDetail::findOrFail(
             $request->drawing_measurement_detail_id
         );
@@ -79,11 +84,23 @@ class DrawingMeasurementDeductionController extends Controller
 
         $detail->update([
             'deduction' => $totalDeduction,
-            'net_quantity' => $detail->gross_quantity - $totalDeduction,
+            'net_quantity' => max(
+                0,
+                $detail->gross_quantity - $totalDeduction
+            ),
+           
+        ]);
+
+        $drawingMeasurement = $detail->drawingMeasurement;
+
+        $drawingMeasurement->update([
+            'quantity' => $drawingMeasurement
+                ->details()
+                ->sum('net_quantity')
         ]);
 
         return redirect()
-            ->route('projectmanage.projects.drawing-measurement-detail.index', [$project->id, $detail->id])
+            ->route('projectmanage.projects.drawing-measurement-detail.index', [$project->id, $drawingMeasurement->id,])
             ->with([
                 'message' => 'Successfully created',
                 'alert-type' => 'success'

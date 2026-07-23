@@ -17,10 +17,6 @@ return new class extends Migration
             $table->unsignedBigInteger('drawing_id')->nullable();
             $table->unsignedBigInteger('work_type_id')->nullable();
 
-            $table->string('length')->nullable();
-            $table->string('width')->nullable();
-            $table->string('height')->nullable();
-            $table->string('coats')->nullable();
             $table->string('quantity')->nullable();
             $table->string('remark')->nullable();
             $table->timestamps();

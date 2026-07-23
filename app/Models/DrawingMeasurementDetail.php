@@ -16,11 +16,33 @@ class DrawingMeasurementDetail extends Model
         'length',
         'width',
         'height',
+        'thickness',
+        'thickness_unit',
+        'coats',
+        'unit_weight',
         'deduction',
         'gross_quantity',
         'net_quantity',
         'unit',
     ];
+
+
+
+    public function drawingMeasurement()
+    {
+        return $this->belongsTo(DrawingMeasurement::class,'drawing_measurement_id','id');
+    }
+
+
+    public function deductions()
+    {
+        return $this->hasMany(DrawingMeasurementDeduction::class,'drawing_measurement_detail_id','id');
+    }
+
+    
+}
+
+
 
 
     // formula_type => AREA, VOLUME, LINEAR, COUNT, WEIGHT
@@ -33,16 +55,3 @@ class DrawingMeasurementDetail extends Model
     //      Rebar	                    WEIGHT
     //      Fence	                    LINEAR
     //      Door Installation	        COUNT
-
-
-    public function drawingMeasurement()
-    {
-        return $this->belongsTo(DrawingMeasurement::class,'drawing_measurement_id','id');
-    }
-
-
-    public function deductions()
-    {
-        return $this->hasMany(DrawingMeasurementDeduction::class);
-    }
-}

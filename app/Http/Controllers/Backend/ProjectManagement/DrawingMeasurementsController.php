@@ -23,7 +23,8 @@ class DrawingMeasurementsController extends Controller
         $project->load('client');
         
         $drawingMeasurementAllData = DrawingMeasurement::with(['drawing.drawingType', 'category'])->get();
-        // return $drawingMeasurementAllData;
+
+        
         return view('admin.backend.projectmanage.projects.drawing-measurements.index', compact('project', 'drawingMeasurementAllData'));
     }
 
@@ -37,19 +38,7 @@ class DrawingMeasurementsController extends Controller
         $categories = MeasurementCategories::all();
         return view('admin.backend.projectmanage.projects.drawing-measurements.create', compact('project', 'drawings', 'drawing_types', 'categories'));
     }
-    // id
-    // project_id
-    // drawing_id
-    // measurement_no
-    // measurement_date
-    // drawing_type_id
-    // total_quantity
-    // unit
-    // status
-    // remarks
-    // created_by
-    // created_at
-    // updated_at
+    
     public function storebackup(Request $request, Project $project, MeasurementCalculationService $measurementService)
     {
         return $request->all();
@@ -178,10 +167,11 @@ class DrawingMeasurementsController extends Controller
             'drawing_id' => $request->drawing_id,
             'quantity' => 0,
             'remark' => $request->remark,
+
         ]);
 
         return redirect()->route(
-            'projectmanage.projects.drawing-measurement-detail.index',
+            'projectmanage.projects.drawing-measurements.index',
             [$project->id, $measurement->id]
         );
     }

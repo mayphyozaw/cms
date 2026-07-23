@@ -53,6 +53,21 @@
                             </a>
                         </li>
 
+                        {{-- <li class="nav-item me-3">
+                            <a href="{{ route('projectmanage.projects.drawing-measurement-detail.index', [$project->id, $drawinMeasurement->id]) }}"
+                                class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.measurement-categories.index') ? 'active' : '' }}">
+                                <i class="ti ti-device-laptop me-2"></i>
+                                Detail List
+                            </a>
+                        </li>
+                        <li class="nav-item me-3">
+                            <a href="{{ route('projectmanage.projects.drawing-measurement-deduction.index', [$project->id, $drawingMeasurement->id]) }}"
+                                class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.measurement-categories.index') ? 'active' : '' }}">
+                                <i class="ti ti-device-laptop me-2"></i>
+                                Deduction Lists
+                            </a>
+                        </li> --}}
+
                     </ul>
 
                 </div>
@@ -68,15 +83,16 @@
                         ]) }}"
                         method="POST" id="submit-form">
                         @csrf
-                        
+
                         <div class="row">
                             <div class="col-12 col-lg-6 mb-3">
                                 <label for="form-label fs-14" class="form-label fs-14">
                                     Project Code:
                                 </label>
                                 <div class="input-group">
-                                    <input type="text" name="project_id" class="form-control"
-                                        value=" {{ $project->client->project_code }}" readonly disabled>
+                                    <input type="hidden" name="project_id" value="{{ $project->id }}">
+                                    <input type="text" class="form-control" style="color:red;"
+                                        value=" {{ $project->client->project_code }}" readonly>
                                 </div>
                             </div>
                             <div class="col-12 col-lg-6 mb-3">
@@ -84,18 +100,39 @@
                                     Client Name:
                                 </label>
                                 <div class="input-group">
-                                    <input type="text" name="project_id" class="form-control"
-                                        value="{{ $project->client->name }}" readonly disabled>
+                                    <input type="text" name="project_id" class="form-control" style="color:red;"
+                                        value="{{ $project->client->name }}" readonly>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4 mb-3">
+                                <label for="form-label fs-14" class="form-label fs-14">
+                                    Drawing Name:
+                                </label>
+                                <div class="input-group">
+                                    <input type="text" name="drawing_id" class="form-control" style="color:red;"
+                                        value="{{ $detail->drawingMeasurement?->drawing?->drawing_name }}" readonly>
+
                                 </div>
                             </div>
 
-                            <div class="col-12 col-lg-6 mb-3">
+                            <div class="col-12 col-lg-4 mb-3">
+                                <label for="form-label fs-14" class="form-label fs-14">
+                                    Drawing Type:
+                                </label>
+                                <div class="input-group">
+                                    <input type="text" name="drawing_type_id" class="form-control" style="color:red;"
+                                        value="{{ $detail->drawingMeasurement?->drawing?->drawingType?->name }}" readonly>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-lg-4 mb-3">
                                 <label class="form-label">
                                     Drawing Measurement Description:
                                 </label>
                                 <input type="hidden" name="drawing_measurement_detail_id" value="{{ $detail->id ?? '' }}">
-                                <input type="text" name="drawing_measurement_detail_id" class="form-control"
-                                    value="{{ $detail->description }}" readonly disabled>
+                                <input type="text" class="form-control"
+                                    style="color:red;" value="{{ $detail->description }}" readonly>
+                                
                             </div>
 
 
@@ -143,9 +180,9 @@
 
                                                 <td>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control text-center height-input"
-                                                            name="height[]" value="1" min="1"
-                                                            style="width:30px;">
+                                                        <input type="text"
+                                                            class="form-control text-center height-input" name="height[]"
+                                                            value="1" min="1" style="width:30px;">
                                                     </div>
                                                 </td>
 

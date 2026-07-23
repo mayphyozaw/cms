@@ -3,6 +3,7 @@
 namespace App\Services\Measurement;
 
 use App\Services\Measurement\Strategies\AreaStrategy;
+use App\Services\Measurement\Strategies\BrickWallAreaStrategy;
 use App\Services\Measurement\Strategies\CoatsAreaStrategy;
 use App\Services\Measurement\Strategies\ConcreteSlabVolumeStrategy;
 use App\Services\Measurement\Strategies\LinearStrategy;
@@ -35,8 +36,9 @@ class MeasurementStrategyFactory
             => new AreaStrategy(),
 
             'wall_area',
-            'brick_wall_area'
             => new WallAreaStrategy(),
+            'brick_wall_area'
+            => new BrickWallAreaStrategy(),
 
             'painting_area',
             'plaster_area'
