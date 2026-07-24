@@ -43,29 +43,7 @@
                     </ul>
                 </li>
 
-                {{-- <li >
-                    <ul>
-                        <li class="submenu">
-                            <a href="javascript:void(0);">
-                                <i class="ti ti-user-shield"></i>
-                                <span>Packages Management</span>
-                                <span class="menu-arrow"></span>
-                            </a>
-
-                            <ul style="{{ request()->routeIs('packagemange.package.*') ? 'display:block;' : '' }}">
-                                <li>
-                                    <a href="{{ route('packagemange.package.index') }}"
-                                        class="{{ request()->routeIs('packagemange.package.*') ? 'active' : '' }}">
-                                        <i class="ti ti-users">
-                                        </i><span>All Packages</span>
-                                    </a>
-                                </li>
-
-
-                            </ul>
-                        </li>
-                    </ul>
-                </li> --}}
+                
 
                 {{-- <li class="menu-title"><span>Client Manage</span></li> --}}
 

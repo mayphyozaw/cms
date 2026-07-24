@@ -244,10 +244,10 @@
                                             <select name="consumption_type" class="form-control select2"
                                                 id="consumption_type">
                                                 <option value="">Select consumption_type</option>
-                                                <option value='coverage'> Coverage</option>
-                                                <option value='fixed'> Fixed</option>
-                                                <option value='mix_ratio'> Mix Ratio</option>
-                                                <option value='percentage'> Percentage</option>
+                                                <option value='Coverage'> Coverage</option>
+                                                <option value='Fixed'> Fixed</option>
+                                                <option value='MixRatio'> Mix Ratio</option>
+                                                <option value='Percentage'> Percentage</option>
                                             </select>
 
                                         </div>
@@ -262,7 +262,7 @@
                                     <div class="col-sm-9">
                                         <div class="input-group">
                                             <input type="number" name="coverage_qty" class="form-control coverage_qty"
-                                                id="coverage_qty">
+                                                id="coverage_qty" step="0.0001">
                                         </div>
                                     </div>
                                 </div>
@@ -312,7 +312,7 @@
                                     </label>
 
                                     <div class="col-sm-9">
-                                        <input type="text" id="dry-volume-factor" name="dry_volume_factor"
+                                        <input type="text" id="dry_volume_factor" name="dry_volume_factor"
                                             class="form-control">
                                     </div>
                                 </div>
@@ -453,14 +453,15 @@
                         // console.log(data);
 
 
-
                         $('#coverage_qty').val(data.coverage_qty);
                         $('#wastage_percentage').val(data.wastage_percentage);
                         $('#quantity').val(data.quantity);
                         $('#material_unit').val(data.unit);
                         $('#unit').val(data.unit);
                         if (data.mix_ratio_template_id) {
-                            $('#mix_ratio_template_id').val(data.mix_ratio_template_id);
+                            $('#mix_ratio_template_id')
+                                .val(data.mix_ratio_template_id)
+                                .trigger('change');
                         }
 
                         calculateBaseQuantity();
@@ -473,6 +474,7 @@
 
                 let materialMappingId = $(this).val();
 
+
                 $.ajax({
                     url: "{{ route('projectmanage.material_mapping_get') }}",
                     type: 'GET',
@@ -481,40 +483,32 @@
                     },
                     success: function(data) {
 
-
-                        $('#consumption_type').val(data.consumption_type).trigger('change');;
+                        let type = data.consumption_type;
+                        toggleConsumptionFields(type);
+                        
+                        $('#consumption_type').val(data.consumption_type).trigger('change');
                         $('#variable_asset_id').val(data.variable_asset_id).trigger('change');
                         $('#coverage_qty').val(data.coverage_qty);
                         $('#consumption_ratio').val(data.consumption_ratio);
-                        $('#dry-volume-factor').val(data.dry_volume_factor);
                         $('#wastage_percentage').val(data.wastage_percentage);
                         $('#material_unit').val(data.unit);
+                        $('#mix_ratio_template_id').val(data.mix_ratio_template_id).trigger('change');
+                        $('#dry_volume_factor').val(data.dry_volume_factor);
 
                         if (data.mix_ratio_template_id) {
-                            $('#mix_ratio_template_id').val(data.mix_ratio_template_id);
+                            $('#mix_ratio_template_id').val(data.mix_ratio_template_id).trigger('change');
                         }
 
+
+                        
                         calculateBaseQuantity();
                     }
                 });
             });
 
 
-            // $('#material_mapping_id').on('change', function() {
-
-            //     let id = $(this).val();
-
-            //     let mapping = mappings.find(x => x.id == id);
-
-            //     $('#consumption_type').val(mapping.consumption_type);
-            //     $('#consumption_ratio').val(mapping.consumption_ratio);
-            //     $('#coverage_qty').val(mapping.coverage_qty);
-            //     $('#wastage_percentage').val(mapping.wastage_percentage);
-
-            // });
-
             $('#mix_ratio_template_id').on('change', function() {
-
+                
                 let mixRatioTempId = $(this).val();
 
                 $.ajax({
@@ -525,17 +519,50 @@
                     },
                     success: function(data) {
 
-                        $('#dry-volume-factor').val(data.dry_volume_factor);
+                        $('#dry_volume_factor').val(data.dry_volume_factor);
 
                         calculateBaseQuantity();
                     }
                 });
             });
 
+            function toggleConsumptionFields(type) {
+
+                $('#coverage_qty_div').hide();
+                $('#consumption_ratio_div').hide();
+                $('#percentage_div').hide();
+                $('#mix_ratio_div').hide();
+                $('#volume_factor_div').hide();
+
+                switch (type) {
+
+                    case 'Coverage':
+                        $('#coverage_qty_div').show();
+                        $('#consumption_ratio_div').show();
+                        break;
+
+                    case 'Fixed':
+                        $('#consumption_ratio_div').show();
+                        break;
+
+                    case 'Percentage':
+                        $('#percentage_div').show();
+                        $('#consumption_ratio_div').show();
+                        break;
+
+                    case 'MixRatio':
+                        $('#mix_ratio_div').show();
+                        $('#volume_factor_div').show();
+                        $('#consumption_ratio_div').show();
+                        break;
+                }
+            }
+
+
 
 
             $(document).on('input change',
-                '#quantity, #consumption_ratio, #dry-volume-factor, #wastage_percentage, #consumption_type',
+                '#quantity, #consumption_ratio, #dry_volume_factor, #wastage_percentage, #consumption_type',
                 function() {
                     calculateBaseQuantity();
                 }
@@ -547,18 +574,29 @@
 
                 let quantity = parseFloat($('#quantity').val()) || 0;
                 let consumption_ratio = parseFloat($('#consumption_ratio').val()) || 0;
-                let factor = parseFloat($('#dry-volume-factor').val()) || 0;
+                let factor = parseFloat($('#dry_volume_factor').val()) || 0;
                 let wastage = parseFloat($('#wastage_percentage').val()) || 0;
+                let coverage_qty = parseFloat($('#coverage_qty').val()) || 0;
 
                 let type = ($('#consumption_type').val() || '').trim();
 
                 let base_quantity = 0;
 
-                if (type === 'fixed' || type === 'coverage' || type === 'percentage') {
+
+                if (type === 'Fixed') {
 
                     base_quantity = quantity * consumption_ratio;
 
-                } else if (type === 'mix_ratio') {
+                } else if (type === 'Coverage') {
+
+                    base_quantity = quantity / coverage_qty;
+
+
+                } else if (type == 'Percentage') {
+
+                    base_quantity = quantity * (consumption_ratio / 100);
+
+                } else if (type === 'MixRatio') {
 
                     let dry_volume = quantity * factor;
 

@@ -24,8 +24,8 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('projectmanage.projects.mixRatio.update', [$project->id, $mixRatio->id]) }}" method="POST"
-                        id="submit-form" enctype="multipart/form-data">
+                    <form action="{{ route('projectmanage.projects.mixRatio.update', [$project->id, $mixRatio->id]) }}"
+                        method="POST" id="submit-form" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="row">
@@ -42,7 +42,8 @@
                                     Ratio Name:
                                 </label>
                                 <div class="input-group">
-                                    <input type="text" name="ratio_name" class="form-control" value="{{$mixRatio->ratio_name}}">
+                                    <input type="text" name="ratio_name" class="form-control"
+                                        value="{{ $mixRatio->ratio_name }}">
 
                                 </div>
                             </div>
@@ -51,24 +52,26 @@
                                 <label for="form-label fs-14" class="form-label fs-14">
                                     Ratio Type:
                                 </label>
-                                <select name="ratio_type" class="form-control form-select">
+                                <select name="ratio_type" id="ratio_type_id" class="form-control select2">
                                     <option value="">Select Scale Ratio</option>
-                                    <option value='concrete'
-                                        {{ $mixRatio->ratio_type === 'concrete' ? 'selected' : '' }}> 
+                                    <option value='BrickWall' {{ $mixRatio->ratio_type === 'BrickWall' ? 'selected' : '' }}>
+                                        BrickWall
+                                    </option>
+                                    <option value='Concrete' {{ $mixRatio->ratio_type === 'Concrete' ? 'selected' : '' }}>
                                         Concrete
                                     </option>
 
-                                    <option value='motor'    
-                                        {{ $mixRatio->ratio_type === 'motor' ? 'selected' : '' }}> 
-                                        Motor
+                                    <option value='Mortar' {{ $mixRatio->ratio_type === 'Mortar' ? 'selected' : '' }}>
+                                        Mortar
                                     </option>
-                                    <option value='plaster'
-                                        {{ $mixRatio->ratio_type === 'plaster' ? 'selected' : '' }}>
+                                    <option value='Plaster' {{ $mixRatio->ratio_type === 'Plaster' ? 'selected' : '' }}>
                                         Plaster
                                     </option>
-                                    <option value='screed'
-                                        {{ $mixRatio->ratio_type === 'screed' ? 'selected' : '' }}> 
+                                    <option value='Screed' {{ $mixRatio->ratio_type === 'Screed' ? 'selected' : '' }}>
                                         Screed
+                                    </option>
+                                    <option value='BlockWork' {{ $mixRatio->ratio_type === 'BlockWork' ? 'selected' : '' }}>
+                                        Block Work
                                     </option>
                                 </select>
 
@@ -79,7 +82,8 @@
                                     Dry Volume Factor:
                                 </label>
                                 <div class="input-group">
-                                    <input type="text" name="dry_volume_factor" class="form-control" value="{{$mixRatio->dry_volume_factor}}">
+                                    <input type="text" name="dry_volume_factor" class="form-control"
+                                        value="{{ $mixRatio->dry_volume_factor }}">
                                 </div>
                             </div>
 
@@ -89,12 +93,10 @@
                                 </label>
                                 <select name="status" class="form-control form-select">
                                     <option value="">Select Status</option>
-                                    <option value='is_active'
-                                        {{$mixRatio->status == 'is_active' ? 'selected' : ''}}> 
+                                    <option value='is_active' {{ $mixRatio->status == 'is_active' ? 'selected' : '' }}>
                                         Active
                                     </option>
-                                    <option value='pending'
-                                    {{$mixRatio->status == 'pending' ? 'selected' : ''}}> 
+                                    <option value='pending' {{ $mixRatio->status == 'pending' ? 'selected' : '' }}>
                                         Pending</option>
                                 </select>
                             </div>
@@ -105,7 +107,7 @@
                                     Descriptions:
                                 </label>
                                 <textarea name="description" class="form-control">
-                                    {{$mixRatio->description}}
+                                    {{ $mixRatio->description }}
                                 </textarea>
                             </div>
 
@@ -121,4 +123,30 @@
 @endsection
 @push('script')
     {!! JsValidator::formRequest('App\Http\Requests\MixRatio\MixRatioUpdateRequest', '#submit-form') !!}
+    <script>
+        $('.select2').select2({
+            width: '100%'
+        });
+        $(document).ready(function() {
+
+            const factors = {
+                BrickWall: 1.33,
+                Concrete: 1.54,
+                Mortar: 1.33,
+                Plaster: 1.27,
+                Screed: 1.54,
+                BlockWork: 1.33
+            };
+
+            $('#ratio_type').on('change', function() {
+                $('#dry_volume_factor').val(
+                    factors[$(this).val()] || ''
+                );
+            });
+
+            // Edit Form အတွက် Page Load မှာပါ Auto Fill
+            $('#ratio_type').trigger('change');
+
+        });
+    </script>
 @endpush

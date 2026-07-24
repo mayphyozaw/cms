@@ -84,11 +84,16 @@
 
         @include('admin.body.header')
 
-        {{-- Sidebar --}}
-        @include('admin.body.sidebar')
+        
+
+        @if (!request()->routeIs('dashboard'))
+            @include('admin.body.sidebar')
+        @endif
 
         <div class="page-wrapper">
+
             @yield('content')
+            
             @include('admin.body.footer')
         </div>
 
@@ -132,12 +137,11 @@
     <script src="{{ asset('vendor/jsvalidation/js/jsvalidation.js') }}"></script>
 
     {{-- Apex Chart --}}
-    <script src="{{asset('backend/assets/plugins/apexchart/apexcharts.min.js')}}"></script>
-    <script src="{{asset('backend/assets/plugins/apexchart/chart-data.js')}}"></script>
-    <script src="{{asset('backend/assets/js/jsonscript.js')}}"></script>
+    <script src="{{ asset('backend/assets/plugins/apexchart/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/plugins/apexchart/chart-data.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/jsonscript.js') }}"></script>
 
     <script>
-        
         document.addEventListener('DOMContentLoaded', function() {
             const elements = document.querySelectorAll('[data-choices]');
 

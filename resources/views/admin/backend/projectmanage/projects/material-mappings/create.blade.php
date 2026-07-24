@@ -129,10 +129,10 @@
                                         <select name="consumption_type" class="form-control select2"
                                             id="consumption_type_id">
                                             <option value="">Select consumption_type</option>
-                                            <option value='coverage'> Coverage</option>
-                                            <option value='fixed'> Fixed</option>
-                                            <option value='mix_ratio'> Mix Ratio</option>
-                                            <option value='percentage'> Percentage</option>
+                                            <option value='Coverage'> Coverage</option>
+                                            <option value='Fixed'> Fixed</option>
+                                            <option value='MixRatio'> Mix Ratio</option>
+                                            <option value='Percentage'> Percentage</option>
                                         </select>
 
                                     </div>
@@ -145,7 +145,7 @@
                                 </label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
-                                        <input type="number" name="coverage_qty" class="form-control" id="coverage_qty">
+                                        <input type="number" name="coverage_qty" class="form-control" id="coverage_qty" step="0.01">
                                     </div>
                                 </div>
                             </div>
@@ -283,21 +283,22 @@
 
                 $('#consumption_ratio_input').val('');
 
-                if (type == 'coverage') {
+                if (type == 'Coverage') {
 
                     $('#coverage_qty_div').show();
                     $('#consumption_ratio_div').show();
-                } else if (type === 'fixed') {
+
+                } else if (type === 'Fixed') {
 
                     $('#consumption_ratio_div').show();
                     $('#consumption_ratio_input').val();
 
-                } else if (type === 'percentage') {
+                } else if (type === 'Percentage') {
 
                     $('#percentage_div').show();
                     $('#consumption_ratio_div').show();
 
-                } else if (type === 'mix_ratio') {
+                } else if (type === 'MixRatio') {
 
                     $('#mix_ratio_div').show();
                     $('#consumption_ratio_div').show();
@@ -395,3 +396,9 @@
         });
     </script>
 @endpush
+
+{{-- Brick  = 5%
+    Cement  = 3%
+    Sand    = 5%
+    Aggregate   = 5%
+    Steel   = 3% --}}

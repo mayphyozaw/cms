@@ -186,6 +186,7 @@
                                         <th class="text-center" style="background-color: #9dd2e7">No</th>
                                         {{-- <th class="text-center" style="background-color: #9dd2e7">Code</th> --}}
                                         <th class="text-center" style="background-color: #9dd2e7">Material</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Consumption Type</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Raw Qty</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Base Qty</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Waste (%)</th>
@@ -211,6 +212,9 @@
                                             <td class="text-center">
                                                 {{ $materialRequirement->material->name }}
                                             </td>
+                                            <td class="text-center">
+                                                {{ $materialRequirement->materialMapping?->consumption_type }}
+                                            </td>
 
                                             <td class="text-center">
                                                 {{ number_format($materialRequirement->raw_quantity, 2) }}
@@ -235,11 +239,11 @@
 
                                             <td class="text-center">
                                                 <a class="btn btn-icon btn-sm btn-info"
-                                                    href="{{ route('projectmanage.projects.material-mappings.edit', [$project->id, $materialRequirement->id]) }}">
+                                                    href="{{ route('projectmanage.projects.material-requirements.edit', [$project->id, $materialRequirement->id]) }}">
                                                     <i class="ti ti-edit"></i>
                                                 </a>
                                                 <form
-                                                    action="{{ route('projectmanage.projects.material-mappings.destroy', [$project->id, $materialRequirement->id]) }}"
+                                                    action="{{ route('projectmanage.projects.material-requirements.destroy', [$project->id, $materialRequirement->id]) }}"
                                                     method="POST" style="display:inline;">
                                                     @csrf
                                                     @method('DELETE')

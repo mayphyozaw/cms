@@ -17,6 +17,6 @@ class MixRatioTemplates extends Model
 
     public function details()
     {
-        return $this->hasMany(MixRatioDetails::class);
+        return $this->hasMany(MixRatioDetails::class,'mix_ratio_template_id', 'id');
     }
 }

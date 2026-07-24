@@ -20,29 +20,29 @@
         <div class="row justify-content-center">
             <div class="card border-0">
 
-                    <div class="card-body pb-0 pt-0 px-2">
+                <div class="card-body pb-0 pt-0 px-2">
 
-                        <ul class="nav nav-tabs nav-bordered nav-bordered-primary">
+                    <ul class="nav nav-tabs nav-bordered nav-bordered-primary">
 
-                            <li class="nav-item me-3">
-                                <a href="{{ route('projectmanage.projects.mixRatio.index', $project->id) }}"
-                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.mixRatio.*') ? 'active' : '' }}">
-                                    <i class="ti ti-settings-cog me-2"></i>
-                                    Mix Ratio
-                                </a>
-                            </li>
-                            <li class="nav-item me-3">
-                                <a href="{{ route('projectmanage.projects.mixRatio-details.index', $project->id) }}"
-                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.mixRatio-details.index') ? 'active' : '' }}">
-                                    <i class="ti ti-settings-cog me-2"></i>
-                                    Mix Ratio Detail
-                                </a>
-                            </li>
+                        <li class="nav-item me-3">
+                            <a href="{{ route('projectmanage.projects.mixRatio.index', $project->id) }}"
+                                class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.mixRatio.*') ? 'active' : '' }}">
+                                <i class="ti ti-settings-cog me-2"></i>
+                                Mix Ratio
+                            </a>
+                        </li>
+                        <li class="nav-item me-3">
+                            <a href="{{ route('projectmanage.projects.mixRatio-details.index', $project->id) }}"
+                                class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.mixRatio-details.index') ? 'active' : '' }}">
+                                <i class="ti ti-settings-cog me-2"></i>
+                                Mix Ratio Detail
+                            </a>
+                        </li>
 
-                        </ul>
+                    </ul>
 
-                    </div>
                 </div>
+            </div>
             <div class="card border-0 rounded-0">
                 <div class="card-header">
                     <h5 class="card-title">Mix Ratio Information</h5>
@@ -53,15 +53,8 @@
                         id="submit-form" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-                            <div class="col-md-6 mb-3" hidden>
-                                <label for="form-label fs-14" class="form-label fs-14">
-                                    Code:
-                                </label>
-                                <div class="input-group">
-                                    <input type="text" name="code" class="form-control" value="Auto Generate">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-3">
+                            
+                            <div class="col-md-3 mb-3">
                                 <label for="form-label fs-14" class="form-label fs-14">
                                     Ratio Name:
                                 </label>
@@ -71,34 +64,38 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-3 mb-3">
                                 <label for="form-label fs-14" class="form-label fs-14">
                                     Ratio Type:
                                 </label>
-                                <select name="ratio_type" class="form-control form-select">
-                                    <option value="">Select Scale Ratio</option>
-                                    <option value='concrete'> Concrete</option>
-                                    <option value='motor'>Motor</option>
-                                    <option value='plaster'>Plaster</option>
-                                    <option value='screed'> Screed</option>
+                                <select name="ratio_type" id="ratio_type_id" class="form-control select2">
+                                    <option value="">Select Ratio Type</option>
+                                    <option value='BrickWall'> BrickWall</option>
+                                    <option value='Concrete'> Concrete</option>
+                                    <option value='Mortar'>Mortar</option>
+                                    <option value='Plaster'>Plaster</option>
+                                    <option value='Screed'> Screed</option>
+                                    <option value='BlockWork'> BlockWork</option>
                                 </select>
 
                             </div>
 
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-3 mb-3">
                                 <label for="form-label fs-14" class="form-label fs-14">
                                     Dry Volume Factor:
                                 </label>
                                 <div class="input-group">
-                                    <input type="text" name="dry_volume_factor" class="form-control" value="1.54">
+
+                                    <input type="text" name="dry_volume_factor" id="dry_volume_factor"
+                                        class="form-control">
                                 </div>
                             </div>
 
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-3 mb-3">
                                 <label for="form-label fs-14" class="form-label fs-14">
                                     Status:
                                 </label>
-                                <select name="status" class="form-control form-select">
+                                <select name="status" class="form-control select2">
                                     <option value="">Select Status</option>
                                     <option value='is_active'> Active</option>
                                     <option value='pending'>Pending</option>
@@ -106,7 +103,7 @@
                             </div>
 
 
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-12 mb-3">
                                 <label class="form-label">
                                     Descriptions:
                                 </label>
@@ -123,6 +120,39 @@
         </div>
     </div>
 @endsection
-@push('script')
-    {!! JsValidator::formRequest('App\Http\Requests\MixRatioDetails\MixRatioDetailStoreRequest', '#submit-form') !!}
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+
+            $('#ratio_type_id').on('change', function() {
+
+                let ratioType = $(this).val();
+                let dryVolumeFactor = '';
+
+                switch (ratioType) {
+                    case 'BrickWall':
+                        dryVolumeFactor = 1.33;
+                        break;
+                    case 'Concrete':
+                        dryVolumeFactor = 1.54;
+                        break;
+                    case 'Mortar':
+                        dryVolumeFactor = 1.33;
+                        break;
+                    case 'Plaster':
+                        dryVolumeFactor = 1.27;
+                        break;
+                    case 'Screed':
+                        dryVolumeFactor = 1.54;
+                        break;
+                    case 'BlockWork':
+                        dryVolumeFactor = 1.33;
+                        break;
+                }
+
+                $('#dry_volume_factor').val(dryVolumeFactor);
+            });
+
+        });
+    </script>
 @endpush

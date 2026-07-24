@@ -62,18 +62,18 @@ class MaterialMappingController extends Controller
 
         $consumption_ratio = 0;
 
-        if ($consumption_type == 'coverage') {
+        if ($consumption_type == 'Coverage') {
 
             $consumption_ratio = $coverageQty > 0
                 ? (1 / $coverageQty)
                 : 0;
-        } elseif ($consumption_type == 'fixed') {
+        } elseif ($consumption_type == 'Fixed') {
 
             $consumption_ratio = $request->consumption_ratio;
-        } elseif ($consumption_type == 'percentage') {
+        } elseif ($consumption_type == 'Percentage') {
 
             $consumption_ratio = $percent / 100;
-        } elseif ($consumption_type == 'mix_ratio') {
+        } elseif ($consumption_type == 'MixRatio') {
 
             $consumption_ratio = ($detail && $totalPart > 0)
                 ? ($detail->part / $totalPart)
@@ -127,20 +127,20 @@ class MaterialMappingController extends Controller
 
         $consumption_ratio = $request->consumption_ratio;
 
-        if ($consumption_type == 'coverage') {
+        if ($consumption_type == 'Coverage') {
 
             $coverageQty = $request->coverage_quantity;
 
             $consumption_ratio = $coverageQty > 0
                 ? (1 / $coverageQty)
                 : 0;
-        } elseif ($consumption_type == 'fixed') {
+        } elseif ($consumption_type == 'Fixed') {
 
             $consumption_ratio = $consumption_ratio;
-        } elseif ($consumption_type == 'percentage') {
+        } elseif ($consumption_type == 'Percentage') {
 
             $consumption_ratio = $request->percentage / 100;
-        } elseif ($consumption_type == 'mix_ratio') {
+        } elseif ($consumption_type == 'MixRatio') {
 
             $mixRatio = MixRatioTemplates::find($request->mix_ratio_template_id);
             $consumption_ratio = $mixRatio->dry_volume_factor;
@@ -245,6 +245,7 @@ class MaterialMappingController extends Controller
             'consumption_ratio'      => $materialMapping->consumption_ratio,
             'wastage_percentage'     => $materialMapping->wastage_percentage,
             'mix_ratio_template_id'  => $materialMapping->mix_ratio_template_id,
+            'dry_volume_factor' => $materialMapping->mixRatio->dry_volume_factor ?? 0,
             'unit'                   => $materialMapping->material?->unit,
         ]);
     }
@@ -259,9 +260,8 @@ class MaterialMappingController extends Controller
             'id' => $mixRatio->id,
             'ratio_name' => $mixRatio->ratio_name,
             'dry_volume_factor' => $mixRatio->dry_volume_factor,
-            // 'consumption_ratio' => $mixRatio->detail->consumption_ratio,
-            // 'sand_ratio' => $mixRatio->sand_ratio,
-            // 'aggregate_ratio' => $mixRatio->aggregate_ratio,
+            'details' => $mixRatio->details,
+
         ]);
     }
 

@@ -46,20 +46,23 @@ class MaterialRequirementsController extends Controller
 
         switch ($consumption_type) {
 
-            case 'coverage':
-                $coverageQty = $request->coverage_qty ?? 0;
-                $consumption_ratio = $coverageQty > 0 ? (1 / $coverageQty) : 0;
+            
+            case 'Coverage':
+                $coverageQty = $materialMapping->coverage_qty ?? 0;
+                $consumption_ratio = $coverageQty > 0
+                    ? 1 / $coverageQty
+                    : 0;
                 break;
 
-            case 'fixed':
+            case 'Fixed':
                 $consumption_ratio = $request->consumption_ratio;
                 break;
 
-            case 'percentage':
+            case 'Percentage':
                 $consumption_ratio = ($request->percentage ?? 0) / 100;
                 break;
 
-            case 'mix_ratio':
+            case 'MixRatio':
                 $consumption_ratio = $materialMapping->consumption_ratio;
                 break;
         }
@@ -69,16 +72,16 @@ class MaterialRequirementsController extends Controller
         $dryVolume = 0;
 
         if (
-            $consumption_type === 'mix_ratio'
+            $consumption_type === 'MixRatio'
             && $materialMapping->mixRatio
         ) {
             $dryVolume = $raw_quantity * $materialMapping->mixRatio->dry_volume_factor;
         }
 
-
-
-        if ($consumption_type === 'mix_ratio') {
+        if ($consumption_type === 'MixRatio') {
             $base_quantity = $dryVolume * $consumption_ratio;
+        } elseif ($consumption_type === 'Coverage') {
+            $base_quantity = $raw_quantity * $consumption_ratio;
         } else {
             $base_quantity = $raw_quantity * $consumption_ratio;
         }
@@ -87,7 +90,7 @@ class MaterialRequirementsController extends Controller
 
         $final_quantity = $base_quantity * (1 + $wastage_percentage / 100);
 
-        $material_requirements = MaterialRequirements::create([
+        MaterialRequirements::create([
             'drawing_measurement_id' => $request->drawing_measurement_id,
             'material_mapping_id'    => $request->material_mapping_id,
             'variable_asset_id'      => $request->variable_asset_id,
@@ -114,14 +117,16 @@ class MaterialRequirementsController extends Controller
         $project->load('client');
         $materialMappings = MaterialMappings::all();
         $drawingMeasurements = DrawingMeasurement::all();
-        $varilableAssets = VariableAsset::all();
-        return view('admin.backend.projectmanage.projects.material-requirements.edit', compact('materialMappings', 'project', 'materialRequirement', 'varilableAssets', 'drawingMeasurements'));
+        $variableAssets = VariableAsset::all();
+        $mixRatios = MixRatioTemplates::all();
+        return view('admin.backend.projectmanage.projects.material-requirements.edit', compact('materialMappings', 'project', 'materialRequirement', 'variableAssets', 'drawingMeasurements','mixRatios'));
     }
 
 
-    public function update(Request $request, Project $project)
+    public function update(Request $request, Project $project, $id)
     {
 
+        $materialRequirement = MaterialRequirements::findOrFail($id);
         $material = VariableAsset::findOrFail($request->variable_asset_id);
         $drawingMeasurement = DrawingMeasurement::findOrFail($request->drawing_measurement_id);
         $materialMapping = MaterialMappings::findOrFail($request->material_mapping_id);
@@ -132,20 +137,20 @@ class MaterialRequirementsController extends Controller
 
         switch ($consumption_type) {
 
-            case 'coverage':
+            case 'Coverage':
                 $coverageQty = $request->coverage_qty ?? 0;
                 $consumption_ratio = $coverageQty > 0 ? (1 / $coverageQty) : 0;
                 break;
 
-            case 'fixed':
+            case 'Fixed':
                 $consumption_ratio = 1;
                 break;
 
-            case 'percentage':
+            case 'Percentage':
                 $consumption_ratio = ($request->percentage ?? 0) / 100;
                 break;
 
-            case 'mix_ratio':
+            case 'MixRatio':
                 $consumption_ratio = $materialMapping->consumption_ratio;
                 break;
         }
@@ -155,7 +160,7 @@ class MaterialRequirementsController extends Controller
         $dryVolume = $raw_quantity * $materialMapping->mixRatio->dry_volume_factor;
 
 
-        if ($consumption_type === 'mix_ratio') {
+        if ($consumption_type === 'MixRatio') {
             $base_quantity = $dryVolume * $consumption_ratio;
         } else {
             $base_quantity = $raw_quantity * $consumption_ratio;
@@ -165,7 +170,7 @@ class MaterialRequirementsController extends Controller
 
         $final_quantity = $base_quantity * (1 + $wastage_percentage / 100);
 
-        $material_requirements = MaterialRequirements::update([
+        $materialRequirement->update([
             'drawing_measurement_id' => $request->drawing_measurement_id,
             'material_mapping_id'    => $request->material_mapping_id,
             'variable_asset_id'      => $request->variable_asset_id,

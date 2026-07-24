@@ -43,7 +43,8 @@
                         <h5 class="card-title">Material Mappings Information</h5>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('projectmanage.projects.material-mappings.update', [$project->id, $materialMapping->id]) }}"
+                        <form
+                            action="{{ route('projectmanage.projects.material-mappings.update', [$project->id, $materialMapping->id]) }}"
                             method="POST" id="submit-form" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
@@ -52,7 +53,7 @@
                             <div class="row mb-3">
 
                                 <label class="col-sm-3 form-label">
-                                     Drawing Measurement:
+                                    Drawing Measurement:
                                 </label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
@@ -61,11 +62,9 @@
                                             <option value="">Select Measurement Categories</option>
                                             @foreach ($drawingMeasurements as $drawingMeasurement)
                                                 <option value="{{ $drawingMeasurement->id }}"
-                                                    {{$materialMapping->drawing_measurement_id == $drawingMeasurement->id ? 'selected' : ''}}
-                                                    >
-                                                    {{ $drawingMeasurement->drawing->drawing_name }} 
+                                                    {{ $materialMapping->drawing_measurement_id == $drawingMeasurement->id ? 'selected' : '' }}>
+                                                    {{ $drawingMeasurement->drawing->drawing_name }}
                                                 </option>
-
                                             @endforeach
                                         </select>
                                     </div>
@@ -85,12 +84,10 @@
                                             <option value="">Select Measurement Categories</option>
                                             @foreach ($measurementCategories as $measurementCategory)
                                                 <option value="{{ $measurementCategory->id }}"
-                                                    {{$materialMapping->measurement_category_id == $measurementCategory->id ? 'selected' : ''}}
-                                                    >
+                                                    {{ $materialMapping->measurement_category_id == $measurementCategory->id ? 'selected' : '' }}>
                                                     {{ $measurementCategory->category_name }}
 
                                                 </option>
-
                                             @endforeach
                                         </select>
                                     </div>
@@ -109,8 +106,7 @@
                                             <option value="">Select Material</option>
                                             @foreach ($varilableAssets as $varilableAsset)
                                                 <option value="{{ $varilableAsset->id }}"
-                                                    {{$materialMapping->variable_asset_id == $varilableAsset->id ? 'selected' : ''}}
-                                                    >
+                                                    {{ $materialMapping->variable_asset_id == $varilableAsset->id ? 'selected' : '' }}>
                                                     {{ $varilableAsset->name }}
                                                 </option>
                                             @endforeach
@@ -126,25 +122,23 @@
 
                                 <div class="col-sm-9">
                                     <div class="input-group">
-                                        <select name="consumption_type" class="form-control form-select"
+                                        <select name="consumption_type" class="form-control select2"
                                             id="consumption_type_id">
                                             <option value="">Select consumption_type</option>
-                                            <option value='coverage' {{ $materialMapping->consumption_type == 'coverage' ? 'selected' : '' }}
-                                                > 
+                                            <option value='Coverage'
+                                                {{ $materialMapping->consumption_type == 'Coverage' ? 'selected' : '' }}>
                                                 Coverage
                                             </option>
-                                            <option value='fixed'
-                                                {{ $materialMapping->consumption_type == 'fixed' ? 'selected' : '' }}
-                                                > 
+                                            <option value='Fixed'
+                                                {{ $materialMapping->consumption_type == 'Fixed' ? 'selected' : '' }}>
                                                 Fixed
                                             </option>
-                                            <option value='mix_ratio'
-                                                {{ $materialMapping->consumption_type == 'mix_ratio' ? 'selected' : '' }}
-                                                > 
+                                            <option value='MixRatio'
+                                                {{ $materialMapping->consumption_type == 'MixRatio' ? 'selected' : '' }}>
                                                 Mix Ratio
                                             </option>
-                                            <option value='percentage' {{ $materialMapping->consumption_type == 'percentage' ? 'selected' : '' }}
-                                                > 
+                                            <option value='Percentage'
+                                                {{ $materialMapping->consumption_type == 'Percentage' ? 'selected' : '' }}>
                                                 Percentage
                                             </option>
                                         </select>
@@ -162,8 +156,8 @@
                                 </label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
-                                        <input type="number" name="coverage_quantity" class="form-control" id="coverage_qty"
-                                        value="{{$materialMapping->coverage_qty}}">
+                                        <input type="number" name="coverage_quantity" class="form-control"
+                                            id="coverage_qty" value="{{ $materialMapping->coverage_qty }}">
                                     </div>
                                 </div>
                             </div>
@@ -190,34 +184,48 @@
                                 </label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
-                                        <select name="mix_ratio_template_id" class="form-control form-select">
+                                        
+                                            <select name="mix_ratio_template_id" id="mix_ratio_template_id"
+                                                class="form-control select2">
 
-                                            <option value="">
-                                                Select Mix Ratio
-                                            </option>
-
-                                            @foreach ($mixRatios as $mixRatio)
-                                                <option value="{{ $mixRatio->id }}"
-                                                    {{$materialMapping->mix_ratio_template_id == $mixRatio->id ? 'selected' : ''}}>
-                                                    {{ $mixRatio->ratio_name }}
+                                                <option value="">
+                                                    Select Mix Ratio
                                                 </option>
-                                            @endforeach
 
-                                        </select>
+                                                @foreach ($mixRatios as $mixRatio)
+                                                    <option value="{{ $mixRatio->id }}"
+                                                        {{ $materialMapping->mix_ratio_template_id == $mixRatio->id ? 'selected' : '' }}>
+                                                        {{ $mixRatio->ratio_name }}
+                                                    </option>
+                                                @endforeach
+
+                                            </select>
                                     </div>
                                 </div>
 
                             </div>
 
 
-                            <div class="row mb-3">
+                            <div class="row mb-3" id="volume_factor_div" style="display:none;">
+                                <label class="col-sm-3 form-label">
+                                    Dry Volume Factor
+                                </label>
+
+                                <div class="col-sm-9">
+                                    <input type="text" id="dry_volume_factor" name="dry_volume_factor"
+                                        class="form-control"
+                                        value="{{ $materialMapping->mixRatio?->dry_volume_factor }}">
+                                </div>
+                            </div>
+
+
+                            <div class="row mb-3" id="consumption_ratio_div" style="display:none;">
                                 <label class="col-sm-3 form-label">
                                     Consumption Ratio
                                 </label>
                                 <div class="col-sm-9">
                                     <input type="text" name="consumption_ratio" id="consumption_ratio_input"
-                                        class="form-control"
-                                        value="{{$materialMapping->consumption_ratio}}">
+                                        class="form-control" value={{ $materialMapping->consumption_ratio }}>
                                 </div>
                             </div>
 
@@ -228,7 +236,7 @@
                                 <div class="col-sm-9">
                                     <div class="input-group">
                                         <input type="text" name="wastage_percentage" class="form-control"
-                                            value="{{$materialMapping->wastage_percentage}}">
+                                            value="{{ $materialMapping->wastage_percentage }}">
                                         <div class="input-group-text">
                                             <i class="ti ti-percentage"></i>
                                         </div>
@@ -242,7 +250,8 @@
                                 </label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
-                                        <input name="status" class="form-control" value="{{$materialMapping->status}}">
+                                        <input name="status" class="form-control"
+                                            value="{{ $materialMapping->status }}">
                                     </div>
                                 </div>
                             </div>
@@ -255,7 +264,7 @@
                                 <div class="col-sm-9">
                                     <div class="input-group">
                                         <textarea name="remark" class="form-control">
-                                            {{$materialMapping->remark}}
+                                            {{ $materialMapping->remark }}
                                         </textarea>
                                     </div>
                                 </div>
@@ -275,7 +284,6 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-
             $('#consumption_type_id').change(function() {
 
                 let selected = $(this).find(':selected');
@@ -284,35 +292,32 @@
                 $('#coverage_qty_div').hide();
                 $('#percentage_div').hide();
                 $('#mix_ratio_div').hide();
+                $('#consumption_ratio_div').hide();
 
                 $('#consumption_ratio_input').val('');
 
-                if (type === 'coverage') {
+                if (type == 'Coverage') {
 
                     $('#coverage_qty_div').show();
-                    $('#consumption_ratio').show();
+                    $('#consumption_ratio_div').show();
 
+                } else if (type === 'Fixed') {
 
-                } else if (type === 'fixed') {
+                    $('#consumption_ratio_div').show();
+                    $('#consumption_ratio_input').val();
 
-                    $('#consumption_ratio').show();
-                    $('#consumption_ratio_input').val(1);
-
-                } else if (type === 'percentage') {
+                } else if (type === 'Percentage') {
 
                     $('#percentage_div').show();
-                    $('#consumption_ratio').show();
+                    $('#consumption_ratio_div').show();
 
-                } else if (type === 'mix_ratio') {
-
+                } else if (type === 'MixRatio') {
 
                     $('#mix_ratio_div').show();
-                    $('#consumption_ratio').show();
+                    $('#consumption_ratio_div').show();
                     $('#volume_factor_div').show();
 
-
                 }
-
             });
 
             $('#coverage_qty').on('keyup change', function() {
@@ -328,7 +333,6 @@
                 }
 
             });
-
 
 
             $('#percentage_value').on('keyup change', function() {
@@ -366,6 +370,7 @@
                     }
                 });
 
+
             });
 
             function loadMixRatioData() {
@@ -386,9 +391,9 @@
                     },
                     success: function(data) {
 
-                        $('#dry_volume_factor').val(
-                            data.dry_volume_factor
-                        );
+                        console.log(data);
+
+                        $('#dry_volume_factor').val(data.dry_volume_factor);
 
                         $('#consumption_ratio_input').val(
                             data.consumption_ratio
@@ -397,13 +402,8 @@
                 });
             }
 
-            $('#mix_ratio_template_id').change(function() {
-                loadMixRatioData();
-            });
+            $('#mix_ratio_template_id, #variable_asset_id').on('change', loadMixRatioData);
 
-            $('#variable_asset_id').change(function() {
-                loadMixRatioData();
-            });
 
 
         });
