@@ -430,6 +430,7 @@
 
                                                 <th class="no-sort"></th>
                                                 <th>BOQ No</th>
+                                                <th>BOQ Detail</th>
                                                 <th>BOQ Date</th>
                                                 <th>Material Total</th>
                                                 <th>Labor Total</th>
@@ -449,6 +450,16 @@
                                                 <tr class="text-center">
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td><span class="badge badge bg-info">{{ $boq->boq_no }}</span></td>
+                                                    <td>
+                                                        <a href="{{ route('projectmanage.projects.boq-detail.index', [$project->id, $boq->id]) }}"
+                                                            class="dropdown-item">
+
+                                                            <i class="ti ti-clipboard-copy text-violet"></i>
+                                                            <span style="color:red">Detail</span>
+
+                                                        </a>
+                                                    </td>
+
                                                     <td>{{ $boq->boq_date }}</td>
                                                     <td>{{ $boq->material_total ?? '0' }}</td>
                                                     <td>{{ $boq->labor_total ?? '0' }}</td>
@@ -505,6 +516,7 @@
                                                                     <i class="ti ti-trash"></i>
                                                                     Delete
                                                                 </a>
+
                                                                 <a class="dropdown-item" href="#">
                                                                     <i class="ti ti-clipboard-copy text-violet"></i>
                                                                     View BOQ

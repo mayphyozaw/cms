@@ -76,24 +76,30 @@
         .select2-selection__arrow {
             height: 38px !important;
         }
+
+        .dashboard-page .page-wrapper,
+        .dashboard-page .navbar-header {
+            margin-left: 0 !important;
+        }
     </style>
 </head>
 
-<body>
+<body class="{{ request()->routeIs('dashboard') ? 'dashboard-page' : '' }}">
     <div class="main-wrapper">
+
 
         @include('admin.body.header')
 
-        
 
         @if (!request()->routeIs('dashboard'))
             @include('admin.body.sidebar')
         @endif
 
+
         <div class="page-wrapper">
 
             @yield('content')
-            
+
             @include('admin.body.footer')
         </div>
 

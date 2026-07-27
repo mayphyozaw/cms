@@ -44,12 +44,8 @@ class DrawingMeasurementDetailController extends Controller
     }
     
 
-    public function store(
-        Request $request,
-        Project $project,
-        MeasurementCalculationService $measurementService,
-        DrawingMeasurement $drawingMeasurement
-    ) {
+    public function store(Request $request,Project $project,MeasurementCalculationService $measurementService,DrawingMeasurement $drawingMeasurement) 
+    {
 
         $totalQty = 0;
 
@@ -107,7 +103,7 @@ class DrawingMeasurementDetailController extends Controller
                     'width' => $request->width[$index] ?? 0,
                     'height' => $request->height[$index] ?? 0,
                     'thickness' => $request->thickness[$index] ?? 0,
-                    'thickness_unit' => $request->thickness_unit[$index] ?? 0,
+                    'thickness_unit' => $request->thickness_unit[$index] ?? 'ft',
                     'coats' => $request->coats[$index] ?? 0,
                     'unit_weight' => $request->unit_weight[$index] ?? 0,
                     'gross_quantity' => $grossQty,

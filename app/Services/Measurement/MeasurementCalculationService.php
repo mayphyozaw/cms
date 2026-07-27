@@ -40,4 +40,19 @@ class MeasurementCalculationService
             'height' => $height,
         ]);
     }
+
+    public function calculateVolumeThickness(
+        float $nos,
+        float $length,
+        float $width,
+        float $thickness
+    ): float {
+
+        return $this->calculate('pcc_volume', [
+            'nos' => $nos,
+            'length' => $length,
+            'width' => $width,
+            'thickness' => $thickness,
+        ]);
+    }
 }

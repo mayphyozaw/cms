@@ -12,4 +12,6 @@ class BoqCategories extends Model
     ];
 
     
+
+    
 }

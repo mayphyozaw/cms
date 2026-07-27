@@ -61,20 +61,20 @@ Template Name: CRMS - Bootstrap Admin Template
 	initSidebarMenu();
 
 	// Mouse Over
-	$(document).on('mouseover', function(e) {
-        e.stopPropagation();
-        if ($('body').hasClass('mini-sidebar') && $('#toggle_btn').is(':visible')) {
-            var targ = $(e.target).closest('.sidebar, .header-left').length;
-            if (targ) {
-               	$('body').addClass('expand-menu');
-                $('.subdrop + ul').slideDown();
-            } else {
-               	$('body').removeClass('expand-menu');
-                $('.subdrop + ul').slideUp();
-            }
-            return false;
-        }
-    });
+	// $(document).on('mouseover', function(e) {
+    //     e.stopPropagation();
+    //     if ($('body').hasClass('mini-sidebar') && $('#toggle_btn').is(':visible')) {
+    //         var targ = $(e.target).closest('.sidebar, .header-left').length;
+    //         if (targ) {
+    //            	$('body').addClass('expand-menu');
+    //             $('.subdrop + ul').slideDown();
+    //         } else {
+    //            	$('body').removeClass('expand-menu');
+    //             $('.subdrop + ul').slideUp();
+    //         }
+    //         return false;
+    //     }
+    // });
 
 	// Star Filled
 	$(document).ready(function() {
@@ -124,6 +124,21 @@ Template Name: CRMS - Bootstrap Admin Template
 			});
 		}
 	}
+
+	
+	$(document).on('click', '#toggle_btn, #toggle_btn2', function () {
+
+		setTimeout(function () {
+
+			if ($.fn.DataTable) {
+				$($.fn.dataTable.tables(true))
+					.DataTable()
+					.columns.adjust();
+			}
+
+		}, 400);
+
+	});
 
 	// Toggle Button
 	$(document).on('click', '#toggle_btn, #toggle_btn2', function () {

@@ -43,7 +43,7 @@
                                     Formula Type:
                                 </label>
 
-                                <select name="formula_types" class="form-control form-select" id="formulaTypes">
+                                <select name="formula_types" class="form-control select2" id="formulaTypes">
                                     <option value="">Select Formula Type</option>
 
 
@@ -51,20 +51,29 @@
                                         Volume
                                     </option>
 
-                                    <option value="excavation_volume" {{ $category->formulaTypes == 'excavation_volume' ? 'selected' : '' }}>
-                                            Excavation Volume
+                                    <option value="excavation_volume"
+                                        {{ $category->formulaTypes == 'excavation_volume' ? 'selected' : '' }}>
+                                        Excavation Volume
                                     </option>
 
-                                    <option value="pcc_1:3:6" {{ $category->formulaTypes == 'pcc_1:3:6' ? 'selected' : '' }}>
-                                            PCC 1:3:6
+                                    <option value="pcc_1:3:6"
+                                        {{ $category->formulaTypes == 'pcc_1:3:6' ? 'selected' : '' }}>
+                                        PCC 1:3:6
                                     </option>
 
-                                    <option value="rcc_footing" {{ $category->formulaTypes == 'rcc_footing' ? 'selected' : '' }}>
-                                            RCC Footing
+                                    <option value="pcc_volume"
+                                        {{ $category->formulaTypes == 'pcc_volume' ? 'selected' : '' }}>
+                                        PCC Volume
                                     </option>
 
-                                    <option value="rcc_column" {{ $category->formulaTypes == 'rcc_column' ? 'selected' : '' }}>
-                                            RCC Footing
+                                    <option value="rcc_footing"
+                                        {{ $category->formulaTypes == 'rcc_footing' ? 'selected' : '' }}>
+                                        RCC Footing
+                                    </option>
+
+                                    <option value="rcc_column"
+                                        {{ $category->formulaTypes == 'rcc_column' ? 'selected' : '' }}>
+                                        RCC Column
                                     </option>
 
                                     <option value="area" {{ $category->formulaTypes == 'area' ? 'selected' : '' }}>
@@ -80,6 +89,13 @@
                                         {{ $category->formulaTypes == 'painting_area' ? 'selected' : '' }}>
                                         Painting Area
                                     </option>
+
+                                    <option value="plaster_area"
+                                        {{ $category->formulaTypes == 'plaster_area' ? 'selected' : '' }}>
+                                        Plaster Area
+                                    </option>
+
+
 
                                     <option value="plaster_volume"
                                         {{ $category->formulaTypes == 'plaster_volume' ? 'selected' : '' }}>
@@ -186,159 +202,165 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
-            document.getElementById('formulaTypes')
-                .addEventListener('change', function() {
+            $('#formulaTypes').on('change', function() {
 
 
-                    let symbol = '';
-                    let unit = '';
-                    let formulas = '';
-                    let thickness = parseFloat($('#thickness_ft').val()) || 0;
+                let symbol = '';
+                let unit = '';
+                let formulas = '';
+                let thickness = parseFloat($('#thickness_ft').val()) || 0;
 
-                    switch (this.value) {
+                switch (this.value) {
 
-                        case 'volume':
-                            symbol = 'V';
-                            formulas = 'L * W * H';
-                            unit = 'ft³';
-                            break;
-                        
-                        case 'excavation_volume':
-                            symbol = 'V';
-                            formulas = 'Nos * L * W * H';
-                            unit = 'cu.ft';
-                            break;
+                    case 'volume':
+                        symbol = 'V';
+                        formulas = 'L * W * H';
+                        unit = 'CFT';
+                        break;
 
-                        case 'pcc_1:3:6':
-                            symbol = 'V';
-                            formulas = 'Nos * L * W * H';
-                            unit = 'cu.ft';
-                            break;
-                        
-                        case 'rcc_footing':
-                            symbol = 'V';
-                            formulas = 'Nos * L * W * H';
-                            unit = 'cu.ft';
-                            break;
-                        case 'rcc_column':
-                            symbol = 'V';
-                            formulas = 'Nos * L * W * H';
-                            unit = 'cu.ft';
-                            break;
+                    case 'excavation_volume':
+                        symbol = 'V';
+                        formulas = 'Nos * L * W * H';
+                        unit = 'CFT';
+                        break;
+
+                    case 'pcc_1:3:6':
+                        symbol = 'V';
+                        formulas = 'Nos * L * W * H';
+                        unit = 'CFT';
+                        break;
 
 
-                        case 'area':
-                            symbol = 'A';
-                            formulas = 'L * W';
-                            unit = 'sqft';
-                            break;
+                    case 'pcc_volume':
+                        symbol = 'V';
+                        formulas = 'Nos * L * W * thickness';
+                        unit = 'CFT';
+                        break;
 
-                        case 'wall_area':
-                            symbol = 'WallArea';
-                            formulas = 'L * H';
-                            unit = 'Rft';
-                            break;
+                    case 'rcc_footing':
+                        symbol = 'V';
+                        formulas = 'L * W * H';
+                        unit = 'CFT';
+                        break;
 
-                        case 'coats_area':
-                            symbol = 'CoatArea';
-                            formulas = 'L * H * coats';
-                            unit = 'sqft';
-                            break;
-
-                        case 'painting_area':
-                            symbol = 'PaintingArea';
-                            formulas = '2 * (L + W) * H';
-                            unit = 'sqft'
-                            break;
+                    case 'rcc_column':
+                        symbol = 'V';
+                        formulas = 'Nos * L * W * H';
+                        unit = 'CFT';
+                        break;
 
 
-                        case 'plaster_area':
-                            symbol = 'PlasterArea';
-                            formulas = '2 * (L + W) * H';
-                            unit = 'sqft'
-                            break;
+                    case 'area':
+                        symbol = 'A';
+                        formulas = 'L * W';
+                        unit = 'sqft';
+                        break;
 
-                        case 'plaster_volume':
-                            symbol = 'PlasterVolume';
-                            formulas = '(2 * (L + W) * H) * thickness';
-                            unit = 'ft³'
-                            break;
+                    case 'wall_area':
+                        symbol = 'WallArea';
+                        formulas = 'L * H';
+                        unit = 'Rft';
+                        break;
 
+                    case 'coats_area':
+                        symbol = 'CoatArea';
+                        formulas = 'L * H * coats';
+                        unit = 'sqft';
+                        break;
 
-                        case 'screed_area':
-                            symbol = 'ScreedArea';
-                            formulas = 'L * W';
-                            unit = 'sqft'
-                            break;
+                    case 'painting_area':
+                        symbol = 'PaintingArea';
+                        formulas = 'L * H';
+                        unit = 'sqft'
+                        break;
 
-                        case 'screed_volume':
-                            symbol = 'ScreedVolume';
-                            formulas = '(L * W) * thickness';
-                            unit = 'ft³'
-                            break;
+                    case 'plaster_area':
+                        symbol = 'PlasterArea';
+                        formulas = 'L * H';
+                        unit = 'sqft'
+                        break;
 
-                        case 'concrete_slab_area':
-                            symbol = 'ConcreteSlabArea';
-                            formulas = 'L * W';
-                            unit = 'sqft'
-                            break;
-
-                        case 'concrete_slab_volume':
-                            symbol = 'concreteSlabVolume';
-                            formulas = '(L * W) * thickness';
-                            unit = 'ft³'
-                            break;
-
-                        case 'brick_wall_area':
-                            symbol = 'BrickWallArea';
-                            formulas = '(L + W) * 2 * H';
-                            unit = 'sqft'
-                            break;
-
-                        case 'brick_wall_volume':
-                            symbol = 'BrickWallVolume';
-                            formulas = '(L * H)* thickness';
-                            unit = 'ft³'
-                            break;
-
-                        case 'mortar_bed_area':
-                            symbol = 'MortarBedArea';
-                            formulas = 'L * W';
-                            unit = 'sqft'
-                            break;
-
-                        case 'mortar_bed_volume':
-                            symbol = 'MortarBedVolume';
-                            formulas = '(L * W) * thickness';
-                            unit = 'ft³'
-                            break;
-
-                        case 'steel_linear':
-                            symbol = 'L';
-                            formulas = 'L';
-                            unit = 'kg'
-                            break;
-
-                        case 'steel_handrail_linear':
-                            symbol = 'L';
-                            formulas = 'L';
-                            unit = 'Rft';
-                            break;
-
-                        case 'weight':
-                            symbol = 'W';
-                            formulas = 'L * Unit Weight';
-                            unit = 'ton';
-                            break;
-                    }
+                    case 'plaster_volume':
+                        symbol = 'PlasterVolume';
+                        formulas = '(2 * (L + W) * H) * thickness';
+                        unit = 'CFT'
+                        break;
 
 
-                    document.getElementById('symbol').value = symbol;
-                    document.getElementById('formulas').value = formulas;
-                    document.getElementById('category_unit').value = unit;
+                    case 'screed_area':
+                        symbol = 'ScreedArea';
+                        formulas = 'L * W';
+                        unit = 'sqft'
+                        break;
+
+                    case 'screed_volume':
+                        symbol = 'ScreedVolume';
+                        formulas = '(L * W) * thickness';
+                        unit = 'CFT'
+                        break;
+
+                    case 'concrete_slab_area':
+                        symbol = 'ConcreteSlabArea';
+                        formulas = 'L * W';
+                        unit = 'sqft'
+                        break;
+
+                    case 'concrete_slab_volume':
+                        symbol = 'concreteSlabVolume';
+                        formulas = '(L * W) * thickness';
+                        unit = 'CFT'
+                        break;
+
+                    case 'brick_wall_area':
+                        symbol = 'BrickWallArea';
+                        formulas = '(L + W) * 2 * H';
+                        unit = 'sqft'
+                        break;
+
+                    case 'brick_wall_volume':
+                        symbol = 'BrickWallVolume';
+                        formulas = '(L * H)* thickness';
+                        unit = 'CFT'
+                        break;
+
+                    case 'mortar_bed_area':
+                        symbol = 'MortarBedArea';
+                        formulas = 'L * W';
+                        unit = 'sqft'
+                        break;
+
+                    case 'mortar_bed_volume':
+                        symbol = 'MortarBedVolume';
+                        formulas = '(L * W) * thickness';
+                        unit = 'CFT'
+                        break;
+
+                    case 'steel_linear':
+                        symbol = 'L';
+                        formulas = 'L';
+                        unit = 'kg'
+                        break;
+
+                    case 'steel_handrail_linear':
+                        symbol = 'L';
+                        formulas = 'L';
+                        unit = 'Rft';
+                        break;
+
+                    case 'weight':
+                        symbol = 'W';
+                        formulas = 'L * Unit Weight';
+                        unit = 'ton';
+                        break;
+                }
 
 
-                });
+                document.getElementById('symbol').value = symbol;
+                document.getElementById('formulas').value = formulas;
+                document.getElementById('category_unit').value = unit;
+
+
+            });
         });
     </script>
 @endpush

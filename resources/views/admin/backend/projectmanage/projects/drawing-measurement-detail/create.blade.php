@@ -396,19 +396,19 @@
                         </td>
 
                         <td class="col-length">
-                            <input type="number" name="length[]" class="form-control length" value="1">
+                            <input type="number" name="length[]" class="form-control length" value="1" step="0.001">
                         </td>
 
                         <td class="col-width">
-                            <input type="number" name="width[]" class="form-control width" value="1">
+                            <input type="number" name="width[]" class="form-control width" value="1" step="0.001">
                         </td>
 
                         <td class="col-height">
-                            <input type="number" name="height[]" class="form-control height" value="1">
+                            <input type="number" name="height[]" class="form-control height" value="1" step="0.001">
                         </td>
 
                         <td class="col-thickness">
-                            <input type="number" name="thickness[]" class="form-control thickness" value="1">
+                            <input type="number" name="thickness[]" class="form-control thickness" value="1" step="0.001">
                         </td>
                         
                         <td>
@@ -508,9 +508,21 @@
                     case 'wall_area':
                         quantity = nos * length * height;
                         break;
+                    
+                    case 'plaster_area':
+                        quantity = length * height;
+                        break;
 
                     case 'brick_wall_area':
                         quantity = nos * (2 * (length + width) * height);
+                        break;
+                    
+                    case 'rcc_footing':
+                        quantity = length * width * height;
+                        break;
+
+                    case 'pcc_volume':
+                        quantity = nos * length * width * thickness;
                         break;
 
                     case 'volume':
@@ -518,7 +530,7 @@
                         break;
 
                     case 'painting_area':
-                        quantity = nos * (2 * (length + width) * height) * coats;
+                        quantity = length * height;
                         break;
 
                     case 'weight':
@@ -554,8 +566,20 @@
                         $('.col-width, .col-thickness, .col-unit-weight, .col-coats').hide();
                         break;
 
+                    case 'plaster_area':
+                        $('.col-width, .col-thickness, .col-unit-weight, .col-coats').hide();
+                        break;
+
                     case 'brick_wall_area':
                         $('.col-thickness, .col-unit-weight, .col-coats').hide();
+                        break;
+
+                    case 'rcc_footing':
+                        $('.col-thickness, .col-unit-weight, .col-coats').hide();
+                        break;
+
+                    case 'pcc_volume':
+                        $('.col-height, .col-unit-weight, .col-coats').hide();
                         break;
 
                     case 'weight':
@@ -563,7 +587,7 @@
                         break;
 
                     case 'painting_area':
-                        $('.col-thickness, .col-unit-weight').hide();
+                         $('.col-width, .col-thickness, .col-unit-weight, .col-coats').hide();
                         break;
 
                     case 'plaster_volume':

@@ -9,6 +9,8 @@ use App\Services\Measurement\Strategies\ConcreteSlabVolumeStrategy;
 use App\Services\Measurement\Strategies\LinearStrategy;
 use App\Services\Measurement\Strategies\NosVolumeStrategy;
 use App\Services\Measurement\Strategies\PaintingAreaStrategy;
+use App\Services\Measurement\Strategies\PCCVolumeStrategy;
+use App\Services\Measurement\Strategies\PlasterAreaStrategy;
 use App\Services\Measurement\Strategies\PlasterVolumeStrategy;
 use App\Services\Measurement\Strategies\SimpleVolumeStrategy;
 use App\Services\Measurement\Strategies\WallAreaStrategy;
@@ -21,11 +23,14 @@ class MeasurementStrategyFactory
         return match ($formulaType) {
 
             'volume',
+            'rcc_footing',
             => new SimpleVolumeStrategy(),
+
+            'pcc_volume',
+            => new PCCVolumeStrategy(),
 
             'excavation_volume',
             'pcc_1:3:6',
-            'rcc_footing',
             'rcc_column'
             => new NosVolumeStrategy(),
 
@@ -41,8 +46,10 @@ class MeasurementStrategyFactory
             => new BrickWallAreaStrategy(),
 
             'painting_area',
-            'plaster_area'
             => new PaintingAreaStrategy(),
+           
+            'plaster_area'
+            => new PlasterAreaStrategy(),
 
             'coats_area'
             => new CoatsAreaStrategy(),

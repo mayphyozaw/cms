@@ -45,7 +45,7 @@
                                         Formula Type:
                                     </label>
 
-                                    <select name="formula_types" class="form-control form-select" id="formulaTypes">
+                                    <select name="formula_types" class="form-control select2" id="formulaTypes">
                                         <option value="">Select Formula Type</option>
 
                                         <option value="volume">
@@ -58,6 +58,10 @@
 
                                         <option value="pcc_1:3:6">
                                             PCC 1:3:6
+                                        </option>
+
+                                        <option value="pcc_volume">
+                                            PCC Volume
                                         </option>
 
                                         <option value="rcc_footing">
@@ -190,8 +194,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
-            document.getElementById('formulaTypes')
-                .addEventListener('change', function() {
+            $('#formulaTypes').on('change', function() {
 
 
                     let symbol = '';
@@ -204,32 +207,38 @@
                         case 'volume':
                             symbol = 'V';
                             formulas = 'L * W * H';
-                            unit = 'ft³';
+                            unit = 'CFT';
                             break;
                             
                         case 'excavation_volume':
                             symbol = 'V';
                             formulas = 'Nos * L * W * H';
-                            unit = 'cu.ft';
+                            unit = 'CFT';
                             break;
                         
 
                         case 'pcc_1:3:6':
                             symbol = 'V';
                             formulas = 'Nos * L * W * H';
-                            unit = 'cu.ft';
+                            unit = 'CFT';
+                            break;
+
+                        case 'pcc_volume':
+                            symbol = 'V';
+                            formulas = 'Nos * L * W * thickness';
+                            unit = 'CFT';
                             break;
                         
                         case 'rcc_footing':
                             symbol = 'V';
-                            formulas = 'Nos * L * W * H';
-                            unit = 'cu.ft';
+                            formulas = 'L * W * H';
+                            unit = 'CFT';
                             break;
 
                         case 'rcc_column':
                             symbol = 'V';
                             formulas = 'Nos * L * W * H';
-                            unit = 'cu.ft';
+                            unit = 'CFT';
                             break;
 
                         case 'area':
@@ -252,21 +261,21 @@
 
                         case 'painting_area':
                             symbol = 'PaintingArea';
-                            formulas = '2 * (L + W) * H';
+                            formulas = 'L * H';
                             unit = 'sqft'
                             break;
 
 
                         case 'plaster_area':
                             symbol = 'PlasterArea';
-                            formulas = '2 * (L + W) * H';
+                            formulas = 'L * H';
                             unit = 'sqft'
                             break;
 
                         case 'plaster_volume':
                             symbol = 'PlasterVolume';
                             formulas = '(2 * (L + W) * H) * thickness';
-                            unit = 'ft³'
+                            unit = 'CFT'
                             break;
 
 
@@ -279,7 +288,7 @@
                         case 'screed_volume':
                             symbol = 'ScreedVolume';
                             formulas = '(L * W) * thickness';
-                            unit = 'ft³'
+                            unit = 'CFT'
                             break;
 
                         case 'concrete_slab_area':
@@ -291,7 +300,7 @@
                         case 'concrete_slab_volume':
                             symbol = 'concreteSlabVolume';
                             formulas = 'L * W * thickness';
-                            unit = 'ft³'
+                            unit = 'CFT'
                             break;
 
                         
@@ -304,7 +313,7 @@
                         case 'brick_wall_volume':
                             symbol = 'BrickWallVolume';
                             formulas = 'L * H * thickness';
-                            unit = 'ft³'
+                            unit = 'CFT'
                             break;
 
                         case 'mortar_bed_area':
@@ -316,7 +325,7 @@
                         case 'mortar_bed_volume':
                             symbol = 'MortarBedVolume';
                             formulas = 'L * W * thickness';
-                            unit = 'ft³'
+                            unit = 'CFT'
                             break;
 
                         case 'steel_linear':

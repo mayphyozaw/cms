@@ -13581,6 +13581,8 @@ html[data-bs-theme=dark] #light-dark-mode .ti-moon::before {
   min-height: calc(100vh - 39px);
 }
 
+
+
 .sidebar {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -13979,7 +13981,7 @@ html[data-bs-theme=dark] #light-dark-mode .ti-moon::before {
 
 @media (min-width: 992px) {
   .mini-sidebar .page-wrapper {
-    margin-left: var(--crms-sidenav-width-sm);
+    margin-left: var(--crms-sidenav-width-sm) !important;
   }
   .mini-sidebar .header-left #toggle_btn {
     opacity: 1;
@@ -14018,7 +14020,7 @@ html[data-bs-theme=dark] #light-dark-mode .ti-moon::before {
     margin-right: 0;
   }
   .expand-menu.mini-sidebar .navbar-header {
-    margin-left: var(--crms-sidenav-width);
+    margin-left: var(--crms-sidenav-width) !important;
   }
 }
 @media (min-width: 992px) and (min-width: 992px) {
@@ -14065,7 +14067,7 @@ html[data-bs-theme=dark] #light-dark-mode .ti-moon::before {
     transition: all 0.2s ease;
   }
   .expand-menu .sidebar {
-    width: var(--crms-sidenav-width);
+    width: var(--crms-sidenav-width) !important;
   }
   .expand-menu .sidebar .sidebar-menu ul > li > a span {
     display: inline-block;
@@ -24376,3 +24378,26 @@ th.fc-day-header {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+/* ==========================================
+   Custom Fix for Sidebar Toggle
+========================================== */
+/* @media (min-width: 992px) {
+    .mini-sidebar .page-wrapper {
+        margin-left: var(--crms-sidenav-width) !important;
+    }
+
+    .mini-sidebar .navbar-header {
+        margin-left: var(--crms-sidenav-width) !important;
+    }
+} */
+
+/* @media (min-width: 992px) {
+    .mini-sidebar .page-wrapper {
+        margin-left: 240px !important;
+    }
+
+    .mini-sidebar .navbar-header {
+        margin-left: 240px !important;
+    }
+} */

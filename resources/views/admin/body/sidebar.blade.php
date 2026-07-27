@@ -120,9 +120,10 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="" class="">
+                                    <a href="{{ route('bq.bqworkcategory.index') }}" 
+                                    class="{{ request()->routeIs('bq.bqworkcategory.*') ? 'active' : '' }}">
                                         <i class="ti ti-users">
-                                        </i><span>Work Location </span>
+                                        </i><span>Work Categories (Scope of Work) </span>
                                     </a>
                                 </li>
                                 {{-- <li>
@@ -139,7 +140,7 @@
                                         class="{{ request()->routeIs('bq.bqcategory.*') ? 'active' : '' }}">
                                         <i class="ti ti-list-check">
                                         </i>
-                                        <span>Boq Category</span>
+                                        <span>Boq Category (Cost)</span>
                                     </a>
                                 </li>
                             </ul>

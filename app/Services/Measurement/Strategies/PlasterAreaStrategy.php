@@ -4,7 +4,7 @@ namespace App\Services\Measurement\Strategies;
 
 
 
-class PaintingAreaStrategy implements MeasurementStrategy
+class PlasterAreaStrategy implements MeasurementStrategy
 {
 
     public function calculate(array $data): float

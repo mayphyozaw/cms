@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Backend\BQ;
 
 use App\Http\Controllers\Controller;
 use App\Models\Boq;
+use App\Models\BoqCategories;
+use App\Models\BoqWorkCategories;
+use App\Models\DrawingMeasurement;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -102,5 +105,28 @@ class BoqController extends Controller
                 'message' => 'Successfully approved',
                 'alert-type' => 'success'
             ]);
+    }
+
+
+    public function getBoqCategory(Request $request)
+    {
+
+
+        $boqCategories = BoqWorkCategories::where(
+            'work_scope_id',
+            $request->work_scope_id
+        )->get();
+
+        return response()->json($boqCategories);
+    }
+
+    public function getDrawingMeasurement(Request $request)
+    {
+        $measurements = DrawingMeasurement::where(
+            'measurement_categories_id',
+            $request->measurement_category_id
+        )->get();
+
+        return response()->json($measurements);
     }
 }

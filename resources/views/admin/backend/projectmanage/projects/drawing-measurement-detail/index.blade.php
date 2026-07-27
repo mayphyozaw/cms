@@ -148,8 +148,7 @@
                             </li>
 
                             <li class="nav-item me-3">
-                                <a href=""
-                                    class="nav-link p-2">
+                                <a href="" class="nav-link p-2">
                                     <i class="ti ti-device-laptop me-2"></i>
                                     Details
                                 </a>
@@ -223,77 +222,96 @@
                                         <th class="text-center" style="background-color: #9dd2e7">Deduction</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Description</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Nos</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Length</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Width</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Height</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Length (ft)</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Width (ft)</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Height (ft)</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Gross Area </th>
                                         <th class="text-center" style="background-color: #9dd2e7">Deduction</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Gross Quantity</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Net Quantity</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Net Area</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Unit</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
+                                    @php
+                                        $totalGross = 0;
+                                        $totalDeduction = 0;
+                                        $totalNet = 0;
+                                    @endphp
                                     @foreach ($drawingMeasurement->details as $detail)
+                                        @php
+                                            $totalGross += $detail->gross_quantity;
+                                            $totalDeduction += $detail->deduction;
+                                            $totalNet += $detail->net_quantity;
+                                        @endphp
                                         <tr class="text-center">
-                                            <td>{{$loop->iteration}}</td>
+                                            <td>{{ $loop->iteration }}</td>
 
                                             <td>
                                                 <a href="{{ route('projectmanage.projects.drawing-measurement-deduction.index', [
                                                     'project' => $project->id,
-                                                    'detail' => $detail->id,]) }}"
+                                                    'detail' => $detail->id,
+                                                ]) }}"
                                                     class="btn btn-sm btn-outline-success shadow">
-                                                   Detail Deduction
+                                                    Detail Deduction
                                                 </a>
-                                                
+
                                             </td>
 
                                             <td>
                                                 <a href="{{ route('projectmanage.projects.drawing-measurement-deduction.create', [
                                                     'project' => $project->id,
-                                                    'detail' => $detail->id,]) }}"
+                                                    'detail' => $detail->id,
+                                                ]) }}"
                                                     class="btn btn-sm btn-outline-danger shadow">
-                                                    {{$detail->description}}
+                                                    {{ $detail->description }}
                                                 </a>
-                                                
+
                                             </td>
 
                                             <td>
-                                                {{$detail->nos}}
+                                                {{ $detail->nos }}
                                             </td>
 
                                             <td>
-                                                {{$detail->length}}
+                                                {{ $detail->length }}
                                             </td>
 
                                             <td>
-                                                {{$detail->width}}
-                                            </td>
-                                            
-                                            <td>
-                                                {{$detail->height}}
+                                                {{ $detail->width }}
                                             </td>
 
                                             <td>
-                                                {{$detail->deduction}}
+                                                {{ $detail->height }}
                                             </td>
 
-                                            <td>
-                                                {{$detail->gross_quantity}}
-                                            </td>
-                                            
-                                            <td>
-                                                {{$detail->net_quantity}}
-                                            </td>
+
+                                            <td>{{ number_format($detail->gross_quantity, 0) }}</td>
+
+                                            <td>{{ number_format($detail->deduction, 0) }}</td>
+
+
+                                            <td>{{ number_format($detail->net_quantity, 0) }}</td>
 
                                             <td>
-                                                {{$detail->unit}}
+                                                {{ $detail->unit }}
                                             </td>
 
                                         </tr>
                                     @endforeach
 
                                 </tbody>
+                                <tfoot >
+                                    <tr class="fw-bold">
+                                        <td colspan="7" class="text-end" style="background-color: #d3d3d7;">Total</td>
+                                        <td class="text-center" style="background-color: #d3d3d7;">{{ number_format($totalGross, 0) }}</td>
+                                        <td class="text-center" style="background-color: #d3d3d7;">{{ number_format($totalDeduction, 0) }}</td>
+                                        <td class="text-center" style="background-color: #d3d3d7;">{{ number_format($totalNet, 0) }}</td>
+                                        <td class="text-center" style="background-color: #d3d3d7;">
+                                            {{ $detail->unit }}
+                                        </td>
+                                    </tr>
+                                </tfoot>
                             </table>
 
                         </div>

@@ -10,6 +10,8 @@ use App\Http\Controllers\Backend\AssetRequestItemApprovalController;
 use App\Http\Controllers\Backend\BankManagement\BankController;
 use App\Http\Controllers\Backend\BQ\BoqCategoriesController;
 use App\Http\Controllers\Backend\BQ\BoqController;
+use App\Http\Controllers\Backend\BQ\BoqDetailController;
+use App\Http\Controllers\Backend\BQ\BoqWorkCategoriesController;
 use App\Http\Controllers\Backend\ClientManagement\ClientController;
 use App\Http\Controllers\Backend\ClientManagement\QuotationProposalController;
 use App\Http\Controllers\Backend\Configuration\PermissionController;
@@ -148,6 +150,8 @@ Route::middleware('auth', 'notBlocked')->group(function () {
     Route::prefix('bq')->name('bq.')->group(function () {
         Route::resource('bqcategory', BoqCategoriesController::class);
         Route::resource('bqworkscope', WorkscopeController::class);
+        Route::resource('bqworkcategory', BoqWorkCategoriesController::class);
+
         // Route::resource('boq', BoqController::class);
     });
 
@@ -273,7 +277,7 @@ Route::middleware('auth', 'notBlocked')->group(function () {
                 Route::resource('drawing-measurements', DrawingMeasurementsController::class);
                 // Route::get('drawing-measurement-detail/{drawingMeasurement}',[DrawingMeasurementDetailController::class, 'index'])->name('drawing-measurement-detail.index');
                 Route::get('/drawing-measurement-detail/{drawingMeasurement}/detail/index', [DrawingMeasurementDetailController::class, 'index'])->name('drawing-measurement-detail.index');
-                Route::get('/drawing-measurement-detail/{drawingMeasurement}/detail/create',[DrawingMeasurementDetailController::class, 'create'])->name('drawing-measurement-detail.create');
+                Route::get('/drawing-measurement-detail/{drawingMeasurement}/detail/create', [DrawingMeasurementDetailController::class, 'create'])->name('drawing-measurement-detail.create');
                 Route::post('/drawing-measurement-detail/{drawingMeasurement}/detail/store', [DrawingMeasurementDetailController::class, 'store'])->name('drawing-measurement-detail.store');
 
 
@@ -289,11 +293,17 @@ Route::middleware('auth', 'notBlocked')->group(function () {
                 Route::resource('mixRatio-details', MixRatioDetailsController::class);
                 Route::resource('material-mappings', MaterialMappingController::class);
                 Route::resource('material-requirements', MaterialRequirementsController::class);
-                Route::resource('boq', BoqController::class);
+                Route::resource('boq', BoqController::class)->except('show');
                 Route::get('/boq-approved/{boq}', [BoqController::class, 'approved'])->name('boq-approved');
                 Route::post('/boq-approved/{boq}', [BoqController::class, 'approvedStore'])->name('boq-approved.store');
+                Route::get('/boq-detail/{boq}', [BoqDetailController::class, 'index'])->name('boq-detail.index');
+                Route::get('/boq-detail/{boq}/create', [BoqDetailController::class, 'create'])->name('boq-detail.create');
+                Route::post('/boq-detail/{boq}', [BoqDetailController::class, 'store'])->name('boq-detail.store');
             });
 
+        Route::get('get-boq-category', [BoqController::class, 'getBoqCategory'])->name('get.boq.category');
+        Route::get('get-drawing-measurement', [BoqDetailController::class, 'getDrawingMeasurement'])->name('get.drawing.measurement');
+        Route::get('/get-drawing-measurement-detail',[BoqDetailController::class, 'getDrawingMeasurementDetail'])->name('get.drawing.measurement.detail');
 
 
         Route::get('drawings_get', [DrawingMeasurementsController::class, 'getDrawing'])->name('drawings_get');
