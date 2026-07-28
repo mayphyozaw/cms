@@ -29,14 +29,6 @@ class BoqController extends Controller
 
     public function store(Request $request, Project $project)
     {
-        // $request->validate([
-        //     'project_id' => 'required|exists:projects,id',
-        //     'boq_date'                  => 'required|date',
-        //     'material_total'             => 'required|numeric|min:0',
-        //     'labor_total'                 => 'required|numeric|min:0',
-        //     'equipment_total'            => 'required|numeric|min:1',
-        // ]);
-
 
         $material_total = 0;
         $labor_total = 0;

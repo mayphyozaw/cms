@@ -114,8 +114,8 @@
                                 <div class="col-sm">
 
                                     <div class="form-row row">
-                                        <div class="col-md-4 mb-3" hidden>
-                                            <label class="form-label">Project Code</label>
+                                        <div class="col-md-4 mb-3">
+                                            {{-- <label class="form-label">Project Code</label> --}}
                                             <div class="input-group">
                                                 {{-- <span class="input-group-text">P-</span> --}}
                                                 <input type="hidden" name="project_code" value="">

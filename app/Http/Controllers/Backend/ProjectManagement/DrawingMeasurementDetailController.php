@@ -58,7 +58,7 @@ class DrawingMeasurementDetailController extends Controller
             $drawingMeasurement,
             $measurementService,
             $category,
-            &$totalQty
+            $totalQty,
         ) {
 
             foreach ($request->title as $index => $title) {

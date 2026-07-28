@@ -49,6 +49,7 @@ class ProjectController extends Controller
     public function create()
     {
         $clients = Client::all();
+        
         $project_categories = ProjectCategory::all();
         $project_files = ProjectFile::all();
 
@@ -57,13 +58,16 @@ class ProjectController extends Controller
 
     public function store(Request $request)
     {
+        $client = Client::findOrFail($request->client_id);
         Project::create([
             'client_id'=>$request->client_id,
+            'project_code'  => $client->project_code,
             'status' => $request->status,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'remark' => $request->remark,
             'project_type' => $request->project_type,
+            
         ]);
 
         return redirect()

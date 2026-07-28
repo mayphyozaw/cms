@@ -6,7 +6,7 @@
                 <h4 class="mb-1">
                     BOQ
                 </h4>
-                <nav aria-label="breadcrumb">
+                {{-- <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item">
                             <a href="{{ route('projectmanage.projects.index') }}">
@@ -18,7 +18,7 @@
                             BOQ
                         </li>
                     </ol>
-                </nav>
+                </nav> --}}
             </div>
             <div class="gap-2 d-flex align-items-center flex-wrap">
                 <div class="dropdown">
@@ -451,7 +451,7 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td><span class="badge badge bg-info">{{ $boq->boq_no }}</span></td>
                                                     <td>
-                                                        <a href="{{ route('projectmanage.projects.boq-detail.index', [$project->id, $boq->id]) }}"
+                                                        <a href="{{ route('projectmanage.projects.boq-quantity-detail.index', [$project->id, $boq->id]) }}"
                                                             class="dropdown-item">
 
                                                             <i class="ti ti-clipboard-copy text-violet"></i>

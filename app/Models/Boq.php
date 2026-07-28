@@ -26,10 +26,10 @@ class Boq extends Model
 
     public function project()
     {
-        return $this->belongsTo(Project::class, 'project_id');
+        return $this->belongsTo(Project::class);
     }
 
-    public function preparedBy()
+    public function user()
     {
         return $this->belongsTo(User::class, 'prepared_by');
     }
@@ -38,4 +38,17 @@ class Boq extends Model
     {
         return $this->belongsTo(User::class, 'approved_by');
     }
+
+    public function boqQuantityDetails()
+    {
+        return $this->hasMany(BoqQuantityDetails::class, 'boq_id');
+    }
+
+    public function sections()
+    {
+        return $this->hasMany(BoqQuantityDetails::class, 'boq_id')
+            ->where('type', 'section');
+    }
+
+    
 }

@@ -19,12 +19,12 @@ class DrawingMeasurementsController extends Controller
 {
     public function index(Project $project)
     {
-        
+
         $project->load('client');
-        
+
         $drawingMeasurementAllData = DrawingMeasurement::with(['drawing.drawingType', 'category'])->get();
 
-        
+
         return view('admin.backend.projectmanage.projects.drawing-measurements.index', compact('project', 'drawingMeasurementAllData'));
     }
 
@@ -38,7 +38,7 @@ class DrawingMeasurementsController extends Controller
         $categories = MeasurementCategories::all();
         return view('admin.backend.projectmanage.projects.drawing-measurements.create', compact('project', 'drawings', 'drawing_types', 'categories'));
     }
-    
+
     public function storebackup(Request $request, Project $project, MeasurementCalculationService $measurementService)
     {
         return $request->all();
@@ -160,7 +160,7 @@ class DrawingMeasurementsController extends Controller
 
     public function store(Request $request, Project $project)
     {
-        
+
         $measurement = DrawingMeasurement::create([
             'project_id' => $project->id,
             'measurement_categories_id' => $request->measurement_categories_id,
@@ -194,7 +194,7 @@ class DrawingMeasurementsController extends Controller
         return view('admin.backend.projectmanage.projects.drawing-measurements.edit', compact('project', 'drawing_measurement', 'drawings', 'drawing_types', 'work_types', 'measurement_types', 'categories', 'thickness_ft'));
     }
 
-    public function update(Request $request, Project $project, $id, MeasurementCalculationService $measurementService)
+    public function update2(Request $request, Project $project, $id, MeasurementCalculationService $measurementService)
     {
         $drawing_measurement = DrawingMeasurement::findOrFail($id);
 
@@ -223,28 +223,19 @@ class DrawingMeasurementsController extends Controller
             'thickness_ft' => $thickness_ft,
         ];
 
-        // $service = new MeasurementCalculationService();
+        $service = new MeasurementCalculationService();
 
 
         $calculatedQty = $measurementService->calculate($category->formula_types, $data);
 
+
         $drawing_measurement->update([
             'project_id' => $project->id,
-            'drawing_id' => $request->drawing_id,
-            'work_type_id' => $request->work_type_id,
             'measurement_categories_id' => $request->measurement_categories_id,
-            'measurement_type_id' => $request->measurement_type_id,
-            'nos' => $request->nos,
-            'length' => $request->length,
-            'width' => $request->width,
-            'height' => $request->height,
-            'thickness' => $request->thickness,
-            'thickness_unit' => $request->thickness_unit,
-            'qty' => $request->qty,
-            'unit_weight' => $request->unit_weight,
-            'coats' => $request->coats,
-            'quantity' => $calculatedQty,
+            'drawing_id' => $request->drawing_id,
+            'quantity' => 0,
             'remark' => $request->remark,
+
         ]);
 
         return redirect()
@@ -255,6 +246,27 @@ class DrawingMeasurementsController extends Controller
             ]);
     }
 
+    public function update(Request $request, Project $project, $id)
+    {
+
+        $request->validate([
+            'measurement_categories_id' => 'required',
+            'drawing_id' => 'required',
+        ]);
+        $drawingMeasurement = DrawingMeasurement::findOrFail($id);
+        $drawingMeasurement->update([
+            'project_id' => $project->id,
+            'measurement_categories_id' => $request->measurement_categories_id,
+            'drawing_id' => $request->drawing_id,
+            'remark' => $request->remark,
+
+        ]);
+
+        return redirect()->route(
+            'projectmanage.projects.drawing-measurements.index',
+            [$project->id, $drawingMeasurement->id]
+        );
+    }
     public function destroy(Project $project, $id)
     {
         $drawing_measurement = DrawingMeasurement::findOrFail($id);

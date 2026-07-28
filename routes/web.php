@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\BankManagement\BankController;
 use App\Http\Controllers\Backend\BQ\BoqCategoriesController;
 use App\Http\Controllers\Backend\BQ\BoqController;
 use App\Http\Controllers\Backend\BQ\BoqDetailController;
+use App\Http\Controllers\Backend\BQ\BoqQuantityDetailController;
 use App\Http\Controllers\Backend\BQ\BoqWorkCategoriesController;
 use App\Http\Controllers\Backend\ClientManagement\ClientController;
 use App\Http\Controllers\Backend\ClientManagement\QuotationProposalController;
@@ -296,14 +297,17 @@ Route::middleware('auth', 'notBlocked')->group(function () {
                 Route::resource('boq', BoqController::class)->except('show');
                 Route::get('/boq-approved/{boq}', [BoqController::class, 'approved'])->name('boq-approved');
                 Route::post('/boq-approved/{boq}', [BoqController::class, 'approvedStore'])->name('boq-approved.store');
-                Route::get('/boq-detail/{boq}', [BoqDetailController::class, 'index'])->name('boq-detail.index');
-                Route::get('/boq-detail/{boq}/create', [BoqDetailController::class, 'create'])->name('boq-detail.create');
-                Route::post('/boq-detail/{boq}', [BoqDetailController::class, 'store'])->name('boq-detail.store');
+                Route::get('/boq-detail/{boq}', [BoqQuantityDetailController::class, 'index'])->name('boq-quantity-detail.index');
+                Route::get('/boq-detail/{boq}/create', [BoqQuantityDetailController::class, 'create'])->name('boq-quantity-detail.create');
+                Route::post('/boq-detail/{boq}', [BoqQuantityDetailController::class, 'store'])->name('boq-quantity-detail.store');
+                Route::get('/boq/{boq}/quantity-detail/export',[BoqQuantityDetailController::class, 'export'])->name('boq-quantity-detail.export');
+                Route::get('/boq/{boq}/quantity-detail/exportPdf',[BoqQuantityDetailController::class, 'exportPdf'])->name('boq-quantity-detail.exportpdf');
             });
 
         Route::get('get-boq-category', [BoqController::class, 'getBoqCategory'])->name('get.boq.category');
         Route::get('get-drawing-measurement', [BoqDetailController::class, 'getDrawingMeasurement'])->name('get.drawing.measurement');
-        Route::get('/get-drawing-measurement-detail',[BoqDetailController::class, 'getDrawingMeasurementDetail'])->name('get.drawing.measurement.detail');
+        Route::get('/get-drawing-measurement-detail',[BoqQuantityDetailController::class, 'getDrawingMeasurementDetail'])->name('get.drawing.measurement.detail');
+        
 
 
         Route::get('drawings_get', [DrawingMeasurementsController::class, 'getDrawing'])->name('drawings_get');

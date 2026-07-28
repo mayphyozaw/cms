@@ -277,16 +277,16 @@
                                                 {{ number_format($drawingMeasurementData->quantity, 2) }}
                                             </td>
                                             <td class="text-center">
-                                                {{ $drawingMeasurementData->category->unit }}
+                                                {{ $drawingMeasurementData->category?->unit }}
                                             </td>
                                             <td class="text-center">
                                                 {{ $drawingMeasurementData->remark }}
                                             </td>
                                             <td class="text-center">
-                                                <a class="btn btn-icon btn-sm btn-info"
+                                                {{-- <a class="btn btn-icon btn-sm btn-info"
                                                     href="{{ route('projectmanage.projects.drawing-measurements.edit', [$project->id, $drawingMeasurementData->id]) }}">
                                                     <i class="ti ti-edit"></i>
-                                                </a>
+                                                </a> --}}
                                                 <form
                                                     action="{{ route('projectmanage.projects.drawing-measurements.destroy', [$project->id, $drawingMeasurementData->id]) }}"
                                                     method="POST" style="display:inline;">

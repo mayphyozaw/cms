@@ -65,8 +65,9 @@
                                 </label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
-                                        <input type="text" name="project_id" class="form-control"
-                                            value=" {{ $project->client->project_code }}" readonly disabled>
+                                        <input type="text" class="form-control"
+                                            value="{{ $project->client->project_code }}" readonly>
+                                        <input type="hidden" name="project_id" value="{{ $project->id }}">
                                     </div>
                                 </div>
                             </div>
@@ -94,7 +95,7 @@
                                 </div>
                             </div>
 
-                            
+
                             <div class="row mb-3">
                                 <label class="col-sm-3 form-label">
                                     Revision No:
@@ -124,7 +125,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="row mb-3">
                                 <label class="col-sm-3 form-label">
                                     Prepared Date:
@@ -135,7 +136,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
 
                             <div class="row mb-3">
                                 <label for="form-label fs-14" class="form-label fs-14 col-sm-3">
@@ -145,12 +146,12 @@
                                     <div class="input-group">
                                         <select name="status" class="form-control select2">
                                             <option value="">Select Status</option>
-                                            
-                                                <option value="draft">Draft</option>
-                                                <option value="pending">Pending</option>
-                                                <option value="rejected">Rejected</option>
-                                                <option value="approved">Approved</option>
-                                            
+
+                                            <option value="draft">Draft</option>
+                                            <option value="pending">Pending</option>
+                                            <option value="rejected">Rejected</option>
+                                            <option value="approved">Approved</option>
+
                                         </select>
                                     </div>
                                 </div>
