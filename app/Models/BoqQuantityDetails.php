@@ -45,5 +45,10 @@ class BoqQuantityDetails extends Model
         return $this->hasMany(BoqQuantityDetails::class, 'section_id')
             ->where('type', 'item');
     }
+
+    public function boq()
+    {
+        return $this->belongsTo(Boq::class,'boq_id');
+    }
     
 }

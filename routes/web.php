@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\AssetRequestItemApprovalController;
 use App\Http\Controllers\Backend\BankManagement\BankController;
 use App\Http\Controllers\Backend\BQ\BoqCategoriesController;
 use App\Http\Controllers\Backend\BQ\BoqController;
+use App\Http\Controllers\Backend\BQ\BoqCostDetailController;
 use App\Http\Controllers\Backend\BQ\BoqDetailController;
 use App\Http\Controllers\Backend\BQ\BoqQuantityDetailController;
 use App\Http\Controllers\Backend\BQ\BoqWorkCategoriesController;
@@ -297,11 +298,15 @@ Route::middleware('auth', 'notBlocked')->group(function () {
                 Route::resource('boq', BoqController::class)->except('show');
                 Route::get('/boq-approved/{boq}', [BoqController::class, 'approved'])->name('boq-approved');
                 Route::post('/boq-approved/{boq}', [BoqController::class, 'approvedStore'])->name('boq-approved.store');
-                Route::get('/boq-detail/{boq}', [BoqQuantityDetailController::class, 'index'])->name('boq-quantity-detail.index');
-                Route::get('/boq-detail/{boq}/create', [BoqQuantityDetailController::class, 'create'])->name('boq-quantity-detail.create');
-                Route::post('/boq-detail/{boq}', [BoqQuantityDetailController::class, 'store'])->name('boq-quantity-detail.store');
+                Route::get('/boq-quantity-detail/{boq}', [BoqQuantityDetailController::class, 'index'])->name('boq-quantity-detail.index');
+                Route::get('/boq-quantity-detail/{boq}/create', [BoqQuantityDetailController::class, 'create'])->name('boq-quantity-detail.create');
+                Route::post('/boq-quantity-detail/{boq}', [BoqQuantityDetailController::class, 'store'])->name('boq-quantity-detail.store');
                 Route::get('/boq/{boq}/quantity-detail/export',[BoqQuantityDetailController::class, 'export'])->name('boq-quantity-detail.export');
                 Route::get('/boq/{boq}/quantity-detail/exportPdf',[BoqQuantityDetailController::class, 'exportPdf'])->name('boq-quantity-detail.exportpdf');
+
+                Route::get('/boq-cost-detail/{boq}', [BoqCostDetailController::class, 'index'])->name('boq-cost-detail.index');
+                Route::get('/boq-cost-detail/{boq}/create', [BoqCostDetailController::class, 'create'])->name('boq-cost-detail.create');
+                Route::post('/boq-cost-detail/{boq}', [BoqCostDetailController::class, 'store'])->name('boq-quantity-cost.store');
             });
 
         Route::get('get-boq-category', [BoqController::class, 'getBoqCategory'])->name('get.boq.category');

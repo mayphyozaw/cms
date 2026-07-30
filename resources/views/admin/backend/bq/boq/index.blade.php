@@ -196,6 +196,14 @@
                                     </a>
                                 </li>
 
+                                {{-- <li class="nav-item me-3">
+                                    <a href="{{ route('projectmanage.projects.boqCost.index', $project->id) }}"
+                                        class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.boq.Costindex') ? 'active' : '' }}">
+                                        <i class="ti ti-settings-cog me-2"></i>
+                                        BOQ Cost
+                                    </a>
+                                </li> --}}
+
 
                             </ul>
 
@@ -430,14 +438,17 @@
 
                                                 <th class="no-sort"></th>
                                                 <th>BOQ No</th>
-                                                <th>BOQ Detail</th>
+                                                <th>BOQ Detail (Qty)</th>
+                                                <th>BOQ Detail (Cost)</th>
                                                 <th>BOQ Date</th>
-                                                <th>Material Total</th>
+                                                {{-- <th>Material Total</th>
                                                 <th>Labor Total</th>
                                                 <th>Equipment Total</th>
-                                                <th>Grand Total</th>
+                                                <th>Grand Total</th> --}}
                                                 <th>Prepared By</th>
                                                 <th>Prepared Date</th>
+                                                <th>Approved By</th>
+                                                <th>Approved Date</th>
                                                 <th>Status</th>
                                                 <th>Remarks</th>
                                                 <th>Action</th>
@@ -455,22 +466,40 @@
                                                             class="dropdown-item">
 
                                                             <i class="ti ti-clipboard-copy text-violet"></i>
-                                                            <span style="color:red">Detail</span>
+                                                            <span style="color:red">Quantity Detail</span>
 
                                                         </a>
+                                                        
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{ route('projectmanage.projects.boq-cost-detail.index', [$project->id, $boq->id]) }}"
+                                                            class="dropdown-item">
+
+                                                            <i class="ti ti-clipboard-copy text-violet"></i>
+                                                            <span style="color:red">Cost Detail</span>
+
+                                                        </a>
+                                                        
                                                     </td>
 
                                                     <td>{{ $boq->boq_date }}</td>
-                                                    <td>{{ $boq->material_total ?? '0' }}</td>
+                                                    {{-- <td>{{ $boq->material_total ?? '0' }}</td>
                                                     <td>{{ $boq->labor_total ?? '0' }}</td>
                                                     <td>{{ $boq->equipment_total ?? '0' }}</td>
-                                                    <td>{{ $boq->grand_total ?? '0' }}</td>
+                                                    <td>{{ $boq->grand_total ?? '0' }}</td> --}}
                                                     <td>
                                                         <span
-                                                            class="badge badge bg-success">{{ $boq->preparedBy?->name }}</span>
+                                                            class="badge badge bg-success">{{ $boq->userPreparedBy?->name }}</span>
                                                     </td>
 
                                                     <td>{{ $boq->prepared_date }}</td>
+
+                                                    <td>
+                                                        <span
+                                                            class="badge badge bg-success">{{ $boq->userApprovedBy?->name }}</span>
+                                                    </td>
+
+                                                    <td>{{ $boq->approved_date }}</td>
 
                                                     <td>
                                                         @switch($boq->status)

@@ -430,7 +430,7 @@
 
         {{-- Sign  --}}
 
-        <p style="margin:8px; font-size:13px;">
+        <p style="margin:10px; font-size:13px;">
             <strong>AUTHORIZATION :</strong>
         </p>
         <table class="signature-table">

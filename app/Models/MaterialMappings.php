@@ -41,4 +41,5 @@ class MaterialMappings extends Model
     }
 
     
+    
 }

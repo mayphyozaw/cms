@@ -72,7 +72,8 @@
                                             <option value="">Select Measurement Categories</option>
                                             @foreach ($drawingMeasurements as $drawingMeasurement)
                                                 <option value="{{ $drawingMeasurement->id }}">
-                                                    {{ $drawingMeasurement->drawing->drawing_name }}
+                                                    {{ $drawingMeasurement->drawing->drawing_name }} @ 
+                                                    {{$drawingMeasurement->category->category_name}}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -397,8 +398,10 @@
     </script>
 @endpush
 
-{{-- Brick  = 5%
+{{-- 
+    Brick  = 5%
     Cement  = 3%
     Sand    = 5%
     Aggregate   = 5%
-    Steel   = 3% --}}
+    Steel   = 3% 
+--}}

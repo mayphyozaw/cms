@@ -20,8 +20,8 @@
             </div>
             <div class="gap-2 d-flex align-items-center flex-wrap">
 
-                <a href="{{route('projectmanage.projects.index')}}" class="btn btn-outline-light shadow" >
-                     <span style="color:black">{{ $project->client->project_code }} @
+                <a href="{{ route('projectmanage.projects.index') }}" class="btn btn-outline-light shadow">
+                    <span style="color:black">{{ $project->client->project_code }} @
                         {{ $project->client->name }} - ({{ $project->client->length }} * {{ $project->client->width }}) -
                         {{ $project->client->building_area }} sqft
                     </span>
@@ -179,12 +179,12 @@
 
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered align-middle w-100 nowrap" id="materialMappingTable">
+                            <table class="table table-bordered align-middle w-100 nowrap">
                                 <thead>
                                     <tr>
-
                                         <th class="text-center" style="background-color: #9dd2e7">No</th>
-                                        {{-- <th class="text-center" style="background-color: #9dd2e7">Code</th> --}}
+                                        <th class="text-center" style="background-color: #9dd2e7">Drawing Measurement</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Category </th>
                                         <th class="text-center" style="background-color: #9dd2e7">Material</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Consumption Type</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Raw Qty</th>
@@ -196,71 +196,85 @@
 
                                     </tr>
                                 </thead>
+
                                 <tbody>
 
-                                    @foreach ($materialRequirements as $materialRequirement)
-                                        <tr>
-                                            <td class="text-center">
+                                    @foreach ($measurementCategories as $category)
+                                        @php
+                                            $items = $groupedRequirements[$category->id] ?? collect();
+                                        @endphp
 
-                                                {{ $loop->iteration }}
-                                            </td>
+                                        @if ($items->count())
+                                            <tr style="background-color:#c7e7f3;font-weight:bold;">
+                                                <td colspan="11" style="background-color:#d5eaf2;">
+                                                    {{ $category->category_name }}
+                                                </td>
+                                            </tr>
 
-                                            {{-- <td class="text-center">
-                                                {{ $materialRequirement->materialMapping?->mixRatio?->code }}
-                                            </td> --}}
+                                            @foreach ($items as $materialRequirement)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
 
-                                            <td class="text-center">
-                                                {{ $materialRequirement->material->name }}
-                                            </td>
-                                            <td class="text-center">
-                                                {{ $materialRequirement->materialMapping?->consumption_type }}
-                                            </td>
+                                                    <td>
+                                                        {{ $materialRequirement->drawingMeasurement?->drawing?->drawing_name }}
+                                                    </td>
 
-                                            <td class="text-center">
-                                                {{ number_format($materialRequirement->raw_quantity, 2) }}
-                                            </td>
+                                                    <td>
+                                                        {{ $materialRequirement->drawingMeasurement?->category?->category_name }}
+                                                    </td>
 
-                                            <td class="text-center">
-                                                {{ number_format($materialRequirement->base_quantity,2) }}
-                                            </td>
+                                                    <td>
+                                                        {{ $materialRequirement->material?->name }}
+                                                    </td>
 
-                                            <td class="text-center">
-                                                {{ $materialRequirement->materialMapping->wastage_percentage ?? '' }}
-                                            </td>
+                                                    <td>
+                                                        {{ $materialRequirement->materialMapping?->consumption_type }}
+                                                    </td>
 
-                                            <td class="text-center">
-                                                {{ number_format($materialRequirement->final_quantity, 2) }}
-                                            </td>
+                                                    <td>
+                                                        {{ number_format($materialRequirement->raw_quantity, 2) }}
+                                                    </td>
 
-                                            <td class="text-center">
-                                                {{ $materialRequirement->material->unit }}
-                                            </td>
+                                                    <td>
+                                                        {{ number_format($materialRequirement->base_quantity, 2) }}
+                                                    </td>
 
+                                                    <td>
+                                                        {{ $materialRequirement->materialMapping?->wastage_percentage }}
+                                                    </td>
 
-                                            <td class="text-center">
-                                                <a class="btn btn-icon btn-sm btn-info"
-                                                    href="{{ route('projectmanage.projects.material-requirements.edit', [$project->id, $materialRequirement->id]) }}">
-                                                    <i class="ti ti-edit"></i>
-                                                </a>
-                                                <form
-                                                    action="{{ route('projectmanage.projects.material-requirements.destroy', [$project->id, $materialRequirement->id]) }}"
-                                                    method="POST" style="display:inline;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="btn btn-danger btn-sm btn-icon deleteBtn">
-                                                        <i class="ti ti-trash"></i>
-                                                    </button>
-                                                </form>
-                                            </td>
-                                        </tr>
+                                                    <td>
+                                                        {{ number_format($materialRequirement->final_quantity, 2) }}
+                                                    </td>
+
+                                                    <td>
+                                                        {{ $materialRequirement->material?->unit }}
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <a class="btn btn-icon btn-sm btn-info"
+                                                            href="{{ route('projectmanage.projects.material-requirements.edit', [$project->id, $materialRequirement->id]) }}">
+                                                            <i class="ti ti-edit"></i>
+                                                        </a>
+                                                        <form
+                                                            action="{{ route('projectmanage.projects.material-requirements.destroy', [$project->id, $materialRequirement->id]) }}"
+                                                            method="POST" style="display:inline;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button class="btn btn-danger btn-sm btn-icon deleteBtn">
+                                                                <i class="ti ti-trash"></i>
+                                                            </button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endif
                                     @endforeach
 
                                 </tbody>
-
-                                
                             </table>
 
-                            
+
                         </div>
                     </div>
                 </div>
@@ -298,9 +312,9 @@
 
         });
 
-        $('#materialMappingTable').DataTable({
-            responsive: true,
-            autoWidth: false
-        });
+        // $('#materialRequirementTable').DataTable({
+        //     responsive: true,
+        //     autoWidth: false
+        // });
     </script>
 @endpush

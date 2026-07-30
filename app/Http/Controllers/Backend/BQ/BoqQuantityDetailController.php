@@ -31,8 +31,7 @@ class BoqQuantityDetailController extends Controller
             $boqId
         )->get();
 
-        return view(
-            'admin.backend.bq.bq-qty-detail.index',
+        return view('admin.backend.bq.bq-qty-detail.index',
             compact(
                 'project',
                 'boq',

@@ -217,6 +217,7 @@
                                     <tr>
                                         <th class="text-center" style="background-color: #9dd2e7">Details</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Project</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Drawing Code</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Drawing</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Drawing Type</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Category</th>
@@ -248,6 +249,13 @@
                                                 <span class="badge bg-primary">
                                                     {{ $project->client->project_code }}
                                                 </span>
+                                            </td>
+
+                                            <td class="text-center">
+
+                                                <span
+                                                    style="color: blue">{{ $drawingMeasurementData->drawing?->drawing_no }}</span>
+
                                             </td>
 
                                             <td class="text-center">

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\DrawingMeasurement;
 use App\Models\MaterialMappings;
 use App\Models\MaterialRequirements;
+use App\Models\MeasurementCategories;
 use App\Models\MixRatioTemplates;
 use App\Models\Project;
 use App\Models\VariableAsset;
@@ -16,8 +17,23 @@ class MaterialRequirementsController extends Controller
     public function index(Project $project)
     {
         $project->load('client');
-        $materialRequirements = MaterialRequirements::with('drawingmeasurement', 'materialMapping', 'material')->get();
-        return view('admin.backend.projectmanage.projects.material-requirements.index', compact('project', 'materialRequirements'));
+        // $measurementCategories = MeasurementCategories::all();
+        // $materialRequirements = MaterialRequirements::with('drawingmeasurement', 'materialMapping', 'material')->get();
+        // $groupedRequirements = $materialRequirements->groupBy('measurement_category_id');
+
+        $materialRequirements = MaterialRequirements::with([
+            'drawingMeasurement.drawing',
+            'drawingMeasurement.category',
+            'material',
+            'materialMapping'
+        ])->get();
+
+        $measurementCategories = MeasurementCategories::all();
+
+        $groupedRequirements = $materialRequirements->groupBy(
+            fn($item) => $item->drawingMeasurement?->category?->id
+        );
+        return view('admin.backend.projectmanage.projects.material-requirements.index', compact('project', 'materialRequirements', 'groupedRequirements', 'measurementCategories'));
     }
 
 
@@ -46,7 +62,7 @@ class MaterialRequirementsController extends Controller
 
         switch ($consumption_type) {
 
-            
+
             case 'Coverage':
                 $coverageQty = $materialMapping->coverage_qty ?? 0;
                 $consumption_ratio = $coverageQty > 0
@@ -119,7 +135,8 @@ class MaterialRequirementsController extends Controller
         $drawingMeasurements = DrawingMeasurement::all();
         $variableAssets = VariableAsset::all();
         $mixRatios = MixRatioTemplates::all();
-        return view('admin.backend.projectmanage.projects.material-requirements.edit', compact('materialMappings', 'project', 'materialRequirement', 'variableAssets', 'drawingMeasurements','mixRatios'));
+
+        return view('admin.backend.projectmanage.projects.material-requirements.edit', compact('materialMappings', 'project', 'materialRequirement', 'variableAssets', 'drawingMeasurements', 'mixRatios'));
     }
 
 
@@ -161,6 +178,7 @@ class MaterialRequirementsController extends Controller
 
 
         if ($consumption_type === 'MixRatio') {
+
             $base_quantity = $dryVolume * $consumption_ratio;
         } else {
             $base_quantity = $raw_quantity * $consumption_ratio;

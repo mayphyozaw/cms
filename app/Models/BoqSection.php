@@ -14,4 +14,9 @@ class BoqSection extends Model
     {
         return $this->hasMany(BoqQuantityDetails::class, 'section_id');
     }
+
+     public function bpqCostDetails()
+    {
+        return $this->hasMany(BoqCostDetails::class, 'section_id');
+    }
 }

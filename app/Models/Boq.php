@@ -50,5 +50,10 @@ class Boq extends Model
             ->where('type', 'section');
     }
 
+    public function boqCostDetails()
+    {
+        return $this->hasMany(BoqCostDetails::class, 'boq_id');
+    }
+
     
 }
