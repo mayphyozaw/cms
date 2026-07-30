@@ -29,12 +29,12 @@ class Boq extends Model
         return $this->belongsTo(Project::class);
     }
 
-    public function user()
+    public function userPreparedBy()
     {
         return $this->belongsTo(User::class, 'prepared_by');
     }
 
-    public function approvedBy()
+    public function userApprovedBy()
     {
         return $this->belongsTo(User::class, 'approved_by');
     }

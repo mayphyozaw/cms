@@ -20,7 +20,7 @@
             line-height: 1.5;
         }
 
-      
+
 
         .container {
             width: 92%;
@@ -28,10 +28,10 @@
         }
 
         /* ── Header ── */
-        
-       
 
-        .header{
+
+
+        .header {
             padding: 10px;
         }
 
@@ -121,29 +121,38 @@
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 15px;
-            font-size: 11px;
+            font-size: 12px;
         }
 
         .info-boq th {
             background-color: #081854;
             text-align: center;
             padding: 5px;
-            color:#fafafa;
+            color: #fafafa;
             border: 1px solid #ccc;
         }
 
-        
+
 
         .info-boq td {
             /* padding: 6px 8px; */
             padding: 4px 6px;
             /* border: 1px solid #ddd; */
             vertical-align: middle;
+            border: 1px solid #ccc;
         }
 
         .section-row td {
-            background-color: #eef4ff;
+            background-color: #c9efc9;
             font-weight: 600;
+            border: 1px solid #ccc;
+
+        }
+
+        .total-row td {
+            background-color: #d6ddd6;
+            font-weight: 600;
+            border: 1px solid #ccc;
         }
 
         .text-center {
@@ -207,7 +216,7 @@
             margin-top: 15px;
         }
 
-        
+
 
         .boq-table td {
             border: 1px solid #000;
@@ -215,13 +224,26 @@
         }
 
         .section-row {
-            background: #d9e2f3;
+            /* background: red; */
             font-weight: bold;
             font-size: 13px;
         }
 
         .text-right {
             text-align: right;
+        }
+
+        .signature-table {
+            width: 100%;
+            margin-top: 50px;
+            text-align: center;
+            border-collapse: collapse;
+        }
+
+        .signature-table td {
+            width: 33%;
+            border: none;
+            vertical-align: bottom;
         }
     </style>
 </head>
@@ -250,7 +272,7 @@
                 </td>
             </tr>
         </table>
-        
+
 
         {{-- Info Section --}}
         <table class="info-section">
@@ -275,7 +297,7 @@
                         <tr>
                             <td><strong>Prepared By</strong></td>
                             <td><strong>:</strong></td>
-                            <td><strong>{{ $boq->user?->name }}</strong></td>
+                            <td><strong>{{ $boq->userPreparedBy?->name }}</strong></td>
                         </tr>
                     </table>
                 </td>
@@ -309,7 +331,7 @@
 
         {{-- Boq Qty Detail --}}
 
-         <p style="margin-bottom:8px; font-size:13px;">
+        <p style="margin-bottom:8px; font-size:13px;">
             <strong>Bill of Quantity For :</strong> {{ $boq->title }}
         </p>
 
@@ -319,15 +341,31 @@
                     <th>
                         No.
                     </th>
-                    
+
                     <th>
                         PARTICULAR
                     </th>
-                    <th >
+                    <th>
+                        NOS
+                    </th>
+                    <th>
+                        LENGTH
+                    </th>
+                    <th>
+                        WIDTH
+                    </th>
+                    <th>
+                        HEIGHT
+                    </th>
+                    <th>
                         UNIT
                     </th>
                     <th>
                         QUANTITY
+                    </th>
+
+                    <th>
+                        REMARKS
                     </th>
 
                 </tr>
@@ -335,32 +373,98 @@
             <tbody>
                 @foreach ($boq->sections as $section)
                     <tr class="section-row">
-                        <td class="text-center" style="font-size:12px;">
+                        <td class="text-center">
                             {{ $section->item_no }}
                         </td>
-                        <td colspan="3" style="font-size:12px;">
+                        <td colspan="8">
                             {{ $section->title }}
                         </td>
                     </tr>
+
                     @foreach ($section->items as $item)
                         <tr>
-                            <td class="text-center" style="font-size:12px;">
-                                {{ $item->item_no }}
-                            </td>
-                            <td style="font-size:12px;">
-                                {{ $item->title }}
-                            </td>
-                            <td class="text-center" style="font-size:12px;">
-                                {{ $item->unit }}
-                            </td>
-                            <td class="text-center" style="font-size:12px;">
-                                {{ $item->quantity }}
-                            </td>
+                            <td class="text-center" style="font-weight: bold;">{{ $item->item_no }}</td>
+                            <td style="font-weight: bold;">{{ $item->title }}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>{{ $item->unit }}</td>
+                            <td>{{ number_format($item->quantity, 2) }}</td>
+                            <td>{{ $item->remark }}</td>
+                        </tr>
 
+                        @foreach ($item->drawingMeasurement?->details ?? [] as $detail)
+                            <tr>
+                                <td></td>
+                                <td>{{ $detail->description }}</td>
+                                <td>{{ $detail->nos }}</td>
+                                <td>{{ $detail->length }}</td>
+                                <td>{{ $detail->width }}</td>
+                                <td>{{ $detail->height }}</td>
+                                <td>{{ $detail->unit }}</td>
+                                <td></td>
+                                {{-- <td>{{ number_format($detail->gross_quantity, 2) }}</td> --}}
+                                <td></td>
+                            </tr>
+                        @endforeach
+                        @php
+                            $totalQty = $item->drawingMeasurement->details->sum('gross_quantity');
+                        @endphp
+                        <tr class="total-row">
+                            <td colspan="7" class="text-center">
+                                <strong>Total</strong>
+                            </td>
+                            <td>
+                                <strong>{{ number_format($totalQty, 2) }}</strong>
+                            </td>
+                            <td></td>
                         </tr>
                     @endforeach
                 @endforeach
+
+
+
             </tbody>
+        </table>
+
+        {{-- Sign  --}}
+
+        <p style="margin:8px; font-size:13px;">
+            <strong>AUTHORIZATION :</strong>
+        </p>
+        <table class="signature-table">
+            <tr>
+                <td>
+                    Prepared By :  ___________________
+                    <br>
+                    <strong>{{ $boq->userPreparedBy?->name }}</strong>
+                </td>
+
+                <td>
+                    Approved By :  ___________________
+                    <br>
+                   <strong>{{ $boq->userPreparedBy?->name }}</strong>
+                    {{-- {{ $boq->userApprovedBy?->name ?? '' }} --}}
+                </td>
+
+                <td >
+                    Checked By :  ___________________
+                    <br>
+                    <strong>{{ $boq->userPreparedBy?->name }}</strong>
+                    {{-- {{ $boq->user->prepared_by }} --}}
+                </td>
+
+                {{-- <td>
+                    Checked By
+                    <br><br><br><br>
+                    ___________________
+                    <br>
+                    {{ $boq->checked_by }}
+                </td> --}}
+
+                
+            </tr>
         </table>
 
     </div>

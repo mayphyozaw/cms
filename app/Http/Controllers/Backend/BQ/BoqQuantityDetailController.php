@@ -120,6 +120,7 @@ class BoqQuantityDetailController extends Controller
             'project.client',
             'boqQuantityDetails'
         ]);
+        
         $boqData = Boq::with([
             'sections.items',
             'project.client',

@@ -244,7 +244,7 @@
                         case 'area':
                             symbol = 'A';
                             formulas = 'L * W';
-                            unit = 'sqft';
+                            unit = 'Sq.ft';
                             break;
 
                         case 'wall_area':
@@ -256,20 +256,20 @@
                         case 'coats_area':
                             symbol = 'CoatArea';
                             formulas = 'L * H * coats';
-                            unit = 'sqft';
+                            unit = 'Sq.ft';
                             break;
 
                         case 'painting_area':
                             symbol = 'PaintingArea';
                             formulas = 'L * H';
-                            unit = 'sqft'
+                            unit = 'Sq.ft'
                             break;
 
 
                         case 'plaster_area':
                             symbol = 'PlasterArea';
                             formulas = 'L * H';
-                            unit = 'sqft'
+                            unit = 'Sq.ft'
                             break;
 
                         case 'plaster_volume':
@@ -282,7 +282,7 @@
                         case 'screed_area':
                             symbol = 'ScreedArea';
                             formulas = 'L * W';
-                            unit = 'sqft'
+                            unit = 'Sq.ft'
                             break;
 
                         case 'screed_volume':
@@ -294,7 +294,7 @@
                         case 'concrete_slab_area':
                             symbol = 'ConcreteSlabArea';
                             formulas = 'L * W';
-                            unit = 'sqft'
+                            unit = 'Sq.ft'
                             break;
                         
                         case 'concrete_slab_volume':
@@ -307,7 +307,7 @@
                         case 'brick_wall_area':
                             symbol = 'BrickWallArea';
                             formulas = '(L + W) * 2 * H';
-                            unit = 'sqft'
+                            unit = 'Sq.ft'
                             break;
 
                         case 'brick_wall_volume':
@@ -319,7 +319,7 @@
                         case 'mortar_bed_area':
                             symbol = 'MortarBedArea';
                             formulas = 'L * W';
-                            unit = 'sqft'
+                            unit = 'Sq.ft'
                             break;
 
                         case 'mortar_bed_volume':
@@ -331,7 +331,7 @@
                         case 'steel_linear':
                             symbol = 'L';
                             formulas = 'L';
-                            unit = 'kg'
+                            unit = 'Kg'
                             break;
 
                         case 'steel_handrail_linear':
@@ -343,7 +343,7 @@
                         case 'weight':
                             symbol = 'W';
                             formulas = 'L * Unit Weight';
-                            unit = 'ton';
+                            unit = 'Ton';
                             break;
                     }
 

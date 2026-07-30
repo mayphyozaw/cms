@@ -20,7 +20,7 @@
                 <a href="{{ route('projectmanage.projects.index') }}" class="btn btn-outline-light shadow">
                     <span style="color:black">{{ $project->client->project_code }} @
                         {{ $project->client->name }} - ({{ $project->client->length }} * {{ $project->client->width }}) -
-                        {{ $project->client->building_area }} sqft
+                        {{ $project->client->building_area }} Sq.ft
                     </span>
                 </a>
 
