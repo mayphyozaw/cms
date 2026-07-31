@@ -95,7 +95,7 @@ class BoqQuantityDetailController extends Controller
             }
         }
         return redirect()->route('projectmanage.projects.boq-quantity-detail.index', [$project->id, $boq->id])->with([
-            'message' => 'Proposal Stored successfully!',
+            'message' => 'BOQ Cost Created successfully!',
             'alert-type' => 'success'
         ]);
     }
@@ -145,4 +145,6 @@ class BoqQuantityDetailController extends Controller
             'quantity' => $measurement->quantity,
         ]);
     }
+
+    
 }

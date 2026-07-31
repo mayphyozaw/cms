@@ -306,12 +306,17 @@ Route::middleware('auth', 'notBlocked')->group(function () {
 
                 Route::get('/boq-cost-detail/{boq}', [BoqCostDetailController::class, 'index'])->name('boq-cost-detail.index');
                 Route::get('/boq-cost-detail/{boq}/create', [BoqCostDetailController::class, 'create'])->name('boq-cost-detail.create');
-                Route::post('/boq-cost-detail/{boq}', [BoqCostDetailController::class, 'store'])->name('boq-quantity-cost.store');
+                Route::post('/boq-cost-detail/{boq}', [BoqCostDetailController::class, 'store'])->name('boq-cost-detail.store');
             });
 
         Route::get('get-boq-category', [BoqController::class, 'getBoqCategory'])->name('get.boq.category');
         Route::get('get-drawing-measurement', [BoqDetailController::class, 'getDrawingMeasurement'])->name('get.drawing.measurement');
         Route::get('/get-drawing-measurement-detail',[BoqQuantityDetailController::class, 'getDrawingMeasurementDetail'])->name('get.drawing.measurement.detail');
+        Route::get('/get-boq-quantity-detail',[BoqCostDetailController::class, 'getMaterialRequirementsByBoq'])->name('get.material.requirements.by.boq');
+        Route::get('/get-variable-asset',[BoqCostDetailController::class, 'getVariableAsset'])->name('get.variable.asset');
+        Route::get('/get-material-requirement',[BoqCostDetailController::class, 'getMaterialRequirement'])->name('get.material.requirement');
+        Route::get('/get-boq-category',[BoqCostDetailController::class, 'getBoqCategory'])->name('get.boq.category');
+
         
 
 
