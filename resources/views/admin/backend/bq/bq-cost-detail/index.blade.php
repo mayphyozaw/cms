@@ -31,15 +31,15 @@
                     <div class="dropdown-menu  dropdown-menu-end">
                         <ul>
                             <li>
-                                
-                                 <a href="{{ route('projectmanage.projects.boq-quantity-detail.exportpdf', [$project->id, $boq->id]) }}"
+
+                                <a href="{{ route('projectmanage.projects.boq-quantity-detail.exportpdf', [$project->id, $boq->id]) }}"
                                     class="dropdown-item">
                                     <i class="ti ti-file-type-xls me-1"></i>
                                     Export as PDF
                                 </a>
                             </li>
                             <li>
-                                 
+
                                 <a href="{{ route('projectmanage.projects.boq-quantity-detail.export', [$project->id, $boq->id]) }}"
                                     class="dropdown-item">
                                     <i class="ti ti-file-type-xls me-1"></i>
@@ -64,7 +64,7 @@
                 <div class="row align-items-center">
                     <div class="col">
                         <h5 class="card-title mb-0">
-                            COST ESTIMATION SHEET (BOQ) 
+                            COST ESTIMATION SHEET (BOQ)
                         </h5>
                     </div>
                     <div class="col-auto">
@@ -85,7 +85,7 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered text-nowrap">
                         <thead>
                             <tr class="text-center">
                                 <th width="10%" style="background-color: #9dd2e7">Item No</th>
@@ -94,37 +94,64 @@
                                 <th style="background-color: #9dd2e7">Material</th>
                                 <th width="15%" style="background-color: #9dd2e7">Unit</th>
                                 <th width="15%" style="background-color: #9dd2e7">Quantity</th>
-                                <th width="15%" style="background-color: #9dd2e7">Unit Rate</th>
-                                <th width="15%" style="background-color: #9dd2e7">Amount</th>
+                                <th width="15%" style="background-color: #9dd2e7">Unit Rate (MMK)</th>
+                                <th width="15%" style="background-color: #9dd2e7">Amount (MMK)</th>
                             </tr>
                         </thead>
-                        {{-- <tbody>
+                        <tbody>
 
-                            @foreach ($boqQtyDetails as $row)
+                            @foreach ($boqCostDetails as $row)
                                 @if ($row->type == 'section')
-                                    <tr class="table-info">
-                                        <td>
+                                    <tr>
+                                        <td style="background-color: #dde8ed">
                                             <strong>{{ $row->item_no }}</strong>
                                         </td>
-                                        <td>
+                                        <td colspan="7" style="background-color: #dde8ed">
                                             <strong>{{ $row->title }}</strong>
                                         </td>
-                                        <td></td>
-                                        <td></td>
+
                                     </tr>
                                 @else
                                     <tr>
                                         <td>{{ $row->item_no }}</td>
                                         <td>{{ $row->title }}</td>
+                                        <td>{{ $row->boqCategory?->category_name }}</td>
+                                        <td>{{ $row->material?->name }}</td>
                                         <td>{{ $row->unit }}</td>
                                         <td class="text-end">
                                             {{ number_format($row->quantity, 2) }}
                                         </td>
+                                        <td class="text-end">
+                                            {{ number_format($row->unit_rate, 2) }}
+                                        </td>
+                                        <td class="text-end">
+                                            {{ number_format($row->amount, 2) }}
+                                        </td>
                                     </tr>
                                 @endif
                             @endforeach
+                            <tr class="table-success">
+                                <td colspan="3" class="text-end">
+                                    <strong>Material Costs All Total</strong>
+                                </td>
+                                
+                                <td class="text-end" colspan="5">
+                                    <strong>{{ number_format($materialTotal, 2) }}</strong>
+                                </td>
+                            </tr>
 
-                        </tbody> --}}
+                            {{-- <tr class="table-success">
+                                <td colspan="3" class="text-end">
+                                    <strong>Labor Costs All Total</strong>
+                                </td>
+                                
+                                <td class="text-end" colspan="5">
+                                    <strong>{{ number_format($materialTotal, 2) }}</strong>
+                                </td>
+                            </tr> --}}
+
+                        </tbody>
+                        
                     </table>
                 </div>
             </div>

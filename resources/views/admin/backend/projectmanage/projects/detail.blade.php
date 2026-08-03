@@ -79,6 +79,18 @@
                                     Material Requirements
                                 </a>
 
+                                <a href="{{ route('projectmanage.projects.labor-mappings.index', $project->id) }}"
+                                    class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.labor-mappings.*') ? 'active' : '' }}">
+                                    <i class="ti ti-moneybag me-2"></i>
+                                    Labor Mapping
+                                </a>
+
+                                <a href="{{ route('projectmanage.projects.labor-requirements.index', $project->id) }}"
+                                    class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.labor-requirements.*') ? 'active' : '' }}">
+                                    <i class="ti ti-moneybag me-2"></i>
+                                    Labor Requirements
+                                </a>
+
                                 
                                 <a href="{{ route('projectmanage.projects.site-measurements.index', $project->id) }}"
                                     class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.site-measurements.*') ? 'active' : '' }}">
@@ -133,7 +145,6 @@
                                     <tbody>
 
                                         <tr>
-
                                             <td class="text-center">
                                                 {{ $project->client->project_code }}
                                             </td>

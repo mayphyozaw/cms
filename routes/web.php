@@ -40,6 +40,8 @@ use App\Http\Controllers\Backend\ProjectManagement\DrawingMeasurementDeductionCo
 use App\Http\Controllers\Backend\ProjectManagement\DrawingMeasurementDetailController;
 use App\Http\Controllers\Backend\ProjectManagement\DrawingMeasurementsController;
 use App\Http\Controllers\Backend\ProjectManagement\DrawingTypeController;
+use App\Http\Controllers\Backend\ProjectManagement\LaborMappingController;
+use App\Http\Controllers\Backend\ProjectManagement\LaborRequirementController;
 use App\Http\Controllers\Backend\ProjectManagement\MaterialMappingController;
 use App\Http\Controllers\Backend\ProjectManagement\MaterialRateController;
 use App\Http\Controllers\Backend\ProjectManagement\MaterialRateHistoryController;
@@ -65,6 +67,7 @@ use App\Http\Controllers\Backend\UserManagement\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\UserManagement\Resign;
 use App\Http\Controllers\Backend\UserManagement\ResignController;
+use App\Models\LaborMappings;
 use App\Models\MaterialMappings;
 use App\Models\MeasurementCategories;
 use App\Models\ProjectCategory;
@@ -295,6 +298,8 @@ Route::middleware('auth', 'notBlocked')->group(function () {
                 Route::resource('mixRatio-details', MixRatioDetailsController::class);
                 Route::resource('material-mappings', MaterialMappingController::class);
                 Route::resource('material-requirements', MaterialRequirementsController::class);
+                Route::resource('labor-mappings', LaborMappingController::class);
+                Route::resource('labor-requirements', LaborRequirementController::class);
                 Route::resource('boq', BoqController::class)->except('show');
                 Route::get('/boq-approved/{boq}', [BoqController::class, 'approved'])->name('boq-approved');
                 Route::post('/boq-approved/{boq}', [BoqController::class, 'approvedStore'])->name('boq-approved.store');
@@ -325,6 +330,7 @@ Route::middleware('auth', 'notBlocked')->group(function () {
         Route::get('mix-ratio_total-part', [MixRatioDetailsController::class, 'mixRatioTotalPart'])->name('mix-ratio_total-part');
         Route::get('drawing_measurement_get', [DrawingMeasurementsController::class, 'getDrawingMeasurement'])->name('drawing_measurement_get');
         Route::get('material_mapping_get', [MaterialMappingController::class, 'getMaterialMapping'])->name('material_mapping_get');
+        Route::get('labor_mapping_get', [LaborMappingController::class, 'getLaborMapping'])->name('labor_mapping_get');
         Route::get('mix_ratio_get', [MaterialMappingController::class, 'getMixRatio'])->name('mix_ratio_get');
         Route::get('consumption-ratio-get', [MaterialMappingController::class, 'getConsumptionRatio'])->name('consumption-ratio-get');
         // Route::get('mix_ratio_get', [MaterialRequirementsController::class, 'getMixRatio'])->name('mix_ratio_get');

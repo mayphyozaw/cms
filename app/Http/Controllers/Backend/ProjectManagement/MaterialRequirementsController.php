@@ -229,6 +229,8 @@ class MaterialRequirementsController extends Controller
         return response()->json([
             'quantity' => $drawingMeasurement->quantity,
 
+            'unit' => $drawingMeasurement->unit,
+
             'material_mapping_id' => $materialMapping->id,
 
             'variable_asset_id' => $materialMapping->variable_asset_id,

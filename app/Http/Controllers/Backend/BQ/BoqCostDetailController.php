@@ -22,12 +22,21 @@ class BoqCostDetailController extends Controller
 
         $boq = Boq::findOrFail($boqId);
 
-        $boqQtyDetails = BoqQuantityDetails::where(
+
+        $boqCostDetails = BoqCostDetails::where(
             'boq_id',
             $boqId
         )->get();
 
-        return view('admin.backend.bq.bq-cost-detail.index', compact('project', 'boq', 'boqQtyDetails'));
+        $materialTotal = $boqCostDetails
+            ->where('type', 'item')
+            ->sum('amount');
+
+        // $laborTotal = $boqCostDetails
+        //     ->where('type', 'item')
+        //     ->sum('amount');
+
+        return view('admin.backend.bq.bq-cost-detail.index', compact('project', 'boq', 'boqCostDetails', 'materialTotal'));
     }
     public function create(Project $project, Boq $boq)
     {
@@ -52,7 +61,7 @@ class BoqCostDetailController extends Controller
 
     public function store(Project $project, Boq $boq, Request $request,)
     {
-        
+        // return $request->all();
         $sectionId = null;
 
         foreach ($request->rows as $row) {
@@ -94,7 +103,7 @@ class BoqCostDetailController extends Controller
                     'amount' => $row['amount'] ?? '',
                     'remark' => $row['remark'] ?? '',
                 ]);
-                // return $bqDetail;
+
 
                 $materialTotal = BoqCostDetails::where('boq_id', $boq->id)
                     ->sum('amount');
@@ -105,6 +114,7 @@ class BoqCostDetailController extends Controller
                 ]);
             }
         }
+
         return redirect()->route('projectmanage.projects.boq-cost-detail.index', [$project->id, $boq->id])->with([
             'message' => 'BOQ Cost Created successfully!',
             'alert-type' => 'success'

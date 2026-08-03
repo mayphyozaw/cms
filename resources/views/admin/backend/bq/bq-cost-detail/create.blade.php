@@ -109,7 +109,7 @@
                                                             <strong>Matertial Grand Total</strong>
                                                         </td>
                                                         <td>
-                                                            <strong id="material_total">0.00</strong>
+                                                            <strong id="material_total">{{$row->}}</strong>
                                                         </td>
                                                         <td colspan="2"></td>
                                                     </tr>
