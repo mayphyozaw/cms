@@ -13,7 +13,7 @@ class LaborRequirements extends Model
         'labor_type_id',
         'raw_quantity',
         'required_qty',
-        'unit',
+        'required_unit',
         'status',
         'remark'
     ];
@@ -32,4 +32,8 @@ class LaborRequirements extends Model
     {
         return $this->belongsTo(LaborType::class, 'labor_type_id');
     }
+
+    
+
+    
 }

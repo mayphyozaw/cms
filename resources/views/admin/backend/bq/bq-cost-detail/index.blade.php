@@ -92,7 +92,7 @@
                                 <th style="background-color: #9dd2e7">Description</th>
                                 <th style="background-color: #9dd2e7">Cost Category</th>
                                 <th style="background-color: #9dd2e7">Material</th>
-                                <th width="15%" style="background-color: #9dd2e7">Unit</th>
+                                <th width="10%" style="background-color: #9dd2e7">Unit</th>
                                 <th width="15%" style="background-color: #9dd2e7">Quantity</th>
                                 <th width="15%" style="background-color: #9dd2e7">Unit Rate (MMK)</th>
                                 <th width="15%" style="background-color: #9dd2e7">Amount (MMK)</th>
@@ -100,58 +100,82 @@
                         </thead>
                         <tbody>
 
-                            @foreach ($boqCostDetails as $row)
+                            @php
+                                $currentSection = null;
+                                $sectionTotal = 0;
+                            @endphp
+
+                            @foreach ($boqCostDetails as $index => $row)
                                 @if ($row->type == 'section')
+                                    {{-- Previous Section Total --}}
+                                    @if ($currentSection !== null)
+                                        <tr>
+                                            <td colspan="7" class="text-end" style="background-color:#ddede7">
+                                                <strong>{{ $currentSection->title }} Total</strong>
+                                            </td>
+                                            <td class="text-end" style="background-color:#ddede7">
+                                                <strong>{{ number_format($sectionTotal, 2) }}</strong>
+                                            </td>
+                                        </tr>
+                                    @endif
+
+                                    @php
+                                        $currentSection = $row;
+                                        $sectionTotal = 0;
+                                    @endphp
+
                                     <tr>
-                                        <td style="background-color: #dde8ed">
+                                        <td style="background-color:#cceaf3">
                                             <strong>{{ $row->item_no }}</strong>
                                         </td>
-                                        <td colspan="7" style="background-color: #dde8ed">
+                                        <td colspan="7" style="background-color:#cceaf3">
                                             <strong>{{ $row->title }}</strong>
                                         </td>
-
                                     </tr>
                                 @else
+                                    @php
+                                        $sectionTotal += $row->amount;
+                                    @endphp
+
+                                    
+
                                     <tr>
                                         <td>{{ $row->item_no }}</td>
                                         <td>{{ $row->title }}</td>
-                                        <td>{{ $row->boqCategory?->category_name }}</td>
-                                        <td>{{ $row->material?->name }}</td>
-                                        <td>{{ $row->unit }}</td>
-                                        <td class="text-end">
-                                            {{ number_format($row->quantity, 2) }}
-                                        </td>
-                                        <td class="text-end">
-                                            {{ number_format($row->unit_rate, 2) }}
-                                        </td>
-                                        <td class="text-end">
-                                            {{ number_format($row->amount, 2) }}
-                                        </td>
+                                        <td>{{ $row->boqCategory?->name }}</td>
+                                        <td>{{ $row->requirement_name }}</td>
+                                        <td class="text-center">{{ $row->unit }}</td>
+                                        <td class="text-end">{{ number_format($row->quantity, 2) }}</td>
+                                        <td class="text-end">{{ number_format($row->unit_rate, 2) }}</td>
+                                        <td class="text-end">{{ number_format($row->amount, 2) }}</td>
                                     </tr>
                                 @endif
                             @endforeach
+
+                            {{-- Last Section Total --}}
+                            @if ($currentSection)
+                                <tr style="background-color:#c7dae1">
+                                    <td class="text-end" colspan="7">
+                                        <strong>{{ $currentSection->title }} Total</strong>
+                                    </td>
+                                    <td class="text-end">
+                                        <strong>{{ number_format($sectionTotal, 2) }}</strong>
+                                    </td>
+                                </tr>
+                            @endif
+
                             <tr class="table-success">
                                 <td colspan="3" class="text-end">
-                                    <strong>Material Costs All Total</strong>
+                                    <strong>Grand Total</strong>
                                 </td>
-                                
+
                                 <td class="text-end" colspan="5">
-                                    <strong>{{ number_format($materialTotal, 2) }}</strong>
+                                    <strong>{{ number_format($grandTotal, 2) }}</strong>
                                 </td>
                             </tr>
 
-                            {{-- <tr class="table-success">
-                                <td colspan="3" class="text-end">
-                                    <strong>Labor Costs All Total</strong>
-                                </td>
-                                
-                                <td class="text-end" colspan="5">
-                                    <strong>{{ number_format($materialTotal, 2) }}</strong>
-                                </td>
-                            </tr> --}}
-
                         </tbody>
-                        
+
                     </table>
                 </div>
             </div>

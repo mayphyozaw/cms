@@ -14,8 +14,7 @@ class BoqCostDetails extends Model
         'item_no',
         'title',
         'boq_category_id',
-        'material_requirement_id',
-        'variable_asset_id',
+        'requirement_id',
         'quantity',
         'unit',
         'unit_rate',
@@ -45,7 +44,7 @@ class BoqCostDetails extends Model
 
     public function materialRequirement()
     {
-        return $this->belongsTo(MaterialRequirements::class,'material_requirement_id');
+        return $this->belongsTo(MaterialRequirements::class,'requirement_id');
     }
 
     public function material()
@@ -56,5 +55,15 @@ class BoqCostDetails extends Model
     public function boq()
     {
         return $this->belongsTo(Boq::class,'boq_id');
+    }
+
+    public function laborRequirement()
+    {
+        return $this->belongsTo(MaterialRequirements::class,'requirement_id');
+    }
+
+    public function equipmentRequirement()
+    {
+        return $this->belongsTo(MaterialRequirements::class,'requirement_id');
     }
 }

@@ -40,6 +40,8 @@ use App\Http\Controllers\Backend\ProjectManagement\DrawingMeasurementDeductionCo
 use App\Http\Controllers\Backend\ProjectManagement\DrawingMeasurementDetailController;
 use App\Http\Controllers\Backend\ProjectManagement\DrawingMeasurementsController;
 use App\Http\Controllers\Backend\ProjectManagement\DrawingTypeController;
+use App\Http\Controllers\Backend\ProjectManagement\EquipmentMappingController;
+use App\Http\Controllers\Backend\ProjectManagement\EquipmentRequirementsController;
 use App\Http\Controllers\Backend\ProjectManagement\LaborMappingController;
 use App\Http\Controllers\Backend\ProjectManagement\LaborRequirementController;
 use App\Http\Controllers\Backend\ProjectManagement\MaterialMappingController;
@@ -300,6 +302,9 @@ Route::middleware('auth', 'notBlocked')->group(function () {
                 Route::resource('material-requirements', MaterialRequirementsController::class);
                 Route::resource('labor-mappings', LaborMappingController::class);
                 Route::resource('labor-requirements', LaborRequirementController::class);
+                Route::resource('equipment-mappings', EquipmentMappingController::class);
+                Route::resource('equipment-requirements', EquipmentRequirementsController::class);
+
                 Route::resource('boq', BoqController::class)->except('show');
                 Route::get('/boq-approved/{boq}', [BoqController::class, 'approved'])->name('boq-approved');
                 Route::post('/boq-approved/{boq}', [BoqController::class, 'approvedStore'])->name('boq-approved.store');
@@ -319,8 +324,9 @@ Route::middleware('auth', 'notBlocked')->group(function () {
         Route::get('/get-drawing-measurement-detail',[BoqQuantityDetailController::class, 'getDrawingMeasurementDetail'])->name('get.drawing.measurement.detail');
         Route::get('/get-boq-quantity-detail',[BoqCostDetailController::class, 'getMaterialRequirementsByBoq'])->name('get.material.requirements.by.boq');
         Route::get('/get-variable-asset',[BoqCostDetailController::class, 'getVariableAsset'])->name('get.variable.asset');
-        Route::get('/get-material-requirement',[BoqCostDetailController::class, 'getMaterialRequirement'])->name('get.material.requirement');
-        Route::get('/get-boq-category',[BoqCostDetailController::class, 'getBoqCategory'])->name('get.boq.category');
+        // Route::get('/get-material-requirement',[BoqCostDetailController::class, 'getMaterialRequirement'])->name('get.material.requirement');
+        Route::get('/requirement_detail_get',[BoqCostDetailController::class, 'getRequirementDetail'])->name('requirement_detail_get');
+        Route::get('/requirement_by_category',[BoqCostDetailController::class, 'getRequirementsByCategory'])->name('requirement_by_category');
 
         
 
@@ -331,6 +337,7 @@ Route::middleware('auth', 'notBlocked')->group(function () {
         Route::get('drawing_measurement_get', [DrawingMeasurementsController::class, 'getDrawingMeasurement'])->name('drawing_measurement_get');
         Route::get('material_mapping_get', [MaterialMappingController::class, 'getMaterialMapping'])->name('material_mapping_get');
         Route::get('labor_mapping_get', [LaborMappingController::class, 'getLaborMapping'])->name('labor_mapping_get');
+        Route::get('equipment_mapping_get', [EquipmentMappingController::class, 'getEquipmentMapping'])->name('equipment_mapping_get');
         Route::get('mix_ratio_get', [MaterialMappingController::class, 'getMixRatio'])->name('mix_ratio_get');
         Route::get('consumption-ratio-get', [MaterialMappingController::class, 'getConsumptionRatio'])->name('consumption-ratio-get');
         // Route::get('mix_ratio_get', [MaterialRequirementsController::class, 'getMixRatio'])->name('mix_ratio_get');
@@ -338,6 +345,8 @@ Route::middleware('auth', 'notBlocked')->group(function () {
         // Route::get('material_mapping_get', [MaterialRequirementsController::class, 'getMaterialMapping'])->name('material_mapping_get');
         // Route::get('drawing_measurement_get', [MaterialRequirementsController::class, 'getDrawingMeasurement'])->name('drawing_measurement_get');
         Route::get('drawing_measurement_get', [MaterialRequirementsController::class, 'getDrawingMeasurement'])->name('drawing_measurement_get');
+        Route::get('equipment_category_get', [EquipmentMappingController::class, 'getEquipmentCategory'])->name('equipment_category_get');
+        Route::get('equipment_get', [EquipmentMappingController::class, 'getEquipment'])->name('equipment_get');
 
 
 

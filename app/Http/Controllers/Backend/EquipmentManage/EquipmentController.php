@@ -15,11 +15,11 @@ class EquipmentController extends Controller
     public function index()
     {
         $equipments = Equipment::with([
-            'eqCategory',
+            'equipmentCategory',
             'boqCategory'
         ])
             ->get()
-            ->sortBy('eqCategory.name');
+            ->sortBy('equipmentCategory.name');
         return view('admin.backend.equipment-lists.index', compact('equipments'));
     }
 

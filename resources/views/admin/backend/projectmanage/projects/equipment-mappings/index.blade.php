@@ -4,7 +4,7 @@
 
         <div class="d-flex align-items-center justify-content-between gap-2 mb-4 flex-wrap">
             <div>
-                <h4 class="mb-1">Mix Ratio </h4>
+                <h4 class="mb-1">Equipment Mappings </h4>
 
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
@@ -13,10 +13,20 @@
                         </li>
 
                         <li class="breadcrumb-item active" aria-current="page">
-                            Mix Ratio
+                            Equipment Mappings
                         </li>
                     </ol>
                 </nav>
+            </div>
+            <div class="gap-2 d-flex align-items-center flex-wrap">
+
+                <a href="{{ route('projectmanage.projects.index') }}" class="btn btn-outline-light shadow">
+                    <span style="color:black">{{ $project->client->project_code }} @
+                        {{ $project->client->name }} - ({{ $project->client->length }} * {{ $project->client->width }}) -
+                        {{ $project->client->building_area }} Sq.ft
+                    </span>
+                </a>
+
             </div>
         </div>
 
@@ -63,6 +73,7 @@
                                     <i class="ti ti-moneybag me-2"></i>
                                     Material Mapping
                                 </a>
+
 
                                 <a href="{{ route('projectmanage.projects.material-requirements.index', $project->id) }}"
                                     class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.material-requirements.*') ? 'active' : '' }}">
@@ -146,19 +157,14 @@
                         <ul class="nav nav-tabs nav-bordered nav-bordered-primary">
 
                             <li class="nav-item me-3">
-                                <a href="{{ route('projectmanage.projects.mixRatio.index', $project->id) }}"
-                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.mixRatio.index') ? 'active' : '' }}">
+                                <a href="{{ route('projectmanage.projects.equipment-mappings.index', $project->id) }}"
+                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.equipment-mappings.index') ? 'active' : '' }}">
                                     <i class="ti ti-settings-cog me-2"></i>
-                                    Mix Ratio
+                                    Equipment Mappings
                                 </a>
                             </li>
-                            <li class="nav-item me-3">
-                                <a href="{{ route('projectmanage.projects.mixRatio-details.index', $project->id) }}"
-                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.mixRatio-details.index') ? 'active' : '' }}">
-                                    <i class="ti ti-settings-cog me-2"></i>
-                                    Mix Ratio Details
-                                </a>
-                            </li>
+
+                            
 
                         </ul>
 
@@ -173,13 +179,13 @@
                         <div class="row align-items-center">
 
                             <div class="col">
-                                <h5 class="card-title mb-0">Mix Ratio Lists</h5>
+                                <h5 class="card-title mb-0">Equipment Mappings Lists</h5>
                             </div>
 
                             <div class="col-auto">
                                 <x-create-button
-                                    href="{{ route('projectmanage.projects.mixRatio-details.create', $project->id) }}">
-                                    Create Mix Ratio Detail
+                                    href="{{ route('projectmanage.projects.equipment-mappings.create', $project->id) }}">
+                                    Create Equipment Mappings
                                 </x-create-button>
                             </div>
 
@@ -199,64 +205,65 @@
 
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered align-middle w-100 nowrap" id="mixRatioDetailTable">
+                            <table class="table table-bordered align-middle w-100 nowrap" id="equipmentMappingTable">
                                 <thead>
                                     <tr>
 
                                         <th class="text-center" style="background-color: #9dd2e7">No</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Code</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Material Name</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Part</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Total Part</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Consumption Ratio</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Drawing Name</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Equipment Category</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Equipment</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Unit</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Productivity</th>
+                                        <th class="text-center" style="background-color: #9dd2e7">Remark</th>
                                         <th class="text-center" style="background-color: #9dd2e7">Action</th>
 
                                     </tr>
                                 </thead>
                                 <tbody>
 
-                                    @foreach ($mixRatioDetails as $detail)
+                                    @foreach ($equipmentMappings as $equipmentMapping)
                                         <tr>
                                             <td class="text-center">
 
                                                 {{ $loop->iteration }}
                                             </td>
 
+                                           
                                             <td class="text-center">
-                                                {{ $detail->mixRatio->code }}
+                                                {{ $equipmentMapping->drawingmeasurement?->category?->category_name ?? 'N/A' }}
                                             </td>
 
                                             <td class="text-center">
-                                                {{ $detail->material->name }}
+                                                {{ $equipmentMapping->equipment?->name }}
                                             </td>
 
                                             <td class="text-center">
-                                                {{ $detail->part }}
+                                                {{ $equipmentMapping->equipmentCategory?->name }}
                                             </td>
-                                            @php
-                                                $totalPart = App\Models\MixRatioDetails::where(
-                                                    'mix_ratio_template_id',
-                                                    $detail->mix_ratio_template_id,
-                                                )->sum('part');
 
-                                                $consumptionRatio = $detail->part / $totalPart;
-                                            @endphp
-
-                                            <td class="text-center">
-                                                {{ $totalPart }}
+                                           <td class="text-center">
+                                                {{ $equipmentMapping->productivity_unit  }}
                                             </td>
 
                                             <td class="text-center">
-                                                {{ number_format($consumptionRatio,6)}}
+                                                {{ number_format($equipmentMapping->productivity, 2) }}
+
                                             </td>
+
+
+                                            <td class="text-center">
+                                                {{ $equipmentMapping->remark }}
+                                            </td>
+
 
                                             <td class="text-center">
                                                 <a class="btn btn-icon btn-sm btn-info"
-                                                    href="{{ route('projectmanage.projects.mixRatio-details.edit', [$project->id, $detail->id]) }}">
+                                                    href="{{ route('projectmanage.projects.equipment-mappings.edit', [$project->id, $equipmentMapping->id]) }}">
                                                     <i class="ti ti-edit"></i>
                                                 </a>
                                                 <form
-                                                    action="{{ route('projectmanage.projects.mixRatio-details.destroy', [$project->id, $detail->id]) }}"
+                                                    action="{{ route('projectmanage.projects.equipment-mappings.destroy', [$project->id, $equipmentMapping->id]) }}"
                                                     method="POST" style="display:inline;">
                                                     @csrf
                                                     @method('DELETE')
@@ -269,6 +276,7 @@
                                     @endforeach
 
                                 </tbody>
+
                             </table>
                         </div>
                     </div>
@@ -306,7 +314,7 @@
 
         });
 
-        $('#mixRatioDetailTable').DataTable({
+        $('#equipmentMappingTable').DataTable({
             responsive: true,
             autoWidth: false
         });

@@ -93,7 +93,22 @@
                                     Labor Requirements
                                 </a>
 
+                                <a href="{{ route('projectmanage.projects.equipment-mappings.index', $project->id) }}"
+                                    class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.equipment-mappings.*') ? 'active' : '' }}">
+                                    <i class="ti ti-moneybag me-2"></i>
+                                    Equipment Mapping
+                                </a>
 
+                                <a href="{{ route('projectmanage.projects.equipment-requirements.index', $project->id) }}"
+                                    class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.equipment-requirements.*') ? 'active' : '' }}">
+                                    <i class="ti ti-moneybag me-2"></i>
+                                    Equipment Requirements
+                                </a>
+
+                                <a href="{{ route('projectmanage.projects.boq.index', $project->id) }}" class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.boq.*') ? 'active' : '' }}">
+                                    <i class="ti ti-moneybag me-2"></i>
+                                    BOQ
+                                </a>
 
                                 <a href="{{ route('projectmanage.projects.site-measurements.index', $project->id) }}"
                                     class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.site-measurements.*') ? 'active' : '' }}">
@@ -101,11 +116,7 @@
                                     Site Measurements
                                 </a>
 
-                                <a href="#" class="d-block p-2 fw-medium">
-                                    <i class="ti ti-moneybag me-2"></i>
-                                    BOQ
-                                </a>
-
+                                
                                 <a href="#" class="d-block p-2 fw-medium">
                                     <i class="ti ti-list-check me-2"></i>
                                     Proposal
@@ -232,7 +243,7 @@
                                             </td>
 
                                             <td class="text-end">
-                                                {{ $laborRequirement->unit }}
+                                                {{ $laborRequirement->required_unit }}
                                             </td>
 
                                             <td class="text-center">
@@ -266,7 +277,7 @@
                                         </td>
 
                                         <td class="text-end" style="background-color: #dde8ed">
-                                            {{ $laborRequirement->unit }}</td>
+                                            {{ $laborRequirement->required_unit }}</td>
                                         <td style="background-color: #dde8ed"></td>
                                     </tr>
                                 </tfoot>

@@ -8,6 +8,9 @@ use App\Models\BoqCategories;
 use App\Models\BoqCostDetails;
 use App\Models\BoqQuantityDetails;
 use App\Models\DrawingMeasurement;
+use App\Models\Equipment;
+use App\Models\EquipmentRequirements;
+use App\Models\LaborRequirements;
 use App\Models\MaterialRate;
 use App\Models\MaterialRequirements;
 use App\Models\Project;
@@ -28,16 +31,36 @@ class BoqCostDetailController extends Controller
             $boqId
         )->get();
 
-        $materialTotal = $boqCostDetails
+
+        foreach ($boqCostDetails as $row) {
+
+            if ($row->boqCategory?->name == 'Material') {
+
+                $row->requirement_name =
+                    MaterialRequirements::find($row->requirement_id)
+                    ?->material?->name;
+            } elseif ($row->boqCategory?->name == 'Labor') {
+
+                $row->requirement_name =
+                    LaborRequirements::find($row->requirement_id)
+                    ?->laborType?->name;
+            } elseif ($row->boqCategory?->name == 'Equipment') {
+
+                $row->requirement_name =
+                    EquipmentRequirements::find($row->requirement_id)
+                    ?->equipment?->name;
+            }
+        }
+
+        $grandTotal = $boqCostDetails
             ->where('type', 'item')
             ->sum('amount');
 
-        // $laborTotal = $boqCostDetails
-        //     ->where('type', 'item')
-        //     ->sum('amount');
 
-        return view('admin.backend.bq.bq-cost-detail.index', compact('project', 'boq', 'boqCostDetails', 'materialTotal'));
+        return view('admin.backend.bq.bq-cost-detail.index', compact('project', 'boq', 'boqCostDetails', 'grandTotal'));
     }
+
+
     public function create(Project $project, Boq $boq)
     {
         $project->load('client');
@@ -87,7 +110,7 @@ class BoqCostDetailController extends Controller
                     $row['boq_quantity_detail_id']
                 );
 
-                $bqDetail = BoqCostDetails::create([
+                BoqCostDetails::create([
                     'boq_id' => $boq->id,
                     'section_id' => $sectionId,
                     'type' => 'item',
@@ -95,24 +118,40 @@ class BoqCostDetailController extends Controller
                     'title' => $boqQtyDetail?->title,
                     'boq_quantity_detail_id' => $row['boq_quantity_detail_id'],
                     'boq_category_id' => $row['boq_category_id'],
-                    'material_requirement_id' => $row['material_requirement_id'],
-                    'variable_asset_id' => $row['variable_asset_id'],
+                    'requirement_id' => $row['requirement_id'],
                     'unit' => $row['unit'] ?? '',
                     'quantity' => $row['quantity'] ?? '',
                     'unit_rate' => $row['unit_rate'] ?? '',
                     'amount' => $row['amount'] ?? '',
                     'remark' => $row['remark'] ?? '',
                 ]);
-
-
-                $materialTotal = BoqCostDetails::where('boq_id', $boq->id)
-                    ->sum('amount');
-
-                $boq->update([
-                    'material_total' => $materialTotal,
-                    'grand_total'    => $materialTotal,
-                ]);
             }
+            $materialCategory = BoqCategories::where('name', 'Material')->first();
+
+            $materialTotal = BoqCostDetails::where('boq_id', $boq->id)
+                ->where('boq_category_id', $materialCategory->id)
+                ->sum('amount');
+
+            $equipmentCategory = BoqCategories::where('name', 'Equipment')->first();
+
+            $equipmentTotal = BoqCostDetails::where('boq_id', $boq->id)
+                ->where('boq_category_id', $equipmentCategory->id)
+                ->sum('amount');
+
+            $laborCategory = BoqCategories::where('name', 'Labor')->first();
+
+            $laborTotal = BoqCostDetails::where('boq_id', $boq->id)
+                ->where('boq_category_id', $laborCategory->id)
+                ->sum('amount');
+
+            $grandTotal = $materialTotal + $equipmentTotal + $laborTotal;
+
+            $boq->update([
+                'material_total' => $materialTotal,
+                'equipment_total' => $equipmentTotal,
+                'labor_total' => $laborTotal,
+                'grand_total'    => $grandTotal,
+            ]);
         }
 
         return redirect()->route('projectmanage.projects.boq-cost-detail.index', [$project->id, $boq->id])->with([
@@ -125,63 +164,108 @@ class BoqCostDetailController extends Controller
 
 
 
-    public function getMaterialRequirementsByBoq(Request $request)
+    // public function getMaterialRequirementsByBoq(Request $request)
+    // {
+    //     $boqQty = BoqQuantityDetails::findOrFail(
+    //         $request->boq_quantity_detail_id
+    //     );
+
+    //     $requirements = MaterialRequirements::with('material')
+    //         ->where(
+    //             'drawing_measurement_id',
+    //             $boqQty->drawing_measurement_id
+    //         )
+    //         ->get();
+
+    //     return response()->json(
+    //         $requirements->map(function ($item) {
+    //             return [
+    //                 'id' => $item->id,
+    //                 'material_name' => $item->material?->name,
+    //                 'quantity' => $item->final_quantity,
+    //                 'unit' => $item->material?->unit,
+    //             ];
+    //         })
+    //     );
+    // }
+
+
+
+    // public function getMaterialRequirement(Request $request)
+    // {
+    //     $requirement = MaterialRequirements::with(
+    //         'material.boqCategory',
+    //     )->findOrFail($request->material_requirement_id);
+
+    //     $rate = MaterialRate::where(
+    //         'variable_asset_id',
+    //         $requirement->variable_asset_id
+    //     )
+    //         ->orderByDesc('effective_date')
+    //         ->first();
+
+    //     return response()->json([
+    //         'variable_asset_id' => $requirement->variable_asset_id,
+
+    //         'material_name' => $requirement->material?->name,
+
+    //         'boq_category_id' =>
+    //         $requirement->material?->boq_category_id,
+
+    //         'boq_category_name' =>
+    //         $requirement->material?->boqCategory?->name,
+
+    //         'quantity' => $requirement->final_quantity,
+
+    //         'unit' => $requirement->material?->unit,
+
+    //         'unit_rate' => $rate?->rate ?? 0,
+    //     ]);
+    // }
+
+
+
+    public function getRequirementDetail(Request $request)
     {
-        $boqQty = BoqQuantityDetails::findOrFail(
-            $request->boq_quantity_detail_id
+        $category = BoqCategories::findOrFail(
+            $request->boq_category_id
         );
 
-        $requirements = MaterialRequirements::with('material')
-            ->where(
-                'drawing_measurement_id',
-                $boqQty->drawing_measurement_id
-            )
-            ->get();
+        if ($category->name == 'Material') {
 
-        return response()->json(
-            $requirements->map(function ($item) {
-                return [
-                    'id' => $item->id,
-                    'material_name' => $item->material?->name,
-                    'quantity' => $item->final_quantity,
-                    'unit' => $item->material?->unit,
-                ];
-            })
-        );
-    }
+            $requirement = MaterialRequirements::with('material')
+                ->findOrFail($request->requirement_id);
 
+            return response()->json([
+                'unit'     => $requirement->material?->unit,
+                'quantity' => $requirement->final_quantity,
+                // 'rate'     => $requirement->material?->materialRate?->rate ?? 0,
+            ]);
+        }
 
+        if ($category->name == 'Labor') {
 
-    public function getMaterialRequirement(Request $request)
-    {
-        $requirement = MaterialRequirements::with(
-            'material.boqCategory',
-        )->findOrFail($request->material_requirement_id);
+            $requirement = LaborRequirements::with('laborType')
+                ->findOrFail($request->requirement_id);
 
-        $rate = MaterialRate::where(
-            'variable_asset_id',
-            $requirement->variable_asset_id
-        )
-            ->orderByDesc('effective_date')
-            ->first();
+            return response()->json([
+                'unit'     => $requirement->required_unit,
+                'quantity' => $requirement->required_qty,
+                // 'rate'     => $requirement->laborType?->laborRate?->rate ?? 0,
+            ]);
+        }
 
-        return response()->json([
-            'variable_asset_id' => $requirement->variable_asset_id,
+        if ($category->name == 'Equipment') {
 
-            'material_name' => $requirement->material?->name,
+            $requirement = EquipmentRequirements::with('equipment')
+                ->findOrFail($request->requirement_id);
 
-            'boq_category_id' =>
-            $requirement->material?->boq_category_id,
-
-            'boq_category_name' =>
-            $requirement->material?->boqCategory?->name,
-
-            'quantity' => $requirement->final_quantity,
-
-            'unit' => $requirement->material?->unit,
-
-            'unit_rate' => $rate?->rate ?? 0,
-        ]);
+            return response()->json([
+                'unit'     => $requirement->required_unit,
+                'quantity' => $requirement->required_qty,
+                // 'rate'     => $requirement->equipment?->equipmentRate?->rate ?? 0,
+            ]);
+        }
     }
 
     public function getVariableAsset(Request $request)
@@ -198,14 +282,54 @@ class BoqCostDetailController extends Controller
 
 
 
-    public function getBoqCategory(Request $request)
-    {
-        $boqCategory = BoqCategories::findOrFail(
-            $request->boq_category_id
-        );
 
-        return response()->json([
-            'name' => $boqCategory->name,
-        ]);
+
+    public function getRequirementsByCategory(Request $request)
+    {
+
+        $category = BoqCategories::findOrFail($request->boq_category_id);
+        $boqQty = BoqQuantityDetails::findOrFail($request->boq_quantity_detail_id);
+
+        $drawingMeasurementId = $boqQty->drawing_measurement_id;
+
+        if ($category->name == 'Material') {
+
+            $requirements = MaterialRequirements::with('material')
+                ->where('drawing_measurement_id', $drawingMeasurementId)
+                ->get()
+                ->map(function ($item) {
+                    return [
+                        'id'   => $item->id,
+                        'name' => $item->material?->name,
+                    ];
+                });
+        } elseif ($category->name == 'Labor') {
+
+            $requirements = LaborRequirements::with('laborType')
+                ->where('drawing_measurement_id', $drawingMeasurementId)
+                ->get()
+                ->map(function ($item) {
+                    return [
+                        'id'   => $item->id,
+                        'name' => $item->laborType?->name,
+                    ];
+                });
+        } elseif ($category->name == 'Equipment') {
+
+            $requirements = EquipmentRequirements::with('equipment')
+                ->where('drawing_measurement_id', $drawingMeasurementId)
+                ->get()
+                ->map(function ($item) {
+                    return [
+                        'id'   => $item->id,
+                        'name' => $item->equipment?->name,
+                    ];
+                });
+        } else {
+
+            $requirements = collect();
+        }
+
+        return response()->json($requirements);
     }
 }

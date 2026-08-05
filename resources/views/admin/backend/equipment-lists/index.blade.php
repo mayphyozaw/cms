@@ -57,7 +57,7 @@
                         
 
                         <tbody>
-                            @foreach ($equipments->groupBy('eqCategory.name') as $category => $items)
+                            @foreach ($equipments->groupBy('equipmentCategory.name') as $category => $items)
                                 <tr class="table-primary">
                                     <td colspan="13">{{ $category }}</td>
                                 </tr>

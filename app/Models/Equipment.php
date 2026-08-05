@@ -28,7 +28,7 @@ class Equipment extends Model
         return $this->belongsTo(BoqCategories::class, 'boq_category_id');
     }
 
-    public function eqCategory()
+    public function equipmentCategory()
     {
         return $this->belongsTo(EquipmentCategory::class, 'equipment_category_id');
     }

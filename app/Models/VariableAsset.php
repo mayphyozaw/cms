@@ -40,4 +40,9 @@ class VariableAsset extends Model
         return $this->hasOne(MaterialRate::class)
             ->latestOfMany('effective_date');
     }
+
+    public function requirement()
+{
+    return $this->belongsTo(MaterialRequirements::class, 'requirement_id');
+}
 }

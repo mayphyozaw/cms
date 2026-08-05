@@ -91,17 +91,29 @@
                                     Labor Requirements
                                 </a>
 
-                                
-                                <a href="{{ route('projectmanage.projects.site-measurements.index', $project->id) }}"
-                                    class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.site-measurements.*') ? 'active' : '' }}">
-                                    <i class="ti ti-list-check me-2"></i>
-                                    Site Measurements
+                                <a href="{{ route('projectmanage.projects.equipment-mappings.index', $project->id) }}"
+                                    class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.equipment-mappings.*') ? 'active' : '' }}">
+                                    <i class="ti ti-moneybag me-2"></i>
+                                    Equipment Mapping
+                                </a>
+
+                                <a href="{{ route('projectmanage.projects.equipment-requirements.index', $project->id) }}"
+                                    class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.equipment-requirements.*') ? 'active' : '' }}">
+                                    <i class="ti ti-moneybag me-2"></i>
+                                    Equipment Requirements
                                 </a>
 
                                 <a href="{{ route('projectmanage.projects.boq.index', $project->id) }}" class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.boq.*') ? 'active' : '' }}">
                                     <i class="ti ti-moneybag me-2"></i>
                                     BOQ
                                 </a>
+
+                                <a href="{{ route('projectmanage.projects.site-measurements.index', $project->id) }}"
+                                    class="d-block p-2 fw-medium {{ request()->routeIs('projectmanage.projects.site-measurements.*') ? 'active' : '' }}">
+                                    <i class="ti ti-list-check me-2"></i>
+                                    Site Measurements
+                                </a>
+
                                 <a href="connected-apps.html" class="d-block p-2 fw-medium">
                                     <i class="ti ti-list-check me-2"></i>
                                     Proposal

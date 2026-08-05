@@ -85,11 +85,11 @@
                                                         </th>
 
                                                         <th class="text-center" style="background-color: #9dd2e7">
-                                                            Unit Rate (MMK)
+                                                            Rate
                                                         </th>
 
                                                         <th class="text-center" style="background-color: #9dd2e7">
-                                                            Amount (MMK)
+                                                            Amount
                                                         </th>
 
                                                         <th class="text-center" style="background-color: #9dd2e7">
@@ -108,10 +108,10 @@
                                                 <tfoot>
                                                     <tr class="table-success">
                                                         <td colspan="8" class="text-end">
-                                                            <strong> Grand Total</strong>
+                                                            <strong>Matertial Grand Total</strong>
                                                         </td>
                                                         <td>
-                                                            <strong id="grand_total">0.00</strong>
+                                                            <strong id="material_total">0.00</strong>
                                                         </td>
                                                         <td colspan="2"></td>
                                                     </tr>
@@ -222,6 +222,38 @@
                 });
             });
 
+            $(document).on('change', '.boq_quantity_detail_id', function() {
+
+                let boqQtyDetailId = $(this).val();
+                let currentRow = $(this).closest('tr');
+
+                $.ajax({
+                    url: "{{ route('projectmanage.get.material.requirements.by.boq') }}",
+                    type: "GET",
+                    data: {
+                        boq_quantity_detail_id: boqQtyDetailId
+                    },
+                    success: function(response) {
+
+                        let options =
+                            '<option value="">Select Material Requirement</option>';
+
+                        $.each(response, function(index, item) {
+
+                            options += `
+                                    <option value="${item.id}">
+                                        ${item.material_name}
+                                    </option>
+                                `;
+                        });
+
+                        currentRow.find('.material_requirement_id')
+                            .html(options);
+                    }
+                });
+            });
+
+
 
             $(document).on('change', '.boq_category_id, .boq_quantity_detail_id', function() {
 
@@ -246,7 +278,6 @@
                         let requirementSelect = row.find('.requirement_id');
 
                         requirementSelect.empty();
-
                         requirementSelect.append(
                             '<option value="">Select Requirement</option>'
                         );
@@ -260,49 +291,55 @@
                             );
 
                         });
-
-                        requirementSelect.trigger('change');
                     }
                 });
-
             });
 
-            $(document).on('change', '.requirement_id', function() {
 
-                let row = $(this).closest('tr');
+            // $(document).on('change', '.material_requirement_id', function() {
 
-                let boqCategoryId = row.find('.boq_category_id').val();
-                let requirementId = $(this).val();
+            //     let materialRequirementId = $(this).val();
 
-                $.ajax({
-                    url: "{{ route('projectmanage.requirement_detail_get') }}",
-                    type: 'GET',
-                    data: {
-                        boq_category_id: boqCategoryId,
-                        requirement_id: requirementId
-                    },
-                    success: function(data) {
+            //     let currentRow = $(this).closest('tr');
 
-                        row.find('.unit').val(data.unit);
-                        row.find('.quantity').val(data.quantity);
-                        // row.find('.rate').val(data.rate ?? 0);
+            //     $.ajax({
+            //         url: "{{ route('projectmanage.get.material.requirement') }}",
+            //         type: "GET",
+            //         data: {
+            //             material_requirement_id: materialRequirementId
+            //         },
+            //         success: function(response) {
 
-                    }
-                });
+            //             console.log(response);
 
-            });
+            //             currentRow.find('.boq_category_id')
+            //                 .val(response.boq_category_id);
 
-            $(document).on('keyup change', '.section-row input[name*="[title]"]', function() {
+            //             currentRow.find('.boq_category_name')
+            //                 .val(response.boq_category_name);
 
-                let row = $(this).closest('.section-row');
-                let section = row.data('section');
-                let title = $(this).val();
+            //             currentRow.find('.variable_asset_id')
+            //                 .val(response.variable_asset_id);
 
-                let totalRow = $(`.subtotal-row[data-section="${section}"]`);
+            //             currentRow.find('.material_name')
+            //                 .val(response.material_name);
 
-                totalRow.find('.section-total-label')
-                    .text((title || 'Section') + ' Total');
-            });
+            //             currentRow.find('.quantity')
+            //                 .val(response.quantity);
+
+            //             currentRow.find('.unit')
+            //                 .val(response.unit);
+
+            //             currentRow.find('.unit_rate')
+            //                 .val(response.unit_rate);
+
+            //             calculateRowAmount(currentRow);
+
+            //         }
+            //     });
+
+            // });
+
 
 
             // ADD ITEM
@@ -329,9 +366,9 @@
                             </button>
                         </td>
                     </tr>
-                    <tr class="subtotal-row" data-section="${currentSection}">
+                    <tr class="subtotal-row" data-section="${currentSection}" >
                         <td colspan="8" class="text-end" style="background-color:#c7dae1">
-                            <strong class="section-total-label">Section Total</strong>
+                            <strong>Section Total</strong>
                         </td>
 
                         <td style="background-color:#c7dae1">
@@ -402,6 +439,9 @@
                             </td>
 
                             
+
+                            
+                            
                             <td>
                                 <input type="text" name="rows[${itemRowIndex}][unit]" class="form-control unit" readonly>
                             </td>
@@ -411,7 +451,7 @@
                             </td>
 
                             <td>
-                                <input type="number" name="rows[${itemRowIndex}][unit_rate]" class="form-control unit_rate" step="0.001">
+                                <input type="number" name="rows[${itemRowIndex}][unit_rate]" class="form-control unit_rate" readonly step="0.001">
                             </td>
 
                             <td>
@@ -470,35 +510,45 @@
                 sectionCount = sectionIndex;
                 currentSection = sectionIndex;
             }
-            // REMOVE SECTION & ITEM
+            // REMOVE ITEM
             $(document).on('click', '.remove', function() {
-
                 let row = $(this).closest('tr');
-
                 if (row.hasClass('section-row')) {
+                    let hasItems = false;
+                    row.nextAll().each(function() {
+                        if ($(this).hasClass('section-row')) {
+                            return false;
+                        }
+                        if ($(this).hasClass('item-row')) {
+                            hasItems = true;
+                            return false;
+                        }
+                    });
 
-                    let section = row.data('section');
-
-                    // section row delete
-                    row.remove();
-
-                    // subtotal row delete
-                    $('.subtotal-row[data-section="' + section + '"]').remove();
-
-                    // optional: delete all item rows in that section
-                    $('.item-row[data-section="' + section + '"]').remove();
-
-                } else {
-
-                    row.remove();
+                    // if (hasItems) {
+                    //     alert('Delete items under this section first!');
+                    //     return;
+                    // }
                 }
-
+                row.remove();
                 refreshNumbering();
-
-                calculateGrandTotal();
+                calculateTotal();
+                calculateMaterialTotal();
             });
 
+            //CALCULATE ITEM
+            // $(document).on('input', '.unit_rate', function() {
+            //     let row = $(this).closest('tr');
+            //     let qty = parseFloat(row.find('.quantity').val()) || 0;
+            //     let unitRate = parseFloat(row.find('.unit_rate').val()) || 0;
 
+
+            //     let amount = qty * unitRate;
+            //     row.find('.amount').val(amount.toFixed(2));
+            //     calculateTotal();
+            //     calculateMaterialTotal();
+
+            // });
 
             $(document).on('input', '.unit_rate', function() {
 
@@ -518,7 +568,7 @@
                     .val((qty * rate).toFixed(2));
 
                 calculateTotal();
-                calculateGrandTotal();
+                calculateMaterialTotal();
             }
 
 
@@ -551,12 +601,12 @@
 
                 });
 
-                $('#grand_total').text(
+                $('#material_total').text(
                     grandTotal.toFixed(2)
                 );
             }
 
-            function calculateGrandTotal() {
+            function calculateMaterialTotal() {
 
                 let total = 0;
 
@@ -566,7 +616,7 @@
 
                 });
 
-                $('#grand_total').text(
+                $('#material_total').text(
                     total.toLocaleString(undefined, {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2

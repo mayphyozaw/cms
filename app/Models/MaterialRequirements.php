@@ -37,4 +37,5 @@ class MaterialRequirements extends Model
     {
         return $this->belongsTo(MeasurementCategories::class,'measurement_category_id');
     }
+    
 }

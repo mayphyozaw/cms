@@ -4,7 +4,7 @@
 
         <div class="d-flex align-items-center justify-content-between gap-2 mb-4 flex-wrap">
             <div>
-                <h4 class="mb-1">Mix Ratio </h4>
+                <h4 class="mb-1">Equipment Requirements </h4>
 
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
@@ -13,14 +13,25 @@
                         </li>
 
                         <li class="breadcrumb-item active" aria-current="page">
-                            Mix Ratio
+                            Equipment Requirements
                         </li>
                     </ol>
                 </nav>
             </div>
+            <div class="gap-2 d-flex align-items-center flex-wrap">
+
+                <a href="{{ route('projectmanage.projects.index') }}" class="btn btn-outline-light shadow">
+                    <span style="color:black">{{ $project->client->project_code }} @
+                        {{ $project->client->name }} - ({{ $project->client->length }} * {{ $project->client->width }}) -
+                        {{ $project->client->building_area }} Sq.ft
+                    </span>
+                </a>
+
+            </div>
         </div>
 
         <div class="row">
+
 
             {{-- Sidebar --}}
             <div class="col-xl-3 col-lg-12 theiaStickySidebar">
@@ -105,8 +116,7 @@
                                     Site Measurements
                                 </a>
 
-                                
-
+                               
                                 <a href="#" class="d-block p-2 fw-medium">
                                     <i class="ti ti-list-check me-2"></i>
                                     Proposal
@@ -146,19 +156,13 @@
                         <ul class="nav nav-tabs nav-bordered nav-bordered-primary">
 
                             <li class="nav-item me-3">
-                                <a href="{{ route('projectmanage.projects.mixRatio.index', $project->id) }}"
-                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.mixRatio.index') ? 'active' : '' }}">
+                                <a href="{{ route('projectmanage.projects.equipment-requirements.index', $project->id) }}"
+                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.equipment-requirements.index') ? 'active' : '' }}">
                                     <i class="ti ti-settings-cog me-2"></i>
-                                    Mix Ratio
+                                    Equipment Requirements
                                 </a>
                             </li>
-                            <li class="nav-item me-3">
-                                <a href="{{ route('projectmanage.projects.mixRatio-details.index', $project->id) }}"
-                                    class="nav-link p-2 {{ request()->routeIs('projectmanage.projects.mixRatio-details.index') ? 'active' : '' }}">
-                                    <i class="ti ti-settings-cog me-2"></i>
-                                    Mix Ratio Details
-                                </a>
-                            </li>
+
 
                         </ul>
 
@@ -173,13 +177,13 @@
                         <div class="row align-items-center">
 
                             <div class="col">
-                                <h5 class="card-title mb-0">Mix Ratio Lists</h5>
+                                <h5 class="card-title mb-0">Equipment Requirement Lists</h5>
                             </div>
 
                             <div class="col-auto">
                                 <x-create-button
-                                    href="{{ route('projectmanage.projects.mixRatio-details.create', $project->id) }}">
-                                    Create Mix Ratio Detail
+                                    href="{{ route('projectmanage.projects.equipment-requirements.create', $project->id) }}">
+                                    Create Equipment Requirement
                                 </x-create-button>
                             </div>
 
@@ -199,64 +203,56 @@
 
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered align-middle w-100 nowrap" id="mixRatioDetailTable">
+                            <table class="table table-bordered w-100 nowrap">
                                 <thead>
-                                    <tr>
-
-                                        <th class="text-center" style="background-color: #9dd2e7">No</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Code</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Material Name</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Part</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Total Part</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Consumption Ratio</th>
-                                        <th class="text-center" style="background-color: #9dd2e7">Action</th>
-
+                                    <tr class="text-center">
+                                        <th style="background-color: #9dd2e7">No</th>
+                                        <th style="background-color: #9dd2e7">Drawing Measurement</th>
+                                        <th style="background-color: #9dd2e7">Equipment</th>
+                                        <th style="background-color: #9dd2e7">Measurement Qty</th>
+                                        <th style="background-color: #9dd2e7">Productivity</th>
+                                        <th style="background-color: #9dd2e7">Required Qty</th>
+                                        <th style="background-color: #9dd2e7">Unit</th>
+                                        <th style="background-color: #9dd2e7">Action</th>
                                     </tr>
                                 </thead>
+
                                 <tbody>
-
-                                    @foreach ($mixRatioDetails as $detail)
+                                    @foreach ($equipmentRequirements as $equipmentRequirement)
                                         <tr>
-                                            <td class="text-center">
+                                            <td>{{ $loop->iteration }}</td>
 
-                                                {{ $loop->iteration }}
+                                            <td>
+                                                {{ $equipmentRequirement->drawingMeasurement?->category?->category_name }}
                                             </td>
 
-                                            <td class="text-center">
-                                                {{ $detail->mixRatio->code }}
+                                            <td>
+                                                {{ $equipmentRequirement->equipment?->name }}
                                             </td>
 
-                                            <td class="text-center">
-                                                {{ $detail->material->name }}
+                                            <td class="text-end">
+                                                {{ number_format($equipmentRequirement->measurement_qty, 2) }}
                                             </td>
 
-                                            <td class="text-center">
-                                                {{ $detail->part }}
-                                            </td>
-                                            @php
-                                                $totalPart = App\Models\MixRatioDetails::where(
-                                                    'mix_ratio_template_id',
-                                                    $detail->mix_ratio_template_id,
-                                                )->sum('part');
-
-                                                $consumptionRatio = $detail->part / $totalPart;
-                                            @endphp
-
-                                            <td class="text-center">
-                                                {{ $totalPart }}
+                                            <td class="text-end">
+                                                {{ number_format($equipmentRequirement->equipmentMapping?->productivity, 2) }}
                                             </td>
 
-                                            <td class="text-center">
-                                                {{ number_format($consumptionRatio,6)}}
+                                            <td class="text-end">
+                                                {{ number_format($equipmentRequirement->required_qty, 2) }}
+                                            </td>
+
+                                            <td class="text-end">
+                                                {{$equipmentRequirement->required_unit}}
                                             </td>
 
                                             <td class="text-center">
                                                 <a class="btn btn-icon btn-sm btn-info"
-                                                    href="{{ route('projectmanage.projects.mixRatio-details.edit', [$project->id, $detail->id]) }}">
+                                                    href="{{ route('projectmanage.projects.equipment-requirements.edit', [$project->id, $equipmentRequirement->id]) }}">
                                                     <i class="ti ti-edit"></i>
                                                 </a>
                                                 <form
-                                                    action="{{ route('projectmanage.projects.mixRatio-details.destroy', [$project->id, $detail->id]) }}"
+                                                    action="{{ route('projectmanage.projects.equipment-requirements.destroy', [$project->id, $equipmentRequirement->id]) }}"
                                                     method="POST" style="display:inline;">
                                                     @csrf
                                                     @method('DELETE')
@@ -267,14 +263,34 @@
                                             </td>
                                         </tr>
                                     @endforeach
-
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="5" class="text-end" style="background-color: #dde8ed">
+                                            <strong>Total Required Equipment</strong>
+                                        </td>
+
+                                        <td class="text-end" style="background-color: #dde8ed">
+                                            <strong>
+                                                {{ number_format($equipmentRequirements->sum('required_qty'), 2) }}
+                                            </strong>
+                                        </td>
+
+                                        <td class="text-end" style="background-color: #dde8ed">
+                                            
+                                        </td>
+                                        <td style="background-color: #dde8ed"></td>
+                                    </tr>
+                                </tfoot>
                             </table>
+
+
                         </div>
                     </div>
                 </div>
 
             </div>
+
 
         </div>
 
@@ -306,9 +322,9 @@
 
         });
 
-        $('#mixRatioDetailTable').DataTable({
-            responsive: true,
-            autoWidth: false
-        });
+        // $('#materialRequirementTable').DataTable({
+        //     responsive: true,
+        //     autoWidth: false
+        // });
     </script>
 @endpush
