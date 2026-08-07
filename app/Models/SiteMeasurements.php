@@ -8,32 +8,28 @@ class SiteMeasurements extends Model
 {
     protected $fillable = [
         'project_id',
-        'drawing_id',
-        'drawing_measurement_id',
-        'category_id',
-        'length',
-        'width',
-        'height',
-        'unit_weight',
-        'quantity',
-        'unit',
-        'rate',
-        'total',
+        'measurement_no',
+        'measurement_date',
+        'status',
         'remarks',
+        'created_by',
+        'approved_by',
+        'approved_at',
     ];
 
-    public function category()
+
+    public function creator()
     {
-        return $this->belongsTo(MeasurementCategories::class, 'category_id');
+        return $this->belongsTo(User::class, 'created_by');
     }
 
-    public function drawing()
+    public function approver()
     {
-        return $this->belongsTo(Drawings::class, 'drawing_id');
+        return $this->belongsTo(User::class, 'approved_by');
     }
-    
-    public function drawingMeasurement()
+
+    public function siteMeasurementdetails()
     {
-        return $this->belongsTo(DrawingMeasurement::class, 'drawing_measurement_id');
+        return $this->hasMany(SiteMeasurementDetails::class, 'site_measurement_id','id');
     }
 }

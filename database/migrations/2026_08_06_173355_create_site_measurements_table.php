@@ -13,18 +13,16 @@ return new class extends Migration
     {
         Schema::create('site_measurements', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('project_id')->nullable();
-            $table->unsignedBigInteger('drawing_id')->nullable();
-            $table->unsignedBigInteger('category_id')->nullable();
-            
-            $table->string('length')->nullable();
-            $table->string('width')->nullable();
-            $table->string('height')->nullable();
-            
-            $table->string('unit')->nullable();
-            
-            
+            $table->unsignedBigInteger('project_id');
+            $table->string('measurement_no')->nullable();
+            $table->date('measurement_date')->nullable();
+            $table->string('status')->nullable();
+            $table->string('remarks')->nullable();
+            $table->string('created_by')->nullable();
+            $table->string('approved_by')->nullable();
+            $table->date('approved_at')->nullable();
             $table->timestamps();
+            
         });
     }
 

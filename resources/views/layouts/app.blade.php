@@ -45,6 +45,9 @@
     {{-- Summernote --}}
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css" rel="stylesheet">
 
+    {{-- Date Range Picker --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
+
     <style>
         .note-editor .note-editable ul {
             list-style-type: disc !important;
@@ -146,6 +149,10 @@
     <script src="{{ asset('backend/assets/plugins/apexchart/apexcharts.min.js') }}"></script>
     <script src="{{ asset('backend/assets/plugins/apexchart/chart-data.js') }}"></script>
     <script src="{{ asset('backend/assets/js/jsonscript.js') }}"></script>
+
+    {{-- DateRange Picker --}}
+    <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

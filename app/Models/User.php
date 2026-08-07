@@ -167,4 +167,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(EngineerAssetRequests::class);
     }
+
+    public function createdSiteMeasurements()
+    {
+        return $this->hasMany(SiteMeasurements::class, 'created_by');
+    }
+
+    public function approvedSiteMeasurements()
+    {
+        return $this->hasMany(SiteMeasurements::class, 'approved_by');
+    }
 }

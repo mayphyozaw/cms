@@ -8,6 +8,7 @@ use App\Models\Drawings;
 use App\Models\MeasurementCategories;
 use App\Models\Project;
 use App\Models\SiteMeasurements;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SiteMeasurementController extends Controller
@@ -15,32 +16,31 @@ class SiteMeasurementController extends Controller
     public function index(Project $project)
     {
         $project->load('client');
-        // $siteMeasurementAllData = SiteMeasurements::with(['drawing', 'category'])
+        $siteMeasurementAllData = SiteMeasurements::all();
+        // $siteMeasurementAllData = SiteMeasurements::with([
+        //     'drawing',
+        //     'category'
+        // ])
+        //     ->where('project_id', $project->id)
         //     ->orderBy('created_at', 'desc')
         //     ->get();
-        $siteMeasurementAllData = SiteMeasurements::with([
-            'drawing',
-            'category'
-        ])
-            ->where('project_id', $project->id)
-            ->orderBy('created_at', 'desc')
-            ->get();
         return view('admin.backend.projectmanage.projects.site-measurements.index', compact('project', 'siteMeasurementAllData'));
     }
 
     public function create(Project $project)
     {
         $project->load('client');
-        $site_measurement = SiteMeasurements::with([
-            'drawingMeasurement',
-            'drawing'
-        ])->get();
-        $drawingMeasurements = DrawingMeasurement::with([
-            'drawing',
-            'category'
-        ])->get();
-        $categories = MeasurementCategories::all();
-        return view('admin.backend.projectmanage.projects.site-measurements.create', compact('project', 'categories', 'drawingMeasurements', 'site_measurement'));
+        // $site_measurement = SiteMeasurements::with([
+        //     'drawingMeasurement',
+        //     'drawing'
+        // ])->get();
+        // $drawingMeasurements = DrawingMeasurement::with([
+        //     'drawing',
+        //     'category'
+        // ])->get();
+        // $categories = MeasurementCategories::all();
+        $users = User::all();
+        return view('admin.backend.projectmanage.projects.site-measurements.create', compact('project','users'));
     }
 
     public function store(Request $request, Project $project)
@@ -48,69 +48,23 @@ class SiteMeasurementController extends Controller
 
 
         $request->validate([
-            'rate'        => 'required|numeric|min:0',
-            'drawing_measurement_id'  => 'required|exists:drawing_measurements,id',
-            'category_id' => 'required|exists:measurement_categories,id',
-            'drawing_id' => 'required|exists:drawings,id',
+            'measurement_date'        => 'required|date',
+            'created_by'  => 'required|exists:users,id',
 
         ]);
 
-        $length = $request->length ?? 0;
-        $width  = $request->width ?? 0;
-        $height = $request->height ?? 0;
-        $unit_weight = $request->unit_weight ?? 0;
-        $rate = $request->rate ?? 0;
+        $lastSiteMeasurement = SiteMeasurements::latest('id')->first();
+        $nextId = $lastSiteMeasurement ? $lastSiteMeasurement->id + 1 : 1;
 
-        $quantity = 0;
-
-
-        $category = MeasurementCategories::findOrFail($request->category_id);
-
-        switch ($category->formula_types) {
-
-            case 'volume':
-                $quantity = $length * $width * $height;
-                break;
-
-            case 'area':
-                $quantity = $length * $width;
-                break;
-
-            case 'wall_area':
-                $quantity = $length * $height;
-                break;
-
-            case 'painting_area':
-                $quantity = 2 * ($length + $width) * $height;
-                break;
-
-            case 'steel_linear':
-            case 'steel_handrail_linear':
-                $quantity = $length;
-                break;
-
-            case 'weight':
-                $quantity = $length * $unit_weight;
-                break;
-        }
-
-
-        $total = $rate * $quantity;
+        $measurementNo = 'SE-' . str_pad($nextId, 4, '0', STR_PAD_LEFT);
 
         SiteMeasurements::create([
             'project_id' => $project->id,
-            'drawing_id' => $request->drawing_id,
-            'drawing_measurement_id' => $request->drawing_measurement_id,
-            'category_id' => $request->category_id,
-            'length' => $length,
-            'width' => $width,
-            'height' => $height,
-            'unit_weight' => $unit_weight,
-            'quantity' => $quantity,
-            'unit' => $request->unit,
-            'rate' => $rate,
-            'total' => $total,
+            'measurement_no' => $measurementNo,
+            'measurement_date' => $request->measurement_date,
+            'status' => $request->status,
             'remarks' => $request->remarks,
+            'created_by' => $request->created_by,
         ]);
 
         return redirect()

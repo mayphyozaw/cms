@@ -56,6 +56,7 @@ use App\Http\Controllers\Backend\ProjectManagement\ProjectCategoryController;
 use App\Http\Controllers\Backend\ProjectManagement\ProjectController;
 use App\Http\Controllers\Backend\ProjectManagement\ProjectFilesController;
 use App\Http\Controllers\Backend\ProjectManagement\SiteMeasurementController;
+use App\Http\Controllers\Backend\ProjectManagement\SiteMeasurementDetailController;
 use App\Http\Controllers\Backend\ProjectManagement\WorkscopeController;
 use App\Http\Controllers\Backend\ProjectManagement\WorkTypeController;
 use App\Http\Controllers\Backend\PurchaseController;
@@ -292,16 +293,20 @@ Route::middleware('auth', 'notBlocked')->group(function () {
                 Route::get('/drawing-measurement-detail/{detail}/deduction/create', [DrawingMeasurementDeductionController::class, 'create'])->name('drawing-measurement-deduction.create');
                 Route::get('/drawing-measurement-detail/{detail}/deduction/index', [DrawingMeasurementDeductionController::class, 'index'])->name('drawing-measurement-deduction.index');
                 Route::post('/drawing-measurement-detail/{detail}/deduction/store', [DrawingMeasurementDeductionController::class, 'store'])->name('drawing-measurement-deduction.store');
+
                 Route::resource('measurement-types', MeasurementTypeController::class);
                 Route::resource('work-types', WorkTypeController::class);
                 Route::resource('measurement-categories', MeasurementCategoriesController::class);
-                Route::resource('site-measurements', SiteMeasurementController::class);
+
                 Route::resource('mixRatio', MixRatioTemplatesController::class);
                 Route::resource('mixRatio-details', MixRatioDetailsController::class);
                 Route::resource('material-mappings', MaterialMappingController::class);
+
                 Route::resource('material-requirements', MaterialRequirementsController::class);
+
                 Route::resource('labor-mappings', LaborMappingController::class);
                 Route::resource('labor-requirements', LaborRequirementController::class);
+
                 Route::resource('equipment-mappings', EquipmentMappingController::class);
                 Route::resource('equipment-requirements', EquipmentRequirementsController::class);
 
@@ -317,6 +322,12 @@ Route::middleware('auth', 'notBlocked')->group(function () {
                 Route::get('/boq-cost-detail/{boq}', [BoqCostDetailController::class, 'index'])->name('boq-cost-detail.index');
                 Route::get('/boq-cost-detail/{boq}/create', [BoqCostDetailController::class, 'create'])->name('boq-cost-detail.create');
                 Route::post('/boq-cost-detail/{boq}', [BoqCostDetailController::class, 'store'])->name('boq-cost-detail.store');
+
+                Route::resource('site-measurements', SiteMeasurementController::class);
+                Route::get('/site-measurement-detail/{siteMeasurement}/detail/index', [SiteMeasurementDetailController::class, 'index'])->name('site-measurement-detail.index');
+                Route::get('/site-measurement-detail/{siteMeasurement}/detail/create', [SiteMeasurementDetailController::class, 'create'])->name('site-measurement-detail.create');
+                Route::post('/site-measurement-detail/{siteMeasurement}/detail/store', [SiteMeasurementDetailController::class, 'store'])->name('site-measurement-detail.store');
+                
             });
 
         Route::get('get-boq-category', [BoqController::class, 'getBoqCategory'])->name('get.boq.category');
